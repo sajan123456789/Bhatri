@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CareerSteps – Find Your Career After 10th & 12th</title>
+    <title>CareerSteps – India's Leading AI Career Guidance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CareerSteps is an AI-powered career guidance platform helping students choose the right stream after 10th and the best career after 12th with 900+ career options.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -18,52 +17,51 @@
 
         /* Premium Glow Background */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 16px;
             position: relative;
             overflow: hidden;
+            padding: 80px 0;
         }
         .hero::before {
             content: "";
             position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
-            filter: blur(120px);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12), transparent 70%);
+            filter: blur(100px);
             z-index: -1;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 20%;
+            right: 0%;
         }
 
         .card { 
-            background: rgba(15, 23, 42, 0.6); 
+            background: rgba(15, 23, 42, 0.5); 
             border: 1px solid rgba(30, 41, 59, 0.5);
-            backdrop-blur: 10px;
-            transition: all 0.3s ease;
+            backdrop-blur: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .card:hover {
             border-color: #3b82f6;
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
         }
 
-        /* Smooth Gradient Text */
-        .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .footer-bg {
+            background: #00020a; /* Darker than body for contrast */
         }
     </style>
 </head>
 
 <body>
 
-<header class="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
+<header class="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <a href="index.html" class="group transition-transform active:scale-95">
             <h1 class="text-2xl font-extrabold tracking-tighter text-white italic uppercase">
@@ -71,114 +69,163 @@
             </h1>
         </a>
         
-        <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest text-gray-400">
-            <a href="index.html" class="text-blue-500">Home</a>
+        <nav class="hidden lg:flex space-x-10 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
+            <a href="index.html" class="text-blue-500 border-b-2 border-blue-500 pb-1">Home</a>
             <a href="assessment.html" class="hover:text-white transition">Assessment</a>
             <a href="after10.html" class="hover:text-white transition">After 10th</a>
             <a href="after12.html" class="hover:text-white transition">After 12th</a>
             <a href="about.html" class="hover:text-white transition">About</a>
         </nav>
 
-        <a href="assessment.html" class="md:hidden bg-blue-600 px-4 py-2 rounded-lg text-xs font-bold">TEST</a>
+        <a href="assessment.html" class="bg-blue-600 hover:bg-blue-500 px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-widest transition btn-glow">
+            Get Started
+        </a>
     </div>
 </header>
 
 <section class="hero">
-    <div class="max-w-4xl mx-auto px-4">
-        <span class="inline-block mb-6 px-6 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
-            🚀 AI-Powered Career Guidance V3.5
-        </span>
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-left">
+            <span class="inline-block mb-6 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.3em]">
+                🚀 AI-Powered Guidance <span class="current-year"></span>
+            </span>
 
-        <h2 class="text-5xl md:text-7xl font-black leading-tight mb-6">
-            Confused After <span class="text-blue-500">10th</span> or <br>
-            <span class="text-purple-500">12th</span>?
-        </h2>
+            <h2 class="text-5xl md:text-7xl font-black leading-[1.1] mb-8">
+                Your Future, <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Mapped by AI.</span>
+            </h2>
 
-        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Hazaar options, ek sahi rasta. Take our 2-minute assessment and explore 
-            <strong class="text-white">900+ verified career pathways</strong> today.
-        </p>
+            <p class="text-slate-400 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
+                Stop guessing. Start growing. Take the most scientific career assessment in India and explore <span class="text-white font-bold">900+ data-backed pathways</span> updated for <span class="current-year"></span>.
+            </p>
 
-        <div class="flex flex-col sm:flex-row gap-5 justify-center">
-            <a href="assessment.html"
-               class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-2xl shadow-blue-500/20 active:scale-95">
-                START FREE CAREER TEST
-            </a>
-            <a href="careers.html"
-               class="border border-slate-700 hover:border-blue-500 px-10 py-5 rounded-2xl font-black text-lg transition-all active:scale-95">
-                EXPLORE ALL CAREERS
-            </a>
+            <div class="flex flex-col sm:flex-row gap-5">
+                <a href="assessment.html"
+                   class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase transition-all btn-glow text-center">
+                    Start Career Test
+                </a>
+                <a href="careers.html"
+                   class="border border-slate-700 hover:border-blue-500 px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase transition-all text-center">
+                    Explore Directory
+                </a>
+            </div>
         </div>
 
-        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="card p-6 rounded-2xl">
-                <p class="text-3xl font-black text-blue-500 mb-1">900+</p>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Career Roadmaps</p>
+        <div class="hidden lg:grid grid-cols-2 gap-4">
+            <div class="card p-8 rounded-[32px] mt-12">
+                <div class="text-4xl mb-4">📈</div>
+                <h4 class="font-bold text-lg mb-2 text-blue-400">Market Trends</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Real-time salary data & high-demand skills for <span class="current-year"></span>.</p>
             </div>
-            <div class="card p-6 rounded-2xl">
-                <p class="text-3xl font-black text-purple-500 mb-1">10</p>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Simple Qs</p>
+            <div class="card p-8 rounded-[32px]">
+                <div class="text-4xl mb-4">🎯</div>
+                <h4 class="font-bold text-lg mb-2 text-purple-400">Accurate PDF</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Download a 15-page personalized career roadmap instantly.</p>
             </div>
-            <div class="card p-6 rounded-2xl">
-                <p class="text-3xl font-black text-green-500 mb-1">Free</p>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Always For Students</p>
+            <div class="card p-8 rounded-[32px] -mt-6">
+                <div class="text-4xl mb-4">🛡️</div>
+                <h4 class="font-bold text-lg mb-2 text-green-400">Trusted By</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Over 50,000+ students assisted in the last 12 months.</p>
             </div>
-            <div class="card p-6 rounded-2xl">
-                <p class="text-3xl font-black text-orange-500 mb-1">2025</p>
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Updated Trends</p>
+            <div class="card p-8 rounded-[32px] mt-6">
+                <div class="text-4xl mb-4">⚡</div>
+                <h4 class="font-bold text-lg mb-2 text-orange-400">Fast Analysis</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Get results in under 2 minutes with our rapid AI engine.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10">
-    <div class="card p-10 rounded-[32px] group">
-        <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition">
-            <span class="text-3xl">🎓</span>
+<section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="card p-12 rounded-[40px] group relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-10 text-8xl group-hover:scale-110 transition">🎓</div>
+            <h3 class="text-4xl font-black mb-6 italic">Class 10th</h3>
+            <p class="text-slate-400 text-lg mb-10 leading-relaxed max-w-sm">
+                Stream selection is the foundation. Choose between Science, Commerce, or Arts based on aptitude.
+            </p>
+            <a href="after10.html" class="inline-flex items-center bg-white text-black px-8 py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-500 hover:text-white transition-colors">
+                Get Roadmap 10th →
+            </a>
         </div>
-        <h3 class="text-3xl font-black mb-4 italic">After Class 10</h3>
-        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-            Sahi stream (Science, Commerce, Arts) ka chunaav karein. Apne skills aur future goals ke hisaab se best guidance payein.
-        </p>
-        <a href="after10.html" class="inline-flex items-center text-blue-500 font-bold tracking-widest uppercase text-sm group-hover:gap-3 transition-all">
-            Explore After 10th <span class="ml-2">→</span>
-        </a>
-    </div>
 
-    <div class="card p-10 rounded-[32px] group">
-        <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition">
-            <span class="text-3xl">🏢</span>
+        <div class="card p-12 rounded-[40px] group relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-10 text-8xl group-hover:scale-110 transition">🏢</div>
+            <h3 class="text-4xl font-black mb-6 italic">Class 12th</h3>
+            <p class="text-slate-400 text-lg mb-10 leading-relaxed max-w-sm">
+                Explore degrees, professional exams, and high-paying jobs. Find your niche in the global market.
+            </p>
+            <a href="after12.html" class="inline-flex items-center bg-white text-black px-8 py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-purple-500 hover:text-white transition-colors">
+                Get Roadmap 12th →
+            </a>
         </div>
-        <h3 class="text-3xl font-black mb-4 italic">After Class 12</h3>
-        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-            Professional degrees, entrance exams aur high-paying careers ki puri list. 900+ options me se apna perfect match dhoondein.
-        </p>
-        <a href="after12.html" class="inline-flex items-center text-purple-500 font-bold tracking-widest uppercase text-sm group-hover:gap-3 transition-all">
-            Explore After 12th <span class="ml-2">→</span>
-        </a>
     </div>
 </section>
 
-<footer class="border-t border-white/5 bg-slate-900/20 py-16">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <h1 class="text-2xl font-extrabold tracking-tighter text-white italic uppercase mb-8">
-            CAREER<span class="text-blue-500">STEPS</span>
-        </h1>
+<footer class="footer-bg border-t border-white/5 pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+            <div class="space-y-6">
+                <h1 class="text-3xl font-extrabold tracking-tighter text-white italic uppercase">
+                    CAREER<span class="text-blue-500">STEPS</span>
+                </h1>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    India's most trusted AI-driven platform for career intelligence and student success. Helping you navigate the future with confidence.
+                </p>
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 cursor-pointer transition">𝕏</div>
+                    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-pink-600 cursor-pointer transition">IG</div>
+                    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-800 cursor-pointer transition">LN</div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Resources</h4>
+                <ul class="space-y-4 text-slate-500 text-sm">
+                    <li><a href="careers.html" class="hover:text-blue-500 transition">Career Directory</a></li>
+                    <li><a href="assessment.html" class="hover:text-blue-500 transition">Free Skill Test</a></li>
+                    <li><a href="roadmaps.html" class="hover:text-blue-500 transition">Expert Roadmaps</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Salary Calculator</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Pathways</h4>
+                <ul class="space-y-4 text-slate-500 text-sm">
+                    <li><a href="after10.html" class="hover:text-blue-500 transition">After Class 10th</a></li>
+                    <li><a href="after12.html" class="hover:text-blue-500 transition">After Class 12th</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Degree Guide</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Entrance Exams</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Newsletter</h4>
+                <p class="text-slate-500 text-xs mb-4">Get career insights delivered to your inbox.</p>
+                <div class="flex gap-2">
+                    <input type="text" placeholder="Email" class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full outline-none focus:border-blue-500">
+                    <button class="bg-blue-600 px-4 py-2 rounded-lg text-sm font-bold tracking-widest">➜</button>
+                </div>
+            </div>
+        </div>
         
-        <div class="flex flex-wrap justify-center gap-8 text-slate-500 text-xs font-bold uppercase tracking-widest mb-10">
-            <a href="about.html" class="hover:text-white transition">About</a>
-            <a href="privacy.html" class="hover:text-white transition">Privacy</a>
-            <a href="terms.html" class="hover:text-white transition">Terms</a>
-            <a href="after10.html" class="hover:text-white transition">Class 10th</a>
-            <a href="after12.html" class="hover:text-white transition">Class 12th</a>
+        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+            <p>© <span class="current-year"></span> CareerSteps Intelligence. All Rights Reserved.</p>
+            <div class="flex gap-8">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+                <a href="cookies.html" class="hover:text-white transition">Cookies</a>
+            </div>
         </div>
-
-        <p class="text-slate-600 text-sm">
-            © 2025 CareerSteps. India's #1 Career Intelligence Platform. <br>
-            Built for the next generation of achievers.
-        </p>
     </div>
 </footer>
+
+<script>
+    // Update all instances of current-year class to present year
+    const yearElements = document.querySelectorAll('.current-year');
+    const currentYear = new Date().getFullYear();
+    yearElements.forEach(el => el.textContent = currentYear);
+</script>
 
 </body>
 </html>
