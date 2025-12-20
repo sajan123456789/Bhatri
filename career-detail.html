@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Career Details – CareerSteps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Get complete career guidance including eligibility, exams, roadmap, skills and salary on CareerSteps.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+  background:#020617;
+  color:#ffffff;
+  font-family:system-ui;
+}
+.card{
+  background:rgba(15,23,42,.6);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
+  <nav class="space-x-4 text-gray-300 text-sm">
+    <a href="index.html" class="hover:text-white">Home</a>
+    <a href="careers.html" class="hover:text-white">All Careers</a>
+    <a href="assessment.html" class="hover:text-white">Assessment</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="max-w-4xl mx-auto px-6 py-12 text-center">
+  <h2 id="careerTitle" class="text-4xl font-extrabold mb-3"></h2>
+  <p id="careerCategory" class="text-gray-400 mb-6"></p>
+  <p id="careerIntro" class="text-gray-300 text-lg"></p>
+</section>
+
+<!-- DETAILS -->
+<section class="max-w-7xl mx-auto px-6 pb-20 grid md:grid-cols-2 gap-8">
+
+  <div class="card p-8 rounded-2xl">
+    <h3 class="text-xl font-bold mb-3">Eligibility</h3>
+    <ul id="eligibility" class="list-disc list-inside text-gray-300 space-y-2"></ul>
+  </div>
+
+  <div class="card p-8 rounded-2xl">
+    <h3 class="text-xl font-bold mb-3">Important Exams</h3>
+    <ul id="exams" class="list-disc list-inside text-gray-300 space-y-2"></ul>
+  </div>
+
+  <div class="card p-8 rounded-2xl md:col-span-2">
+    <h3 class="text-xl font-bold mb-4">Step-by-Step Career Roadmap</h3>
+    <ol id="roadmap" class="list-decimal list-inside text-gray-300 space-y-2"></ol>
+  </div>
+
+  <div class="card p-8 rounded-2xl">
+    <h3 class="text-xl font-bold mb-3">Key Skills Required</h3>
+    <ul id="skills" class="list-disc list-inside text-gray-300 space-y-2"></ul>
+  </div>
+
+  <div class="card p-8 rounded-2xl">
+    <h3 class="text-xl font-bold mb-3">Salary Overview</h3>
+    <p id="salary" class="text-gray-300"></p>
+  </div>
+
+</section>
+
+<!-- NEXT STEP -->
+<section class="max-w-4xl mx-auto px-6 text-center pb-20">
+  <h3 class="text-2xl font-bold mb-4">What Should You Do Next?</h3>
+  <p class="text-gray-300 mb-6">
+    If you are unsure whether this career is right for you, take our free career assessment.
+  </p>
+  <a href="assessment.html"
+     class="inline-block bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl font-semibold">
+    Take Free Career Assessment
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900/60 py-10 text-center text-gray-400 text-sm">
+  <p>© 2025 <strong>CareerSteps</strong> • Career Guidance Platform</p>
+</footer>
+
+<script>
+/* ===== CAREER DATA (extendable to 900+) ===== */
+const careerData = {
+  software_engineer:{
+    title:"Software Engineer",
+    category:"Technology",
+    intro:"Software Engineers design, develop and maintain applications and systems used across industries.",
+    eligibility:["PCM after 10th","BTech / BSc in CS or IT"],
+    exams:["JEE","CUET","GATE (optional)"],
+    roadmap:[
+      "Choose PCM in Class 11–12",
+      "Complete BTech/BSc in Computer Science",
+      "Build projects & coding skills",
+      "Get internships and entry-level roles"
+    ],
+    skills:["Programming","Problem Solving","Data Structures","Logical Thinking"],
+    salary:"₹4–12 LPA (can grow higher with experience)"
+  },
+
+  data_scientist:{
+    title:"Data Scientist",
+    category:"Technology",
+    intro:"Data Scientists analyze data to extract insights and support business decisions.",
+    eligibility:["PCM or Commerce with Maths","BSc / BTech / Statistics"],
+    exams:["CUET","GATE"],
+    roadmap:[
+      "Strong foundation in maths & statistics",
+      "Learn Python, SQL & ML",
+      "Build data projects",
+      "Work as analyst → data scientist"
+    ],
+    skills:["Statistics","Python","Machine Learning","Data Analysis"],
+    salary:"₹6–20 LPA"
+  },
+
+  lawyer:{
+    title:"Lawyer",
+    category:"Law",
+    intro:"Lawyers advise clients, represent cases and interpret laws in courts and organizations.",
+    eligibility:["Any stream after 10th","BA LLB / LLB"],
+    exams:["CLAT","State Law Entrance"],
+    roadmap:[
+      "Complete BA LLB / LLB",
+      "Enroll with Bar Council",
+      "Practice under senior advocate",
+      "Specialize in a field of law"
+    ],
+    skills:["Communication","Legal Research","Critical Thinking"],
+    salary:"₹3–15 LPA"
+  }
+};
+
+/* ===== READ URL PARAM ===== */
+const params = new URLSearchParams(window.location.search);
+const careerId = params.get("career");
+
+/* ===== LOAD DATA ===== */
+const data = careerData[careerId];
+
+if(!data){
+  document.getElementById("careerTitle").innerText = "Career Not Found";
+  document.getElementById("careerIntro").innerText =
+    "Please go back and select a valid career.";
+}else{
+  document.getElementById("careerTitle").innerText = data.title;
+  document.getElementById("careerCategory").innerText = data.category;
+  document.getElementById("careerIntro").innerText = data.intro;
+
+  data.eligibility.forEach(e=>{
+    eligibility.innerHTML += `<li>${e}</li>`;
+  });
+  data.exams.forEach(e=>{
+    exams.innerHTML += `<li>${e}</li>`;
+  });
+  data.roadmap.forEach(r=>{
+    roadmap.innerHTML += `<li>${r}</li>`;
+  });
+  data.skills.forEach(s=>{
+    skills.innerHTML += `<li>${s}</li>`;
+  });
+
+  document.getElementById("salary").innerText = data.salary;
+}
+</script>
+
+</body>
+</html>
