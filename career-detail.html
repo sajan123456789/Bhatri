@@ -2,32 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Professional Insights | CareerSteps</title>
+    <title>Career Roadmap | CareerSteps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background: #020617; color: #f1f5f9; font-family: 'Outfit', sans-serif; }
-        .glass-card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(51, 65, 85, 0.5); backdrop-filter: blur(10px); }
-        .roadmap-line { border-left: 2px dashed #4f46e5; margin-left: 20px; }
-        .step-dot { height: 14px; width: 14px; background: #6366f1; border-radius: 50%; position: absolute; left: -8px; border: 3px solid #020617; }
-        .demand-bar { height: 8px; border-radius: 4px; background: #1e293b; overflow: hidden; position: relative; }
-        .demand-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #a855f7); width: 85%; }
+        body { 
+            background: #020617; /* Deep Navy Black */
+            color: #f8fafc; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth;
+        }
+        /* Card for high contrast */
+        .solid-card { 
+            background: #0f172a; 
+            border: 1px solid #1e293b; 
+            border-radius: 20px;
+        }
+        .roadmap-line { border-left: 2px dashed #2563eb; margin-left: 20px; }
+        .step-dot { 
+            height: 16px; width: 16px; background: #3b82f6; 
+            border-radius: 50%; position: absolute; left: -9px; 
+            border: 3px solid #020617; box-shadow: 0 0 10px #3b82f6;
+        }
+        .demand-bar { height: 10px; border-radius: 5px; background: #1e293b; overflow: hidden; }
+        .demand-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #60a5fa); width: 85%; }
+        
+        /* Floating Back to Top Button */
+        #backToTop {
+            display: none; position: fixed; bottom: 30px; right: 30px;
+            background: #2563eb; color: white; border: none;
+            padding: 12px; border-radius: 50%; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); z-index: 100;
+        }
+
         @media print { .no-print { display: none; } }
     </style>
 </head>
 
 <body>
 
+<button id="backToTop" onclick="window.scrollTo(0,0)" class="no-print">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path></svg>
+</button>
+
 <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center no-print">
-    <button onclick="window.location.href='career.html'" class="flex items-center text-indigo-400 hover:text-indigo-300 transition font-bold">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <button onclick="window.location.href='career.html'" class="flex items-center text-blue-500 hover:text-blue-400 transition font-bold text-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        Back to Explorer
+        Back
     </button>
-    <div class="flex gap-4">
-        <button onclick="window.print()" class="text-xs bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 hover:bg-slate-700">Save as PDF</button>
+    <div class="flex gap-3">
+        <button onclick="shareOnWhatsApp()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition">WhatsApp Share</button>
+        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl text-xs font-bold border border-slate-600 transition">Save PDF</button>
     </div>
 </header>
 
@@ -35,7 +63,6 @@
 
 <script>
 const DATA_ENGINE = {
-    // REAL DATA
     t1: { title: "AI Research Scientist", cat: "Tech", salary: "₹15L - ₹50L PA", roles: ["ML Engineer", "Data Scientist", "AI Ethicist"], roadmap: ["12th PCM", "B.Tech in CS/IT", "Specialization in AI/ML", "PhD or Research Intern"] },
     m1: { title: "Neurosurgeon", cat: "Medical", salary: "₹20L - ₹80L PA", roles: ["Consultant Surgeon", "Clinical Researcher", "HOD Neurosurgery"], roadmap: ["12th PCB", "MBBS Degree", "MS in Surgery", "M.Ch Neurosurgery"] },
     l1: { title: "Corporate Lawyer", cat: "Law", salary: "₹10L - ₹35L PA", roles: ["Legal Associate", "In-house Counsel", "Compliance Officer"], roadmap: ["12th Any Stream", "CLAT Exam", "5-year LLB", "Bar Council Exam"] },
@@ -64,76 +91,86 @@ const box = document.getElementById("content");
 if(c) {
     box.innerHTML = `
         <div class="mb-12">
-            <div class="flex items-center gap-3 mb-6">
-                <span class="text-indigo-400 font-bold uppercase tracking-widest text-xs px-3 py-1 bg-indigo-500/10 rounded-full border border-indigo-500/20">${c.cat}</span>
-                <span class="text-xs text-slate-400 font-medium">Verified Roadmap 2025</span>
-            </div>
-            <h2 class="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">${c.title}</h2>
+            <span class="text-blue-400 font-black uppercase tracking-widest text-[10px] px-3 py-1 bg-blue-900/30 rounded-lg border border-blue-500/30">${c.cat}</span>
+            <h2 class="text-5xl md:text-7xl font-black mt-6 mb-8 text-white leading-tight">${c.title}</h2>
             
-            <div class="max-w-md">
-                <p class="text-sm font-bold text-slate-500 mb-2 uppercase tracking-wide">Market Demand Score</p>
-                <div class="demand-bar mb-1">
-                    <div class="demand-fill"></div>
-                </div>
-                <div class="flex justify-between text-[10px] font-bold text-indigo-400">
-                    <span>STABLE</span>
-                    <span>HIGH GROWTH</span>
+            <div class="max-w-xs">
+                <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest italic">Growth Index 2025</p>
+                <div class="demand-bar mb-1"><div class="demand-fill"></div></div>
+                <div class="flex justify-between text-[9px] font-black text-blue-400 uppercase">
+                    <span>Stable</span><span>High Demand</span>
                 </div>
             </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-4 mb-16">
-            <div class="glass-card p-6 rounded-3xl">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2">Potential Income</p>
-                <p class="text-xl font-black text-green-400">${c.salary}</p>
+        <div class="grid md:grid-cols-3 gap-5 mb-16">
+            <div class="solid-card p-6 border-b-4 border-blue-500">
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest">Avg Package</p>
+                <p class="text-2xl font-black text-white">${c.salary}</p>
             </div>
-            <div class="glass-card p-6 rounded-3xl">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2">Academic Rigor</p>
-                <p class="text-xl font-black text-white">Intensive</p>
+            <div class="solid-card p-6 border-b-4 border-blue-400">
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest">Career Stability</p>
+                <p class="text-2xl font-black text-white">94% Secure</p>
             </div>
-            <div class="glass-card p-6 rounded-3xl">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2">Tech Disruption</p>
-                <p class="text-xl font-black text-indigo-300">Low Risk</p>
+            <div class="solid-card p-6 border-b-4 border-blue-300">
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest">AI Impact</p>
+                <p class="text-2xl font-black text-white">Low Risk</p>
             </div>
         </div>
 
         <div class="grid lg:grid-cols-3 gap-12">
             <div class="lg:col-span-2">
-                <h3 class="text-2xl font-bold mb-8 flex items-center">
-                    <svg class="w-6 h-6 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    Strategic Roadmap
-                </h3>
-                <div class="roadmap-line space-y-8">
+                <h3 class="text-3xl font-black mb-10 text-white italic">The Master Pathway</h3>
+                <div class="roadmap-line space-y-10">
                     ${c.roadmap.map((s, i) => `
-                        <div class="relative pl-12 group">
+                        <div class="relative pl-12">
                             <div class="step-dot"></div>
-                            <div class="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 hover:border-indigo-500 transition-all">
-                                <span class="text-indigo-500 font-black text-[10px]">PHASE 0${i+1}</span>
-                                <p class="text-lg font-bold text-slate-200 mt-1">${s}</p>
+                            <div class="solid-card p-6 hover:border-blue-500 transition-all">
+                                <span class="text-blue-500 font-black text-[10px] uppercase">Phase 0${i+1}</span>
+                                <p class="text-xl font-bold text-white mt-1 leading-snug">${s}</p>
                             </div>
                         </div>
                     `).join('')}
                 </div>
             </div>
 
-            <div>
-                <h3 class="text-2xl font-bold mb-8">Future Job Roles</h3>
-                <div class="space-y-3">
-                    ${c.roles.map(role => `
-                        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-slate-300 font-medium">
-                            ${role}
-                        </div>
-                    `).join('')}
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-black mb-6 text-white">Work Designations</h3>
+                    <div class="space-y-3">
+                        ${c.roles.map(role => `
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-slate-200 font-bold border-l-4 border-l-blue-600">
+                                ${role}
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
                 
-                <div class="mt-10 p-6 rounded-3xl bg-indigo-600/10 border border-indigo-500/20">
-                    <p class="text-xs font-bold text-indigo-400 uppercase mb-2">Pro Tip</p>
-                    <p class="text-sm text-slate-400">Mastering soft skills like communication and emotional intelligence will double your growth in this field.</p>
+                <div class="p-8 rounded-[2rem] bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/30 text-center">
+                    <p class="text-blue-400 font-black text-xs uppercase mb-4 tracking-widest">Pro Insight</p>
+                    <p class="text-white font-bold leading-relaxed mb-6">Focus on Practical Networking & Certifications to reach the top 1% in ${c.title}.</p>
+                    <button onclick="window.location.href='assessment.html'" class="bg-blue-600 w-full py-4 rounded-2xl font-black text-white hover:bg-blue-500 transition">Get My Full Plan</button>
                 </div>
             </div>
         </div>
     `;
 }
+
+// WhatsApp Share Logic
+function shareOnWhatsApp() {
+    const text = `Hey! Check out this complete roadmap for ${c.title} on CareerSteps: ${window.location.href}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// Scroll To Top Visibility Logic
+window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+};
 </script>
 
 </body>
