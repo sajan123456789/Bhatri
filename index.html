@@ -1,188 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>CareerSteps – Find Your Career After 10th & 12th</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>CareerSteps – Find Your Career After 10th & 12th</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CareerSteps is an AI-powered career guidance platform helping students choose the right stream after 10th and the best career after 12th with 900+ career options.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-<meta name="description"
-content="CareerSteps is an AI-powered career guidance platform helping students choose the right stream after 10th and the best career after 12th with 900+ career options.">
+    <style>
+        body {
+            background: #020617;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-<script src="https://cdn.tailwindcss.com"></script>
+        /* Premium Glow Background */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
+            filter: blur(120px);
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-<style>
-body{
-  background:#020617;
-  color:#ffffff;
-  font-family:system-ui;
-}
+        .card { 
+            background: rgba(15, 23, 42, 0.6); 
+            border: 1px solid rgba(30, 41, 59, 0.5);
+            backdrop-blur: 10px;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            background: rgba(15, 23, 42, 0.8);
+        }
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:0 16px;
-  position:relative;
-}
-.hero::before{
-  content:"";
-  position:absolute;
-  width:750px;
-  height:750px;
-  background:radial-gradient(circle, rgba(99,102,241,.22), transparent 60%);
-  filter:blur(120px);
-  z-index:-1;
-}
-.hero-content{max-width:820px;}
-.card{background:rgba(15,23,42,.6);}
-</style>
+        /* Smooth Gradient Text */
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
-  <nav class="hidden md:flex space-x-6 text-gray-300">
-    <a href="index.html" class="hover:text-white">Home</a>
-    <a href="assessment.html" class="hover:text-white">Assessment</a>
-    <a href="after10.html" class="hover:text-white">After 10th</a>
-    <a href="after12.html" class="hover:text-white">After 12th</a>
-    <a href="about.html" class="hover:text-white">About</a>
-  </nav>
+<header class="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="group transition-transform active:scale-95">
+            <h1 class="text-2xl font-extrabold tracking-tighter text-white italic uppercase">
+                CAREER<span class="text-blue-500">STEPS</span>
+            </h1>
+        </a>
+        
+        <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest text-gray-400">
+            <a href="index.html" class="text-blue-500">Home</a>
+            <a href="assessment.html" class="hover:text-white transition">Assessment</a>
+            <a href="after10.html" class="hover:text-white transition">After 10th</a>
+            <a href="after12.html" class="hover:text-white transition">After 12th</a>
+            <a href="about.html" class="hover:text-white transition">About</a>
+        </nav>
+
+        <a href="assessment.html" class="md:hidden bg-blue-600 px-4 py-2 rounded-lg text-xs font-bold">TEST</a>
+    </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+    <div class="max-w-4xl mx-auto px-4">
+        <span class="inline-block mb-6 px-6 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
+            🚀 AI-Powered Career Guidance V3.5
+        </span>
 
-    <span class="inline-block mb-4 px-4 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-sm">
-      AI-Powered Career Guidance Platform
-    </span>
+        <h2 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+            Confused After <span class="text-blue-500">10th</span> or <br>
+            <span class="text-purple-500">12th</span>?
+        </h2>
 
-    <h2 class="text-4xl md:text-6xl font-extrabold leading-tight">
-      Confused After <span class="text-indigo-400">10th</span> or
-      <span class="text-sky-400">12th</span>?
-    </h2>
+        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Hazaar options, ek sahi rasta. Take our 2-minute assessment and explore 
+            <strong class="text-white">900+ verified career pathways</strong> today.
+        </p>
 
-    <p class="mt-6 text-gray-300 text-lg">
-      Take a free 10-question career assessment and discover the right stream
-      and career path from <strong>900+ career options</strong>.
-    </p>
+        <div class="flex flex-col sm:flex-row gap-5 justify-center">
+            <a href="assessment.html"
+               class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-2xl shadow-blue-500/20 active:scale-95">
+                START FREE CAREER TEST
+            </a>
+            <a href="careers.html"
+               class="border border-slate-700 hover:border-blue-500 px-10 py-5 rounded-2xl font-black text-lg transition-all active:scale-95">
+                EXPLORE ALL CAREERS
+            </a>
+        </div>
 
-    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="assessment.html"
-         class="bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg">
-        Start Free Career Test
-      </a>
-     <a href="careers.html"
- class="border border-indigo-500 px-8 py-4 rounded-xl font-semibold text-lg">
- Explore Career Options
-</a>
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="card p-6 rounded-2xl">
+                <p class="text-3xl font-black text-blue-500 mb-1">900+</p>
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Career Roadmaps</p>
+            </div>
+            <div class="card p-6 rounded-2xl">
+                <p class="text-3xl font-black text-purple-500 mb-1">10</p>
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Simple Qs</p>
+            </div>
+            <div class="card p-6 rounded-2xl">
+                <p class="text-3xl font-black text-green-500 mb-1">Free</p>
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Always For Students</p>
+            </div>
+            <div class="card p-6 rounded-2xl">
+                <p class="text-3xl font-black text-orange-500 mb-1">2025</p>
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Updated Trends</p>
+            </div>
+        </div>
     </div>
-
-    <!-- STATS -->
-    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div class="card p-5 rounded-xl">
-        <p class="text-3xl font-bold text-indigo-400">900+</p>
-        <p class="text-gray-300 text-sm">Career Options</p>
-      </div>
-      <div class="card p-5 rounded-xl">
-        <p class="text-3xl font-bold text-sky-400">10</p>
-        <p class="text-gray-300 text-sm">Simple Questions</p>
-      </div>
-      <div class="card p-5 rounded-xl">
-        <p class="text-3xl font-bold text-purple-400">Free</p>
-        <p class="text-gray-300 text-sm">Always</p>
-      </div>
-      <div class="card p-5 rounded-xl">
-        <p class="text-3xl font-bold text-green-400">Instant</p>
-        <p class="text-gray-300 text-sm">Results</p>
-      </div>
-    </div>
-
-  </div>
 </section>
 
-<!-- AFTER 10 / 12 -->
-<section class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-8">
+<section class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10">
+    <div class="card p-10 rounded-[32px] group">
+        <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition">
+            <span class="text-3xl">🎓</span>
+        </div>
+        <h3 class="text-3xl font-black mb-4 italic">After Class 10</h3>
+        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+            Sahi stream (Science, Commerce, Arts) ka chunaav karein. Apne skills aur future goals ke hisaab se best guidance payein.
+        </p>
+        <a href="after10.html" class="inline-flex items-center text-blue-500 font-bold tracking-widest uppercase text-sm group-hover:gap-3 transition-all">
+            Explore After 10th <span class="ml-2">→</span>
+        </a>
+    </div>
 
-  <div class="card p-8 rounded-2xl">
-    <h3 class="text-2xl font-bold mb-3">🎓 After Class 10</h3>
-    <p class="text-gray-300 mb-4">
-      Choose the right stream — Science, Commerce or Arts — based on your interests
-      and strengths.
-    </p>
-    <a href="after10.html" class="text-indigo-400 font-semibold">
-      Learn More →
-    </a>
-  </div>
-
-  <div class="card p-8 rounded-2xl">
-    <h3 class="text-2xl font-bold mb-3">🎓 After Class 12</h3>
-    <p class="text-gray-300 mb-4">
-      Explore degrees, exams and career paths across 900+ options after 12th.
-    </p>
-    <a href="after12.html" class="text-indigo-400 font-semibold">
-      Learn More →
-    </a>
-  </div>
-
+    <div class="card p-10 rounded-[32px] group">
+        <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition">
+            <span class="text-3xl">🏢</span>
+        </div>
+        <h3 class="text-3xl font-black mb-4 italic">After Class 12</h3>
+        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+            Professional degrees, entrance exams aur high-paying careers ki puri list. 900+ options me se apna perfect match dhoondein.
+        </p>
+        <a href="after12.html" class="inline-flex items-center text-purple-500 font-bold tracking-widest uppercase text-sm group-hover:gap-3 transition-all">
+            Explore After 12th <span class="ml-2">→</span>
+        </a>
+    </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="max-w-7xl mx-auto px-6 py-20 text-center">
-  <h3 class="text-3xl font-bold mb-10">How CareerSteps Works</h3>
+<footer class="border-t border-white/5 bg-slate-900/20 py-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-2xl font-extrabold tracking-tighter text-white italic uppercase mb-8">
+            CAREER<span class="text-blue-500">STEPS</span>
+        </h1>
+        
+        <div class="flex flex-wrap justify-center gap-8 text-slate-500 text-xs font-bold uppercase tracking-widest mb-10">
+            <a href="about.html" class="hover:text-white transition">About</a>
+            <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+            <a href="terms.html" class="hover:text-white transition">Terms</a>
+            <a href="after10.html" class="hover:text-white transition">Class 10th</a>
+            <a href="after12.html" class="hover:text-white transition">Class 12th</a>
+        </div>
 
-  <div class="grid md:grid-cols-3 gap-8">
-
-    <div class="card p-6 rounded-2xl">
-      <h4 class="text-xl font-bold mb-2">1. Take Assessment</h4>
-      <p class="text-gray-300">
-        Answer 10 carefully designed questions.
-      </p>
+        <p class="text-slate-600 text-sm">
+            © 2025 CareerSteps. India's #1 Career Intelligence Platform. <br>
+            Built for the next generation of achievers.
+        </p>
     </div>
-
-    <div class="card p-6 rounded-2xl">
-      <h4 class="text-xl font-bold mb-2">2. AI Analysis</h4>
-      <p class="text-gray-300">
-        We analyze interests, aptitude and preferences.
-      </p>
-    </div>
-
-    <div class="card p-6 rounded-2xl">
-      <h4 class="text-xl font-bold mb-2">3. Get Career Clarity</h4>
-      <p class="text-gray-300">
-        Receive a suitable stream & career direction.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-slate-900/60 py-10 text-center text-gray-400 text-sm">
-
-  <div class="space-x-4">
-    <a href="about.html" class="hover:underline">About</a>
-    <a href="privacy.html" class="hover:underline">Privacy</a>
-    <a href="terms.html" class="hover:underline">Terms</a>
-    <a href="cookies.html" class="hover:underline">Cookies</a>
-  </div>
-
-  <div class="mt-3 space-x-4">
-    <a href="after10.html" class="hover:underline">After 10th</a>
-    <a href="after12.html" class="hover:underline">After 12th</a>
-    <a href="assessment.html" class="hover:underline">Assessment</a>
-  </div>
-
-  <p class="mt-4">
-    © 2025 <strong>CareerSteps</strong> • Career Guidance Platform
-  </p>
-
 </footer>
 
 </body>
