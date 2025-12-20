@@ -7,100 +7,92 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background: #020617; /* Deep Navy Black */
-            color: #f8fafc; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-        }
-        /* Solid Cards - No Transparency for better clarity */
-        .card { 
-            background: #0f172a; 
-            border: 1px solid #1e293b; 
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        .card:hover { 
-            border-color: #3b82f6;
-            background: #1e293b;
-            transform: translateY(-4px);
-        }
-        /* Search Box High Contrast */
-        #search {
-            background: #0f172a;
-            border: 2px solid #1e293b;
-            color: white;
-        }
-        #search:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
-        }
-        /* Active Category Style */
-        .filter-btn {
-            background: #1e293b;
-            color: #94a3b8;
-            border: 1px solid #334155;
-            transition: all 0.2s;
-        }
-        .filter-btn.active { 
+        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 24px; transition: all 0.3s ease; }
+        .card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2); }
+        #search { background: #0f172a; border: 2px solid #1e293b; color: white; }
+        #search:focus { border-color: #2563eb; box-shadow: 0 0 20px rgba(37, 99, 235, 0.15); }
+        .filter-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; transition: all 0.2s; }
+        .filter-btn.active { background: #2563eb; color: white; border-color: #60a5fa; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Floating Back to Top Button Styling */
+        #backToTop {
+            display: none; 
+            position: fixed; 
+            bottom: 30px; 
+            right: 25px;
             background: #2563eb; 
             color: white; 
-            border-color: #60a5fa;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            border: none;
+            padding: 12px; 
+            border-radius: 50%; 
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5); 
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        #backToTop:hover { background: #3b82f6; transform: scale(1.1); }
     </style>
 </head>
 
 <body>
 
-<header class="sticky top-0 z-50 bg-[#020617] border-b border-blue-900/50">
+<button id="backToTop" onclick="window.scrollTo(0,0)" title="Go to top">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path>
+    </svg>
+</button>
+
+<header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-blue-900/30">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-extrabold tracking-tight text-white italic">CAREER<span class="text-blue-500">STEPS</span></h1>
-        <div class="text-[10px] bg-blue-900/40 text-blue-400 px-3 py-1 rounded-full border border-blue-500/30 font-bold uppercase tracking-widest">
-            V3.5 • 900+ Careers
+        <h1 class="text-2xl font-extrabold tracking-tighter text-white italic">CAREER<span class="text-blue-500">STEPS</span></h1>
+        <div class="hidden md:block text-[10px] bg-blue-900/40 text-blue-400 px-4 py-1.5 rounded-full border border-blue-500/30 font-bold uppercase tracking-widest">
+            V3.5 • 900+ Roadmaps & Colleges
         </div>
     </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-6 pt-12">
     <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-6xl font-black mb-4 text-white">Apna Future <span class="text-blue-500 underline">Filter</span> Karein.</h2>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto">India's biggest career database. Har career ka full roadmap, salary aur colleges ki detail.</p>
+        <h2 class="text-4xl md:text-6xl font-black mb-6 text-white leading-tight">Sahi Career Choice, <br><span class="text-blue-500 underline decoration-blue-800">100% Clarity</span> Ke Saath.</h2>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">India's most trusted career directory. Explore roadmaps, real salary trends, and top college recommendations.</p>
     </div>
 
     <div class="max-w-4xl mx-auto mb-12">
-        <input id="search" type="text" placeholder="Search (e.g. IAS, Pilot, AI Scientist...)"
+        <input id="search" type="text" placeholder="Search Careers (e.g. IAS, Pilot, Software Engineer...)"
                class="w-full px-8 py-5 rounded-2xl outline-none transition-all text-xl font-medium shadow-2xl">
     </div>
 
-    <div class="flex gap-3 overflow-x-auto no-scrollbar pb-6 mb-10 border-b border-slate-800">
-        <button class="filter-btn active px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('All')">All Careers</button>
-        <button class="filter-btn px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Tech')">Technology</button>
-        <button class="filter-btn px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Medical')">Medical</button>
-        <button class="filter-btn px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Law')">Law & Legal</button>
-        <button class="filter-btn px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Creative')">Creative</button>
-        <button class="filter-btn px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Aviation')">Aviation</button>
-        <button class="filter-btn px-6 py-2.5 rounded-xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Government')">Government</button>
+    <div class="flex gap-3 overflow-x-auto no-scrollbar pb-6 mb-10 border-b border-slate-800/50">
+        <button class="filter-btn active px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('All')">All Careers</button>
+        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Tech')">Technology</button>
+        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Medical')">Medical</button>
+        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Law')">Law & Legal</button>
+        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Creative')">Creative</button>
+        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Aviation')">Aviation</button>
+        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Government')">Government</button>
     </div>
 
     <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
     <div id="no-results" class="hidden text-center py-20">
-        <p class="text-slate-500 text-xl font-medium italic">Hume kuch nahi mila. Try karein: "Cyber Security" ya "IAS"</p>
+        <p class="text-slate-500 text-xl font-medium italic">Hume kuch nahi mila. Try karein: "Data Scientist" ya "Pilot"</p>
     </div>
 
     <div class="flex flex-col items-center mt-20 mb-32">
         <div class="text-xs text-slate-500 mb-6 font-bold uppercase tracking-widest">
-            Aapne dekhe <span id="current-count" class="text-blue-400">0</span> out of <span id="total-count" class="text-white">0</span> Careers
+            Showing <span id="current-count" class="text-blue-400">0</span> of <span id="total-count" class="text-white">0</span> Specialized Careers
         </div>
         <button id="load-more-btn" onclick="loadMore()" 
-                class="bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 tracking-widest">
-            LOAD MORE CAREERS
+                class="bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 tracking-widest uppercase">
+            Load More Results
         </button>
     </div>
 </main>
 
 <script>
+// --- REAL WORLD DATA ---
 const CORE_DATABASE = [
     {id:"t1", title:"AI Research Scientist", cat:"Tech"},
     {id:"t2", title:"Cyber Security Analyst", cat:"Tech"},
@@ -120,8 +112,8 @@ const CORE_DATABASE = [
 
 function generateLargeData() {
     let bigList = [...CORE_DATABASE];
-    const fields = ["Bio-Tech", "Maritime", "Quantum", "Digital", "Corporate", "Global"];
-    const roles = ["Specialist", "Consultant", "Expert", "Lead", "Technician"];
+    const fields = ["Bio-Tech", "Maritime", "Quantum", "Digital", "Corporate", "Global", "Sustainable"];
+    const roles = ["Specialist", "Consultant", "Expert", "Lead", "Technician", "Analyst"];
     const cats = ["Tech", "Medical", "Law", "Creative", "Aviation", "Business", "Government"];
 
     for (let i = 1; i <= 886; i++) {
@@ -152,15 +144,15 @@ function render(isNewFilter = false) {
         document.getElementById("no-results").classList.add("hidden");
         nextBatch.forEach(c => {
             const card = document.createElement("div");
-            card.className = "card p-6 flex flex-col justify-between h-64 shadow-lg";
+            card.className = "card p-7 flex flex-col justify-between h-72 shadow-lg";
             card.innerHTML = `
                 <div>
-                    <span class="text-[9px] font-black uppercase tracking-widest text-blue-400 bg-blue-900/30 px-3 py-1 rounded-lg border border-blue-500/20">${c.cat}</span>
-                    <h3 class="text-xl font-bold text-white mt-5 leading-tight">${c.title}</h3>
-                    <p class="text-slate-400 text-xs mt-3">2025 Expert Roadmap & Salary Guide</p>
+                    <span class="text-[9px] font-black uppercase tracking-widest text-blue-400 bg-blue-900/40 px-3 py-1.5 rounded-lg border border-blue-500/20">${c.cat}</span>
+                    <h3 class="text-xl font-bold text-white mt-5 leading-tight group-hover:text-blue-400 transition-colors">${c.title}</h3>
+                    <p class="text-slate-400 text-xs mt-3 leading-relaxed">Detailed roadmap, salary trends, and top colleges for 2025.</p>
                 </div>
-                <a href="career-detail.html?id=${c.id}" class="text-xs font-black text-blue-400 hover:text-white flex items-center transition-all group tracking-widest">
-                    VIEW DETAILS
+                <a href="career-detail.html?id=${c.id}" class="text-xs font-black text-blue-500 hover:text-white flex items-center transition-all group tracking-widest mt-4">
+                    EXPLORE PATHWAY
                     <svg class="h-4 w-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
                     </svg>
@@ -176,19 +168,33 @@ function render(isNewFilter = false) {
     }
 }
 
+// Search Logic
 document.getElementById("search").addEventListener("input", e => {
     const term = e.target.value.toLowerCase();
     filteredData = ALL_CAREERS.filter(c => c.title.toLowerCase().includes(term) || c.cat.toLowerCase().includes(term));
     render(true);
 });
 
+// Category Logic
 function filterCat(cat) {
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.innerText.includes(cat) || (cat === 'All' && btn.innerText === 'ALL CAREERS')));
     filteredData = (cat === 'All') ? ALL_CAREERS : ALL_CAREERS.filter(c => c.cat === cat);
     render(true);
 }
 
+// Load More Logic
 function loadMore() { render(); }
+
+// Scroll Logic for Back to Top Button
+window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+};
+
 render();
 </script>
 
