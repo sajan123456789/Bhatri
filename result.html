@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CareerSteps – Your Career Result</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="CareerSteps assessment result. Find your best stream or career path after 10th or 12th.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+  background:#020617;
+  color:#fff;
+  font-family:system-ui;
+}
+.glass{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(14px);
+}
+.badge{
+  background:#6366f1;
+}
+.step{
+  border-left:3px solid #6366f1;
+  padding-left:16px;
+}
+</style>
+</head>
+
+<body class="px-4">
+
+<!-- HEADER -->
+<header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
+  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
+  <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+</header>
+
+<!-- RESULT -->
+<section class="max-w-3xl mx-auto mt-20 glass rounded-2xl p-10 text-center">
+
+  <span class="badge px-4 py-2 rounded-full text-sm font-semibold">
+    Assessment Result
+  </span>
+
+  <h2 id="title" class="text-4xl font-extrabold mt-6 mb-4"></h2>
+
+  <p id="description" class="text-gray-300 text-lg mb-8"></p>
+
+  <!-- CAREER LIST -->
+  <div id="careers" class="grid md:grid-cols-2 gap-4 text-left mb-10"></div>
+
+  <!-- ROADMAP -->
+  <h3 class="text-2xl font-bold text-left mb-4">Step-by-Step Roadmap</h3>
+  <div id="roadmap" class="space-y-4 text-left mb-10"></div>
+
+  <!-- EXAMS -->
+  <h3 class="text-2xl font-bold text-left mb-4">Important Exams</h3>
+  <div id="exams" class="grid md:grid-cols-2 gap-4 text-left mb-10"></div>
+
+  <div class="flex flex-col md:flex-row gap-4 justify-center">
+    <a href="assessment.html"
+       class="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-semibold">
+       Retake Test
+    </a>
+    <a href="index.html"
+       class="border border-gray-500 px-6 py-3 rounded-xl font-semibold">
+       Go Home
+    </a>
+  </div>
+
+</section>
+
+<script>
+const result = localStorage.getItem("careerResult");
+
+const title = document.getElementById("title");
+const desc = document.getElementById("description");
+const careers = document.getElementById("careers");
+const roadmap = document.getElementById("roadmap");
+const exams = document.getElementById("exams");
+
+let data = {};
+
+if(result==="science"){
+  data = {
+    title:"Best Stream: SCIENCE 🔬",
+    desc:"You have strong analytical and logical thinking. You enjoy problem-solving and technical challenges.",
+    careers:["Engineering","Data Science","Medical","Research","Defence Technical"],
+    roadmap:[
+      "Choose PCM / PCB subjects in Class 11–12",
+      "Prepare for competitive entrance exams",
+      "Pursue BTech / MBBS / BSc degree",
+      "Specialize with higher studies or certifications"
+    ],
+    exams:["JEE Main & Advanced","NEET","CUET","State Engineering Exams"]
+  };
+}
+else if(result==="commerce"){
+  data = {
+    title:"Best Stream: COMMERCE 📊",
+    desc:"You have a business and management mindset. You understand money, planning and strategy.",
+    careers:["CA / CS","BBA / MBA","Banking","Finance","Entrepreneurship"],
+    roadmap:[
+      "Choose Commerce (Maths recommended)",
+      "Prepare for CA / CS / CUET",
+      "Complete BCom / BBA",
+      "Advance with MBA or professional certification"
+    ],
+    exams:["CA Foundation","CS Foundation","CUET","Bank Exams"]
+  };
+}
+else if(result==="arts"){
+  data = {
+    title:"Best Stream: ARTS 🎨",
+    desc:"You are creative, thoughtful and socially aware. You enjoy expression and people-oriented work.",
+    careers:["Law","Journalism","Teaching","Civil Services","Design & Media"],
+    roadmap:[
+      "Choose relevant Arts subjects",
+      "Improve reading, writing & analysis skills",
+      "Complete BA / LLB / BJMC",
+      "Prepare for government or professional exams"
+    ],
+    exams:["CUET","CLAT","UPSC","State PSC"]
+  };
+}
+else if(result==="tech"){
+  data = {
+    title:"Career Cluster: TECHNOLOGY 💻",
+    desc:"You are highly analytical and future-oriented. Technology and innovation suit you best.",
+    careers:["Software Engineer","AI / Data Analyst","Cyber Security","Research","Tech Startups"],
+    roadmap:[
+      "Enroll in technical degree (BTech / BSc)",
+      "Build coding & project skills",
+      "Do internships & certifications",
+      "Specialize in AI / Data / Security"
+    ],
+    exams:["JEE","CUET","GATE"]
+  };
+}
+else if(result==="business"){
+  data = {
+    title:"Career Cluster: BUSINESS 📈",
+    desc:"You think strategically and enjoy leadership, finance and growth-oriented roles.",
+    careers:["BBA / MBA","Marketing","Finance","Startups","Management"],
+    roadmap:[
+      "Complete BBA / BCom",
+      "Develop communication & leadership",
+      "Gain work experience",
+      "Advance with MBA"
+    ],
+    exams:["CUET","CAT","XAT","CMAT"]
+  };
+}
+else if(result==="public"){
+  data = {
+    title:"Career Cluster: PUBLIC & LAW ⚖️",
+    desc:"You are driven by responsibility, ethics and impact on society.",
+    careers:["Law","Civil Services","Teaching","Policy Research","NGOs"],
+    roadmap:[
+      "Choose BA / LLB or relevant degree",
+      "Build strong general knowledge",
+      "Prepare for competitive exams",
+      "Enter public service or legal field"
+    ],
+    exams:["UPSC","CLAT","State PSC"]
+  };
+}
+else{
+  data = {
+    title:"Career Cluster: CREATIVE 🎥",
+    desc:"You are imaginative and expressive. Creative freedom matters most to you.",
+    careers:["Design","Media","Content Creation","Animation","Performing Arts"],
+    roadmap:[
+      "Choose creative course or diploma",
+      "Build a strong portfolio",
+      "Freelance or internships",
+      "Grow personal brand"
+    ],
+    exams:["Design Entrance Tests","Media Aptitude Tests"]
+  };
+}
+
+/* EXISTING LOGIC – UNCHANGED */
+title.innerText = data.title;
+desc.innerText = data.desc;
+
+data.careers.forEach(c=>{
+  const div = document.createElement("div");
+  div.className = "glass p-4 rounded-xl";
+  div.innerText = "✔ " + c;
+  careers.appendChild(div);
+});
+
+/* NEW: ROADMAP */
+data.roadmap.forEach((r,i)=>{
+  const div = document.createElement("div");
+  div.className = "step";
+  div.innerText = (i+1) + ". " + r;
+  roadmap.appendChild(div);
+});
+
+/* NEW: EXAMS */
+data.exams.forEach(e=>{
+  const div = document.createElement("div");
+  div.className = "glass p-4 rounded-xl";
+  div.innerText = "📝 " + e;
+  exams.appendChild(div);
+});
+</script>
+
+</body>
+</html>

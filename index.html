@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CareerSteps – Career Guidance After 10th & 12th</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <meta name="description" content="CareerSteps helps students choose the right stream after 10th and best career after 12th using a free 10-question assessment." />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body{
+      background:#020617;
+      color:#fff;
+      font-family:system-ui, -apple-system, BlinkMacSystemFont;
+    }
+
+    /* HERO BACKGROUND ANIMATION */
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      z-index:-1;
+    }
+    .orb{
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.35;
+      animation: float 18s infinite alternate ease-in-out;
+    }
+    .orb.one{background:#6366f1; top:-80px; left:-80px;}
+    .orb.two{background:#0ea5e9; bottom:-100px; right:-80px; animation-delay:6s;}
+    .orb.three{background:#8b5cf6; top:40%; left:55%; animation-delay:12s;}
+
+    @keyframes float{
+      from{transform:translate(0,0);}
+      to{transform:translate(60px,-80px);}
+    }
+
+    /* TEXT ANIMATION */
+    .fade-up{
+      opacity:0;
+      animation: fadeUp 1.2s ease forwards;
+    }
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(20px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    /* BUTTON PULSE */
+    .pulse-btn{
+      animation:pulse 2.5s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.4);}
+      50%{box-shadow:0 0 0 18px rgba(99,102,241,0);}
+    }
+
+    .glass{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(14px);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="flex justify-between items-center px-6 py-5 max-w-7xl mx-auto">
+  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
+  <nav class="space-x-6 text-sm text-gray-300 hidden md:block">
+    <a href="#" class="hover:text-white">Home</a>
+    <a href="assessment.html" class="hover:text-white">Assessment</a>
+    <a href="#" class="hover:text-white">After 10th</a>
+    <a href="#" class="hover:text-white">After 12th</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="relative min-h-screen flex items-center justify-center text-center px-6">
+
+  <div class="hero-bg">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+  </div>
+
+  <div class="max-w-3xl">
+    <h2 class="text-4xl md:text-6xl font-extrabold fade-up">
+      Confused After
+      <span class="text-indigo-400">10th</span> or
+      <span class="text-sky-400">12th</span>?
+    </h2>
+
+    <p class="mt-6 text-gray-300 text-lg fade-up" style="animation-delay:.2s">
+      Take a free 10-question career assessment and discover the right path for your future.
+    </p>
+
+    <div class="mt-10 fade-up" style="animation-delay:.4s">
+      <a href="assessment.html"
+         class="pulse-btn inline-block bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl text-lg font-semibold">
+        Start Free Career Test
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<!-- CHOICE SECTION -->
+<section class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-8">
+
+  <div class="glass rounded-2xl p-8 hover:border-indigo-400 transition">
+    <h3 class="text-2xl font-bold mb-3">🎓 After Class 10</h3>
+    <p class="text-gray-300 mb-6">
+      Find out whether Science, Commerce or Arts is best for you.
+    </p>
+    <a href="assessment.html"
+       class="text-indigo-400 font-semibold hover:underline">
+       Take 10th Assessment →
+    </a>
+  </div>
+
+  <div class="glass rounded-2xl p-8 hover:border-sky-400 transition">
+    <h3 class="text-2xl font-bold mb-3">🎓 After Class 12</h3>
+    <p class="text-gray-300 mb-6">
+      Discover the best degree and career options based on your interest.
+    </p>
+    <a href="assessment.html"
+       class="text-sky-400 font-semibold hover:underline">
+       Take 12th Assessment →
+    </a>
+  </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="bg-slate-900/40 py-20">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-12">How CareerSteps Works</h3>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-bold text-xl mb-2">1. Choose Class</h4>
+        <p class="text-gray-300">Select 10th or 12th assessment</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-bold text-xl mb-2">2. Answer Questions</h4>
+        <p class="text-gray-300">Just 10 simple questions</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-bold text-xl mb-2">3. Get Clarity</h4>
+        <p class="text-gray-300">Stream & career recommendation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center text-gray-400 text-sm py-10">
+  © 2025 CareerSteps • All rights reserved  
+  <div class="mt-3 space-x-4">
+    <a href="privacy.html" class="hover:underline">Privacy</a>
+    <a href="terms.html" class="hover:underline">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>
