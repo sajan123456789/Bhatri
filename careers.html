@@ -2,156 +2,90 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Explore Careers – CareerSteps</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description"
-content="Explore 900+ career options after 10th and 12th. Search careers, explore courses and get full guidance with CareerSteps.">
-
+<title>Explore Careers | CareerSteps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{
-  background:#020617;
-  color:#fff;
-  font-family:system-ui;
-}
-.card{
-  background:rgba(15,23,42,.6);
-}
+body{background:#020617;color:#fff;font-family:system-ui}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
-  <nav class="space-x-4 text-gray-300 text-sm">
-    <a href="index.html" class="hover:text-white">Home</a>
-    <a href="assessment.html" class="hover:text-white">Assessment</a>
-  </nav>
+<header class="max-w-7xl mx-auto px-6 py-6 flex justify-between">
+  <h1 class="text-xl font-bold text-indigo-400">CareerSteps</h1>
+  <a href="index.html" class="text-gray-300">Home</a>
 </header>
 
-<!-- TITLE -->
-<section class="max-w-7xl mx-auto px-6 py-10 text-center">
-  <h2 class="text-4xl font-extrabold mb-4">Explore Career Options</h2>
-  <p class="text-gray-300">
-    Browse through <strong>900+ career options</strong>. Search, explore and click any career
-    to get full guidance.
-  </p>
-</section>
-
-<!-- SEARCH -->
-<div class="max-w-xl mx-auto px-6 mb-10">
-  <input
-    id="search"
-    type="text"
-    placeholder="Search career (e.g. Engineer, Lawyer, Designer)"
-    class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 focus:outline-none"
-    oninput="searchCareers()"
-  >
-</div>
-
-<!-- CAREER GRID -->
 <section class="max-w-7xl mx-auto px-6">
-  <div id="careerGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  <h2 class="text-3xl font-bold text-center mb-3">Explore Career Options</h2>
+  <p class="text-center text-gray-400 mb-6">
+    Browse through 900+ career options. Click any career to get full guidance.
+  </p>
 
-  <!-- LOAD MORE -->
-  <div class="text-center mt-12">
-    <button
-      id="loadMoreBtn"
-      onclick="loadMore()"
-      class="bg-indigo-500 hover:bg-indigo-600 px-8 py-3 rounded-xl font-semibold">
+  <input id="search" placeholder="Search career..."
+    class="w-full mb-8 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700">
+
+  <div id="grid" class="grid md:grid-cols-3 gap-6"></div>
+
+  <div class="text-center mt-10">
+    <button onclick="loadMore()"
+      class="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl">
       Load More Careers
     </button>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-slate-900/60 mt-20 py-10 text-center text-gray-400 text-sm">
-  <p>© 2025 <strong>CareerSteps</strong> • Career Guidance Platform</p>
+<footer class="text-center text-gray-500 text-sm py-10 mt-20">
+  © 2025 CareerSteps · Career Guidance Platform
 </footer>
 
 <script>
-/* ===== UNIQUE CAREER DATA (sample – expandable to 900+) ===== */
-const careers = [
-  {id:"software_engineer", title:"Software Engineer", category:"Technology"},
-  {id:"data_scientist", title:"Data Scientist", category:"Technology"},
-  {id:"ai_engineer", title:"AI Engineer", category:"Technology"},
-  {id:"cyber_security", title:"Cyber Security Analyst", category:"Technology"},
-  {id:"doctor", title:"Medical Doctor", category:"Medical"},
-  {id:"nurse", title:"Nursing Officer", category:"Medical"},
-  {id:"pharmacist", title:"Pharmacist", category:"Medical"},
-  {id:"civil_engineer", title:"Civil Engineer", category:"Engineering"},
-  {id:"mechanical_engineer", title:"Mechanical Engineer", category:"Engineering"},
-  {id:"electrical_engineer", title:"Electrical Engineer", category:"Engineering"},
-  {id:"lawyer", title:"Lawyer", category:"Law"},
-  {id:"judge", title:"Judicial Services", category:"Law"},
-  {id:"corporate_law", title:"Corporate Lawyer", category:"Law"},
-  {id:"ca", title:"Chartered Accountant", category:"Commerce"},
-  {id:"cs", title:"Company Secretary", category:"Commerce"},
-  {id:"banker", title:"Banking Officer", category:"Commerce"},
-  {id:"economist", title:"Economist", category:"Commerce"},
-  {id:"civil_services", title:"Civil Services (IAS/IPS)", category:"Government"},
-  {id:"defence", title:"Defence Services", category:"Government"},
-  {id:"teacher", title:"Teacher / Professor", category:"Education"},
-  {id:"professor", title:"University Professor", category:"Education"},
-  {id:"journalist", title:"Journalist", category:"Media"},
-  {id:"content_creator", title:"Content Creator", category:"Media"},
-  {id:"graphic_designer", title:"Graphic Designer", category:"Creative"},
-  {id:"uiux", title:"UI/UX Designer", category:"Creative"},
-  {id:"fashion_designer", title:"Fashion Designer", category:"Creative"},
-  {id:"animator", title:"Animator", category:"Creative"},
-  {id:"psychologist", title:"Psychologist", category:"Social Science"},
-  {id:"sociologist", title:"Sociologist", category:"Social Science"},
-  {id:"political_analyst", title:"Political Analyst", category:"Social Science"},
-  {id:"hotel_manager", title:"Hotel Management", category:"Hospitality"},
-  {id:"aviation", title:"Aviation Professional", category:"Aviation"},
-  {id:"pilot", title:"Commercial Pilot", category:"Aviation"}
+const CAREERS = [
+  {id:"software_engineer",title:"Software Engineer",cat:"Technology"},
+  {id:"data_scientist",title:"Data Scientist",cat:"Technology"},
+  {id:"ai_engineer",title:"AI Engineer",cat:"Technology"},
+  {id:"cyber_security",title:"Cyber Security Analyst",cat:"Technology"},
+  {id:"doctor",title:"Medical Doctor",cat:"Medical"},
+  {id:"lawyer",title:"Lawyer",cat:"Law"},
+  {id:"civil_services",title:"Civil Services Officer",cat:"Government"},
+  {id:"journalist",title:"Journalist",cat:"Media"},
+  {id:"designer",title:"Graphic Designer",cat:"Creative"},
+  {id:"accountant",title:"Accountant",cat:"Commerce"}
 ];
 
-/* ===== RENDER LOGIC ===== */
-let visible = 0;
-const STEP = 12;
-let filteredCareers = [...careers];
+let shown = 0;
+const STEP = 6;
+const grid = document.getElementById("grid");
 
-function render(){
-  const grid = document.getElementById("careerGrid");
-  grid.innerHTML = "";
-
-  filteredCareers.slice(0, visible).forEach(c=>{
+function render(list){
+  list.slice(shown, shown+STEP).forEach(c=>{
     grid.innerHTML += `
       <a href="career-detail.html?career=${c.id}"
-         class="card p-5 rounded-xl hover:border-indigo-500 border border-slate-800 transition">
-        <h3 class="text-lg font-bold">${c.title}</h3>
-        <p class="text-sm text-gray-400 mt-1">${c.category}</p>
-      </a>
-    `;
+         class="card p-5 rounded-xl hover:border-indigo-500 transition">
+        <h3 class="font-semibold text-lg">${c.title}</h3>
+        <p class="text-gray-400 text-sm">${c.cat}</p>
+      </a>`;
   });
-
-  document.getElementById("loadMoreBtn").style.display =
-    visible >= filteredCareers.length ? "none" : "inline-block";
+  shown += STEP;
 }
 
 function loadMore(){
-  visible += STEP;
-  render();
+  render(filtered);
 }
 
-function searchCareers(){
-  const q = document.getElementById("search").value.toLowerCase();
-  filteredCareers = careers.filter(c =>
-    c.title.toLowerCase().includes(q) ||
-    c.category.toLowerCase().includes(q)
-  );
-  visible = STEP;
-  render();
-}
+let filtered = CAREERS;
+render(filtered);
 
-/* INIT */
-visible = STEP;
-render();
+document.getElementById("search").addEventListener("input",e=>{
+  const q = e.target.value.toLowerCase();
+  filtered = CAREERS.filter(c=>c.title.toLowerCase().includes(q));
+  grid.innerHTML="";
+  shown=0;
+  render(filtered);
+});
 </script>
 
 </body>
