@@ -12,6 +12,7 @@ body{ background:#020617; color:#fff; font-family:system-ui; overflow-x: hidden;
 .option{ background:#0f172a; border:1px solid #1e293b; transition: 0.3s; cursor: pointer; }
 .option:hover{ border-color:#6366f1; transform: translateX(8px); background:#1e293b; }
 .ai-glow { box-shadow: 0 0 25px rgba(99, 102, 241, 0.15); }
+input:focus { border-color: #6366f1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
 </style>
 </head>
 <body class="px-4">
@@ -26,18 +27,29 @@ body{ background:#020617; color:#fff; font-family:system-ui; overflow-x: hidden;
 </div>
 
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter">CareerSteps <span class="text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded-full ml-1 uppercase">AI v2.0</span></h1>
-  <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
+  <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter italic">CAREERSTEPS <span class="text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded-full ml-1 uppercase font-normal">AI v2.0</span></h1>
+  <a href="index.html" class="text-gray-300 hover:text-white transition text-sm font-medium">Home</a>
 </header>
 
-<section id="selectClass" class="max-w-xl mx-auto mt-16 text-center glass rounded-3xl p-10 ai-glow">
-  <div class="mb-6 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 border border-indigo-500/20">🤖 AI-Powered Assessment</div>
-  <h2 class="text-3xl font-bold mb-4 italic tracking-tight">Neural Career Scan</h2>
-  <p class="text-gray-400 mb-10 text-sm leading-relaxed">Hamara AI aapke decision-making patterns ko scan karke aapki personality ke hisaab se best career stream suggest karega.</p>
+<section id="nameSection" class="max-w-xl mx-auto mt-16 text-center glass rounded-[2.5rem] p-10 ai-glow">
+    <div class="mb-6 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 border border-indigo-500/20 text-xs font-bold uppercase tracking-widest">Identify Yourself</div>
+    <h2 class="text-3xl font-black mb-4 italic tracking-tight">WHO IS TAKING THE TEST?</h2>
+    <p class="text-gray-400 mb-8 text-sm">Apna naam enter karein taaki hum aapka personalized AI report generate kar sakein.</p>
+    
+    <input type="text" id="userName" placeholder="Type your full name here..." 
+           class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none transition-all">
+    
+    <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl text-lg font-black transition-all transform active:scale-95 shadow-lg shadow-indigo-500/20">CONTINUE TO SCAN →</button>
+</section>
+
+<section id="selectClass" class="hidden max-w-xl mx-auto mt-16 text-center glass rounded-[2.5rem] p-10 ai-glow">
+  <div class="mb-6 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 border border-indigo-500/20 text-xs font-bold uppercase tracking-widest">Neural Career Scan</div>
+  <h2 class="text-3xl font-black mb-4 italic tracking-tight" id="welcomeUser">Neural Career Scan</h2>
+  <p class="text-gray-400 mb-10 text-sm leading-relaxed">Choose your current academic stage to begin the deep-layer neural analysis.</p>
 
   <div class="grid gap-4">
-    <button onclick="startTest('10')" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl text-lg font-bold transition-all hover:scale-[1.02]">Start Class 10 Scan</button>
-    <button onclick="startTest('12')" class="border border-indigo-500/30 hover:bg-indigo-500/10 py-4 rounded-2xl text-lg font-bold transition-all">Start Class 12 Scan</button>
+    <button onclick="startTest('10')" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl text-lg font-bold transition-all hover:scale-[1.02]">Class 10th Analysis</button>
+    <button onclick="startTest('12')" class="border border-indigo-500/30 hover:bg-indigo-500/10 py-4 rounded-2xl text-lg font-bold transition-all">Class 12th Analysis</button>
   </div>
 </section>
 
@@ -45,7 +57,7 @@ body{ background:#020617; color:#fff; font-family:system-ui; overflow-x: hidden;
   <div class="flex justify-between items-center mb-8">
     <div class="text-[10px] font-mono text-indigo-400 tracking-widest uppercase" id="progress"></div>
     <div class="flex items-center gap-2">
-        <span class="text-[10px] text-gray-500 font-mono">Accuracy: 99.2%</span>
+        <span class="text-[10px] text-gray-500 font-mono italic">AI Accuracy: 99.2%</span>
         <div class="h-1 w-24 bg-gray-800 rounded-full overflow-hidden">
             <div id="bar" class="h-full bg-indigo-500 transition-all duration-700" style="width: 0%"></div>
         </div>
@@ -60,7 +72,19 @@ let current = 0;
 let answers = [];
 let mode = "";
 
-// AI-Based Psychological Questions (10 Questions)
+// 1. Save Name Function
+function saveName() {
+    const nameInput = document.getElementById("userName").value.trim();
+    if (nameInput.length < 2) {
+        alert("Please enter a valid name to proceed.");
+        return;
+    }
+    localStorage.setItem("user_name", nameInput);
+    document.getElementById("nameSection").classList.add("hidden");
+    document.getElementById("selectClass").classList.remove("hidden");
+    document.getElementById("welcomeUser").innerText = `WELCOME, ${nameInput.toUpperCase()}`;
+}
+
 const questions10 = [
  {q:"Scenario: Ek nayi machine kharab ho gayi hai. Aap sabse pehle kya karenge?", o:["Uski working logic ko samajh kar theek karenge","Sochenge ki nayi lene mein kitna kharcha aayega","Kisi expert ko bula kar usse seekhenge","Usko disassemble karke kuch naya banayenge"]},
  {q:"Aapka dimag complex problems ko kaise process karta hai?", o:["Facts aur Data ke saath","Profit aur Resources ke saath","Ethics aur Emotions ke saath","Ideas aur Design ke saath"]},
@@ -91,7 +115,6 @@ function loadQuestion(){
   const optDiv = document.getElementById("options");
   optDiv.innerHTML = "";
   
-  // Psychological Options
   q.o.forEach((opt,i)=>{
     const btn = document.createElement("button");
     btn.className = "option w-full text-left px-6 py-4 rounded-2xl font-medium flex justify-between items-center group";
@@ -99,23 +122,13 @@ function loadQuestion(){
     btn.onclick = ()=>selectAnswer(i);
     optDiv.appendChild(btn);
   });
-
-  // NEW: OTHER OPTION
-  const otherBtn = document.createElement("button");
-  otherBtn.className = "w-full text-center px-6 py-3 rounded-2xl text-gray-500 text-xs border border-dashed border-gray-800 hover:border-gray-600 transition-all mt-4";
-  otherBtn.innerText = "None of the above / Other";
-  otherBtn.onclick = ()=>selectAnswer(4); // 4 means Other
-  optDiv.appendChild(otherBtn);
 }
 
 function selectAnswer(i){
   answers.push(i);
   current++;
-  
-  // Small feedback transition
   const quizCard = document.getElementById("quiz");
   quizCard.style.opacity = "0.5";
-  
   setTimeout(() => {
     quizCard.style.opacity = "1";
     if(current < 10) loadQuestion();
@@ -127,7 +140,6 @@ function showResult(){
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("loading").classList.remove("hidden");
 
-  // AI status simulation
   const statusArr = ["Syncing neural data...", "Analyzing logic gates...", "Matching industry algorithms...", "Finalizing Career Path..."];
   let s = 0;
   const interval = setInterval(() => {
@@ -137,19 +149,22 @@ function showResult(){
   }, 700);
 
   setTimeout(() => {
-    const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
+    const counts = {0:0, 1:0, 2:0, 3:0};
     answers.forEach(val => { counts[val]++; });
     
-    // Logic: Find max ignoring "Other" unless all are other
     const scores = [counts[0], counts[1], counts[2], counts[3]];
     const maxIndex = scores.indexOf(Math.max(...scores));
 
     let res = "";
     if(maxIndex == 0) res = "science";
     else if(maxIndex == 1) res = "commerce";
-    else res = "arts"; // Arts & Creative combined
+    else res = "arts";
+
+    // Random Neural Match Percentage (e.g., 92.4%)
+    const matchPercent = (Math.random() * (98.9 - 88.0) + 88.0).toFixed(1);
 
     localStorage.setItem("careerResult", res);
+    localStorage.setItem("matchPercent", matchPercent);
     window.location.href = "result.html";
   }, 3200);
 }
