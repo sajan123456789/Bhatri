@@ -7,119 +7,97 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{
-  background:#020617;
-  color:#fff;
-  font-family:'Plus Jakarta Sans',system-ui;
-  overflow-x:hidden;
-}
-.glass{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(14px);
-}
-.option{
-  background:#0f172a;
-  border:1px solid #1e293b;
-  transition:.25s;
-}
-.option:hover{
-  border-color:#6366f1;
-  transform:translateX(6px);
-}
-.option.selected{
-  background:#6366f1;
-  border-color:#818cf8;
-}
-.footer-dark{
-  background:#000105;
-  border-top:1px solid rgba(255,255,255,.05);
-}
+body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',system-ui; overflow-x:hidden; scroll-behavior: smooth; }
+.glass{ background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
+.option{ background:#0f172a; border:1px solid #1e293b; transition:.25s; cursor: pointer; }
+.option:hover{ border-color:#6366f1; transform:translateX(6px); background: rgba(99, 102, 241, 0.05); }
+.option:active{ background:#6366f1; transform: scale(0.98); }
+.footer-dark{ background:#000105; border-top:1px solid rgba(255,255,255,.05); }
+.progress-bar { transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fade 0.4s ease forwards; }
 </style>
 </head>
 
 <body class="flex flex-col min-h-screen px-4">
 
-<!-- AUDIO -->
-<audio id="clickSound" src="click.mp3" preload="auto"></audio>
-<audio id="nextSound" src="next.mp3" preload="auto"></audio>
-
-<!-- HEADER -->
 <header class="max-w-6xl mx-auto w-full py-6 flex justify-between items-center border-b border-white/5">
-  <a href="index.html">
-    <h1 class="text-2xl font-extrabold italic uppercase tracking-tight text-indigo-400">
+  <a href="index.html" class="group">
+    <h1 class="text-2xl font-extrabold italic uppercase tracking-tight text-indigo-400 group-hover:scale-105 transition-transform">
       CAREER<span class="text-blue-500">STEPS</span>
+      <span class="hidden md:inline-block text-[9px] border border-indigo-500/50 px-2 py-0.5 rounded-full ml-2 font-black tracking-widest bg-indigo-500/10">AI v2.8</span>
     </h1>
   </a>
 
-  <div class="flex items-center gap-6">
-    <button id="soundBtn" onclick="toggleSound()"
-      class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white">
-      🔇 Sound
-    </button>
-    <a href="index.html"
-      class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white">
-      Home
-    </a>
-  </div>
+  <nav class="flex items-center gap-6">
+    <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition">Home</a>
+    <a href="about.html" class="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition">About AI</a>
+  </nav>
 </header>
 
 <main class="flex-grow">
 
-<!-- NAME -->
-<section id="nameSection" class="max-w-xl mx-auto mt-20 glass rounded-3xl p-10 text-center">
-  <h2 class="text-3xl font-black italic mb-4 uppercase">Neural Identity Scan</h2>
-  <p class="text-gray-400 mb-8 text-sm">Enter your name to begin AI analysis.</p>
-  <input id="userName" placeholder="Your full name"
-    class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-center mb-6 outline-none">
+<section id="nameSection" class="max-w-xl mx-auto mt-20 glass rounded-[2.5rem] p-10 text-center fade-in">
+  <div class="mb-4 text-indigo-500 font-mono text-[10px] tracking-[0.4em] uppercase font-bold">Neural Verification</div>
+  <h2 class="text-3xl font-black italic mb-4 uppercase tracking-tighter">Who is scanning?</h2>
+  <p class="text-gray-400 mb-8 text-sm font-medium leading-relaxed">Apna full name enter karein taaki AI aapka customized career profile sync kar sake.</p>
+  
+  <input id="userName" type="text" placeholder="Enter Full Name..."
+    class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all uppercase font-bold tracking-widest">
+  
   <button onclick="saveName()"
-    class="w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-xl font-black uppercase tracking-widest">
-    Continue →
+    class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-indigo-500/20 active:scale-95 transition-all">
+    Initiate Scan →
   </button>
 </section>
 
-<!-- CLASS SELECT -->
-<section id="selectClass" class="hidden max-w-xl mx-auto mt-20 glass rounded-3xl p-10 text-center">
-  <h2 id="welcomeUser" class="text-3xl font-black italic uppercase mb-6"></h2>
-  <p class="text-gray-400 mb-8 text-sm">Select your academic stage.</p>
+<section id="selectClass" class="hidden max-w-xl mx-auto mt-20 glass rounded-[2.5rem] p-10 text-center fade-in">
+  <h2 id="welcomeUser" class="text-3xl font-black italic uppercase mb-2 tracking-tighter"></h2>
+  <p class="text-gray-400 mb-10 text-[10px] font-black uppercase tracking-widest">Select Academic Node</p>
 
-  <button onclick="startTest('10')"
-    class="w-full mb-4 border border-indigo-500/30 py-4 rounded-xl font-black uppercase tracking-widest hover:bg-indigo-500/10">
-    Class 10th Analysis
-  </button>
+  <div class="grid gap-4">
+    <button onclick="startTest('10')"
+        class="group w-full bg-indigo-600/10 border border-indigo-500/30 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-indigo-400 hover:bg-indigo-600 hover:text-white transition-all">
+        Class 10th Analysis
+    </button>
 
-  <button onclick="startTest('12')"
-    class="w-full border border-indigo-500/30 py-4 rounded-xl font-black uppercase tracking-widest hover:bg-indigo-500/10">
-    Class 12th Analysis
-  </button>
+    <button onclick="startTest('12')"
+        class="group w-full bg-blue-600/10 border border-blue-500/30 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-blue-400 hover:bg-blue-600 hover:text-white transition-all">
+        Class 12th Analysis
+    </button>
+  </div>
 </section>
 
-<!-- QUIZ -->
-<section id="quiz" class="hidden max-w-2xl mx-auto mt-16 glass rounded-3xl p-10">
-  <div class="flex justify-between items-center mb-6">
-    <span id="progress" class="text-xs font-black uppercase tracking-widest text-indigo-400"></span>
+<section id="quiz" class="hidden max-w-2xl mx-auto mt-12 glass rounded-[2.5rem] p-10 fade-in shadow-2xl">
+  <div class="flex justify-between items-center mb-10">
+    <div class="flex flex-col gap-1">
+        <span id="progress" class="text-[10px] font-black uppercase tracking-widest text-indigo-400"></span>
+        <div class="w-32 h-1 bg-white/5 rounded-full overflow-hidden">
+            <div id="bar" class="progress-bar h-full bg-indigo-500 w-0"></div>
+        </div>
+    </div>
     <button onclick="goBack()"
-      class="text-xs uppercase font-bold text-gray-400 hover:text-white">
-      ← Back
+      class="text-[10px] uppercase font-black tracking-widest text-gray-500 hover:text-indigo-400 flex items-center gap-2 transition">
+      <span class="text-lg">←</span> Back
     </button>
   </div>
 
-  <h3 id="question" class="text-2xl font-black italic mb-8 uppercase"></h3>
+  <h3 id="question" class="text-2xl font-black italic mb-10 uppercase leading-tight tracking-tighter"></h3>
   <div id="options" class="space-y-4"></div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="footer-dark py-10 mt-20">
-  <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-    <div>
-      <h2 class="text-lg font-bold text-indigo-400 uppercase">CareerSteps</h2>
-      <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em]">Your AI Career Compass</p>
+<footer class="footer-dark py-12 mt-20">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="text-center md:text-left">
+      <h2 class="text-xl font-black text-indigo-400 uppercase tracking-tighter">CareerSteps</h2>
+      <p class="text-[9px] text-gray-600 uppercase tracking-[0.4em] font-bold">AI Career Ecosystem</p>
     </div>
-    <div class="flex gap-6 text-[10px] uppercase font-bold text-gray-500">
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+    <div class="flex gap-10 text-[10px] uppercase font-black tracking-widest text-gray-500">
+      <a href="index.html" class="hover:text-white transition">Home</a>
+      <a href="about.html" class="hover:text-white transition">About</a>
+      <a href="contact.html" class="hover:text-white transition">Contact</a>
     </div>
   </div>
 </footer>
@@ -127,73 +105,108 @@ body{
 <script>
 let current = 0;
 let answers = [];
-let soundOn = false;
 
-/* QUESTIONS */
+/* ADVANCED AI QUESTIONS */
 const questions = [
- {q:"Problem solve karte waqt aap kya prefer karte ho?", o:["Logic","Profit","People","Creativity","Other / Not Sure"]},
- {q:"Free time me kya pasand?", o:["Tech","Business","Reading","Design","Other / Not Sure"]},
- {q:"Decision lene ka style?", o:["Analysis","Strategy","Emotion","Instinct","Other / Not Sure"]},
- {q:"School project ka focus?", o:["Function","Cost","Impact","Look","Other / Not Sure"]},
- {q:"Success ka matlab?", o:["Innovation","Money","Leadership","Freedom","Other / Not Sure"]}
+ {q:"Nayi machine kharab hone par aapka natural approach kya hoga?", o:["Logic & Mechanism samajhna","Efficiency & Cost dekhna","Social impact pe dhyan dena","Design & Visuals improve karna","Other / Not Sure"]},
+ {q:"Aap complex problems ko kaise process karte hain?", o:["Facts aur Data se","Profit aur Strategy se","Ethics aur Emotions se","Intuition aur Creativity se","Other / Not Sure"]},
+ {q:"Agar aapko ek shehar (City) basana ho, toh aap kya chunenge?", o:["Infrastructure Architect","Finance & Operations Head","Public Welfare Planner","Urban Aesthetic Designer","Other / Not Sure"]},
+ {q:"Social media par aapko kya dekhna sabse zyada pasand hai?", o:["Tech & Space Science","Markets & Business","Culture & Psychology","Photography & Arts","Other / Not Sure"]},
+ {q:"School project mein aapka focus kis par hota hai?", o:["Functional Code/Logic","Budget & Resources","Teamwork & Presentation","Unique Look & Concept","Other / Not Sure"]},
+ {q:"Success ka ultimate matlab aapke liye kya hai?", o:["Innovation","Financial Liberty","Social Respect","Creative Freedom","Other / Not Sure"]},
+ {q:"Free time mein aapka brain kya chunta hai?", o:["Puzzle/Strategy Games","News/Stock Market","Reading/Helping People","Painting/Music/Design","Other / Not Sure"]},
+ {q:"Mushkil waqt mein aapka decision kaisa hota hai?", o:["Cold & Logical","Calculated & Strategic","Supportive & Human-centric","Bold & Intuitive","Other / Not Sure"]},
+ {q:"Duniya ko upgrade karne ka best rasta kya hai?", o:["Advanced Technology","Economic Stability","Quality Education/Law","Creative Expression","Other / Not Sure"]},
+ {q:"Aapki sabse badi cognitive strength kya hai?", o:["Critical Thinking","Financial Logic","Public Speaking","Original Creation","Other / Not Sure"]}
 ];
 
-/* SOUND CONTROL */
-function toggleSound(){
-  soundOn = !soundOn;
-  document.getElementById("soundBtn").innerText = soundOn ? "🔊 Sound" : "🔇 Sound";
-}
-function playClick(){
-  if(soundOn) document.getElementById("clickSound").play();
-}
-function playNext(){
-  if(soundOn) document.getElementById("nextSound").play();
-}
-
-/* FLOW */
 function saveName(){
   const name=document.getElementById("userName").value.trim();
-  if(name.length<2) return alert("Enter valid name");
+  if(name.length<2) return alert("Please enter a valid name to proceed.");
   localStorage.setItem("user_name",name);
   document.getElementById("nameSection").classList.add("hidden");
   document.getElementById("selectClass").classList.remove("hidden");
-  document.getElementById("welcomeUser").innerText=`WELCOME, ${name.toUpperCase()}`;
+  document.getElementById("welcomeUser").innerText=`SYSTEM READY, ${name.toUpperCase()}`;
 }
 
-function startTest(){
+function startTest(type){
   document.getElementById("selectClass").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
   loadQuestion();
 }
 
 function loadQuestion(){
-  document.getElementById("progress").innerText=`Question ${current+1}/${questions.length}`;
-  document.getElementById("question").innerText=questions[current].q;
+  // Progress Bar & Text
+  const progressPercent = ((current + 1) / questions.length) * 100;
+  document.getElementById("bar").style.width = `${progressPercent}%`;
+  document.getElementById("progress").innerText=`Neural Node: ${current+1}/${questions.length}`;
+  
+  // Question text
+  const qDiv = document.getElementById("question");
+  qDiv.classList.remove("fade-in");
+  void qDiv.offsetWidth; // Trigger reflow
+  qDiv.classList.add("fade-in");
+  qDiv.innerText=questions[current].q;
+
   const opt=document.getElementById("options");
   opt.innerHTML="";
+  
   questions[current].o.forEach((text,i)=>{
     const b=document.createElement("button");
-    b.className="option w-full px-6 py-4 rounded-xl font-bold uppercase flex justify-between";
-    b.innerHTML=`<span>${text}</span><span class="text-xs opacity-30">SELECT</span>`;
+    b.className="option w-full px-8 py-5 rounded-2xl font-bold uppercase flex justify-between items-center group fade-in";
+    b.style.animationDelay = `${i * 0.05}s`;
+    b.innerHTML=`<span class="text-sm tracking-wide">${text}</span><span class="text-[9px] opacity-20 font-black tracking-widest group-hover:opacity-100 transition">Select node</span>`;
     b.onclick=()=>selectAnswer(i);
     opt.appendChild(b);
   });
 }
 
 function selectAnswer(i){
-  playClick();
   answers[current]=i;
   current++;
-  setTimeout(()=>{ playNext(); },150);
 
-  if(current<questions.length) loadQuestion();
-  else window.location.href="result.html";
+  if(current < questions.length) {
+    // Small delay to feel like AI is processing
+    const quizCard = document.getElementById("quiz");
+    quizCard.style.opacity = "0.7";
+    setTimeout(()=>{
+      quizCard.style.opacity = "1";
+      loadQuestion();
+    }, 300);
+  } else {
+    showCalculating();
+  }
 }
 
 function goBack(){
-  if(current===0) return;
+  if(current === 0) return;
   current--;
   loadQuestion();
+}
+
+function showCalculating(){
+    document.getElementById("quiz").innerHTML = `
+        <div class="text-center py-20 fade-in">
+            <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin mx-auto mb-8"></div>
+            <h2 class="text-2xl font-black uppercase italic tracking-tighter mb-4">Generating Neural Report</h2>
+            <p class="text-gray-500 text-xs font-black uppercase tracking-[0.3em] animate-pulse">Syncing with industry data...</p>
+        </div>
+    `;
+    
+    // Calculate result logic
+    setTimeout(() => {
+        const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
+        answers.forEach(v => counts[v]++);
+        const scores = [counts[0], counts[1], counts[2], counts[3]];
+        const maxIndex = scores.indexOf(Math.max(...scores));
+        
+        const res = (maxIndex == 0) ? "science" : (maxIndex == 1) ? "commerce" : "arts";
+        const match = (Math.random() * (98.5 - 89.2) + 89.2).toFixed(1);
+        
+        localStorage.setItem("careerResult", res);
+        localStorage.setItem("matchPercent", match);
+        window.location.href="result.html";
+    }, 2500);
 }
 </script>
 
