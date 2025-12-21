@@ -48,23 +48,25 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
     <div class="h-1 w-24 bg-gray-800 rounded-full overflow-hidden">
       <div id="confBar" class="h-full bg-indigo-500 w-[100%] transition-all duration-1000"></div>
     </div>
-    <span class="text-[10px] font-mono text-indigo-500 tracking-widest uppercase pulse font-bold" id="aiTag">SYSTEM_STABLE</span>
+    <span class="text-[10px] font-mono text-indigo-500 tracking-widest uppercase pulse font-bold" id="aiTag">SYSTEM_SYNCED</span>
   </div>
 
   <div class="mb-4">
+    <p id="userDisplayName" class="text-indigo-400 text-xs font-black uppercase tracking-[0.3em] mb-2"></p>
     <span id="badge" class="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] text-white shadow-xl">
       Neural Match Identified
     </span>
   </div>
 
   <h2 id="title" class="text-5xl md:text-7xl font-black mt-6 mb-4 tracking-tighter uppercase italic"></h2>
+  <p id="matchValue" class="text-green-400 font-mono text-xs mb-4 font-bold tracking-widest"></p>
   <p id="description" class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium"></p>
 
   <div class="flex flex-wrap justify-center gap-4 mb-16">
     <button onclick="shareOnWhatsApp()" class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
        Share Report
     </button>
-    <a href="explore.html" class="inline-flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
+    <a href="option.html" class="inline-flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
       Explore All Careers
     </a>
   </div>
@@ -83,7 +85,7 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
     <p class="text-gray-500 text-[10px] mb-8 uppercase tracking-[0.3em] font-bold">Highly compatible paths based on your cognitive profile</p>
     
     <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        </div>
+    </div>
   </div>
 
   <div class="text-left mb-10">
@@ -102,7 +104,11 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 </section>
 
 <script>
+// Get Data from LocalStorage
 const result = localStorage.getItem("careerResult") || "science";
+const userName = localStorage.getItem("user_name") || "Student";
+const matchPercent = localStorage.getItem("matchPercent") || "94.2";
+
 const card = document.getElementById("resultCard");
 
 const database = {
@@ -155,6 +161,10 @@ const database = {
 
 const data = database[result] || database.science;
 
+// Personalize UI
+document.getElementById("userDisplayName").innerText = "ANALYSIS FOR: " + userName.toUpperCase();
+document.getElementById("matchValue").innerText = "NEURAL COMPATIBILITY: " + matchPercent + "%";
+
 // Header & Theme
 card.classList.add(data.theme);
 document.getElementById("badge").classList.add(data.btn);
@@ -175,7 +185,7 @@ data.roadmap.forEach((r, i) => {
     </div>`;
 });
 
-// Populate Deep Dive Cards (The "Extra" Content)
+// Populate Deep Dive Cards
 data.deepDive.forEach(item => {
     document.getElementById("careerGrid").innerHTML += `
     <div class="glass p-6 rounded-3xl border-b-2 border-transparent hover:border-indigo-500 transition-all group hover:bg-white/[0.08]">
@@ -197,9 +207,12 @@ data.exams.forEach(e => {
   </div>`;
 });
 
+// UPGRADED SHARE FUNCTION
 function shareOnWhatsApp() {
-  const msg = `🤖 CareerSteps AI: My profile matches *${data.title}*! \n\nCheck your path here: ${window.location.origin}`;
-  window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+  const currentUrl = window.location.origin; // Website ka link
+  const message = `🤖 *CareerSteps AI Report*%0A%0A👤 *Name:* ${userName}%0A🎯 *Career Match:* ${data.title}%0A📊 *Neural Match:* ${matchPercent}%%0A%0ACheck your AI Career Result here: 👇%0A${currentUrl}`;
+  
+  window.open(`https://wa.me/?text=${message}`, '_blank');
 }
 </script>
 
