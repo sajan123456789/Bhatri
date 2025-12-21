@@ -10,7 +10,7 @@
 body { background:#020617; color:#fff; font-family:system-ui; transition: background 0.5s ease; }
 .glass { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
 .step { border-left:3px solid #6366f1; padding-left:16px; transition: border 0.5s ease; position: relative; }
-.step::before { content: ''; position: absolute; left: -6px; top: 0; width: 9px; height: 9px; border-radius: 50%; background: #6366f1; }
+.step::before { content: ''; position: absolute; left: -6px; top: 0; width: 11px; height: 11px; border-radius: 50%; background: #6366f1; box-shadow: 0 0 10px #6366f1; }
 
 /* AI Unique Themes */
 .theme-science { border-top: 8px solid #3b82f6; box-shadow: 0 0 50px rgba(59, 130, 246, 0.15); }
@@ -25,59 +25,72 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 .bg-commerce { background: #10b981; }
 .bg-arts { background: #a855f7; }
 
-/* Pulse for AI Badge */
 .pulse { animation: pulse 2s infinite; }
-@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 </style>
 </head>
 
 <body class="px-4 pb-20">
 
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps <span class="text-[10px] border border-indigo-400 px-2 rounded-full">AI v2.0</span></h1>
-  <a href="index.html" class="text-gray-300 hover:text-white font-medium">Home</a>
+  <a href="index.html" class="group transition-all">
+    <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter flex items-center gap-1 group-hover:scale-105 transition-transform">
+      CareerSteps 
+      <span class="text-[10px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black">AI v2.0</span>
+    </h1>
+  </a>
+  <a href="index.html" class="text-gray-400 hover:text-white text-sm font-medium border-b border-transparent hover:border-white transition-all">Home</a>
 </header>
 
-<section id="resultCard" class="max-w-3xl mx-auto mt-8 glass rounded-3xl p-8 md:p-12 text-center transition-all duration-700 opacity-0 transform translate-y-10">
+<section id="resultCard" class="max-w-3xl mx-auto mt-8 glass rounded-[2.5rem] p-8 md:p-12 text-center transition-all duration-1000 opacity-0 transform translate-y-12">
   
-  <div class="flex items-center justify-center gap-3 mb-6">
-    <div class="h-1.5 w-24 bg-gray-800 rounded-full overflow-hidden">
-      <div id="confBar" class="h-full bg-indigo-500 w-[98%] transition-all duration-1000"></div>
+  <div class="flex items-center justify-center gap-3 mb-8">
+    <div class="h-1 w-24 bg-gray-800 rounded-full overflow-hidden">
+      <div id="confBar" class="h-full bg-indigo-500 w-[100%] transition-all duration-1000"></div>
     </div>
-    <span class="text-[10px] font-mono text-indigo-400 tracking-tighter uppercase pulse" id="aiTag">ANALYSIS_STABLE</span>
+    <span class="text-[10px] font-mono text-indigo-500 tracking-widest uppercase pulse font-bold" id="aiTag">CORE_STABLE</span>
   </div>
 
-  <span id="badge" class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white">
-    AI Neuro-Score
-  </span>
+  <div class="mb-4 text-center">
+    <span id="badge" class="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] text-white shadow-xl">
+      Neural Pattern Matched
+    </span>
+  </div>
 
-  <h2 id="title" class="text-4xl md:text-6xl font-black mt-6 mb-4 tracking-tight uppercase"></h2>
-  <p id="description" class="text-gray-400 text-lg mb-10 max-w-xl mx-auto leading-relaxed"></p>
+  <h2 id="title" class="text-5xl md:text-7xl font-black mt-6 mb-4 tracking-tighter uppercase italic"></h2>
+  <p id="description" class="text-gray-400 text-lg md:text-xl mb-12 max-w-xl mx-auto leading-relaxed font-medium"></p>
 
-  <button onclick="shareOnWhatsApp()" class="mb-10 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 rounded-2xl font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg">
-    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.229 3.481 8.405c0 6.555-5.332 11.89-11.888 11.89-2.015 0-3.991-.511-5.741-1.481l-6.143 1.613zm6.183-3.613c1.547.918 3.078 1.403 4.626 1.403 5.422 0 9.835-4.413 9.835-9.835 0-2.628-1.023-5.099-2.88-6.956-1.857-1.857-4.328-2.88-6.955-2.88-5.422 0-9.835 4.413-9.835 9.835 0 2.107.667 4.067 1.928 5.688l-1.019 3.717 3.805-.972zm10.513-5.705c-.271-.136-1.604-.791-1.853-.882-.249-.091-.43-.136-.611.136-.181.272-.701.882-.859 1.063-.158.181-.316.204-.587.069-.272-.136-1.146-.423-2.184-1.348-.806-.719-1.35-1.607-1.508-1.879-.158-.272-.017-.419.119-.554.122-.121.272-.317.407-.476.136-.159.181-.272.271-.453.091-.181.045-.34-.022-.476-.068-.136-.611-1.474-.836-2.019-.22-.529-.441-.457-.611-.465-.159-.007-.339-.008-.52-.008-.181 0-.476.068-.724.34-.249.272-.95 1.023-.95 2.494 0 1.471 1.068 2.894 1.216 3.095.148.201 2.102 3.209 5.091 4.5 2.989 1.291 2.989.86 3.533.815.543-.045 1.742-.711 1.991-1.396.249-.685.249-1.272.175-1.396-.074-.124-.271-.205-.543-.341z"/></svg>
-    Share My Result
-  </button>
-
-  <div class="text-left mb-4 font-bold text-[10px] text-gray-500 uppercase tracking-[0.3em]">AI Suggested Pathways</div>
-  <div id="careers" class="grid md:grid-cols-2 gap-3 text-left mb-12"></div>
-
-  <h3 class="text-2xl font-bold text-left mb-8 flex items-center gap-3">
-    <span class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg">📍</span> Strategic Roadmap
-  </h3>
-  <div id="roadmap" class="space-y-8 text-left mb-12 border-l border-white/5 ml-5"></div>
-
-  <h3 class="text-2xl font-bold text-left mb-8 flex items-center gap-3">
-    <span class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg">📝</span> Gateway Exams
-  </h3>
-  <div id="exams" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-12"></div>
-
-  <div class="flex flex-col md:flex-row gap-4 justify-center pt-8 border-t border-white/10">
-    <a href="assessment.html" class="bg-indigo-600 text-white hover:bg-indigo-500 px-8 py-4 rounded-2xl font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-500/20">
-       Retake Test
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
+    <button onclick="shareOnWhatsApp()" class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.229 3.481 8.405c0 6.555-5.332 11.89-11.888 11.89-2.015 0-3.991-.511-5.741-1.481l-6.143 1.613zm6.183-3.613c1.547.918 3.078 1.403 4.626 1.403 5.422 0 9.835-4.413 9.835-9.835 0-2.628-1.023-5.099-2.88-6.956-1.857-1.857-4.328-2.88-6.955-2.88-5.422 0-9.835 4.413-9.835 9.835 0 2.107.667 4.067 1.928 5.688l-1.019 3.717 3.805-.972zm10.513-5.705c-.271-.136-1.604-.791-1.853-.882-.249-.091-.43-.136-.611.136-.181.272-.701.882-.859 1.063-.158.181-.316.204-.587.069-.272-.136-1.146-.423-2.184-1.348-.806-.719-1.35-1.607-1.508-1.879-.158-.272-.017-.419.119-.554.122-.121.272-.317.407-.476.136-.159.181-.272.271-.453.091-.181.045-.34-.022-.476-.068-.136-.611-1.474-.836-2.019-.22-.529-.441-.457-.611-.465-.159-.007-.339-.008-.52-.008-.181 0-.476.068-.724.34-.249.272-.95 1.023-.95 2.494 0 1.471 1.068 2.894 1.216 3.095.148.201 2.102 3.209 5.091 4.5 2.989 1.291 2.989.86 3.533.815.543-.045 1.742-.711 1.991-1.396.249-.685.249-1.272.175-1.396-.074-.124-.271-.205-.543-.341z"/></svg>
+      Share Result
+    </button>
+    
+    <a href="explore.html" class="inline-flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+      Explore All Careers
     </a>
-    <a href="index.html" class="bg-white/5 border border-white/10 hover:bg-white/10 px-8 py-4 rounded-2xl font-bold transition-all">
-       Back Home
+  </div>
+
+  <div class="text-left mb-6 font-black text-[10px] text-gray-500 uppercase tracking-[0.4em] ml-1">AI Optimized Roles</div>
+  <div id="careers" class="grid md:grid-cols-2 gap-4 text-left mb-16"></div>
+
+  <h3 class="text-3xl font-black text-left mb-10 flex items-center gap-4 italic uppercase tracking-tighter">
+    <span class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl shadow-inner">📍</span> Roadmap
+  </h3>
+  <div id="roadmap" class="space-y-10 text-left mb-16 border-l-2 border-white/5 ml-6"></div>
+
+  <h3 class="text-3xl font-black text-left mb-10 flex items-center gap-4 italic uppercase tracking-tighter">
+    <span class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl shadow-inner">📝</span> Gateway
+  </h3>
+  <div id="exams" class="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mb-12"></div>
+
+  <div class="flex flex-col md:flex-row gap-5 justify-center pt-10 border-t border-white/10">
+    <a href="assessment.html" class="bg-indigo-600 text-white hover:bg-indigo-500 px-10 py-5 rounded-[1.5rem] font-black transition-all transform hover:-translate-y-1 shadow-2xl shadow-indigo-500/40 uppercase text-[10px] tracking-widest text-center">
+       Scan Again
+    </a>
+    <a href="index.html" class="bg-white/5 border border-white/10 hover:bg-white/20 px-10 py-5 rounded-[1.5rem] font-black transition-all uppercase text-[10px] tracking-widest text-center">
+       Dashboard
     </a>
   </div>
 
@@ -95,28 +108,28 @@ const exams = document.getElementById("exams");
 
 const database = {
   science: {
-    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "LOGIC_v4.2",
-    title:"Science 🔬",
-    desc:"Aapka cognitive profile complex problem-solving aur structural logic ke liye optimize kiya gaya hai.",
-    careers:["Engineering (AI/ML)","Medicine & Surgery","Data Architecture","Astro-Physics","Quantum Computing"],
-    roadmap:["Select PCM/PCB in Class 11","Clear National Level Entrances","Specialize in High-Tech Research"],
-    exams:["JEE Main/Advanced","NEET-UG","CUET Science","IISER Aptitude"]
+    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "NEURO_SC_v4.2",
+    title:"Science",
+    desc:"Aapka neural network complex logical analysis aur structural problem-solving ke liye peak efficiency par hai.",
+    careers:["AI & Machine Learning","Space Research & Defence","Advanced Data Analytics","Bio-Medical Science","Cyber Security"],
+    roadmap:["11th-12th mein PCM/PCB ka foundation set karein","Top-tier entrance exams (JEE/NEET) crack karein","Specialize in high-impact technical fields"],
+    exams:["JEE Main & Advanced","NEET-UG","CUET Science","BITSAT"]
   },
   commerce: {
-    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "STRAT_v2.5",
-    title:"Commerce 📊",
-    desc:"Hamare AI ne aapke andar financial management aur strategic business mindset detect kiya hai.",
-    careers:["Investment Banking","Corporate Law","Data-driven Finance","Chartered Accountancy","Venture Capital"],
-    roadmap:["Choose Commerce with Maths","Pursue Professional Certs (CA/CFA)","Advance into Global Markets"],
-    exams:["CA Foundation","CUET Commerce","IPMAT (IIMs)","CLAT"]
+    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "ECON_STRAT_v2.5",
+    title:"Commerce",
+    desc:"AI ne aapke andar high-level financial intelligence aur resource optimization logic detect kiya hai.",
+    careers:["Corporate Finance","Chartered Accountancy","Investment Banking","Venture Capital","FinTech Entrepreneurship"],
+    roadmap:["Commerce stream with Mathematics chunein","Professional degrees (CA/CFA/MBA) target karein","Global market aur finance systems master karein"],
+    exams:["CA Foundation","CUET Commerce","IPMAT (IIMs)","CAT (MBA)"]
   },
   arts: {
-    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CREAT_v9.0",
-    title:"Arts/Creative 🎨",
-    desc:"Aapka mindset emotional intelligence, creative expression aur societal impact ke liye bana hai.",
-    careers:["UX/UI Design","Public Policy & Law","Digital Journalism","International Relations","Creative Direction"],
-    roadmap:["Build a Strong Creative Portfolio","Master Communication & Analysis","Impact society through Art/Policy"],
-    exams:["CLAT (Law)","CUET Arts","NID / NIFT","UPSC Foundation"]
+    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CREATIVE_v9.0",
+    title:"Creative Arts",
+    desc:"Aapka mindset empathy, creative storytelling aur societal impact analysis ke liye optimize kiya gaya hai.",
+    careers:["Corporate Law & Policy","UX/UI Design Architecture","Digital Media & Journalism","Psychology & Research","Creative Direction"],
+    roadmap:["Arts/Humanities ke relevant subjects chunein","Apna creative portfolio aur network develop karein","Societal issues ya Design world mein impact banayein"],
+    exams:["CLAT (Law)","CUET Arts/Humanities","NID / NIFT","UPSC Foundation"]
   }
 };
 
@@ -128,36 +141,39 @@ badge.classList.add(data.btn);
 title.classList.add(data.txt);
 title.innerText = data.title;
 desc.innerText = data.desc;
-document.getElementById("aiTag").innerText = "CORE_" + data.tag;
+document.getElementById("aiTag").innerText = "SYSTEM_" + data.tag;
 
 // Reveal Animation
 setTimeout(() => {
-  card.classList.remove("opacity-0", "translate-y-10");
+  card.classList.remove("opacity-0", "translate-y-12");
 }, 100);
 
-// Populate Lists
+// Populate Careers
 data.careers.forEach(c => {
-  careers.innerHTML += `<div class="glass p-4 rounded-2xl border-l-4 border-indigo-500 hover:bg-white/10 transition-all font-semibold italic text-sm">✦ ${c}</div>`;
+  careers.innerHTML += `<div class="glass p-5 rounded-3xl border-l-4 border-indigo-500 hover:bg-white/10 transition-all font-bold text-sm tracking-tight text-gray-200 uppercase"> ${c}</div>`;
 });
 
+// Populate Roadmap
 data.roadmap.forEach((r, i) => {
   roadmap.innerHTML += `
     <div class="step">
-      <div class="text-[10px] font-mono opacity-40 uppercase mb-1">Neural Phase 0${i+1}</div>
-      <div class="text-lg font-bold text-gray-200">${r}</div>
+      <div class="text-[10px] font-mono opacity-40 uppercase tracking-[0.2em] mb-2">Neural Node 0${i+1}</div>
+      <div class="text-xl font-bold text-gray-100 italic leading-tight">${r}</div>
     </div>`;
 });
 
+// Populate Exams
 data.exams.forEach(e => {
-  exams.innerHTML += `<div class="bg-white/5 p-4 rounded-2xl border border-white/5 flex items-center gap-3 hover:border-indigo-500/50 transition-all">
-    <span class="text-indigo-500 text-lg">◈</span> <span class="text-sm font-medium">${e}</span>
+  exams.innerHTML += `<div class="bg-white/5 p-5 rounded-3xl border border-white/5 flex items-center gap-4 hover:border-indigo-500/50 transition-all group">
+    <span class="text-indigo-500 text-xl group-hover:scale-125 transition-transform">◈</span> 
+    <span class="text-sm font-black uppercase tracking-widest text-gray-300">${e}</span>
   </div>`;
 });
 
 // WhatsApp Sharing Logic
 function shareOnWhatsApp() {
-  const siteUrl = "https://yourwebsite.com"; // Isse apni website link se badlein
-  const message = `🤖 *CareerSteps AI Assessment Result*\n\nMy neuro-pattern scan suggests I am best suited for: *${data.title}*\n\nExplore your own career path here: ${siteUrl}`;
+  const siteUrl = window.location.origin; 
+  const message = `🤖 *CareerSteps AI Scan Result*\n\nMy neural patterns suggest a career in: *${data.title}*\n\nTake your own AI test here: ${siteUrl}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 }
