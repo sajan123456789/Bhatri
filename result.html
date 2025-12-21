@@ -8,14 +8,14 @@
 
 <style>
 body { background:#020617; color:#fff; font-family:system-ui; transition: background 0.5s ease; scroll-behavior: smooth; }
-.glass { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
-.step { border-left:3px solid #6366f1; padding-left:16px; transition: border 0.5s ease; position: relative; }
-.step::before { content: ''; position: absolute; left: -6px; top: 0; width: 11px; height: 11px; border-radius: 50%; background: #6366f1; box-shadow: 0 0 15px #6366f1; }
+.glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
+.step { border-left:2px solid #6366f1; padding-left:20px; transition: 0.3s; position: relative; }
+.step::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #6366f1; box-shadow: 0 0 15px #6366f1; }
 
 /* Themes */
-.theme-science { border-top: 8px solid #3b82f6; box-shadow: 0 0 50px rgba(59, 130, 246, 0.15); }
-.theme-commerce { border-top: 8px solid #10b981; box-shadow: 0 0 50px rgba(16, 185, 129, 0.15); }
-.theme-arts { border-top: 8px solid #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.15); }
+.theme-science { border-top: 6px solid #3b82f6; }
+.theme-commerce { border-top: 6px solid #10b981; }
+.theme-arts { border-top: 6px solid #a855f7; }
 
 .text-science { color: #60a5fa; }
 .text-commerce { color: #34d399; }
@@ -34,53 +34,55 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center border-b border-white/5 mb-6">
   <a href="index.html" class="group transition-all">
-    <h1 class="text-xl font-bold text-indigo-400 tracking-tighter flex items-center gap-1 group-hover:scale-105 transition-transform">
-      CareerSteps <span class="text-[10px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black">AI v2.8</span>
+    <h1 class="text-xl font-bold text-indigo-400 tracking-tighter flex items-center gap-1 group-hover:scale-105 transition-transform uppercase italic">
+      CareerSteps <span class="text-[9px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black">AI v2.8</span>
     </h1>
   </a>
-  <nav class="flex gap-6">
-    <a href="index.html" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">Home</a>
-    <a href="assessment.html" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">Retake Test</a>
+  <nav class="flex gap-4">
+    <a href="assessment.html" class="bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all">Retake Test</a>
   </nav>
 </header>
 
-<section id="resultCard" class="max-w-4xl mx-auto mt-8 glass rounded-[2.5rem] p-8 md:p-12 text-center transition-all duration-1000 opacity-0 transform translate-y-12">
+<section id="resultCard" class="max-w-4xl mx-auto mt-8 glass rounded-[3rem] p-8 md:p-14 text-center transition-all duration-1000 opacity-0 transform translate-y-12">
   
-  <div class="flex items-center justify-center gap-3 mb-8">
-    <div class="h-1 w-24 bg-gray-800 rounded-full overflow-hidden">
-      <div id="confBar" class="h-full bg-indigo-500 w-[100%] transition-all duration-1000"></div>
+  <div class="flex items-center justify-center gap-3 mb-10">
+    <div class="h-1 w-20 bg-gray-800 rounded-full overflow-hidden">
+        <div id="confBar" class="h-full bg-indigo-500 w-[100%] transition-all duration-1000"></div>
     </div>
-    <span class="text-[10px] font-mono text-indigo-500 tracking-widest uppercase pulse font-bold" id="aiTag">ANALYSIS_COMPLETE</span>
+    <span class="text-[9px] font-black text-indigo-500 tracking-[0.3em] uppercase pulse" id="aiTag">SCAN_COMPLETE</span>
   </div>
 
-  <div class="mb-4">
-    <p id="userDisplayName" class="text-indigo-400 text-xs font-black uppercase tracking-[0.3em] mb-2"></p>
-    <span id="badge" class="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] text-white shadow-xl italic">
+  <div class="mb-6">
+    <p id="userDisplayName" class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.4em] mb-4"></p>
+    <span id="badge" class="px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-2xl italic">
       Neural Match Identified
     </span>
   </div>
 
-  <h2 id="title" class="text-5xl md:text-7xl font-black mt-6 mb-4 tracking-tighter uppercase italic"></h2>
-  <p id="matchValue" class="text-green-400 font-mono text-xs mb-4 font-bold tracking-widest"></p>
+  <h2 id="title" class="text-5xl md:text-8xl font-black mt-6 mb-4 tracking-tighter uppercase italic"></h2>
+  <p id="matchValue" class="text-green-400 font-mono text-xs mb-6 font-bold tracking-[0.2em]"></p>
   <p id="description" class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium"></p>
 
-  <div class="flex flex-wrap justify-center gap-4 mb-16">
-    <button onclick="handleUniversalShare()" class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
-       Share Report
+  <div class="flex flex-wrap justify-center gap-4 mb-20">
+    <button onclick="handleUniversalShare()" class="group flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-5 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-indigo-500/20 uppercase text-[10px] tracking-widest">
+       🚀 Share AI Report
+    </button>
+    <button onclick="window.print()" class="bg-white/5 hover:bg-white/10 text-gray-300 px-10 py-5 rounded-2xl font-black transition-all uppercase text-[10px] tracking-widest border border-white/10">
+       Download PDF
     </button>
   </div>
 
-  <div class="text-left mb-16">
-    <h3 class="text-2xl font-black mb-8 italic uppercase tracking-tighter text-indigo-300 flex items-center gap-2">
-        <span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Strategic Roadmap
+  <div class="text-left mb-20">
+    <h3 class="text-2xl font-black mb-10 italic uppercase tracking-tighter text-indigo-300 flex items-center gap-3">
+        <span class="w-10 h-[2px] bg-indigo-500"></span> Strategic Roadmap
     </h3>
-    <div id="roadmap" class="space-y-10 border-l-2 border-white/5 ml-5"></div>
+    <div id="roadmap" class="space-y-12 ml-4"></div>
   </div>
 
-  <div class="text-left mb-16">
+  <div class="text-left mb-20">
     <h3 class="text-2xl font-black mb-2 italic uppercase tracking-tighter text-indigo-300">Advanced Career Nodes</h3>
-    <p class="text-gray-500 text-[10px] mb-8 uppercase tracking-widest font-bold">Recommended Paths & Essential Skills</p>
-    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    <p class="text-gray-500 text-[9px] mb-10 uppercase tracking-[0.3em] font-black">AI-Recommended High Growth Paths</p>
+    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </div>
 
   <div class="text-left mb-10">
@@ -100,53 +102,53 @@ const database = {
   science: {
     theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "SC_v8",
     title:"Science & Tech",
-    desc:"Complex problem-solving aur technical innovation aapke core strengths hain.",
-    roadmap:["High School: Focus on STEM Foundations","Higher Secondary: Master PCM/PCB Aptitude","Undergrad: Top-tier Engineering or Research Institute"],
+    desc:"Complex problem-solving aur technical innovation aapke core strengths hain. Aapka dimag patterns aur data ko handle karne ke liye optimize hai.",
+    roadmap:["High School: Focus on STEM Foundations (PCM/B)","Higher Secondary: Master Entrance Aptitude","Undergrad: Top-tier Engineering or Research Institute"],
     exams:["JEE Main & Advanced", "NEET-UG", "BITSAT", "IISER Aptitude"],
     deepDive: [
-        {role: "AI/ML Engineer", pay: "15-45L", skill: "Python, PyTorch, Linear Algebra"},
-        {role: "Cybersecurity Expert", pay: "12-35L", skill: "Ethical Hacking, Network Security"},
-        {role: "Data Scientist", pay: "14-40L", skill: "SQL, Statistics, R, Machine Learning"},
-        {role: "Aerospace Architect", pay: "10-28L", skill: "CAD/CAM, Fluid Dynamics"},
-        {role: "Biotech Researcher", pay: "8-25L", skill: "Genetics, Lab Protocols, Molecular Bio"},
-        {role: "Robotics Scientist", pay: "13-38L", skill: "C++, ROS, Hardware Integration"}
+        {role: "AI/ML Engineer", pay: "15-45L", skill: "Neural Networks, Python, Math"},
+        {role: "Cybersecurity", pay: "12-35L", skill: "Ethical Hacking, Network Security"},
+        {role: "Data Scientist", pay: "14-40L", skill: "SQL, Stats, Machine Learning"},
+        {role: "Aerospace Architect", pay: "10-28L", skill: "CAD, Fluid Dynamics, Physics"},
+        {role: "Robotics Expert", pay: "13-38L", skill: "C++, ROS, Hardware"},
+        {role: "Biotech Researcher", pay: "8-25L", skill: "Genetics, Lab Protocols"}
     ]
   },
   commerce: {
     theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "FIN_v4",
     title:"Commerce & Biz",
-    desc:"Financial intelligence aur strategic risk management aapke prime traits hain.",
-    roadmap:["11th/12th: Advanced Commerce with Applied Maths","Foundation: Clear CA/IPMAT or CUET Exams","Graduation: Corporate Finance or Strategy Majors"],
+    desc:"Financial intelligence aur strategic risk management aapke prime traits hain. Business logic aur wealth management aapka natural path hai.",
+    roadmap:["11th/12th: Commerce with Applied Maths","Foundation: Clear CA/IPMAT or CUET Exams","Graduation: Corporate Finance or Strategy Majors"],
     exams:["CA Foundation", "IPMAT (IIMs)", "CUET Commerce", "CFA Level 1"],
     deepDive: [
-        {role: "Investment Banker", pay: "20-55L", skill: "Financial Modeling, M&A, Valuation"},
-        {role: "FinTech Strategist", pay: "15-32L", skill: "Blockchain, Digital Payments, Python"},
-        {role: "Chartered Accountant", pay: "12-35L", skill: "Auditing, Taxation, Corporate Law"},
-        {role: "Risk Manager", pay: "10-25L", skill: "Market Analysis, Credit Scoring"},
-        {role: "Venture Capitalist", pay: "25-70L", skill: "Deal Sourcing, Equity Research"},
-        {role: "Marketing Head", pay: "15-40L", skill: "Consumer Behavior, Performance Ads"}
+        {role: "Investment Banker", pay: "20-55L", skill: "Financial Modeling, M&A"},
+        {role: "FinTech Strategist", pay: "15-32L", skill: "Blockchain, Digital Payments"},
+        {role: "Chartered Accountant", pay: "12-35L", skill: "Auditing, Taxation, Law"},
+        {role: "Risk Manager", pay: "10-25L", skill: "Market Analysis, Credit"},
+        {role: "Venture Capitalist", pay: "25-70L", skill: "Equity Research, Deals"},
+        {role: "Marketing Head", pay: "15-40L", skill: "Consumer Behavior, Ads"}
     ]
   },
   arts: {
     theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CR_v12",
     title:"Arts & Humanities",
-    desc:"Emotional intelligence, storytelling aur legal logic aapke standout areas hain.",
-    roadmap:["Foundation: Broad Humanities Exposure","Skill Building: Design, Law or Communication Focus","Global Reach: Internships in NGOs or Multi-National Firms"],
+    desc:"Emotional intelligence, storytelling aur creative logic aapke standout areas hain. Aap logo ki psychology aur trends ko behtar samajhte hain.",
+    roadmap:["Foundation: Broad Humanities Exposure","Skill Building: Design, Law or Communication Focus","Global Reach: Internships in NGOs or MNCs"],
     exams:["CLAT (Law)", "NID/NIFT (Design)", "UPSC", "CUET Humanities"],
     deepDive: [
-        {role: "Corporate Lawyer", pay: "18-50L", skill: "Contract Law, Arbitration, Litigation"},
-        {role: "UX Strategy Lead", pay: "14-35L", skill: "UI/UX, Figma, User Psychology"},
-        {role: "Creative Director", pay: "12-40L", skill: "Branding, Visual Storytelling, Copy"},
-        {role: "Public Policy Lead", pay: "10-25L", skill: "Data Policy, Governance, Research"},
-        {role: "Clinical Psychologist", pay: "8-20L", skill: "CBT, Behavioral Therapy, Counseling"},
-        {role: "Journalism Head", pay: "9-22L", skill: "Investigative Writing, Media Ethics"}
+        {role: "Corporate Lawyer", pay: "18-50L", skill: "Contract Law, Arbitration"},
+        {role: "UX Strategy Lead", pay: "14-35L", skill: "UI/UX, Figma, Psychology"},
+        {role: "Creative Director", pay: "12-40L", skill: "Branding, Visual Storytelling"},
+        {role: "Public Policy", pay: "10-25L", skill: "Governance, Research, Law"},
+        {role: "Psychologist", pay: "8-20L", skill: "CBT, Behavioral Therapy"},
+        {role: "Digital Artist", pay: "7-22L", skill: "3D Design, Animation"}
     ]
   }
 };
 
 const data = database[result] || database.science;
 
-// Render
+// UI Rendering Logic
 document.getElementById("userDisplayName").innerText = "ANALYSIS FOR: " + userName.toUpperCase();
 document.getElementById("matchValue").innerText = "NEURAL COMPATIBILITY: " + matchPercent + "%";
 document.getElementById("resultCard").classList.add(data.theme);
@@ -155,45 +157,66 @@ document.getElementById("title").classList.add(data.txt);
 document.getElementById("title").innerText = data.title;
 document.getElementById("description").innerText = data.desc;
 document.getElementById("aiTag").innerText = "SYSTEM_" + data.tag;
-setTimeout(() => document.getElementById("resultCard").classList.remove("opacity-0", "translate-y-12"), 100);
+
+setTimeout(() => {
+    document.getElementById("resultCard").classList.remove("opacity-0", "translate-y-12");
+}, 100);
 
 data.roadmap.forEach((r, i) => {
-  document.getElementById("roadmap").innerHTML += `<div class="step"><div class="text-[10px] font-mono opacity-40 mb-2 tracking-widest uppercase">Node 0${i+1}</div><div class="text-lg font-bold">${r}</div></div>`;
+  document.getElementById("roadmap").innerHTML += `
+    <div class="step">
+        <div class="text-[9px] font-black opacity-30 mb-2 tracking-widest uppercase font-mono">NODE_0${i+1}</div>
+        <div class="text-lg font-bold text-gray-100">${r}</div>
+    </div>`;
 });
 
 data.deepDive.forEach(item => {
     document.getElementById("careerGrid").innerHTML += `
-    <div class="glass p-6 rounded-3xl border-b-2 border-transparent hover:border-indigo-500 transition-all group hover:bg-white/[0.05]">
-        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">${item.role}</h4>
-        <div class="text-[10px] text-gray-500 font-bold uppercase mb-3">Avg: ${item.pay}</div>
-        <div class="pt-3 border-t border-white/5">
-            <span class="text-[9px] text-indigo-300 font-mono uppercase">Skills:</span>
-            <p class="text-[11px] text-gray-400 leading-tight mt-1">${item.skill}</p>
+    <div class="glass p-7 rounded-[2rem] border-b-2 border-transparent hover:border-indigo-500 transition-all group hover:bg-white/[0.05]">
+        <h4 class="text-lg font-black text-white mb-1 group-hover:text-indigo-400 transition-colors uppercase italic">${item.role}</h4>
+        <div class="text-[9px] text-indigo-400 font-black uppercase mb-4 tracking-widest">Avg: ${item.pay}</div>
+        <div class="pt-4 border-t border-white/5">
+            <span class="text-[8px] text-gray-500 font-black uppercase tracking-widest">Core Skills:</span>
+            <p class="text-[11px] text-gray-300 leading-tight mt-1 font-medium">${item.skill}</p>
         </div>
     </div>`;
 });
 
 data.exams.forEach(e => {
   document.getElementById("exams").innerHTML += `
-  <div class="bg-white/5 p-5 rounded-2xl border border-white/5 flex items-center gap-4 hover:border-indigo-500 transition-all">
-    <div class="w-2 h-2 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50"></div>
-    <span class="text-sm font-black uppercase tracking-widest text-gray-300">${e}</span>
+  <div class="bg-white/5 p-6 rounded-2xl border border-white/5 flex items-center gap-4 hover:border-indigo-500 transition-all group">
+    <div class="w-2 h-2 rounded-full bg-indigo-500 group-hover:scale-150 transition-transform shadow-lg shadow-indigo-500/50"></div>
+    <span class="text-xs font-black uppercase tracking-widest text-gray-300">${e}</span>
   </div>`;
 });
 
+// UNIVERSAL SHARE FUNCTION
 async function handleUniversalShare() {
-  const baseLink = "https://sajan123456789.github.io/Bhatri/result.html";
-  const finalLink = `${baseLink}?res=${result}&name=${encodeURIComponent(userName)}&match=${matchPercent}`;
-  const shareText = `🤖 *CareerSteps AI Report*\n\n👤 *Name:* ${userName}\n🎯 *Match:* ${data.title}\n📊 *Neural Match:* ${matchPercent}%\n\nCheck full AI roadmap here: 👇`;
+  const currentUrl = window.location.href;
+  const shareTitle = `🤖 CareerSteps AI Report: ${data.title}`;
+  const shareMsg = `👤 Name: ${userName}\n🎯 Result: ${data.title}\n📊 Neural Match: ${matchPercent}%\n\nCheck my full AI career roadmap here: 👇\n`;
 
   if (navigator.share) {
-    try { await navigator.share({ title: 'AI Career Report', text: shareText, url: finalLink }); } 
-    catch (err) { fallbackToWhatsApp(shareText + "\n" + finalLink); }
-  } else { fallbackToWhatsApp(shareText + "\n" + finalLink); }
+    try {
+      await navigator.share({
+        title: shareTitle,
+        text: shareMsg,
+        url: currentUrl
+      });
+    } catch (err) {
+      console.log("Share failed, copying link instead.");
+      copyToClipboard(currentUrl);
+    }
+  } else {
+    // Fallback for browsers without Share API (Desktop)
+    copyToClipboard(currentUrl);
+  }
 }
 
-function fallbackToWhatsApp(msg) {
-  window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+function copyToClipboard(url) {
+    navigator.clipboard.writeText(url).then(() => {
+        alert("Link Copied! You can now paste and share it on any platform.");
+    });
 }
 </script>
 </body>
