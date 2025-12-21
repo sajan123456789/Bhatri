@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Directory – CareerSteps</title>
+    <title>Explore Careers – CareerSteps</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background:#020617; color:#fff; font-family:system-ui; scroll-behavior: smooth; }
         .glass { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px); }
-        .card-glow:hover { border-color: #6366f1; box-shadow: 0 0 25px rgba(99, 102, 241, 0.3); transform: translateY(-5px); }
+        .card-glow:hover { border-color: #6366f1; box-shadow: 0 0 25px rgba(99, 102, 241, 0.3); transform: translateY(-5px); cursor: pointer; }
+        .modal-bg { background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: none; }
         input::placeholder { color: rgba(255,255,255,0.3); }
     </style>
 </head>
 <body class="px-6 pb-20">
 
 <header class="max-w-6xl mx-auto py-8 flex justify-between items-center">
-    <a href="index.html" class="text-2xl font-bold text-indigo-400 tracking-tighter italic hover:scale-105 transition-transform">CAREERSTEPS <span class="text-xs border px-2 rounded-full font-normal">AI v2.0</span></a>
-    <a href="result.html" class="text-gray-400 hover:text-white text-sm font-medium border-b border-transparent hover:border-indigo-400 transition-all">← Back to Result</a>
+    <a href="index.html" class="text-2xl font-bold text-indigo-400 tracking-tighter italic">CAREERSTEPS</a>
+    <a href="result.html" class="text-gray-400 hover:text-white text-sm">← Back to Result</a>
 </header>
 
 <main class="max-w-6xl mx-auto">
@@ -24,138 +25,113 @@
         <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic tracking-tighter">
             Explore <span id="streamDisplay" class="text-indigo-500 underline decoration-indigo-500/30">Careers</span>
         </h2>
-        <p id="subTitle" class="text-gray-400 text-lg max-w-2xl">AI analyzed your profile and found these specialized paths highly compatible with your neural patterns.</p>
+        <p class="text-gray-400 text-lg max-w-2xl">Discover deep insights and pathways for your recommended career tracks.</p>
     </div>
 
-    <div class="mb-12 relative group">
-        <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-            <svg class="w-5 h-5 text-gray-500 group-focus-within:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </div>
-        <input type="text" id="searchInput" onkeyup="searchCareers()" placeholder="Search careers (e.g. AI Engineer, Lawyer, Banker...)" 
-               class="w-full bg-white/5 border border-white/10 p-6 pl-16 rounded-[2rem] text-xl focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all shadow-2xl">
+    <div class="mb-12 relative">
+        <input type="text" id="searchInput" onkeyup="searchCareers()" placeholder="Search specialized roles..." 
+               class="w-full bg-white/5 border border-white/10 p-6 pl-10 rounded-[2rem] text-xl focus:outline-none focus:border-indigo-500 transition-all">
     </div>
 
     <div id="careerList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         </div>
-
-    <div id="showAllContainer" class="mt-20 p-10 glass rounded-[3rem] text-center border-dashed border-2 border-white/10">
-        <h4 class="text-xl font-bold mb-2">Curious about other fields?</h4>
-        <p class="text-gray-500 mb-6 text-sm italic uppercase tracking-widest">Aap dusri streams ke career options bhi dekh sakte hain.</p>
-        <button onclick="showAll()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-2xl font-black transition-all transform active:scale-95 shadow-lg shadow-indigo-500/20 uppercase text-xs tracking-[0.2em]">
-            Unlock All Stream Careers
-        </button>
-    </div>
 </main>
 
+<div id="careerModal" class="modal-bg fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="glass max-w-lg w-full rounded-[2.5rem] p-8 relative border-t-4 border-indigo-500">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl">×</button>
+        <div id="modalContent">
+            </div>
+        <button onclick="closeModal()" class="w-full mt-8 bg-indigo-600 py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-lg shadow-indigo-500/20">Got It, Thanks!</button>
+    </div>
+</div>
+
 <script>
-// Deep Database of Careers
 const allData = {
     science: [
-        { title: "AI Research Scientist", desc: "Building neural networks and advanced algorithms for the future.", pay: "15-30 LPA", tag: "Tech" },
-        { title: "Neurosurgeon", desc: "Specializing in surgical treatment of the nervous system and brain.", pay: "25-50 LPA", tag: "Medical" },
-        { title: "Aerospace Engineer", desc: "Designing high-performance aircraft and space exploration tech.", pay: "12-25 LPA", tag: "Engineering" },
-        { title: "Data Architect", desc: "Structuring complex data systems for global tech giants.", pay: "10-22 LPA", tag: "IT" },
-        { title: "Robotics Engineer", desc: "Designing and building automated robotic systems for industry.", pay: "12-28 LPA", tag: "Electronics" },
-        { title: "Quantum Physicist", desc: "Researching atomic particles and quantum computing logic.", pay: "10-18 LPA", tag: "Research" },
-        { title: "Cyber Security Expert", desc: "Protecting digital infrastructure from global threats.", pay: "9-18 LPA", tag: "Security" },
-        { title: "Biotech Researcher", desc: "Innovating in medicine and genetic engineering.", pay: "8-15 LPA", tag: "Science" }
+        { title: "AI Research Scientist", desc: "Building neural networks for the future.", pay: "15-30 LPA", skill: "Python, Math", path: "B.Tech + Masters in AI" },
+        { title: "Neurosurgeon", desc: "Specializing in brain and nervous system.", pay: "25-50 LPA", skill: "Biology, Focus", path: "MBBS + MS + MCh" },
+        { title: "Aerospace Engineer", desc: "Designing aircraft and space tech.", pay: "12-25 LPA", skill: "Physics, Design", path: "B.Tech Aerospace" },
+        { title: "Data Architect", desc: "Structuring complex data systems.", pay: "10-22 LPA", skill: "SQL, Cloud", path: "B.Tech CSE/IT" },
+        { title: "Robotics Engineer", desc: "Building automated robotic systems.", pay: "12-28 LPA", skill: "Mechatronics", path: "B.Tech Robotics/Mech" },
+        { title: "Cyber Security", desc: "Protecting digital infrastructure.", pay: "9-18 LPA", skill: "Networking", path: "B.Tech + CEH Cert" }
     ],
     commerce: [
-        { title: "Investment Banker", desc: "Managing global portfolios, mergers, and large-scale acquisitions.", pay: "18-45 LPA", tag: "Finance" },
-        { title: "Venture Capitalist", desc: "Funding and scaling next-generation tech startups.", pay: "20-50 LPA", tag: "Business" },
-        { title: "Chartered Accountant", desc: "The pillar of corporate audit, taxation, and financial law.", pay: "8-22 LPA", tag: "Accounting" },
-        { title: "FinTech Consultant", desc: "Bridging the gap between banking and digital technology.", pay: "12-24 LPA", tag: "Tech-Finance" },
-        { title: "Actuarial Scientist", desc: "Using advanced math to predict financial risks for insurance.", pay: "12-30 LPA", tag: "Math" },
-        { title: "Stock Analyst", desc: "Evaluating market trends to maximize investment returns.", pay: "8-18 LPA", tag: "Finance" },
-        { title: "Digital Marketer", desc: "Driving business growth through data-led digital strategies.", pay: "6-15 LPA", tag: "Marketing" },
-        { title: "Global Supply Manager", desc: "Optimizing logistics for international trade and commerce.", pay: "9-20 LPA", tag: "Operations" }
+        { title: "Investment Banker", desc: "Global finance and mergers.", pay: "18-45 LPA", skill: "Finance, Analysis", path: "MBA Finance / CFA" },
+        { title: "Venture Capitalist", desc: "Scaling next-gen tech startups.", pay: "20-50 LPA", skill: "Strategy", path: "B.Com + MBA" },
+        { title: "Chartered Accountant", desc: "Expert in audit and taxation.", pay: "8-22 LPA", skill: "Accounting", path: "CA Foundation to Final" },
+        { title: "FinTech Consultant", desc: "Finance meets digital technology.", pay: "12-24 LPA", skill: "Tech, Finance", path: "B.Com + Tech Diploma" }
     ],
     arts: [
-        { title: "Supreme Court Lawyer", desc: "Handling high-stakes litigation and constitutional law.", pay: "15-50 LPA", tag: "Law" },
-        { title: "UX Strategy Lead", desc: "Designing how humans interact with future digital products.", pay: "12-26 LPA", tag: "Design" },
-        { title: "Creative Director", desc: "Leading visual and artistic vision for global brands.", pay: "10-30 LPA", tag: "Art" },
-        { title: "Public Policy Expert", desc: "Shaping government laws and social welfare programs.", pay: "9-18 LPA", tag: "Politics" },
-        { title: "Clinical Psychologist", desc: "Specializing in mental health and psychological therapy.", pay: "7-15 LPA", tag: "Healthcare" },
-        { title: "Fashion Designer", desc: "Designing apparel and trends for international runways.", pay: "8-25 LPA", tag: "Creative" },
-        { title: "Journalist", desc: "Investigative reporting and global media broadcasting.", pay: "5-12 LPA", tag: "Media" },
-        { title: "Diplomat", desc: "Representing national interests in international relations.", pay: "10-22 LPA", tag: "Global" }
+        { title: "Supreme Court Lawyer", desc: "Handling constitutional law cases.", pay: "15-50 LPA", skill: "Logic, Law", path: "LL.B + Bar Council Exam" },
+        { title: "UX Strategy Lead", desc: "Designing digital human interfaces.", pay: "12-26 LPA", skill: "Design, Research", path: "B.Des / UX Cert" },
+        { title: "Creative Director", desc: "Leading visual brand stories.", pay: "10-30 LPA", skill: "Creativity", path: "Fine Arts / Communication" },
+        { title: "Public Policy Expert", desc: "Shaping government social laws.", pay: "9-18 LPA", skill: "Analysis", path: "BA Pol Science + Masters" }
     ]
 };
 
 const userResult = localStorage.getItem("careerResult") || "science";
 const container = document.getElementById("careerList");
-const streamTitle = document.getElementById("streamDisplay");
-const subTitle = document.getElementById("subTitle");
 
-// Function to render cards
-function renderCards(list, streamType = "") {
+function renderCards(list) {
     container.innerHTML = "";
-    list.forEach(item => {
+    list.forEach((item, index) => {
         container.innerHTML += `
-            <div class="glass p-8 rounded-[2.5rem] card-glow transition-all flex flex-col justify-between">
+            <div onclick="openModal('${item.title}')" class="glass p-8 rounded-[2.5rem] card-glow transition-all flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-[9px] font-black bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full uppercase tracking-widest">${streamType || userResult}</span>
-                        <span class="text-white/10">✦</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">${item.title}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">${item.desc}</p>
+                    <span class="text-[9px] font-black bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-md uppercase tracking-widest">${userResult}</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2">${item.title}</h3>
+                    <p class="text-gray-400 text-sm mb-6">${item.desc}</p>
                 </div>
                 <div class="pt-6 border-t border-white/5 flex justify-between items-center">
-                    <div>
-                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-tighter">Avg. Package</p>
-                        <p class="text-sm font-black text-white">${item.pay}</p>
-                    </div>
-                    <button class="text-indigo-400 font-black text-xs hover:text-white transition-colors uppercase tracking-widest">Pathway →</button>
+                    <span class="text-xs font-bold text-white">${item.pay}</span>
+                    <span class="text-indigo-400 font-black text-[10px] tracking-widest uppercase">Pathway →</span>
                 </div>
             </div>
         `;
     });
 }
 
-// Initial Load
-function init() {
-    streamTitle.innerText = userResult.toUpperCase();
-    renderCards(allData[userResult]);
-}
-
-// Search Logic
-function searchCareers() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    let filtered = [];
+function openModal(careerTitle) {
+    const streamData = allData[userResult];
+    const career = streamData.find(c => c.title === careerTitle);
     
-    // Search through all categories
-    Object.keys(allData).forEach(stream => {
-        const matches = allData[stream].filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.tag.toLowerCase().includes(query)
-        );
-        filtered = [...filtered, ...matches];
-    });
-
-    if(query === "") {
-        init();
-        document.getElementById("showAllContainer").style.display = "block";
-    } else {
-        renderCards(filtered, "Search Match");
-        document.getElementById("showAllContainer").style.display = "none";
-        streamTitle.innerText = "Results";
+    if(career) {
+        document.getElementById("modalContent").innerHTML = `
+            <div class="text-[10px] text-indigo-400 font-bold mb-2 uppercase tracking-[0.3em]">Career Analysis</div>
+            <h2 class="text-3xl font-black mb-4 italic">${career.title}</h2>
+            <div class="space-y-4">
+                <div class="bg-white/5 p-4 rounded-2xl">
+                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Required Skills</p>
+                    <p class="text-white font-medium">${career.skill}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl">
+                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Education Roadmap</p>
+                    <p class="text-white font-medium">${career.path}</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl border-l-2 border-green-500">
+                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Salary Potential</p>
+                    <p class="text-green-400 font-bold">${career.pay}</p>
+                </div>
+            </div>
+        `;
+        document.getElementById("careerModal").style.display = "flex";
     }
 }
 
-// Show All Logic
-function showAll() {
-    let all = [];
-    Object.keys(allData).forEach(stream => {
-        all = [...all, ...allData[stream]];
-    });
-    renderCards(all, "Directory");
-    streamTitle.innerText = "All Streams";
-    subTitle.innerText = "Browsing the complete directory of high-growth career paths.";
-    document.getElementById("showAllContainer").style.display = "none";
+function closeModal() {
+    document.getElementById("careerModal").style.display = "none";
 }
 
-init();
+function searchCareers() {
+    const q = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = allData[userResult].filter(i => i.title.toLowerCase().includes(q));
+    renderCards(filtered);
+}
+
+// Initial Run
+document.getElementById("streamDisplay").innerText = userResult.toUpperCase();
+renderCards(allData[userResult]);
 </script>
 </body>
 </html>
