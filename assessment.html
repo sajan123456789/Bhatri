@@ -7,97 +7,119 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body { background:#020617; color:#fff; font-family:system-ui; overflow-x: hidden; scroll-behavior: smooth; }
-.glass { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
-.option { background:#0f172a; border:1px solid #1e293b; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
-.option:hover { border-color:#6366f1; transform: translateX(8px); background:#1e293b; }
-
-/* Click Effect for Options */
-.option:active { background: #6366f1 !important; color: white !important; transform: scale(0.98); }
-.option.selected { background: #6366f1 !important; border-color: #818cf8; }
-
-.ai-glow { box-shadow: 0 0 25px rgba(99, 102, 241, 0.1); }
-input:focus { border-color: #6366f1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
-.footer-dark { background:#000105; border-top:1px solid rgba(255,255,255,.05); }
-
-/* Animation */
-@keyframes pulse-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-.animate-pulse-slow { animation: pulse-slow 3s infinite; }
+body{
+  background:#020617;
+  color:#fff;
+  font-family:'Plus Jakarta Sans',system-ui;
+  overflow-x:hidden;
+}
+.glass{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(14px);
+}
+.option{
+  background:#0f172a;
+  border:1px solid #1e293b;
+  transition:.25s;
+}
+.option:hover{
+  border-color:#6366f1;
+  transform:translateX(6px);
+}
+.option.selected{
+  background:#6366f1;
+  border-color:#818cf8;
+}
+.footer-dark{
+  background:#000105;
+  border-top:1px solid rgba(255,255,255,.05);
+}
 </style>
 </head>
 
-<body class="px-4 flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen px-4">
 
-<div id="loading" class="hidden fixed inset-0 bg-[#020617] z-50 flex flex-col items-center justify-center">
-    <div class="relative">
-        <div class="w-24 h-24 border-4 border-indigo-500/10 border-t-indigo-500 rounded-full animate-spin"></div>
-        <div class="absolute inset-0 flex items-center justify-center text-[10px] font-black text-indigo-400">SCANNING</div>
-    </div>
-    <p class="mt-8 text-indigo-400 font-mono animate-pulse tracking-[0.3em] text-sm uppercase">Processing Neural Data</p>
-    <div id="ai-status" class="mt-3 text-gray-500 text-xs font-mono uppercase tracking-widest">Initialising...</div>
-</div>
+<!-- AUDIO -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<audio id="nextSound" src="next.mp3" preload="auto"></audio>
 
+<!-- HEADER -->
 <header class="max-w-6xl mx-auto w-full py-6 flex justify-between items-center border-b border-white/5">
-    <a href="index.html" class="group transition-all active:scale-95">
-        <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter flex items-center gap-1 group-hover:scale-105 transition-transform uppercase">
-            CareerSteps <span class="text-[10px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black tracking-widest">AI v2.8</span>
-        </h1>
+  <a href="index.html">
+    <h1 class="text-2xl font-extrabold italic uppercase tracking-tight text-indigo-400">
+      CAREER<span class="text-blue-500">STEPS</span>
+    </h1>
+  </a>
+
+  <div class="flex items-center gap-6">
+    <button id="soundBtn" onclick="toggleSound()"
+      class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white">
+      🔇 Sound
+    </button>
+    <a href="index.html"
+      class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white">
+      Home
     </a>
-    <nav>
-        <a href="index.html" class="text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white transition">Home</a>
-    </nav>
+  </div>
 </header>
 
 <main class="flex-grow">
-    <section id="nameSection" class="max-w-xl mx-auto mt-20 text-center glass rounded-[2.5rem] p-10 ai-glow transition-all duration-500">
-        <div class="mb-6 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 border border-indigo-500/20 text-[10px] font-black uppercase tracking-[0.3em]">Neural Verification</div>
-        <h2 class="text-3xl font-black mb-4 italic tracking-tighter uppercase">Who is taking the test?</h2>
-        <p class="text-gray-400 mb-8 text-sm font-medium">Identify yourself to begin the personalized AI analysis.</p>
-        
-        <input type="text" id="userName" placeholder="Type your full name here..." 
-               class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none transition-all focus:bg-white/10">
-        
-        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl text-xs font-black tracking-[0.2em] transition-all transform active:scale-95 shadow-lg shadow-indigo-500/20">CONTINUE TO SCAN →</button>
-    </section>
 
-    <section id="selectClass" class="hidden max-w-xl mx-auto mt-20 text-center glass rounded-[2.5rem] p-10 ai-glow">
-      <div class="mb-6 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 border border-indigo-500/20 text-[10px] font-black uppercase tracking-[0.3em]">Stage Identification</div>
-      <h2 class="text-3xl font-black mb-4 italic tracking-tighter uppercase" id="welcomeUser">Neural Career Scan</h2>
-      <p class="text-gray-400 mb-10 text-sm font-medium">Choose your academic stage for deep-layer pattern recognition.</p>
+<!-- NAME -->
+<section id="nameSection" class="max-w-xl mx-auto mt-20 glass rounded-3xl p-10 text-center">
+  <h2 class="text-3xl font-black italic mb-4 uppercase">Neural Identity Scan</h2>
+  <p class="text-gray-400 mb-8 text-sm">Enter your name to begin AI analysis.</p>
+  <input id="userName" placeholder="Your full name"
+    class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-center mb-6 outline-none">
+  <button onclick="saveName()"
+    class="w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-xl font-black uppercase tracking-widest">
+    Continue →
+  </button>
+</section>
 
-      <div class="grid gap-4">
-        <button onclick="startTest('10')" class="bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all active:scale-95">Class 10th Analysis</button>
-        <button onclick="startTest('12')" class="border border-indigo-500/30 hover:bg-indigo-500/10 py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all active:scale-95 text-indigo-400">Class 12th Analysis</button>
-      </div>
-    </section>
+<!-- CLASS SELECT -->
+<section id="selectClass" class="hidden max-w-xl mx-auto mt-20 glass rounded-3xl p-10 text-center">
+  <h2 id="welcomeUser" class="text-3xl font-black italic uppercase mb-6"></h2>
+  <p class="text-gray-400 mb-8 text-sm">Select your academic stage.</p>
 
-    <section id="quiz" class="hidden max-w-2xl mx-auto mt-16 glass rounded-[2.5rem] p-10 ai-glow">
-      <div class="flex justify-between items-center mb-10">
-        <div class="text-[10px] font-black text-indigo-400 tracking-[0.2em] uppercase" id="progress"></div>
-        <div class="flex items-center gap-3">
-            <span class="text-[9px] text-gray-500 font-black uppercase tracking-widest italic">AI Confidence: 99.2%</span>
-            <div class="h-1 w-20 bg-gray-800 rounded-full overflow-hidden">
-                <div id="bar" class="h-full bg-indigo-500 transition-all duration-1000" style="width: 0%"></div>
-            </div>
-        </div>
-      </div>
-      <h3 class="text-2xl font-black mb-10 leading-tight italic uppercase tracking-tighter" id="question"></h3>
-      <div id="options" class="space-y-4"></div>
-    </section>
+  <button onclick="startTest('10')"
+    class="w-full mb-4 border border-indigo-500/30 py-4 rounded-xl font-black uppercase tracking-widest hover:bg-indigo-500/10">
+    Class 10th Analysis
+  </button>
+
+  <button onclick="startTest('12')"
+    class="w-full border border-indigo-500/30 py-4 rounded-xl font-black uppercase tracking-widest hover:bg-indigo-500/10">
+    Class 12th Analysis
+  </button>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="hidden max-w-2xl mx-auto mt-16 glass rounded-3xl p-10">
+  <div class="flex justify-between items-center mb-6">
+    <span id="progress" class="text-xs font-black uppercase tracking-widest text-indigo-400"></span>
+    <button onclick="goBack()"
+      class="text-xs uppercase font-bold text-gray-400 hover:text-white">
+      ← Back
+    </button>
+  </div>
+
+  <h3 id="question" class="text-2xl font-black italic mb-8 uppercase"></h3>
+  <div id="options" class="space-y-4"></div>
+</section>
+
 </main>
 
-<footer class="footer-dark py-12 mt-20">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
-    <div class="text-center md:text-left">
-        <a href="index.html" class="group inline-block active:scale-95 transition-transform">
-            <h1 class="text-xl font-bold text-indigo-400 tracking-tighter uppercase">CareerSteps</h1>
-        </a>
-        <p class="text-[8px] text-gray-600 uppercase tracking-[0.4em] font-black mt-1">Your AI Career Compass</p>
+<!-- FOOTER -->
+<footer class="footer-dark py-10 mt-20">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+    <div>
+      <h2 class="text-lg font-bold text-indigo-400 uppercase">CareerSteps</h2>
+      <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em]">Your AI Career Compass</p>
     </div>
-    <div class="flex gap-8 text-[9px] uppercase font-black tracking-widest text-gray-500">
-      <a href="index.html" class="hover:text-white transition">Home</a>
-      <a href="about.html" class="hover:text-white transition">About</a>
-      <a href="contact.html" class="hover:text-white transition">Contact</a>
+    <div class="flex gap-6 text-[10px] uppercase font-bold text-gray-500">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
@@ -105,100 +127,75 @@ input:focus { border-color: #6366f1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.2
 <script>
 let current = 0;
 let answers = [];
-let mode = "";
+let soundOn = false;
 
-function saveName() {
-    const nameInput = document.getElementById("userName").value.trim();
-    if (nameInput.length < 2) {
-        alert("Enter your name to initiate scan.");
-        return;
-    }
-    localStorage.setItem("user_name", nameInput);
-    document.getElementById("nameSection").classList.add("hidden");
-    document.getElementById("selectClass").classList.remove("hidden");
-    document.getElementById("welcomeUser").innerText = `SYSTEM READY, ${nameInput.toUpperCase()}`;
-}
-
-const questions10 = [
- {q:"Machine kharab hone par aapka pehla action kya hoga?", o:["Working logic ko samajhna","Repair cost calculate karna","Expert se help lena","Naya design sochna"]},
- {q:"Aap complex problems ko kaise process karte hain?", o:["Data aur Logic se","Profit aur Strategy se","Ethics aur Emotions se","Creativity aur Art se"]},
- {q:"Social Media par aapki pasandida feed kya hai?", o:["Tech & Space Science","Business & Startups","History & Social Issues","Design & Digital Art"]},
- {q:"Naye city development mein aapka role?", o:["Infrastructure Architect","Finance Controller","Social Reformer","Creative Urban Designer"]},
- {q:"Aapki sabse badi cognitive strength?", o:["Problem Solving","Resources Management","Public Influence","Abstract Thinking"]},
- {q:"Free time activity jo aapko pasand ho?", o:["Coding ya Strategy","Trading ya Economics","Documentary ya Writing","Sketching ya Music"]},
- {q:"School project ka main focus?", o:["Functionality & Code","Cost-Effectiveness","Teamwork & Impact","Visual Appeal"]},
- {q:"Ultimate career success ka matlab?", o:["Invention/Innovation","Wealth Generation","Social Leadership","Creative Freedom"]},
- {q:"Mushkil waqt mein decision-making?", o:["Logical analysis","Strategic outcome","Empathy & Community","Intuitive & Bold"]},
- {q:"Duniya ko upgrade karne ka best rasta?", o:["Advanced Technology","Economic Stability","Justice & Policy","Artistic Expression"]},
+/* QUESTIONS */
+const questions = [
+ {q:"Problem solve karte waqt aap kya prefer karte ho?", o:["Logic","Profit","People","Creativity","Other / Not Sure"]},
+ {q:"Free time me kya pasand?", o:["Tech","Business","Reading","Design","Other / Not Sure"]},
+ {q:"Decision lene ka style?", o:["Analysis","Strategy","Emotion","Instinct","Other / Not Sure"]},
+ {q:"School project ka focus?", o:["Function","Cost","Impact","Look","Other / Not Sure"]},
+ {q:"Success ka matlab?", o:["Innovation","Money","Leadership","Freedom","Other / Not Sure"]}
 ];
 
-function startTest(type){
-  mode = type;
+/* SOUND CONTROL */
+function toggleSound(){
+  soundOn = !soundOn;
+  document.getElementById("soundBtn").innerText = soundOn ? "🔊 Sound" : "🔇 Sound";
+}
+function playClick(){
+  if(soundOn) document.getElementById("clickSound").play();
+}
+function playNext(){
+  if(soundOn) document.getElementById("nextSound").play();
+}
+
+/* FLOW */
+function saveName(){
+  const name=document.getElementById("userName").value.trim();
+  if(name.length<2) return alert("Enter valid name");
+  localStorage.setItem("user_name",name);
+  document.getElementById("nameSection").classList.add("hidden");
+  document.getElementById("selectClass").classList.remove("hidden");
+  document.getElementById("welcomeUser").innerText=`WELCOME, ${name.toUpperCase()}`;
+}
+
+function startTest(){
   document.getElementById("selectClass").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
   loadQuestion();
 }
 
 function loadQuestion(){
-  const qset = questions10; 
-  const q = qset[current];
-  document.getElementById("progress").innerText = `Neural Node: ${current+1}/10`;
-  document.getElementById("bar").style.width = `${(current+1)*10}%`;
-  document.getElementById("question").innerText = q.q;
-  
-  const optDiv = document.getElementById("options");
-  optDiv.innerHTML = "";
-  
-  q.o.forEach((opt,i)=>{
-    const btn = document.createElement("button");
-    btn.className = "option w-full text-left px-8 py-5 rounded-2xl font-bold flex justify-between items-center group transition-all";
-    btn.innerHTML = `<span class="text-sm tracking-wide uppercase font-black">${opt}</span> <span class="text-indigo-500 opacity-20 group-hover:opacity-100 transition text-[9px] font-mono font-black">SELECT NODE</span>`;
-    btn.onclick = ()=>selectAnswer(i);
-    optDiv.appendChild(btn);
+  document.getElementById("progress").innerText=`Question ${current+1}/${questions.length}`;
+  document.getElementById("question").innerText=questions[current].q;
+  const opt=document.getElementById("options");
+  opt.innerHTML="";
+  questions[current].o.forEach((text,i)=>{
+    const b=document.createElement("button");
+    b.className="option w-full px-6 py-4 rounded-xl font-bold uppercase flex justify-between";
+    b.innerHTML=`<span>${text}</span><span class="text-xs opacity-30">SELECT</span>`;
+    b.onclick=()=>selectAnswer(i);
+    opt.appendChild(b);
   });
 }
 
 function selectAnswer(i){
-  answers.push(i);
+  playClick();
+  answers[current]=i;
   current++;
-  const quizCard = document.getElementById("quiz");
-  
-  // Visual feedback for click
-  const buttons = document.querySelectorAll('.option');
-  buttons[i].classList.add('selected');
+  setTimeout(()=>{ playNext(); },150);
 
-  setTimeout(() => {
-    if(current < 10) loadQuestion();
-    else showResult();
-  }, 250);
+  if(current<questions.length) loadQuestion();
+  else window.location.href="result.html";
 }
 
-function showResult(){
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("loading").classList.remove("hidden");
-
-  const statusArr = ["SYNCING NEURAL DATA...", "ANALYZING LOGIC GATES...", "CROSS-REFERENCING INDUSTRIES...", "GENERATE REPORT..."];
-  let s = 0;
-  const interval = setInterval(() => {
-    document.getElementById("ai-status").innerText = statusArr[s];
-    s++;
-    if(s === statusArr.length) clearInterval(interval);
-  }, 800);
-
-  setTimeout(() => {
-    const counts = {0:0, 1:0, 2:0, 3:0};
-    answers.forEach(val => { counts[val]++; });
-    const scores = [counts[0], counts[1], counts[2], counts[3]];
-    const maxIndex = scores.indexOf(Math.max(...scores));
-
-    let res = (maxIndex == 0) ? "science" : (maxIndex == 1) ? "commerce" : "arts";
-    const matchPercent = (Math.random() * (98.9 - 88.0) + 88.0).toFixed(1);
-
-    localStorage.setItem("careerResult", res);
-    localStorage.setItem("matchPercent", matchPercent);
-    window.location.href = "result.html";
-  }, 3500);
+function goBack(){
+  if(current===0) return;
+  current--;
+  loadQuestion();
 }
 </script>
+
 </body>
 </html>
