@@ -4,180 +4,165 @@
 <meta charset="UTF-8">
 <title>About CareerSteps – AI Career Guidance Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="CareerSteps is an AI-powered career guidance platform helping students after 10th & 12th choose the right career with clarity and confidence.">
+<meta name="description" content="CareerSteps is an AI-powered career guidance platform helping students after 10th & 12th choose the right career with clarity.">
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{
-  background:#020617;
-  color:#ffffff;
-  font-family:system-ui;
-}
-.glass{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(16px);
-}
-.footer-dark{
-  background:#000105;
-  border-top:1px solid rgba(255,255,255,.05);
-}
+body { background:#020617; color:#ffffff; font-family:system-ui; scroll-behavior: smooth; }
+.glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(16px); }
+.glow-card:hover { border-color: #6366f1; box-shadow: 0 0 30px rgba(99, 102, 241, 0.1); transform: translateY(-5px); }
+.text-gradient { background: linear-gradient(to right, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.footer-dark { background:#000105; border-top:1px solid rgba(255,255,255,.05); }
+
+/* Decorative Elements */
+.blob { position: absolute; width: 300px; height: 300px; background: rgba(99, 102, 241, 0.1); filter: blur(80px); border-radius: 50%; z-index: -1; }
 </style>
 </head>
 
-<body>
+<body class="overflow-x-hidden">
 
-<!-- HEADER -->
+<div class="blob top-20 -left-20"></div>
+<div class="blob bottom-40 -right-20"></div>
+
 <header class="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5">
   <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-
-    <!-- LOGO -->
-    <a href="index.html" class="group">
-      <span class="text-2xl font-extrabold tracking-tight">
-        <span class="text-white group-hover:text-gray-200">Career</span>
-        <span class="text-indigo-400 group-hover:text-indigo-300">Steps</span>
-      </span>
+    <a href="index.html" class="group transition-all active:scale-95">
+      <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter flex items-center gap-1 group-hover:scale-105 transition-transform">
+        CareerSteps 
+        <span class="text-[10px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black tracking-widest">AI v2.8</span>
+      </h1>
     </a>
 
-    <!-- NAV -->
-    <nav class="flex items-center gap-6">
-      <a href="index.html" class="text-sm font-semibold text-gray-300 hover:text-white transition">
-        Home
-      </a>
-      <a href="assessment.html"
-         class="text-sm font-bold bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 rounded-xl text-white shadow-lg shadow-indigo-500/25 transition">
-        Test
-      </a>
+    <nav class="flex items-center gap-8">
+      <a href="index.html" class="text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white transition">Home</a>
+      <a href="assessment.html" class="text-[10px] font-black uppercase tracking-widest bg-indigo-600 hover:bg-indigo-500 px-6 py-3 rounded-xl text-white shadow-lg shadow-indigo-500/20 transition-all active:scale-95">Start Test</a>
     </nav>
-
   </div>
 </header>
 
-<!-- HERO -->
-<section class="max-w-4xl mx-auto mt-20 text-center px-4">
-  <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
-    About <span class="text-indigo-400">CareerSteps</span>
+<section class="max-w-6xl mx-auto mt-24 text-center px-4">
+  <span class="text-indigo-500 text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">Our Story & Vision</span>
+  <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter italic uppercase">
+    The Future of <span class="text-gradient">Career Guidance</span>
   </h1>
-  <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-    Empowering students after 10th & 12th with AI-driven career clarity — not guesswork.
+  <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+    Empowering Indian students with neural analysis to discover high-growth career paths in the age of AI.
   </p>
 </section>
 
-<!-- MAIN CONTENT -->
-<section class="max-w-5xl mx-auto mt-20 glass p-10 rounded-3xl space-y-14">
-
-  <!-- WHO WE ARE -->
-  <div>
-    <h2 class="text-2xl font-bold text-indigo-300 mb-4">Who We Are</h2>
-    <p class="text-gray-300 leading-relaxed">
-      CareerSteps is a student-first career guidance platform built for Indian students
-      who feel confused while choosing streams, degrees, or career paths after Class 10
-      and Class 12.
-    </p>
-    <p class="text-gray-300 leading-relaxed mt-3">
-      We believe career decisions should be based on aptitude, interests, and real
-      opportunities — not pressure, trends, or random advice.
-    </p>
-  </div>
-
-  <!-- MISSION & VISION -->
-  <div class="grid md:grid-cols-2 gap-10">
-    <div>
-      <h2 class="text-2xl font-bold text-indigo-300 mb-3">Our Mission</h2>
-      <p class="text-gray-400 leading-relaxed">
-        To remove career confusion by providing free, unbiased, AI-powered guidance that
-        helps every student discover their true potential with confidence.
-      </p>
+<section class="max-w-6xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
+    <div class="glass p-8 rounded-3xl text-center">
+        <div class="text-3xl font-black text-white mb-1">94%</div>
+        <div class="text-[9px] text-gray-500 uppercase font-black tracking-widest">Accuracy Rate</div>
     </div>
-    <div>
-      <h2 class="text-2xl font-bold text-indigo-300 mb-3">Our Vision</h2>
-      <p class="text-gray-400 leading-relaxed">
-        To become India’s most trusted digital career mentor — guiding students from
-        school to a meaningful and future-ready career.
-      </p>
+    <div class="glass p-8 rounded-3xl text-center">
+        <div class="text-3xl font-black text-indigo-400 mb-1">10k+</div>
+        <div class="text-[9px] text-gray-500 uppercase font-black tracking-widest">Students Guided</div>
     </div>
-  </div>
+    <div class="glass p-8 rounded-3xl text-center">
+        <div class="text-3xl font-black text-white mb-1">900+</div>
+        <div class="text-[9px] text-gray-500 uppercase font-black tracking-widest">Career Nodes</div>
+    </div>
+    <div class="glass p-8 rounded-3xl text-center">
+        <div class="text-3xl font-black text-indigo-400 mb-1">AI 2.8</div>
+        <div class="text-[9px] text-gray-500 uppercase font-black tracking-widest">Neural Engine</div>
+    </div>
+</section>
 
-  <!-- WHY CREATED -->
-  <div>
-    <h2 class="text-2xl font-bold text-indigo-300 mb-4">Why CareerSteps Was Created</h2>
-    <p class="text-gray-300 leading-relaxed">
-      Most students choose careers based on marks, peer pressure, or family expectations.
-      This often leads to dissatisfaction, course changes, or regret later in life.
-    </p>
-    <p class="text-indigo-200 italic mt-3">
-      CareerSteps was created to act as a digital mentor that guides you based on
-      <strong>your strengths</strong> — not someone else’s opinion.
-    </p>
-  </div>
+<section class="max-w-6xl mx-auto mt-20 px-4 space-y-10">
 
-  <!-- WHAT WE DO -->
-  <div>
-    <h2 class="text-2xl font-bold text-indigo-300 mb-6">What We Do</h2>
-    <div class="grid md:grid-cols-2 gap-5 text-gray-300">
-      <div class="bg-white/5 p-5 rounded-xl border border-white/5">
-        ✅ Stream selection after Class 10
-      </div>
-      <div class="bg-white/5 p-5 rounded-xl border border-white/5">
-        ✅ Degree & career paths after Class 12
-      </div>
-      <div class="bg-white/5 p-5 rounded-xl border border-white/5">
-        ✅ Interest-based AI career assessments
-      </div>
-      <div class="bg-white/5 p-5 rounded-xl border border-white/5">
-        ✅ 900+ verified career options
-      </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="md:col-span-2 glass p-10 rounded-[2.5rem] glow-card transition-all">
+        <h2 class="text-3xl font-black mb-6 italic uppercase tracking-tighter text-indigo-300">Who We Are</h2>
+        <p class="text-gray-400 text-lg leading-relaxed mb-4">
+            CareerSteps is a student-first AI ecosystem built to solve the most critical problem for Indian students: **Career Confusion**. 
+        </p>
+        <p class="text-gray-400 text-lg leading-relaxed">
+            We don't just suggest jobs; we analyze your neural compatibility with future industries to provide a strategic roadmap from Class 10 to a high-paying professional role.
+        </p>
+    </div>
+
+    <div class="bg-indigo-600 p-10 rounded-[2.5rem] shadow-2xl shadow-indigo-500/20">
+        <h2 class="text-2xl font-black mb-4 uppercase tracking-tighter text-white">Our Mission</h2>
+        <p class="text-indigo-100 text-lg leading-relaxed font-medium">
+            To provide unbiased, AI-powered mentor access to every student in India, free of charge.
+        </p>
     </div>
   </div>
 
-  <!-- FUTURE GOAL -->
-  <div>
-    <h2 class="text-2xl font-bold text-indigo-300 mb-4">Our Future Goal</h2>
-    <p class="text-gray-300 leading-relaxed">
-      We continuously update our platform with emerging careers such as Artificial
-      Intelligence, Data Science, Space Technology, Sustainability, and more.
-    </p>
-    <p class="text-gray-300 leading-relaxed mt-2">
-      Our goal is to guide over <strong>1 million students by 2026</strong> with clarity,
-      confidence, and purpose.
-    </p>
+  <div class="glass p-10 rounded-[2.5rem]">
+    <h2 class="text-3xl font-black mb-10 italic uppercase tracking-tighter text-indigo-300 text-center">Our Specialized Analysis</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:bg-white/10 transition">
+            <div class="text-indigo-400 text-2xl mb-4">🎯</div>
+            <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Stream Logic</h4>
+            <p class="text-gray-500 text-xs leading-relaxed">Selecting the perfect path after 10th (Science, Commerce, or Arts).</p>
+        </div>
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:bg-white/10 transition">
+            <div class="text-indigo-400 text-2xl mb-4">📊</div>
+            <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Match Analysis</h4>
+            <p class="text-gray-500 text-xs leading-relaxed">Using AI to calculate Compatibility between skills and industry demands.</p>
+        </div>
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:bg-white/10 transition">
+            <div class="text-indigo-400 text-2xl mb-4">🛤️</div>
+            <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Roadmap Gen</h4>
+            <p class="text-gray-500 text-xs leading-relaxed">Creating step-by-step guides from 12th to professional success.</p>
+        </div>
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:bg-white/10 transition">
+            <div class="text-indigo-400 text-2xl mb-4">🌐</div>
+            <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Global Data</h4>
+            <p class="text-gray-500 text-xs leading-relaxed">Verifying 900+ career nodes with real-time market salary data.</p>
+        </div>
+    </div>
+  </div>
+
+  <div class="glass p-10 rounded-[2.5rem] glow-card transition-all">
+    <div class="flex flex-col md:flex-row gap-10 items-center">
+        <div class="flex-1">
+            <h2 class="text-3xl font-black mb-6 italic uppercase tracking-tighter text-indigo-300">Why CareerSteps?</h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                Traditional counseling is expensive and often biased. Most students choose careers based on peer pressure, leading to 70% of graduates being unhappy with their jobs. 
+            </p>
+            <div class="p-4 bg-indigo-500/10 border-l-4 border-indigo-500 italic text-indigo-300">
+                "We act as your digital mentor, providing clarity based on your strengths — not someone else’s opinion."
+            </div>
+        </div>
+    </div>
   </div>
 
 </section>
 
-<!-- CTA -->
-<section class="max-w-4xl mx-auto mt-24 text-center pb-24 px-4">
-  <h2 class="text-3xl font-bold mb-4">
-    Still Confused About Your Career?
+<section class="max-w-4xl mx-auto mt-32 text-center pb-32 px-4">
+  <h2 class="text-4xl md:text-5xl font-black mb-6 uppercase italic tracking-tighter">
+    Ready to Stop <span class="text-indigo-500">Guessing?</span>
   </h2>
-  <p class="text-gray-300 mb-8">
-    Don’t guess your future. Discover it with AI.
+  <p class="text-gray-400 mb-10 font-medium">
+    Join thousands of students who have discovered their true career potential.
   </p>
   <a href="assessment.html"
-     class="inline-block bg-indigo-600 hover:bg-indigo-700 px-12 py-4 rounded-2xl font-bold transition shadow-xl shadow-indigo-500/25">
-    Start Free Assessment
+     class="inline-block bg-indigo-600 hover:bg-indigo-700 px-12 py-5 rounded-2xl font-black transition shadow-2xl shadow-indigo-500/40 uppercase text-xs tracking-[0.2em] active:scale-95">
+    Launch AI Assessment
   </a>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer-dark py-12">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-    <div>
-      <h4 class="text-lg font-bold text-indigo-400">CAREERSTEPS</h4>
-      <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
-        Your AI Career Compass
-      </p>
+<footer class="footer-dark py-16">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+    <div class="text-center md:text-left">
+        <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter">CareerSteps</h1>
+        <p class="text-[9px] text-gray-600 uppercase tracking-[0.4em] font-black mt-1">
+            Your AI Career Compass
+        </p>
     </div>
-    <div class="flex gap-8 text-[10px] uppercase font-bold tracking-widest text-gray-500">
-      <a href="index.html" class="hover:text-white">Home</a>
-      <a href="privacy.html" class="hover:text-white">Privacy</a>
-      <a href="contact.html" class="hover:text-white">Contact</a>
+    <div class="flex gap-10 text-[10px] uppercase font-black tracking-widest text-gray-500">
+      <a href="index.html" class="hover:text-white transition">Home</a>
+      <a href="#" class="hover:text-white transition">Privacy</a>
+      <a href="#" class="hover:text-white transition">Contact</a>
     </div>
   </div>
-  <p class="text-center text-gray-600 text-[9px] mt-10 uppercase tracking-[0.3em]">
-    © 2025 CareerSteps Intelligence • Crafted for Success
-  </p>
+  <div class="text-center text-gray-700 text-[8px] mt-16 uppercase tracking-[0.5em] font-medium">
+    © 2025 CareerSteps Intelligence • Crafted for Future Leaders
+  </div>
 </footer>
 
 </body>
