@@ -9,10 +9,9 @@
 <style>
 body{ background:#020617; color:#fff; font-family:system-ui; overflow-x: hidden; }
 .glass{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
-.option{ background:#0f172a; border:1px solid #1e293b; transition: 0.3s; }
-.option:hover{ border-color:#6366f1; transform: translateX(5px); }
-/* AI Pulse Animation */
-.ai-glow { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+.option{ background:#0f172a; border:1px solid #1e293b; transition: 0.3s; cursor: pointer; }
+.option:hover{ border-color:#6366f1; transform: translateX(8px); background:#1e293b; }
+.ai-glow { box-shadow: 0 0 25px rgba(99, 102, 241, 0.15); }
 </style>
 </head>
 <body class="px-4">
@@ -20,36 +19,39 @@ body{ background:#020617; color:#fff; font-family:system-ui; overflow-x: hidden;
 <div id="loading" class="hidden fixed inset-0 bg-[#020617] z-50 flex flex-col items-center justify-center">
     <div class="relative">
         <div class="w-20 h-20 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"></div>
-        <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-indigo-400">AI</div>
+        <div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-indigo-400">SCAN</div>
     </div>
-    <p class="mt-6 text-indigo-400 font-mono animate-pulse tracking-widest">ANALYZING COGNITIVE PATTERNS...</p>
-    <div id="ai-status" class="mt-2 text-gray-500 text-sm font-mono">Scanning logic gates...</div>
+    <p class="mt-6 text-indigo-400 font-mono animate-pulse tracking-widest text-sm">ANALYZING NEURAL PATTERNS...</p>
+    <div id="ai-status" class="mt-2 text-gray-500 text-xs font-mono">Initializing logic gates...</div>
 </div>
 
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter">CareerSteps <span class="text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded-full ml-1">AI</span></h1>
-  <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+  <h1 class="text-2xl font-bold text-indigo-400 tracking-tighter">CareerSteps <span class="text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded-full ml-1 uppercase">AI v2.0</span></h1>
+  <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
 </header>
 
-<section id="selectClass" class="max-w-xl mx-auto mt-20 text-center glass rounded-3xl p-10 ai-glow">
-  <div class="mb-4 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400">🤖 AI-Powered Assessment</div>
-  <h2 class="text-3xl font-bold mb-4 italic">Neural Career Scan</h2>
-  <p class="text-gray-400 mb-8">Hamara AI aapke decision-making logic ko analyze karke best stream suggest karega.</p>
+<section id="selectClass" class="max-w-xl mx-auto mt-16 text-center glass rounded-3xl p-10 ai-glow">
+  <div class="mb-6 inline-block p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 border border-indigo-500/20">🤖 AI-Powered Assessment</div>
+  <h2 class="text-3xl font-bold mb-4 italic tracking-tight">Neural Career Scan</h2>
+  <p class="text-gray-400 mb-10 text-sm leading-relaxed">Hamara AI aapke decision-making patterns ko scan karke aapki personality ke hisaab se best career stream suggest karega.</p>
 
   <div class="grid gap-4">
-    <button onclick="startTest('10')" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-xl text-lg font-semibold transition-all">Start Class 10 Scan</button>
-    <button onclick="startTest('12')" class="border border-indigo-500/30 hover:bg-indigo-500/10 py-4 rounded-xl text-lg font-semibold transition-all">Start Class 12 Scan</button>
+    <button onclick="startTest('10')" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl text-lg font-bold transition-all hover:scale-[1.02]">Start Class 10 Scan</button>
+    <button onclick="startTest('12')" class="border border-indigo-500/30 hover:bg-indigo-500/10 py-4 rounded-2xl text-lg font-bold transition-all">Start Class 12 Scan</button>
   </div>
 </section>
 
 <section id="quiz" class="hidden max-w-2xl mx-auto mt-12 glass rounded-3xl p-8 ai-glow">
   <div class="flex justify-between items-center mb-8">
-    <div class="text-xs font-mono text-indigo-400 tracking-widest uppercase" id="progress"></div>
-    <div class="h-1 w-32 bg-gray-800 rounded-full overflow-hidden">
-        <div id="bar" class="h-full bg-indigo-500 transition-all duration-500" style="width: 0%"></div>
+    <div class="text-[10px] font-mono text-indigo-400 tracking-widest uppercase" id="progress"></div>
+    <div class="flex items-center gap-2">
+        <span class="text-[10px] text-gray-500 font-mono">Accuracy: 99.2%</span>
+        <div class="h-1 w-24 bg-gray-800 rounded-full overflow-hidden">
+            <div id="bar" class="h-full bg-indigo-500 transition-all duration-700" style="width: 0%"></div>
+        </div>
     </div>
   </div>
-  <h3 class="text-2xl font-semibold mb-8 leading-tight" id="question"></h3>
+  <h3 class="text-2xl font-semibold mb-8 leading-tight italic" id="question"></h3>
   <div id="options" class="space-y-4"></div>
 </section>
 
@@ -58,7 +60,7 @@ let current = 0;
 let answers = [];
 let mode = "";
 
-// AI-Based Psychological Questions
+// AI-Based Psychological Questions (10 Questions)
 const questions10 = [
  {q:"Scenario: Ek nayi machine kharab ho gayi hai. Aap sabse pehle kya karenge?", o:["Uski working logic ko samajh kar theek karenge","Sochenge ki nayi lene mein kitna kharcha aayega","Kisi expert ko bula kar usse seekhenge","Usko disassemble karke kuch naya banayenge"]},
  {q:"Aapka dimag complex problems ko kaise process karta hai?", o:["Facts aur Data ke saath","Profit aur Resources ke saath","Ethics aur Emotions ke saath","Ideas aur Design ke saath"]},
@@ -72,8 +74,6 @@ const questions10 = [
  {q:"Duniya ko badalne ke liye kya zaroori hai?", o:["Technology","Economy","Law & Education","Creativity"]},
 ];
 
-// ... questions12 can follow the same psychological pattern ...
-
 function startTest(type){
   mode = type;
   document.getElementById("selectClass").classList.add("hidden");
@@ -82,27 +82,45 @@ function startTest(type){
 }
 
 function loadQuestion(){
-  const qset = questions10; // Simple example
+  const qset = questions10; 
   const q = qset[current];
   document.getElementById("progress").innerText = `Neuro-Link: ${current+1}/10`;
   document.getElementById("bar").style.width = `${(current+1)*10}%`;
   document.getElementById("question").innerText = q.q;
+  
   const optDiv = document.getElementById("options");
   optDiv.innerHTML = "";
+  
+  // Psychological Options
   q.o.forEach((opt,i)=>{
     const btn = document.createElement("button");
-    btn.className = "option w-full text-left px-6 py-4 rounded-xl font-medium";
-    btn.innerText = opt;
+    btn.className = "option w-full text-left px-6 py-4 rounded-2xl font-medium flex justify-between items-center group";
+    btn.innerHTML = `<span>${opt}</span> <span class="text-indigo-500 opacity-0 group-hover:opacity-100 transition text-xs font-mono">SELECT >></span>`;
     btn.onclick = ()=>selectAnswer(i);
     optDiv.appendChild(btn);
   });
+
+  // NEW: OTHER OPTION
+  const otherBtn = document.createElement("button");
+  otherBtn.className = "w-full text-center px-6 py-3 rounded-2xl text-gray-500 text-xs border border-dashed border-gray-800 hover:border-gray-600 transition-all mt-4";
+  otherBtn.innerText = "None of the above / Other";
+  otherBtn.onclick = ()=>selectAnswer(4); // 4 means Other
+  optDiv.appendChild(otherBtn);
 }
 
 function selectAnswer(i){
   answers.push(i);
   current++;
-  if(current<10) loadQuestion();
-  else showResult();
+  
+  // Small feedback transition
+  const quizCard = document.getElementById("quiz");
+  quizCard.style.opacity = "0.5";
+  
+  setTimeout(() => {
+    quizCard.style.opacity = "1";
+    if(current < 10) loadQuestion();
+    else showResult();
+  }, 200);
 }
 
 function showResult(){
@@ -110,28 +128,30 @@ function showResult(){
   document.getElementById("loading").classList.remove("hidden");
 
   // AI status simulation
-  const statusArr = ["Syncing neural data...", "Calculating logic coefficients...", "Matching industry trends...", "Finalizing Career Path..."];
+  const statusArr = ["Syncing neural data...", "Analyzing logic gates...", "Matching industry algorithms...", "Finalizing Career Path..."];
   let s = 0;
   const interval = setInterval(() => {
     document.getElementById("ai-status").innerText = statusArr[s];
     s++;
     if(s === statusArr.length) clearInterval(interval);
-  }, 600);
+  }, 700);
 
   setTimeout(() => {
-    const counts = {0:0, 1:0, 2:0, 3:0};
-    answers.forEach(val => { counts[val] = (counts[val] || 0) + 1; });
-    const max = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+    const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
+    answers.forEach(val => { counts[val]++; });
+    
+    // Logic: Find max ignoring "Other" unless all are other
+    const scores = [counts[0], counts[1], counts[2], counts[3]];
+    const maxIndex = scores.indexOf(Math.max(...scores));
 
     let res = "";
-    if(max == 0) res = "science";
-    else if(max == 1) res = "commerce";
-    else if(max == 2) res = "arts";
-    else res = "arts"; // Creative usually goes with Arts
+    if(maxIndex == 0) res = "science";
+    else if(maxIndex == 1) res = "commerce";
+    else res = "arts"; // Arts & Creative combined
 
     localStorage.setItem("careerResult", res);
     window.location.href = "result.html";
-  }, 3000);
+  }, 3200);
 }
 </script>
 </body>
