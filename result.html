@@ -97,10 +97,10 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
        Restart Analysis
     </a>
   </div>
+
 </section>
 
 <script>
-// Data fetching logic wahi hai...
 const result = localStorage.getItem("careerResult") || "science";
 const userName = localStorage.getItem("user_name") || "Student";
 const matchPercent = localStorage.getItem("matchPercent") || "94.2";
@@ -156,7 +156,6 @@ const database = {
 
 const data = database[result] || database.science;
 
-// UI Initialization
 document.getElementById("userDisplayName").innerText = "ANALYSIS FOR: " + userName.toUpperCase();
 document.getElementById("matchValue").innerText = "NEURAL COMPATIBILITY: " + matchPercent + "%";
 card.classList.add(data.theme);
@@ -167,7 +166,6 @@ document.getElementById("description").innerText = data.desc;
 document.getElementById("aiTag").innerText = "SYSTEM_" + data.tag;
 setTimeout(() => card.classList.remove("opacity-0", "translate-y-12"), 100);
 
-// Populate Roadmap, Grid, Exams wahi logic...
 data.roadmap.forEach((r, i) => {
   document.getElementById("roadmap").innerHTML += `<div class="step"><div class="text-[10px] font-mono opacity-40 uppercase tracking-[0.2em] mb-2">Neural Node 0${i+1}</div><div class="text-lg font-bold text-gray-100 italic leading-tight">${r}</div></div>`;
 });
@@ -180,9 +178,10 @@ data.exams.forEach(e => {
   document.getElementById("exams").innerHTML += `<div class="bg-white/5 p-5 rounded-2xl border border-white/5 flex items-center gap-4 hover:border-indigo-500/50 transition-all group"><span class="text-indigo-500 text-xl group-hover:scale-125 transition-transform">◈</span><span class="text-sm font-black uppercase tracking-widest text-gray-300">${e}</span></div>`;
 });
 
-// NEW UNIVERSAL SHARE LOGIC
+// FIXED SHARE LOGIC WITH REPO NAME
 async function handleUniversalShare() {
-  const currentUrl = window.location.origin;
+  // FIXED URL FOR GITHUB REPO 'Bhatri'
+  const currentUrl = "https://sajan123456789.github.io/Bhatri/";
   const shareText = `🤖 CareerSteps AI Report\n\n👤 Name: ${userName}\n🎯 Career Match: ${data.title}\n📊 Neural Match: ${matchPercent}%\n\nCheck yours here:`;
 
   if (navigator.share) {
@@ -193,11 +192,9 @@ async function handleUniversalShare() {
         url: currentUrl,
       });
     } catch (err) {
-      console.log("Share failed or cancelled");
       fallbackToWhatsApp(shareText + " " + currentUrl);
     }
   } else {
-    // Desktop fallback
     fallbackToWhatsApp(shareText + " " + currentUrl);
   }
 }
