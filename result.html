@@ -12,7 +12,7 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 .step { border-left:3px solid #6366f1; padding-left:16px; transition: border 0.5s ease; position: relative; }
 .step::before { content: ''; position: absolute; left: -6px; top: 0; width: 11px; height: 11px; border-radius: 50%; background: #6366f1; box-shadow: 0 0 15px #6366f1; }
 
-/* AI Dynamic Themes */
+/* Themes */
 .theme-science { border-top: 8px solid #3b82f6; box-shadow: 0 0 50px rgba(59, 130, 246, 0.15); }
 .theme-commerce { border-top: 8px solid #10b981; box-shadow: 0 0 50px rgba(16, 185, 129, 0.15); }
 .theme-arts { border-top: 8px solid #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.15); }
@@ -26,6 +26,7 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 .bg-arts { background: #a855f7; }
 
 .pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 </style>
 </head>
 
@@ -34,12 +35,12 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center border-b border-white/5 mb-6">
   <a href="index.html" class="group transition-all">
     <h1 class="text-xl font-bold text-indigo-400 tracking-tighter flex items-center gap-1 group-hover:scale-105 transition-transform">
-      CareerSteps <span class="text-[10px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black">AI v2.0</span>
+      CareerSteps <span class="text-[10px] border border-indigo-500 bg-indigo-500/10 text-indigo-400 px-2 rounded-full py-0.5 uppercase font-black">AI v2.8</span>
     </h1>
   </a>
   <nav class="flex gap-6">
     <a href="index.html" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">Home</a>
-    <a href="#" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">About AI</a>
+    <a href="assessment.html" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all">Retake Test</a>
   </nav>
 </header>
 
@@ -49,12 +50,12 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
     <div class="h-1 w-24 bg-gray-800 rounded-full overflow-hidden">
       <div id="confBar" class="h-full bg-indigo-500 w-[100%] transition-all duration-1000"></div>
     </div>
-    <span class="text-[10px] font-mono text-indigo-500 tracking-widest uppercase pulse font-bold" id="aiTag">SYSTEM_SYNCED</span>
+    <span class="text-[10px] font-mono text-indigo-500 tracking-widest uppercase pulse font-bold" id="aiTag">ANALYSIS_COMPLETE</span>
   </div>
 
   <div class="mb-4">
-    <p id="userDisplayName" class="text-indigo-400 text-xs font-black uppercase tracking-[0.3em] mb-2">ANALYSIS FOR: STUDENT</p>
-    <span id="badge" class="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] text-white shadow-xl">
+    <p id="userDisplayName" class="text-indigo-400 text-xs font-black uppercase tracking-[0.3em] mb-2"></p>
+    <span id="badge" class="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] text-white shadow-xl italic">
       Neural Match Identified
     </span>
   </div>
@@ -64,60 +65,88 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
   <p id="description" class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium"></p>
 
   <div class="flex flex-wrap justify-center gap-4 mb-16">
-    <button onclick="handleUniversalShare()" class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
+    <button onclick="handleUniversalShare()" class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
        Share Report
     </button>
-    <a href="index.html" class="inline-flex items-center gap-3 bg-white/5 border border-white/10 text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 uppercase text-[10px] tracking-widest">
-      Take Your Own Test
-    </a>
   </div>
 
   <div class="text-left mb-16">
-    <h3 class="text-2xl font-black mb-8 italic uppercase tracking-tighter text-indigo-300">Strategic Roadmap</h3>
+    <h3 class="text-2xl font-black mb-8 italic uppercase tracking-tighter text-indigo-300 flex items-center gap-2">
+        <span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Strategic Roadmap
+    </h3>
     <div id="roadmap" class="space-y-10 border-l-2 border-white/5 ml-5"></div>
   </div>
 
-  <div id="deepDiveSection" class="text-left mt-10 mb-16">
-    <h3 class="text-2xl font-black mb-2 italic uppercase tracking-tighter text-indigo-300">Specialized Roles</h3>
+  <div class="text-left mb-16">
+    <h3 class="text-2xl font-black mb-2 italic uppercase tracking-tighter text-indigo-300">Advanced Career Nodes</h3>
+    <p class="text-gray-500 text-[10px] mb-8 uppercase tracking-widest font-bold">Recommended Paths & Essential Skills</p>
     <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
+
+  <div class="text-left mb-10">
+    <h3 class="text-2xl font-black mb-8 italic uppercase tracking-tighter text-indigo-300">Gateway Exams</h3>
+    <div id="exams" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
   </div>
 
 </section>
 
 <script>
-// 1. GET DATA FROM URL OR LOCALSTORAGE
 const urlParams = new URLSearchParams(window.location.search);
 const result = urlParams.get('res') || localStorage.getItem("careerResult") || "science";
 const userName = urlParams.get('name') || localStorage.getItem("user_name") || "Explorer";
-const matchPercent = urlParams.get('match') || localStorage.getItem("matchPercent") || "92";
+const matchPercent = urlParams.get('match') || localStorage.getItem("matchPercent") || "94.8";
 
 const database = {
   science: {
-    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "SC_v4",
-    title:"Science",
-    desc:"Aapka cognitive pattern complex analysis aur structural logic ke liye optimize kiya gaya hai.",
-    roadmap:["11th-12th (PCM/PCB) Foundation","Technical Aptitude Mastery","Engineering or R&D Specialization"],
-    deepDive: [{role: "AI Scientist", pay: "15-30L"}, {role: "Robotics", pay: "12-25L"}, {role: "Data Architect", pay: "10-22L"}]
+    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "SC_v8",
+    title:"Science & Tech",
+    desc:"Complex problem-solving aur technical innovation aapke core strengths hain.",
+    roadmap:["High School: Focus on STEM Foundations","Higher Secondary: Master PCM/PCB Aptitude","Undergrad: Top-tier Engineering or Research Institute"],
+    exams:["JEE Main & Advanced", "NEET-UG", "BITSAT", "IISER Aptitude"],
+    deepDive: [
+        {role: "AI/ML Engineer", pay: "15-45L", skill: "Python, PyTorch, Linear Algebra"},
+        {role: "Cybersecurity Expert", pay: "12-35L", skill: "Ethical Hacking, Network Security"},
+        {role: "Data Scientist", pay: "14-40L", skill: "SQL, Statistics, R, Machine Learning"},
+        {role: "Aerospace Architect", pay: "10-28L", skill: "CAD/CAM, Fluid Dynamics"},
+        {role: "Biotech Researcher", pay: "8-25L", skill: "Genetics, Lab Protocols, Molecular Bio"},
+        {role: "Robotics Scientist", pay: "13-38L", skill: "C++, ROS, Hardware Integration"}
+    ]
   },
   commerce: {
-    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "EC_v2",
-    title:"Commerce",
-    desc:"AI ne aapke andar advanced financial management aur strategic business intelligence detect kiya hai.",
-    roadmap:["Applied Maths & Commerce","Professional Certs (CA/CFA)","Global Finance Dominance"],
-    deepDive: [{role: "IB Banker", pay: "18-40L"}, {role: "FinTech", pay: "12-24L"}, {role: "Chartered Accountant", pay: "10-25L"}]
+    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "FIN_v4",
+    title:"Commerce & Biz",
+    desc:"Financial intelligence aur strategic risk management aapke prime traits hain.",
+    roadmap:["11th/12th: Advanced Commerce with Applied Maths","Foundation: Clear CA/IPMAT or CUET Exams","Graduation: Corporate Finance or Strategy Majors"],
+    exams:["CA Foundation", "IPMAT (IIMs)", "CUET Commerce", "CFA Level 1"],
+    deepDive: [
+        {role: "Investment Banker", pay: "20-55L", skill: "Financial Modeling, M&A, Valuation"},
+        {role: "FinTech Strategist", pay: "15-32L", skill: "Blockchain, Digital Payments, Python"},
+        {role: "Chartered Accountant", pay: "12-35L", skill: "Auditing, Taxation, Corporate Law"},
+        {role: "Risk Manager", pay: "10-25L", skill: "Market Analysis, Credit Scoring"},
+        {role: "Venture Capitalist", pay: "25-70L", skill: "Deal Sourcing, Equity Research"},
+        {role: "Marketing Head", pay: "15-40L", skill: "Consumer Behavior, Performance Ads"}
+    ]
   },
   arts: {
-    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CR_v9",
-    title:"Arts & Creative",
-    desc:"Aapka mindset emotional intelligence, creative expression aur societal impact ke liye peak par hai.",
-    roadmap:["Creative Foundation","Analytical Writing","Policy or Design Mastery"],
-    deepDive: [{role: "UX Strategy", pay: "12-26L"}, {role: "Public Policy", pay: "9-18L"}, {role: "Creative Director", pay: "10-30L"}]
+    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CR_v12",
+    title:"Arts & Humanities",
+    desc:"Emotional intelligence, storytelling aur legal logic aapke standout areas hain.",
+    roadmap:["Foundation: Broad Humanities Exposure","Skill Building: Design, Law or Communication Focus","Global Reach: Internships in NGOs or Multi-National Firms"],
+    exams:["CLAT (Law)", "NID/NIFT (Design)", "UPSC", "CUET Humanities"],
+    deepDive: [
+        {role: "Corporate Lawyer", pay: "18-50L", skill: "Contract Law, Arbitration, Litigation"},
+        {role: "UX Strategy Lead", pay: "14-35L", skill: "UI/UX, Figma, User Psychology"},
+        {role: "Creative Director", pay: "12-40L", skill: "Branding, Visual Storytelling, Copy"},
+        {role: "Public Policy Lead", pay: "10-25L", skill: "Data Policy, Governance, Research"},
+        {role: "Clinical Psychologist", pay: "8-20L", skill: "CBT, Behavioral Therapy, Counseling"},
+        {role: "Journalism Head", pay: "9-22L", skill: "Investigative Writing, Media Ethics"}
+    ]
   }
 };
 
 const data = database[result] || database.science;
 
-// 2. FILL UI
+// Render
 document.getElementById("userDisplayName").innerText = "ANALYSIS FOR: " + userName.toUpperCase();
 document.getElementById("matchValue").innerText = "NEURAL COMPATIBILITY: " + matchPercent + "%";
 document.getElementById("resultCard").classList.add(data.theme);
@@ -129,30 +158,38 @@ document.getElementById("aiTag").innerText = "SYSTEM_" + data.tag;
 setTimeout(() => document.getElementById("resultCard").classList.remove("opacity-0", "translate-y-12"), 100);
 
 data.roadmap.forEach((r, i) => {
-  document.getElementById("roadmap").innerHTML += `<div class="step"><div class="text-[10px] font-mono opacity-40 mb-2">Node 0${i+1}</div><div class="text-lg font-bold">${r}</div></div>`;
+  document.getElementById("roadmap").innerHTML += `<div class="step"><div class="text-[10px] font-mono opacity-40 mb-2 tracking-widest uppercase">Node 0${i+1}</div><div class="text-lg font-bold">${r}</div></div>`;
 });
 
 data.deepDive.forEach(item => {
-    document.getElementById("careerGrid").innerHTML += `<div class="glass p-6 rounded-3xl border-b-2 border-transparent hover:border-indigo-500 transition-all"><h4 class="text-lg font-bold text-white mb-2">${item.role}</h4><div class="text-[11px] text-gray-500 uppercase">Avg: ${item.pay}</div></div>`;
+    document.getElementById("careerGrid").innerHTML += `
+    <div class="glass p-6 rounded-3xl border-b-2 border-transparent hover:border-indigo-500 transition-all group hover:bg-white/[0.05]">
+        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">${item.role}</h4>
+        <div class="text-[10px] text-gray-500 font-bold uppercase mb-3">Avg: ${item.pay}</div>
+        <div class="pt-3 border-t border-white/5">
+            <span class="text-[9px] text-indigo-300 font-mono uppercase">Skills:</span>
+            <p class="text-[11px] text-gray-400 leading-tight mt-1">${item.skill}</p>
+        </div>
+    </div>`;
 });
 
-// 3. UPDATED SHARE FUNCTION (NOW SENDING DATA IN LINK)
+data.exams.forEach(e => {
+  document.getElementById("exams").innerHTML += `
+  <div class="bg-white/5 p-5 rounded-2xl border border-white/5 flex items-center gap-4 hover:border-indigo-500 transition-all">
+    <div class="w-2 h-2 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50"></div>
+    <span class="text-sm font-black uppercase tracking-widest text-gray-300">${e}</span>
+  </div>`;
+});
+
 async function handleUniversalShare() {
-  // Creating a smart link with data
   const baseLink = "https://sajan123456789.github.io/Bhatri/result.html";
   const finalLink = `${baseLink}?res=${result}&name=${encodeURIComponent(userName)}&match=${matchPercent}`;
-  
-  const shareText = `🤖 *CareerSteps AI Report*\n\n👤 *Name:* ${userName}\n🎯 *Match:* ${data.title}\n📊 *Neural:* ${matchPercent}%\n\nCheck full AI roadmap here: 👇`;
+  const shareText = `🤖 *CareerSteps AI Report*\n\n👤 *Name:* ${userName}\n🎯 *Match:* ${data.title}\n📊 *Neural Match:* ${matchPercent}%\n\nCheck full AI roadmap here: 👇`;
 
   if (navigator.share) {
-    try {
-      await navigator.share({ title: 'AI Report', text: shareText, url: finalLink });
-    } catch (err) {
-      fallbackToWhatsApp(shareText + "\n" + finalLink);
-    }
-  } else {
-    fallbackToWhatsApp(shareText + "\n" + finalLink);
-  }
+    try { await navigator.share({ title: 'AI Career Report', text: shareText, url: finalLink }); } 
+    catch (err) { fallbackToWhatsApp(shareText + "\n" + finalLink); }
+  } else { fallbackToWhatsApp(shareText + "\n" + finalLink); }
 }
 
 function fallbackToWhatsApp(msg) {
