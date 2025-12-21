@@ -9,12 +9,13 @@
 <style>
 body { background:#020617; color:#fff; font-family:system-ui; transition: background 0.5s ease; }
 .glass { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
-.step { border-left:3px solid #6366f1; padding-left:16px; transition: border 0.5s ease; }
+.step { border-left:3px solid #6366f1; padding-left:16px; transition: border 0.5s ease; position: relative; }
+.step::before { content: ''; position: absolute; left: -6px; top: 0; width: 9px; height: 9px; border-radius: 50%; background: #6366f1; }
 
 /* AI Unique Themes */
-.theme-science { border-top: 8px solid #3b82f6; box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); }
-.theme-commerce { border-top: 8px solid #10b981; box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); }
-.theme-arts { border-top: 8px solid #a855f7; box-shadow: 0 0 40px rgba(168, 85, 247, 0.15); }
+.theme-science { border-top: 8px solid #3b82f6; box-shadow: 0 0 50px rgba(59, 130, 246, 0.15); }
+.theme-commerce { border-top: 8px solid #10b981; box-shadow: 0 0 50px rgba(16, 185, 129, 0.15); }
+.theme-arts { border-top: 8px solid #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.15); }
 
 .text-science { color: #60a5fa; }
 .text-commerce { color: #34d399; }
@@ -23,51 +24,60 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 .bg-science { background: #3b82f6; }
 .bg-commerce { background: #10b981; }
 .bg-arts { background: #a855f7; }
+
+/* Pulse for AI Badge */
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 </style>
 </head>
 
 <body class="px-4 pb-20">
 
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps <span class="text-[10px] border border-indigo-400 px-2 rounded-full">AI</span></h1>
-  <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps <span class="text-[10px] border border-indigo-400 px-2 rounded-full">AI v2.0</span></h1>
+  <a href="index.html" class="text-gray-300 hover:text-white font-medium">Home</a>
 </header>
 
-<section id="resultCard" class="max-w-3xl mx-auto mt-12 glass rounded-3xl p-8 md:p-12 text-center transition-all duration-700">
+<section id="resultCard" class="max-w-3xl mx-auto mt-8 glass rounded-3xl p-8 md:p-12 text-center transition-all duration-700 opacity-0 transform translate-y-10">
   
   <div class="flex items-center justify-center gap-3 mb-6">
     <div class="h-1.5 w-24 bg-gray-800 rounded-full overflow-hidden">
-      <div id="confBar" class="h-full bg-indigo-500 w-[96%]"></div>
+      <div id="confBar" class="h-full bg-indigo-500 w-[98%] transition-all duration-1000"></div>
     </div>
-    <span class="text-[10px] font-mono text-indigo-400 tracking-tighter" id="aiTag">ANALYSIS_COMPLETE</span>
+    <span class="text-[10px] font-mono text-indigo-400 tracking-tighter uppercase pulse" id="aiTag">ANALYSIS_STABLE</span>
   </div>
 
-  <span id="badge" class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white">
-    Neuro-Pattern Result
+  <span id="badge" class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white">
+    AI Neuro-Score
   </span>
 
-  <h2 id="title" class="text-4xl md:text-5xl font-black mt-6 mb-4 tracking-tight"></h2>
-  <p id="description" class="text-gray-400 text-lg mb-10 max-w-xl mx-auto"></p>
+  <h2 id="title" class="text-4xl md:text-6xl font-black mt-6 mb-4 tracking-tight uppercase"></h2>
+  <p id="description" class="text-gray-400 text-lg mb-10 max-w-xl mx-auto leading-relaxed"></p>
 
-  <div class="text-left mb-4 font-bold text-sm text-gray-500 uppercase tracking-widest">Recommended Paths</div>
+  <button onclick="shareOnWhatsApp()" class="mb-10 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 rounded-2xl font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.229 3.481 8.405c0 6.555-5.332 11.89-11.888 11.89-2.015 0-3.991-.511-5.741-1.481l-6.143 1.613zm6.183-3.613c1.547.918 3.078 1.403 4.626 1.403 5.422 0 9.835-4.413 9.835-9.835 0-2.628-1.023-5.099-2.88-6.956-1.857-1.857-4.328-2.88-6.955-2.88-5.422 0-9.835 4.413-9.835 9.835 0 2.107.667 4.067 1.928 5.688l-1.019 3.717 3.805-.972zm10.513-5.705c-.271-.136-1.604-.791-1.853-.882-.249-.091-.43-.136-.611.136-.181.272-.701.882-.859 1.063-.158.181-.316.204-.587.069-.272-.136-1.146-.423-2.184-1.348-.806-.719-1.35-1.607-1.508-1.879-.158-.272-.017-.419.119-.554.122-.121.272-.317.407-.476.136-.159.181-.272.271-.453.091-.181.045-.34-.022-.476-.068-.136-.611-1.474-.836-2.019-.22-.529-.441-.457-.611-.465-.159-.007-.339-.008-.52-.008-.181 0-.476.068-.724.34-.249.272-.95 1.023-.95 2.494 0 1.471 1.068 2.894 1.216 3.095.148.201 2.102 3.209 5.091 4.5 2.989 1.291 2.989.86 3.533.815.543-.045 1.742-.711 1.991-1.396.249-.685.249-1.272.175-1.396-.074-.124-.271-.205-.543-.341z"/></svg>
+    Share My Result
+  </button>
+
+  <div class="text-left mb-4 font-bold text-[10px] text-gray-500 uppercase tracking-[0.3em]">AI Suggested Pathways</div>
   <div id="careers" class="grid md:grid-cols-2 gap-3 text-left mb-12"></div>
 
-  <h3 class="text-2xl font-bold text-left mb-6 flex items-center gap-2">
-    <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm">📍</span> Execution Roadmap
+  <h3 class="text-2xl font-bold text-left mb-8 flex items-center gap-3">
+    <span class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg">📍</span> Strategic Roadmap
   </h3>
-  <div id="roadmap" class="space-y-6 text-left mb-12"></div>
+  <div id="roadmap" class="space-y-8 text-left mb-12 border-l border-white/5 ml-5"></div>
 
-  <h3 class="text-2xl font-bold text-left mb-6 flex items-center gap-2">
-    <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm">📝</span> Gateway Exams
+  <h3 class="text-2xl font-bold text-left mb-8 flex items-center gap-3">
+    <span class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg">📝</span> Gateway Exams
   </h3>
   <div id="exams" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-12"></div>
 
-  <div class="flex flex-col md:flex-row gap-4 justify-center pt-6 border-t border-white/5">
-    <a href="assessment.html" class="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-2xl font-bold transition-all">
-       Retake AI Scan
+  <div class="flex flex-col md:flex-row gap-4 justify-center pt-8 border-t border-white/10">
+    <a href="assessment.html" class="bg-indigo-600 text-white hover:bg-indigo-500 px-8 py-4 rounded-2xl font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-500/20">
+       Retake Test
     </a>
-    <a href="index.html" class="border border-white/10 hover:bg-white/5 px-8 py-4 rounded-2xl font-bold transition-all">
-       Back to Dashboard
+    <a href="index.html" class="bg-white/5 border border-white/10 hover:bg-white/10 px-8 py-4 rounded-2xl font-bold transition-all">
+       Back Home
     </a>
   </div>
 
@@ -77,72 +87,80 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
 const result = localStorage.getItem("careerResult") || "science";
 const card = document.getElementById("resultCard");
 const badge = document.getElementById("badge");
-const aiTag = document.getElementById("aiTag");
 const title = document.getElementById("title");
 const desc = document.getElementById("description");
 const careers = document.getElementById("careers");
 const roadmap = document.getElementById("roadmap");
 const exams = document.getElementById("exams");
 
-let data = {};
-
-// Full Database Logic
 const database = {
   science: {
-    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "LOGIC_CORE_v2.1",
-    title:"SCIENCE 🔬",
-    desc:"Aapka neural pattern logical analysis aur technical problem-solving ko support karta hai.",
-    careers:["Engineering (AI/Mechanical)","Data Science","Medical / Biotech","Research","Astrophysics"],
-    roadmap:["11th-12th mein PCM ya PCB chunein","Entrance exams ki taiyari shuru karein","Degree (B.Tech/MBBS) mein specialization karein"],
-    exams:["JEE Main & Advanced","NEET","CUET (Science)","KVPY"]
+    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "LOGIC_v4.2",
+    title:"Science 🔬",
+    desc:"Aapka cognitive profile complex problem-solving aur structural logic ke liye optimize kiya gaya hai.",
+    careers:["Engineering (AI/ML)","Medicine & Surgery","Data Architecture","Astro-Physics","Quantum Computing"],
+    roadmap:["Select PCM/PCB in Class 11","Clear National Level Entrances","Specialize in High-Tech Research"],
+    exams:["JEE Main/Advanced","NEET-UG","CUET Science","IISER Aptitude"]
   },
   commerce: {
-    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "STRATEGY_CORE_v1.8",
-    title:"COMMERCE 📊",
-    desc:"Aapka mindset financial intelligence aur resource management mein peak karta hai.",
-    careers:["Chartered Accountancy","Investment Banking","Management (MBA)","Entrepreneurship","FinTech"],
-    roadmap:["Commerce with Maths chunein","Professional courses (CA/CS) register karein","Top B-Schools ke liye apply karein"],
-    exams:["CA Foundation","CUET","CAT / IPMAT","SET"]
+    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "STRAT_v2.5",
+    title:"Commerce 📊",
+    desc:"Hamare AI ne aapke andar financial management aur strategic business mindset detect kiya hai.",
+    careers:["Investment Banking","Corporate Law","Data-driven Finance","Chartered Accountancy","Venture Capital"],
+    roadmap:["Choose Commerce with Maths","Pursue Professional Certs (CA/CFA)","Advance into Global Markets"],
+    exams:["CA Foundation","CUET Commerce","IPMAT (IIMs)","CLAT"]
   },
   arts: {
-    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CREATIVE_CORE_v3.0",
-    title:"ARTS / HUMANITIES 🎨",
-    desc:"Aapka cognitive profile creative expression aur human behavior analysis ke liye perfect hai.",
-    careers:["Corporate Law","Psychology","Digital Design","Journalism","Civil Services"],
-    roadmap:["Subjects like Psych/Pol Science chunein","Creative portfolio ya debates par kaam karein","BA/LLB ya Design degree pursue karein"],
-    exams:["CLAT (Law)","CUET (Arts)","NID / UCEED","UPSC (Future Goal)"]
+    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CREAT_v9.0",
+    title:"Arts/Creative 🎨",
+    desc:"Aapka mindset emotional intelligence, creative expression aur societal impact ke liye bana hai.",
+    careers:["UX/UI Design","Public Policy & Law","Digital Journalism","International Relations","Creative Direction"],
+    roadmap:["Build a Strong Creative Portfolio","Master Communication & Analysis","Impact society through Art/Policy"],
+    exams:["CLAT (Law)","CUET Arts","NID / NIFT","UPSC Foundation"]
   }
 };
 
-// Selection Logic
-data = database[result] || database.science;
+const data = database[result] || database.science;
 
-// Apply Theme
+// Apply Theme & Data
 card.classList.add(data.theme);
 badge.classList.add(data.btn);
 title.classList.add(data.txt);
-aiTag.innerText = "AI_ENGINE_" + data.tag;
-
-// Update UI
 title.innerText = data.title;
 desc.innerText = data.desc;
+document.getElementById("aiTag").innerText = "CORE_" + data.tag;
 
+// Reveal Animation
+setTimeout(() => {
+  card.classList.remove("opacity-0", "translate-y-10");
+}, 100);
+
+// Populate Lists
 data.careers.forEach(c => {
-  careers.innerHTML += `<div class="glass p-4 rounded-2xl border-l-4 border-indigo-500/50 hover:bg-white/10 transition-all font-medium italic">${c}</div>`;
+  careers.innerHTML += `<div class="glass p-4 rounded-2xl border-l-4 border-indigo-500 hover:bg-white/10 transition-all font-semibold italic text-sm">✦ ${c}</div>`;
 });
 
 data.roadmap.forEach((r, i) => {
-  roadmap.innerHTML += `<div class="step" style="border-color: ${getComputedStyle(title).color}">
-    <div class="text-xs font-mono opacity-50 uppercase">Phase 0${i+1}</div>
-    <div class="text-lg font-semibold">${r}</div>
-  </div>`;
+  roadmap.innerHTML += `
+    <div class="step">
+      <div class="text-[10px] font-mono opacity-40 uppercase mb-1">Neural Phase 0${i+1}</div>
+      <div class="text-lg font-bold text-gray-200">${r}</div>
+    </div>`;
 });
 
 data.exams.forEach(e => {
-  exams.innerHTML += `<div class="bg-white/5 p-4 rounded-2xl border border-white/5 flex items-center gap-3">
-    <span class="text-indigo-400">◈</span> ${e}
+  exams.innerHTML += `<div class="bg-white/5 p-4 rounded-2xl border border-white/5 flex items-center gap-3 hover:border-indigo-500/50 transition-all">
+    <span class="text-indigo-500 text-lg">◈</span> <span class="text-sm font-medium">${e}</span>
   </div>`;
 });
+
+// WhatsApp Sharing Logic
+function shareOnWhatsApp() {
+  const siteUrl = "https://yourwebsite.com"; // Isse apni website link se badlein
+  const message = `🤖 *CareerSteps AI Assessment Result*\n\nMy neuro-pattern scan suggests I am best suited for: *${data.title}*\n\nExplore your own career path here: ${siteUrl}`;
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}
 </script>
 
 </body>
