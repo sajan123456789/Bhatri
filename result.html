@@ -63,8 +63,8 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
   <p id="description" class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium"></p>
 
   <div class="flex flex-wrap justify-center gap-4 mb-16">
-    <button onclick="shareOnWhatsApp()" class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
-       Share Report
+    <button onclick="handleUniversalShare()" class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
+       Share Full Report
     </button>
     <a href="option.html" class="inline-flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500 hover:text-white px-6 py-4 rounded-2xl font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg uppercase text-[10px] tracking-widest">
       Explore All Careers
@@ -82,10 +82,7 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
     <h3 class="text-2xl font-black mb-2 italic uppercase tracking-tighter text-indigo-300">
         Deep Dive: Specialized Roles
     </h3>
-    <p class="text-gray-500 text-[10px] mb-8 uppercase tracking-[0.3em] font-bold">Highly compatible paths based on your cognitive profile</p>
-    
-    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-    </div>
+    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </div>
 
   <div class="text-left mb-10">
@@ -100,15 +97,13 @@ body { background:#020617; color:#fff; font-family:system-ui; transition: backgr
        Restart Analysis
     </a>
   </div>
-
 </section>
 
 <script>
-// Get Data from LocalStorage
+// Data fetching logic wahi hai...
 const result = localStorage.getItem("careerResult") || "science";
 const userName = localStorage.getItem("user_name") || "Student";
 const matchPercent = localStorage.getItem("matchPercent") || "94.2";
-
 const card = document.getElementById("resultCard");
 
 const database = {
@@ -161,60 +156,55 @@ const database = {
 
 const data = database[result] || database.science;
 
-// Personalize UI
+// UI Initialization
 document.getElementById("userDisplayName").innerText = "ANALYSIS FOR: " + userName.toUpperCase();
 document.getElementById("matchValue").innerText = "NEURAL COMPATIBILITY: " + matchPercent + "%";
-
-// Header & Theme
 card.classList.add(data.theme);
 document.getElementById("badge").classList.add(data.btn);
 document.getElementById("title").classList.add(data.txt);
 document.getElementById("title").innerText = data.title;
 document.getElementById("description").innerText = data.desc;
 document.getElementById("aiTag").innerText = "SYSTEM_" + data.tag;
-
-// Animation
 setTimeout(() => card.classList.remove("opacity-0", "translate-y-12"), 100);
 
-// Populate Roadmap
+// Populate Roadmap, Grid, Exams wahi logic...
 data.roadmap.forEach((r, i) => {
-  document.getElementById("roadmap").innerHTML += `
-    <div class="step">
-      <div class="text-[10px] font-mono opacity-40 uppercase tracking-[0.2em] mb-2">Neural Node 0${i+1}</div>
-      <div class="text-lg font-bold text-gray-100 italic leading-tight">${r}</div>
-    </div>`;
+  document.getElementById("roadmap").innerHTML += `<div class="step"><div class="text-[10px] font-mono opacity-40 uppercase tracking-[0.2em] mb-2">Neural Node 0${i+1}</div><div class="text-lg font-bold text-gray-100 italic leading-tight">${r}</div></div>`;
 });
 
-// Populate Deep Dive Cards
 data.deepDive.forEach(item => {
-    document.getElementById("careerGrid").innerHTML += `
-    <div class="glass p-6 rounded-3xl border-b-2 border-transparent hover:border-indigo-500 transition-all group hover:bg-white/[0.08]">
-        <div class="flex justify-between items-start mb-4">
-            <span class="text-[9px] font-black uppercase tracking-widest text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded-md">Demand: ${item.demand}</span>
-            <span class="text-white/20 group-hover:text-indigo-500 transition-colors">✦</span>
-        </div>
-        <h4 class="text-lg font-bold text-white mb-2">${item.role}</h4>
-        <div class="text-[11px] text-gray-500 font-bold uppercase tracking-tighter">Avg. Package: <span class="text-gray-300 font-black">${item.pay}</span></div>
-    </div>`;
+    document.getElementById("careerGrid").innerHTML += `<div class="glass p-6 rounded-3xl border-b-2 border-transparent hover:border-indigo-500 transition-all group hover:bg-white/[0.08]"><div class="flex justify-between items-start mb-4"><span class="text-[9px] font-black uppercase tracking-widest text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded-md">Demand: ${item.demand}</span><span class="text-white/20 group-hover:text-indigo-500 transition-colors">✦</span></div><h4 class="text-lg font-bold text-white mb-2">${item.role}</h4><div class="text-[11px] text-gray-500 font-bold uppercase tracking-tighter">Avg. Package: <span class="text-gray-300 font-black">${item.pay}</span></div></div>`;
 });
 
-// Populate Exams
 data.exams.forEach(e => {
-  document.getElementById("exams").innerHTML += `
-  <div class="bg-white/5 p-5 rounded-2xl border border-white/5 flex items-center gap-4 hover:border-indigo-500/50 transition-all group">
-    <span class="text-indigo-500 text-xl group-hover:scale-125 transition-transform">◈</span> 
-    <span class="text-sm font-black uppercase tracking-widest text-gray-300">${e}</span>
-  </div>`;
+  document.getElementById("exams").innerHTML += `<div class="bg-white/5 p-5 rounded-2xl border border-white/5 flex items-center gap-4 hover:border-indigo-500/50 transition-all group"><span class="text-indigo-500 text-xl group-hover:scale-125 transition-transform">◈</span><span class="text-sm font-black uppercase tracking-widest text-gray-300">${e}</span></div>`;
 });
 
-// UPGRADED SHARE FUNCTION
-function shareOnWhatsApp() {
-  const currentUrl = window.location.origin; // Website ka link
-  const message = `🤖 *CareerSteps AI Report*%0A%0A👤 *Name:* ${userName}%0A🎯 *Career Match:* ${data.title}%0A📊 *Neural Match:* ${matchPercent}%%0A%0ACheck your AI Career Result here: 👇%0A${currentUrl}`;
-  
-  window.open(`https://wa.me/?text=${message}`, '_blank');
+// NEW UNIVERSAL SHARE LOGIC
+async function handleUniversalShare() {
+  const currentUrl = window.location.origin;
+  const shareText = `🤖 CareerSteps AI Report\n\n👤 Name: ${userName}\n🎯 Career Match: ${data.title}\n📊 Neural Match: ${matchPercent}%\n\nCheck yours here:`;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'CareerSteps AI Report',
+        text: shareText,
+        url: currentUrl,
+      });
+    } catch (err) {
+      console.log("Share failed or cancelled");
+      fallbackToWhatsApp(shareText + " " + currentUrl);
+    }
+  } else {
+    // Desktop fallback
+    fallbackToWhatsApp(shareText + " " + currentUrl);
+  }
+}
+
+function fallbackToWhatsApp(fullText) {
+  window.open(`https://wa.me/?text=${encodeURIComponent(fullText)}`, '_blank');
 }
 </script>
-
 </body>
 </html>
