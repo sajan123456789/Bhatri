@@ -2,80 +2,82 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – Your Career Result</title>
+<title>CareerSteps – AI Analysis Result</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="CareerSteps assessment result. Find your best stream or career path after 10th or 12th.">
-
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{
-  background:#020617;
-  color:#fff;
-  font-family:system-ui;
-}
-.glass{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(14px);
-}
-.badge{
-  background:#6366f1;
-}
-.step{
-  border-left:3px solid #6366f1;
-  padding-left:16px;
-}
+body { background:#020617; color:#fff; font-family:system-ui; transition: background 0.5s ease; }
+.glass { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
+.step { border-left:3px solid #6366f1; padding-left:16px; transition: border 0.5s ease; }
+
+/* AI Unique Themes */
+.theme-science { border-top: 8px solid #3b82f6; box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); }
+.theme-commerce { border-top: 8px solid #10b981; box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); }
+.theme-arts { border-top: 8px solid #a855f7; box-shadow: 0 0 40px rgba(168, 85, 247, 0.15); }
+
+.text-science { color: #60a5fa; }
+.text-commerce { color: #34d399; }
+.text-arts { color: #c084fc; }
+
+.bg-science { background: #3b82f6; }
+.bg-commerce { background: #10b981; }
+.bg-arts { background: #a855f7; }
 </style>
 </head>
 
-<body class="px-4">
+<body class="px-4 pb-20">
 
-<!-- HEADER -->
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
+  <h1 class="text-2xl font-bold text-indigo-400">CareerSteps <span class="text-[10px] border border-indigo-400 px-2 rounded-full">AI</span></h1>
   <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
 </header>
 
-<!-- RESULT -->
-<section class="max-w-3xl mx-auto mt-20 glass rounded-2xl p-10 text-center">
+<section id="resultCard" class="max-w-3xl mx-auto mt-12 glass rounded-3xl p-8 md:p-12 text-center transition-all duration-700">
+  
+  <div class="flex items-center justify-center gap-3 mb-6">
+    <div class="h-1.5 w-24 bg-gray-800 rounded-full overflow-hidden">
+      <div id="confBar" class="h-full bg-indigo-500 w-[96%]"></div>
+    </div>
+    <span class="text-[10px] font-mono text-indigo-400 tracking-tighter" id="aiTag">ANALYSIS_COMPLETE</span>
+  </div>
 
-  <span class="badge px-4 py-2 rounded-full text-sm font-semibold">
-    Assessment Result
+  <span id="badge" class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white">
+    Neuro-Pattern Result
   </span>
 
-  <h2 id="title" class="text-4xl font-extrabold mt-6 mb-4"></h2>
+  <h2 id="title" class="text-4xl md:text-5xl font-black mt-6 mb-4 tracking-tight"></h2>
+  <p id="description" class="text-gray-400 text-lg mb-10 max-w-xl mx-auto"></p>
 
-  <p id="description" class="text-gray-300 text-lg mb-8"></p>
+  <div class="text-left mb-4 font-bold text-sm text-gray-500 uppercase tracking-widest">Recommended Paths</div>
+  <div id="careers" class="grid md:grid-cols-2 gap-3 text-left mb-12"></div>
 
-  <!-- CAREER LIST -->
-  <div id="careers" class="grid md:grid-cols-2 gap-4 text-left mb-10"></div>
+  <h3 class="text-2xl font-bold text-left mb-6 flex items-center gap-2">
+    <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm">📍</span> Execution Roadmap
+  </h3>
+  <div id="roadmap" class="space-y-6 text-left mb-12"></div>
 
-  <!-- ROADMAP -->
-  <h3 class="text-2xl font-bold text-left mb-4">Step-by-Step Roadmap</h3>
-  <div id="roadmap" class="space-y-4 text-left mb-10"></div>
+  <h3 class="text-2xl font-bold text-left mb-6 flex items-center gap-2">
+    <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm">📝</span> Gateway Exams
+  </h3>
+  <div id="exams" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-12"></div>
 
-  <!-- EXAMS -->
-  <h3 class="text-2xl font-bold text-left mb-4">Important Exams</h3>
-  <div id="exams" class="grid md:grid-cols-2 gap-4 text-left mb-10"></div>
-
-  <div class="flex flex-col md:flex-row gap-4 justify-center">
-    <a href="assessment.html"
-       class="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-semibold">
-       Retake Test
+  <div class="flex flex-col md:flex-row gap-4 justify-center pt-6 border-t border-white/5">
+    <a href="assessment.html" class="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-2xl font-bold transition-all">
+       Retake AI Scan
     </a>
-    <a href="index.html"
-       class="border border-gray-500 px-6 py-3 rounded-xl font-semibold">
-       Go Home
+    <a href="index.html" class="border border-white/10 hover:bg-white/5 px-8 py-4 rounded-2xl font-bold transition-all">
+       Back to Dashboard
     </a>
   </div>
 
 </section>
 
 <script>
-const result = localStorage.getItem("careerResult");
-
+const result = localStorage.getItem("careerResult") || "science";
+const card = document.getElementById("resultCard");
+const badge = document.getElementById("badge");
+const aiTag = document.getElementById("aiTag");
 const title = document.getElementById("title");
 const desc = document.getElementById("description");
 const careers = document.getElementById("careers");
@@ -84,130 +86,62 @@ const exams = document.getElementById("exams");
 
 let data = {};
 
-if(result==="science"){
-  data = {
-    title:"Best Stream: SCIENCE 🔬",
-    desc:"You have strong analytical and logical thinking. You enjoy problem-solving and technical challenges.",
-    careers:["Engineering","Data Science","Medical","Research","Defence Technical"],
-    roadmap:[
-      "Choose PCM / PCB subjects in Class 11–12",
-      "Prepare for competitive entrance exams",
-      "Pursue BTech / MBBS / BSc degree",
-      "Specialize with higher studies or certifications"
-    ],
-    exams:["JEE Main & Advanced","NEET","CUET","State Engineering Exams"]
-  };
-}
-else if(result==="commerce"){
-  data = {
-    title:"Best Stream: COMMERCE 📊",
-    desc:"You have a business and management mindset. You understand money, planning and strategy.",
-    careers:["CA / CS","BBA / MBA","Banking","Finance","Entrepreneurship"],
-    roadmap:[
-      "Choose Commerce (Maths recommended)",
-      "Prepare for CA / CS / CUET",
-      "Complete BCom / BBA",
-      "Advance with MBA or professional certification"
-    ],
-    exams:["CA Foundation","CS Foundation","CUET","Bank Exams"]
-  };
-}
-else if(result==="arts"){
-  data = {
-    title:"Best Stream: ARTS 🎨",
-    desc:"You are creative, thoughtful and socially aware. You enjoy expression and people-oriented work.",
-    careers:["Law","Journalism","Teaching","Civil Services","Design & Media"],
-    roadmap:[
-      "Choose relevant Arts subjects",
-      "Improve reading, writing & analysis skills",
-      "Complete BA / LLB / BJMC",
-      "Prepare for government or professional exams"
-    ],
-    exams:["CUET","CLAT","UPSC","State PSC"]
-  };
-}
-else if(result==="tech"){
-  data = {
-    title:"Career Cluster: TECHNOLOGY 💻",
-    desc:"You are highly analytical and future-oriented. Technology and innovation suit you best.",
-    careers:["Software Engineer","AI / Data Analyst","Cyber Security","Research","Tech Startups"],
-    roadmap:[
-      "Enroll in technical degree (BTech / BSc)",
-      "Build coding & project skills",
-      "Do internships & certifications",
-      "Specialize in AI / Data / Security"
-    ],
-    exams:["JEE","CUET","GATE"]
-  };
-}
-else if(result==="business"){
-  data = {
-    title:"Career Cluster: BUSINESS 📈",
-    desc:"You think strategically and enjoy leadership, finance and growth-oriented roles.",
-    careers:["BBA / MBA","Marketing","Finance","Startups","Management"],
-    roadmap:[
-      "Complete BBA / BCom",
-      "Develop communication & leadership",
-      "Gain work experience",
-      "Advance with MBA"
-    ],
-    exams:["CUET","CAT","XAT","CMAT"]
-  };
-}
-else if(result==="public"){
-  data = {
-    title:"Career Cluster: PUBLIC & LAW ⚖️",
-    desc:"You are driven by responsibility, ethics and impact on society.",
-    careers:["Law","Civil Services","Teaching","Policy Research","NGOs"],
-    roadmap:[
-      "Choose BA / LLB or relevant degree",
-      "Build strong general knowledge",
-      "Prepare for competitive exams",
-      "Enter public service or legal field"
-    ],
-    exams:["UPSC","CLAT","State PSC"]
-  };
-}
-else{
-  data = {
-    title:"Career Cluster: CREATIVE 🎥",
-    desc:"You are imaginative and expressive. Creative freedom matters most to you.",
-    careers:["Design","Media","Content Creation","Animation","Performing Arts"],
-    roadmap:[
-      "Choose creative course or diploma",
-      "Build a strong portfolio",
-      "Freelance or internships",
-      "Grow personal brand"
-    ],
-    exams:["Design Entrance Tests","Media Aptitude Tests"]
-  };
-}
+// Full Database Logic
+const database = {
+  science: {
+    theme: "theme-science", btn: "bg-science", txt: "text-science", tag: "LOGIC_CORE_v2.1",
+    title:"SCIENCE 🔬",
+    desc:"Aapka neural pattern logical analysis aur technical problem-solving ko support karta hai.",
+    careers:["Engineering (AI/Mechanical)","Data Science","Medical / Biotech","Research","Astrophysics"],
+    roadmap:["11th-12th mein PCM ya PCB chunein","Entrance exams ki taiyari shuru karein","Degree (B.Tech/MBBS) mein specialization karein"],
+    exams:["JEE Main & Advanced","NEET","CUET (Science)","KVPY"]
+  },
+  commerce: {
+    theme: "theme-commerce", btn: "bg-commerce", txt: "text-commerce", tag: "STRATEGY_CORE_v1.8",
+    title:"COMMERCE 📊",
+    desc:"Aapka mindset financial intelligence aur resource management mein peak karta hai.",
+    careers:["Chartered Accountancy","Investment Banking","Management (MBA)","Entrepreneurship","FinTech"],
+    roadmap:["Commerce with Maths chunein","Professional courses (CA/CS) register karein","Top B-Schools ke liye apply karein"],
+    exams:["CA Foundation","CUET","CAT / IPMAT","SET"]
+  },
+  arts: {
+    theme: "theme-arts", btn: "bg-arts", txt: "text-arts", tag: "CREATIVE_CORE_v3.0",
+    title:"ARTS / HUMANITIES 🎨",
+    desc:"Aapka cognitive profile creative expression aur human behavior analysis ke liye perfect hai.",
+    careers:["Corporate Law","Psychology","Digital Design","Journalism","Civil Services"],
+    roadmap:["Subjects like Psych/Pol Science chunein","Creative portfolio ya debates par kaam karein","BA/LLB ya Design degree pursue karein"],
+    exams:["CLAT (Law)","CUET (Arts)","NID / UCEED","UPSC (Future Goal)"]
+  }
+};
 
-/* EXISTING LOGIC – UNCHANGED */
+// Selection Logic
+data = database[result] || database.science;
+
+// Apply Theme
+card.classList.add(data.theme);
+badge.classList.add(data.btn);
+title.classList.add(data.txt);
+aiTag.innerText = "AI_ENGINE_" + data.tag;
+
+// Update UI
 title.innerText = data.title;
 desc.innerText = data.desc;
 
-data.careers.forEach(c=>{
-  const div = document.createElement("div");
-  div.className = "glass p-4 rounded-xl";
-  div.innerText = "✔ " + c;
-  careers.appendChild(div);
+data.careers.forEach(c => {
+  careers.innerHTML += `<div class="glass p-4 rounded-2xl border-l-4 border-indigo-500/50 hover:bg-white/10 transition-all font-medium italic">${c}</div>`;
 });
 
-/* NEW: ROADMAP */
-data.roadmap.forEach((r,i)=>{
-  const div = document.createElement("div");
-  div.className = "step";
-  div.innerText = (i+1) + ". " + r;
-  roadmap.appendChild(div);
+data.roadmap.forEach((r, i) => {
+  roadmap.innerHTML += `<div class="step" style="border-color: ${getComputedStyle(title).color}">
+    <div class="text-xs font-mono opacity-50 uppercase">Phase 0${i+1}</div>
+    <div class="text-lg font-semibold">${r}</div>
+  </div>`;
 });
 
-/* NEW: EXAMS */
-data.exams.forEach(e=>{
-  const div = document.createElement("div");
-  div.className = "glass p-4 rounded-xl";
-  div.innerText = "📝 " + e;
-  exams.appendChild(div);
+data.exams.forEach(e => {
+  exams.innerHTML += `<div class="bg-white/5 p-4 rounded-2xl border border-white/5 flex items-center gap-3">
+    <span class="text-indigo-400">◈</span> ${e}
+  </div>`;
 });
 </script>
 
