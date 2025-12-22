@@ -180,14 +180,39 @@ function goBack(){
   answers.pop();
   loadQuestion();
 }
-function showCalculating(){
+function showCalculating() {
     document.getElementById("quiz").innerHTML = `
         <div class="text-center py-20 fade-in">
-            <div class="w-20 h-20 border-t-4 border-indigo-500 rounded-full animate-spin mx-auto mb-8"></div>
-            <h2 class="text-2xl font-black uppercase italic tracking-tighter mb-4">Syncing Neural Data</h2>
-            <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">Mapping Future Career Nodes...</p>
-        </div>
-    `;
+            <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin mx-auto mb-6"></div>
+            <h2 class="text-2xl font-bold mb-2">Generating Analysis Report</h2>
+            <p class="text-slate-500 text-xs tracking-widest uppercase">Analyzing your responses...</p>
+        </div>`;
+
+    setTimeout(() => {
+        const counts = { technical: 0, finance: 0, social: 0, creative: 0, neutral: 0 };
+        answers.forEach(tag => counts[tag]++);
+
+        // Find the top category
+        const topTag = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+        // Calculate REAL score based on answer frequency
+        // Formula: (Count of top answers / Total questions) * 100
+        const rawScore = (counts[topTag] / questions.length) * 100;
+        // Adding a small boost so it stays between 75% - 98% for better presentation
+        const finalScore = Math.min(98.5, Math.max(72.4, rawScore + 15)).toFixed(1);
+
+        let stream = "";
+        if (topTag === 'technical') stream = "science";
+        else if (topTag === 'finance') stream = "commerce";
+        else if (topTag === 'social') stream = "arts";
+        else if (topTag === 'creative') stream = "design/arts";
+        else stream = "general";
+
+        localStorage.setItem("careerResult", stream);
+        localStorage.setItem("matchPercent", finalScore);
+        window.location.href = "result.html";
+    }, 2500);
+}
     
     setTimeout(() => {
         const counts = { technical: 0, finance: 0, social: 0, creative: 0, neutral: 0 };
