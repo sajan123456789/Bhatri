@@ -2,22 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Career Roadmap | CareerSteps</title>
+    <title>Career Roadmap | CareerSteps AI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background: #020617; 
-            color: #f8fafc; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            scroll-behavior: smooth;
-        }
-        .solid-card { 
-            background: #0f172a; 
-            border: 1px solid #1e293b; 
-            border-radius: 20px;
-        }
+        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .solid-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; transition: 0.3s; }
+        .solid-card:hover { border-color: #3b82f6; }
         .roadmap-line { border-left: 2px dashed #2563eb; margin-left: 20px; }
         .step-dot { 
             height: 16px; width: 16px; background: #3b82f6; 
@@ -25,7 +17,7 @@
             border: 3px solid #020617; box-shadow: 0 0 10px #3b82f6;
         }
         .demand-bar { height: 10px; border-radius: 5px; background: #1e293b; overflow: hidden; }
-        .demand-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #60a5fa); width: 85%; }
+        .demand-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #60a5fa); }
         
         #backToTop {
             display: none; position: fixed; bottom: 30px; right: 30px;
@@ -33,8 +25,7 @@
             padding: 12px; border-radius: 50%; cursor: pointer;
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); z-index: 100;
         }
-
-        @media print { .no-print { display: none; } }
+        @media print { .no-print { display: none; } body { background: white; color: black; } .solid-card { border: 1px solid #ccc; } }
     </style>
 </head>
 
@@ -49,11 +40,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        Back
+        Back to Directory
     </button>
     <div class="flex gap-3">
-        <button onclick="shareOnWhatsApp()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition">WhatsApp Share</button>
-        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl text-xs font-bold border border-slate-600 transition">Save PDF</button>
+        <button onclick="shareOnWhatsApp()" class="bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition">WhatsApp</button>
+        <button onclick="window.print()" class="bg-slate-800 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest border border-slate-600 transition">Save PDF</button>
     </div>
 </header>
 
@@ -61,25 +52,29 @@
 
 <script>
 const DATA_ENGINE = {
-    t1: { title: "AI Research Scientist", cat: "Tech", salary: "₹15L - ₹50L PA", colleges: ["IIT Bombay", "IISc Bangalore", "MIT"], roadmap: ["12th PCM", "B.Tech in CS/IT", "AI Specialization", "Research Intern"] },
-    t2: { title: "Cyber Security Analyst", cat: "Tech", salary: "₹8L - ₹25L PA", colleges: ["IIT Delhi", "NIT Trichy", "BITS Pilani"], roadmap: ["12th Any", "B.Tech/BCA", "Ethical Hacking Cert", "Security Internship"] },
-    m1: { title: "Neurosurgeon", cat: "Medical", salary: "₹20L - ₹80L PA", colleges: ["AIIMS Delhi", "CMC Vellore", "JIPMER"], roadmap: ["12th PCB", "MBBS Degree", "MS in Surgery", "M.Ch Neurosurgery"] },
-    l1: { title: "Corporate Lawyer", cat: "Law", salary: "₹10L - ₹35L PA", colleges: ["NLSIU Bangalore", "NALSAR Hyderabad", "NLU Delhi"], roadmap: ["12th Any", "CLAT Exam", "5-year LLB", "Bar Exam"] },
-    g1: { title: "IAS Officer", cat: "Government", salary: "₹56k - ₹2.5L/mo", colleges: ["LBSNAA (Training)", "Any Recognized University"], roadmap: ["Any Graduation", "UPSC Prelims", "Mains & Interview", "IAS Training"] },
-    a1: { title: "Commercial Pilot", cat: "Aviation", salary: "₹25L - ₹90L PA", colleges: ["IGRUA", "NFTI Gondia", "BFC Mumbai"], roadmap: ["12th PCM", "Medical Exam", "Flying School", "CPL License"] },
+    // Database with exact Indian context
+    t1: { title: "AI Research Scientist", cat: "Tech", salary: "₹15L - ₹50L PA", colleges: ["IIT Bombay", "IISc Bangalore"], exams: ["JEE Advanced", "GATE"], aiRisk: "Very Low", growth: "95%", roadmap: ["12th PCM (Min 75%)", "B.Tech in Computer Science", "M.Tech/PhD in AI/ML", "Research Internship"] },
+    t2: { title: "Cyber Security Analyst", cat: "Tech", salary: "₹8L - ₹25L PA", colleges: ["IIT Delhi", "NIT Trichy"], exams: ["JEE", "CEH", "CISSP"], aiRisk: "Low", growth: "88%", roadmap: ["12th Any (PCM Pref)", "B.Tech/BCA", "Ethical Hacking Cert", "Security Audit Intern"] },
+    m1: { title: "Neurosurgeon", cat: "Medical", salary: "₹20L - ₹80L PA", colleges: ["AIIMS Delhi", "JIPMER"], exams: ["NEET-UG", "NEET-PG", "NEET-SS"], aiRisk: "Near Zero", growth: "92%", roadmap: ["12th PCB", "MBBS (5.5 Years)", "MS in General Surgery", "M.Ch Neurosurgery"] },
+    l1: { title: "Corporate Lawyer", cat: "Law", salary: "₹10L - ₹35L PA", colleges: ["NLSIU Bangalore", "NLU Delhi"], exams: ["CLAT", "AILET", "LSAT"], aiRisk: "Moderate", growth: "80%", roadmap: ["12th Any Stream", "5-Year Integrated LLB", "Internship in Law Firm", "Bar Council Exam"] },
+    g1: { title: "IAS Officer", cat: "Government", salary: "₹56k - ₹2.5L/mo", colleges: ["LBSNAA Mussoorie"], exams: ["UPSC Civil Services"], aiRisk: "Zero", growth: "85%", roadmap: ["Graduation (Any Field)", "UPSC Prelims & Mains", "Personal Interview", "Foundation Training"] },
+    a1: { title: "Commercial Pilot", cat: "Aviation", salary: "₹25L - ₹90L PA", colleges: ["IGRUA", "NFTI"], exams: ["DGCA Exams", "Class 1 Medical"], aiRisk: "Low", growth: "75%", roadmap: ["12th PCM", "DGCA Medical Fitness", "CPL Ground Classes", "200 Hours Flying"] },
 
+    // Dynamic generator for the remaining 900+ careers
     generate: function(id) {
         if(this[id]) return this[id];
-        // Fixed: Extract numbers correctly from auto-id
         const num = id ? id.replace(/\D/g, "") : 5;
-        const cats = ["Tech", "Medical", "Law", "Business", "Aviation", "Creative"];
+        const cats = ["Tech", "Medical", "Law", "Business", "Aviation", "Creative", "Finance"];
         const curCat = cats[num % cats.length];
         return {
-            title: `Professional ${curCat} Specialist`,
+            title: `Professional ${curCat} Expert`,
             cat: curCat,
-            salary: `₹${6 + (num % 8)}L - ₹${16 + (num % 12)}L PA`,
-            colleges: [`Top ${curCat} Institutes`, `National Academy`, `Global University`],
-            roadmap: ["Complete 10+2", `Degree in ${curCat}`, "Professional Certification", "Corporate Internship"]
+            salary: `₹${7 + (num % 10)}L - ₹${18 + (num % 15)}L PA`,
+            colleges: [`Top ${curCat} National Institutes`, "State Universities"],
+            exams: ["Entrance Test", "CUET"],
+            aiRisk: num % 2 === 0 ? "Low" : "Moderate",
+            growth: `${70 + (num % 25)}%`,
+            roadmap: ["Complete 10+2", `Bachelor's in ${curCat}`, "Professional Certification", "Industry Internship"]
         };
     }
 };
@@ -91,42 +86,46 @@ const box = document.getElementById("content");
 if(c) {
     box.innerHTML = `
         <div class="mb-12">
-            <span class="text-blue-400 font-black uppercase tracking-widest text-[10px] px-3 py-1 bg-blue-900/30 rounded-lg border border-blue-500/30">${c.cat} Roadmap 2025</span>
-            <h2 class="text-5xl md:text-7xl font-black mt-6 mb-8 text-white leading-tight">${c.title}</h2>
+            <span class="text-blue-400 font-black uppercase tracking-widest text-[10px] px-3 py-1 bg-blue-900/30 rounded-lg border border-blue-500/30">${c.cat} Pathway 2025</span>
+            <h2 class="text-5xl md:text-7xl font-black mt-6 mb-8 text-white leading-tight uppercase italic">${c.title}</h2>
             
             <div class="max-w-xs">
-                <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest italic">Industry Growth Index</p>
-                <div class="demand-bar mb-1"><div class="demand-fill"></div></div>
+                <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest italic">Market Demand Index</p>
+                <div class="demand-bar mb-1"><div class="demand-fill" style="width: ${c.growth}"></div></div>
                 <div class="flex justify-between text-[9px] font-black text-blue-400 uppercase">
-                    <span>Stable</span><span>High Growth 🔥</span>
+                    <span>Stable</span><span>Growth: ${c.growth} 🔥</span>
                 </div>
             </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-5 mb-16">
+        <div class="grid md:grid-cols-4 gap-5 mb-16">
+            <div class="solid-card p-6 border-b-4 border-blue-600">
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Avg Salary</p>
+                <p class="text-xl font-black text-white">${c.salary}</p>
+            </div>
             <div class="solid-card p-6 border-b-4 border-blue-500">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Avg Package</p>
-                <p class="text-2xl font-black text-white">${c.salary}</p>
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Entrance Exams</p>
+                <p class="text-sm font-bold text-blue-300">${c.exams.join(", ")}</p>
             </div>
             <div class="solid-card p-6 border-b-4 border-blue-400">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Top Colleges</p>
-                <p class="text-sm font-bold text-blue-300 leading-tight">${c.colleges.join(", ")}</p>
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Top Institutes</p>
+                <p class="text-[11px] font-bold text-slate-300 leading-tight">${c.colleges.join(", ")}</p>
             </div>
-            <div class="solid-card p-6 border-b-4 border-blue-300">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">AI Risk</p>
-                <p class="text-2xl font-black text-white">Low / Secure</p>
+            <div class="solid-card p-6 border-b-4 border-indigo-500">
+                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">AI Substitution Risk</p>
+                <p class="text-xl font-black text-white">${c.aiRisk}</p>
             </div>
         </div>
 
         <div class="grid lg:grid-cols-3 gap-12">
             <div class="lg:col-span-2">
-                <h3 class="text-3xl font-black mb-10 text-white italic">The Master Pathway</h3>
+                <h3 class="text-3xl font-black mb-10 text-white italic uppercase tracking-tighter">Strategic Career Roadmap</h3>
                 <div class="roadmap-line space-y-10">
                     ${c.roadmap.map((s, i) => `
                         <div class="relative pl-12">
                             <div class="step-dot"></div>
-                            <div class="solid-card p-6 hover:border-blue-500 transition-all cursor-default">
-                                <span class="text-blue-500 font-black text-[10px] uppercase">Step 0${i+1}</span>
+                            <div class="solid-card p-6 hover:translate-x-2 transition-transform cursor-default">
+                                <span class="text-blue-500 font-black text-[10px] uppercase">Phase 0${i+1}</span>
                                 <p class="text-xl font-bold text-white mt-1 leading-snug">${s}</p>
                             </div>
                         </div>
@@ -135,10 +134,10 @@ if(c) {
             </div>
 
             <div class="space-y-8">
-                <div class="p-8 rounded-[2rem] bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/30 text-center">
-                    <p class="text-blue-400 font-black text-xs uppercase mb-4 tracking-widest">Expert Tip</p>
-                    <p class="text-white font-bold leading-relaxed mb-6">Is career mein top colleges se networking karna utna hi zaroori hai jitna padhai karna. Focus on 2 high-value skills.</p>
-                    <button onclick="window.location.href='assessment.html'" class="bg-blue-600 w-full py-4 rounded-2xl font-black text-white hover:bg-blue-500 transition shadow-lg active:scale-95">START CAREER TEST</button>
+                <div class="p-8 rounded-[2.5rem] bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/30 shadow-2xl">
+                    <p class="text-blue-400 font-black text-xs uppercase mb-4 tracking-widest">AI Counselor Tip</p>
+                    <p class="text-slate-300 text-sm font-medium leading-relaxed mb-8 italic">"In this field, ${c.cat} skills are evolving fast. Focus on building a strong portfolio or clearing the ${c.exams[0]} exam early to stay ahead of the curve."</p>
+                    <button onclick="window.location.href='assessment.html'" class="w-full bg-blue-600 py-4 rounded-2xl font-black text-white hover:bg-blue-500 shadow-lg shadow-blue-500/20 active:scale-95 transition-all uppercase tracking-widest text-xs">Re-Verify My Aptitude</button>
                 </div>
             </div>
         </div>
@@ -146,7 +145,7 @@ if(c) {
 }
 
 function shareOnWhatsApp() {
-    const text = `Take a look at this ${c.title} Career Roadmap: ${window.location.href}`;
+    const text = `Check out the detailed AI Roadmap for ${c.title}: ${window.location.href}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
 }
 
