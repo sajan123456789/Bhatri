@@ -180,45 +180,54 @@ function goBack(){
   answers.pop();
   loadQuestion();
 }
-
 function showCalculating(){
     document.getElementById("quiz").innerHTML = `
         <div class="text-center py-20 fade-in">
-            <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin mx-auto mb-8"></div>
-            <h2 class="text-2xl font-black uppercase italic tracking-tighter mb-4">Generating Neural Report</h2>
-            <p class="text-gray-500 text-xs font-black uppercase tracking-[0.3em] animate-pulse">Analyzing Future Career Pathways...</p>
+            <div class="w-20 h-20 border-t-4 border-indigo-500 rounded-full animate-spin mx-auto mb-8"></div>
+            <h2 class="text-2xl font-black uppercase italic tracking-tighter mb-4">Syncing Neural Data</h2>
+            <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">Mapping Future Career Nodes...</p>
         </div>
     `;
     
     setTimeout(() => {
         const counts = { technical: 0, finance: 0, social: 0, creative: 0, neutral: 0 };
         answers.forEach(tag => counts[tag]++);
+        
         const topTag = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+        const totalTech = counts.technical;
+        const totalNeutral = counts.neutral;
         
         let stream = "";
         let careers = [];
 
-        if(topTag === 'technical') {
+        // Updated logic for Polytechnic/Diploma
+        if(topTag === 'neutral' || (totalTech > 3 && totalNeutral > 2)) {
+            stream = "general"; 
+            careers = ["Mechanical Technician", "Junior IT Engineer", "Automobile Specialist"];
+        } 
+        else if(topTag === 'technical') {
             stream = "science";
-            careers = ["Software Architect", "Aerospace Engineer", "Data Scientist"];
-        } else if(topTag === 'finance') {
+            careers = ["Software Architect", "Robotics Engineer", "Data Scientist"];
+        } 
+        else if(topTag === 'finance') {
             stream = "commerce";
-            careers = ["Investment Banker", "Chartered Accountant", "FinTech Specialist"];
-        } else if(topTag === 'social') {
+            careers = ["Investment Banker", "Chartered Accountant", "Business Analyst"];
+        } 
+        else if(topTag === 'social') {
             stream = "arts";
-            careers = ["Civil Services (IAS)", "Corporate Lawyer", "Clinical Psychologist"];
-        } else if(topTag === 'creative') {
-            stream = "design/arts";
-            careers = ["UI/UX Designer", "Creative Director", "Architect"];
-        } else {
-            stream = "general";
-            careers = ["Management Professional", "Entrepreneur", "Consultant"];
+            careers = ["Civil Services (IAS)", "Corporate Lawyer", "Public Policy Expert"];
+        } 
+        else if(topTag === 'creative') {
+            stream = "arts"; 
+            careers = ["UX Designer", "Creative Director", "Architect"];
         }
 
         const match = (Math.random() * (98.9 - 91.5) + 91.5).toFixed(1);
+        
         localStorage.setItem("careerResult", stream);
         localStorage.setItem("matchPercent", match);
         localStorage.setItem("topCareers", JSON.stringify(careers));
+        
         window.location.href="result.html";
     }, 2800);
 }
