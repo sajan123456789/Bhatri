@@ -116,7 +116,10 @@ sorted.forEach((s,i)=>{
  box.innerHTML += `
  <div class="stream-card p-8 relative">
    ${best ? `<div class="absolute top-0 right-0 bg-yellow-400 text-black text-[10px] px-4 py-1 rounded-bl-xl font-black uppercase">Best Match</div>` : `<div class="text-[9px] text-slate-500 uppercase tracking-widest font-bold mb-2">Strong Alternative</div>`}
-
+<a href="careers.html?stream=${s.id}"
+   class="icon-box w-16 h-16 mb-4 bg-white/5 border border-white/10 hover:scale-110 transition flex items-center justify-center">
+  ${s.icon || ''}
+</a>
    <h3 class="text-2xl font-black mb-2">${s.title}</h3>
    <p class="text-slate-400 text-sm mb-4">${s.desc}</p>
 
