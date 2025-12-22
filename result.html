@@ -39,31 +39,41 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
         </h1>
       </a>
       <div class="flex gap-2">
-        <button onclick="window.print()" class="p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition" title="Print/Save PDF">
+        <button onclick="window.print()" class="p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition" title="Save PDF">
             <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </button>
         <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold uppercase tracking-widest transition flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-            Share Report
+            Share
         </button>
       </div>
     </header>
 
     <div class="text-center mb-16">
       <div class="inline-block status-badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">
-        Neural Scan Complete
+        Assessment Analysis Complete
       </div>
       <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic leading-tight">
         Recommended <span class="text-indigo-500">Streams</span>
       </h2>
-      <p id="userNameDisplay" class="text-slate-400 text-lg font-medium"></p>
+      <p id="userNameDisplay" class="text-slate-400 text-lg font-medium italic"></p>
     </div>
 
     <div id="resultsContainer" class="space-y-10 mb-20"></div>
 
-    <div class="text-center border-t border-white/5 pt-12 mb-10">
-      <div class="flex flex-col md:flex-row justify-center gap-4 no-print">
-        <button onclick="location.href='assessment.html'" class="px-10 py-4 bg-slate-800 hover:bg-slate-700 rounded-2xl font-black text-xs uppercase tracking-widest transition">Retake Neural Scan</button>
+    <div class="text-center border-t border-white/5 pt-12 mb-16">
+      <p class="text-[10px] text-slate-600 uppercase tracking-[0.4em] font-bold mb-8 italic">
+        Neural Data Encrypted • CareerSteps AI v2.8
+      </p>
+      <div class="flex flex-col md:flex-row justify-center gap-6 no-print">
+        <a href="careers.html" class="inline-flex items-center justify-center gap-3 px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 shadow-lg shadow-indigo-500/25 group">
+            Explore All Careers
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        
+        <button onclick="location.href='assessment.html'" class="px-12 py-5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 border border-white/5">
+            Retake Neural Scan
+        </button>
       </div>
     </div>
 </div>
@@ -108,7 +118,7 @@ const streamData = [
  }
 ];
 
-// Sort logic
+// Sort so the 'result' is on top
 const sorted = [...streamData].sort((a,b) => {
     if(a.id === result) return -1;
     if(b.id === result) return 1;
@@ -122,16 +132,16 @@ sorted.forEach((s, i) => {
  box.innerHTML += `
  <div class="stream-card p-8 md:p-10 relative overflow-hidden group">
     ${isTop 
-      ? `<div class="absolute top-0 right-0 flex items-center gap-1.5 badge-gold px-5 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest z-10">
+      ? `<div class="absolute top-0 right-0 flex items-center gap-1.5 badge-gold px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest z-10">
             <span>🏆</span> Best Match
          </div>`
-      : `<div class="absolute top-0 right-0 flex items-center gap-1.5 badge-silver px-5 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest opacity-80 z-10">
+      : `<div class="absolute top-0 right-0 flex items-center gap-1.5 badge-silver px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest opacity-80 z-10">
             <span>⭐</span> Strong Alternative
          </div>`
     }
 
    <div class="flex flex-col md:flex-row gap-8 items-start relative z-0">
-        <div class="text-4xl bg-white/5 p-5 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500">
+        <div class="text-4xl bg-white/5 p-6 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-inner">
             ${s.icon}
         </div>
         <div class="flex-grow w-full">
@@ -142,50 +152,46 @@ sorted.forEach((s, i) => {
                 <span class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.2em] pb-1 italic">Compatibility Score</span>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <p class="text-[10px] font-black uppercase text-indigo-400 tracking-widest mb-3 italic">Neural Match Reasoning</p>
-                    <p class="text-xs text-slate-300 leading-relaxed font-medium bg-white/5 p-4 rounded-xl border border-white/5">${s.explain}</p>
+                    <p class="text-xs text-slate-300 leading-relaxed font-medium bg-white/5 p-4 rounded-xl border border-white/5 italic">${s.explain}</p>
                 </div>
 
                 <div>
-                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-3">High-Potential Career Nodes</p>
+                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-3 italic">High-Potential Career Nodes</p>
                     <div class="flex flex-wrap gap-2">
                         ${s.careers.map(c => `<span class="career-tag">${c}</span>`).join('')}
                     </div>
                 </div>
             </div>
 
-            <div class="no-print">
-                <a href="careers.html?stream=${s.id}" class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-indigo-600 border border-white/10 rounded-2xl group/btn transition-all duration-300 w-full md:w-auto justify-center">
-                    <span class="text-xs font-black uppercase tracking-widest">Explore ${s.title} Careers</span>
-                    <svg class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                </a>
+            <div class="mt-8 pt-6 border-t border-white/5">
+                <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-4 italic">Strategic Roadmap Nodes</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    ${s.steps.map(step => `
+                        <div class="flex items-center gap-3 text-[11px] font-bold italic text-slate-400 hover:text-indigo-300 transition-colors">
+                            <span class="text-indigo-500">▶</span> ${step}
+                        </div>
+                    `).join('')}
+                </div>
             </div>
         </div>
    </div>
  </div>`;
 });
 
-// MULTI-PLATFORM SHARE FUNCTION
+// NATIVE SHARE
 async function shareResult() {
-    const shareData = {
-        title: 'CareerSteps AI Analysis',
-        text: `My AI Neural Scan is complete! I'm a ${match}% match for ${result.toUpperCase()}. Check yours!`,
-        url: window.location.href
-    };
-
+    const text = `My AI Career Analysis is Ready! Recommended: ${result.toUpperCase()} Node. Compatibility: ${match}%. Find your path here: `;
     try {
         if (navigator.share) {
-            await navigator.share(shareData);
+            await navigator.share({ title: 'CareerSteps AI Report', text: text, url: window.location.href });
         } else {
-            // Fallback for desktop/older browsers
-            navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-            alert("Report Link Copied to Clipboard!");
+            navigator.clipboard.writeText(text + window.location.href);
+            alert("Report Link Copied!");
         }
-    } catch (err) {
-        console.log("Share failed:", err);
-    }
+    } catch (err) {}
 }
 </script>
 
