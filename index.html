@@ -270,6 +270,23 @@ body{
     </p>
   </div>
 </footer>
+<script>
+  // Mobile menu toggle logic
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
 
+  menuBtn.addEventListener('click', () => {
+    // Hidden class ko hatane/lagane ke liye
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Menu ke kisi link par click karne par menu band ho jaye
+  const navLinks = mobileMenu.querySelectorAll('a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>
 </body>
 </html>
