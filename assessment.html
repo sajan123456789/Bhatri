@@ -106,18 +106,17 @@ body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',system-ui;
 let current = 0;
 let answers = [];
 
-/* ADVANCED AI QUESTIONS */
 const questions = [
- {q:"Nayi machine kharab hone par aapka natural approach kya hoga?", o:["Logic & Mechanism samajhna","Efficiency & Cost dekhna","Social impact pe dhyan dena","Design & Visuals improve karna","Other / Not Sure"]},
- {q:"Aap complex problems ko kaise process karte hain?", o:["Facts aur Data se","Profit aur Strategy se","Ethics aur Emotions se","Intuition aur Creativity se","Other / Not Sure"]},
- {q:"Agar aapko ek shehar (City) basana ho, toh aap kya chunenge?", o:["Infrastructure Architect","Finance & Operations Head","Public Welfare Planner","Urban Aesthetic Designer","Other / Not Sure"]},
- {q:"Social media par aapko kya dekhna sabse zyada pasand hai?", o:["Tech & Space Science","Markets & Business","Culture & Psychology","Photography & Arts","Other / Not Sure"]},
- {q:"School project mein aapka focus kis par hota hai?", o:["Functional Code/Logic","Budget & Resources","Teamwork & Presentation","Unique Look & Concept","Other / Not Sure"]},
- {q:"Success ka ultimate matlab aapke liye kya hai?", o:["Innovation","Financial Liberty","Social Respect","Creative Freedom","Other / Not Sure"]},
- {q:"Free time mein aapka brain kya chunta hai?", o:["Puzzle/Strategy Games","News/Stock Market","Reading/Helping People","Painting/Music/Design","Other / Not Sure"]},
- {q:"Mushkil waqt mein aapka decision kaisa hota hai?", o:["Cold & Logical","Calculated & Strategic","Supportive & Human-centric","Bold & Intuitive","Other / Not Sure"]},
- {q:"Duniya ko upgrade karne ka best rasta kya hai?", o:["Advanced Technology","Economic Stability","Quality Education/Law","Creative Expression","Other / Not Sure"]},
- {q:"Aapki sabse badi cognitive strength kya hai?", o:["Critical Thinking","Financial Logic","Public Speaking","Original Creation","Other / Not Sure"]}
+ {q:"Nayi machine kharab hone par aapka natural approach kya hoga?", o:["Logic & Mechanism samajhna","Efficiency & Cost dekhna","Social impact pe dhyan dena","Design & Visuals improve karna","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Aap complex problems ko kaise process karte hain?", o:["Facts aur Data se","Profit aur Strategy se","Ethics aur Emotions se","Intuition aur Creativity se","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Agar aapko ek shehar (City) basana ho, toh aap kya chunenge?", o:["Infrastructure Architect","Finance & Operations Head","Public Welfare Planner","Urban Aesthetic Designer","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Social media par aapko kya dekhna sabse zyada pasand hai?", o:["Tech & Space Science","Markets & Business","Culture & Psychology","Photography & Arts","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"School project mein aapka focus kis par hota hai?", o:["Functional Code/Logic","Budget & Resources","Teamwork & Presentation","Unique Look & Concept","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Success ka ultimate matlab aapke liye kya hai?", o:["Innovation","Financial Liberty","Social Respect","Creative Freedom","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Free time mein aapka brain kya chunta hai?", o:["Puzzle/Strategy Games","News/Stock Market","Reading/Helping People","Painting/Music/Design","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Mushkil waqt mein aapka decision kaisa hota hai?", o:["Cold & Logical","Calculated & Strategic","Supportive & Human-centric","Bold & Intuitive","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Duniya ko upgrade karne ka best rasta kya hai?", o:["Advanced Technology","Economic Stability","Quality Education/Law","Creative Expression","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
+ {q:"Aapki sabse badi cognitive strength kya hai?", o:["Critical Thinking","Financial Logic","Public Speaking","Original Creation","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]}
 ];
 
 function saveName(){
@@ -130,21 +129,20 @@ function saveName(){
 }
 
 function startTest(type){
+  localStorage.setItem("academic_stage", type);
   document.getElementById("selectClass").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
   loadQuestion();
 }
 
 function loadQuestion(){
-  // Progress Bar & Text
   const progressPercent = ((current + 1) / questions.length) * 100;
   document.getElementById("bar").style.width = `${progressPercent}%`;
   document.getElementById("progress").innerText=`Neural Node: ${current+1}/${questions.length}`;
   
-  // Question text
   const qDiv = document.getElementById("question");
   qDiv.classList.remove("fade-in");
-  void qDiv.offsetWidth; // Trigger reflow
+  void qDiv.offsetWidth; 
   qDiv.classList.add("fade-in");
   qDiv.innerText=questions[current].q;
 
@@ -156,23 +154,21 @@ function loadQuestion(){
     b.className="option w-full px-8 py-5 rounded-2xl font-bold uppercase flex justify-between items-center group fade-in";
     b.style.animationDelay = `${i * 0.05}s`;
     b.innerHTML=`<span class="text-sm tracking-wide">${text}</span><span class="text-[9px] opacity-20 font-black tracking-widest group-hover:opacity-100 transition">Select node</span>`;
-    b.onclick=()=>selectAnswer(i);
+    b.onclick=()=>selectAnswer(questions[current].tags[i]);
     opt.appendChild(b);
   });
 }
 
-function selectAnswer(i){
-  answers[current]=i;
+function selectAnswer(tag){
+  answers.push(tag);
   current++;
-
   if(current < questions.length) {
-    // Small delay to feel like AI is processing
     const quizCard = document.getElementById("quiz");
     quizCard.style.opacity = "0.7";
     setTimeout(()=>{
       quizCard.style.opacity = "1";
       loadQuestion();
-    }, 300);
+    }, 200);
   } else {
     showCalculating();
   }
@@ -181,6 +177,7 @@ function selectAnswer(i){
 function goBack(){
   if(current === 0) return;
   current--;
+  answers.pop();
   loadQuestion();
 }
 
@@ -189,24 +186,41 @@ function showCalculating(){
         <div class="text-center py-20 fade-in">
             <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin mx-auto mb-8"></div>
             <h2 class="text-2xl font-black uppercase italic tracking-tighter mb-4">Generating Neural Report</h2>
-            <p class="text-gray-500 text-xs font-black uppercase tracking-[0.3em] animate-pulse">Syncing with industry data...</p>
+            <p class="text-gray-500 text-xs font-black uppercase tracking-[0.3em] animate-pulse">Analyzing Future Career Pathways...</p>
         </div>
     `;
     
-    // Calculate result logic
     setTimeout(() => {
-        const counts = {0:0, 1:0, 2:0, 3:0, 4:0};
-        answers.forEach(v => counts[v]++);
-        const scores = [counts[0], counts[1], counts[2], counts[3]];
-        const maxIndex = scores.indexOf(Math.max(...scores));
+        const counts = { technical: 0, finance: 0, social: 0, creative: 0, neutral: 0 };
+        answers.forEach(tag => counts[tag]++);
+        const topTag = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
         
-        const res = (maxIndex == 0) ? "science" : (maxIndex == 1) ? "commerce" : "arts";
-        const match = (Math.random() * (98.5 - 89.2) + 89.2).toFixed(1);
-        
-        localStorage.setItem("careerResult", res);
+        let stream = "";
+        let careers = [];
+
+        if(topTag === 'technical') {
+            stream = "science";
+            careers = ["Software Architect", "Aerospace Engineer", "Data Scientist"];
+        } else if(topTag === 'finance') {
+            stream = "commerce";
+            careers = ["Investment Banker", "Chartered Accountant", "FinTech Specialist"];
+        } else if(topTag === 'social') {
+            stream = "arts";
+            careers = ["Civil Services (IAS)", "Corporate Lawyer", "Clinical Psychologist"];
+        } else if(topTag === 'creative') {
+            stream = "design/arts";
+            careers = ["UI/UX Designer", "Creative Director", "Architect"];
+        } else {
+            stream = "general";
+            careers = ["Management Professional", "Entrepreneur", "Consultant"];
+        }
+
+        const match = (Math.random() * (98.9 - 91.5) + 91.5).toFixed(1);
+        localStorage.setItem("careerResult", stream);
         localStorage.setItem("matchPercent", match);
+        localStorage.setItem("topCareers", JSON.stringify(careers));
         window.location.href="result.html";
-    }, 2500);
+    }, 2800);
 }
 </script>
 
