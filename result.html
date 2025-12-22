@@ -2,42 +2,65 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – AI Analysis Result</title>
+<title>CareerSteps – Final AI Report</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
 body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', system-ui; scroll-behavior:smooth; overflow-x: hidden; }
 .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); transition: 0.4s; }
-.glass:hover { border-color: rgba(99, 102, 241, 0.4); background: rgba(255,255,255,.05); }
 .step { border-left:2px solid #6366f1; padding-left:20px; position:relative; }
 .step::before { content:''; position:absolute; left:-6px; top:0; width:10px; height:10px; border-radius:50%; background:#6366f1; box-shadow:0 0 15px #6366f1; }
 .theme-science{border-top:6px solid #3b82f6;}
 .theme-commerce{border-top:6px solid #10b981;}
 .theme-arts{border-top:6px solid #a855f7;}
-.theme-design{border-top:6px solid #f43f5e;}
+.theme-poly{border-top:6px solid #f59e0b;}
 .career-card { background: linear-gradient(145deg, rgba(99,102,241,0.1), rgba(0,0,0,0)); border: 1px solid rgba(255,255,255,0.05); }
+
+/* Print optimization */
+@media print {
+    .no-print { display: none !important; }
+    body { background: white !important; color: black !important; }
+    .glass { border: 1px solid #ddd !important; background: none !important; color: black !important; }
+    #resultCard { opacity: 1 !important; transform: none !important; border: none !important; }
+    .text-gray-400, .text-indigo-400 { color: #333 !important; }
+}
 </style>
 </head>
 
 <body class="px-4 pb-20">
 
-<header class="max-w-6xl mx-auto py-6 flex justify-between items-center border-b border-white/5 mb-6">
+<header class="max-w-6xl mx-auto py-6 flex justify-between items-center border-b border-white/5 mb-6 no-print">
   <a href="index.html">
-    <h1 class="text-xl font-black text-indigo-400 uppercase italic tracking-tighter">
-      CAREER<span class="text-blue-500">STEPS</span> <span class="text-[9px] border border-indigo-500 bg-indigo-500/10 px-2 rounded-full ml-1">REPORT v2.8</span>
+    <h1 class="text-xl font-extrabold italic tracking-tighter text-indigo-400">
+      CAREER<span class="text-blue-500">STEPS</span>
     </h1>
   </a>
-  <div class="flex gap-4">
-    <button onclick="window.print()" class="text-[9px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition">Download PDF</button>
-    <a href="assessment.html" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded text-[9px] font-black uppercase tracking-widest transition">Retake Test</a>
+  
+  <div class="flex items-center gap-2">
+    <button onclick="window.print()" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition" title="Download PDF">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+    </button>
+    <button onclick="shareWhatsApp()" class="p-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#25D366] rounded-lg transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </button>
+    <button onclick="shareResult()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition shadow-lg shadow-indigo-500/20">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+        Share Link
+    </button>
   </div>
 </header>
 
 <section id="resultCard" class="max-w-4xl mx-auto glass rounded-[3rem] p-8 md:p-12 text-center opacity-0 translate-y-10 transition-all duration-1000">
 
 <p id="userDisplayName" class="text-indigo-400 text-[10px] uppercase font-black tracking-[0.4em] mb-6"></p>
-<h2 id="title" class="text-4xl md:text-7xl font-black uppercase italic mb-4 leading-tight"></h2>
+
+<div class="mb-4">
+    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">Primary AI Recommendation</span>
+    <h2 id="title" class="text-4xl md:text-7xl font-black uppercase italic leading-tight"></h2>
+</div>
+
 <div class="inline-block px-4 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-8">
     <p id="matchValue" class="text-green-400 text-[11px] font-mono font-bold uppercase tracking-widest"></p>
 </div>
@@ -45,133 +68,119 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', system-u
 
 <div class="text-left mb-20">
     <div class="flex items-center gap-3 mb-8">
-        <div class="h-px flex-grow bg-white/5"></div>
-        <h3 class="text-xl font-black italic uppercase text-indigo-400 tracking-widest px-4">Top Career Nodes</h3>
+        <h3 class="text-xl font-black italic uppercase text-indigo-400 tracking-widest pr-4">Top Career Pathways</h3>
         <div class="h-px flex-grow bg-white/5"></div>
     </div>
-    <div id="careerGrid" class="grid md:grid-cols-3 gap-4">
-        </div>
+    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
 </div>
 
 <div class="text-left mb-20">
-    <h3 class="text-2xl font-black italic uppercase text-white mb-10 flex items-center gap-4">
-        <span class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-sm not-italic">01</span>
-        Strategic Roadmap
-    </h3>
-    <div id="roadmap" class="space-y-10 ml-4"></div>
+    <h3 class="text-2xl font-black italic uppercase text-white mb-10">Strategic Action Plan</h3>
+    <div id="roadmap" class="space-y-10 ml-4 border-l border-white/10"></div>
 </div>
 
-<div class="text-left mb-20">
-    <h3 class="text-2xl font-black italic uppercase text-white mb-8 flex items-center gap-4">
-        <span class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-sm not-italic">02</span>
-        Gateway Exams
-    </h3>
-    <div id="exams" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
-</div>
-
-<div class="grid md:grid-cols-2 gap-6 mb-20">
-    <div class="glass rounded-3xl p-8 text-left">
-        <h3 class="text-sm font-black uppercase text-indigo-400 mb-6 tracking-widest">Why AI Chose This</h3>
-        <ul class="space-y-4 text-gray-400 text-xs font-bold leading-relaxed uppercase tracking-tighter">
-            <li class="flex items-start gap-2"><span class="text-indigo-500">▶</span> Neural patterns align with analytical reasoning</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-500">▶</span> High stability in technical problem solving</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-500">▶</span> Cognitive preference for structural logic</li>
-        </ul>
-    </div>
-    <div class="glass rounded-3xl p-8 text-left">
-        <h3 class="text-sm font-black uppercase text-indigo-400 mb-6 tracking-widest">Secondary Nodes</h3>
-        <div class="flex flex-wrap gap-3">
-            <span class="px-4 py-2 rounded-xl bg-white/5 text-[10px] font-bold uppercase">Creative Adaptability</span>
-            <span class="px-4 py-2 rounded-xl bg-white/5 text-[10px] font-bold uppercase">High EQ</span>
-            <span class="px-4 py-2 rounded-xl bg-white/5 text-[10px] font-bold uppercase">Strategic Risk</span>
-        </div>
-    </div>
-</div>
-
-<div class="py-12 border-t border-white/5">
-    <p class="text-[11px] text-gray-600 uppercase font-black tracking-[0.3em] mb-4 italic text-center">Neural Output Encrypted • 2025 CareerSteps AI</p>
+<div class="text-left mb-10">
+    <h3 class="text-2xl font-black italic uppercase text-white mb-8">Critical Entrance Nodes</h3>
+    <div id="exams" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
 </div>
 
 </section>
 
 <script>
-// Data fetching from Assessment
+// Data Load
 const result = localStorage.getItem("careerResult") || "science";
 const name = localStorage.getItem("user_name") || "Explorer";
 const match = localStorage.getItem("matchPercent") || "94.8";
 const topCareers = JSON.parse(localStorage.getItem("topCareers")) || ["Consultant", "Specialist", "Analyst"];
 
+// AI Logic Map
 const map = {
   science: {
-    title: "Science & Technology",
-    desc: "Aapka brain complex patterns aur logical variables ko solve karne mein maahir hai. Engineering aur Research nodes par aapki stability sabse zyada hai.",
-    road: ["Foundation: PCM/PCB Mastery", "Node 02: Competitive Entrance Prep", "Final: Specialization in Emerging Tech"],
-    ex: ["JEE MAINS/ADV", "NEET-UG", "IISER / BITSAT"]
+    title: "Science Stream",
+    desc: "Aapka brain analytical logic aur mechanical reasoning mein excel karta hai. 10th ke baad PCM/PCB chunna aapke liye optimal node hai.",
+    road: ["Pick Science (PCM/PCB) in 11th", "Start preparing for National Entrance", "Focus on Technical/Medical Bachelor degree"],
+    ex: ["JEE MAINS", "NEET-UG", "NDA", "BITSAT"],
+    theme: "science"
   },
   commerce: {
-    title: "Commerce & Finance",
-    desc: "Strategic risk management aur numerical intelligence aapki core strength hai. Economics aur Business nodes aapke liye ideal hain.",
-    road: ["Foundation: Accounts & Eco", "Node 02: Professional Certification", "Final: Global Finance / Management"],
-    ex: ["CA FOUNDATION", "CUET (B.COM/BBA)", "IPMAT / SET"]
+    title: "Commerce Stream",
+    desc: "Financial intelligence aur data strategy aapki core strengths hain. Management aur Business nodes aapke personality se align karte hain.",
+    road: ["Opt for Commerce with Maths", "Begin Professional Certification (CA/CS)", "Target Top Tier Management Colleges"],
+    ex: ["CA FOUNDATION", "CUET", "IPMAT", "SET"],
+    theme: "commerce"
   },
   arts: {
-    title: "Humanities & Policy",
-    desc: "Aapka neural profile communication, empathy aur critical thinking ko support karta hai. Law, Civil Services aur Policy nodes align ho rahe hain.",
-    road: ["Foundation: Social Sciences", "Node 02: Language & Logic Skill", "Final: UPSC/Law/International Relations"],
-    ex: ["CLAT / AILET", "CUET (ARTS)", "UPSC Foundation"]
-  },
-  "design/arts": {
-    title: "Creative Arts & Design",
-    desc: "Aapka cognitive profile visual-spatial intelligence aur original creation mein peak karta hai. Designing aur Media nodes aapke liye optimal hain.",
-    road: ["Foundation: Visual Literacy", "Node 02: Portfolio Development", "Final: Industry Design Degree"],
-    ex: ["NID / NIFT", "UCEED", "CUET (Fine Arts)"]
+    title: "Humanities / Arts",
+    desc: "Aapka cognitive profile communication aur social structure analysis ke liye perfect hai. Law aur Policy Making aapke ideal careers hain.",
+    road: ["Choose Humanities/Arts in 11th", "Enhance Creative & Legal writing", "Prepare for UPSC/Law entrance"],
+    ex: ["CLAT", "CUET (Arts)", "AILET", "LSAT"],
+    theme: "arts"
   },
   general: {
-    title: "Executive & Management",
-    desc: "Aap ek versatile profile rakhte hain jo management, leadership aur business operations mein behtar perform karta hai.",
-    road: ["Foundation: General Aptitude", "Node 02: Internship & Skills", "Final: MBA / Entrepreneurship"],
-    ex: ["CAT / GMAT", "CUET (BBA)", "IPMAT"]
+    title: "Diploma & Polytechnic",
+    desc: "Aapka profile practical technical skills aur hands-on execution ke liye optimal hai. Direct technical entry via Diploma aapke liye behtar hai.",
+    road: ["Apply for State Polytechnic Entrance", "Pick a specialized branch (CS/EE/ME)", "Explore lateral entry into B.Tech"],
+    ex: ["JEECUP", "JEEP", "POLYCET", "CET"],
+    theme: "poly"
   }
 };
 
-const d = map[result] || map.science;
+const data = map[result] || map.general;
 
 // Render logic
-document.getElementById("userDisplayName").innerText = "Neural Scan for: " + name.toUpperCase();
-document.getElementById("title").innerText = d.title;
-document.getElementById("matchValue").innerText = "System Alignment: " + match + "%";
-document.getElementById("description").innerText = d.desc;
-document.getElementById("resultCard").classList.add("theme-" + (result.includes('/') ? 'design' : result));
+document.getElementById("userDisplayName").innerText = "Neural Scan: " + name.toUpperCase();
+document.getElementById("title").innerText = data.title;
+document.getElementById("matchValue").innerText = "Match Accuracy: " + match + "%";
+document.getElementById("description").innerText = data.desc;
+document.getElementById("resultCard").classList.add("theme-" + data.theme);
 
-// Render Roadmap
-d.road.forEach((r, i) => {
-    document.getElementById("roadmap").innerHTML += `
-        <div class="step">
-            <span class="text-[10px] font-black uppercase text-indigo-500 tracking-widest block mb-1">Phase 0${i+1}</span>
-            <span class="text-gray-300 font-bold uppercase tracking-tighter">${r}</span>
-        </div>`;
-});
-
-// Render Dynamic Careers (From Assessment)
+// Career Cards
 topCareers.forEach(career => {
     document.getElementById("careerGrid").innerHTML += `
-        <div class="career-card p-6 rounded-2xl text-center">
-            <span class="text-xs font-black uppercase tracking-widest text-indigo-400 italic">${career}</span>
+        <div class="career-card p-6 rounded-2xl border border-white/5 text-center">
+            <h4 class="text-white font-black uppercase text-sm tracking-widest">${career}</h4>
+            <p class="text-[9px] text-indigo-400 mt-2 uppercase font-bold italic tracking-widest">High Potential</p>
         </div>`;
 });
 
-// Render Exams
-d.ex.forEach(e => {
+// Roadmap Steps
+data.road.forEach((step, i) => {
+    document.getElementById("roadmap").innerHTML += `
+        <div class="step">
+            <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1">Phase 0${i+1}</p>
+            <p class="text-gray-300 font-bold uppercase tracking-tighter text-sm leading-tight">${step}</p>
+        </div>`;
+});
+
+// Entrance Exams
+data.ex.forEach(exam => {
     document.getElementById("exams").innerHTML += `
-        <div class="glass p-5 rounded-2xl text-center text-[10px] font-black uppercase tracking-widest text-gray-400 border border-white/5">
-            ${e}
+        <div class="glass p-4 rounded-xl text-center text-[10px] font-black uppercase tracking-widest text-gray-400 border border-white/5 italic">
+            ${exam}
         </div>`;
 });
 
-// Final Animation
-setTimeout(() => {
-    document.getElementById("resultCard").classList.remove("opacity-0", "translate-y-10");
-}, 100);
+// SHARE & PDF LOGIC
+const shareText = `CareerSteps AI Report for ${name}:\nRecommendation: ${data.title}\nMatch: ${match}%\nCheck yours here: `;
+const shareUrl = window.location.origin;
+
+function shareWhatsApp() {
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + shareUrl)}`, '_blank');
+}
+
+async function shareResult() {
+    if (navigator.share) {
+        try {
+            await navigator.share({ title: 'My CareerSteps AI Report', text: shareText, url: shareUrl });
+        } catch (err) { console.log(err); }
+    } else {
+        navigator.clipboard.writeText(shareText + shareUrl);
+        alert("Result link copied to clipboard!");
+    }
+}
+
+// Reveal animation
+setTimeout(() => { document.getElementById("resultCard").classList.remove("opacity-0", "translate-y-10"); }, 100);
 </script>
 
 </body>
