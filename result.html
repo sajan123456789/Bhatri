@@ -9,177 +9,178 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
-body { background:#0a0f1d; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; }
-.main-card { background:#111827; border-radius:32px; }
-.stream-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:24px; transition:.4s; }
-.stream-card:hover { border-color:#6366f1; transform:translateY(-4px); }
-.status-badge { background:rgba(16,185,129,.1); color:#10b981; border:1px solid rgba(16,185,129,.2); }
-.career-tag { background:rgba(99,102,241,.1); color:#a5b4fc; font-size:10px; padding:5px 12px; border-radius:8px; font-weight:700; }
+body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+.main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
+.stream-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:24px; transition:.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.stream-card:hover { border-color:#6366f1; transform:translateY(-6px); background: rgba(99, 102, 241, 0.03); }
+.status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
+.career-tag { background:rgba(99,102,241,.1); color:#a5b4fc; font-size:10px; padding:5px 12px; border-radius:8px; font-weight:700; text-transform: uppercase; }
+
+/* Premium Badges */
+.badge-gold { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #000; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); }
+.badge-silver { background: linear-gradient(135deg, #94a3b8 0%, #475569 100%); color: #fff; box-shadow: 0 4px 15px rgba(148, 163, 184, 0.2); }
 
 @media print {
   .no-print { display:none!important }
-  body { background:#fff!important;color:#000!important }
-  .stream-card { page-break-inside:avoid }
+  body { background:#fff!important; color:#000!important }
+  .stream-card { border: 1px solid #ddd!important; page-break-inside:avoid; color: #000!important; }
 }
 </style>
 </head>
 
-<body class="p-4 md:p-10 bg-[#020617]">
+<body class="p-4 md:p-10">
 
-<!-- HEADER -->
-<div class="flex justify-between items-center mb-12 no-print">
-  <a href="index.html" class="flex items-center gap-2">
-  <h1 class="text-2xl font-extrabold text-indigo-400 hover:opacity-90 transition">
-    CAREER<span class="text-blue-500">STEPS</span>
-  </h1>
-</a>
-  <div class="flex gap-3">
-    <button onclick="window.print()" class="px-4 py-2 bg-white/5 rounded-xl">PDF</button>
-    <button onclick="shareWhatsApp()" class="px-4 py-2 bg-green-500/20 rounded-xl">WhatsApp</button>
-    <button onclick="shareResult()" class="px-4 py-2 bg-indigo-600 rounded-xl">Share</button>
-  </div>
-</div>
+<div class="max-w-4xl mx-auto">
+    <header class="flex justify-between items-center mb-12 no-print">
+      <a href="index.html" class="group transition-transform hover:scale-105">
+        <h1 class="text-2xl font-extrabold italic uppercase tracking-tighter text-indigo-400">
+          CAREER<span class="text-blue-500">STEPS</span>
+          <span class="hidden md:inline-block text-[9px] border border-indigo-500/50 px-2 py-0.5 rounded-full ml-2 font-black tracking-widest bg-indigo-500/10">AI v2.8</span>
+        </h1>
+      </a>
+      <div class="flex gap-2">
+        <button onclick="window.print()" class="p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </button>
+        <button onclick="shareWhatsApp()" class="p-3 bg-green-500/10 rounded-xl border border-green-500/20 hover:bg-green-500/20 transition">
+            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </button>
+      </div>
+    </header>
 
-<!-- TITLE -->
-<div class="text-center mb-16">
-  <div class="inline-block status-badge px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
-    Assessment Analysis Complete
-  </div>
-  <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic">
-    Recommended <span class="text-indigo-500">Streams</span>
-  </h2>
-  <p id="userNameDisplay" class="text-slate-400 text-lg"></p>
-</div>
+    <div class="text-center mb-16">
+      <div class="inline-block status-badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+        Neural Scan Complete
+      </div>
+      <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic leading-tight">
+        Recommended <span class="text-indigo-500">Streams</span>
+      </h2>
+      <p id="userNameDisplay" class="text-slate-400 text-lg font-medium"></p>
+    </div>
 
-<!-- RESULTS -->
-<div id="resultsContainer" class="space-y-8 mb-20"></div>
+    <div id="resultsContainer" class="space-y-10 mb-20"></div>
 
-<!-- CTA -->
-<div class="text-center border-t border-white/5 pt-10">
-  <p class="text-[10px] text-slate-600 uppercase tracking-widest mb-4">
-    Neural Data Encrypted • CareerSteps AI
-  </p>
-  <div class="flex justify-center gap-4 no-print">
-    <a href="careers.html" class="px-8 py-3 bg-indigo-600 rounded-xl font-bold">Explore All Careers</a>
-    <a href="assessment.html" class="px-8 py-3 bg-slate-800 rounded-xl font-bold">Retake Test</a>
-  </div>
+    <div class="text-center border-t border-white/5 pt-12 mb-10">
+      <p class="text-[10px] text-slate-600 uppercase tracking-[0.4em] font-bold mb-6">
+        CareerSteps AI Ecosystem • Verified Report
+      </p>
+      <div class="flex flex-col md:flex-row justify-center gap-4 no-print">
+        <a href="careers.html" class="px-10 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-2xl font-black text-xs uppercase tracking-widest transition shadow-lg shadow-indigo-500/20">Explore All Nodes</a>
+        <button onclick="location.href='assessment.html'" class="px-10 py-4 bg-slate-800 hover:bg-slate-700 rounded-2xl font-black text-xs uppercase tracking-widest transition">Recalibrate Test</button>
+      </div>
+    </div>
 </div>
 
 <script>
-// ===== DATA =====
-const name = localStorage.getItem("user_name") || "Student";
-const match = parseFloat(localStorage.getItem("matchPercent") || "92.4");
+const name = localStorage.getItem("user_name") || "User";
+const match = parseFloat(localStorage.getItem("matchPercent") || "94.8");
+const result = localStorage.getItem("careerResult") || "science";
 
-document.getElementById("userNameDisplay").innerText =
-  `System Analysis for ${name.toUpperCase()}`;
+document.getElementById("userNameDisplay").innerText = `System Analysis for ${name.toUpperCase()}`;
 
 const streamData = [
  {
   id:"science",
   title:"Science & Technology",
-  desc:"Strong analytical thinking, problem-solving ability and curiosity towards tech & innovation.",
-  careers:["Software Engineer","Doctor","Data Scientist","Physicist"],
-  steps:["PCM / PCB in 11–12","JEE / NEET / CET prep","Projects & research"],
-  explain:"High analytical ability, logic strength and structured thinking detected.",
+  icon: "🔬",
+  desc:"Complex logic, high analytical depth, and a natural aptitude for structural problem-solving.",
+  careers:["Software Architect","Surgeon","Data Scientist","Aerospace Engineer"],
+  steps:["11th/12th with PCM or PCB","Target JEE/NEET/Entrance","Early Research Exposure"],
+  explain:"Your neural pattern shows 98% efficiency in abstract reasoning and logic-based tasks.",
   score: match
  },
  {
   id:"commerce",
   title:"Commerce & Business",
-  desc:"Strategic mindset with strong interest in finance, management and decision making.",
-  careers:["CA","MBA","Investment Banker","Economist"],
-  steps:["Commerce + Maths","CA / IPMAT prep","Business & finance exposure"],
-  explain:"Decision-making skills and money-handling aptitude observed.",
-  score: (match - 4.5).toFixed(1)
+  icon: "📈",
+  desc:"Strategic resource management, financial logic, and excellence in organizational leadership.",
+  careers:["Investment Banker","Chartered Accountant","CEO","Business Strategist"],
+  steps:["11th/12th with Commerce + Maths","Target CA/IPMAT/CFA","Focus on Financial Markets"],
+  explain:"High aptitude for risk assessment and quantitative decision making detected.",
+  score: (match - 3.8).toFixed(1)
  },
  {
   id:"arts",
-  title:"Humanities & Policy",
-  desc:"Social awareness, communication skills and interest in law, governance and society.",
-  careers:["Lawyer","IAS / IPS","Psychologist","Journalist"],
-  steps:["History / Pol Sci","CLAT / UPSC foundation","Debate & writing"],
-  explain:"High social intelligence and creative expression found.",
-  score: (match - 9.2).toFixed(1)
+  title:"Humanities & Law",
+  icon: "⚖️",
+  desc:"High social intelligence, communication mastery, and deep understanding of human systems.",
+  careers:["Corporate Lawyer","IAS Officer","Psychologist","Political Analyst"],
+  steps:["11th/12th Humanities Nodes","Target CLAT/UPSC/Liberal Arts","Build Public Speaking Portfolio"],
+  explain:"Exceptional creative expression and systemic analysis capabilities found.",
+  score: (match - 8.4).toFixed(1)
  }
 ];
 
-// ===== SORT BY SCORE (CareerCompass style) =====
-const sorted = [...streamData].sort(
- (a,b)=>parseFloat(b.score)-parseFloat(a.score)
-);
+// Sort results so the best match is first
+const sorted = [...streamData].sort((a,b) => {
+    if(a.id === result) return -1;
+    if(b.id === result) return 1;
+    return parseFloat(b.score) - parseFloat(a.score);
+});
 
-// ===== RENDER =====
 const box = document.getElementById("resultsContainer");
 
-sorted.forEach((s,i)=>{
- const best = i===0;
+sorted.forEach((s, i) => {
+ const isTop = i === 0;
  box.innerHTML += `
- <div class="stream-card p-8 relative">
- ${best 
-  ? `<div class="absolute top-4 left-4 bg-yellow-400 text-black text-[10px] px-4 py-1 rounded-full font-black uppercase tracking-widest shadow">
-       BEST MATCH
-     </div>`
-  : `<div class="absolute top-4 left-4 bg-white/10 text-slate-300 text-[10px] px-4 py-1 rounded-full font-bold uppercase tracking-widest">
-       Strong Alternative
-     </div>`
-}
-   ${best ? `<div class="absolute top-0 right-0 bg-yellow-400 text-black text-[10px] px-4 py-1 rounded-bl-xl font-black uppercase">Best Match</div>` : `<div class="text-[9px] text-slate-500 uppercase tracking-widest font-bold mb-2">Strong Alternative</div>`}
-<a href="careers.html?stream=${s.id}"
-   class="icon-box w-16 h-16 mb-4 bg-white/5 border border-white/10 hover:scale-110 transition flex items-center justify-center">
-  ${s.icon || ''}
-</a>
-   <h3 class="text-2xl font-black mb-2">${s.title}</h3>
-   <p class="text-slate-400 text-sm mb-4">${s.desc}</p>
+ <div class="stream-card p-8 md:p-10 relative overflow-hidden group">
+    ${isTop 
+      ? `<div class="absolute top-0 right-0 flex items-center gap-1.5 badge-gold px-5 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest">
+            <span>🏆</span> Best Match
+         </div>`
+      : `<div class="absolute top-0 right-0 flex items-center gap-1.5 badge-silver px-5 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest opacity-80">
+            <span>⭐</span> Strong Node
+         </div>`
+    }
 
-   <div class="flex justify-between items-center mb-4">
-     <span class="text-3xl font-black italic">${s.score}%</span>
-     <span class="text-[10px] text-slate-500 uppercase">Match Score</span>
-   </div>
+   <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="text-4xl bg-white/5 p-5 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500">
+            ${s.icon}
+        </div>
+        <div class="flex-grow">
+            <h3 class="text-3xl font-black italic uppercase mb-2 tracking-tight">${s.title}</h3>
+            <p class="text-slate-400 text-sm mb-6 leading-relaxed max-w-2xl">${s.desc}</p>
+            
+            <div class="flex items-end gap-2 mb-8">
+                <span class="text-4xl font-black italic text-indigo-400 leading-none">${s.score}%</span>
+                <span class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.2em] pb-1">Compatibility Score</span>
+            </div>
 
-   <!-- WHY -->
-   <div class="bg-white/5 p-4 rounded-xl mb-6">
-     <p class="text-xs text-indigo-300 font-bold uppercase mb-2">Why this match?</p>
-     <p class="text-sm text-slate-300">${s.explain}</p>
-   </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-indigo-500/5 border border-indigo-500/10 p-5 rounded-2xl">
+                    <p class="text-[10px] font-black uppercase text-indigo-400 tracking-widest mb-3 italic">Why This Match?</p>
+                    <p class="text-xs text-slate-300 leading-relaxed font-medium">${s.explain}</p>
+                </div>
 
-   <!-- CAREERS -->
-   <div class="mb-6">
-     <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">Career Paths</p>
-     <div class="flex flex-wrap gap-2">
-       ${s.careers.map(c=>`<span class="career-tag">${c}</span>`).join("")}
-     </div>
-   </div>
+                <div>
+                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-3">High Potential Careers</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${s.careers.map(c => `<span class="career-tag">${c}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
 
-   <!-- ROADMAP -->
-   <ul class="text-sm text-slate-300 mb-6 space-y-2">
-     ${s.steps.map(st=>`<li>▶ ${st}</li>`).join("")}
-   </ul>
-
-   <!-- AUTO REDIRECT -->
-   <div class="flex gap-4 no-print">
-     <a href="careers.html?stream=${s.id}"
-      class="px-6 py-3 bg-indigo-600 rounded-xl font-bold text-sm">
-      Explore Careers in ${s.title}
-     </a>
+            <div class="mt-8 pt-6 border-t border-white/5">
+                <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-4">Strategic Roadmap</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    ${s.steps.map(step => `
+                        <div class="flex items-center gap-3 text-[11px] font-bold italic text-slate-400">
+                            <span class="text-indigo-500">▶</span> ${step}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
    </div>
  </div>`;
 });
 
-// ===== SHARE (UNCHANGED) =====
-const shareURL = window.location.href;
-const shareMSG = `Hey! Check out my AI Career Report on CareerSteps. Match Score: ${match}% → `;
-
+// WhatsApp Share
 function shareWhatsApp(){
- window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareMSG+shareURL)}`);
-}
-async function shareResult(){
- if(navigator.share){
-  await navigator.share({title:"AI Career Report",text:shareMSG,url:shareURL});
- }else{
-  navigator.clipboard.writeText(shareMSG+shareURL);
-  alert("Link copied");
- }
+ const text = `My AI Career Analysis is Ready! Recommended: ${result.toUpperCase()} (${match}%). Scan yours at: `;
+ window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + window.location.href)}`);
 }
 </script>
+
 </body>
 </html>
