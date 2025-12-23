@@ -5,17 +5,18 @@
 <title>CareerSteps – Final AI Analysis</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
 .main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
 .stream-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:24px; transition:.4s cubic-bezier(0.4, 0, 0.2, 1); }
 .stream-card:hover { border-color:#6366f1; transform:translateY(-6px); background: rgba(99, 102, 241, 0.03); }
 .status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
-.career-tag { background:rgba(99,102,241,.1); color:#a5b4fc; font-size:10px; padding:5px 12px; border-radius:8px; font-weight:700; text-transform: uppercase; }
-.badge-gold { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #000; }
-.badge-silver { background: linear-gradient(135deg, #94a3b8 0%, #475569 100%); color: #fff; }
+.career-tag { background:rgba(99,102,241,.1); color:#a5b4fc; font-size:10px; padding:5px 12px; border-radius:8px; font-weight:700; text-transform: uppercase; border: 1px solid rgba(99,102,241,0.2); }
+.badge-gold { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #000; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); }
+.badge-silver { background: linear-gradient(135deg, #94a3b8 0%, #475569 100%); color: #fff; opacity: 0.8; }
+.gradient-text { background: linear-gradient(90deg, #6366f1, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 @media print { .no-print { display:none!important } body { background:#fff!important; color:#000!important } }
 </style>
@@ -28,99 +29,127 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
       <a href="index.html" class="group transition-transform hover:scale-105">
         <h1 class="text-2xl font-extrabold italic uppercase tracking-tighter text-indigo-400">
           CAREER<span class="text-blue-500">STEPS</span>
-          <span class="text-[9px] border border-indigo-500/50 px-2 py-0.5 rounded-full ml-2 font-black bg-indigo-500/10">CORE AI v3.0</span>
+          <span class="text-[9px] border border-indigo-500/50 px-2 py-0.5 rounded-full ml-2 font-black tracking-widest bg-indigo-500/10 uppercase">Core AI v3.0</span>
         </h1>
       </a>
       <div class="flex gap-2">
-        <button onclick="window.print()" class="p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition"><svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></button>
-        <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold uppercase tracking-widest transition">Share</button>
+        <button onclick="window.print()" class="p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </button>
+        <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold uppercase tracking-widest transition flex items-center gap-2">Share</button>
       </div>
     </header>
 
     <div class="text-center mb-16">
-      <div id="stageBadge" class="inline-block status-badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">Processing...</div>
-      <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic leading-tight">Your AI <span class="text-indigo-500">Roadmap</span></h2>
+      <div id="stageBadge" class="inline-block status-badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6 italic">Neural Sync Complete</div>
+      <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic leading-tight">Your AI <span class="gradient-text">Roadmap</span></h2>
       <p id="userNameDisplay" class="text-slate-400 text-lg font-medium italic"></p>
     </div>
 
     <div id="resultsContainer" class="space-y-10 mb-20"></div>
 
-    <div class="text-center border-t border-white/5 pt-12 mb-16">
-      <div class="flex flex-col md:flex-row justify-center gap-6 no-print">
-        <a href="index.html" class="inline-flex items-center justify-center gap-3 px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-lg shadow-indigo-500/25">Finish Mission</a>
-        <button onclick="location.href='assessment.html'" class="px-12 py-5 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-[0.2em]">Retake Scan</button>
+    <div class="text-center border-t border-white/5 pt-12 mb-16 no-print">
+      <div class="flex flex-col md:flex-row justify-center gap-6">
+        <button onclick="location.href='index.html'" class="px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-lg shadow-indigo-500/25">Finish Mission</button>
+        <button onclick="location.href='assessment.html'" class="px-12 py-5 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-[0.2em] border border-white/5 hover:bg-slate-700">Retake Scan</button>
       </div>
     </div>
 </div>
 
 <script>
+// Retrieve data from assessment
 const name = localStorage.getItem("user_name") || "Explorer";
 const stage = localStorage.getItem("academic_stage") || "10";
-const resultId = localStorage.getItem("careerResult");
-const matchScore = parseFloat(localStorage.getItem("matchPercent") || "92.4");
+const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
 
 document.getElementById("userNameDisplay").innerText = `System Analysis for ${name.toUpperCase()}`;
 document.getElementById("stageBadge").innerText = `POST-${stage}TH NEURAL REPORT COMPLETE`;
 
-const dataModel = {
-    // 10th Streams
-    "science": { title: "Science & Technology", icon: "🔬", explain: "High efficiency in logic-based tasks detected.", careers: ["Engineering", "Medicine", "Research", "Data Science"], colleges: ["IITs / NITs", "AIIMS", "BITS Pilani", "IISER"], roadmap: ["Select PCM/PCB", "Target JEE/NEET", "Skill up in Python"] },
-    "commerce": { title: "Commerce & Finance", icon: "📈", explain: "High aptitude for risk and quantitative analysis.", careers: ["Investment Banking", "CA", "Management", "Fintech"], colleges: ["SRCC Delhi", "IIMs (IPM)", "St. Xavier's", "LSR"], roadmap: ["Select Commerce + Math", "Target CA/IPMAT", "Learn Stock Markets"] },
-    "arts": { title: "Humanities & Law", icon: "⚖️", explain: "Deep understanding of human systems and ethics.", careers: ["Corporate Law", "UPSC / IAS", "Psychology", "Journalism"], colleges: ["NLSIU Bangalore", "TISS Mumbai", "JNU Delhi", "LSR"], roadmap: ["Build Portfolio", "Target CLAT/UPSC", "Public Speaking"] },
-    
-    // 12th Careers
-    "engineering/tech": { title: "Technology & Software", icon: "💻", explain: "Pattern recognition and algorithmic mindset found.", careers: ["Full Stack Dev", "AI Engineer", "Cloud Architect", "Robotics"], colleges: ["IIT Bombay", "IIIT Hyderabad", "NIT Trichy", "DTU"], roadmap: ["Master DSA", "Internships", "Build GitHub"] },
-    "management/finance": { title: "Investment & Strategy", icon: "💎", explain: "Strategic leadership and economic IQ detected.", careers: ["Venture Capital", "Equity Research", "Consulting", "CFA"], colleges: ["IIM Ahmedabad", "FMS Delhi", "XLRI", "JBIMS"], roadmap: ["Target MBA/CFA", "Networking", "Case Competitions"] },
-    "law/humanities": { title: "Global Law & Policy", icon: "🏛️", explain: "Exceptional verbal reasoning and persuasive logic.", careers: ["Corporate Lawyer", "Diplomat", "Public Policy", "NGO Lead"], colleges: ["NLU Bangalore", "NALSAR", "Faculty of Law (DU)", "JGLS"], roadmap: ["Intern at Law Firms", "Moot Courts", "Policy Research"] },
-    "creative/design": { title: "Visual & Experience Design", icon: "🎨", explain: "Original creation and aesthetic visualization IQ.", careers: ["UI/UX Designer", "Art Director", "Product Design", "VFX"], colleges: ["NID Ahmedabad", "IDC Bombay", "NIFT Delhi", "Pearl"], roadmap: ["Portfolio Design", "Behance/Dribbble", "Learn Figma/3D"] }
+// Detailed Content Database
+const contentDB = {
+    technical: { title: "Science & Technology", icon: "🔬", explain: "Exceptional efficiency in logic, abstract reasoning, and technical decomposition.", careers: ["Software Architect", "Data Scientist", "Aerospace Engineer", "Quantum Dev"], colleges: ["IIT Bombay", "NIT Trichy", "IISc Bangalore", "BITS Pilani"], roadmap: ["Focus on PCM/PCB", "Target JEE/NEET", "Early Coding Labs"] },
+    finance: { title: "Commerce & Business", icon: "📈", explain: "High-level strategic resource management and financial logic detected.", careers: ["Investment Banker", "Chartered Accountant", "Fintech Lead", "Stock Strategist"], colleges: ["SRCC Delhi", "IIM Indore (IPM)", "St. Xavier's", "LSR New Delhi"], roadmap: ["Select Commerce + Math", "Target IPMAT/CA", "Analyze Market Trends"] },
+    social: { title: "Humanities & Law", icon: "⚖️", explain: "Deep understanding of human systems, social intelligence, and persuasive logic.", careers: ["Corporate Lawyer", "IAS/Diplomat", "Public Policy", "System Psychologist"], colleges: ["NLSIU Bangalore", "TISS Mumbai", "JNU Delhi", "Faculty of Law DU"], roadmap: ["Build Ethics Portfolio", "Target CLAT/UPSC", "Public Speaking"] },
+    creative: { title: "Creative & Design", icon: "🎨", explain: "Superior aesthetic visualization and original creative problem-solving IQ.", careers: ["UI/UX Designer", "Art Director", "Product Designer", "VFX Architect"], colleges: ["NID Ahmedabad", "IDC IIT Bombay", "NIFT Delhi", "Srishti Manipal"], roadmap: ["Creative Portfolio", "Master Figma/3D", "Visual Design Theory"] }
 };
 
-const resultsContainer = document.getElementById("resultsContainer");
-
-// Display Logic
-function render() {
-    let selected = dataModel[resultId] || (stage === "10" ? dataModel.science : dataModel["engineering/tech"]);
+// Real-time Percentage Calculation Algorithm
+function calculateScores() {
+    const totalAnswers = Object.values(scoreData).reduce((a, b) => a + b, 0) || 10;
+    const baseMatch = 85; // Starting base for real feel
     
-    resultsContainer.innerHTML = `
-    <div class="stream-card p-8 md:p-10 relative overflow-hidden group border-indigo-500/40">
-        <div class="absolute top-0 right-0 badge-gold px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase z-10">🏆 AI Prime Match</div>
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-            <div class="text-4xl bg-white/5 p-6 rounded-2xl border border-white/10">${selected.icon}</div>
+    let scores = Object.keys(scoreData).map(key => {
+        // Calculation: (Specific Score / Total) * variability + base
+        let rawPercent = (scoreData[key] / totalAnswers) * 15 + baseMatch;
+        return {
+            id: key,
+            score: rawPercent.toFixed(1),
+            ...contentDB[key]
+        };
+    });
+
+    // Sort by Score: Descending
+    return scores.sort((a, b) => b.score - a.score);
+}
+
+const sortedResults = calculateScores();
+const container = document.getElementById("resultsContainer");
+
+// Render Results Sequence-wise
+sortedResults.forEach((data, index) => {
+    const isTop = index === 0;
+    container.innerHTML += `
+    <div class="stream-card p-8 md:p-10 relative overflow-hidden group ${isTop ? 'border-indigo-500/40 bg-indigo-500/5' : ''}">
+        ${isTop 
+            ? `<div class="absolute top-0 right-0 badge-gold px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest z-10">🏆 AI Prime Match</div>`
+            : `<div class="absolute top-0 right-0 badge-silver px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest z-10">⭐ Strong Alternative</div>`
+        }
+
+        <div class="flex flex-col md:flex-row gap-8 items-start relative z-0">
+            <div class="text-4xl bg-white/5 p-6 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                ${data.icon}
+            </div>
             <div class="flex-grow w-full">
-                <h3 class="text-3xl font-black italic uppercase mb-2">${selected.title}</h3>
+                <h3 class="text-3xl font-black italic uppercase mb-2 tracking-tight">${data.title}</h3>
+                
                 <div class="flex items-end gap-2 mb-6 border-b border-white/5 pb-4">
-                    <span class="text-4xl font-black italic text-indigo-400">${matchScore}%</span>
-                    <span class="text-[9px] uppercase font-bold text-slate-500 italic pb-1">Confidence Score</span>
+                    <span class="text-4xl font-black italic text-indigo-400 leading-none">${data.score}%</span>
+                    <span class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.2em] pb-1 italic">Compatibility Score</span>
                 </div>
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
+
+                <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <p class="text-[10px] font-black uppercase text-indigo-400 mb-3">AI Reasoning</p>
-                        <p class="text-xs text-slate-300 italic bg-white/5 p-4 rounded-xl">${selected.explain}</p>
+                        <p class="text-[10px] font-black uppercase text-indigo-400 tracking-widest mb-3 italic">Neural Reasoning</p>
+                        <p class="text-xs text-slate-300 leading-relaxed font-medium bg-white/5 p-4 rounded-xl border border-white/5 italic">"${data.explain}"</p>
                     </div>
+
                     <div>
-                        <p class="text-[10px] font-black uppercase text-slate-500 mb-3">Top Strategic Colleges</p>
+                        <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-3 italic">Top Strategic Colleges</p>
                         <div class="flex flex-wrap gap-2">
-                            ${selected.colleges.map(c => `<span class="career-tag bg-blue-500/10 text-blue-300 border border-blue-500/20">${c}</span>`).join('')}
+                            ${data.colleges.map(col => `<span class="career-tag">${col}</span>`).join('')}
                         </div>
                     </div>
                 </div>
-                <div class="pt-6 border-t border-white/5">
-                    <p class="text-[10px] font-black uppercase text-slate-500 mb-4">Strategic Roadmap</p>
+
+                <div class="mt-8 pt-6 border-t border-white/5">
+                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-4 italic">Career Development Roadmap</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        ${selected.roadmap.map(step => `<div class="text-[11px] font-bold italic text-slate-400"><span class="text-indigo-500">▶</span> ${step}</div>`).join('')}
+                        ${data.roadmap.map(step => `
+                            <div class="flex items-center gap-3 text-[11px] font-bold italic text-slate-400">
+                                <span class="text-indigo-500">▶</span> ${step}
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
             </div>
         </div>
     </div>`;
-}
-
-render();
+});
 
 async function shareResult() {
-    const text = `My AI Career Analysis: ${resultId.toUpperCase()} Node. Match: ${matchScore}%. Check yours: `;
+    const text = `I just finished my AI Career Scan! Recommended Path: ${sortedResults[0].title}. Match: ${sortedResults[0].score}%. Check yours: `;
     try {
-        if (navigator.share) await navigator.share({ title: 'CareerSteps AI', text: text, url: window.location.href });
+        if (navigator.share) await navigator.share({ title: 'CareerSteps AI Report', text: text, url: window.location.href });
         else { navigator.clipboard.writeText(text + window.location.href); alert("Link Copied!"); }
     } catch (err) {}
 }
