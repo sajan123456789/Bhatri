@@ -55,104 +55,85 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
       </div>
     </div>
 </div>
-
-<script>
-// Retrieve data from assessment
+// Data fetch karo
 const name = localStorage.getItem("user_name") || "Explorer";
 const stage = localStorage.getItem("academic_stage") || "10";
-const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
+const rawScoreData = localStorage.getItem("scoreData");
+const scoreData = rawScoreData ? JSON.parse(rawScoreData) : { technical: 0, finance: 0, social: 0, creative: 0 };
 
 document.getElementById("userNameDisplay").innerText = `System Analysis for ${name.toUpperCase()}`;
-document.getElementById("stageBadge").innerText = `POST-${stage}TH NEURAL REPORT COMPLETE`;
 
-// Detailed Content Database
+// Database with real career paths
 const contentDB = {
-    technical: { title: "Science & Technology", icon: "🔬", explain: "Exceptional efficiency in logic, abstract reasoning, and technical decomposition.", careers: ["Software Architect", "Data Scientist", "Aerospace Engineer", "Quantum Dev"], colleges: ["IIT Bombay", "NIT Trichy", "IISc Bangalore", "BITS Pilani"], roadmap: ["Focus on PCM/PCB", "Target JEE/NEET", "Early Coding Labs"] },
-    finance: { title: "Commerce & Business", icon: "📈", explain: "High-level strategic resource management and financial logic detected.", careers: ["Investment Banker", "Chartered Accountant", "Fintech Lead", "Stock Strategist"], colleges: ["SRCC Delhi", "IIM Indore (IPM)", "St. Xavier's", "LSR New Delhi"], roadmap: ["Select Commerce + Math", "Target IPMAT/CA", "Analyze Market Trends"] },
-    social: { title: "Humanities & Law", icon: "⚖️", explain: "Deep understanding of human systems, social intelligence, and persuasive logic.", careers: ["Corporate Lawyer", "IAS/Diplomat", "Public Policy", "System Psychologist"], colleges: ["NLSIU Bangalore", "TISS Mumbai", "JNU Delhi", "Faculty of Law DU"], roadmap: ["Build Ethics Portfolio", "Target CLAT/UPSC", "Public Speaking"] },
-    creative: { title: "Creative & Design", icon: "🎨", explain: "Superior aesthetic visualization and original creative problem-solving IQ.", careers: ["UI/UX Designer", "Art Director", "Product Designer", "VFX Architect"], colleges: ["NID Ahmedabad", "IDC IIT Bombay", "NIFT Delhi", "Srishti Manipal"], roadmap: ["Creative Portfolio", "Master Figma/3D", "Visual Design Theory"] }
+    technical: { title: "Science & Technology", icon: "🔬", explain: "High logic and technical decomposition skills.", colleges: ["IIT Bombay", "NIT Trichy", "IISc", "BITS Pilani"], roadmap: ["Focus on PCM/PCB", "Target JEE/NEET", "Coding Labs"] },
+    finance: { title: "Commerce & Business", icon: "📈", explain: "Strategic resource management and financial logic.", colleges: ["SRCC Delhi", "IIM Indore", "St. Xavier's", "LSR"], roadmap: ["Commerce + Math", "Target IPMAT/CA", "Market Trends"] },
+    social: { title: "Humanities & Law", icon: "⚖️", explain: "Deep social intelligence and persuasive reasoning.", colleges: ["NLSIU Bangalore", "TISS Mumbai", "JNU", "DU Law"], roadmap: ["Ethics Portfolio", "Target CLAT/UPSC", "Public Speaking"] },
+    creative: { title: "Creative & Design", icon: "🎨", explain: "Superior aesthetic visualization and design IQ.", colleges: ["NID Ahmedabad", "IIT IDC", "NIFT Delhi", "Srishti"], roadmap: ["Portfolio", "Learn Figma/3D", "Visual Design"] }
 };
 
-// Real-time Percentage Calculation Algorithm
-function calculateScores() {
-    const totalAnswers = Object.values(scoreData).reduce((a, b) => a + b, 0) || 10;
-    const baseMatch = 85; // Starting base for real feel
+function generateRealResults() {
+    const totalPoints = Object.values(scoreData).reduce((a, b) => a + b, 0) || 1;
     
-    let scores = Object.keys(scoreData).map(key => {
-        // Calculation: (Specific Score / Total) * variability + base
-        let rawPercent = (scoreData[key] / totalAnswers) * 15 + baseMatch;
+    // Algorithm to ensure scores are different and realistic
+    let processedResults = Object.keys(contentDB).map(key => {
+        const userScore = scoreData[key] || 0;
+        // Base 75% + (User Performance * 2) + Random minor decimal for "Real" feel
+        let finalPercent = 75 + (userScore / totalPoints * 20) + (Math.random() * 2);
+        if (finalPercent > 99) finalPercent = 98.9;
+
         return {
             id: key,
-            score: rawPercent.toFixed(1),
+            score: finalPercent.toFixed(1),
             ...contentDB[key]
         };
     });
 
-    // Sort by Score: Descending
-    return scores.sort((a, b) => b.score - a.score);
+    // Sort: Highest percentage first
+    return processedResults.sort((a, b) => b.score - a.score);
 }
 
-const sortedResults = calculateScores();
+const finalSortedList = generateRealResults();
 const container = document.getElementById("resultsContainer");
+container.innerHTML = ""; // Clear old results
 
-// Render Results Sequence-wise
-sortedResults.forEach((data, index) => {
-    const isTop = index === 0;
+finalSortedList.forEach((data, index) => {
+    // Recommendation text logic
+    const recommendationText = index === 0 ? "🔥 HIGHLY RECOMMENDED" : "⭐ STABLE ALTERNATIVE";
+    const badgeClass = index === 0 ? "badge-gold" : "badge-silver";
+    const tagText = index === 0 ? "AI PRIME MATCH" : "STRONG MATCH";
+
     container.innerHTML += `
-    <div class="stream-card p-8 md:p-10 relative overflow-hidden group ${isTop ? 'border-indigo-500/40 bg-indigo-500/5' : ''}">
-        ${isTop 
-            ? `<div class="absolute top-0 right-0 badge-gold px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest z-10">🏆 AI Prime Match</div>`
-            : `<div class="absolute top-0 right-0 badge-silver px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase tracking-widest z-10">⭐ Strong Alternative</div>`
-        }
+    <div class="stream-card p-8 md:p-10 relative overflow-hidden group mb-8 ${index === 0 ? 'border-indigo-500/50' : ''}">
+        <div class="absolute top-0 right-0 ${badgeClass} px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase z-10">
+            ${tagText}
+        </div>
 
-        <div class="flex flex-col md:flex-row gap-8 items-start relative z-0">
-            <div class="text-4xl bg-white/5 p-6 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500">
-                ${data.icon}
-            </div>
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="text-4xl bg-white/5 p-6 rounded-2xl border border-white/10">${data.icon}</div>
             <div class="flex-grow w-full">
-                <h3 class="text-3xl font-black italic uppercase mb-2 tracking-tight">${data.title}</h3>
+                <div class="text-indigo-500 text-[9px] font-black tracking-widest mb-1">${recommendationText}</div>
+                <h3 class="text-3xl font-black italic uppercase mb-2">${data.title}</h3>
                 
                 <div class="flex items-end gap-2 mb-6 border-b border-white/5 pb-4">
-                    <span class="text-4xl font-black italic text-indigo-400 leading-none">${data.score}%</span>
-                    <span class="text-[9px] uppercase font-bold text-slate-500 tracking-[0.2em] pb-1 italic">Compatibility Score</span>
+                    <span class="text-4xl font-black italic text-indigo-400">${data.score}%</span>
+                    <span class="text-[9px] uppercase font-bold text-slate-500 italic pb-1">Match Accuracy</span>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <p class="text-[10px] font-black uppercase text-indigo-400 tracking-widest mb-3 italic">Neural Reasoning</p>
-                        <p class="text-xs text-slate-300 leading-relaxed font-medium bg-white/5 p-4 rounded-xl border border-white/5 italic">"${data.explain}"</p>
+                        <p class="text-[10px] font-black uppercase text-slate-500 mb-2">Neural Insight</p>
+                        <p class="text-xs text-slate-300 italic bg-white/5 p-3 rounded-lg border border-white/5">${data.explain}</p>
                     </div>
-
                     <div>
-                        <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-3 italic">Top Strategic Colleges</p>
+                        <p class="text-[10px] font-black uppercase text-slate-500 mb-2">Top Institutions</p>
                         <div class="flex flex-wrap gap-2">
-                            ${data.colleges.map(col => `<span class="career-tag">${col}</span>`).join('')}
+                            ${data.colleges.map(c => `<span class="career-tag">${c}</span>`).join('')}
                         </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 pt-6 border-t border-white/5">
-                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-4 italic">Career Development Roadmap</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        ${data.roadmap.map(step => `
-                            <div class="flex items-center gap-3 text-[11px] font-bold italic text-slate-400">
-                                <span class="text-indigo-500">▶</span> ${step}
-                            </div>
-                        `).join('')}
                     </div>
                 </div>
             </div>
         </div>
     </div>`;
 });
-
-async function shareResult() {
-    const text = `I just finished my AI Career Scan! Recommended Path: ${sortedResults[0].title}. Match: ${sortedResults[0].score}%. Check yours: `;
-    try {
-        if (navigator.share) await navigator.share({ title: 'CareerSteps AI Report', text: text, url: window.location.href });
-        else { navigator.clipboard.writeText(text + window.location.href); alert("Link Copied!"); }
-    } catch (err) {}
-}
-</script>
 </body>
 </html>
