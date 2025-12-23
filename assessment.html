@@ -2,202 +2,175 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – AI Career Assessment</title>
+<title>CareerSteps – AI Neural Assessment</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',system-ui; overflow-x:hidden; scroll-behavior: smooth; }
-.glass{ background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
-.option{ background:#0f172a; border:1px solid #1e293b; transition:.25s; cursor: pointer; }
-.option:hover{ border-color:#6366f1; transform:translateX(6px); background: rgba(99, 102, 241, 0.05); }
-.option:active{ background:#6366f1; transform: scale(0.98); }
-.footer-dark{ background:#000105; border-top:1px solid rgba(255,255,255,.05); }
-.progress-bar { transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
-@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.fade-in { animation: fade 0.4s ease forwards; }
+body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
+.glass{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
+.option-btn{ background:#0f172a; border:1px solid #1e293b; transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+.option-btn:hover{ border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(8px); }
+.progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-slide-up { animation: slideUp 0.5s ease forwards; }
 </style>
 </head>
 
-<body class="flex flex-col min-h-screen px-4">
+<body class="min-h-screen flex flex-col">
 
-<header class="max-w-6xl mx-auto w-full py-6 flex justify-between items-center border-b border-white/5">
-  <a href="index.html" class="group">
-    <h1 class="text-2xl font-extrabold italic uppercase tracking-tight text-indigo-400 group-hover:scale-105 transition-transform">
-      CAREER<span class="text-blue-500">STEPS</span>
-      <span class="hidden md:inline-block text-[9px] border border-indigo-500/50 px-2 py-0.5 rounded-full ml-2 font-black tracking-widest bg-indigo-500/10">AI v2.8</span>
-    </h1>
+<header class="max-w-7xl mx-auto w-full py-6 px-6 flex justify-between items-center">
+  <a href="index.html" class="text-2xl font-black italic tracking-tighter text-indigo-500">
+    CAREER<span class="text-blue-500">STEPS</span> <span class="text-[10px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2">CORE AI v3.0</span>
   </a>
-
-  <nav class="flex items-center gap-6">
-    <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition">Home</a>
-    <a href="about.html" class="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition">About AI</a>
-  </nav>
+  <div id="status" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden md:block">Neural Link: Stable</div>
 </header>
 
-<main class="flex-grow">
+<main class="flex-grow flex items-center justify-center px-4">
+    
+    <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-10 text-center animate-slide-up">
+        <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4">IDENTITY SYNC</div>
+        <h2 class="text-4xl font-black italic mb-6">Who is scanning?</h2>
+        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-widest uppercase">
+        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20">Initialize Core →</button>
+    </section>
 
-<section id="nameSection" class="max-w-xl mx-auto mt-20 glass rounded-[2.5rem] p-10 text-center fade-in">
-  <div class="mb-4 text-indigo-500 font-mono text-[10px] tracking-[0.4em] uppercase font-bold">Neural Verification</div>
-  <h2 class="text-3xl font-black italic mb-4 uppercase tracking-tighter">Who is scanning?</h2>
-  <p class="text-gray-400 mb-8 text-sm font-medium leading-relaxed">Apna full name enter karein taaki AI aapka customized career profile sync kar sake.</p>
-  
-  <input id="userName" type="text" placeholder="Enter Full Name..."
-    class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all uppercase font-bold tracking-widest">
-  
-  <button onclick="saveName()"
-    class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-indigo-500/20 active:scale-95 transition-all">
-    Initiate Scan →
-  </button>
-</section>
-
-<section id="selectClass" class="hidden max-w-xl mx-auto mt-20 glass rounded-[2.5rem] p-10 text-center fade-in">
-  <h2 id="welcomeUser" class="text-3xl font-black italic uppercase mb-2 tracking-tighter"></h2>
-  <p class="text-gray-400 mb-10 text-[10px] font-black uppercase tracking-widest">Select Academic Node</p>
-
-  <div class="grid gap-4">
-    <button onclick="startTest('10')"
-        class="group w-full bg-indigo-600/10 border border-indigo-500/30 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-indigo-400 hover:bg-indigo-600 hover:text-white transition-all">
-        Class 10th Analysis
-    </button>
-
-    <button onclick="startTest('12')"
-        class="group w-full bg-blue-600/10 border border-blue-500/30 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-blue-400 hover:bg-blue-600 hover:text-white transition-all">
-        Class 12th Analysis
-    </button>
-  </div>
-</section>
-
-<section id="quiz" class="hidden max-w-2xl mx-auto mt-12 glass rounded-[2.5rem] p-10 fade-in shadow-2xl">
-  <div class="flex justify-between items-center mb-10">
-    <div class="flex flex-col gap-1">
-        <span id="progress" class="text-[10px] font-black uppercase tracking-widest text-indigo-400"></span>
-        <div class="w-32 h-1 bg-white/5 rounded-full overflow-hidden">
-            <div id="bar" class="progress-bar h-full bg-indigo-500 w-0"></div>
+    <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[3rem] p-12 text-center animate-slide-up">
+        <h2 id="welcomeText" class="text-3xl font-black italic mb-2 uppercase"></h2>
+        <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10">SELECT DATA MODEL FOR CALIBRATION</p>
+        <div class="space-y-4">
+            <button onclick="startAI('10')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-indigo-500 group transition-all">
+                <div class="text-indigo-400 font-black text-xl italic group-hover:scale-110 transition">POST-10th STREAM</div>
+                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Interest Alignment</div>
+            </button>
+            <button onclick="startAI('12')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-blue-500 group transition-all">
+                <div class="text-blue-400 font-black text-xl italic group-hover:scale-110 transition">POST-12th CAREER</div>
+                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Market Fit & Professional IQ</div>
+            </button>
         </div>
-    </div>
-    <button onclick="goBack()"
-      class="text-[10px] uppercase font-black tracking-widest text-gray-500 hover:text-indigo-400 flex items-center gap-2 transition">
-      <span class="text-lg">←</span> Back
-    </button>
-  </div>
+    </section>
 
-  <h3 id="question" class="text-2xl font-black italic mb-10 uppercase leading-tight tracking-tighter"></h3>
-  <div id="options" class="space-y-4"></div>
-</section>
+    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[3rem] p-10 animate-slide-up">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2"></p>
+                <div class="w-48 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div id="progressBar" class="progress-fill h-full w-0"></div>
+                </div>
+            </div>
+            <div id="aiLabel" class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 italic tracking-widest uppercase">AI Engine Active</div>
+        </div>
+        
+        <h3 id="questionBox" class="text-2xl md:text-3xl font-black italic mb-10 leading-tight tracking-tighter uppercase"></h3>
+        <div id="optionsBox" class="space-y-4"></div>
+    </section>
 
 </main>
 
-<footer class="footer-dark py-12 mt-20">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-    <div class="text-center md:text-left">
-      <h2 class="text-xl font-black text-indigo-400 uppercase tracking-tighter">CareerSteps</h2>
-      <p class="text-[9px] text-gray-600 uppercase tracking-[0.4em] font-bold">AI Career Ecosystem</p>
-    </div>
-  </div>
-</footer>
-
 <script>
-let current = 0;
-let answers = [];
+let currentStep = 0;
+let scoreData = { technical: 0, finance: 0, social: 0, creative: 0 };
+let currentQuestions = [];
 
-const questions = [
- {q:"Nayi machine kharab hone par aapka natural approach kya hoga?", o:["Logic & Mechanism samajhna","Efficiency & Cost dekhna","Social impact pe dhyan dena","Design & Visuals improve karna","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Aap complex problems ko kaise process karte hain?", o:["Facts aur Data se","Profit aur Strategy se","Ethics aur Emotions se","Intuition aur Creativity se","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Agar aapko ek shehar (City) basana ho, toh aap kya chunenge?", o:["Infrastructure Architect","Finance & Operations Head","Public Welfare Planner","Urban Aesthetic Designer","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Social media par aapko kya dekhna sabse zyada pasand hai?", o:["Tech & Space Science","Markets & Business","Culture & Psychology","Photography & Arts","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"School project mein aapka focus kis par hota hai?", o:["Functional Code/Logic","Budget & Resources","Teamwork & Presentation","Unique Look & Concept","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Success ka ultimate matlab aapke liye kya hai?", o:["Innovation","Financial Liberty","Social Respect","Creative Freedom","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Free time mein aapka brain kya chunta hai?", o:["Puzzle/Strategy Games","News/Stock Market","Reading/Helping People","Painting/Music/Design","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Mushkil waqt mein aapka decision kaisa hota hai?", o:["Cold & Logical","Calculated & Strategic","Supportive & Human-centric","Bold & Intuitive","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Duniya ko upgrade karne ka best rasta kya hai?", o:["Advanced Technology","Economic Stability","Quality Education/Law","Creative Expression","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]},
- {q:"Aapki sabse badi cognitive strength kya hai?", o:["Critical Thinking","Financial Logic","Public Speaking","Original Creation","Other / Not Sure"], tags:["technical", "finance", "social", "creative", "neutral"]}
-];
+const AI_DATABASE = {
+    "10": [
+        {q: "Agar aapko ek robotic toy assemble karne ko diya jaye, toh aapka reaction?", o:["Logic & manual read karna","Sasta & Tikau banane ka sochna","Dosto ke sath group me banana","Design & Color change karna"], tags:["technical","finance","social","creative"]},
+        {q: "Maths ki problem solve karte waqt aapko kya pasand hai?", o:["Finding the logic","Calculations & Speed","Teaching others","Unique visualization"], tags:["technical","finance","social","creative"]},
+        {q: "School fest me aapka role kya hoga?", o:["Tech support & Sound","Sponsorship & Ticket sales","Stage hosting/Management","Poster & Decor design"], tags:["technical","finance","social","creative"]},
+        {q: "Future ki technology me aapko kya excite karta hai?", o:["AI & Automation","Fintech & Digital wealth","Digital Education for all","AR/VR & New Art forms"], tags:["technical","finance","social","creative"]},
+        {q: "Decision lene ka sahi rasta kya hai?", o:["Pure Facts","Loss & Profit","People's happiness","Intuition/Feel"], tags:["technical","finance","social","creative"]},
+        {q: "Kise padhna pasand karenge?", o:["Scientific journals","Business case studies","Psychology books","Art history/Portfolios"], tags:["technical","finance","social","creative"]},
+        {q: "Duniya ki badi dikkat kya hai?", o:["Slow technology","Wealth gap","Communication gap","Lack of creativity"], tags:["technical","finance","social","creative"]},
+        {q: "Apka favourite tool?", o:["Calculator/IDE","Spreadsheet/Wallet","Microphone/Community","Camera/Canvas"], tags:["technical","finance","social","creative"]},
+        {q: "Complex task me aap?", o:["Break down logically","Find efficient shortcuts","Ask for help/Team up","Try out-of-box ideas"], tags:["technical","finance","social","creative"]},
+        {q: "Result me kya chahiye?", o:["Functional Output","High Value/Profit","Impact on Society","Visual Perfection"], tags:["technical","finance","social","creative"]}
+    ],
+    "12": [
+        {q: "Market me ek naya AI startup aata hai. Aapka lens kya hoga?", o:["Algorithm & Tech stack","Revenue model & ROI","User privacy & Ethics","UI/UX & Branding"], tags:["technical","finance","social","creative"]},
+        {q: "Career me aapka priority index?", o:["Problem Solving","Wealth Creation","Leadership & Service","Creative Impact"], tags:["technical","finance","social","creative"]},
+        {q: "Kise analyze karna asaan lagta hai?", o:["Complex Data/Code","Market Trends/Stock","Social behavior/Law","Design patterns/Vibe"], tags:["technical","finance","social","creative"]},
+        {q: "Office environment kaisa ho?", o:["High-tech Lab","Fast-paced Trading floor","Open Community/NGO","Creative Design studio"], tags:["technical","finance","social","creative"]},
+        {q: "Problem solving style?", o:["Algorithmic","Strategic","Empathic","Experimental"], tags:["technical","finance","social","creative"]},
+        {q: "Aapka 5-year goal?", o:["Innovating new product","Managing large portfolios","Policy making/Helping","Famous for art/style"], tags:["technical","finance","social","creative"]},
+        {q: "Weekend par aap?", o:["Coding/Researching","Reading Business News","Volunteering/Networking","Photography/Music"], tags:["technical","finance","social","creative"]},
+        {q: "AI se kya khatra hai?", o:["Logic bias","Job loss (Economic)","Privacy/Ethics","Loss of original art"], tags:["technical","finance","social","creative"]},
+        {q: "Leadership ka matlab?", o:["Better execution","Higher efficiency","Team well-being","Inspiring through ideas"], tags:["technical","finance","social","creative"]},
+        {q: "Kon sa field attract karta hai?", o:["Cloud/Software","Investment/CA","Law/Public Service","Fashion/Media"], tags:["technical","finance","social","creative"]}
+    ]
+};
 
-function saveName(){
-  const name=document.getElementById("userName").value.trim();
-  if(name.length<2) return alert("Please enter a valid name to proceed.");
-  localStorage.setItem("user_name",name);
-  document.getElementById("nameSection").classList.add("hidden");
-  document.getElementById("selectClass").classList.remove("hidden");
-  document.getElementById("welcomeUser").innerText=`SYSTEM READY, ${name.toUpperCase()}`;
+function saveName() {
+    const val = document.getElementById("userName").value.trim();
+    if(val.length < 2) return alert("Please enter valid name.");
+    localStorage.setItem("user_name", val);
+    document.getElementById("nameSection").classList.add("hidden");
+    document.getElementById("selectClass").classList.remove("hidden");
+    document.getElementById("welcomeText").innerText = `CORE SYNCED: ${val}`;
 }
 
-function startTest(type){
-  localStorage.setItem("academic_stage", type);
-  document.getElementById("selectClass").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  loadQuestion();
+function startAI(type) {
+    localStorage.setItem("academic_stage", type);
+    currentQuestions = AI_DATABASE[type];
+    document.getElementById("selectClass").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+    loadNeuralNode();
 }
 
-function loadQuestion(){
-  const progressPercent = ((current + 1) / questions.length) * 100;
-  document.getElementById("bar").style.width = `${progressPercent}%`;
-  document.getElementById("progress").innerText=`Neural Node: ${current+1}/${questions.length}`;
-  
-  const qDiv = document.getElementById("question");
-  qDiv.innerText=questions[current].q;
-
-  const opt=document.getElementById("options");
-  opt.innerHTML="";
-  
-  questions[current].o.forEach((text,i)=>{
-    const b=document.createElement("button");
-    b.className="option w-full px-8 py-5 rounded-2xl font-bold uppercase flex justify-between items-center group fade-in";
-    b.innerHTML=`<span class="text-sm tracking-wide">${text}</span><span class="text-[9px] opacity-20 font-black tracking-widest group-hover:opacity-100 transition">Select node</span>`;
-    b.onclick=()=>selectAnswer(questions[current].tags[i]);
-    opt.appendChild(b);
-  });
+function loadNeuralNode() {
+    const progress = ((currentStep + 1) / currentQuestions.length) * 100;
+    document.getElementById("progressBar").style.width = `${progress}%`;
+    document.getElementById("progressText").innerText = `NODE ${currentStep + 1} / 10`;
+    
+    document.getElementById("questionBox").innerText = currentQuestions[currentStep].q;
+    const box = document.getElementById("optionsBox");
+    box.innerHTML = "";
+    
+    currentQuestions[currentStep].o.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn w-full p-5 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-slide-up";
+        btn.innerHTML = `<span class="text-sm tracking-wide">${opt}</span><span class="text-[8px] opacity-20 group-hover:opacity-100">→ PROCESS</span>`;
+        btn.onclick = () => next(currentQuestions[currentStep].tags[i]);
+        box.appendChild(btn);
+    });
 }
 
-function selectAnswer(tag){
-  answers.push(tag);
-  current++;
-  if(current < questions.length) {
-    loadQuestion();
-  } else {
-    showCalculating();
-  }
+function next(tag) {
+    scoreData[tag]++;
+    currentStep++;
+    if(currentStep < 10) {
+        loadNeuralNode();
+    } else {
+        processFinalReport();
+    }
 }
 
-function goBack(){
-  if(current === 0) return;
-  current--;
-  answers.pop();
-  loadQuestion();
-}
-
-function showCalculating() {
+function processFinalReport() {
     document.getElementById("quiz").innerHTML = `
-        <div class="text-center py-20 fade-in">
-            <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin mx-auto mb-6"></div>
-            <h2 class="text-2xl font-bold mb-2 uppercase italic">Analyzing Your Responses</h2>
-            <p class="text-slate-500 text-[10px] tracking-[0.4em] font-black uppercase">Generating Final Neural Report...</p>
+        <div class="text-center py-20">
+            <div class="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <h2 class="text-2xl font-black italic uppercase italic">Synthesizing Neural Data...</h2>
         </div>`;
 
     setTimeout(() => {
-        const counts = { technical: 0, finance: 0, social: 0, creative: 0, neutral: 0 };
-        answers.forEach(tag => counts[tag]++);
-
-        const topTag = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+        const winner = Object.keys(scoreData).reduce((a, b) => scoreData[a] > scoreData[b] ? a : b);
+        let result = "";
         
-        // Accurate percentage logic
-        const rawScore = (counts[topTag] / questions.length) * 100;
-        const finalScore = Math.min(98.5, Math.max(72.4, rawScore + 15)).toFixed(1);
+        if(localStorage.getItem("academic_stage") === "10") {
+            if(winner === 'technical') result = "science";
+            else if(winner === 'finance') result = "commerce";
+            else result = "arts";
+        } else {
+            if(winner === 'technical') result = "engineering/tech";
+            else if(winner === 'finance') result = "management/finance";
+            else if(winner === 'social') result = "law/humanities";
+            else result = "creative/design";
+        }
 
-        let stream = "";
-        if (topTag === 'technical') stream = "science";
-        else if (topTag === 'finance') stream = "commerce";
-        else if (topTag === 'social') stream = "arts";
-        else if (topTag === 'creative') stream = "design/arts";
-        else stream = "general";
-
-        localStorage.setItem("careerResult", stream);
-        localStorage.setItem("matchPercent", finalScore);
-        
-        // Send to result page
+        localStorage.setItem("careerResult", result);
+        localStorage.setItem("matchPercent", (Math.random() * (98 - 85) + 85).toFixed(1));
         window.location.href = "result.html";
-    }, 3000);
+    }, 2500);
 }
 </script>
 </body>
