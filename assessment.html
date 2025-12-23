@@ -2,68 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – AI Neural Assessment</title>
+<title>CareerSteps – Neural Core v4.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
-.glass{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
-.option-btn{ background:#0f172a; border:1px solid #1e293b; transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
-.option-btn:hover{ border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(8px); }
-.progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.animate-slide-up { animation: slideUp 0.5s ease forwards; }
+body { 
+    background: radial-gradient(circle at top right, #0f172a, #020617); 
+    color: #fff; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    min-height: 100vh;
+}
+.glass-panel { 
+    background: rgba(15, 23, 42, 0.6); 
+    border: 1px solid rgba(99, 102, 241, 0.15); 
+    backdrop-filter: blur(20px); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+.option-card { 
+    background: rgba(30, 41, 59, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.option-card:hover { 
+    border-color: #6366f1; 
+    background: rgba(99, 102, 241, 0.1); 
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.3);
+}
+.progress-glow { 
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+    background: linear-gradient(90deg, #6366f1, #818cf8);
+}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-in { animation: fadeInUp 0.6s ease-out forwards; }
 </style>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body class="flex flex-col">
 
-<header class="max-w-7xl mx-auto w-full py-6 px-6 flex justify-between items-center">
-  <a href="index.html" class="text-2xl font-black italic tracking-tighter text-indigo-500">
-    CAREER<span class="text-blue-500">STEPS</span> <span class="text-[10px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2">CORE AI v3.0</span>
-  </a>
-  <div id="status" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden md:block">Neural Link: Stable</div>
+<header class="w-full py-8 px-8 flex justify-between items-center max-w-7xl mx-auto">
+    <a href="index.html" class="group">
+        <h1 class="text-2xl font-black italic tracking-tighter text-white">
+            CAREER<span class="text-indigo-500">STEPS</span>
+            <span class="block text-[8px] tracking-[0.4em] text-indigo-400 opacity-70 group-hover:opacity-100 transition">NEURAL CORE ENGINE v4.0</span>
+        </h1>
+    </a>
+    <div class="flex items-center gap-3">
+        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+        <span class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">AI Processing: Active</span>
+    </div>
 </header>
 
-<main class="flex-grow flex items-center justify-center px-4">
+<main class="flex-grow flex items-center justify-center py-12 px-6">
     
-    <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-10 text-center animate-slide-up">
-        <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4">IDENTITY SYNC</div>
-        <h2 class="text-4xl font-black italic mb-6">Who is scanning?</h2>
-        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-widest uppercase">
-        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20">Initialize Core →</button>
+    <section id="nameSection" class="max-w-xl w-full glass-panel rounded-[3rem] p-12 text-center animate-in">
+        <span class="text-indigo-400 text-[10px] font-black tracking-[0.6em] uppercase">Security Protocol</span>
+        <h2 class="text-4xl font-extrabold italic mt-4 mb-8">Identify Subject</h2>
+        <div class="relative group">
+            <input id="userName" type="text" placeholder="Full Name..." 
+                class="w-full bg-slate-900/50 border border-slate-700 p-6 rounded-2xl text-center text-xl mb-8 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-bold uppercase tracking-widest">
+        </div>
+        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-6 rounded-2xl font-black uppercase tracking-widest transition-all shadow-2xl shadow-indigo-600/30 active:scale-95">Initiate Neural Link →</button>
     </section>
 
-    <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[3rem] p-12 text-center animate-slide-up">
-        <h2 id="welcomeText" class="text-3xl font-black italic mb-2 uppercase"></h2>
-        <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10">SELECT DATA MODEL FOR CALIBRATION</p>
-        <div class="space-y-4">
-            <button onclick="startAI('10')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-indigo-500 group transition-all">
-                <div class="text-indigo-400 font-black text-xl italic group-hover:scale-110 transition">POST-10th STREAM</div>
-                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Interest Alignment</div>
+    <section id="selectClass" class="hidden max-w-2xl w-full glass-panel rounded-[3rem] p-14 text-center animate-in">
+        <h2 id="welcomeText" class="text-3xl font-black italic mb-2"></h2>
+        <p class="text-slate-500 text-xs font-bold tracking-widest mb-12 uppercase">Choose Assessment Heuristics</p>
+        <div class="grid md:grid-cols-2 gap-6">
+            <button onclick="startAI('10')" class="option-card p-10 rounded-3xl group">
+                <div class="text-indigo-400 text-3xl mb-4 italic font-black group-hover:scale-110 transition">10<span class="text-sm">th</span></div>
+                <div class="text-sm font-bold uppercase tracking-widest text-white mb-2">Stream Logic</div>
+                <div class="text-[10px] text-slate-500 uppercase font-black">Foundation Alignment</div>
             </button>
-            <button onclick="startAI('12')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-blue-500 group transition-all">
-                <div class="text-blue-400 font-black text-xl italic group-hover:scale-110 transition">POST-12th CAREER</div>
-                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Market Fit & Professional IQ</div>
+            <button onclick="startAI('12')" class="option-card p-10 rounded-3xl group border-blue-500/20">
+                <div class="text-blue-400 text-3xl mb-4 italic font-black group-hover:scale-110 transition">12<span class="text-sm">th</span></div>
+                <div class="text-sm font-bold uppercase tracking-widest text-white mb-2">Global Career</div>
+                <div class="text-[10px] text-slate-500 uppercase font-black">Market Dynamics</div>
             </button>
         </div>
     </section>
 
-    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[3rem] p-10 animate-slide-up">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2"></p>
-                <div class="w-48 h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <div id="progressBar" class="progress-fill h-full w-0"></div>
+    <section id="quiz" class="hidden max-w-3xl w-full glass-panel rounded-[3.5rem] p-12 md:p-16 animate-in">
+        <div class="flex justify-between items-center mb-16">
+            <div class="w-full max-w-xs">
+                <div class="flex justify-between mb-3">
+                    <span id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em]"></span>
+                    <span id="percentText" class="text-[10px] font-black text-slate-500"></span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div id="progressBar" class="progress-glow h-full w-0 transition-all duration-700"></div>
                 </div>
             </div>
-            <div id="aiLabel" class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 italic tracking-widest uppercase">AI Engine Active</div>
+            <div class="hidden md:block bg-indigo-500/10 border border-indigo-500/20 px-4 py-2 rounded-full">
+                <span class="text-[9px] font-bold text-indigo-400 tracking-tighter uppercase italic">Neural Sync v4.0</span>
+            </div>
         </div>
         
-        <h3 id="questionBox" class="text-2xl md:text-3xl font-black italic mb-10 leading-tight tracking-tighter uppercase"></h3>
-        <div id="optionsBox" class="space-y-4"></div>
+        <h3 id="questionBox" class="text-2xl md:text-4xl font-black italic mb-14 leading-[1.2] tracking-tight uppercase"></h3>
+        
+        <div id="optionsBox" class="grid gap-5">
+            </div>
     </section>
 
 </main>
@@ -75,38 +115,38 @@ let currentQuestions = [];
 
 const AI_DATABASE = {
     "10": [
-        {q: "Agar aapko ek robotic toy assemble karne ko diya jaye, toh aapka reaction?", o:["Logic & manual read karna","Sasta & Tikau banane ka sochna","Dosto ke sath group me banana","Design & Color change karna"], tags:["technical","finance","social","creative"]},
-        {q: "Maths ki problem solve karte waqt aapko kya pasand hai?", o:["Finding the logic","Calculations & Speed","Teaching others","Unique visualization"], tags:["technical","finance","social","creative"]},
-        {q: "School fest me aapka role kya hoga?", o:["Tech support & Sound","Sponsorship & Ticket sales","Stage hosting/Management","Poster & Decor design"], tags:["technical","finance","social","creative"]},
-        {q: "Future ki technology me aapko kya excite karta hai?", o:["AI & Automation","Fintech & Digital wealth","Digital Education for all","AR/VR & New Art forms"], tags:["technical","finance","social","creative"]},
-        {q: "Decision lene ka sahi rasta kya hai?", o:["Pure Facts","Loss & Profit","People's happiness","Intuition/Feel"], tags:["technical","finance","social","creative"]},
-        {q: "Kise padhna pasand karenge?", o:["Scientific journals","Business case studies","Psychology books","Art history/Portfolios"], tags:["technical","finance","social","creative"]},
-        {q: "Duniya ki badi dikkat kya hai?", o:["Slow technology","Wealth gap","Communication gap","Lack of creativity"], tags:["technical","finance","social","creative"]},
-        {q: "Apka favourite tool?", o:["Calculator/IDE","Spreadsheet/Wallet","Microphone/Community","Camera/Canvas"], tags:["technical","finance","social","creative"]},
-        {q: "Complex task me aap?", o:["Break down logically","Find efficient shortcuts","Ask for help/Team up","Try out-of-box ideas"], tags:["technical","finance","social","creative"]},
-        {q: "Result me kya chahiye?", o:["Functional Output","High Value/Profit","Impact on Society","Visual Perfection"], tags:["technical","finance","social","creative"]}
+        {q: "If you were to hack a complex system, where would you start?", o:["Analyzing the core code logic","Calculating the risk-to-reward ratio","Social engineering the users","Redesigning the visual interface"], tags:["technical","finance","social","creative"]},
+        {q: "A city is failing. What is your primary fix?", o:["Upgrade the technical infrastructure","Restructure the economic policy","Reform the education & social system","Rebuild the city's aesthetic identity"], tags:["technical","finance","social","creative"]},
+        {q: "How do you process a massive failure?", o:["Debug the step-by-step logic","Analyze the wasted resources","Understand the human impact","Visualize a new creative solution"], tags:["technical","finance","social","creative"]},
+        {q: "In a futuristic Mars colony, you are the...", o:["Chief Engineer of Life Support","Controller of Resource Exchange","Director of Human Relations","Lead Designer of Martian Living"], tags:["technical","finance","social","creative"]},
+        {q: "Your brain finds most comfort in...", o:["Pattern recognition & Algorithms","Statstical data & Market flow","Empathy & Behavioral patterns","Abstract concepts & Symmetry"], tags:["technical","finance","social","creative"]},
+        {q: "If logic was a weapon, it would be a...", o:["Precision laser","Economic sanction","Public speech","Masterpiece painting"], tags:["technical","finance","social","creative"]},
+        {q: "The most powerful tool in 2025 is...", o:["Quantum Computing","Decentralized Finance","Global Communication","Generative Creative AI"], tags:["technical","finance","social","creative"]},
+        {q: "Complexity is best solved by...", o:["Deep technical decomposition","Efficient financial leverage","Collaborative human effort","Intuitive design thinking"], tags:["technical","finance","social","creative"]},
+        {q: "When you look at a skyscraper, you see...", o:["The engineering marvel","The investment value","The people inside it","The architectural beauty"], tags:["technical","finance","social","creative"]},
+        {q: "Your final legacy should be...", o:["An innovation that works","A fortune that lasts","A society that thrives","A creation that inspires"], tags:["technical","finance","social","creative"]}
     ],
     "12": [
-        {q: "Market me ek naya AI startup aata hai. Aapka lens kya hoga?", o:["Algorithm & Tech stack","Revenue model & ROI","User privacy & Ethics","UI/UX & Branding"], tags:["technical","finance","social","creative"]},
-        {q: "Career me aapka priority index?", o:["Problem Solving","Wealth Creation","Leadership & Service","Creative Impact"], tags:["technical","finance","social","creative"]},
-        {q: "Kise analyze karna asaan lagta hai?", o:["Complex Data/Code","Market Trends/Stock","Social behavior/Law","Design patterns/Vibe"], tags:["technical","finance","social","creative"]},
-        {q: "Office environment kaisa ho?", o:["High-tech Lab","Fast-paced Trading floor","Open Community/NGO","Creative Design studio"], tags:["technical","finance","social","creative"]},
-        {q: "Problem solving style?", o:["Algorithmic","Strategic","Empathic","Experimental"], tags:["technical","finance","social","creative"]},
-        {q: "Aapka 5-year goal?", o:["Innovating new product","Managing large portfolios","Policy making/Helping","Famous for art/style"], tags:["technical","finance","social","creative"]},
-        {q: "Weekend par aap?", o:["Coding/Researching","Reading Business News","Volunteering/Networking","Photography/Music"], tags:["technical","finance","social","creative"]},
-        {q: "AI se kya khatra hai?", o:["Logic bias","Job loss (Economic)","Privacy/Ethics","Loss of original art"], tags:["technical","finance","social","creative"]},
-        {q: "Leadership ka matlab?", o:["Better execution","Higher efficiency","Team well-being","Inspiring through ideas"], tags:["technical","finance","social","creative"]},
-        {q: "Kon sa field attract karta hai?", o:["Cloud/Software","Investment/CA","Law/Public Service","Fashion/Media"], tags:["technical","finance","social","creative"]}
+        {q: "The year is 2030. AI has taken 50% of jobs. You survive by...", o:["Managing the AI neural networks","Controlling the flow of capital","Building new social frameworks","Leading the human creative revolt"], tags:["technical","finance","social","creative"]},
+        {q: "What is the true engine of the world?", o:["The laws of physics and code","The flow of global currency","The power of human psychology","The force of creative expression"], tags:["technical","finance","social","creative"]},
+        {q: "You are given $100M. Your move?", o:["R&D for a breakthrough tech","Diversified market aggressive growth","Funding a global social revolution","Establishing a legendary design house"], tags:["technical","finance","social","creative"]},
+        {q: "Which crisis demands your attention?", o:["A massive cybersecurity breach","A total global market collapse","A breakdown in international law","A drought of original human ideas"], tags:["technical","finance","social","creative"]},
+        {q: "In a high-stakes board meeting, you are the one...", o:["Presenting the data architecture","Calculating the EBITDA & Margins","Mediating between conflicting egos","Visualizing the future brand vibe"], tags:["technical","finance","social","creative"]},
+        {q: "The ultimate 'Success' metric is...", o:["Patent count and Innovation","Net Worth and Market Control","Social Influence and Change","Creative Recognition and Legacy"], tags:["technical","finance","social","creative"]},
+        {q: "Pick your future workspace:", o:["A clean-room high-tech lab","A high-frequency trading floor","A UN-style assembly hall","A multi-sensory creative studio"], tags:["technical","finance","social","creative"]},
+        {q: "A product is great only if it is...", o:["Functionally flawless","Economically dominant","Socially responsible","Visually iconic"], tags:["technical","finance","social","creative"]},
+        {q: "What keeps you up at night?", o:["Incomplete logical puzzles","Untapped financial opportunities","Unresolved social injustices","Stagnant creative visions"], tags:["technical","finance","social","creative"]},
+        {q: "Choose your 'Executive Power':", o:["Absolute logical precision","Total financial mastery","Global social empathy","Limitless creative vision"], tags:["technical","finance","social","creative"]}
     ]
 };
 
 function saveName() {
     const val = document.getElementById("userName").value.trim();
-    if(val.length < 2) return alert("Please enter valid name.");
+    if(val.length < 2) return;
     localStorage.setItem("user_name", val);
     document.getElementById("nameSection").classList.add("hidden");
     document.getElementById("selectClass").classList.remove("hidden");
-    document.getElementById("welcomeText").innerText = `CORE SYNCED: ${val}`;
+    document.getElementById("welcomeText").innerText = `CORE ACCESS: ${val}`;
 }
 
 function startAI(type) {
@@ -114,13 +154,14 @@ function startAI(type) {
     currentQuestions = AI_DATABASE[type];
     document.getElementById("selectClass").classList.add("hidden");
     document.getElementById("quiz").classList.remove("hidden");
-    loadNeuralNode();
+    loadNode();
 }
 
-function loadNeuralNode() {
-    const progress = ((currentStep + 1) / currentQuestions.length) * 100;
+function loadNode() {
+    const progress = ((currentStep + 1) / 10) * 100;
     document.getElementById("progressBar").style.width = `${progress}%`;
-    document.getElementById("progressText").innerText = `NODE ${currentStep + 1} / 10`;
+    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1}`;
+    document.getElementById("percentText").innerText = `${Math.round(progress)}%`;
     
     document.getElementById("questionBox").innerText = currentQuestions[currentStep].q;
     const box = document.getElementById("optionsBox");
@@ -128,28 +169,38 @@ function loadNeuralNode() {
     
     currentQuestions[currentStep].o.forEach((opt, i) => {
         const btn = document.createElement("button");
-        btn.className = "option-btn w-full p-5 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-slide-up";
-        btn.innerHTML = `<span class="text-sm tracking-wide">${opt}</span><span class="text-[8px] opacity-20 group-hover:opacity-100">→ PROCESS</span>`;
-        btn.onclick = () => next(currentQuestions[currentStep].tags[i]);
+        btn.className = "option-card w-full p-6 md:p-8 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-in";
+        btn.style.animationDelay = `${i * 0.1}s`;
+        btn.innerHTML = `
+            <div class="flex flex-col">
+                <span class="text-xs text-indigo-400 font-black mb-1 opacity-0 group-hover:opacity-100 transition tracking-widest">Protocol ${i+1}</span>
+                <span class="text-sm md:text-base tracking-wide">${opt}</span>
+            </div>
+            <div class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-indigo-500 group-hover:border-indigo-500 transition-all">
+                <span class="text-[10px] text-white">→</span>
+            </div>
+        `;
+        btn.onclick = () => processInput(currentQuestions[currentStep].tags[i]);
         box.appendChild(btn);
     });
 }
 
-function next(tag) {
+function processInput(tag) {
     scoreData[tag]++;
     currentStep++;
     if(currentStep < 10) {
-        loadNeuralNode();
+        loadNode();
     } else {
-        processFinalReport();
+        finalizeAssessment();
     }
 }
 
-function processFinalReport() {
+function finalizeAssessment() {
     document.getElementById("quiz").innerHTML = `
-        <div class="text-center py-20">
-            <div class="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-            <h2 class="text-2xl font-black italic uppercase italic">Synthesizing Neural Data...</h2>
+        <div class="text-center py-32 animate-pulse">
+            <div class="w-20 h-20 border-t-4 border-indigo-500 rounded-full animate-spin mx-auto mb-10"></div>
+            <h2 class="text-3xl font-black italic uppercase tracking-tighter">Running Predictive Simulations...</h2>
+            <p class="text-slate-500 text-[10px] mt-4 tracking-[0.5em] uppercase">Calculating Market Fit & IQ Ratios</p>
         </div>`;
 
     setTimeout(() => {
@@ -161,16 +212,17 @@ function processFinalReport() {
             else if(winner === 'finance') result = "commerce";
             else result = "arts";
         } else {
-            if(winner === 'technical') result = "engineering/tech";
-            else if(winner === 'finance') result = "management/finance";
-            else if(winner === 'social') result = "law/humanities";
-            else result = "creative/design";
+            // Detailed 12th Career Mapping
+            if(winner === 'technical') result = "Technology & Data Science";
+            else if(winner === 'finance') result = "Investment & Business Strategy";
+            else if(winner === 'social') result = "Global Law & Public Policy";
+            else result = "Visual Design & Digital Media";
         }
 
         localStorage.setItem("careerResult", result);
-        localStorage.setItem("matchPercent", (Math.random() * (98 - 85) + 85).toFixed(1));
+        localStorage.setItem("matchPercent", (Math.random() * (99 - 88) + 88).toFixed(1));
         window.location.href = "result.html";
-    }, 2500);
+    }, 3000);
 }
 </script>
 </body>
