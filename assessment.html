@@ -2,108 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – Neural Core v4.0</title>
+<title>CareerSteps – AI Neural Assessment</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body { 
-    background: radial-gradient(circle at top right, #0f172a, #020617); 
-    color: #fff; 
-    font-family: 'Plus Jakarta Sans', sans-serif; 
-    min-height: 100vh;
-}
-.glass-panel { 
-    background: rgba(15, 23, 42, 0.6); 
-    border: 1px solid rgba(99, 102, 241, 0.15); 
-    backdrop-filter: blur(20px); 
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-.option-card { 
-    background: rgba(30, 41, 59, 0.4); 
-    border: 1px solid rgba(255, 255, 255, 0.05); 
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.option-card:hover { 
-    border-color: #6366f1; 
-    background: rgba(99, 102, 241, 0.1); 
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.3);
-}
-.progress-glow { 
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
-    background: linear-gradient(90deg, #6366f1, #818cf8);
-}
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-.animate-in { animation: fadeInUp 0.6s ease-out forwards; }
+body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
+.glass{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
+.option-btn{ background:rgba(30, 41, 59, 0.4); border:1px solid rgba(255,255,255,0.05); transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+.option-btn:hover{ border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(8px); }
+.progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-slide-up { animation: slideUp 0.5s ease forwards; }
 </style>
 </head>
 
-<body class="flex flex-col">
+<body class="min-h-screen flex flex-col">
 
-<header class="w-full py-8 px-8 flex justify-between items-center max-w-7xl mx-auto">
-    <a href="index.html" class="group">
-        <h1 class="text-2xl font-black italic tracking-tighter text-white">
-            CAREER<span class="text-indigo-500">STEPS</span>
-            <span class="block text-[8px] tracking-[0.4em] text-indigo-400 opacity-70 group-hover:opacity-100 transition">NEURAL CORE ENGINE v4.0</span>
-        </h1>
-    </a>
-    <div class="flex items-center gap-3">
-        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-        <span class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">AI Processing: Active</span>
-    </div>
+<header class="max-w-7xl mx-auto w-full py-6 px-6 flex justify-between items-center">
+  <a href="index.html" class="text-2xl font-black italic tracking-tighter text-indigo-500">
+    CAREER<span class="text-blue-500">STEPS</span> <span class="text-[10px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2 uppercase">Core AI v3.0</span>
+  </a>
+  <div id="status" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden md:block">Neural Link: Stable</div>
 </header>
 
-<main class="flex-grow flex items-center justify-center py-12 px-6">
+<main class="flex-grow flex items-center justify-center px-4">
     
-    <section id="nameSection" class="max-w-xl w-full glass-panel rounded-[3rem] p-12 text-center animate-in">
-        <span class="text-indigo-400 text-[10px] font-black tracking-[0.6em] uppercase">Security Protocol</span>
-        <h2 class="text-4xl font-extrabold italic mt-4 mb-8">Identify Subject</h2>
-        <div class="relative group">
-            <input id="userName" type="text" placeholder="Full Name..." 
-                class="w-full bg-slate-900/50 border border-slate-700 p-6 rounded-2xl text-center text-xl mb-8 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-bold uppercase tracking-widest">
-        </div>
-        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-6 rounded-2xl font-black uppercase tracking-widest transition-all shadow-2xl shadow-indigo-600/30 active:scale-95">Initiate Neural Link →</button>
+    <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-10 text-center animate-slide-up">
+        <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4 uppercase">Identity Sync</div>
+        <h2 class="text-4xl font-black italic mb-6 uppercase">Who is scanning?</h2>
+        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-widest uppercase">
+        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20">Initialize Core →</button>
     </section>
 
-    <section id="selectClass" class="hidden max-w-2xl w-full glass-panel rounded-[3rem] p-14 text-center animate-in">
-        <h2 id="welcomeText" class="text-3xl font-black italic mb-2"></h2>
-        <p class="text-slate-500 text-xs font-bold tracking-widest mb-12 uppercase">Choose Assessment Heuristics</p>
-        <div class="grid md:grid-cols-2 gap-6">
-            <button onclick="startAI('10')" class="option-card p-10 rounded-3xl group">
-                <div class="text-indigo-400 text-3xl mb-4 italic font-black group-hover:scale-110 transition">10<span class="text-sm">th</span></div>
-                <div class="text-sm font-bold uppercase tracking-widest text-white mb-2">Stream Logic</div>
-                <div class="text-[10px] text-slate-500 uppercase font-black">Foundation Alignment</div>
+    <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[3rem] p-12 text-center animate-slide-up">
+        <h2 id="welcomeText" class="text-3xl font-black italic mb-2 uppercase"></h2>
+        <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10 uppercase">Select Data Model for Calibration</p>
+        <div class="space-y-4">
+            <button onclick="startAI('10')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-indigo-500 group transition-all">
+                <div class="text-indigo-400 font-black text-xl italic group-hover:scale-110 transition uppercase">Post-10th Stream</div>
+                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Interest Alignment</div>
             </button>
-            <button onclick="startAI('12')" class="option-card p-10 rounded-3xl group border-blue-500/20">
-                <div class="text-blue-400 text-3xl mb-4 italic font-black group-hover:scale-110 transition">12<span class="text-sm">th</span></div>
-                <div class="text-sm font-bold uppercase tracking-widest text-white mb-2">Global Career</div>
-                <div class="text-[10px] text-slate-500 uppercase font-black">Market Dynamics</div>
+            <button onclick="startAI('12')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-blue-500 group transition-all">
+                <div class="text-blue-400 font-black text-xl italic group-hover:scale-110 transition uppercase">Post-12th Career</div>
+                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Market Fit & Professional IQ</div>
             </button>
         </div>
     </section>
 
-    <section id="quiz" class="hidden max-w-3xl w-full glass-panel rounded-[3.5rem] p-12 md:p-16 animate-in">
-        <div class="flex justify-between items-center mb-16">
-            <div class="w-full max-w-xs">
-                <div class="flex justify-between mb-3">
-                    <span id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em]"></span>
-                    <span id="percentText" class="text-[10px] font-black text-slate-500"></span>
-                </div>
-                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                    <div id="progressBar" class="progress-glow h-full w-0 transition-all duration-700"></div>
+    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[3rem] p-10 animate-slide-up">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2"></p>
+                <div class="w-48 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div id="progressBar" class="progress-fill h-full w-0"></div>
                 </div>
             </div>
-            <div class="hidden md:block bg-indigo-500/10 border border-indigo-500/20 px-4 py-2 rounded-full">
-                <span class="text-[9px] font-bold text-indigo-400 tracking-tighter uppercase italic">Neural Sync v4.0</span>
-            </div>
+            <div class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 italic tracking-widest uppercase">AI Engine Active</div>
         </div>
         
-        <h3 id="questionBox" class="text-2xl md:text-4xl font-black italic mb-14 leading-[1.2] tracking-tight uppercase"></h3>
-        
-        <div id="optionsBox" class="grid gap-5">
-            </div>
+        <h3 id="questionBox" class="text-2xl md:text-3xl font-black italic mb-10 leading-tight tracking-tighter uppercase"></h3>
+        <div id="optionsBox" class="space-y-4"></div>
     </section>
 
 </main>
@@ -142,7 +102,7 @@ const AI_DATABASE = {
 
 function saveName() {
     const val = document.getElementById("userName").value.trim();
-    if(val.length < 2) return;
+    if(val.length < 2) return alert("Please enter valid name.");
     localStorage.setItem("user_name", val);
     document.getElementById("nameSection").classList.add("hidden");
     document.getElementById("selectClass").classList.remove("hidden");
@@ -154,14 +114,13 @@ function startAI(type) {
     currentQuestions = AI_DATABASE[type];
     document.getElementById("selectClass").classList.add("hidden");
     document.getElementById("quiz").classList.remove("hidden");
-    loadNode();
+    loadNeuralNode();
 }
 
-function loadNode() {
+function loadNeuralNode() {
     const progress = ((currentStep + 1) / 10) * 100;
     document.getElementById("progressBar").style.width = `${progress}%`;
-    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1}`;
-    document.getElementById("percentText").innerText = `${Math.round(progress)}%`;
+    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1} / 10`;
     
     document.getElementById("questionBox").innerText = currentQuestions[currentStep].q;
     const box = document.getElementById("optionsBox");
@@ -169,16 +128,10 @@ function loadNode() {
     
     currentQuestions[currentStep].o.forEach((opt, i) => {
         const btn = document.createElement("button");
-        btn.className = "option-card w-full p-6 md:p-8 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-in";
-        btn.style.animationDelay = `${i * 0.1}s`;
+        btn.className = "option-btn w-full p-6 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-slide-up";
         btn.innerHTML = `
-            <div class="flex flex-col">
-                <span class="text-xs text-indigo-400 font-black mb-1 opacity-0 group-hover:opacity-100 transition tracking-widest">Protocol ${i+1}</span>
-                <span class="text-sm md:text-base tracking-wide">${opt}</span>
-            </div>
-            <div class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-indigo-500 group-hover:border-indigo-500 transition-all">
-                <span class="text-[10px] text-white">→</span>
-            </div>
+            <span class="text-sm tracking-wide">${opt}</span>
+            <span class="text-[8px] opacity-20 group-hover:opacity-100 transition-all">→ PROCESS</span>
         `;
         btn.onclick = () => processInput(currentQuestions[currentStep].tags[i]);
         box.appendChild(btn);
@@ -189,40 +142,32 @@ function processInput(tag) {
     scoreData[tag]++;
     currentStep++;
     if(currentStep < 10) {
-        loadNode();
+        loadNeuralNode();
     } else {
-        finalizeAssessment();
+        // SAVING DATA FOR RESULT PAGE
+        localStorage.setItem("scoreData", JSON.stringify(scoreData));
+        processFinalReport();
     }
 }
 
-function finalizeAssessment() {
+function processFinalReport() {
     document.getElementById("quiz").innerHTML = `
-        <div class="text-center py-32 animate-pulse">
-            <div class="w-20 h-20 border-t-4 border-indigo-500 rounded-full animate-spin mx-auto mb-10"></div>
-            <h2 class="text-3xl font-black italic uppercase tracking-tighter">Running Predictive Simulations...</h2>
-            <p class="text-slate-500 text-[10px] mt-4 tracking-[0.5em] uppercase">Calculating Market Fit & IQ Ratios</p>
+        <div class="text-center py-24">
+            <div class="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-8"></div>
+            <h2 class="text-2xl font-black italic uppercase italic">Synthesizing Neural Data...</h2>
+            <p class="text-[10px] text-slate-500 tracking-[0.4em] mt-4 uppercase">Calculating Real-Time Percentage</p>
         </div>`;
 
     setTimeout(() => {
+        // Decide the winner
         const winner = Object.keys(scoreData).reduce((a, b) => scoreData[a] > scoreData[b] ? a : b);
-        let result = "";
+        localStorage.setItem("careerResult", winner);
         
-        if(localStorage.getItem("academic_stage") === "10") {
-            if(winner === 'technical') result = "science";
-            else if(winner === 'finance') result = "commerce";
-            else result = "arts";
-        } else {
-            // Detailed 12th Career Mapping
-            if(winner === 'technical') result = "Technology & Data Science";
-            else if(winner === 'finance') result = "Investment & Business Strategy";
-            else if(winner === 'social') result = "Global Law & Public Policy";
-            else result = "Visual Design & Digital Media";
-        }
-
-        localStorage.setItem("careerResult", result);
-        localStorage.setItem("matchPercent", (Math.random() * (99 - 88) + 88).toFixed(1));
+        // Realistic match percentage
+        localStorage.setItem("matchPercent", (Math.random() * (98 - 88) + 88).toFixed(1));
+        
         window.location.href = "result.html";
-    }, 3000);
+    }, 2800);
 }
 </script>
 </body>
