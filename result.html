@@ -21,116 +21,94 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
 </head>
 
 <body class="p-4 md:p-10">
-
-<div class="max-w-4xl mx-auto">
-    <header class="flex justify-between items-center mb-12 no-print">
-      <a href="index.html" class="group transition-transform hover:scale-105">
-        <h1 class="text-2xl font-extrabold italic uppercase tracking-tighter text-indigo-400">
-          CAREER<span class="text-blue-500">STEPS</span>
-          <span class="text-[9px] border border-indigo-500/50 px-2 py-0.5 rounded-full ml-2 font-black tracking-widest bg-indigo-500/10 uppercase">Core AI v3.0</span>
-        </h1>
-      </a>
-      <div class="flex gap-2">
-        <button onclick="window.print()" class="p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition text-indigo-400">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        </button>
-        <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold uppercase tracking-widest transition">Share</button>
-      </div>
-    </header>
-
-    <div class="text-center mb-16">
-      <div id="stageBadge" class="inline-block status-badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6 italic italic">Neural Sync Complete</div>
-      <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase italic leading-tight">Your AI <span class="gradient-text">Roadmap</span></h2>
-      <p id="userNameDisplay" class="text-slate-400 text-lg font-medium italic"></p>
+<div id="resultsModal" class="main-card p-6 md:p-8 max-w-2xl mx-auto shadow-2xl relative">
+    <div class="text-center mb-8">
+        <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Assessment Complete</span>
+        <h2 class="text-3xl font-bold mt-4">Your Recommended Streams</h2>
+        <p class="text-slate-400 text-sm mt-2">Based on your responses, these academic streams best match your interests.</p>
     </div>
 
-    <div id="resultsContainer" class="space-y-10 mb-20"></div>
+    <div id="streamList" class="space-y-4">
+        </div>
 
-    <div class="text-center border-t border-white/5 pt-12 mb-16 no-print">
-      <div class="flex flex-col md:flex-row justify-center gap-6">
-        <button onclick="location.href='index.html'" class="px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em]">Finish Mission</button>
-        <button onclick="location.href='assessment.html'" class="px-12 py-5 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-[0.2em] border border-white/5 hover:bg-slate-700">Retake Scan</button>
-      </div>
+    <div class="mt-10 text-center bg-white/5 p-6 rounded-2xl border border-white/10">
+        <h3 class="font-bold text-lg">Ready to Explore Your Career Path?</h3>
+        <p class="text-slate-400 text-xs mb-6">Take our comprehensive assessment to discover specific careers.</p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <button onclick="location.href='career-deep-dive.html'" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm transition">Take Career Assessment</button>
+            <button onclick="location.href='assessment.html'" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl font-bold text-sm border border-white/5">Retake Stream Test</button>
+        </div>
     </div>
 </div>
 
 <script>
-const name = localStorage.getItem("user_name") || "Explorer";
+// Data aur Calculation Logic
+const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
 const stage = localStorage.getItem("academic_stage") || "10";
-const rawScoreData = localStorage.getItem("scoreData");
-const scoreData = rawScoreData ? JSON.parse(rawScoreData) : { technical: 0, finance: 0, social: 0, creative: 0 };
 
-document.getElementById("userNameDisplay").innerText = `System Analysis for ${name.toUpperCase()}`;
-document.getElementById("stageBadge").innerText = `POST-${stage}TH NEURAL REPORT COMPLETE`;
-
-const contentDB = {
-    technical: { title: "Science & Technology", icon: "🔬", explain: "High logic and technical decomposition skills.", colleges: ["IIT Bombay", "NIT Trichy", "IISc", "BITS Pilani"], roadmap: ["Focus on PCM/PCB", "Target JEE/NEET", "Coding Labs"] },
-    finance: { title: "Commerce & Business", icon: "📈", explain: "Strategic resource management and financial logic.", colleges: ["SRCC Delhi", "IIM Indore", "St. Xavier's", "LSR"], roadmap: ["Commerce + Math", "Target IPMAT/CA", "Market Trends"] },
-    social: { title: "Humanities & Law", icon: "⚖️", explain: "Deep social intelligence and persuasive reasoning.", colleges: ["NLSIU Bangalore", "TISS Mumbai", "JNU", "DU Law"], roadmap: ["Ethics Portfolio", "Target CLAT/UPSC", "Public Speaking"] },
-    creative: { title: "Creative & Design", icon: "🎨", explain: "Superior aesthetic visualization and design IQ.", colleges: ["NID Ahmedabad", "IIT IDC", "NIFT Delhi", "Srishti"], roadmap: ["Portfolio", "Learn Figma/3D", "Visual Design"] }
+// After 10th (Streams) vs After 12th (Careers) Database
+const database = {
+    "10": {
+        technical: { title: "Science Stream", careers: ["Research Scientist", "Data Scientist", "Biotechnologist"], steps: ["Focus on PCM/PCB", "Participate in science fairs"] },
+        finance: { title: "Commerce Stream", careers: ["Chartered Accountant", "Investment Banker", "Stock Analyst"], steps: ["Focus on Math & Accounts", "Learn Market Trends"] },
+        social: { title: "Humanities Stream", careers: ["Psychologist", "Journalist", "Lawyer"], steps: ["Focus on History/Politics", "Build Communication Skills"] },
+        creative: { title: "Design & Arts", careers: ["UI/UX Designer", "Animator", "Fashion Designer"], steps: ["Build Creative Portfolio", "Learn Design Tools"] }
+    },
+    "12": {
+        technical: { title: "Engineering & Tech", careers: ["AI Engineer", "Software Architect", "Robotics Specialist"], steps: ["Target JEE/BITSAT", "Start Coding Early"] },
+        finance: { title: "Business & Management", careers: ["MBA", "Corporate Lawyer", "FinTech Expert"], steps: ["Prepare for IPMAT/CAT", "Networking"] },
+        social: { title: "Law & Public Policy", careers: ["Judge", "Civil Servant (UPSC)", "Social Entrepreneur"], steps: ["Prepare for CLAT", "Intern with NGOs"] },
+        creative: { title: "Digital Media & UX", careers: ["Creative Director", "Product Designer", "Content Strategist"], steps: ["Intern at Agencies", "Advanced Portfolio"] }
+    }
 };
 
-function generateRealResults() {
-    const totalPoints = Object.values(scoreData).reduce((a, b) => a + b, 0) || 1;
-    let processedResults = Object.keys(contentDB).map(key => {
-        const userScore = scoreData[key] || 0;
-        let finalPercent = 75 + (userScore / totalPoints * 20) + (Math.random() * 2);
-        if (finalPercent > 99) finalPercent = 98.9;
-        return { id: key, score: finalPercent.toFixed(1), ...contentDB[key] };
-    });
-    return processedResults.sort((a, b) => b.score - a.score);
-}
+function renderResults() {
+    const streamList = document.getElementById("streamList");
+    // Sorting by score
+    const sorted = Object.keys(scoreData).sort((a, b) => scoreData[b] - scoreData[a]);
+    
+    streamList.innerHTML = "";
+    sorted.forEach((key, index) => {
+        const data = database[stage][key];
+        const score = scoreData[key];
+        const isBest = index === 0;
 
-const finalSortedList = generateRealResults();
-const container = document.getElementById("resultsContainer");
-container.innerHTML = "";
-
-finalSortedList.forEach((data, index) => {
-    const isTop = index === 0;
-    const recommendationText = isTop ? "🔥 HIGHLY RECOMMENDED" : "⭐ STABLE ALTERNATIVE";
-    const badgeClass = isTop ? "badge-gold" : "badge-silver";
-    const tagText = isTop ? "AI PRIME MATCH" : "STRONG MATCH";
-
-    container.innerHTML += `
-    <div class="stream-card p-8 md:p-10 relative overflow-hidden group mb-8 ${isTop ? 'border-indigo-500/50 bg-indigo-500/5' : ''}">
-        <div class="absolute top-0 right-0 ${badgeClass} px-6 py-2 rounded-bl-2xl font-black text-[10px] uppercase z-10">
-            ${tagText}
-        </div>
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-            <div class="text-4xl bg-white/5 p-6 rounded-2xl border border-white/10">${data.icon}</div>
-            <div class="flex-grow w-full">
-                <div class="text-indigo-500 text-[9px] font-black tracking-widest mb-1 italic">${recommendationText}</div>
-                <h3 class="text-3xl font-black italic uppercase mb-2">${data.title}</h3>
-                <div class="flex items-end gap-2 mb-6 border-b border-white/5 pb-4">
-                    <span class="text-4xl font-black italic text-indigo-400">${data.score}%</span>
-                    <span class="text-[9px] uppercase font-bold text-slate-500 italic pb-1">Match Accuracy</span>
+        streamList.innerHTML += `
+            <div class="p-6 rounded-2xl border ${isBest ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/10 bg-white/5'} transition-all hover:scale-[1.02]">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-indigo-600 rounded-xl text-xl">${key === 'technical' ? '🔬' : key === 'finance' ? '📈' : key === 'social' ? '⚖️' : '🎨'}</div>
+                        <div>
+                            <h4 class="font-bold text-lg">${data.title}</h4>
+                            <p class="text-slate-400 text-[11px] leading-tight max-w-[250px]">Optimized match based on your aptitude for ${key}.</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        ${isBest ? '<span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded-md">🏆 BEST MATCH</span>' : ''}
+                        <div class="text-2xl font-black text-white mt-1">${score}<span class="text-xs text-slate-500 ml-1">Pts</span></div>
+                    </div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-white/5">
                     <div>
-                        <p class="text-[10px] font-black uppercase text-slate-500 mb-2 italic">Neural Insight</p>
-                        <p class="text-xs text-slate-300 italic bg-white/5 p-4 rounded-xl border border-white/5">${data.explain}</p>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Popular Careers:</p>
+                        <div class="flex flex-wrap gap-1 mt-1">
+                            ${data.careers.map(c => `<span class="bg-white/10 text-[9px] px-2 py-0.5 rounded">${c}</span>`).join('')}
+                        </div>
                     </div>
                     <div>
-                        <p class="text-[10px] font-black uppercase text-slate-500 mb-2 italic tracking-widest">Top Strategic Colleges</p>
-                        <div class="flex flex-wrap gap-2">
-                            ${data.colleges.map(c => `<span class="career-tag">${c}</span>`).join('')}
-                        </div>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Next Steps:</p>
+                        <ul class="text-[10px] text-slate-300 mt-1 space-y-1">
+                            ${data.steps.map(s => `<li>• ${s}</li>`).join('')}
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>`;
-});
-
-function shareResult() {
-    const text = `Check out my AI Career Report! My best match is ${finalSortedList[0].title}.`;
-    if (navigator.share) {
-        navigator.share({ title: 'CareerSteps AI Report', text: text, url: window.location.href });
-    } else {
-        navigator.clipboard.writeText(text);
-        alert("Report Link Copied!");
-    }
+        `;
+    });
 }
+
+renderResults();
 </script>
 </body>
 </html>
