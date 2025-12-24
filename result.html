@@ -16,8 +16,7 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
 @media print { 
     .no-print { display:none !important; } 
     body { background:#fff !important; color:#000 !important; }
-    .main-card { border: none; background: white !important; color: black !important; }
-    .chart-container { border: 1px solid #eee !important; }
+    .main-card { border: none !important; background: white !important; color: black !important; }
 }
 </style>
 </head>
@@ -40,7 +39,7 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
     <div class="text-center mb-8">
         <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Neural Sync Complete</span>
         <h2 class="text-3xl font-black mt-4 uppercase italic">Your AI <span class="text-indigo-500">Roadmap</span></h2>
-        <p class="text-slate-400 text-sm mt-2 italic">Aptitude Visualization & Stream Analysis</p>
+        <p id="userNameDisplay" class="text-slate-400 text-sm mt-2 italic">System Analysis for User</p>
     </div>
 
     <div class="chart-container">
@@ -50,34 +49,70 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
     <div id="streamList" class="space-y-4"></div>
 
     <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
-        <h3 class="font-bold text-lg mb-2 italic uppercase">Expand Your Horizon</h3>
+        <h3 class="font-bold text-lg mb-2 italic uppercase">Explore Your Horizon</h3>
         <p class="text-slate-400 text-xs mb-6 italic">Don't limit yourself. Discover the full spectrum of professional possibilities.</p>
         <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <button onclick="location.href='all-careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 transition-transform active:scale-95">Explore Careers</button>
+            <button onclick="location.href='careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 transition-transform active:scale-95">Explore 900+ Careers</button>
             <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5 hover:bg-slate-700">Retake Assessment</button>
         </div>
     </div>
 </div>
 
 <script>
+// 1. Data Retrieval
+const name = localStorage.getItem("user_name") || "Explorer";
 const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
 const stage = localStorage.getItem("academic_stage") || "10";
 
-const database = {
+document.getElementById("userNameDisplay").innerText = `System Analysis for ${name}`;
+
+// 2. Database (Streams for 10th, Careers for 12th)
+const contentDB = {
     "10": {
-        technical: { title: "Science Stream", careers: ["Research Scientist", "Data Scientist", "Biotechnologist"], steps: ["Focus on PCM/PCB", "Participate in science fairs"] },
-        finance: { title: "Commerce Stream", careers: ["Chartered Accountant", "Investment Banker", "Stock Analyst"], steps: ["Focus on Math & Accounts", "Market Trends"] },
-        social: { title: "Humanities Stream", careers: ["Psychologist", "Journalist", "UPSC/Law"], steps: ["Focus on History/Politics", "Communication Skills"] },
-        creative: { title: "Design & Fine Arts", careers: ["UI/UX Designer", "Animator", "Fashion Designer"], steps: ["Build Portfolio", "Learn Digital Tools"] }
+        technical: { title: "Science Stream", icon: "🔬", careers: ["Engineering", "IT", "Research"], steps: ["Choose PCM/PCB", "Science Fairs"] },
+        finance: { title: "Commerce Stream", icon: "📈", careers: ["Accounting", "Management", "CA"], steps: ["Focus on Math", "Market Trends"] },
+        social: { title: "Humanities Stream", icon: "⚖️", careers: ["Law", "Psychology", "IAS"], steps: ["Social Sciences", "Civic Studies"] },
+        creative: { title: "Creative Arts", icon: "🎨", careers: ["Designing", "Acting", "Media"], steps: ["Build Portfolio", "Art Workshops"] }
     },
     "12": {
-        technical: { title: "Engineering & Tech", careers: ["AI Engineer", "Software Architect", "Robotics"], steps: ["Target JEE/BITSAT", "Coding Labs"] },
-        finance: { title: "Business & Management", careers: ["MBA", "Corporate Law", "FinTech Expert"], steps: ["Prepare for IPMAT/CAT", "Networking"] },
-        social: { title: "Law & Public Policy", careers: ["Judge", "Civil Service", "Entrepreneur"], steps: ["Prepare for CLAT", "NGO Internships"] },
-        creative: { title: "Digital Media & UX", careers: ["Creative Director", "Product Design", "Content Lead"], steps: ["Agency Internships", "Advanced Portfolio"] }
+        technical: { title: "Engineering & Tech", icon: "🚀", careers: ["Software Eng.", "AI Specialist", "Robotics"], steps: ["JEE Preparation", "Coding Labs"] },
+        finance: { title: "Business & CA", icon: "💰", careers: ["Corporate Finance", "Investment Banker"], steps: ["Prepare for CA/IPMAT", "Fintech"] },
+        social: { title: "Law & Civil Services", icon: "🏛️", careers: ["Judge", "IAS/IPS", "Social Lead"], steps: ["Prepare for CLAT", "UPSC Focus"] },
+        creative: { title: "Product & UI Design", icon: "✨", careers: ["UX Lead", "Game Designer", "Animator"], steps: ["Design Portfolio", "Internships"] }
     }
 };
 
+// 3. Render Results Logic
+function render() {
+    const list = document.getElementById("streamList");
+    const sortedKeys = Object.keys(scoreData).sort((a,b) => scoreData[b] - scoreData[a]);
+    
+    list.innerHTML = "";
+    sortedKeys.forEach((key, index) => {
+        const item = contentDB[stage][key];
+        const pts = scoreData[key];
+        const isTop = index === 0;
+
+        list.innerHTML += `
+            <div class="p-6 rounded-3xl border ${isTop ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/5 bg-white/2'} mb-4">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-indigo-600 rounded-2xl text-xl">${item.icon}</div>
+                        <div>
+                            <h4 class="font-black text-lg italic uppercase">${item.title}</h4>
+                            <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">${pts} Questions Matched</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        ${isTop ? '<span class="bg-amber-400 text-black text-[9px] font-black px-2 py-1 rounded-lg italic">AI PRIME MATCH</span>' : ''}
+                        <div class="text-2xl font-black text-white mt-1">${((pts/10)*100).toFixed(0)}%</div>
+                    </div>
+                </div>
+            </div>`;
+    });
+}
+
+// 4. Chart Logic
 function initChart() {
     const ctx = document.getElementById('aptitudeChart').getContext('2d');
     new Chart(ctx, {
@@ -85,84 +120,25 @@ function initChart() {
         data: {
             labels: ['Technical', 'Finance', 'Social', 'Creative'],
             datasets: [{
-                label: 'Aptitude Score',
                 data: [scoreData.technical, scoreData.finance, scoreData.social, scoreData.creative],
                 backgroundColor: 'rgba(99, 102, 241, 0.2)',
                 borderColor: '#6366f1',
-                borderWidth: 3,
-                pointBackgroundColor: '#fff'
+                borderWidth: 2
             }]
         },
-        options: {
-            scales: {
-                r: {
-                    angleLines: { color: 'rgba(255,255,255,0.1)' },
-                    grid: { color: 'rgba(255,255,255,0.1)' },
-                    pointLabels: { color: '#94a3b8', font: { size: 12, weight: 'bold' } },
-                    ticks: { display: false },
-                    suggestedMin: 0
-                }
-            },
+        options: { 
+            scales: { r: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { display: false } } },
             plugins: { legend: { display: false } }
         }
     });
 }
 
-function renderResults() {
-    const streamList = document.getElementById("streamList");
-    const sorted = Object.keys(scoreData).sort((a, b) => scoreData[b] - scoreData[a]);
-    
-    streamList.innerHTML = "";
-    sorted.forEach((key, index) => {
-        const data = database[stage][key];
-        const score = scoreData[key];
-        const isBest = index === 0;
-
-        streamList.innerHTML += `
-            <div class="p-6 rounded-3xl border ${isBest ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/5 bg-white/2'} transition-all mb-4">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-indigo-600 rounded-2xl text-xl shadow-lg shadow-indigo-600/20">${key === 'technical' ? '🔬' : key === 'finance' ? '📈' : key === 'social' ? '⚖️' : '🎨'}</div>
-                        <div>
-                            <h4 class="font-black text-lg uppercase italic">${data.title}</h4>
-                            <p class="text-slate-500 text-[10px] font-bold tracking-widest uppercase">Sync Accuracy: ${((score/10)*100).toFixed(0)}%</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        ${isBest ? '<span class="bg-amber-400 text-black text-[9px] font-black px-2 py-1 rounded-lg uppercase tracking-tighter italic">AI Prime Match</span>' : ''}
-                        <div class="text-2xl font-black text-indigo-400 mt-1">${score}<span class="text-[10px] text-slate-500 ml-1">Pts</span></div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-white/5">
-                    <div>
-                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Career Nodes:</p>
-                        <div class="flex flex-wrap gap-1">
-                            ${data.careers.map(c => `<span class="bg-white/5 text-[9px] font-bold px-2 py-1 rounded-md text-slate-300 border border-white/5">${c}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Success Roadmap:</p>
-                        <ul class="text-[10px] text-slate-400 space-y-1 italic font-medium">
-                            ${data.steps.map(s => `<li>• ${s}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            </div>`;
-    });
-}
-
 function shareResult() {
-    const text = `I just completed my CareerSteps AI Analysis! My top match is ${database[stage][Object.keys(scoreData).sort((a, b) => scoreData[b] - scoreData[a])[0]].title}. Check yours here:`;
-    if (navigator.share) {
-        navigator.share({ title: 'AI Career Report', text: text, url: window.location.origin });
-    } else {
-        navigator.clipboard.writeText(text + " " + window.location.origin);
-        alert("Report Link Copied!");
-    }
+    const shareData = { title: 'CareerSteps Report', text: `I matched ${((scoreData[Object.keys(scoreData)[0]]/10)*100).toFixed(0)}% with my top stream!`, url: window.location.href };
+    navigator.share ? navigator.share(shareData) : alert("Link copied!");
 }
 
-renderResults();
+render();
 initChart();
 </script>
 </body>
