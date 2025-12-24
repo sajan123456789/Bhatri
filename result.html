@@ -26,7 +26,9 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
 <div id="resultsModal" class="main-card p-6 md:p-8 max-w-2xl mx-auto shadow-2xl relative">
     
     <div class="flex justify-between items-center mb-8 no-print">
-        <h1 class="text-xl font-black italic text-indigo-500">CAREER<span class="text-white">STEPS</span></h1>
+        <a href="index.html" class="hover:opacity-80 transition-opacity">
+            <h1 class="text-xl font-black italic text-indigo-500">CAREER<span class="text-white">STEPS</span></h1>
+        </a>
         <div class="flex gap-2">
             <button onclick="window.print()" class="p-2 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition">
                 <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -48,11 +50,11 @@ body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-ser
     <div id="streamList" class="space-y-4"></div>
 
     <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
-        <h3 class="font-bold text-lg mb-2">Deep Dive into Your Career?</h3>
-        <p class="text-slate-400 text-xs mb-6 italic">Our advanced scanner can map specific job roles based on this profile.</p>
+        <h3 class="font-bold text-lg mb-2 italic uppercase">Expand Your Horizon</h3>
+        <p class="text-slate-400 text-xs mb-6 italic">Don't limit yourself. Discover the full spectrum of professional possibilities.</p>
         <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <button onclick="location.href='career-deep-dive.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20">Start Career Scan</button>
-            <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5">Retake Assessment</button>
+            <button onclick="location.href='all-careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 transition-transform active:scale-95">Explore 900+ Careers</button>
+            <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5 hover:bg-slate-700">Retake Assessment</button>
         </div>
     </div>
 </div>
@@ -76,7 +78,6 @@ const database = {
     }
 };
 
-// Initialize Radar Chart
 function initChart() {
     const ctx = document.getElementById('aptitudeChart').getContext('2d');
     new Chart(ctx, {
@@ -98,7 +99,8 @@ function initChart() {
                     angleLines: { color: 'rgba(255,255,255,0.1)' },
                     grid: { color: 'rgba(255,255,255,0.1)' },
                     pointLabels: { color: '#94a3b8', font: { size: 12, weight: 'bold' } },
-                    ticks: { display: false }
+                    ticks: { display: false },
+                    suggestedMin: 0
                 }
             },
             plugins: { legend: { display: false } }
