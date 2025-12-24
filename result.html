@@ -2,69 +2,112 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – Final AI Analysis</title>
+<title>CareerSteps – AI Neural Report</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-.stream-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:24px; transition:.4s cubic-bezier(0.4, 0, 0.2, 1); }
-.stream-card:hover { border-color:#6366f1; transform:translateY(-6px); background: rgba(99, 102, 241, 0.03); }
+.main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
 .status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
-.career-tag { background:rgba(99,102,241,.1); color:#a5b4fc; font-size:10px; padding:5px 12px; border-radius:8px; font-weight:700; text-transform: uppercase; border: 1px solid rgba(99,102,241,0.2); }
-.badge-gold { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #000; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); }
-.badge-silver { background: linear-gradient(135deg, #94a3b8 0%, #475569 100%); color: #fff; opacity: 0.8; }
-.gradient-text { background: linear-gradient(90deg, #6366f1, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-@media print { .no-print { display:none!important } body { background:#fff!important; color:#000!important } }
+.chart-container { background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 30px; }
+@media print { 
+    .no-print { display:none !important; } 
+    body { background:#fff !important; color:#000 !important; }
+    .main-card { border: none; background: white !important; color: black !important; }
+    .chart-container { border: 1px solid #eee !important; }
+}
 </style>
 </head>
 
 <body class="p-4 md:p-10">
 <div id="resultsModal" class="main-card p-6 md:p-8 max-w-2xl mx-auto shadow-2xl relative">
-    <div class="text-center mb-8">
-        <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Assessment Complete</span>
-        <h2 class="text-3xl font-bold mt-4">Your Recommended Streams</h2>
-        <p class="text-slate-400 text-sm mt-2">Based on your responses, these academic streams best match your interests.</p>
+    
+    <div class="flex justify-between items-center mb-8 no-print">
+        <h1 class="text-xl font-black italic text-indigo-500">CAREER<span class="text-white">STEPS</span></h1>
+        <div class="flex gap-2">
+            <button onclick="window.print()" class="p-2 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition">
+                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </button>
+            <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition">Share Report</button>
+        </div>
     </div>
 
-    <div id="streamList" class="space-y-4">
-        </div>
+    <div class="text-center mb-8">
+        <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Neural Sync Complete</span>
+        <h2 class="text-3xl font-black mt-4 uppercase italic">Your AI <span class="text-indigo-500">Roadmap</span></h2>
+        <p class="text-slate-400 text-sm mt-2 italic">Aptitude Visualization & Stream Analysis</p>
+    </div>
 
-    <div class="mt-10 text-center bg-white/5 p-6 rounded-2xl border border-white/10">
-        <h3 class="font-bold text-lg">Ready to Explore Your Career Path?</h3>
-        <p class="text-slate-400 text-xs mb-6">Take our comprehensive assessment to discover specific careers.</p>
+    <div class="chart-container">
+        <canvas id="aptitudeChart"></canvas>
+    </div>
+
+    <div id="streamList" class="space-y-4"></div>
+
+    <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
+        <h3 class="font-bold text-lg mb-2">Deep Dive into Your Career?</h3>
+        <p class="text-slate-400 text-xs mb-6 italic">Our advanced scanner can map specific job roles based on this profile.</p>
         <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <button onclick="location.href='career-deep-dive.html'" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm transition">Take Career Assessment</button>
-            <button onclick="location.href='assessment.html'" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl font-bold text-sm border border-white/5">Retake Stream Test</button>
+            <button onclick="location.href='career-deep-dive.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20">Start Career Scan</button>
+            <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5">Retake Assessment</button>
         </div>
     </div>
 </div>
 
 <script>
-// Data aur Calculation Logic
 const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
 const stage = localStorage.getItem("academic_stage") || "10";
 
-// After 10th (Streams) vs After 12th (Careers) Database
 const database = {
     "10": {
         technical: { title: "Science Stream", careers: ["Research Scientist", "Data Scientist", "Biotechnologist"], steps: ["Focus on PCM/PCB", "Participate in science fairs"] },
-        finance: { title: "Commerce Stream", careers: ["Chartered Accountant", "Investment Banker", "Stock Analyst"], steps: ["Focus on Math & Accounts", "Learn Market Trends"] },
-        social: { title: "Humanities Stream", careers: ["Psychologist", "Journalist", "UPSC","Lawyer"], steps: ["Focus on History/Politics", "Build Communication Skills"] },
-        creative: { title: "Design & FINE Arts/OTHERS", careers: ["UI/UX Designer", "Animator", "Fashion Designer","ACTING/OTHER"], steps: [Build Creative Portfolio", "Learn Design Tools"] }
+        finance: { title: "Commerce Stream", careers: ["Chartered Accountant", "Investment Banker", "Stock Analyst"], steps: ["Focus on Math & Accounts", "Market Trends"] },
+        social: { title: "Humanities Stream", careers: ["Psychologist", "Journalist", "UPSC/Law"], steps: ["Focus on History/Politics", "Communication Skills"] },
+        creative: { title: "Design & Fine Arts", careers: ["UI/UX Designer", "Animator", "Fashion Designer"], steps: ["Build Portfolio", "Learn Digital Tools"] }
     },
     "12": {
-        technical: { title: "Engineering & Tech", careers: ["AI Engineer", "Software Architect", "Robotics Specialist"], steps: ["Target JEE/BITSAT", "Start Coding Early"] },
-        finance: { title: "Business & Management", careers: ["MBA", "Corporate Lawyer", "FinTech Expert"], steps: ["Prepare for IPMAT/CAT", "Networking"] },
-        social: { title: "Law & Public Policy", careers: ["Judge", "Civil Servant (UPSC)", "Social Entrepreneur"], steps: ["Prepare for CLAT", "Intern with NGOs"] },
-        creative: { title: "Digital Media & UX", careers: ["Creative Director", "Product Designer", "Content Strategist"], steps: ["Intern at Agencies", "Advanced Portfolio"] }
+        technical: { title: "Engineering & Tech", careers: ["AI Engineer", "Software Architect", "Robotics"], steps: ["Target JEE/BITSAT", "Coding Labs"] },
+        finance: { title: "Business & Management", careers: ["MBA", "Corporate Law", "FinTech Expert"], steps: ["Prepare for IPMAT/CAT", "Networking"] },
+        social: { title: "Law & Public Policy", careers: ["Judge", "Civil Service", "Entrepreneur"], steps: ["Prepare for CLAT", "NGO Internships"] },
+        creative: { title: "Digital Media & UX", careers: ["Creative Director", "Product Design", "Content Lead"], steps: ["Agency Internships", "Advanced Portfolio"] }
     }
 };
 
+// Initialize Radar Chart
+function initChart() {
+    const ctx = document.getElementById('aptitudeChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['Technical', 'Finance', 'Social', 'Creative'],
+            datasets: [{
+                label: 'Aptitude Score',
+                data: [scoreData.technical, scoreData.finance, scoreData.social, scoreData.creative],
+                backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                borderColor: '#6366f1',
+                borderWidth: 3,
+                pointBackgroundColor: '#fff'
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255,255,255,0.1)' },
+                    grid: { color: 'rgba(255,255,255,0.1)' },
+                    pointLabels: { color: '#94a3b8', font: { size: 12, weight: 'bold' } },
+                    ticks: { display: false }
+                }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+}
+
 function renderResults() {
     const streamList = document.getElementById("streamList");
-    // Sorting by score
     const sorted = Object.keys(scoreData).sort((a, b) => scoreData[b] - scoreData[a]);
     
     streamList.innerHTML = "";
@@ -74,41 +117,51 @@ function renderResults() {
         const isBest = index === 0;
 
         streamList.innerHTML += `
-            <div class="p-6 rounded-2xl border ${isBest ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/10 bg-white/5'} transition-all hover:scale-[1.02]">
+            <div class="p-6 rounded-3xl border ${isBest ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/5 bg-white/2'} transition-all mb-4">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center gap-4">
-                        <div class="p-3 bg-indigo-600 rounded-xl text-xl">${key === 'technical' ? '🔬' : key === 'finance' ? '📈' : key === 'social' ? '⚖️' : '🎨'}</div>
+                        <div class="p-3 bg-indigo-600 rounded-2xl text-xl shadow-lg shadow-indigo-600/20">${key === 'technical' ? '🔬' : key === 'finance' ? '📈' : key === 'social' ? '⚖️' : '🎨'}</div>
                         <div>
-                            <h4 class="font-bold text-lg">${data.title}</h4>
-                            <p class="text-slate-400 text-[11px] leading-tight max-w-[250px]">Optimized match based on your aptitude for ${key}.</p>
+                            <h4 class="font-black text-lg uppercase italic">${data.title}</h4>
+                            <p class="text-slate-500 text-[10px] font-bold tracking-widest uppercase">Sync Accuracy: ${((score/10)*100).toFixed(0)}%</p>
                         </div>
                     </div>
                     <div class="text-right">
-                        ${isBest ? '<span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded-md">🏆 BEST MATCH</span>' : ''}
-                        <div class="text-2xl font-black text-white mt-1">${score}<span class="text-xs text-slate-500 ml-1">Pts</span></div>
+                        ${isBest ? '<span class="bg-amber-400 text-black text-[9px] font-black px-2 py-1 rounded-lg uppercase tracking-tighter italic">AI Prime Match</span>' : ''}
+                        <div class="text-2xl font-black text-indigo-400 mt-1">${score}<span class="text-[10px] text-slate-500 ml-1">Pts</span></div>
                     </div>
                 </div>
                 
                 <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-white/5">
                     <div>
-                        <p class="text-[10px] font-bold text-slate-500 uppercase">Popular Careers:</p>
-                        <div class="flex flex-wrap gap-1 mt-1">
-                            ${data.careers.map(c => `<span class="bg-white/10 text-[9px] px-2 py-0.5 rounded">${c}</span>`).join('')}
+                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Career Nodes:</p>
+                        <div class="flex flex-wrap gap-1">
+                            ${data.careers.map(c => `<span class="bg-white/5 text-[9px] font-bold px-2 py-1 rounded-md text-slate-300 border border-white/5">${c}</span>`).join('')}
                         </div>
                     </div>
                     <div>
-                        <p class="text-[10px] font-bold text-slate-500 uppercase">Next Steps:</p>
-                        <ul class="text-[10px] text-slate-300 mt-1 space-y-1">
+                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Success Roadmap:</p>
+                        <ul class="text-[10px] text-slate-400 space-y-1 italic font-medium">
                             ${data.steps.map(s => `<li>• ${s}</li>`).join('')}
                         </ul>
                     </div>
                 </div>
-            </div>
-        `;
+            </div>`;
     });
 }
 
+function shareResult() {
+    const text = `I just completed my CareerSteps AI Analysis! My top match is ${database[stage][Object.keys(scoreData).sort((a, b) => scoreData[b] - scoreData[a])[0]].title}. Check yours here:`;
+    if (navigator.share) {
+        navigator.share({ title: 'AI Career Report', text: text, url: window.location.origin });
+    } else {
+        navigator.clipboard.writeText(text + " " + window.location.origin);
+        alert("Report Link Copied!");
+    }
+}
+
 renderResults();
+initChart();
 </script>
 </body>
 </html>
