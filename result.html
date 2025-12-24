@@ -6,113 +6,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-.main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
-.status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
-.chart-container { background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 30px; }
-@media print { 
-    .no-print { display:none !important; } 
-    body { background:#fff !important; color:#000 !important; }
-    .main-card { border: none !important; background: white !important; color: black !important; }
-}
+    body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; }
+    .main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
+    .status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
+    .chart-container { background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 30px; max-width: 400px; margin: 0 auto 30px auto; }
+    .badge-gold { background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; font-weight: 800; border-radius: 0 0 0 12px; }
+    
+    /* PDF Styling Fixes */
+    @media print { 
+        .no-print { display:none !important; } 
+        body { background:#fff !important; color:#000 !important; } 
+        .main-card { border: none !important; background: white !important; color: black !important; box-shadow: none !important; }
+    }
 </style>
 </head>
 
 <body class="p-4 md:p-10">
-<div id="resultsModal" class="main-card p-6 md:p-8 max-w-2xl mx-auto shadow-2xl relative">
-    
-    <div class="flex justify-between items-center mb-8 no-print">
-        <a href="index.html" class="hover:opacity-80 transition-opacity">
-            <h1 class="text-xl font-black italic text-indigo-500">CAREER<span class="text-white">STEPS</span></h1>
-        </a>
-        <div class="flex gap-2">
-            <button onclick="window.print()" class="p-2 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition">
-                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            </button>
-            <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition">Share Report</button>
+<div id="reportArea" class="max-w-2xl mx-auto">
+    <div class="main-card p-6 md:p-8 shadow-2xl relative">
+        
+        <div class="flex justify-between items-center mb-8 no-print">
+            <a href="index.html" class="hover:opacity-80 transition block">
+                <h1 class="text-xl font-black italic text-indigo-500 uppercase">CAREER<span class="text-white">STEPS</span></h1>
+            </a>
+            <div class="flex gap-2">
+                <button onclick="downloadPDF()" class="p-2 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition" title="Download PDF">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </button>
+                <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition">Share Report</button>
+            </div>
         </div>
-    </div>
 
-    <div class="text-center mb-8">
-        <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Neural Sync Complete</span>
-        <h2 class="text-3xl font-black mt-4 uppercase italic">Your AI <span class="text-indigo-500">Roadmap</span></h2>
-        <p id="userNameDisplay" class="text-slate-400 text-sm mt-2 italic">System Analysis for User</p>
-    </div>
+        <div class="text-center mb-8">
+            <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Neural Sync Complete</span>
+            <h2 class="text-3xl font-black mt-4 uppercase italic leading-tight">Your AI <span class="text-indigo-500">Roadmap</span></h2>
+            <p id="userNameDisplay" class="text-slate-400 text-sm mt-2 italic">Analysis for User</p>
+        </div>
 
-    <div class="chart-container">
-        <canvas id="aptitudeChart"></canvas>
-    </div>
+        <div class="chart-container">
+            <canvas id="aptitudeChart"></canvas>
+        </div>
 
-    <div id="streamList" class="space-y-4"></div>
+        <div id="streamList" class="space-y-6"></div>
 
-    <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
-        <h3 class="font-bold text-lg mb-2 italic uppercase">Explore Your Horizon</h3>
-        <p class="text-slate-400 text-xs mb-6 italic">Don't limit yourself. Discover the full spectrum of professional possibilities.</p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <button onclick="location.href='careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 transition-transform active:scale-95">Explore 900+ Careers</button>
-            <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5 hover:bg-slate-700">Retake Assessment</button>
+        <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
+            <h3 class="font-bold text-lg mb-2 italic uppercase">Explore Your Horizon</h3>
+            <p class="text-slate-400 text-xs mb-6 italic">Discover the full spectrum of 900+ professional possibilities.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <button onclick="location.href='careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 active:scale-95 transition">Explore 900+ Careers</button>
+                <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5 hover:bg-slate-700 transition">Retake Scan</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-// 1. Data Retrieval
+// Data Setup
 const name = localStorage.getItem("user_name") || "Explorer";
-const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
 const stage = localStorage.getItem("academic_stage") || "10";
+const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 5, finance: 4, social: 3, creative: 2 };
 
-document.getElementById("userNameDisplay").innerText = `System Analysis for ${name}`;
+document.getElementById("userNameDisplay").innerText = `System Analysis for ${name} (Post-${stage}th)`;
 
-// 2. Database (Streams for 10th, Careers for 12th)
 const contentDB = {
     "10": {
-        technical: { title: "Science Stream", icon: "🔬", careers: ["Engineering", "IT", "Research"], steps: ["Choose PCM/PCB", "Science Fairs"] },
-        finance: { title: "Commerce Stream", icon: "📈", careers: ["Accounting", "Management", "CA"], steps: ["Focus on Math", "Market Trends"] },
-        social: { title: "Humanities Stream", icon: "⚖️", careers: ["Law", "Psychology", "IAS"], steps: ["Social Sciences", "Civic Studies"] },
-        creative: { title: "Creative Arts", icon: "🎨", careers: ["Designing", "Acting", "Media"], steps: ["Build Portfolio", "Art Workshops"] }
+        technical: { title: "Science & Technology", icon: "🔬", desc: "Logic & Analytical Reasoning", colleges: ["IITs", "IISc", "BITS"], roadmap: ["Focus on PCM/PCB", "Target JEE/NEET"] },
+        finance: { title: "Commerce & Business", icon: "📈", desc: "Financial Logic & Strategy", colleges: ["SRCC", "IIM Indore", "Xavier's"], roadmap: ["Select Commerce+Math", "Target IPMAT/CA"] },
+        social: { title: "Humanities & Law", icon: "⚖️", desc: "Social Intelligence & Ethics", colleges: ["NLSIU", "TISS", "JNU"], roadmap: ["Target CLAT/UPSC", "Public Speaking"] },
+        creative: { title: "Creative & Design", icon: "🎨", desc: "Aesthetic Visualization", colleges: ["NID", "NIFT", "IDC"], roadmap: ["Build Portfolio", "Digital Arts"] }
     },
     "12": {
-        technical: { title: "Engineering & Tech", icon: "🚀", careers: ["Software Eng.", "AI Specialist", "Robotics"], steps: ["JEE Preparation", "Coding Labs"] },
-        finance: { title: "Business & CA", icon: "💰", careers: ["Corporate Finance", "Investment Banker"], steps: ["Prepare for CA/IPMAT", "Fintech"] },
-        social: { title: "Law & Civil Services", icon: "🏛️", careers: ["Judge", "IAS/IPS", "Social Lead"], steps: ["Prepare for CLAT", "UPSC Focus"] },
-        creative: { title: "Product & UI Design", icon: "✨", careers: ["UX Lead", "Game Designer", "Animator"], steps: ["Design Portfolio", "Internships"] }
+        technical: { title: "Engineering & AI", icon: "🚀", desc: "Technical Decomposition", colleges: ["IIT Delhi", "IIIT-H"], roadmap: ["Hackathons", "Coding Labs"] },
+        finance: { title: "Investment Banking", icon: "💰", desc: "Risk Management", colleges: ["IIM Ahmedabad", "FMS"], roadmap: ["Prepare for CAT", "FinTech"] },
+        social: { title: "Legal & Civil Service", icon: "🏛️", desc: "Institutional Leadership", colleges: ["LBSNAA", "Law Faculty"], roadmap: ["UPSC Focus", "Moot Court"] },
+        creative: { title: "UI/UX & Product Design", icon: "✨", desc: "Product Visualization", colleges: ["Srishti", "MIT Design"], roadmap: ["UX Internships", "Agency Work"] }
     }
 };
 
-// 3. Render Results Logic
-function render() {
-    const list = document.getElementById("streamList");
-    const sortedKeys = Object.keys(scoreData).sort((a,b) => scoreData[b] - scoreData[a]);
-    
-    list.innerHTML = "";
-    sortedKeys.forEach((key, index) => {
-        const item = contentDB[stage][key];
-        const pts = scoreData[key];
-        const isTop = index === 0;
-
-        list.innerHTML += `
-            <div class="p-6 rounded-3xl border ${isTop ? 'border-indigo-500 bg-indigo-500/10' : 'border-white/5 bg-white/2'} mb-4">
-                <div class="flex justify-between items-start">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-indigo-600 rounded-2xl text-xl">${item.icon}</div>
-                        <div>
-                            <h4 class="font-black text-lg italic uppercase">${item.title}</h4>
-                            <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">${pts} Questions Matched</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        ${isTop ? '<span class="bg-amber-400 text-black text-[9px] font-black px-2 py-1 rounded-lg italic">AI PRIME MATCH</span>' : ''}
-                        <div class="text-2xl font-black text-white mt-1">${((pts/10)*100).toFixed(0)}%</div>
-                    </div>
-                </div>
-            </div>`;
-    });
-}
-
-// 4. Chart Logic
+// Radar Chart
 function initChart() {
     const ctx = document.getElementById('aptitudeChart').getContext('2d');
     new Chart(ctx, {
@@ -123,19 +98,70 @@ function initChart() {
                 data: [scoreData.technical, scoreData.finance, scoreData.social, scoreData.creative],
                 backgroundColor: 'rgba(99, 102, 241, 0.2)',
                 borderColor: '#6366f1',
-                borderWidth: 2
+                borderWidth: 3,
+                pointBackgroundColor: '#fff'
             }]
         },
-        options: { 
-            scales: { r: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { display: false } } },
+        options: {
+            scales: { r: { angleLines: { color: 'rgba(255,255,255,0.05)' }, grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#94a3b8', font: { size: 10, weight: '700' } }, ticks: { display: false } } },
             plugins: { legend: { display: false } }
         }
     });
 }
 
-function shareResult() {
-    const shareData = { title: 'CareerSteps Report', text: `I matched ${((scoreData[Object.keys(scoreData)[0]]/10)*100).toFixed(0)}% with my top stream!`, url: window.location.href };
-    navigator.share ? navigator.share(shareData) : alert("Link copied!");
+// Render Result Cards
+function render() {
+    const list = document.getElementById("streamList");
+    const sortedKeys = Object.keys(scoreData).sort((a,b) => scoreData[b] - scoreData[a]);
+    list.innerHTML = "";
+    
+    sortedKeys.forEach((key, index) => {
+        const item = contentDB[stage][key];
+        const isTop = index === 0;
+        const confidence = (85 + (scoreData[key] * 1.5)).toFixed(1);
+
+        list.innerHTML += `
+            <div class="relative p-6 rounded-3xl border ${isTop ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/5 bg-white/2'} mb-6">
+                ${isTop ? '<div class="absolute top-0 right-0 badge-gold px-4 py-1 text-[9px]">AI PRIME MATCH</div>' : ''}
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="text-3xl p-3 bg-white/5 rounded-xl h-fit">${item.icon}</div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-bold uppercase italic">${item.title}</h4>
+                        <p class="text-indigo-400 font-black text-xl mb-3">${confidence}% <span class="text-[9px] text-slate-500 uppercase">Match</span></p>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            ${item.colleges.map(c => `<span class="bg-indigo-500/10 text-indigo-300 px-2 py-0.5 rounded text-[9px] border border-indigo-500/20">${c}</span>`).join('')}
+                        </div>
+                        <div class="text-[10px] text-slate-400 italic">▶ ${item.roadmap.join('  ▶ ')}</div>
+                    </div>
+                </div>
+            </div>`;
+    });
+}
+
+// Sharing Logic
+async function shareResult() {
+    const shareText = `I just mapped my career using CareerSteps AI! My top match is ${contentDB[stage][Object.keys(scoreData).sort((a,b)=>scoreData[b]-scoreData[a])[0]].title}. Check yours:`;
+    if (navigator.share) {
+        try {
+            await navigator.share({ title: 'My AI Career Roadmap', text: shareText, url: window.location.href });
+        } catch (err) { console.log("Share failed"); }
+    } else {
+        navigator.clipboard.writeText(shareText + " " + window.location.href);
+        alert("Link copied to clipboard!");
+    }
+}
+
+// PDF Download Logic
+function downloadPDF() {
+    const element = document.getElementById('reportArea');
+    const opt = {
+        margin: 10,
+        filename: `${name}_Career_Report.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, backgroundColor: '#020617' },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
 }
 
 render();
