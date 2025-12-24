@@ -11,24 +11,13 @@
         .solid-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; transition: 0.3s; }
         .solid-card:hover { border-color: #3b82f6; }
         .roadmap-line { border-left: 2px dashed #2563eb; margin-left: 20px; }
-        .step-dot { 
-            height: 16px; width: 16px; background: #3b82f6; 
-            border-radius: 50%; position: absolute; left: -9px; 
-            border: 3px solid #020617; box-shadow: 0 0 10px #3b82f6;
-        }
+        .step-dot { height: 16px; width: 16px; background: #3b82f6; border-radius: 50%; position: absolute; left: -9px; border: 3px solid #020617; box-shadow: 0 0 10px #3b82f6; }
         .demand-bar { height: 10px; border-radius: 5px; background: #1e293b; overflow: hidden; }
-        .demand-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #60a5fa); }
-        
-        #backToTop {
-            display: none; position: fixed; bottom: 30px; right: 30px;
-            background: #2563eb; color: white; border: none;
-            padding: 12px; border-radius: 50%; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); z-index: 100;
-        }
-        @media print { .no-print { display: none; } body { background: white; color: black; } .solid-card { border: 1px solid #ccc; } }
+        .demand-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #60a5fa); transition: width 1s ease-in-out; }
+        #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; background: #2563eb; color: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); z-index: 100; }
+        @media print { .no-print { display: none; } body { background: white; color: black; } }
     </style>
 </head>
-
 <body>
 
 <button id="backToTop" onclick="window.scrollTo(0,0)" class="no-print">
@@ -36,15 +25,13 @@
 </button>
 
 <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center no-print">
-    <button onclick="window.location.href='careers.html'" class="flex items-center text-blue-500 hover:text-blue-400 transition font-bold text-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
+    <button onclick="window.location.href='careers.html'" class="flex items-center text-blue-500 hover:text-blue-400 transition font-bold text-sm uppercase tracking-widest">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
         Back to Directory
     </button>
     <div class="flex gap-3">
-        <button onclick="shareOnWhatsApp()" class="bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition">WhatsApp</button>
-        <button onclick="window.print()" class="bg-slate-800 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest border border-slate-600 transition">Save PDF</button>
+        <button onclick="shareOnWhatsApp()" class="bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition">WhatsApp</button>
+        <button onclick="window.print()" class="bg-slate-800 text-white px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border border-slate-600 transition">Save PDF</button>
     </div>
 </header>
 
@@ -52,81 +39,87 @@
 
 <script>
 const DATA_ENGINE = {
-    // Database with exact Indian context
-    t1: { title: "AI Research Scientist", cat: "Tech", salary: "₹15L - ₹50L PA", colleges: ["IIT Bombay", "IISc Bangalore"], exams: ["JEE Advanced", "GATE"], aiRisk: "Very Low", growth: "95%", roadmap: ["12th PCM (Min 75%)", "B.Tech in Computer Science", "M.Tech/PhD in AI/ML", "Research Internship"] },
-    t2: { title: "Cyber Security Analyst", cat: "Tech", salary: "₹8L - ₹25L PA", colleges: ["IIT Delhi", "NIT Trichy"], exams: ["JEE", "CEH", "CISSP"], aiRisk: "Low", growth: "88%", roadmap: ["12th Any (PCM Pref)", "B.Tech/BCA", "Ethical Hacking Cert", "Security Audit Intern"] },
-    m1: { title: "Neurosurgeon", cat: "Medical", salary: "₹20L - ₹80L PA", colleges: ["AIIMS Delhi", "JIPMER"], exams: ["NEET-UG", "NEET-PG", "NEET-SS"], aiRisk: "Near Zero", growth: "92%", roadmap: ["12th PCB", "MBBS (5.5 Years)", "MS in General Surgery", "M.Ch Neurosurgery"] },
-    l1: { title: "Corporate Lawyer", cat: "Law", salary: "₹10L - ₹35L PA", colleges: ["NLSIU Bangalore", "NLU Delhi"], exams: ["CLAT", "AILET", "LSAT"], aiRisk: "Moderate", growth: "80%", roadmap: ["12th Any Stream", "5-Year Integrated LLB", "Internship in Law Firm", "Bar Council Exam"] },
-    g1: { title: "IAS Officer", cat: "Government", salary: "₹56k - ₹2.5L/mo", colleges: ["LBSNAA Mussoorie"], exams: ["UPSC Civil Services"], aiRisk: "Zero", growth: "85%", roadmap: ["Graduation (Any Field)", "UPSC Prelims & Mains", "Personal Interview", "Foundation Training"] },
-    a1: { title: "Commercial Pilot", cat: "Aviation", salary: "₹25L - ₹90L PA", colleges: ["IGRUA", "NFTI"], exams: ["DGCA Exams", "Class 1 Medical"], aiRisk: "Low", growth: "75%", roadmap: ["12th PCM", "DGCA Medical Fitness", "CPL Ground Classes", "200 Hours Flying"] },
+    // Exact Matches for Core Careers
+    s1: { title: "Aerospace Engineer", cat: "Science", salary: "₹12L - ₹35L PA", colleges: ["IIT Bombay", "IIST"], exams: ["JEE Advanced", "GATE"], aiRisk: "Low", growth: "85%", roadmap: ["12th PCM (75%+)", "B.Tech in Aerospace/Mechanical", "Internship at ISRO/HAL", "M.Tech or Job Placement"] },
+    c1: { title: "Chartered Accountant", cat: "Commerce", salary: "₹8L - ₹25L PA", colleges: ["ICAI", "SRCC"], exams: ["CA Foundation", "Inter", "Final"], aiRisk: "Moderate", growth: "80%", roadmap: ["12th Commerce", "CA Foundation Entry", "3 Years Articleship", "CA Final Certification"] },
+    a1: { title: "IAS Officer", cat: "Arts", salary: "₹56k - ₹2.5L/mo", colleges: ["Any Recognized University"], exams: ["UPSC Civil Services"], aiRisk: "Zero", growth: "90%", roadmap: ["Graduate in any stream", "UPSC Prelims & Mains", "Interview Round", "LBSNAA Training"] },
+    cr1: { title: "Commercial Pilot", cat: "Creative", salary: "₹20L - ₹80L PA", colleges: ["IGRUA", "NFTI"], exams: ["DGCA Exams", "Class 1 Medical"], aiRisk: "Low", growth: "88%", roadmap: ["12th PCM", "DGCA Medical Clearance", "CPL Ground School", "200 Flying Hours"] },
 
-    // Dynamic generator for the remaining 900+ careers
+    // Smart Generator for 900+ Careers
     generate: function(id) {
         if(this[id]) return this[id];
-        const num = id ? id.replace(/\D/g, "") : 5;
-        const cats = ["Tech", "Medical", "Law", "Business", "Aviation", "Creative", "Finance"];
-        const curCat = cats[num % cats.length];
+        
+        // Agar ID automatic generate hui hai toh uski stream pehchano
+        const isScience = id && id.includes('s');
+        const isArts = id && id.includes('a');
+        const isCommerce = id && id.includes('c');
+        
+        const cat = isScience ? "Science" : (isCommerce ? "Commerce" : (isArts ? "Arts" : "Professional"));
+        
+        // Placeholder titles ke bajaye hum real logic use karenge
         return {
-            title: `Professional ${curCat} Expert`,
-            cat: curCat,
-            salary: `₹${7 + (num % 10)}L - ₹${18 + (num % 15)}L PA`,
-            colleges: [`Top ${curCat} National Institutes`, "State Universities"],
-            exams: ["Entrance Test", "CUET"],
-            aiRisk: num % 2 === 0 ? "Low" : "Moderate",
-            growth: `${70 + (num % 25)}%`,
-            roadmap: ["Complete 10+2", `Bachelor's in ${curCat}`, "Professional Certification", "Industry Internship"]
+            title: "Specialized Pathway", // Isko hum URL se bhi le sakte hain agar zaroorat ho
+            cat: cat,
+            salary: "₹8L - ₹22L PA",
+            colleges: ["Tier-1 National Universities", "Specialized Private Institutes"],
+            exams: ["CUET", "Entrance Exams", "Aptitude Test"],
+            aiRisk: "Low to Moderate",
+            growth: "82%",
+            roadmap: ["Complete 10+2 with 60%+", "Target Top Entrance Exams", "4-Year Professional Degree", "Industrial Internship & Portfolio"]
         };
     }
 };
 
-const id = new URLSearchParams(location.search).get('id');
-const c = DATA_ENGINE.generate(id);
+// --- DATA RENDERING LOGIC ---
+const urlParams = new URLSearchParams(location.search);
+const careerId = urlParams.get('id');
+const c = DATA_ENGINE.generate(careerId);
 const box = document.getElementById("content");
 
 if(c) {
     box.innerHTML = `
         <div class="mb-12">
-            <span class="text-blue-400 font-black uppercase tracking-widest text-[10px] px-3 py-1 bg-blue-900/30 rounded-lg border border-blue-500/30">${c.cat} Pathway 2025</span>
-            <h2 class="text-5xl md:text-7xl font-black mt-6 mb-8 text-white leading-tight uppercase italic">${c.title}</h2>
+            <span class="text-blue-400 font-black uppercase tracking-widest text-[10px] px-3 py-1 bg-blue-900/30 rounded-lg border border-blue-500/30">${c.cat} Stream Pathway</span>
+            <h2 class="text-5xl md:text-6xl font-black mt-6 mb-8 text-white leading-tight uppercase italic">${c.title}</h2>
             
             <div class="max-w-xs">
-                <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest italic">Market Demand Index</p>
+                <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest italic">Industry Growth Rate</p>
                 <div class="demand-bar mb-1"><div class="demand-fill" style="width: ${c.growth}"></div></div>
                 <div class="flex justify-between text-[9px] font-black text-blue-400 uppercase">
-                    <span>Stable</span><span>Growth: ${c.growth} 🔥</span>
+                    <span>Stable</span><span>High Demand: ${c.growth} 🔥</span>
                 </div>
             </div>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-5 mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             <div class="solid-card p-6 border-b-4 border-blue-600">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Avg Salary</p>
-                <p class="text-xl font-black text-white">${c.salary}</p>
+                <p class="text-slate-500 text-[9px] font-bold uppercase mb-2 tracking-widest">Avg Salary</p>
+                <p class="text-lg font-black text-white">${c.salary}</p>
             </div>
-            <div class="solid-card p-6 border-b-4 border-blue-500">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Entrance Exams</p>
-                <p class="text-sm font-bold text-blue-300">${c.exams.join(", ")}</p>
-            </div>
-            <div class="solid-card p-6 border-b-4 border-blue-400">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">Top Institutes</p>
-                <p class="text-[11px] font-bold text-slate-300 leading-tight">${c.colleges.join(", ")}</p>
+            <div class="solid-card p-6 border-b-4 border-emerald-500">
+                <p class="text-slate-500 text-[9px] font-bold uppercase mb-2 tracking-widest">Top Exams</p>
+                <p class="text-xs font-bold text-blue-300 uppercase">${Array.isArray(c.exams) ? c.exams.join(", ") : c.exams}</p>
             </div>
             <div class="solid-card p-6 border-b-4 border-indigo-500">
-                <p class="text-slate-500 text-[10px] font-bold uppercase mb-2 tracking-widest italic">AI Substitution Risk</p>
-                <p class="text-xl font-black text-white">${c.aiRisk}</p>
+                <p class="text-slate-500 text-[9px] font-bold uppercase mb-2 tracking-widest">AI Safety</p>
+                <p class="text-lg font-black text-white">${c.aiRisk}</p>
+            </div>
+            <div class="solid-card p-6 border-b-4 border-slate-500">
+                <p class="text-slate-500 text-[9px] font-bold uppercase mb-2 tracking-widest">Top College</p>
+                <p class="text-[10px] font-bold text-slate-300 leading-tight">${Array.isArray(c.colleges) ? c.colleges[0] : c.colleges}</p>
             </div>
         </div>
 
         <div class="grid lg:grid-cols-3 gap-12">
             <div class="lg:col-span-2">
-                <h3 class="text-3xl font-black mb-10 text-white italic uppercase tracking-tighter">Strategic Career Roadmap</h3>
+                <h3 class="text-3xl font-black mb-10 text-white italic uppercase tracking-tighter">Phase-by-Phase Roadmap</h3>
                 <div class="roadmap-line space-y-10">
-                    ${c.roadmap.map((s, i) => `
+                    ${c.roadmap.map((step, i) => `
                         <div class="relative pl-12">
                             <div class="step-dot"></div>
-                            <div class="solid-card p-6 hover:translate-x-2 transition-transform cursor-default">
-                                <span class="text-blue-500 font-black text-[10px] uppercase">Phase 0${i+1}</span>
-                                <p class="text-xl font-bold text-white mt-1 leading-snug">${s}</p>
+                            <div class="solid-card p-6 hover:translate-x-2 transition-transform">
+                                <span class="text-blue-500 font-black text-[10px] uppercase tracking-widest">Step 0${i+1}</span>
+                                <p class="text-lg font-bold text-white mt-1 leading-snug">${step}</p>
                             </div>
                         </div>
                     `).join('')}
@@ -135,9 +128,9 @@ if(c) {
 
             <div class="space-y-8">
                 <div class="p-8 rounded-[2.5rem] bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/30 shadow-2xl">
-                    <p class="text-blue-400 font-black text-xs uppercase mb-4 tracking-widest">AI Counselor Tip</p>
-                    <p class="text-slate-300 text-sm font-medium leading-relaxed mb-8 italic">"In this field, ${c.cat} skills are evolving fast. Focus on building a strong portfolio or clearing the ${c.exams[0]} exam early to stay ahead of the curve."</p>
-                    <button onclick="window.location.href='assessment.html'" class="w-full bg-blue-600 py-4 rounded-2xl font-black text-white hover:bg-blue-500 shadow-lg shadow-blue-500/20 active:scale-95 transition-all uppercase tracking-widest text-xs">Re-Verify My Aptitude</button>
+                    <p class="text-blue-400 font-black text-xs uppercase mb-4 tracking-widest underline underline-offset-8">Career Advice</p>
+                    <p class="text-slate-300 text-sm font-medium leading-relaxed mb-8 italic">"Building a career in ${c.cat} requires both academic excellence and practical skills. Focus on ${c.exams[0] || 'Entrance Exams'} to secure a seat in top-tier colleges."</p>
+                    <button onclick="window.location.href='assessment.html'" class="w-full bg-blue-600 py-4 rounded-2xl font-black text-white hover:bg-blue-500 shadow-lg shadow-blue-500/20 active:scale-95 transition-all uppercase tracking-widest text-[10px]">Start AI Assessment</button>
                 </div>
             </div>
         </div>
@@ -145,7 +138,7 @@ if(c) {
 }
 
 function shareOnWhatsApp() {
-    const text = `Check out the detailed AI Roadmap for ${c.title}: ${window.location.href}`;
+    const text = `Check out the detailed AI Career Roadmap for ${c.title}: ${window.location.href}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
 }
 
