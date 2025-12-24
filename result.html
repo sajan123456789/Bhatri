@@ -14,9 +14,11 @@
     .main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
     .status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
     .chart-container { background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 30px; max-width: 400px; margin: 0 auto 30px auto; }
-    .badge-gold { background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; font-weight: 800; border-radius: 0 0 0 12px; }
+    .badge-gold { background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; font-weight: 800; border-radius: 0 12px 0 12px; }
     
-    /* PDF Styling Fixes */
+    /* Career Tag Styling */
+    .career-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 10px; color: #94a3b8; }
+
     @media print { 
         .no-print { display:none !important; } 
         body { background:#fff !important; color:#000 !important; } 
@@ -42,8 +44,8 @@
         </div>
 
         <div class="text-center mb-8">
-            <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Neural Sync Complete</span>
-            <h2 class="text-3xl font-black mt-4 uppercase italic leading-tight">Your AI <span class="text-indigo-500">Roadmap</span></h2>
+            <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Assessment Complete</span>
+            <h2 class="text-3xl font-black mt-4 uppercase italic leading-tight">Your Recommended <span class="text-indigo-500">Streams</span></h2>
             <p id="userNameDisplay" class="text-slate-400 text-sm mt-2 italic">Analysis for User</p>
         </div>
 
@@ -55,7 +57,7 @@
 
         <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
             <h3 class="font-bold text-lg mb-2 italic uppercase">Explore Your Horizon</h3>
-            <p class="text-slate-400 text-xs mb-6 italic">Discover the full spectrum of 900+ professional possibilities.</p>
+            <p class="text-slate-400 text-xs mb-6 italic">Discover the full spectrum of professional possibilities.</p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
                 <button onclick="location.href='careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 active:scale-95 transition">Explore 900+ Careers</button>
                 <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5 hover:bg-slate-700 transition">Retake Scan</button>
@@ -65,29 +67,114 @@
 </div>
 
 <script>
-// Data Setup
 const name = localStorage.getItem("user_name") || "Explorer";
 const stage = localStorage.getItem("academic_stage") || "10";
-const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 5, finance: 4, social: 3, creative: 2 };
+const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
 
 document.getElementById("userNameDisplay").innerText = `System Analysis for ${name} (Post-${stage}th)`;
 
+// 
 const contentDB = {
     "10": {
-        technical: { title: "Science & Technology", icon: "🔬", desc: "Logic & Analytical Reasoning", colleges: ["IITs", "IISc", "BITS"], roadmap: ["Focus on PCM/PCB", "Target JEE/NEET"] },
-        finance: { title: "Commerce & Business", icon: "📈", desc: "Financial Logic & Strategy", colleges: ["SRCC", "IIM Indore", "Xavier's"], roadmap: ["Select Commerce+Math", "Target IPMAT/CA"] },
-        social: { title: "Humanities & Law", icon: "⚖️", desc: "Social Intelligence & Ethics", colleges: ["NLSIU", "TISS", "JNU"], roadmap: ["Target CLAT/UPSC", "Public Speaking"] },
-        creative: { title: "Creative & Design", icon: "🎨", desc: "Aesthetic Visualization", colleges: ["NID", "NIFT", "IDC"], roadmap: ["Build Portfolio", "Digital Arts"] }
+        technical: { 
+            title: "Science Stream", icon: "🧪", 
+            desc: "Perfect for curious minds who love to explore, experiment, and understand the natural world.",
+            careers: ["Research Scientist", "Data Scientist", "Engineer", "Physicist"],
+            steps: ["Focus on Physics, Chemistry, Math", "Participate in science fairs"] 
+        },
+        finance: { 
+            title: "Commerce Stream", icon: "📊", 
+            desc: "Ideal for strategic thinkers interested in resource management, finance, and trade.",
+            careers: ["Chartered Accountant", "Investment Banker", "Manager", "Stock Analyst"],
+            steps: ["Focus on Accountancy and Economics", "Target IPMAT/CA exams"] 
+        },
+        social: { 
+            title: "Humanities Stream", icon: "🏛️", 
+            desc: "Great for those interested in human society, culture, history, and making a social impact.",
+            careers: ["Psychologist", "Lawyer", "Social Worker", "Historian"],
+            steps: ["Focus on Political Science & History", "Develop communication skills"] 
+        },
+        creative: { 
+            title: "Fine Arts Stream", icon: "🎨", 
+            desc: "Perfect for creative souls who express themselves through visual arts, design, and forms of expression.",
+            careers: ["Graphic Designer", "Animator", "Fashion Designer", "Architect"],
+            steps: ["Build a strong art portfolio", "Attend design workshops"] 
+        }
     },
     "12": {
-        technical: { title: "Engineering & AI", icon: "🚀", desc: "Technical Decomposition", colleges: ["IIT Delhi", "IIIT-H"], roadmap: ["Hackathons", "Coding Labs"] },
-        finance: { title: "Investment Banking", icon: "💰", desc: "Risk Management", colleges: ["IIM Ahmedabad", "FMS"], roadmap: ["Prepare for CAT", "FinTech"] },
-        social: { title: "Legal & Civil Service", icon: "🏛️", desc: "Institutional Leadership", colleges: ["LBSNAA", "Law Faculty"], roadmap: ["UPSC Focus", "Moot Court"] },
-        creative: { title: "UI/UX & Product Design", icon: "✨", desc: "Product Visualization", colleges: ["Srishti", "MIT Design"], roadmap: ["UX Internships", "Agency Work"] }
+        technical: { 
+            title: "Engineering & Tech", icon: "🚀", 
+            desc: "Focused on technical decomposition and building complex systems.",
+            careers: ["Software Engineer", "AI Specialist", "Robotics Designer"],
+            steps: ["Coding Labs", "Hackathons"] 
+        },
+        finance: { 
+            title: "Finance & Management", icon: "💰", 
+            desc: "High-level strategic resource management and financial logic.",
+            careers: ["Corporate Finance", "FinTech Expert", "MBA Professional"],
+            steps: ["Prepare for CAT/GMAT", "FinTech Internships"] 
+        },
+        social: { 
+            title: "Law & Civil Services", icon: "⚖️", 
+            desc: "Social intelligence, ethics, and institutional leadership.",
+            careers: ["Judge", "IAS/IPS Officer", "Social Lead"],
+            steps: ["UPSC Focus", "Moot Court"] 
+        },
+        creative: { 
+            title: "Digital Design", icon: "✨", 
+            desc: "Aesthetic visualization and product-led creative problem solving.",
+            careers: ["UX/UI Designer", "Game Designer", "Video Editor"],
+            steps: ["Agency Internships", "Freelance Work"] 
+        }
     }
 };
 
-// Radar Chart
+function render() {
+    const list = document.getElementById("streamList");
+    const sortedKeys = Object.keys(scoreData).sort((a,b) => scoreData[b] - scoreData[a]);
+    list.innerHTML = "";
+    
+    sortedKeys.forEach((key, index) => {
+        const item = contentDB[stage][key];
+        const isTop = index === 0;
+        const scoreValue = scoreData[key];
+
+        list.innerHTML += `
+            <div class="relative p-6 rounded-3xl border ${isTop ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/5 bg-white/2'} mb-6">
+                ${isTop ? '<div class="absolute top-0 right-0 badge-gold px-4 py-1 text-[9px]">BEST MATCH</div>' : ''}
+                
+                <div class="flex gap-4 mb-4">
+                    <div class="text-3xl p-3 bg-white/5 rounded-xl h-fit">${item.icon}</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h4 class="text-lg font-bold italic uppercase tracking-tight">${item.title}</h4>
+                            <div class="text-right">
+                                <span class="text-indigo-400 font-black text-xl leading-none">${scoreValue}</span>
+                                <p class="text-[8px] text-slate-500 uppercase font-bold">Match Score</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">${item.desc}</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 pt-4 border-t border-white/5">
+                    <div>
+                        <p class="text-[10px] text-slate-500 font-black uppercase mb-3">Popular Careers:</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${item.careers.map(c => `<span class="career-tag">${c}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-500 font-black uppercase mb-3">Next Steps:</p>
+                        <ul class="space-y-1">
+                            ${item.steps.map(s => `<li class="text-[10px] text-slate-400">• ${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>`;
+    });
+}
+
 function initChart() {
     const ctx = document.getElementById('aptitudeChart').getContext('2d');
     new Chart(ctx, {
@@ -109,54 +196,22 @@ function initChart() {
     });
 }
 
-// Render Result Cards
-function render() {
-    const list = document.getElementById("streamList");
-    const sortedKeys = Object.keys(scoreData).sort((a,b) => scoreData[b] - scoreData[a]);
-    list.innerHTML = "";
-    
-    sortedKeys.forEach((key, index) => {
-        const item = contentDB[stage][key];
-        const isTop = index === 0;
-        const confidence = (85 + (scoreData[key] * 1.5)).toFixed(1);
-
-        list.innerHTML += `
-            <div class="relative p-6 rounded-3xl border ${isTop ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/5 bg-white/2'} mb-6">
-                ${isTop ? '<div class="absolute top-0 right-0 badge-gold px-4 py-1 text-[9px]">AI PRIME MATCH</div>' : ''}
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="text-3xl p-3 bg-white/5 rounded-xl h-fit">${item.icon}</div>
-                    <div class="flex-1">
-                        <h4 class="text-lg font-bold uppercase italic">${item.title}</h4>
-                        <p class="text-indigo-400 font-black text-xl mb-3">${confidence}% <span class="text-[9px] text-slate-500 uppercase">Match</span></p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            ${item.colleges.map(c => `<span class="bg-indigo-500/10 text-indigo-300 px-2 py-0.5 rounded text-[9px] border border-indigo-500/20">${c}</span>`).join('')}
-                        </div>
-                        <div class="text-[10px] text-slate-400 italic">▶ ${item.roadmap.join('  ▶ ')}</div>
-                    </div>
-                </div>
-            </div>`;
-    });
-}
-
-// Sharing Logic
 async function shareResult() {
-    const shareText = `I just mapped my career using CareerSteps AI! My top match is ${contentDB[stage][Object.keys(scoreData).sort((a,b)=>scoreData[b]-scoreData[a])[0]].title}. Check yours:`;
+    const shareText = `I just mapped my career using CareerSteps AI! My top match is ${contentDB[stage][Object.keys(scoreData).sort((a,b)=>scoreData[b]-scoreData[a])[0]].title}.`;
     if (navigator.share) {
-        try {
-            await navigator.share({ title: 'My AI Career Roadmap', text: shareText, url: window.location.href });
-        } catch (err) { console.log("Share failed"); }
+        try { await navigator.share({ title: 'My AI Career Roadmap', text: shareText, url: window.location.href }); } 
+        catch (err) { console.log("Share failed"); }
     } else {
         navigator.clipboard.writeText(shareText + " " + window.location.href);
-        alert("Link copied to clipboard!");
+        alert("Link copied!");
     }
 }
 
-// PDF Download Logic
 function downloadPDF() {
     const element = document.getElementById('reportArea');
     const opt = {
         margin: 10,
-        filename: `${name}_Career_Report.pdf`,
+        filename: `${name}_CareerSteps_Report.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, backgroundColor: '#020617' },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
