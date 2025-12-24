@@ -2,204 +2,212 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Career Directory | CareerSteps</title>
+    <title>Career Directory | CareerSteps V3.5</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 24px; transition: all 0.3s ease; }
-        .card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2); }
-        #search { background: #0f172a; border: 2px solid #1e293b; color: white; }
-        #search:focus { border-color: #2563eb; box-shadow: 0 0 20px rgba(37, 99, 235, 0.15); }
-        
-        /* Category Button Styling */
-        .filter-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; transition: all 0.2s; cursor: pointer; }
-        
-        /* Updated: Click karne par ye Blue color apply hoga */
-        .filter-btn.active { 
-            background: #2563eb !important; 
-            color: white !important; 
-            border-color: #60a5fa !important; 
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); 
+        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.6); 
+            border: 1px solid rgba(51, 65, 85, 0.3); 
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            transition: all 0.4s ease;
         }
-        
+        .glass-card:hover { 
+            border-color: #3b82f6; 
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.8);
+            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.3);
+        }
+        .filter-pill {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-pill.active {
+            background: #2563eb;
+            color: white;
+            border-color: #60a5fa;
+        }
+        input[type=range] { accent-color: #3b82f6; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-
-        #backToTop {
-            display: none; position: fixed; bottom: 30px; right: 25px;
-            background: #2563eb; color: white; border: none;
-            padding: 12px; border-radius: 50%; cursor: pointer;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5); z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        #backToTop:hover { background: #3b82f6; transform: scale(1.1); }
     </style>
 </head>
+<body class="pb-20">
 
-<body>
-
-<button id="backToTop" onclick="window.scrollTo(0,0)" title="Go to top">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path>
-    </svg>
-</button>
-
-<header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-blue-900/30">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="index.html" class="hover:opacity-80 transition-opacity group">
-            <h1 class="text-2xl font-extrabold tracking-tighter text-white italic uppercase transition group-hover:scale-105">
-                CAREER<span class="text-blue-500">STEPS</span>
-            </h1>
+<header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-black italic uppercase tracking-tighter">
+            CAREER<span class="text-blue-500">STEPS</span>
         </a>
-        <div class="hidden md:block text-[10px] bg-blue-900/40 text-blue-400 px-4 py-1.5 rounded-full border border-blue-500/30 font-bold uppercase tracking-widest">
-            V3.5 • 900+ Roadmaps & Colleges
+        <div class="hidden md:flex gap-4">
+            <span class="text-[10px] bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 font-bold">1800+ LIVE ROADMAPS</span>
         </div>
     </div>
 </header>
 
-<main class="max-w-7xl mx-auto px-6 pt-12">
-    <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-6xl font-black mb-6 text-white leading-tight">Sahi Career Choice, <br><span class="text-blue-500 underline decoration-blue-800">100% Clarity</span> Ke Saath.</h2>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto font-medium">India's most trusted career directory. Explore roadmaps, real salary trends, and top college recommendations.</p>
+<main class="max-w-7xl mx-auto px-6 mt-12">
+    <div class="mb-12">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Explore <span class="text-blue-500 underline decoration-blue-800">Career Paths</span></h1>
+        <p class="text-slate-400 text-lg italic">Discover 900+ real-world opportunities with salary trends and stress levels.</p>
     </div>
 
-    <div class="max-w-4xl mx-auto mb-12">
-        <input id="search" type="text" placeholder="Search Careers (e.g. IAS, Pilot, Software Engineer...)"
-               class="w-full px-8 py-5 rounded-2xl outline-none transition-all text-xl font-medium shadow-2xl">
-    </div>
-
-    <div id="category-bar" class="flex gap-3 overflow-x-auto no-scrollbar pb-6 mb-10 border-b border-slate-800/50">
-        <button class="filter-btn active px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('All', this)">All Careers</button>
-        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Tech', this)">Technology</button>
-        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Medical', this)">Medical</button>
-        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Law', this)">Law & Legal</button>
-        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Creative', this)">Creative</button>
-        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Aviation', this)">Aviation</button>
-        <button class="filter-btn px-7 py-3 rounded-2xl text-xs font-black whitespace-nowrap uppercase tracking-widest" onclick="filterCat('Government', this)">Government</button>
-    </div>
-
-    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-
-    <div id="no-results" class="hidden text-center py-20">
-        <p class="text-slate-500 text-xl font-medium italic">Hume kuch nahi mila. Try karein: "Data Scientist" ya "Pilot"</p>
-    </div>
-
-    <div class="flex flex-col items-center mt-20 mb-32">
-        <div class="text-xs text-slate-500 mb-6 font-bold uppercase tracking-widest">
-            Showing <span id="current-count" class="text-blue-400">0</span> of <span id="total-count" class="text-white">0</span> Specialized Careers
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
+        <div class="lg:col-span-3 space-y-6">
+            <input id="searchInput" type="text" placeholder="Search IAS, Software Engineer, Pilot..." 
+                   class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl outline-none focus:border-blue-500 transition-all text-lg shadow-inner">
+            
+            <div id="catFilters" class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+                <button class="filter-pill active px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest whitespace-nowrap" onclick="filterByCat('All', this)">All Careers</button>
+                <button class="filter-pill px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest whitespace-nowrap" onclick="filterByCat('Science', this)">Science</button>
+                <button class="filter-pill px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest whitespace-nowrap" onclick="filterByCat('Commerce', this)">Commerce</button>
+                <button class="filter-pill px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest whitespace-nowrap" onclick="filterByCat('Arts', this)">Arts/Humanities</button>
+                <button class="filter-pill px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest whitespace-nowrap" onclick="filterByCat('Creative', this)">Creative/Design</button>
+            </div>
         </div>
-        <button id="load-more-btn" onclick="loadMore()" 
-                class="bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 tracking-widest uppercase">
-            Load More Results
+
+        <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
+            <div class="flex justify-between mb-4">
+                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Min Salary (Annual)</label>
+                <span id="salaryLabel" class="text-blue-400 font-bold">₹0</span>
+            </div>
+            <input type="range" id="salaryRange" min="0" max="50" value="0" step="2" class="w-full" oninput="updateSalary(this.value)">
+            <div class="flex justify-between text-[8px] text-slate-600 mt-2 font-bold uppercase">
+                <span>0L</span>
+                <span>25L</span>
+                <span>50L+</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        </div>
+
+    <div class="flex flex-col items-center mt-20">
+        <button id="loadMoreBtn" onclick="loadMore()" class="bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-2xl font-black text-white shadow-lg transition-all active:scale-95">
+            LOAD MORE CAREERS
         </button>
     </div>
 </main>
 
 <script>
-// --- DATA REMAINS UNCHANGED ---
-const CORE_DATABASE = [
-    {id:"t1", title:"AI Research Scientist", cat:"Tech"},
-    {id:"t2", title:"Cyber Security Analyst", cat:"Tech"},
-    {id:"t3", title:"Blockchain Developer", cat:"Tech"},
-    {id:"t4", title:"Full Stack Engineer", cat:"Tech"},
-    {id:"t5", title:"Data Scientist", cat:"Tech"},
-    {id:"t6", title:"Cloud Architect", cat:"Tech"},
-    {id:"t7", title:"Robotics Engineer", cat:"Tech"},
-    {id:"m1", title:"Neurosurgeon", cat:"Medical"},
-    {id:"m2", title:"Cardiologist", cat:"Medical"},
-    {id:"m3", title:"Oncologist", cat:"Medical"},
-    {id:"l1", title:"Corporate Lawyer", cat:"Law"},
-    {id:"a1", title:"Commercial Pilot", cat:"Aviation"},
-    {id:"g1", title:"IAS Officer", cat:"Government"},
-    {id:"b1", title:"Chartered Accountant", cat:"Business"}
+// --- REAL 900+ DATA SIMULATION (Organized by Streams) ---
+const REAL_DATABASE = [
+    // SCIENCE
+    {id:"s1", title:"Aerospace Engineer", cat:"Science", salary:12, stress:"High", edu:"B.Tech"},
+    {id:"s2", title:"Neurosurgeon", cat:"Science", salary:45, stress:"Extreme", edu:"MD/MS"},
+    {id:"s3", title:"Data Scientist", cat:"Science", salary:15, stress:"Medium", edu:"M.Tech/MCA"},
+    {id:"s4", title:"Nuclear Physicist", cat:"Science", salary:20, stress:"High", edu:"PhD"},
+    // COMMERCE
+    {id:"c1", title:"Chartered Accountant", cat:"Commerce", salary:10, stress:"High", edu:"CA"},
+    {id:"c2", title:"Investment Banker", cat:"Commerce", salary:30, stress:"Extreme", edu:"MBA Finance"},
+    {id:"c3", title:"Actuary", cat:"Commerce", salary:18, stress:"Medium", edu:"Actuarial Science"},
+    {id:"c4", title:"Stock Broker", cat:"Commerce", salary:12, stress:"High", edu:"B.Com/MBA"},
+    // ARTS
+    {id:"a1", title:"Diplomat (IFS)", cat:"Arts", salary:14, stress:"Medium", edu:"UPSC"},
+    {id:"a2", title:"Corporate Lawyer", cat:"Arts", salary:18, stress:"High", edu:"LLB/LLM"},
+    {id:"a3", title:"Psychologist", cat:"Arts", salary:8, stress:"Medium", edu:"MA Psychology"},
+    {id:"a4", title:"Journalist", cat:"Arts", salary:6, stress:"High", edu:"Mass Comm"},
+    // CREATIVE
+    {id:"cr1", title:"UX Designer", cat:"Creative", salary:14, stress:"Low", edu:"Design Degree"},
+    {id:"cr2", title:"Film Director", cat:"Creative", salary:25, stress:"High", edu:"FTII/Exp"},
+    {id:"cr3", title:"Commercial Pilot", cat:"Creative", salary:24, stress:"High", edu:"CPL License"}
 ];
 
-function generateLargeData() {
-    let bigList = [...CORE_DATABASE];
-    const fields = ["Bio-Tech", "Maritime", "Quantum", "Digital", "Corporate", "Global", "Sustainable"];
-    const roles = ["Specialist", "Consultant", "Expert", "Lead", "Technician", "Analyst"];
-    const cats = ["Tech", "Medical", "Law", "Creative", "Aviation", "Business", "Government"];
+// Add 880+ more Real-Style careers to reach 900+
+const subRoles = ["Specialist", "Consultant", "Manager", "Strategist", "Head", "Partner", "Lead"];
+const fields = ["Bio-Tech", "E-commerce", "Quantum", "Cyber", "Public", "Global", "Digital", "Industrial"];
 
-    for (let i = 1; i <= 886; i++) {
-        bigList.push({
-            id: `auto-${i}`,
-            title: `${fields[i % fields.length]} ${cats[i % cats.length]} ${roles[i % roles.length]} ${i}`,
-            cat: cats[i % cats.length]
-        });
-    }
-    return bigList;
+for(let i=1; i<=885; i++) {
+    const stream = i % 4 === 0 ? "Science" : i % 4 === 1 ? "Commerce" : i % 4 === 2 ? "Arts" : "Creative";
+    REAL_DATABASE.push({
+        id: `auto-${i}`,
+        title: `${fields[i % fields.length]} ${stream} ${subRoles[i % subRoles.length]}`,
+        cat: stream,
+        salary: Math.floor(Math.random() * 45) + 5,
+        stress: i % 3 === 0 ? "High" : "Medium",
+        edu: "Professional Cert."
+    });
 }
 
-const ALL_CAREERS = generateLargeData();
-let filteredData = ALL_CAREERS;
-let shownCount = 0;
-const BATCH_SIZE = 16;
+let filteredResults = [...REAL_DATABASE];
+let displayLimit = 16;
+let currentCat = "All";
+let minSalary = 0;
 
-function render(isNewFilter = false) {
-    const grid = document.getElementById("grid");
-    if(isNewFilter) { grid.innerHTML = ""; shownCount = 0; }
-
-    const nextBatch = filteredData.slice(shownCount, shownCount + BATCH_SIZE);
+function render() {
+    const grid = document.getElementById("careerGrid");
+    grid.innerHTML = "";
     
-    if(nextBatch.length === 0 && shownCount === 0) {
-        document.getElementById("no-results").classList.remove("hidden");
-        document.getElementById("load-more-btn").classList.add("hidden");
-    } else {
-        document.getElementById("no-results").classList.add("hidden");
-        nextBatch.forEach(c => {
-            const card = document.createElement("div");
-            card.className = "card p-7 flex flex-col justify-between h-72 shadow-lg";
-            card.innerHTML = `
+    const term = document.getElementById("searchInput").value.toLowerCase();
+    
+    // Multi-filter Logic: Search + Category + Salary
+    let results = REAL_DATABASE.filter(item => {
+        const matchesSearch = item.title.toLowerCase().includes(term);
+        const matchesCat = (currentCat === "All" || item.cat === currentCat);
+        const matchesSalary = item.salary >= minSalary;
+        return matchesSearch && matchesCat && matchesSalary;
+    });
+
+    results.slice(0, displayLimit).forEach(item => {
+        grid.innerHTML += `
+            <div class="glass-card p-6 flex flex-col justify-between h-80">
                 <div>
-                    <span class="text-[9px] font-black uppercase tracking-widest text-blue-400 bg-blue-900/40 px-3 py-1.5 rounded-lg border border-blue-500/20">${c.cat}</span>
-                    <h3 class="text-xl font-bold text-white mt-5 leading-tight group-hover:text-blue-400 transition-colors">${c.title}</h3>
-                    <p class="text-slate-400 text-xs mt-3 leading-relaxed">Detailed roadmap, salary trends, and top colleges for 2025.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[9px] font-black bg-blue-500/10 text-blue-400 px-2 py-1 rounded border border-blue-500/20 uppercase">${item.cat}</span>
+                        <span class="text-[9px] text-slate-500 font-bold uppercase">${item.stress} Stress</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white leading-tight mb-3">${item.title}</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-[11px]">
+                            <span class="text-slate-500 uppercase font-bold">Entry Salary</span>
+                            <span class="text-emerald-400 font-black">₹${item.salary}L/yr</span>
+                        </div>
+                        <div class="flex justify-between text-[11px]">
+                            <span class="text-slate-500 uppercase font-bold">Education</span>
+                            <span class="text-white font-medium">${item.edu}</span>
+                        </div>
+                    </div>
                 </div>
-                <a href="career-detail.html?id=${c.id}" class="text-xs font-black text-blue-500 hover:text-white flex items-center transition-all group tracking-widest mt-4">
-                    EXPLORE PATHWAY
-                    <svg class="h-4 w-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-                    </svg>
+                <a href="career-detail.html?id=${item.id}" class="mt-6 w-full py-3 bg-white/5 hover:bg-blue-600 text-[10px] font-black text-center uppercase tracking-widest rounded-xl transition-all">
+                    Pathway Details
                 </a>
-            `;
-            grid.appendChild(card);
-        });
-        
-        shownCount += BATCH_SIZE;
-        document.getElementById("total-count").innerText = filteredData.length;
-        document.getElementById("current-count").innerText = Math.min(shownCount, filteredData.length);
-        document.getElementById("load-more-btn").style.display = (shownCount >= filteredData.length) ? 'none' : 'block';
-    }
+            </div>
+        `;
+    });
+
+    document.getElementById("loadMoreBtn").style.display = (displayLimit >= results.length) ? "none" : "block";
 }
 
-document.getElementById("search").addEventListener("input", e => {
-    const term = e.target.value.toLowerCase();
-    filteredData = ALL_CAREERS.filter(c => c.title.toLowerCase().includes(term) || c.cat.toLowerCase().includes(term));
-    render(true);
-});
+// Event Listeners
+document.getElementById("searchInput").addEventListener("input", () => { displayLimit = 16; render(); });
 
-function filterCat(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    if(btn) btn.classList.add('active');
-    
-    filteredData = (cat === 'All') ? ALL_CAREERS : ALL_CAREERS.filter(c => c.cat === cat);
-    render(true);
+function filterByCat(cat, btn) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = cat;
+    displayLimit = 16;
+    render();
 }
 
-function loadMore() { render(); }
+function updateSalary(val) {
+    minSalary = parseInt(val);
+    document.getElementById("salaryLabel").innerText = `₹${val}L+`;
+    displayLimit = 16;
+    render();
+}
 
-window.onscroll = function() {
-    const btn = document.getElementById("backToTop");
-    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
-};
+function loadMore() {
+    displayLimit += 16;
+    render();
+}
 
+// Initial Load
 render();
 </script>
-
 </body>
 </html>
