@@ -4,39 +4,55 @@
 <meta charset="UTF-8">
 <title>Career Directory | CareerSteps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body { background:#020617; color:#f8fafc; font-family:'Plus Jakarta Sans',sans-serif; scroll-behavior:smooth; }
-.glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.4s}
-.glass-card:hover{border-color:#3b82f6;transform:translateY(-8px)}
-.filter-pill{background:#1e293b;border:1px solid #334155;color:#94a3b8}
+body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif;scroll-behavior:smooth}
+.glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.3s}
+.glass-card:hover{border-color:#3b82f6;transform:translateY(-6px)}
+.filter-pill{background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:8px 18px;border-radius:999px;font-size:11px;font-weight:800;text-transform:uppercase}
 .filter-pill.active{background:#2563eb;color:#fff}
+#backToTop{display:none;position:fixed;bottom:24px;right:24px;background:#2563eb;color:#fff;width:48px;height:48px;border-radius:50%;font-weight:900}
 </style>
 
-<!-- IMPORTANT -->
+<!-- DATA FILE -->
 <script src="careers-data.js"></script>
 </head>
 
 <body class="pb-20">
 
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <header class="sticky top-0 bg-[#020617]/90 backdrop-blur border-b border-white/5 px-6 py-4">
-  <div class="max-w-7xl mx-auto flex justify-between">
-    <a href="index.html" class="text-2xl font-black italic">CAREER<span class="text-blue-500">STEPS</span></a>
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-black italic">
+      CAREER<span class="text-blue-500">STEPS</span>
+    </a>
   </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-6 mt-12">
 
-<h1 class="text-5xl font-extrabold mb-6">Explore <span class="text-blue-500">Careers</span></h1>
+<h1 class="text-5xl font-extrabold mb-6">
+Explore <span class="text-blue-500">Careers</span>
+</h1>
 
-<input id="searchInput" placeholder="Search career..."
+<input id="searchInput" placeholder="Search career, skill, exam..."
  class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl mb-6">
+
+<!-- CATEGORY -->
+<div id="categoryFilters" class="flex gap-3 overflow-x-auto mb-4"></div>
+
+<!-- SUB CATEGORY -->
+<div id="subCategoryFilters" class="flex flex-wrap gap-2 mb-8"></div>
 
 <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
-<div id="noResults" class="hidden text-center py-20 text-slate-500">No careers found</div>
+<div id="noResults" class="hidden text-center py-20 text-slate-500">
+No careers found
+</div>
 
 <div class="flex justify-center mt-16">
 <button onclick="loadMore()" id="loadMoreBtn"
@@ -49,27 +65,79 @@ Load More
 
 <script>
 let displayLimit = 12;
+let activeCategory = "All";
+let activeSubCategory = "All";
+
+const categoryBox = document.getElementById("categoryFilters");
+const subBox = document.getElementById("subCategoryFilters");
+
+function buildCategories(){
+  const cats = ["All", ...new Set(careersData.map(c=>c.category))];
+  categoryBox.innerHTML = "";
+  cats.forEach(cat=>{
+    const b=document.createElement("button");
+    b.className="filter-pill"+(cat===activeCategory?" active":"");
+    b.textContent=cat;
+    b.onclick=()=>{
+      activeCategory=cat;
+      activeSubCategory="All";
+      buildCategories();
+      buildSubCategories();
+      displayLimit=12;
+      render();
+    };
+    categoryBox.appendChild(b);
+  });
+}
+
+function buildSubCategories(){
+  subBox.innerHTML="";
+  if(activeCategory==="All") return;
+
+  const subs=["All",...new Set(
+    careersData.filter(c=>c.category===activeCategory).map(c=>c.subCategory)
+  )];
+
+  subs.forEach(sub=>{
+    const b=document.createElement("button");
+    b.className="filter-pill"+(sub===activeSubCategory?" active":"");
+    b.textContent=sub;
+    b.onclick=()=>{
+      activeSubCategory=sub;
+      displayLimit=12;
+      render();
+    };
+    subBox.appendChild(b);
+  });
+}
 
 function render(){
-  const grid = document.getElementById("careerGrid");
-  const term = document.getElementById("searchInput").value.toLowerCase();
-  grid.innerHTML = "";
+  const grid=document.getElementById("careerGrid");
+  const term=document.getElementById("searchInput").value.toLowerCase();
+  grid.innerHTML="";
 
-  let results = careersData.filter(c =>
-    c.title.toLowerCase().includes(term) ||
-    c.category.toLowerCase().includes(term) ||
-    c.subCategory.toLowerCase().includes(term)
-  );
+  let results=careersData.filter(c=>{
+    const searchMatch =
+      c.title.toLowerCase().includes(term) ||
+      c.category.toLowerCase().includes(term) ||
+      c.subCategory.toLowerCase().includes(term);
 
-  if(results.length === 0){
-    document.getElementById("noResults").classList.remove("hidden");
+    const catMatch =
+      activeCategory==="All" || c.category===activeCategory;
+
+    const subMatch =
+      activeSubCategory==="All" || c.subCategory===activeSubCategory;
+
+    return searchMatch && catMatch && subMatch;
+  });
+
+  if(results.length===0){
+    noResults.classList.remove("hidden");
     return;
-  } else {
-    document.getElementById("noResults").classList.add("hidden");
-  }
+  } else noResults.classList.add("hidden");
 
   results.slice(0,displayLimit).forEach(c=>{
-    grid.innerHTML += `
+    grid.innerHTML+=`
     <div class="glass-card p-6 flex flex-col justify-between h-[360px]">
       <div>
         <span class="text-[10px] text-blue-400 font-black">${c.subCategory}</span>
@@ -87,22 +155,30 @@ function render(){
     </div>`;
   });
 
-  document.getElementById("loadMoreBtn").style.display =
-    displayLimit >= results.length ? "none" : "block";
+  loadMoreBtn.style.display =
+    displayLimit>=results.length?"none":"block";
 }
 
 function loadMore(){
-  displayLimit += 12;
+  displayLimit+=12;
   render();
 }
 
-document.getElementById("searchInput").addEventListener("input",()=>{
-  displayLimit = 12;
+searchInput.addEventListener("input",()=>{
+  displayLimit=12;
   render();
 });
 
-console.log("Total careers loaded:", careersData.length);
+window.onscroll=()=>{
+  backToTop.style.display =
+    document.documentElement.scrollTop>300?"block":"none";
+};
+
+buildCategories();
+buildSubCategories();
 render();
+
+console.log("Total careers:", careersData.length);
 </script>
 
 </body>
