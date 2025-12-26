@@ -779,4 +779,4 @@ const careersData = [
     salary: { entry: "2.5-4 LPA", mid: "5-9 LPA", senior: "10-16 LPA" },
     future: "Integration with Smart Ambulance systems and 5G-linked tele-ER."
   }
-]
+];
