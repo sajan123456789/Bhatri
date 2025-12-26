@@ -12,12 +12,11 @@
 body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif;scroll-behavior:smooth}
 .glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.3s}
 .glass-card:hover{border-color:#3b82f6;transform:translateY(-6px)}
-.filter-pill{background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:8px 18px;border-radius:999px;font-size:11px;font-weight:800;text-transform:uppercase}
-.filter-pill.active{background:#2563eb;color:#fff}
-#backToTop{display:none;position:fixed;bottom:24px;right:24px;background:#2563eb;color:#fff;width:48px;height:48px;border-radius:50%;font-weight:900}
+.filter-pill{background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:8px 18px;border-radius:999px;font-size:11px;font-weight:800;text-transform:uppercase; cursor:pointer; white-space:nowrap}
+.filter-pill.active{background:#2563eb;color:#fff;border-color:#3b82f6}
+#backToTop{display:none;position:fixed;bottom:24px;right:24px;background:#2563eb;color:#fff;width:48px;height:48px;border-radius:50%;font-weight:900; z-index:50}
 </style>
 
-<!-- DATA FILE -->
 <script src="careers-data.js"></script>
 </head>
 
@@ -25,7 +24,7 @@ body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif
 
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<header class="sticky top-0 bg-[#020617]/90 backdrop-blur border-b border-white/5 px-6 py-4">
+<header class="sticky top-0 bg-[#020617]/90 backdrop-blur border-b border-white/5 px-6 py-4 z-40">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <a href="index.html" class="text-2xl font-black italic">
       CAREER<span class="text-blue-500">STEPS</span>
@@ -40,12 +39,10 @@ Explore <span class="text-blue-500">Careers</span>
 </h1>
 
 <input id="searchInput" placeholder="Search career, skill, exam..."
- class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl mb-6">
+ class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl mb-6 focus:outline-none focus:border-blue-500">
 
-<!-- CATEGORY -->
-<div id="categoryFilters" class="flex gap-3 overflow-x-auto mb-4"></div>
+<div id="categoryFilters" class="flex gap-3 overflow-x-auto mb-4 pb-2 no-scrollbar"></div>
 
-<!-- SUB CATEGORY -->
 <div id="subCategoryFilters" class="flex flex-wrap gap-2 mb-8"></div>
 
 <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
@@ -56,7 +53,7 @@ No careers found
 
 <div class="flex justify-center mt-16">
 <button onclick="loadMore()" id="loadMoreBtn"
- class="bg-blue-600 px-14 py-4 rounded-xl font-black uppercase text-xs">
+ class="bg-blue-600 hover:bg-blue-700 px-14 py-4 rounded-xl font-black uppercase text-xs transition-colors">
 Load More
 </button>
 </div>
@@ -64,26 +61,38 @@ Load More
 </main>
 
 <script>
+// UI Elements
+const grid = document.getElementById("careerGrid");
+const categoryBox = document.getElementById("categoryFilters");
+const subBox = document.getElementById("subCategoryFilters");
+const searchInput = document.getElementById("searchInput");
+const noResults = document.getElementById("noResults");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+const backToTop = document.getElementById("backToTop");
+
 let displayLimit = 12;
 let activeCategory = "All";
 let activeSubCategory = "All";
 
-const categoryBox = document.getElementById("categoryFilters");
-const subBox = document.getElementById("subCategoryFilters");
-
 function buildCategories(){
-  const cats = ["All", ...new Set(careersData.map(c=>c.category))];
+  // Check if data is loaded
+  if (typeof careersData === 'undefined') {
+      grid.innerHTML = "<p class='text-red-500'>Error: careers-data.js not loaded properly.</p>";
+      return;
+  }
+
+  const cats = ["All", ...new Set(careersData.map(c => c.category))];
   categoryBox.innerHTML = "";
-  cats.forEach(cat=>{
-    const b=document.createElement("button");
-    b.className="filter-pill"+(cat===activeCategory?" active":"");
-    b.textContent=cat;
-    b.onclick=()=>{
-      activeCategory=cat;
-      activeSubCategory="All";
+  cats.forEach(cat => {
+    const b = document.createElement("button");
+    b.className = "filter-pill" + (cat === activeCategory ? " active" : "");
+    b.textContent = cat;
+    b.onclick = () => {
+      activeCategory = cat;
+      activeSubCategory = "All";
       buildCategories();
       buildSubCategories();
-      displayLimit=12;
+      displayLimit = 12;
       render();
     };
     categoryBox.appendChild(b);
@@ -91,20 +100,20 @@ function buildCategories(){
 }
 
 function buildSubCategories(){
-  subBox.innerHTML="";
-  if(activeCategory==="All") return;
+  subBox.innerHTML = "";
+  if(activeCategory === "All") return;
 
-  const subs=["All",...new Set(
-    careersData.filter(c=>c.category===activeCategory).map(c=>c.subCategory)
+  const subs = ["All", ...new Set(
+    careersData.filter(c => c.category === activeCategory).map(c => c.subCategory)
   )];
 
-  subs.forEach(sub=>{
-    const b=document.createElement("button");
-    b.className="filter-pill"+(sub===activeSubCategory?" active":"");
-    b.textContent=sub;
-    b.onclick=()=>{
-      activeSubCategory=sub;
-      displayLimit=12;
+  subs.forEach(sub => {
+    const b = document.createElement("button");
+    b.className = "filter-pill" + (sub === activeSubCategory ? " active" : "");
+    b.textContent = sub;
+    b.onclick = () => {
+      activeSubCategory = sub;
+      displayLimit = 12;
       render();
     };
     subBox.appendChild(b);
@@ -112,73 +121,78 @@ function buildSubCategories(){
 }
 
 function render(){
-  const grid=document.getElementById("careerGrid");
-  const term=document.getElementById("searchInput").value.toLowerCase();
-  grid.innerHTML="";
+  const term = searchInput.value.toLowerCase();
+  grid.innerHTML = "";
 
-  let results=careersData.filter(c=>{
+  let results = careersData.filter(c => {
     const searchMatch =
       c.title.toLowerCase().includes(term) ||
       c.category.toLowerCase().includes(term) ||
-      c.subCategory.toLowerCase().includes(term);
+      c.subCategory.toLowerCase().includes(term) ||
+      (c.skills && c.skills.join(" ").toLowerCase().includes(term));
 
-    const catMatch =
-      activeCategory==="All" || c.category===activeCategory;
-
-    const subMatch =
-      activeSubCategory==="All" || c.subCategory===activeSubCategory;
+    const catMatch = activeCategory === "All" || c.category === activeCategory;
+    const subMatch = activeSubCategory === "All" || c.subCategory === activeSubCategory;
 
     return searchMatch && catMatch && subMatch;
   });
 
-  if(results.length===0){
+  if(results.length === 0){
     noResults.classList.remove("hidden");
+    loadMoreBtn.style.display = "none";
     return;
-  } else noResults.classList.add("hidden");
+  } else {
+    noResults.classList.add("hidden");
+  }
 
-  results.slice(0,displayLimit).forEach(c=>{
-    grid.innerHTML+=`
-    <div class="glass-card p-6 flex flex-col justify-between h-[360px]">
+  results.slice(0, displayLimit).forEach(c => {
+    grid.innerHTML += `
+    <div class="glass-card p-6 flex flex-col justify-between h-[380px]">
       <div>
-        <span class="text-[10px] text-blue-400 font-black">${c.subCategory}</span>
-        <h3 class="text-xl font-bold mt-3">${c.title}</h3>
-        <p class="text-xs text-slate-400 mt-2">
-          <b>After 10:</b> ${c.after10}<br>
-          <b>After 12:</b> ${c.after12}
+        <div class="flex justify-between items-start">
+            <span class="text-[10px] text-blue-400 font-black uppercase tracking-wider">${c.subCategory}</span>
+            <span class="text-[10px] bg-white/10 px-2 py-1 rounded text-slate-400 font-bold">${c.id}</span>
+        </div>
+        <h3 class="text-xl font-bold mt-3 line-clamp-1">${c.title}</h3>
+        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+          <b class="text-slate-300">Path:</b> ${c.after12 || 'N/A'}<br>
+          <b class="text-slate-300">Degree:</b> ${c.degree || 'N/A'}
         </p>
-        <p class="text-emerald-400 font-black mt-3">${c.salary.entry}</p>
+        <p class="text-emerald-400 font-black mt-4 flex items-center gap-2">
+            <span class="text-[10px] text-slate-500 font-normal">Starting:</span> 
+            ${c.salary ? c.salary.entry : 'N/A'}
+        </p>
       </div>
       <a href="career-detail.html?id=${c.id}"
-       class="mt-4 bg-white/5 hover:bg-blue-600 py-3 rounded-xl text-xs font-black text-center uppercase">
+       class="mt-6 bg-blue-600/10 hover:bg-blue-600 py-3 rounded-xl text-xs font-black text-center uppercase transition-all duration-300 border border-blue-600/20">
        View Roadmap
       </a>
     </div>`;
   });
 
-  loadMoreBtn.style.display =
-    displayLimit>=results.length?"none":"block";
+  loadMoreBtn.style.display = displayLimit >= results.length ? "none" : "block";
 }
 
 function loadMore(){
-  displayLimit+=12;
+  displayLimit += 12;
   render();
 }
 
-searchInput.addEventListener("input",()=>{
-  displayLimit=12;
+searchInput.addEventListener("input", () => {
+  displayLimit = 12;
   render();
 });
 
-window.onscroll=()=>{
-  backToTop.style.display =
-    document.documentElement.scrollTop>300?"block":"none";
+window.onscroll = () => {
+  backToTop.style.display = document.documentElement.scrollTop > 300 ? "block" : "none";
 };
 
-buildCategories();
-buildSubCategories();
-render();
-
-console.log("Total careers:", careersData.length);
+// Initial Call
+document.addEventListener("DOMContentLoaded", () => {
+    buildCategories();
+    buildSubCategories();
+    render();
+});
 </script>
 
 </body>
