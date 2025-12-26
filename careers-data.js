@@ -780,4 +780,3 @@ const careersData = [
     future: "Integration with Smart Ambulance systems and 5G-linked tele-ER."
   }
 ]
-export default careersData;
