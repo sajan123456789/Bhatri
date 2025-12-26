@@ -1,206 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Career Directory | CareerSteps</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.3); backdrop-filter: blur(12px); border-radius: 24px; transition: 0.4s ease; }
-        .glass-card:hover { border-color: #3b82f6; transform: translateY(-8px); background: rgba(30, 41, 59, 0.8); box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.3); }
-        .filter-pill { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(51, 65, 85, 0.8); color: #94a3b8; cursor: pointer; transition: 0.3s; white-space: nowrap; }
-        .filter-pill.active { background: #2563eb; color: white; border-color: #60a5fa; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-        .sub-pill { font-size: 10px; padding: 6px 16px; border-radius: 99px; background: #1e293b; color: #94a3b8; border: 1px solid rgba(51, 65, 85, 0.5); cursor: pointer; transition: 0.2s; }
-        .sub-pill.active { background: #3b82f6; color: white; border-color: #60a5fa; }
-        #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; background: #2563eb; color: white; width: 50px; height: 50px; border-radius: 50%; z-index: 100; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4); border: none; cursor: pointer; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-    </style>
-    <script src="careers-data.js"></script>
+<meta charset="UTF-8">
+<title>Career Directory | CareerSteps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+body { background:#020617; color:#f8fafc; font-family:'Plus Jakarta Sans',sans-serif; scroll-behavior:smooth; }
+.glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.4s}
+.glass-card:hover{border-color:#3b82f6;transform:translateY(-8px)}
+.filter-pill{background:#1e293b;border:1px solid #334155;color:#94a3b8}
+.filter-pill.active{background:#2563eb;color:#fff}
+</style>
+
+<!-- IMPORTANT -->
+<script src="careers-data.js"></script>
 </head>
+
 <body class="pb-20">
 
-<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center justify-center hover:scale-110 transition">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path></svg>
-</button>
-
-<header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="index.html" class="text-2xl font-black italic uppercase tracking-tighter hover:opacity-80 transition">
-            CAREER<span class="text-blue-500">STEPS</span>
-        </a>
-        <nav class="flex gap-6 items-center">
-            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition flex items-center gap-2">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                Home
-            </a>
-            <div class="h-6 w-[1px] bg-white/10"></div>
-            <span class="text-[10px] bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-full border border-blue-500/20 font-black uppercase tracking-widest">900+ Roadmaps</span>
-        </nav>
-    </div>
+<header class="sticky top-0 bg-[#020617]/90 backdrop-blur border-b border-white/5 px-6 py-4">
+  <div class="max-w-7xl mx-auto flex justify-between">
+    <a href="index.html" class="text-2xl font-black italic">CAREER<span class="text-blue-500">STEPS</span></a>
+  </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-6 mt-12">
-    <div class="mb-12">
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">Explore <span class="text-blue-500 underline decoration-blue-800">Careers</span></h1>
-        <p class="text-slate-400 text-lg italic max-w-2xl">Search across 20+ Categories and 900+ professional pathways in India.</p>
-    </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
-        <div class="lg:col-span-3 space-y-6">
-            <input id="searchInput" type="text" placeholder="Try 'UPSC', 'Software', 'Pilot'..." 
-                   class="w-full bg-slate-900 border-2 border-slate-800 p-6 rounded-3xl outline-none focus:border-blue-500 transition-all text-xl shadow-2xl">
-            
-            <div id="catFilters" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-                <button class="filter-pill active px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('All', this)">All</button>
-                <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Science', this)">Science</button>
-                <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Commerce', this)">Commerce</button>
-                <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Arts', this)">Arts & Govt</button>
-                <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Medical', this)">Medical</button>
-            </div>
+<h1 class="text-5xl font-extrabold mb-6">Explore <span class="text-blue-500">Careers</span></h1>
 
-            <div id="subCatContainer" class="flex flex-wrap gap-2 pt-2 min-h-[40px]">
-                </div>
-        </div>
+<input id="searchInput" placeholder="Search career..."
+ class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl mb-6">
 
-        <div class="bg-slate-900/50 p-7 rounded-3xl border border-slate-800 h-fit">
-            <div class="flex justify-between items-center mb-6">
-                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Min Salary</label>
-                <span id="salaryLabel" class="text-blue-400 font-black text-lg">₹0</span>
-            </div>
-            <input type="range" id="salaryRange" min="0" max="50" value="0" step="2" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updateSalary(this.value)">
-            <div class="flex justify-between text-[9px] text-slate-600 mt-4 font-bold uppercase">
-                <span>0L</span><span>25L</span><span>50L+</span>
-            </div>
-        </div>
-    </div>
+<div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
-    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+<div id="noResults" class="hidden text-center py-20 text-slate-500">No careers found</div>
 
-    <div id="noResults" class="hidden text-center py-20 text-slate-500 italic">No careers found matching your criteria.</div>
+<div class="flex justify-center mt-16">
+<button onclick="loadMore()" id="loadMoreBtn"
+ class="bg-blue-600 px-14 py-4 rounded-xl font-black uppercase text-xs">
+Load More
+</button>
+</div>
 
-    <div class="flex justify-center mt-20 mb-20">
-        <button id="loadMoreBtn" onclick="loadMore()" class="bg-blue-600 hover:bg-blue-500 px-16 py-5 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 uppercase text-xs tracking-[0.2em]">
-            Load More Careers
-        </button>
-    </div>
 </main>
 
 <script>
-// --- MASTER DATABASE LOGIC ---
-const subMap = {
-    "Science": ["Engineering", "Aviation", "Tech", "Robotics", "Research"],
-    "Commerce": ["Finance", "Audit", "Banking", "Stock Market"],
-    "Arts": ["UPSC", "Law", "Media", "Public Policy", "NGO"],
-    "Medical": ["Doctor", "Surgery", "Pharmacy", "Physio"]
-};
+let displayLimit = 12;
 
-const REAL_DATABASE = [
-    // UPSC / Govt Examples
-    {id:"a1", title:"IAS Officer", cat:"Arts", sub:"UPSC", salary:15, stress:"Extreme", edu:"UPSC Exam"},
-    {id:"a2", title:"IPS Officer", cat:"Arts", sub:"UPSC", salary:14, stress:"Extreme", edu:"UPSC Exam"},
-    {id:"a3", title:"IFS Officer", cat:"Arts", sub:"UPSC", salary:18, stress:"High", edu:"UPSC Exam"},
-    {id:"s1", title:"Aerospace Engineer", cat:"Science", sub:"Aviation", salary:22, stress:"High", edu:"B.Tech"},
-    {id:"m1", title:"Cardiologist", cat:"Medical", sub:"Surgery", salary:45, stress:"Extreme", edu:"MBBS+MD"}
-];
+function render(){
+  const grid = document.getElementById("careerGrid");
+  const term = document.getElementById("searchInput").value.toLowerCase();
+  grid.innerHTML = "";
 
-// Generate 900+ Logic
-for(let i=1; i<=895; i++) {
-    const keys = Object.keys(subMap);
-    const cat = keys[i % keys.length];
-    const sub = subMap[cat][i % subMap[cat].length];
-    REAL_DATABASE.push({
-        id: `auto-${i}`,
-        title: `${sub} Lead Professional-${i}`,
-        cat: cat,
-        sub: sub,
-        salary: Math.floor(Math.random() * 45) + 5,
-        stress: i % 3 === 0 ? "High" : "Medium",
-        edu: "Specialized Degree"
-    });
+  let results = careersData.filter(c =>
+    c.title.toLowerCase().includes(term) ||
+    c.category.toLowerCase().includes(term) ||
+    c.subCategory.toLowerCase().includes(term)
+  );
+
+  if(results.length === 0){
+    document.getElementById("noResults").classList.remove("hidden");
+    return;
+  } else {
+    document.getElementById("noResults").classList.add("hidden");
+  }
+
+  results.slice(0,displayLimit).forEach(c=>{
+    grid.innerHTML += `
+    <div class="glass-card p-6 flex flex-col justify-between h-[360px]">
+      <div>
+        <span class="text-[10px] text-blue-400 font-black">${c.subCategory}</span>
+        <h3 class="text-xl font-bold mt-3">${c.title}</h3>
+        <p class="text-xs text-slate-400 mt-2">
+          <b>After 10:</b> ${c.after10}<br>
+          <b>After 12:</b> ${c.after12}
+        </p>
+        <p class="text-emerald-400 font-black mt-3">${c.salary.entry}</p>
+      </div>
+      <a href="career-detail.html?id=${c.id}"
+       class="mt-4 bg-white/5 hover:bg-blue-600 py-3 rounded-xl text-xs font-black text-center uppercase">
+       View Roadmap
+      </a>
+    </div>`;
+  });
+
+  document.getElementById("loadMoreBtn").style.display =
+    displayLimit >= results.length ? "none" : "block";
 }
 
-let displayLimit = 16;
-let currentCat = "All";
-let currentSub = "All";
-let minSalary = 0;
-
-function filterByCat(cat, btn) {
-    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    currentCat = cat; currentSub = "All"; displayLimit = 16;
-    
-    // Sub-category update
-    const subContainer = document.getElementById("subCatContainer");
-    subContainer.innerHTML = "";
-    if(cat !== "All" && subMap[cat]) {
-        subMap[cat].forEach(s => {
-            const b = document.createElement("button");
-            b.className = "sub-pill uppercase font-black tracking-widest";
-            b.innerText = s;
-            b.onclick = () => {
-                document.querySelectorAll('.sub-pill').forEach(sp => sp.classList.remove('active'));
-                b.classList.add('active');
-                currentSub = s; displayLimit = 16; render();
-            };
-            subContainer.appendChild(b);
-        });
-    }
-    render();
+function loadMore(){
+  displayLimit += 12;
+  render();
 }
 
-function render() {
-    const grid = document.getElementById("careerGrid");
-    const term = document.getElementById("searchInput").value.toLowerCase();
-    grid.innerHTML = "";
-    
-    let results = REAL_DATABASE.filter(item => {
-        const matchesSearch = item.title.toLowerCase().includes(term) || item.sub.toLowerCase().includes(term);
-        const matchesCat = (currentCat === "All" || item.cat === currentCat);
-        const matchesSub = (currentSub === "All" || item.sub === currentSub);
-        const matchesSalary = item.salary >= minSalary;
-        return matchesSearch && matchesCat && matchesSub && matchesSalary;
-    });
+document.getElementById("searchInput").addEventListener("input",()=>{
+  displayLimit = 12;
+  render();
+});
 
-    if(results.length === 0) {
-        document.getElementById("noResults").classList.remove("hidden");
-    } else {
-        document.getElementById("noResults").classList.add("hidden");
-        results.slice(0, displayLimit).forEach(item => {
-            grid.innerHTML += `
-                <div class="glass-card p-7 flex flex-col justify-between h-[340px]">
-                    <div>
-                        <div class="flex justify-between mb-6">
-                            <span class="text-[9px] font-black bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-lg border border-blue-500/20 uppercase">${item.sub}</span>
-                            <span class="text-[9px] text-slate-500 font-bold uppercase">${item.stress} Stress</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4 leading-tight">${item.title}</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between text-[11px] font-bold">
-                                <span class="text-slate-500 uppercase">Avg Salary</span>
-                                <span class="text-emerald-400 font-black">₹${item.salary}L+ PA</span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="career-detail.html?id=${item.id}" class="w-full bg-white/5 hover:bg-blue-600 py-4 rounded-xl text-[10px] font-black text-center uppercase tracking-widest transition-all">View Roadmap</a>
-                </div>
-            `;
-        });
-    }
-    document.getElementById("loadMoreBtn").style.display = (displayLimit >= results.length) ? "none" : "block";
-}
-
-document.getElementById("searchInput").addEventListener("input", () => { displayLimit = 16; render(); });
-function updateSalary(val) { minSalary = parseInt(val); document.getElementById("salaryLabel").innerText = `₹${val}L`; displayLimit = 16; render(); }
-function loadMore() { displayLimit += 16; render(); }
-
-window.onscroll = function() {
-    const btn = document.getElementById("backToTop");
-    btn.style.display = (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) ? "flex" : "none";
-};
-
+console.log("Total careers loaded:", careersData.length);
 render();
 </script>
+
 </body>
 </html>
