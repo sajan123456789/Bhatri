@@ -390,3 +390,4 @@ const careersData = [
     future: "Booming role as Indian SaaS startups expand to US/EU markets."
   }
 ] 
+export default careersData;
