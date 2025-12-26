@@ -390,8 +390,6 @@ const careersData = [
     future: "Booming role as Indian SaaS startups expand to US/EU markets."
   },
   {
-    [
-  {
     id: "MED_001",
     title: "General Surgeon",
     category: "Medical & Healthcare",
