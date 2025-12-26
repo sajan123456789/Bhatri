@@ -1,6 +1,5 @@
 const careersData = [
-
-  {
+{
     id: "full-stack-developer",
     title: "Full Stack Developer",
     category: "IT & Software",
@@ -85,3 +84,4 @@ const careersData = [
   }
 
 ];
+
