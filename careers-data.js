@@ -1,7 +1,6 @@
 const careersData = [
-[
   {
-    id: "IT_001",
+   id: "IT_001",
     title: "Full Stack Developer",
     category: "IT & Software",
     subCategory: "Software Development",
