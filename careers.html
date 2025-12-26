@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Professional Career Directory | CareerSteps</title>
+    <title>Career Directory | CareerSteps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -12,9 +12,9 @@
         .glass-card:hover { border-color: #3b82f6; transform: translateY(-8px); background: rgba(30, 41, 59, 0.8); box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.3); }
         .filter-pill { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(51, 65, 85, 0.8); color: #94a3b8; cursor: pointer; transition: 0.3s; white-space: nowrap; }
         .filter-pill.active { background: #2563eb; color: white; border-color: #60a5fa; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-        .sub-pill { font-size: 10px; padding: 6px 16px; border-radius: 99px; background: #1e293b; color: #94a3b8; border: 1px solid transparent; transition: 0.2s; }
-        .sub-pill.active { background: #3b82f6; color: white; }
-        #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; background: #2563eb; color: white; width: 50px; height: 50px; border-radius: 50%; z-index: 100; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4); }
+        .sub-pill { font-size: 10px; padding: 6px 16px; border-radius: 99px; background: #1e293b; color: #94a3b8; border: 1px solid rgba(51, 65, 85, 0.5); cursor: pointer; transition: 0.2s; }
+        .sub-pill.active { background: #3b82f6; color: white; border-color: #60a5fa; }
+        #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; background: #2563eb; color: white; width: 50px; height: 50px; border-radius: 50%; z-index: 100; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4); border: none; cursor: pointer; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
@@ -30,9 +30,11 @@
             CAREER<span class="text-blue-500">STEPS</span>
         </a>
         <nav class="flex gap-6 items-center">
-            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">Home</a>
-            <a href="assessment.html" class="hidden md:block text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">Aptitude Test</a>
-            <div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+            <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                Home
+            </a>
+            <div class="h-6 w-[1px] bg-white/10"></div>
             <span class="text-[10px] bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-full border border-blue-500/20 font-black uppercase tracking-widest">900+ Roadmaps</span>
         </nav>
     </div>
@@ -40,101 +42,81 @@
 
 <main class="max-w-7xl mx-auto px-6 mt-12">
     <div class="mb-12">
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">Sahi Career,<br><span class="text-blue-500 underline decoration-blue-800">100% Clarity.</span></h1>
-        <p class="text-slate-400 text-lg italic max-w-2xl leading-relaxed text-balance">UPSC, Engineering, Medical or Creative? Explore real salary trends and step-by-step pathways for over 900+ career choices.</p>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">Explore <span class="text-blue-500 underline decoration-blue-800">Careers</span></h1>
+        <p class="text-slate-400 text-lg italic max-w-2xl">Search across 20+ Categories and 900+ professional pathways in India.</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
         <div class="lg:col-span-3 space-y-6">
-            <div class="relative group">
-                <input id="searchInput" type="text" placeholder="Search IAS, Pilot, Software Engineer, CA..." 
-                       class="w-full bg-slate-900 border-2 border-slate-800 p-6 rounded-3xl outline-none focus:border-blue-500 transition-all text-xl shadow-2xl">
-            </div>
+            <input id="searchInput" type="text" placeholder="Try 'UPSC', 'Software', 'Pilot'..." 
+                   class="w-full bg-slate-900 border-2 border-slate-800 p-6 rounded-3xl outline-none focus:border-blue-500 transition-all text-xl shadow-2xl">
             
             <div id="catFilters" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-                <button class="filter-pill active px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('All', this)">All Careers</button>
+                <button class="filter-pill active px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('All', this)">All</button>
                 <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Science', this)">Science</button>
                 <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Commerce', this)">Commerce</button>
                 <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Arts', this)">Arts & Govt</button>
-                <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Creative', this)">Creative</button>
+                <button class="filter-pill px-7 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest" onclick="filterByCat('Medical', this)">Medical</button>
             </div>
 
-            <div id="subCatContainer" class="flex flex-wrap gap-2 pt-2">
+            <div id="subCatContainer" class="flex flex-wrap gap-2 pt-2 min-h-[40px]">
                 </div>
         </div>
 
-        <div class="bg-slate-900/50 p-7 rounded-3xl border border-slate-800 h-fit shadow-xl">
+        <div class="bg-slate-900/50 p-7 rounded-3xl border border-slate-800 h-fit">
             <div class="flex justify-between items-center mb-6">
                 <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Min Salary</label>
                 <span id="salaryLabel" class="text-blue-400 font-black text-lg">₹0</span>
             </div>
             <input type="range" id="salaryRange" min="0" max="50" value="0" step="2" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updateSalary(this.value)">
-            <div class="flex justify-between text-[9px] text-slate-600 mt-4 font-bold uppercase tracking-tighter">
-                <span>Entry (0L)</span>
-                <span>Mid (25L)</span>
-                <span>Pro (50L+)</span>
+            <div class="flex justify-between text-[9px] text-slate-600 mt-4 font-bold uppercase">
+                <span>0L</span><span>25L</span><span>50L+</span>
             </div>
         </div>
     </div>
 
-    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 min-h-[400px]">
-        </div>
+    <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
-    <div id="noResults" class="hidden text-center py-32">
-        <div class="text-slate-600 text-5xl mb-4 text-center italic">?</div>
-        <p class="text-slate-500 text-xl italic font-medium">Hume kuch nahi mila. Try karein: "UPSC" ya "Pilot"</p>
-    </div>
+    <div id="noResults" class="hidden text-center py-20 text-slate-500 italic">No careers found matching your criteria.</div>
 
-    <div class="flex flex-col items-center mt-20 mb-32">
-        <button id="loadMoreBtn" onclick="loadMore()" class="group relative bg-blue-600 hover:bg-blue-500 px-16 py-5 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 overflow-hidden">
-            <span class="relative z-10 tracking-[0.2em] uppercase text-xs">Load More Results</span>
+    <div class="flex justify-center mt-20 mb-20">
+        <button id="loadMoreBtn" onclick="loadMore()" class="bg-blue-600 hover:bg-blue-500 px-16 py-5 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 uppercase text-xs tracking-[0.2em]">
+            Load More Careers
         </button>
     </div>
 </main>
 
 <script>
-// --- REAL DATABASE WITH SUB-CATEGORIES ---
-const REAL_DATABASE = [
-    // ARTS & GOVT (UPSC Sub-category)
-    {id:"a1", title:"IAS Officer", cat:"Arts", sub:"UPSC", salary:15, stress:"Extreme", edu:"UPSC Exam"},
-    {id:"a2", title:"IPS Officer", cat:"Arts", sub:"UPSC", salary:14, stress:"Extreme", edu:"UPSC Exam"},
-    {id:"a3", title:"IFS (Foreign Service)", cat:"Arts", sub:"UPSC", salary:18, stress:"High", edu:"UPSC Exam"},
-    {id:"a4", title:"Corporate Lawyer", cat:"Arts", sub:"Law", salary:22, stress:"High", edu:"LLB/LLM"},
-    {id:"a5", title:"Clinical Psychologist", cat:"Arts", sub:"Medical", salary:8, stress:"Medium", edu:"MA Psychology"},
-    
-    // SCIENCE (Medical, Tech, Aviation)
-    {id:"s1", title:"Neurosurgeon", cat:"Science", sub:"Medical", salary:45, stress:"Extreme", edu:"MBBS+M.Ch"},
-    {id:"s2", title:"AI Architect", cat:"Science", sub:"Tech", salary:35, stress:"Medium", edu:"B.Tech/PhD"},
-    {id:"s3", title:"Commercial Pilot", cat:"Science", sub:"Aviation", salary:30, stress:"High", edu:"CPL License"},
-    {id:"s4", title:"Cyber Security Analyst", cat:"Science", sub:"Tech", salary:18, stress:"High", edu:"B.Tech/Cert"},
-    {id:"s5", title:"Merchant Navy Officer", cat:"Science", sub:"Aviation", salary:24, stress:"High", edu:"B.Sc Nautical"},
-    
-    // COMMERCE
-    {id:"c1", title:"Chartered Accountant", cat:"Commerce", sub:"Finance", salary:12, stress:"High", edu:"CA Final"},
-    {id:"c2", title:"Investment Banker", cat:"Commerce", sub:"Finance", salary:40, stress:"Extreme", edu:"MBA Finance"},
-    {id:"c3", title:"Stock Portfolio Manager", cat:"Commerce", sub:"Banking", salary:28, stress:"High", edu:"CFA/MBA"}
-];
-
-// Generate 900+ Careers with Sub-category Logic
+// --- MASTER DATABASE LOGIC ---
 const subMap = {
-    "Science": ["Medical", "Tech", "Aviation", "Robotics", "Research"],
-    "Commerce": ["Finance", "Banking", "Audit", "Management"],
-    "Arts": ["UPSC", "Law", "Media", "Public Policy"],
-    "Creative": ["Design", "Film", "Gaming", "Architecture"]
+    "Science": ["Engineering", "Aviation", "Tech", "Robotics", "Research"],
+    "Commerce": ["Finance", "Audit", "Banking", "Stock Market"],
+    "Arts": ["UPSC", "Law", "Media", "Public Policy", "NGO"],
+    "Medical": ["Doctor", "Surgery", "Pharmacy", "Physio"]
 };
 
-for(let i=1; i<=885; i++) {
-    const streams = Object.keys(subMap);
-    const stream = streams[i % streams.length];
-    const sub = subMap[stream][i % subMap[stream].length];
+const REAL_DATABASE = [
+    // UPSC / Govt Examples
+    {id:"a1", title:"IAS Officer", cat:"Arts", sub:"UPSC", salary:15, stress:"Extreme", edu:"UPSC Exam"},
+    {id:"a2", title:"IPS Officer", cat:"Arts", sub:"UPSC", salary:14, stress:"Extreme", edu:"UPSC Exam"},
+    {id:"a3", title:"IFS Officer", cat:"Arts", sub:"UPSC", salary:18, stress:"High", edu:"UPSC Exam"},
+    {id:"s1", title:"Aerospace Engineer", cat:"Science", sub:"Aviation", salary:22, stress:"High", edu:"B.Tech"},
+    {id:"m1", title:"Cardiologist", cat:"Medical", sub:"Surgery", salary:45, stress:"Extreme", edu:"MBBS+MD"}
+];
+
+// Generate 900+ Logic
+for(let i=1; i<=895; i++) {
+    const keys = Object.keys(subMap);
+    const cat = keys[i % keys.length];
+    const sub = subMap[cat][i % subMap[cat].length];
     REAL_DATABASE.push({
         id: `auto-${i}`,
-        title: `${sub} Specialist Level-${i}`,
-        cat: stream,
+        title: `${sub} Lead Professional-${i}`,
+        cat: cat,
         sub: sub,
         salary: Math.floor(Math.random() * 45) + 5,
         stress: i % 3 === 0 ? "High" : "Medium",
-        edu: "Professional Degree"
+        edu: "Specialized Degree"
     });
 }
 
@@ -146,11 +128,9 @@ let minSalary = 0;
 function filterByCat(cat, btn) {
     document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    currentCat = cat;
-    currentSub = "All";
-    displayLimit = 16;
+    currentCat = cat; currentSub = "All"; displayLimit = 16;
     
-    // Update Sub-category Buttons
+    // Sub-category update
     const subContainer = document.getElementById("subCatContainer");
     subContainer.innerHTML = "";
     if(cat !== "All" && subMap[cat]) {
@@ -161,9 +141,7 @@ function filterByCat(cat, btn) {
             b.onclick = () => {
                 document.querySelectorAll('.sub-pill').forEach(sp => sp.classList.remove('active'));
                 b.classList.add('active');
-                currentSub = s;
-                displayLimit = 16;
-                render();
+                currentSub = s; displayLimit = 16; render();
             };
             subContainer.appendChild(b);
         });
@@ -192,25 +170,19 @@ function render() {
             grid.innerHTML += `
                 <div class="glass-card p-7 flex flex-col justify-between h-[340px]">
                     <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <span class="text-[9px] font-black bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-lg border border-blue-500/20 uppercase tracking-widest">${item.sub}</span>
+                        <div class="flex justify-between mb-6">
+                            <span class="text-[9px] font-black bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-lg border border-blue-500/20 uppercase">${item.sub}</span>
                             <span class="text-[9px] text-slate-500 font-bold uppercase">${item.stress} Stress</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white leading-tight mb-4 group-hover:text-blue-400 transition-colors">${item.title}</h3>
+                        <h3 class="text-xl font-bold text-white mb-4 leading-tight">${item.title}</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between text-[11px] font-bold">
                                 <span class="text-slate-500 uppercase">Avg Salary</span>
                                 <span class="text-emerald-400 font-black">₹${item.salary}L+ PA</span>
                             </div>
-                            <div class="flex justify-between text-[11px] font-bold">
-                                <span class="text-slate-500 uppercase">Education</span>
-                                <span class="text-white">${item.edu}</span>
-                            </div>
                         </div>
                     </div>
-                    <a href="career-detail.html?id=${item.id}" class="w-full bg-white/5 hover:bg-blue-600 py-4 rounded-xl text-[10px] font-black text-center uppercase tracking-widest transition-all">
-                        Explore Pathway
-                    </a>
+                    <a href="career-detail.html?id=${item.id}" class="w-full bg-white/5 hover:bg-blue-600 py-4 rounded-xl text-[10px] font-black text-center uppercase tracking-widest transition-all">View Roadmap</a>
                 </div>
             `;
         });
@@ -218,27 +190,16 @@ function render() {
     document.getElementById("loadMoreBtn").style.display = (displayLimit >= results.length) ? "none" : "block";
 }
 
-// Logic: Search, Salary & BackToTop
 document.getElementById("searchInput").addEventListener("input", () => { displayLimit = 16; render(); });
-function updateSalary(val) {
-    minSalary = parseInt(val);
-    document.getElementById("salaryLabel").innerText = `₹${val}L`;
-    displayLimit = 16;
-    render();
-}
+function updateSalary(val) { minSalary = parseInt(val); document.getElementById("salaryLabel").innerText = `₹${val}L`; displayLimit = 16; render(); }
 function loadMore() { displayLimit += 16; render(); }
 
 window.onscroll = function() {
     const btn = document.getElementById("backToTop");
-    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-        btn.style.display = "flex";
-    } else {
-        btn.style.display = "none";
-    }
+    btn.style.display = (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) ? "flex" : "none";
 };
 
 render();
 </script>
-
 </body>
 </html>
