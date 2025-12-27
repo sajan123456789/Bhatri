@@ -16,7 +16,6 @@
     .btn-primary { background: #2563eb; color: white; padding: 12px 24px; border-radius: 12px; font-weight: 800; text-transform: uppercase; font-size: 11px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
     .btn-primary:hover { background: #1d4ed8; transform: scale(1.02); }
     
-    /* Scroll to Top Button */
     #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; background: #2563eb; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 20px rgba(37,99,235,0.5); transition: 0.3s; font-size: 20px; font-weight: bold; }
     #backToTop:hover { background: #3b82f6; transform: translateY(-5px); }
 </style>
@@ -44,38 +43,47 @@
 <main class="max-w-7xl mx-auto px-6 mt-12">
     <div class="mb-10 text-center md:text-left">
         <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">Explore <span class="text-blue-500 italic">Pathways</span></h1>
-        <p class="text-slate-500 font-medium mt-2">Discover 900+ professional roadmaps at your fingertips.</p>
+        <p class="text-slate-500 font-medium mt-2">Discover professional roadmaps at your fingertips.</p>
     </div>
 
     <div class="bg-slate-900/40 p-8 rounded-[2.5rem] border border-white/5 mb-12 shadow-2xl">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div>
-                <span class="label-text">Search Keyword</span>
-                <input id="searchInput" type="text" placeholder="e.g. Developer, Doctor..." class="filter-select">
+        <div class="relative group">
+            <span class="label-text">Search Keyword</span>
+            <div class="relative">
+                <input id="searchInput" type="text" placeholder="e.g. Developer, Doctor..." class="filter-select !pl-12 !pr-14 py-5 text-base" oninput="applyFilters()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-4 top-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                
+                <button onclick="startVoiceSearch()" class="absolute right-4 top-3.5 p-2 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white rounded-full transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                </button>
             </div>
+        </div>
+
+        <div class="mt-4 flex justify-between items-center px-2">
+            <button onclick="toggleFilterPanel()" class="text-[10px] font-black text-blue-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition group">
+                <svg id="filterIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:scale-125" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                Advanced Filters & Categories
+            </button>
+        </div>
+
+        <div id="filterPanel" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/5">
             <div>
                 <span class="label-text">Category</span>
-                <select id="catDropdown" class="filter-select" onchange="updateSubDropdown()"></select>
+                <select id="catDropdown" class="filter-select" onchange="updateSubDropdown(); applyFilters()"></select>
             </div>
             <div>
                 <span class="label-text">Area / Specialization</span>
-                <select id="subDropdown" class="filter-select"></select>
+                <select id="subDropdown" class="filter-select" onchange="applyFilters()"></select>
             </div>
             <div>
                 <span class="label-text">Education Level</span>
-                <select id="eduDropdown" class="filter-select">
+                <select id="eduDropdown" class="filter-select" onchange="applyFilters()">
                     <option value="All">All Levels</option>
                     <option value="10th">After 10th</option>
                     <option value="12th">After 12th</option>
                     <option value="Degree">Graduation/Degree</option>
                 </select>
             </div>
-        </div>
-        <div class="mt-8 flex justify-center md:justify-end">
-            <button onclick="applyFilters()" class="btn-primary">
-                FIND MY CAREER
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </button>
         </div>
     </div>
 
@@ -85,7 +93,7 @@
     </div>
 
     <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-    <div id="noResults" class="hidden text-center py-20 text-slate-500 font-bold uppercase tracking-[3px]">No matches found for your search.</div>
+    <div id="noResults" class="hidden text-center py-20 text-slate-500 font-bold uppercase tracking-[3px]">No matches found.</div>
 
     <div id="loadMoreContainer" class="hidden flex justify-center mt-16">
         <button onclick="loadMore()" class="bg-slate-800 hover:bg-blue-600 px-12 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Show More Results</button>
@@ -97,25 +105,58 @@ const careers = (typeof careersData !== 'undefined') ? careersData : [];
 let displayLimit = 12;
 let currentResults = [];
 
+function toggleFilterPanel() {
+    const panel = document.getElementById("filterPanel");
+    const icon = document.getElementById("filterIcon");
+    const isHidden = panel.classList.toggle("hidden");
+    icon.style.transform = isHidden ? "rotate(0deg)" : "rotate(180deg)";
+}
+
+function startVoiceSearch() {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-US';
+    recognition.onstart = () => { document.getElementById("searchInput").placeholder = "Listening..."; };
+    recognition.onresult = (event) => {
+        document.getElementById("searchInput").value = event.results[0][0].transcript;
+        document.getElementById("searchInput").placeholder = "e.g. Developer, Doctor...";
+        applyFilters();
+    };
+    recognition.start();
+}
+
 function init() {
-    // Populate Categories
     const catSelect = document.getElementById("catDropdown");
-    const categories = ["All Categories", ...new Set(careers.map(c => c.category))];
-    catSelect.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join("");
-    
+    const catCounts = {};
+    careers.forEach(c => { catCounts[c.category] = (catCounts[c.category] || 0) + 1; });
+
+    let options = `<option value="All Categories">All Categories (${careers.length})</option>`;
+    Object.keys(catCounts).sort().forEach(cat => {
+        options += `<option value="${cat}">${cat} (${catCounts[cat]})</option>`;
+    });
+
+    catSelect.innerHTML = options;
     updateSubDropdown();
-    applyFilters(); // Page load par saare careers dikhane ke liye
+    applyFilters();
 }
 
 function updateSubDropdown() {
     const subSelect = document.getElementById("subDropdown");
     const selectedCat = document.getElementById("catDropdown").value;
-    let subCats = ["All Subcategories"];
-    if (selectedCat !== "All Categories") {
-        const filtered = careers.filter(c => c.category === selectedCat);
-        subCats = ["All Subcategories", ...new Set(filtered.map(c => c.subCategory))];
+    
+    if (selectedCat === "All Categories") {
+        subSelect.innerHTML = `<option value="All Subcategories">All Subcategories</option>`;
+        return;
     }
-    subSelect.innerHTML = subCats.map(s => `<option value="${s}">${s}</option>`).join("");
+
+    const subCounts = {};
+    const filtered = careers.filter(c => c.category === selectedCat);
+    filtered.forEach(c => { subCounts[c.subCategory] = (subCounts[c.subCategory] || 0) + 1; });
+
+    let options = `<option value="All Subcategories">All Specializations (${filtered.length})</option>`;
+    Object.keys(subCounts).sort().forEach(sub => {
+        options += `<option value="${sub}">${sub} (${subCounts[sub]})</option>`;
+    });
+    subSelect.innerHTML = options;
 }
 
 function applyFilters() {
@@ -144,7 +185,6 @@ function applyFilters() {
 function render() {
     const grid = document.getElementById("careerGrid");
     grid.innerHTML = "";
-    
     document.getElementById("resultsCount").textContent = `${currentResults.length} Paths Found`;
     document.getElementById("noResults").classList.toggle("hidden", currentResults.length > 0);
     document.getElementById("loadMoreContainer").classList.toggle("hidden", currentResults.length <= displayLimit);
@@ -176,31 +216,17 @@ function render() {
     });
 }
 
-// Universal Sharing
 function shareCareer(title, id) {
     const url = `${window.location.origin}${window.location.pathname.replace('careers.html', 'career-detail.html')}?id=${id}`;
-    if (navigator.share) {
-        navigator.share({ title: title, text: `Check out this career roadmap for ${title}`, url: url });
-    } else {
-        navigator.clipboard.writeText(url);
-        alert("Link copied! You can now paste and share.");
-    }
+    if (navigator.share) { navigator.share({ title: title, text: `Check out ${title}`, url: url }); }
+    else { navigator.clipboard.writeText(url); alert("Link copied!"); }
 }
 
-function sharePlatform() {
-    if (navigator.share) {
-        navigator.share({ title: 'CareerSteps', text: 'Explore 900+ Careers Roadmaps!', url: window.location.href });
-    }
-}
+function sharePlatform() { if (navigator.share) { navigator.share({ title: 'CareerSteps', url: window.location.href }); } }
 
-// Back to Top Button Logic
 window.onscroll = function() {
     const btt = document.getElementById("backToTop");
-    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-        btt.style.display = "block";
-    } else {
-        btt.style.display = "none";
-    }
+    btt.style.display = (document.documentElement.scrollTop > 400) ? "block" : "none";
 };
 
 function clearAll() {
