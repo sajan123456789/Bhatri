@@ -2,84 +2,122 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Career Directory | CareerSteps</title>
+<title>Explore Pathways | CareerSteps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
     body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif;scroll-behavior:smooth}
     .glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.3s}
-    .filter-select { background: #0f172a; border: 1px solid #1e293b; color: #94a3b8; padding: 12px; border-radius: 12px; width: 100%; appearance: none; cursor: pointer; }
-    .filter-select:focus { border-color: #3b82f6; outline: none; }
-    .label-text { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 8px; display: block; }
+    .glass-card:hover{border-color:#3b82f6;transform:translateY(-6px)}
+    .filter-select { background: #0f172a; border: 1px solid #1e293b; color: #94a3b8; padding: 14px; border-radius: 12px; width: 100%; appearance: none; cursor: pointer; font-size: 13px; }
+    .filter-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 15px rgba(59,130,246,0.2); }
+    .label-text { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #475569; margin-bottom: 6px; display: block; letter-spacing: 1px; }
+    .btn-primary { background: #2563eb; color: white; padding: 12px 24px; border-radius: 12px; font-weight: 800; text-transform: uppercase; font-size: 12px; transition: 0.3s; }
+    .btn-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    
+    /* Scroll to Top Button */
+    #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; background: #2563eb; color: white; border: none; outline: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 15px rgba(37,99,235,0.4); transition: 0.3s; font-size: 20px; font-weight: 900; }
+    #backToTop:hover { background: #1d4ed8; transform: translateY(-5px); }
+    
+    .no-scrollbar::-webkit-scrollbar { display: none; }
 </style>
 <script src="careers-data.js"></script>
 </head>
 <body class="pb-20">
 
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <header class="sticky top-0 bg-[#020617]/90 backdrop-blur border-b border-white/5 px-6 py-4 z-50">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a href="index.html" class="text-2xl font-black italic">CAREER<span class="text-blue-500">STEPS</span></a>
+    <div class="flex items-center gap-8">
+        <a href="index.html" class="text-2xl font-black italic tracking-tighter">CAREER<span class="text-blue-500">STEPS</span></a>
+        <nav class="hidden md:flex gap-6">
+            <a href="index.html" class="text-xs font-bold uppercase hover:text-blue-400 transition">Home</a>
+            <a href="careers.html" class="text-xs font-bold uppercase text-blue-500 underline underline-offset-8">All Careers</a>
+            <a href="assessment.html" class="text-xs font-bold uppercase hover:text-blue-400 transition">AI Assessment</a>
+        </nav>
+    </div>
+    <button onclick="sharePlatform()" class="bg-blue-600/10 border border-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">
+        Share App
+    </button>
   </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-6 mt-12">
-    <h1 class="text-5xl font-extrabold mb-10 italic uppercase">Explore <span class="text-blue-500">Pathways</span></h1>
+    <div class="mb-10">
+        <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">Explore <span class="text-blue-500 italic">Pathways</span></h1>
+        <p class="text-slate-500 font-medium mt-2">Find your perfect future from 900+ curated roadmaps.</p>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 p-8 bg-slate-900/50 rounded-[2rem] border border-slate-800">
-        
-        <div class="lg:col-span-1">
-            <span class="label-text">Search Keyword</span>
-            <input id="searchInput" placeholder="Search careers..." class="filter-select">
+    <div class="bg-slate-900/40 p-8 rounded-[2.5rem] border border-white/5 mb-12 shadow-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div>
+                <span class="label-text">Search</span>
+                <input id="searchInput" type="text" placeholder="e.g. Engineer, Doctor..." class="filter-select">
+            </div>
+            <div>
+                <span class="label-text">Category</span>
+                <select id="catDropdown" class="filter-select" onchange="updateSubDropdown()"></select>
+            </div>
+            <div>
+                <span class="label-text">Area</span>
+                <select id="subDropdown" class="filter-select"></select>
+            </div>
+            <div>
+                <span class="label-text">Level</span>
+                <select id="eduDropdown" class="filter-select">
+                    <option value="All">All Education</option>
+                    <option value="10th">Post 10th</option>
+                    <option value="12th">Post 12th</option>
+                    <option value="Degree">Graduate</option>
+                </select>
+            </div>
         </div>
-
-        <div>
-            <span class="label-text">Category</span>
-            <select id="catDropdown" class="filter-select" onchange="updateFilters('category')"></select>
-        </div>
-
-        <div>
-            <span class="label-text">Sub-Category</span>
-            <select id="subDropdown" class="filter-select" onchange="updateFilters('subcategory')"></select>
-        </div>
-
-        <div>
-            <span class="label-text">Education Level</span>
-            <select id="eduDropdown" class="filter-select" onchange="updateFilters('education')">
-                <option value="All">All Levels</option>
-                <option value="10th">After 10th</option>
-                <option value="12th">After 12th</option>
-                <option value="Degree">Graduation/Diploma</option>
-            </select>
+        <div class="mt-8 flex justify-end">
+            <button onclick="applyFilters()" class="btn-primary flex items-center gap-3">
+                <span>FIND MY PATHWAY</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </button>
         </div>
     </div>
 
-    <div id="resultsCount" class="text-sm font-bold text-blue-400 mb-6 uppercase tracking-widest"></div>
+    <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
+        <span id="resultsCount" class="text-xs font-black text-blue-400 uppercase tracking-[2px]">Ready to search</span>
+        <button onclick="clearAll()" class="text-[10px] font-bold text-slate-500 hover:text-red-400">RESET FILTERS</button>
+    </div>
+
     <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-    <div id="noResults" class="hidden text-center py-20 text-slate-500 font-bold">No matches found for your criteria.</div>
-    
-    <div class="flex justify-center mt-16">
-        <button onclick="loadMore()" id="loadMoreBtn" class="bg-blue-600 hover:bg-blue-700 px-14 py-4 rounded-xl font-black uppercase text-xs transition-all">Load More</button>
+    <div id="noResults" class="hidden text-center py-20 text-slate-500 uppercase font-black text-sm tracking-widest">No matching careers found</div>
+
+    <div id="loadMoreContainer" class="hidden flex justify-center mt-16">
+        <button onclick="loadMore()" class="bg-slate-800 hover:bg-blue-600 px-10 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Show More</button>
     </div>
 </main>
 
 <script>
 const careers = (typeof careersData !== 'undefined') ? careersData : [];
 let displayLimit = 12;
+let currentResults = [];
 
-function initDropdowns() {
+function init() {
     const catSelect = document.getElementById("catDropdown");
     const categories = ["All Categories", ...new Set(careers.map(c => c.category))];
     catSelect.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join("");
-    
     updateSubDropdown();
-    render();
+    
+    // Check if coming from home with a category
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has('cat')) {
+        document.getElementById("catDropdown").value = urlParams.get('cat');
+        updateSubDropdown();
+        applyFilters();
+    }
 }
 
 function updateSubDropdown() {
     const subSelect = document.getElementById("subDropdown");
     const selectedCat = document.getElementById("catDropdown").value;
-    
     let subCats = ["All Subcategories"];
     if (selectedCat !== "All Categories") {
         const filtered = careers.filter(c => c.category === selectedCat);
@@ -88,24 +126,17 @@ function updateSubDropdown() {
     subSelect.innerHTML = subCats.map(s => `<option value="${s}">${s}</option>`).join("");
 }
 
-function updateFilters(type) {
-    if (type === 'category') updateSubDropdown();
-    displayLimit = 12;
-    render();
-}
-
-function render() {
+function applyFilters() {
     const search = document.getElementById("searchInput").value.toLowerCase();
     const cat = document.getElementById("catDropdown").value;
     const sub = document.getElementById("subDropdown").value;
     const edu = document.getElementById("eduDropdown").value;
 
-    const results = careers.filter(c => {
-        const matchSearch = c.title.toLowerCase().includes(search);
+    currentResults = careers.filter(c => {
+        const matchSearch = c.title.toLowerCase().includes(search) || (c.skills && c.skills.join(" ").toLowerCase().includes(search));
         const matchCat = (cat === "All Categories" || c.category === cat);
         const matchSub = (sub === "All Subcategories" || c.subCategory === sub);
         
-        // Education Logic
         let matchEdu = true;
         if (edu === "10th") matchEdu = c.after10 && c.after10 !== "N/A";
         if (edu === "12th") matchEdu = c.after12 && c.after12 !== "N/A";
@@ -114,31 +145,71 @@ function render() {
         return matchSearch && matchCat && matchSub && matchEdu;
     });
 
-    document.getElementById("resultsCount").textContent = `${results.length} Careers Found`;
-    
-    const grid = document.getElementById("careerGrid");
-    grid.innerHTML = "";
-    
-    results.slice(0, displayLimit).forEach(c => {
-        grid.innerHTML += `
-        <div class="glass-card p-6 flex flex-col justify-between h-[380px]">
-            <div>
-                <span class="text-[9px] text-blue-500 font-black uppercase">${c.subCategory}</span>
-                <h3 class="text-lg font-bold mt-2 text-white line-clamp-1">${c.title}</h3>
-                <p class="text-[11px] text-slate-400 mt-4"><b class="text-slate-500">PATH:</b> ${c.after12}</p>
-                <p class="text-emerald-400 font-bold mt-4 text-sm">${c.salary.entry || c.salary}</p>
-            </div>
-            <a href="career-detail.html?id=${c.id}" class="mt-6 border border-blue-600/30 bg-blue-600/10 hover:bg-blue-600 py-3 rounded-xl text-[10px] font-black text-center uppercase transition-all">View Roadmap</a>
-        </div>`;
-    });
-
-    document.getElementById("noResults").classList.toggle("hidden", results.length > 0);
-    document.getElementById("loadMoreBtn").style.display = results.length > displayLimit ? "block" : "none";
+    displayLimit = 12;
+    render();
 }
 
-document.getElementById("searchInput").addEventListener("input", () => { displayLimit = 12; render(); });
+function render() {
+    const grid = document.getElementById("careerGrid");
+    grid.innerHTML = "";
+    document.getElementById("resultsCount").textContent = `${currentResults.length} Paths Found`;
+    document.getElementById("noResults").classList.toggle("hidden", currentResults.length > 0);
+    document.getElementById("loadMoreContainer").classList.toggle("hidden", currentResults.length <= displayLimit);
+
+    currentResults.slice(0, displayLimit).forEach(c => {
+        grid.innerHTML += `
+        <div class="glass-card p-6 flex flex-col justify-between h-[400px] relative">
+            <div class="absolute top-4 right-4 flex gap-2">
+                <button onclick="shareItem('${c.title}', '${c.id}')" class="bg-white/5 p-2 rounded-lg hover:bg-blue-600 transition group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                </button>
+            </div>
+            <div>
+                <span class="text-[9px] text-blue-500 font-bold uppercase tracking-widest">${c.subCategory}</span>
+                <h3 class="text-xl font-bold mt-2 text-white leading-tight line-clamp-2">${c.title}</h3>
+                <div class="mt-6 space-y-3 border-t border-white/5 pt-4">
+                    <p class="text-[11px] text-slate-400"><span class="text-slate-600 font-bold uppercase mr-2 text-[9px]">Exam:</span> ${Array.isArray(c.exams) ? c.exams[0] : (c.exams || 'Direct')}</p>
+                    <p class="text-[11px] text-emerald-400 font-bold uppercase tracking-tighter">${c.salary.entry || c.salary} / Year</p>
+                </div>
+            </div>
+            <a href="career-detail.html?id=${c.id}" class="mt-8 bg-blue-600/10 border border-blue-600/20 hover:bg-blue-600 py-3.5 rounded-xl text-[10px] font-black text-center uppercase tracking-widest transition-all text-white">Explore Roadmap</a>
+        </div>`;
+    });
+}
+
+function shareItem(title, id) {
+    const url = `${window.location.origin}/career-detail.html?id=${id}`;
+    if (navigator.share) {
+        navigator.share({ title: title, text: `Check this career: ${title}`, url: url });
+    } else {
+        navigator.clipboard.writeText(url);
+        alert("Link copied to clipboard!");
+    }
+}
+
+function sharePlatform() {
+    if (navigator.share) {
+        navigator.share({ title: 'CareerSteps', text: 'Find your perfect career roadmap!', url: window.location.href });
+    }
+}
+
+function clearAll() {
+    document.getElementById("searchInput").value = "";
+    document.getElementById("catDropdown").value = "All Categories";
+    updateSubDropdown();
+    document.getElementById("eduDropdown").value = "All";
+    currentResults = [];
+    render();
+}
+
+// Scroll Button Logic
+window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    btn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
+};
+
 function loadMore() { displayLimit += 12; render(); }
-window.onload = initDropdowns;
+window.onload = init;
 </script>
 </body>
 </html>
