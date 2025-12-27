@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <title>Career Directory | CareerSteps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif;scroll-behavior:smooth}
 .glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.3s}
@@ -17,51 +15,25 @@ body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif
 #backToTop{display:none;position:fixed;bottom:24px;right:24px;background:#2563eb;color:#fff;width:48px;height:48px;border-radius:50%;font-weight:900; z-index:50; border:none; cursor:pointer}
 .no-scrollbar::-webkit-scrollbar { display: none; }
 </style>
-
 <script src="careers-data.js"></script>
 </head>
-
 <body class="pb-20">
-
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
 <header class="sticky top-0 bg-[#020617]/90 backdrop-blur border-b border-white/5 px-6 py-4 z-40">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a href="index.html" class="text-2xl font-black italic">
-      CAREER<span class="text-blue-500">STEPS</span>
-    </a>
+    <a href="index.html" class="text-2xl font-black italic">CAREER<span class="text-blue-500">STEPS</span></a>
   </div>
 </header>
-
 <main class="max-w-7xl mx-auto px-6 mt-12">
-
-<h1 class="text-5xl font-extrabold mb-6 italic uppercase tracking-tighter">
-Explore <span class="text-blue-500">Careers</span>
-</h1>
-
-<input id="searchInput" placeholder="Search career, skill, exam..."
- class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl mb-6 focus:outline-none focus:border-blue-500 text-white">
-
+<h1 class="text-5xl font-extrabold mb-6 italic uppercase">Explore <span class="text-blue-500">Careers</span></h1>
+<input id="searchInput" placeholder="Search career, skill, exam..." class="w-full bg-slate-900 border border-slate-800 p-5 rounded-2xl mb-6 focus:outline-none focus:border-blue-500 text-white">
 <div id="categoryFilters" class="flex gap-3 overflow-x-auto mb-4 pb-2 no-scrollbar"></div>
 <div id="subCategoryFilters" class="flex flex-wrap gap-2 mb-8"></div>
-
 <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-
-<div id="noResults" class="hidden text-center py-20 text-slate-500">
-  <p class="text-xl font-bold">No careers found matching your search.</p>
-</div>
-
-<div class="flex justify-center mt-16">
-  <button onclick="loadMore()" id="loadMoreBtn"
-   class="bg-blue-600 hover:bg-blue-700 px-14 py-4 rounded-xl font-black uppercase text-xs transition-colors">
-  Load More
-  </button>
-</div>
-
+<div id="noResults" class="hidden text-center py-20 text-slate-500"><p class="text-xl font-bold">No careers found matching your search.</p></div>
+<div class="flex justify-center mt-16"><button onclick="loadMore()" id="loadMoreBtn" class="bg-blue-600 hover:bg-blue-700 px-14 py-4 rounded-xl font-black uppercase text-xs transition-colors">Load More</button></div>
 </main>
-
 <script>
-// UI Elements
 const grid = document.getElementById("careerGrid");
 const categoryBox = document.getElementById("categoryFilters");
 const subBox = document.getElementById("subCategoryFilters");
@@ -74,29 +46,21 @@ let displayLimit = 12;
 let activeCategory = "All";
 let activeSubCategory = "All";
 
-// Ensure we are using the correct variable from careers-data.js
-const careers = (typeof CAREER_DATA !== 'undefined') ? CAREER_DATA : [];
+// APKI FILE KA VARIABLE NAME USE KIYA HAI
+const careers = (typeof careersData !== 'undefined') ? careersData : [];
 
 function buildCategories(){
   if (careers.length === 0) {
-      grid.innerHTML = "<p class='text-red-500 col-span-full text-center'>Error: careers-data.js not loaded or CAREER_DATA is empty.</p>";
+      grid.innerHTML = "<p class='text-red-500 col-span-full text-center'>Error: careers-data.js load nahi hui ya variable name galat hai.</p>";
       return;
   }
-
   const cats = ["All", ...new Set(careers.map(c => c.category))];
   categoryBox.innerHTML = "";
   cats.forEach(cat => {
     const b = document.createElement("button");
     b.className = "filter-pill" + (cat === activeCategory ? " active" : "");
     b.textContent = cat;
-    b.onclick = () => {
-      activeCategory = cat;
-      activeSubCategory = "All";
-      buildCategories();
-      buildSubCategories();
-      displayLimit = 12;
-      render();
-    };
+    b.onclick = () => { activeCategory = cat; activeSubCategory = "All"; buildCategories(); buildSubCategories(); displayLimit = 12; render(); };
     categoryBox.appendChild(b);
   });
 }
@@ -104,20 +68,12 @@ function buildCategories(){
 function buildSubCategories(){
   subBox.innerHTML = "";
   if(activeCategory === "All") return;
-
-  const subs = ["All", ...new Set(
-    careers.filter(c => c.category === activeCategory).map(c => c.subCategory)
-  )];
-
+  const subs = ["All", ...new Set(careers.filter(c => c.category === activeCategory).map(c => c.subCategory))];
   subs.forEach(sub => {
     const b = document.createElement("button");
     b.className = "filter-pill" + (sub === activeSubCategory ? " active" : "");
     b.textContent = sub;
-    b.onclick = () => {
-      activeSubCategory = sub;
-      displayLimit = 12;
-      render();
-    };
+    b.onclick = () => { activeSubCategory = sub; displayLimit = 12; render(); };
     subBox.appendChild(b);
   });
 }
@@ -125,31 +81,17 @@ function buildSubCategories(){
 function render(){
   const term = searchInput.value.toLowerCase();
   grid.innerHTML = "";
-
   let results = careers.filter(c => {
-    const searchMatch =
-      c.title.toLowerCase().includes(term) ||
-      c.category.toLowerCase().includes(term) ||
-      (c.skills && Array.isArray(c.skills) && c.skills.join(" ").toLowerCase().includes(term));
-
+    const searchMatch = c.title.toLowerCase().includes(term) || c.category.toLowerCase().includes(term) || (c.skills && Array.isArray(c.skills) && c.skills.join(" ").toLowerCase().includes(term));
     const catMatch = activeCategory === "All" || c.category === activeCategory;
     const subMatch = activeSubCategory === "All" || c.subCategory === activeSubCategory;
-
     return searchMatch && catMatch && subMatch;
   });
-
-  if(results.length === 0){
-    noResults.classList.remove("hidden");
-    loadMoreBtn.style.display = "none";
-    return;
-  } else {
-    noResults.classList.add("hidden");
-  }
+  if(results.length === 0){ noResults.classList.remove("hidden"); loadMoreBtn.style.display = "none"; return; }
+  else { noResults.classList.add("hidden"); }
 
   results.slice(0, displayLimit).forEach(c => {
-    // Salary handling
-    const entrySalary = (c.salary && typeof c.salary === 'object') ? c.salary.entry : (c.salary || 'Competitive');
-
+    const entrySalary = (c.salary && typeof c.salary === 'object') ? c.salary.entry : (c.salary || 'N/A');
     grid.innerHTML += `
     <div class="glass-card p-6 flex flex-col justify-between h-[400px]">
       <div>
@@ -158,52 +100,19 @@ function render(){
             <span class="text-[10px] bg-white/10 px-2 py-1 rounded text-slate-400 font-bold">${c.id}</span>
         </div>
         <h3 class="text-xl font-bold mt-3 line-clamp-2 text-white">${c.title}</h3>
-        <div class="mt-4 space-y-2">
-            <p class="text-[11px] text-slate-400 leading-relaxed">
-              <span class="text-slate-500 font-bold uppercase text-[9px]">Pathway:</span><br>
-              <span class="line-clamp-1">${c.after12 || 'N/A'}</span>
-            </p>
-            <p class="text-[11px] text-slate-400 leading-relaxed">
-              <span class="text-slate-500 font-bold uppercase text-[9px]">Degree:</span><br>
-              <span class="line-clamp-1">${c.degree || 'N/A'}</span>
-            </p>
-        </div>
-        <div class="mt-4 pt-4 border-t border-white/5">
-            <p class="text-emerald-400 font-black flex items-center gap-2">
-                <span class="text-[9px] text-slate-500 font-bold uppercase">Starting:</span> 
-                ${entrySalary}
-            </p>
-        </div>
+        <p class="text-[11px] text-slate-400 mt-4 leading-relaxed"><span class="text-slate-500 font-bold uppercase text-[9px]">Degree:</span><br>${c.degree || 'N/A'}</p>
+        <p class="text-emerald-400 font-black mt-4 flex items-center gap-2"><span class="text-[9px] text-slate-500 font-bold uppercase">Starting:</span> ${entrySalary}</p>
       </div>
-      <a href="career-detail.html?id=${c.id}"
-       class="mt-6 bg-blue-600/10 hover:bg-blue-600 py-3 rounded-xl text-xs font-black text-center uppercase transition-all duration-300 border border-blue-600/20 text-white">
-       View Roadmap
-      </a>
+      <a href="career-detail.html?id=${c.id}" class="mt-6 bg-blue-600/10 hover:bg-blue-600 py-3 rounded-xl text-xs font-black text-center uppercase transition-all duration-300 border border-blue-600/20 text-white">View Roadmap</a>
     </div>`;
   });
-
   loadMoreBtn.style.display = (displayLimit >= results.length) ? "none" : "block";
 }
 
-function loadMore(){
-  displayLimit += 12;
-  render();
-}
-
-searchInput.addEventListener("input", () => {
-  displayLimit = 12;
-  render();
-});
-
-window.onscroll = () => {
-  backToTop.style.display = document.documentElement.scrollTop > 300 ? "block" : "none";
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-    buildCategories();
-    buildSubCategories();
-    render();
-});
+function loadMore(){ displayLimit += 12; render(); }
+searchInput.addEventListener("input", () => { displayLimit = 12; render(); });
+window.onscroll = () => { backToTop.style.display = document.documentElement.scrollTop > 300 ? "block" : "none"; };
+document.addEventListener("DOMContentLoaded", () => { buildCategories(); buildSubCategories(); render(); });
 </script>
 </body>
 </html>
