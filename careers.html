@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Careers | CareerSteps</title>
+    <title>Explore Pathways | CareerSteps</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         .glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.3); backdrop-filter: blur(12px); border-radius: 24px; transition: 0.3s; }
         .glass-card:hover { border-color: #3b82f6; transform: translateY(-5px); }
         
-        /* Filter Styling */
-        .filter-container { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 32px; padding: 32px; }
-        .filter-select { background: #0f172a; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 16px; border-radius: 14px; width: 100%; appearance: none; font-size: 14px; transition: 0.2s; cursor: pointer; }
-        .filter-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
-        .label-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 8px; display: block; letter-spacing: 1.5px; }
+        /* Premium Filter & Search Styling */
+        .search-area { background: rgba(30, 41, 59, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 20px; }
+        .filter-area { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(51, 65, 85, 0.4); border-radius: 24px; padding: 24px; margin-top: 15px; }
+        
+        .custom-input { background: #0f172a; border: 1px solid #1e293b; color: #f8fafc; padding: 14px 18px; border-radius: 12px; width: 100%; font-size: 14px; transition: 0.2s; }
+        .custom-input:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 15px rgba(59, 130, 246, 0.15); }
+        
+        .label-text { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #475569; margin-bottom: 8px; display: block; letter-spacing: 1.2px; }
         
         #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; background: #2563eb; color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 100; font-weight: bold; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
     </style>
@@ -24,55 +27,48 @@
 
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-    <header class="sticky top-0 bg-[#020617]/80 backdrop-blur-md border-b border-white/5 px-6 py-4 z-50">
+    <header class="sticky top-0 bg-[#020617]/90 backdrop-blur-md border-b border-white/5 px-6 py-4 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="index.html" class="text-2xl font-black italic tracking-tighter">CAREER<span class="text-blue-500">STEPS</span></a>
             <nav class="hidden md:flex gap-8">
                 <a href="index.html" class="text-xs font-bold uppercase hover:text-blue-400">Home</a>
                 <a href="careers.html" class="text-xs font-bold uppercase text-blue-500 border-b-2 border-blue-500 pb-1">All Careers</a>
             </nav>
-            <button class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all">Share App</button>
+            <button class="bg-blue-600/10 border border-blue-500/30 text-blue-400 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">Share App</button>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 mt-12">
-        <div class="mb-12">
-            <h1 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-none">Explore <span class="text-blue-500">Pathways</span></h1>
-            <p class="text-slate-500 font-medium mt-4 text-lg">Discover 900+ professional roadmaps curated for your future.</p>
+    <main class="max-w-7xl mx-auto px-6 mt-16">
+        <div class="mb-12 text-center md:text-left">
+            <h1 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-[0.9]">Explore <span class="text-blue-500">Pathways</span></h1>
+            <p class="text-slate-500 font-medium mt-4 text-lg">Discover professional roadmaps curated for your future success.</p>
         </div>
 
-        <div class="filter-container mb-12 shadow-2xl">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="bg-blue-600/20 p-2 rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                    </svg>
-                </div>
-                <h2 class="text-xl font-black uppercase tracking-tight italic">Filters <span class="text-slate-500 font-light">& Search</span></h2>
+        <div class="search-area mb-4">
+            <div class="relative">
+                <input id="searchInput" type="text" placeholder="Search by career title, skills, or exams..." class="custom-input !pl-14 !py-5 text-lg" oninput="applyFilters()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-5 top-4.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </div>
+        </div>
+
+        <div class="filter-area mb-12">
+            <div class="flex items-center gap-2 mb-6">
+                <div class="w-1.5 h-4 bg-blue-500 rounded-full"></div>
+                <h2 class="text-sm font-black uppercase tracking-[2px] text-white">Filters</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="md:col-span-1">
-                    <label class="label-tag">Search Keyword</label>
-                    <div class="relative">
-                        <input id="searchInput" type="text" placeholder="e.g. Developer, Doctor..." class="filter-select !pl-12" oninput="applyFilters()">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-4 top-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    </div>
-                </div>
-
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <label class="label-tag">Main Category</label>
-                    <select id="catDropdown" class="filter-select" onchange="updateSubDropdown(); applyFilters()"></select>
+                    <label class="label-text">Main Category</label>
+                    <select id="catDropdown" class="custom-input cursor-pointer" onchange="updateSubDropdown(); applyFilters()"></select>
                 </div>
-
                 <div>
-                    <label class="label-tag">Specialization</label>
-                    <select id="subDropdown" class="filter-select" onchange="applyFilters()"></select>
+                    <label class="label-text">Specialization</label>
+                    <select id="subDropdown" class="custom-input cursor-pointer" onchange="applyFilters()"></select>
                 </div>
-
                 <div>
-                    <label class="label-tag">Education Level</label>
-                    <select id="eduDropdown" class="filter-select" onchange="applyFilters()">
+                    <label class="label-text">Education Level</label>
+                    <select id="eduDropdown" class="custom-input cursor-pointer" onchange="applyFilters()">
                         <option value="All">All Education Levels</option>
                         <option value="10th">After 10th</option>
                         <option value="12th">After 12th</option>
@@ -81,20 +77,20 @@
                 </div>
             </div>
 
-            <div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center">
-                <span id="resultsCount" class="text-xs font-black text-blue-400 uppercase tracking-widest">Loading...</span>
-                <button onclick="resetFilters()" class="text-[10px] font-bold text-slate-500 hover:text-red-400 uppercase tracking-widest transition">Clear All Filters</button>
+            <div class="mt-8 flex justify-between items-center border-t border-white/5 pt-6">
+                <div id="resultsCount" class="text-[10px] font-black text-blue-400 uppercase tracking-widest">Calculating paths...</div>
+                <button onclick="resetAll()" class="text-[9px] font-bold text-slate-500 hover:text-red-400 uppercase tracking-widest transition">Reset All Filters</button>
             </div>
         </div>
 
         <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
         
-        <div id="noResults" class="hidden text-center py-24">
-            <p class="text-slate-600 font-black uppercase tracking-[4px]">No matches found</p>
+        <div id="noResults" class="hidden text-center py-32">
+            <p class="text-slate-600 font-black uppercase tracking-[5px] text-sm">No careers match your criteria</p>
         </div>
 
-        <div id="loadMoreContainer" class="hidden flex justify-center mt-16">
-            <button onclick="loadMore()" class="bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all shadow-xl shadow-blue-900/20">Load More Careers</button>
+        <div id="loadMoreContainer" class="hidden flex justify-center mt-20">
+            <button onclick="loadMore()" class="bg-blue-600 hover:bg-blue-500 px-14 py-4 rounded-2xl font-black uppercase text-[10px] tracking-[2px] transition-all shadow-xl shadow-blue-900/30 text-white">Load More Results</button>
         </div>
     </main>
 
@@ -105,7 +101,7 @@
         let currentResults = [];
 
         function init() {
-            // Category population with counts
+            // Category population with dynamic counts
             const catSelect = document.getElementById("catDropdown");
             const catCounts = {};
             careers.forEach(c => { catCounts[c.category] = (catCounts[c.category] || 0) + 1; });
@@ -168,43 +164,43 @@
             const grid = document.getElementById("careerGrid");
             grid.innerHTML = "";
             
-            document.getElementById("resultsCount").textContent = `${currentResults.length} Pathways Found`;
+            document.getElementById("resultsCount").textContent = `${currentResults.length} Paths Found`;
             document.getElementById("noResults").classList.toggle("hidden", currentResults.length > 0);
             document.getElementById("loadMoreContainer").classList.toggle("hidden", currentResults.length <= displayLimit);
 
             currentResults.slice(0, displayLimit).forEach(c => {
-                // Handling salary structure from your data
+                // Handling salary structure
                 const salaryDisp = (typeof c.salary === 'object') ? c.salary.entry : c.salary;
 
                 grid.innerHTML += `
                 <div class="glass-card p-6 flex flex-col justify-between h-[400px]">
                     <div>
                         <div class="flex justify-between items-start">
-                            <span class="text-[9px] text-blue-500 font-black uppercase tracking-[2px]">${c.subCategory}</span>
-                            <button class="text-slate-600 hover:text-blue-400">
+                            <span class="text-[9px] text-blue-400 font-extrabold uppercase tracking-[2px]">${c.subCategory}</span>
+                            <button class="text-slate-600 hover:text-blue-400 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
                             </button>
                         </div>
-                        <h3 class="text-xl font-bold mt-2 text-white line-clamp-2">${c.title}</h3>
+                        <h3 class="text-xl font-bold mt-2 text-white leading-tight">${c.title}</h3>
                         
-                        <div class="mt-6 space-y-3">
-                            <div class="flex items-center gap-3">
-                                <div class="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
-                                <p class="text-[11px] text-slate-400 truncate">${c.after12 || 'Click for roadmap'}</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                                <p class="text-[11px] text-slate-400 line-clamp-2">${c.after12 || 'Click to view roadmap'}</p>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                                <p class="text-[11px] text-emerald-400 font-bold italic">${salaryDisp}</p>
+                                <div class="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0"></div>
+                                <p class="text-[11px] text-emerald-400 font-black tracking-wide uppercase">${salaryDisp}</p>
                             </div>
                         </div>
                     </div>
                     
-                    <a href="career-detail.html?id=${c.id}" class="mt-8 bg-blue-600 hover:bg-blue-500 py-4 rounded-xl text-[10px] font-black text-center uppercase tracking-widest transition-all text-white">View Full Roadmap</a>
+                    <a href="career-detail.html?id=${c.id}" class="mt-8 bg-blue-600 hover:bg-blue-500 py-4 rounded-xl text-[10px] font-black text-center uppercase tracking-widest transition-all text-white shadow-lg shadow-blue-900/20">View Roadmap</a>
                 </div>`;
             });
         }
 
-        function resetFilters() {
+        function resetAll() {
             document.getElementById("searchInput").value = "";
             document.getElementById("catDropdown").value = "All Categories";
             document.getElementById("eduDropdown").value = "All";
@@ -212,10 +208,7 @@
             applyFilters();
         }
 
-        function loadMore() {
-            displayLimit += 12;
-            render();
-        }
+        function loadMore() { displayLimit += 12; render(); }
 
         window.onscroll = function() {
             const btt = document.getElementById("backToTop");
