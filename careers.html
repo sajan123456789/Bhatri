@@ -10,14 +10,15 @@
     body{background:#020617;color:#f8fafc;font-family:'Plus Jakarta Sans',sans-serif;scroll-behavior:smooth}
     .glass-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.3);backdrop-filter:blur(12px);border-radius:24px;transition:.3s}
     .glass-card:hover{border-color:#3b82f6;transform:translateY(-6px)}
-    .filter-select { background: #0f172a; border: 1px solid #1e293b; color: #94a3b8; padding: 14px; border-radius: 12px; width: 100%; appearance: none; cursor: pointer; font-size: 13px; }
-    .filter-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 15px rgba(59,130,246,0.2); }
+    .filter-select { background: #0f172a; border: 1px solid #1e293b; color: #94a3b8; padding: 14px; border-radius: 12px; width: 100%; appearance: none; cursor: pointer; font-size: 13px; transition: 0.2s; }
+    .filter-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 15px rgba(59,130,246,0.1); }
     .label-text { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #475569; margin-bottom: 6px; display: block; letter-spacing: 1px; }
-    .btn-primary { background: #2563eb; color: white; padding: 12px 24px; border-radius: 12px; font-weight: 800; text-transform: uppercase; font-size: 11px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-    .btn-primary:hover { background: #1d4ed8; transform: scale(1.02); }
     
+    /* Mic Pulse Effect */
+    @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+    .mic-active { animation: pulse-blue 1.5s infinite; background: #2563eb !important; color: white !important; }
+
     #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; background: #2563eb; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 20px rgba(37,99,235,0.5); transition: 0.3s; font-size: 20px; font-weight: bold; }
-    #backToTop:hover { background: #3b82f6; transform: translateY(-5px); }
 </style>
 <script src="careers-data.js"></script>
 </head>
@@ -43,57 +44,62 @@
 <main class="max-w-7xl mx-auto px-6 mt-12">
     <div class="mb-10 text-center md:text-left">
         <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">Explore <span class="text-blue-500 italic">Pathways</span></h1>
-        <p class="text-slate-500 font-medium mt-2">Discover professional roadmaps at your fingertips.</p>
+        <p class="text-slate-500 font-medium mt-2">Discover 900+ professional roadmaps at your fingertips.</p>
     </div>
 
-    <div class="bg-slate-900/40 p-8 rounded-[2.5rem] border border-white/5 mb-12 shadow-2xl">
-        <div class="relative group">
-            <span class="label-text">Search Keyword</span>
+    <div class="bg-slate-900/40 p-6 md:p-10 rounded-[2.5rem] border border-white/5 mb-12 shadow-2xl">
+        <div class="relative max-w-4xl mx-auto">
             <div class="relative">
-                <input id="searchInput" type="text" placeholder="e.g. Developer, Doctor..." class="filter-select !pl-12 !pr-14 py-5 text-base" oninput="applyFilters()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-4 top-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <input id="searchInput" type="text" 
+                       placeholder="Search careers, skills, or exams..." 
+                       class="filter-select !pl-14 !pr-16 py-6 text-lg w-full !rounded-2xl" 
+                       oninput="applyFilters()">
                 
-                <button onclick="startVoiceSearch()" class="absolute right-4 top-3.5 p-2 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white rounded-full transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute left-5 top-5.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                
+                <button id="micBtn" onclick="startVoiceSearch()" class="absolute right-4 top-3.5 p-3 bg-blue-600/10 text-blue-500 rounded-xl hover:bg-blue-600 hover:text-white transition-all" title="Voice Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                    </svg>
                 </button>
             </div>
-        </div>
 
-        <div class="mt-4 flex justify-between items-center px-2">
-            <button onclick="toggleFilterPanel()" class="text-[10px] font-black text-blue-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition group">
-                <svg id="filterIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:scale-125" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                Advanced Filters & Categories
-            </button>
-        </div>
+            <div class="mt-4 flex items-center gap-4 px-2">
+                <button onclick="toggleFilterPanel()" class="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-blue-400 uppercase tracking-widest transition group">
+                    <svg id="filterIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" /></svg>
+                    Advanced Filters & Categories
+                </button>
+            </div>
 
-        <div id="filterPanel" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/5">
-            <div>
-                <span class="label-text">Category</span>
-                <select id="catDropdown" class="filter-select" onchange="updateSubDropdown(); applyFilters()"></select>
-            </div>
-            <div>
-                <span class="label-text">Area / Specialization</span>
-                <select id="subDropdown" class="filter-select" onchange="applyFilters()"></select>
-            </div>
-            <div>
-                <span class="label-text">Education Level</span>
-                <select id="eduDropdown" class="filter-select" onchange="applyFilters()">
-                    <option value="All">All Levels</option>
-                    <option value="10th">After 10th</option>
-                    <option value="12th">After 12th</option>
-                    <option value="Degree">Graduation/Degree</option>
-                </select>
+            <div id="filterPanel" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/5 animate-fade-in">
+                <div>
+                    <span class="label-text">Category</span>
+                    <select id="catDropdown" class="filter-select" onchange="updateSubDropdown(); applyFilters()"></select>
+                </div>
+                <div>
+                    <span class="label-text">Specialization</span>
+                    <select id="subDropdown" class="filter-select" onchange="applyFilters()"></select>
+                </div>
+                <div>
+                    <span class="label-text">Education Level</span>
+                    <select id="eduDropdown" class="filter-select" onchange="applyFilters()">
+                        <option value="All">All Levels</option>
+                        <option value="10th">After 10th</option>
+                        <option value="12th">After 12th</option>
+                        <option value="Degree">Graduation/Degree</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
+    <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4 px-2">
         <span id="resultsCount" class="text-xs font-black text-blue-400 uppercase tracking-[2px]">Loading...</span>
-        <button onclick="clearAll()" class="text-[10px] font-bold text-slate-500 hover:text-red-400 transition">RESET ALL</button>
+        <button onclick="clearAll()" class="text-[10px] font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest">Reset All</button>
     </div>
 
     <div id="careerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-    <div id="noResults" class="hidden text-center py-20 text-slate-500 font-bold uppercase tracking-[3px]">No matches found.</div>
+    <div id="noResults" class="hidden text-center py-20 text-slate-600 font-bold uppercase tracking-[4px]">No matches found for your search.</div>
 
     <div id="loadMoreContainer" class="hidden flex justify-center mt-16">
         <button onclick="loadMore()" class="bg-slate-800 hover:bg-blue-600 px-12 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Show More Results</button>
@@ -105,6 +111,34 @@ const careers = (typeof careersData !== 'undefined') ? careersData : [];
 let displayLimit = 12;
 let currentResults = [];
 
+// 1. Voice Search Logic
+function startVoiceSearch() {
+    const micBtn = document.getElementById("micBtn");
+    const searchInput = document.getElementById("searchInput");
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    
+    recognition.lang = 'en-US';
+    
+    recognition.onstart = () => {
+        micBtn.classList.add("mic-active");
+        searchInput.placeholder = "Listening...";
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        searchInput.value = transcript;
+        applyFilters();
+    };
+
+    recognition.onend = () => {
+        micBtn.classList.remove("mic-active");
+        searchInput.placeholder = "Search careers, skills, or exams...";
+    };
+
+    recognition.start();
+}
+
+// 2. Toggle Panel Logic
 function toggleFilterPanel() {
     const panel = document.getElementById("filterPanel");
     const icon = document.getElementById("filterIcon");
@@ -112,18 +146,7 @@ function toggleFilterPanel() {
     icon.style.transform = isHidden ? "rotate(0deg)" : "rotate(180deg)";
 }
 
-function startVoiceSearch() {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'en-US';
-    recognition.onstart = () => { document.getElementById("searchInput").placeholder = "Listening..."; };
-    recognition.onresult = (event) => {
-        document.getElementById("searchInput").value = event.results[0][0].transcript;
-        document.getElementById("searchInput").placeholder = "e.g. Developer, Doctor...";
-        applyFilters();
-    };
-    recognition.start();
-}
-
+// 3. Data Population with Counts
 function init() {
     const catSelect = document.getElementById("catDropdown");
     const catCounts = {};
@@ -144,7 +167,7 @@ function updateSubDropdown() {
     const selectedCat = document.getElementById("catDropdown").value;
     
     if (selectedCat === "All Categories") {
-        subSelect.innerHTML = `<option value="All Subcategories">All Subcategories</option>`;
+        subSelect.innerHTML = `<option value="All Subcategories">All Specializations</option>`;
         return;
     }
 
@@ -152,7 +175,7 @@ function updateSubDropdown() {
     const filtered = careers.filter(c => c.category === selectedCat);
     filtered.forEach(c => { subCounts[c.subCategory] = (subCounts[c.subCategory] || 0) + 1; });
 
-    let options = `<option value="All Subcategories">All Specializations (${filtered.length})</option>`;
+    let options = `<option value="All Subcategories">All in ${selectedCat} (${filtered.length})</option>`;
     Object.keys(subCounts).sort().forEach(sub => {
         options += `<option value="${sub}">${sub} (${subCounts[sub]})</option>`;
     });
@@ -191,7 +214,7 @@ function render() {
 
     currentResults.slice(0, displayLimit).forEach(c => {
         grid.innerHTML += `
-        <div class="glass-card p-6 flex flex-col justify-between h-[400px] relative overflow-hidden group">
+        <div class="glass-card p-6 flex flex-col justify-between h-[420px] relative overflow-hidden group">
             <div class="absolute top-4 right-4 z-10">
                 <button onclick="shareCareer('${c.title}', '${c.id}')" class="bg-white/5 hover:bg-blue-600 p-2.5 rounded-xl transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
@@ -203,7 +226,7 @@ function render() {
                 <div class="mt-6 space-y-3 border-t border-white/5 pt-4">
                     <div class="flex items-center gap-3">
                         <div class="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
-                        <p class="text-[11px] text-slate-400 italic truncate">${c.after12 || 'Click to view details'}</p>
+                        <p class="text-[11px] text-slate-400 italic truncate">${c.after12 || 'Click to view roadmap'}</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
