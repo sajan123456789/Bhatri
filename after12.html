@@ -26,33 +26,34 @@ body{
 <body class="px-4">
 
 <!-- HEADER (DESKTOP + MOBILE) -->
-<header class="max-w-6xl mx-auto py-6 flex justify-between items-center relative">
-  
-  <a href="index.html">
-    <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
+<header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
+  <!-- LOGO : SAME STYLE + CLICK TO HOME -->
+  <a href="index.html" class="flex items-center gap-2">
+    <h1 class="text-2xl font-bold text-indigo-400 cursor-pointer">
+      Career<span class="text-blue-500">Steps</span>
+    </h1>
   </a>
 
   <!-- DESKTOP NAV -->
   <nav class="hidden md:flex space-x-6 text-gray-300">
     <a href="index.html" class="hover:text-white">Home</a>
     <a href="after10.html" class="hover:text-white">After 10th</a>
-    <a href="after12.html" class="hover:text-white">After 12th</a>
     <a href="assessment.html" class="hover:text-white">Assessment</a>
   </nav>
 
-  <!-- MOBILE MENU BUTTON -->
-  <button id="menuBtn" class="md:hidden text-white text-2xl">
-    ☰
-  </button>
-
   <!-- MOBILE MENU -->
-  <div id="mobileMenu"
-    class="hidden absolute top-full right-0 mt-4 w-48 glass rounded-xl p-4 text-gray-300 space-y-3 z-50">
-    <a href="index.html" class="block hover:text-white">Home</a>
-    <a href="after10.html" class="block hover:text-white">After 10th</a>
-    <a href="after12.html" class="block hover:text-white">After 12th</a>
-    <a href="assessment.html" class="block hover:text-white">Assessment</a>
+  <div class="md:hidden">
+    <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+      class="text-gray-300 text-xl">☰</button>
   </div>
+</header>
+
+<!-- MOBILE MENU DROPDOWN -->
+<div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass rounded-xl p-4 text-gray-300 space-y-3">
+  <a href="index.html" class="block hover:text-white">Home</a>
+  <a href="after10.html" class="block hover:text-white">After 10th</a>
+  <a href="assessment.html" class="block hover:text-white">Assessment</a>
+</div>
 
 </header>
 
@@ -110,32 +111,15 @@ body{
       <li>Management</li>
       <li>Entrepreneurship</li>
       <li>Etc.</li>
-    </ul>
-  </div>
-
-  <div class="glass p-8 rounded-2xl">
-    <h3 class="text-2xl font-bold mb-3 text-purple-400">After 12th Arts</h3>
+rene</ul>p</</div>    <divEclassl"glass p-8 rounded-2xl"> <div<h3aclassl"text-2xl font-bold mb-3 text-purple-400">2xl font-bold m</h3>ext-p<ppclass0"text-gray-300 mb-4">>
     <p class="text-gray-300 mb-4">
-      Suitable for creative, analytical and society-focused students.
-    </p>
-    <p class="font-semibold mb-2">Popular Degrees:</p>
-    <ul class="text-gray-300 mb-4 list-disc list-inside">
-      <li>BA (Hons.)</li>
-      <li>BA LLB</li>
-      <li>BJMC / Mass Communication</li>
-      <li>Etc.</li>
-    </ul>
-    <p class="font-semibold mb-2">Career Paths:</p>
-    <ul class="text-gray-300 list-disc list-inside">
-      <li>Lawyer</li>
-      <li>Civil Services</li>
-      <li>Journalist</li>
-      <li>Teacher / Professor</li>
-      <li>Etc.</li>
-    </ul>
-  </div>
-</section>
-
+      Suitable for creative, analytica</p>d soc<ptclassu"font-semibold mb-2">>
+    <p class="</p>-semi<uldclass""text-gray-300 mb-4 list-disc list-inside">ray-300<li>4 list-dis</li>t-insid<li>      </li>A (Hons<li>li>
+      <li>BA LLB</li></li>  <li>B<li>/ Ma</li>mmuni</ul>n</li<p class<"font-semibold mb-2">>
+    <p clas</p>ont-s<ulbclassb"text-gray-300 list-disc list-inside">ext-gra<li>0 list</li> list-i<li>e">
+      <li></li>r</li>
+<li>  <li>Civi</li>vices</<li>      <li>Journalis</li>>
+     <li>>Tea</li>/ Pro</ul>r</</div> </section>.
 <!-- EXAMS -->
 <section class="max-w-5xl mx-auto mt-20 glass p-10 rounded-2xl">
   <h3 class="text-3xl font-bold mb-6 text-center">
