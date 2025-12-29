@@ -8,95 +8,92 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body{ background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
-.glass{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
-.option-btn{ background:rgba(30, 41, 59, 0.4); border:1px solid rgba(255,255,255,0.05); transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
-.option-btn:hover{ border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(8px); }
-.progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.animate-slide-up { animation: slideUp 0.5s ease forwards; }
+    body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
+    .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
+    .option-btn { background:rgba(30, 41, 59, 0.4); border:1px solid rgba(255,255,255,0.05); transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden; }
+    .option-btn:hover { border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(8px); }
+    .progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-slide-up { animation: slideUp 0.5s ease forwards; }
 </style>
 </head>
-
 <body class="min-h-screen flex flex-col">
 
-<header class="max-w-7xl mx-auto w-full py-6 px-6 flex justify-between items-center">
-  <a href="index.html" class="text-2xl font-black italic tracking-tighter text-indigo-500">
-    CAREER<span class="text-blue-500">STEPS</span> <span class="text-[10px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2 uppercase">Core AI v3.0</span>
+<header class="max-w-6xl mx-auto w-full py-6 px-6 flex justify-between items-center">
+  <a href="index.html" class="flex items-center gap-2 transition-transform active:scale-95">
+    <h1 class="text-2xl font-black italic tracking-tighter uppercase">
+      CAREER<span class="text-blue-500">STEPS</span>
+      <span class="hidden sm:inline-block text-[9px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2 uppercase tracking-widest font-bold">Neural Core v4.0</span>
+    </h1>
   </a>
-  <div id="status" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden md:block">Neural Link: Stable</div>
+  <div class="flex items-center gap-3">
+    <div class="status-dot"></div>
+    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden md:block">Neural Link: Active</span>
+  </div>
 </header>
 
-<main class="flex-grow flex items-center justify-center px-4">
+<main class="flex-grow flex items-center justify-center px-4 pb-12">
     
     <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-10 text-center animate-slide-up">
-        <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4 uppercase">Identity Sync</div>
-        <h2 class="text-4xl font-black italic mb-6 uppercase">Who is scanning?</h2>
-        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-widest uppercase">
-        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20">Initialize Core →</button>
+        <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4 uppercase">Identity Protocol</div>
+        <h2 class="text-4xl font-black italic mb-6 uppercase tracking-tighter">Who is scanning?</h2>
+        <input id="userName" type="text" placeholder="ENTER FULL NAME" class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-widest uppercase">
+        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20 active:scale-95">Initialize Engine →</button>
     </section>
 
     <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[3rem] p-12 text-center animate-slide-up">
-        <h2 id="welcomeText" class="text-3xl font-black italic mb-2 uppercase"></h2>
+        <h2 id="welcomeText" class="text-2xl font-black italic mb-2 uppercase"></h2>
         <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10 uppercase">Select Data Model for Calibration</p>
         <div class="space-y-4">
-            <button onclick="startAI('10')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-indigo-500 group transition-all">
-                <div class="text-indigo-400 font-black text-xl italic group-hover:scale-110 transition uppercase">Post-10th Stream</div>
-                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Interest Alignment</div>
+            <button onclick="startAI('10')" class="w-full py-8 glass border border-white/10 rounded-3xl hover:border-indigo-500 group transition-all text-left px-8">
+                <div class="text-indigo-400 font-black text-xl italic uppercase group-hover:translate-x-2 transition">After 10th Stream</div>
+                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Stream Alignment</div>
             </button>
-            <button onclick="startAI('12')" class="w-full py-8 border border-white/10 rounded-3xl hover:border-blue-500 group transition-all">
-                <div class="text-blue-400 font-black text-xl italic group-hover:scale-110 transition uppercase">Post-12th Career</div>
+            <button onclick="startAI('12')" class="w-full py-8 glass border border-white/10 rounded-3xl hover:border-blue-500 group transition-all text-left px-8">
+                <div class="text-blue-400 font-black text-xl italic uppercase group-hover:translate-x-2 transition">After 12th Career</div>
                 <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Market Fit & Professional IQ</div>
             </button>
         </div>
     </section>
 
-    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[3rem] p-10 animate-slide-up">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2"></p>
-                <div class="w-48 h-1.5 bg-white/5 rounded-full overflow-hidden">
+    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[3rem] p-8 md:p-12 animate-slide-up">
+        <div class="flex justify-between items-center mb-10">
+            <div class="flex-grow mr-4">
+                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Node Syncing...</p>
+                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
                     <div id="progressBar" class="progress-fill h-full w-0"></div>
                 </div>
             </div>
-            <div class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 italic tracking-widest uppercase">AI Engine Active</div>
+            <div class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 italic tracking-widest uppercase">Live Scan</div>
         </div>
         
         <h3 id="questionBox" class="text-2xl md:text-3xl font-black italic mb-10 leading-tight tracking-tighter uppercase"></h3>
-        <div id="optionsBox" class="space-y-4"></div>
+        <div id="optionsBox" class="space-y-3"></div>
     </section>
 
 </main>
 
 <script>
 let currentStep = 0;
-let scoreData = { technical: 0, finance: 0, social: 0, creative: 0 };
+let scoreData = { tech: 0, business: 0, social: 0, art: 0 };
 let currentQuestions = [];
 
 const AI_DATABASE = {
     "10": [
-        {q: "If you were to hack a complex system, where would you start?", o:["Analyzing the core code logic","Calculating the risk-to-reward ratio","Social engineering the users","Redesigning the visual interface"], tags:["technical","finance","social","creative"]},
-        {q: "A city is failing. What is your primary fix?", o:["Upgrade the technical infrastructure","Restructure the economic policy","Reform the education & social system","Rebuild the city's aesthetic identity"], tags:["technical","finance","social","creative"]},
-        {q: "How do you process a massive failure?", o:["Debug the step-by-step logic","Analyze the wasted resources","Understand the human impact","Visualize a new creative solution"], tags:["technical","finance","social","creative"]},
-        {q: "In a futuristic Mars colony, you are the...", o:["Chief Engineer of Life Support","Controller of Resource Exchange","Director of Human Relations","Lead Designer of Martian Living"], tags:["technical","finance","social","creative"]},
-        {q: "Your brain finds most comfort in...", o:["Pattern recognition & Algorithms","Statstical data & Market flow","Empathy & Behavioral patterns","Abstract concepts & Symmetry"], tags:["technical","finance","social","creative"]},
-        {q: "If logic was a weapon, it would be a...", o:["Precision laser","Economic sanction","Public speech","Masterpiece painting"], tags:["technical","finance","social","creative"]},
-        {q: "The most powerful tool in 2025 is...", o:["Quantum Computing","Decentralized Finance","Global Communication","Generative Creative AI"], tags:["technical","finance","social","creative"]},
-        {q: "Complexity is best solved by...", o:["Deep technical decomposition","Efficient financial leverage","Collaborative human effort","Intuitive design thinking"], tags:["technical","finance","social","creative"]},
-        {q: "When you look at a skyscraper, you see...", o:["The engineering marvel","The investment value","The people inside it","The architectural beauty"], tags:["technical","finance","social","creative"]},
-        {q: "Your final legacy should be...", o:["An innovation that works","A fortune that lasts","A society that thrives","A creation that inspires"], tags:["technical","finance","social","creative"]}
+        {q: "A new machine breaks down. What's your instinct?", o:["Open it and check the circuits","Think about the repair cost","Gather people to help fix it","Imagine a better way to design it"], tags:["tech","business","social","art"]},
+        {q: "Pick a secret superpower:", o:["Ability to speak to machines","Ability to predict market trends","Ability to read human emotions","Ability to manifest art from thoughts"], tags:["tech","business","social","art"]},
+        {q: "Your favorite way to spend a weekend?", o:["Building a complex LEGO or PC","Planning a small business idea","Volunteering at a local camp","Writing or drawing abstract things"], tags:["tech","business","social","art"]},
+        {q: "In a team project, you are the...", o:["The one who does the technical work","The one who manages the budget","The one who keeps the team happy","The one who creates the presentation"], tags:["tech","business","social","art"]},
+        {q: "What fascinates you most?", o:["How software algorithms work","How massive empires were built","How human minds behave","How colors and shapes impact mood"], tags:["tech","business","social","art"]}
     ],
     "12": [
-        {q: "The year is 2030. AI has taken 50% of jobs. You survive by...", o:["Managing the AI neural networks","Controlling the flow of capital","Building new social frameworks","Leading the human creative revolt"], tags:["technical","finance","social","creative"]},
-        {q: "What is the true engine of the world?", o:["The laws of physics and code","The flow of global currency","The power of human psychology","The force of creative expression"], tags:["technical","finance","social","creative"]},
-        {q: "You are given $100M. Your move?", o:["R&D for a breakthrough tech","Diversified market aggressive growth","Funding a global social revolution","Establishing a legendary design house"], tags:["technical","finance","social","creative"]},
-        {q: "Which crisis demands your attention?", o:["A massive cybersecurity breach","A total global market collapse","A breakdown in international law","A drought of original human ideas"], tags:["technical","finance","social","creative"]},
-        {q: "In a high-stakes board meeting, you are the one...", o:["Presenting the data architecture","Calculating the EBITDA & Margins","Mediating between conflicting egos","Visualizing the future brand vibe"], tags:["technical","finance","social","creative"]},
-        {q: "The ultimate 'Success' metric is...", o:["Patent count and Innovation","Net Worth and Market Control","Social Influence and Change","Creative Recognition and Legacy"], tags:["technical","finance","social","creative"]},
-        {q: "Pick your future workspace:", o:["A clean-room high-tech lab","A high-frequency trading floor","A UN-style assembly hall","A multi-sensory creative studio"], tags:["technical","finance","social","creative"]},
-        {q: "A product is great only if it is...", o:["Functionally flawless","Economically dominant","Socially responsible","Visually iconic"], tags:["technical","finance","social","creative"]},
-        {q: "What keeps you up at night?", o:["Incomplete logical puzzles","Untapped financial opportunities","Unresolved social injustices","Stagnant creative visions"], tags:["technical","finance","social","creative"]},
-        {q: "Choose your 'Executive Power':", o:["Absolute logical precision","Total financial mastery","Global social empathy","Limitless creative vision"], tags:["technical","finance","social","creative"]}
+        {q: "AI has replaced 50% of jobs. How do you lead?", o:["By programming more advanced AI","By investing in high-risk stocks","By managing human-centered law","By creating unique human art"], tags:["tech","business","social","art"]},
+        {q: "What is the true engine of the world?", o:["Precision Code and Physics","Global Trade and Capital","Empathy and Social Order","Originality and Visionary Design"], tags:["tech","business","social","art"]},
+        {q: "If you could solve one global crisis:", o:["Energy efficiency & Tech waste","Economic inequality & Debt","Universal education & Rights","A crisis of human creativity"], tags:["tech","business","social","art"]},
+        {q: "Choose your 'Executive Power':", o:["Total Tech Mastery","Absolute Market Control","Infinite Social Influence","Unmatched Creative Vision"], tags:["tech","business","social","art"]},
+        {q: "Your ideal workspace is...", o:["A high-tech lab with data","A fast-paced corporate office","A dynamic field office with people","A free-flowing creative studio"], tags:["tech","business","social","art"]}
     ]
 };
 
@@ -118,9 +115,10 @@ function startAI(type) {
 }
 
 function loadNeuralNode() {
-    const progress = ((currentStep + 1) / 10) * 100;
+    const total = currentQuestions.length;
+    const progress = ((currentStep) / total) * 100;
     document.getElementById("progressBar").style.width = `${progress}%`;
-    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1} / 10`;
+    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1} / 0${total}`;
     
     document.getElementById("questionBox").innerText = currentQuestions[currentStep].q;
     const box = document.getElementById("optionsBox");
@@ -131,7 +129,7 @@ function loadNeuralNode() {
         btn.className = "option-btn w-full p-6 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-slide-up";
         btn.innerHTML = `
             <span class="text-sm tracking-wide">${opt}</span>
-            <span class="text-[8px] opacity-20 group-hover:opacity-100 transition-all">→ PROCESS</span>
+            <span class="text-[8px] opacity-20 group-hover:opacity-100 transition-all font-black">CALCULATE →</span>
         `;
         btn.onclick = () => processInput(currentQuestions[currentStep].tags[i]);
         box.appendChild(btn);
@@ -141,10 +139,9 @@ function loadNeuralNode() {
 function processInput(tag) {
     scoreData[tag]++;
     currentStep++;
-    if(currentStep < 10) {
+    if(currentStep < currentQuestions.length) {
         loadNeuralNode();
     } else {
-        // SAVING DATA FOR RESULT PAGE
         localStorage.setItem("scoreData", JSON.stringify(scoreData));
         processFinalReport();
     }
@@ -152,22 +149,17 @@ function processInput(tag) {
 
 function processFinalReport() {
     document.getElementById("quiz").innerHTML = `
-        <div class="text-center py-24">
+        <div class="text-center py-20">
             <div class="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-8"></div>
-            <h2 class="text-2xl font-black italic uppercase italic">Synthesizing Neural Data...</h2>
-            <p class="text-[10px] text-slate-500 tracking-[0.4em] mt-4 uppercase">Calculating Real-Time Percentage</p>
+            <h2 class="text-2xl font-black italic uppercase italic">Neural Synthesis in Progress...</h2>
+            <p class="text-[10px] text-slate-500 tracking-[0.4em] mt-4 uppercase">Mapping Professional Identity</p>
         </div>`;
 
     setTimeout(() => {
-        // Decide the winner
         const winner = Object.keys(scoreData).reduce((a, b) => scoreData[a] > scoreData[b] ? a : b);
         localStorage.setItem("careerResult", winner);
-        
-        // Realistic match percentage
-        localStorage.setItem("matchPercent", (Math.random() * (98 - 88) + 88).toFixed(1));
-        
         window.location.href = "result.html";
-    }, 2800);
+    }, 2500);
 }
 </script>
 </body>
