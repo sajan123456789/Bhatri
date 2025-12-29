@@ -4,38 +4,40 @@
 <meta charset="UTF-8">
 <title>CareerSteps – Career Options After 10th</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="description" content="Career guidance after 10th class. Compare Science, Commerce and Arts streams with subjects, exams and career options.">
-
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
-body{
-  background:#020617;
-  color:#fff;
-  font-family:system-ui;
-}
-.glass{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(14px);
-}
+body{ background:#020617; color:#fff; font-family:system-ui; }
+.glass{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
 </style>
 </head>
-
 <body class="px-4">
 
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <a href="index.html">
-    <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
+  <a href="index.html" class="flex items-center gap-2 transition-transform active:scale-95">
+    <h1 class="text-2xl font-black italic tracking-tighter uppercase">
+      CAREER<span class="text-blue-500">STEPS</span>
+    </h1>
   </a>
-  <nav class="space-x-6 text-gray-300">
-    <a href="index.html" class="hover:text-white">Home</a>
-    <a href="assessment.html" class="hover:text-white">Assessment</a>
+
+  <nav class="hidden md:flex space-x-8 text-gray-300">
+    <a href="index.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition">Home</a>
+    <a href="after10.html" class="text-[11px] font-black uppercase tracking-widest text-blue-500">After 10th</a>
+    <a href="assessment.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition">Assessment</a>
   </nav>
+
+  <div class="md:hidden">
+    <button id="menuBtn" class="text-gray-300 text-2xl p-2 focus:outline-none">☰</button>
+  </div>
 </header>
 
-<section class="max-w-4xl mx-auto mt-16 text-center">
+<div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass rounded-2xl p-6 text-gray-300 space-y-4">
+  <a href="index.html" class="block font-bold hover:text-blue-500 transition">Home</a>
+  <a href="after10.html" class="block font-bold text-blue-500">After 10th</a>
+  <a href="assessment.html" class="block font-bold hover:text-blue-500 transition">Assessment</a>
+</div>
+
+<section class="max-w-4xl mx-auto mt-8 text-center">
   <h2 class="text-4xl font-extrabold mb-4">
     Career Options After <span class="text-indigo-400">Class 10</span>
   </h2>
@@ -45,12 +47,9 @@ body{
 </section>
 
 <section class="max-w-6xl mx-auto mt-16 grid md:grid-cols-3 gap-8">
-
   <div class="glass p-8 rounded-2xl">
     <h3 class="text-2xl font-bold mb-3 text-indigo-400">Science Stream</h3>
-    <p class="text-gray-300 mb-4">
-      Best for students interested in technology, medicine and research.
-    </p>
+    <p class="text-gray-300 mb-4">Best for students interested in technology, medicine and research.</p>
     <p class="font-semibold mb-2">Subjects:</p>
     <ul class="text-gray-300 mb-4 list-disc list-inside">
       <li>Physics</li>
@@ -70,9 +69,7 @@ body{
 
   <div class="glass p-8 rounded-2xl">
     <h3 class="text-2xl font-bold mb-3 text-sky-400">Commerce Stream</h3>
-    <p class="text-gray-300 mb-4">
-      Ideal for business, finance and management oriented students.
-    </p>
+    <p class="text-gray-300 mb-4">Ideal for business, finance and management oriented students.</p>
     <p class="font-semibold mb-2">Subjects:</p>
     <ul class="text-gray-300 mb-4 list-disc list-inside">
       <li>Accountancy</li>
@@ -92,9 +89,7 @@ body{
 
   <div class="glass p-8 rounded-2xl">
     <h3 class="text-2xl font-bold mb-3 text-purple-400">Arts / Humanities</h3>
-    <p class="text-gray-300 mb-4">
-      Suitable for creative, social and analytical thinkers.
-    </p>
+    <p class="text-gray-300 mb-4">Suitable for creative, social and analytical thinkers.</p>
     <p class="font-semibold mb-2">Subjects:</p>
     <ul class="text-gray-300 mb-4 list-disc list-inside">
       <li>History</li>
@@ -148,18 +143,24 @@ body{
 
 <section class="max-w-4xl mx-auto mt-20 glass p-10 rounded-2xl text-center">
   <h3 class="text-3xl font-bold mb-4">Still Confused?</h3>
-  <p class="text-gray-300 mb-6">
-    Take our AI-based career assessment to get clarity after 10th.
-  </p>
-  <a href="assessment.html"
-     class="inline-block bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
+  <p class="text-gray-300 mb-6">Take our AI-based career assessment to get clarity after 10th.</p>
+  <a href="assessment.html" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
      Take Free Career Assessment
   </a>
 </section>
 
-<footer class="text-center text-gray-400 text-sm py-10 mt-20">
+<footer class="text-center text-gray-400 text-sm py-10 mt-20 border-t border-white/5">
   © 2025 CareerSteps • Career Guidance Platform
 </footer>
+
+<script>
+  // Mobile Menu Logic
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
 
 </body>
 </html>
