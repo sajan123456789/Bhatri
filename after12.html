@@ -4,60 +4,39 @@
 <meta charset="UTF-8">
 <title>CareerSteps – Career Options After 12th</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="description" content="Career guidance after 12th class. Explore degree options, career paths, exams, government jobs and skill-based careers after Science, Commerce and Arts.">
-
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
-body{
-  background:#020617;
-  color:#fff;
-  font-family:system-ui;
-}
-.glass{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(14px);
-}
+body{ background:#020617; color:#fff; font-family:system-ui; }
+.glass{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
 </style>
 </head>
-
 <body class="px-4">
 
-<!-- HEADER (DESKTOP + MOBILE) -->
 <header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
-  <!-- LOGO : SAME STYLE + CLICK TO HOME -->
-  <a href="index.html" class="flex items-center gap-2">
-    <h1 class="text-2xl font-bold text-indigo-400 cursor-pointer">
-      Career<span class="text-blue-500">Steps</span>
+  <a href="index.html" class="flex items-center gap-2 transition-transform active:scale-95">
+    <h1 class="text-2xl font-black italic tracking-tighter uppercase">
+      CAREER<span class="text-blue-500">STEPS</span>
     </h1>
   </a>
 
-  <!-- DESKTOP NAV -->
-  <nav class="hidden md:flex space-x-6 text-gray-300">
-    <a href="index.html" class="hover:text-white">Home</a>
-    <a href="after10.html" class="hover:text-white">After 10th</a>
-    <a href="assessment.html" class="hover:text-white">Assessment</a>
+  <nav class="hidden md:flex space-x-8 text-gray-300">
+    <a href="index.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition">Home</a>
+    <a href="after10.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition">After 10th</a>
+    <a href="assessment.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition">Assessment</a>
   </nav>
 
-  <!-- MOBILE MENU -->
   <div class="md:hidden">
-    <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
-      class="text-gray-300 text-xl">☰</button>
+    <button id="menuBtn" class="text-gray-300 text-2xl p-2 focus:outline-none">☰</button>
   </div>
 </header>
 
-<!-- MOBILE MENU DROPDOWN -->
-<div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass rounded-xl p-4 text-gray-300 space-y-3">
-  <a href="index.html" class="block hover:text-white">Home</a>
-  <a href="after10.html" class="block hover:text-white">After 10th</a>
-  <a href="assessment.html" class="block hover:text-white">Assessment</a>
+<div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass rounded-2xl p-6 text-gray-300 space-y-4">
+  <a href="index.html" class="block font-bold hover:text-blue-500 transition">Home</a>
+  <a href="after10.html" class="block font-bold hover:text-blue-500 transition">After 10th</a>
+  <a href="assessment.html" class="block font-bold hover:text-blue-500 transition">Assessment</a>
 </div>
 
-</header>
-
-<!-- HERO -->
 <section class="max-w-4xl mx-auto mt-16 text-center">
   <h2 class="text-4xl font-extrabold mb-4">
     Career Options After <span class="text-indigo-400">Class 12</span>
@@ -67,64 +46,61 @@ body{
   </p>
 </section>
 
-<!-- STREAMS -->
 <section class="max-w-6xl mx-auto mt-16 grid md:grid-cols-3 gap-8">
-
   <div class="glass p-8 rounded-2xl">
     <h3 class="text-2xl font-bold mb-3 text-indigo-400">After 12th Science</h3>
-    <p class="text-gray-300 mb-4">
-      Best for students interested in technology, medicine and innovation.
-    </p>
+    <p class="text-gray-300 mb-4">Best for students interested in technology, medicine and innovation.</p>
     <p class="font-semibold mb-2">Popular Degrees:</p>
     <ul class="text-gray-300 mb-4 list-disc list-inside">
       <li>BTech / BE</li>
       <li>MBBS / BDS</li>
       <li>BSc (Science / IT / Data)</li>
-      <li>Etc.</li>
     </ul>
     <p class="font-semibold mb-2">Career Paths:</p>
     <ul class="text-gray-300 list-disc list-inside">
       <li>Engineer</li>
       <li>Doctor</li>
       <li>Data Analyst</li>
-      <li>Research Scientist</li>
-      <li>Etc.</li>
     </ul>
   </div>
 
   <div class="glass p-8 rounded-2xl">
     <h3 class="text-2xl font-bold mb-3 text-sky-400">After 12th Commerce</h3>
-    <p class="text-gray-300 mb-4">
-      Ideal for business, finance and corporate careers.
-    </p>
+    <p class="text-gray-300 mb-4">Ideal for business, finance and corporate careers.</p>
     <p class="font-semibold mb-2">Popular Degrees:</p>
     <ul class="text-gray-300 mb-4 list-disc list-inside">
       <li>BCom / BCom (Hons)</li>
       <li>BBA</li>
       <li>Integrated MBA</li>
-      <li>Etc.</li>
     </ul>
     <p class="font-semibold mb-2">Career Paths:</p>
     <ul class="text-gray-300 list-disc list-inside">
       <li>CA / CS</li>
       <li>Banking & Finance</li>
       <li>Management</li>
-      <li>Entrepreneurship</li>
-      <li>Etc.</li>
-rene</ul>p</</div>    <divEclassl"glass p-8 rounded-2xl"> <div<h3aclassl"text-2xl font-bold mb-3 text-purple-400">2xl font-bold m</h3>ext-p<ppclass0"text-gray-300 mb-4">>
-    <p class="text-gray-300 mb-4">
-      Suitable for creative, analytica</p>d soc<ptclassu"font-semibold mb-2">>
-    <p class="</p>-semi<uldclass""text-gray-300 mb-4 list-disc list-inside">ray-300<li>4 list-dis</li>t-insid<li>      </li>A (Hons<li>li>
-      <li>BA LLB</li></li>  <li>B<li>/ Ma</li>mmuni</ul>n</li<p class<"font-semibold mb-2">>
-    <p clas</p>ont-s<ulbclassb"text-gray-300 list-disc list-inside">ext-gra<li>0 list</li> list-i<li>e">
-      <li></li>r</li>
-<li>  <li>Civi</li>vices</<li>      <li>Journalis</li>>
-     <li>>Tea</li>/ Pro</ul>r</</div> </section>.
-<!-- EXAMS -->
+    </ul>
+  </div>
+
+  <div class="glass p-8 rounded-2xl">
+    <h3 class="text-2xl font-bold mb-3 text-purple-400">After 12th Arts</h3>
+    <p class="text-gray-300 mb-4">Suitable for creative, analytical and society-focused students.</p>
+    <p class="font-semibold mb-2">Popular Degrees:</p>
+    <ul class="text-gray-300 mb-4 list-disc list-inside">
+      <li>BA (Hons)</li>
+      <li>BA LLB</li>
+      <li>BJMC / Mass Comm</li>
+    </ul>
+    <p class="font-semibold mb-2">Career Paths:</p>
+    <ul class="text-gray-300 list-disc list-inside">
+      <li>Lawyer</li>
+      <li>Civil Services</li>
+      <li>Journalist</li>
+    </ul>
+  </div>
+</section>
+
 <section class="max-w-5xl mx-auto mt-20 glass p-10 rounded-2xl">
-  <h3 class="text-3xl font-bold mb-6 text-center">
-    Important Exams After 12th
-  </h3>
+  <h3 class="text-3xl font-bold mb-6 text-center">Important Exams After 12th</h3>
   <div class="grid md:grid-cols-2 gap-4 text-gray-300">
     <div>✔ CUET (UG)</div>
     <div>✔ JEE Main / Advanced</div>
@@ -135,7 +111,6 @@ rene</ul>p</</div>    <divEclassl"glass p-8 rounded-2xl"> <div<h3aclassl"text-2x
   </div>
 </section>
 
-<!-- GOVT CAREERS -->
 <section class="max-w-6xl mx-auto mt-16 glass p-10 rounded-2xl">
   <h3 class="text-3xl font-bold mb-6">Government Career Options</h3>
   <ul class="text-gray-300 list-disc list-inside space-y-2">
@@ -147,35 +122,18 @@ rene</ul>p</</div>    <divEclassl"glass p-8 rounded-2xl"> <div<h3aclassl"text-2x
   </ul>
 </section>
 
-<!-- SKILL CAREERS -->
-<section class="max-w-6xl mx-auto mt-16 glass p-10 rounded-2xl">
-  <h3 class="text-3xl font-bold mb-6">Skill-Based & Emerging Careers</h3>
-  <ul class="text-gray-300 list-disc list-inside space-y-2">
-    <li>Digital Marketing & Content Creation</li>
-    <li>UI/UX Design & Animation</li>
-    <li>Data Analysis & AI Tools</li>
-    <li>Startup & Freelancing Careers</li>
-    <li>Vocational & Professional Certifications</li>
-  </ul>
-</section>
-
-<!-- CTA -->
 <section class="max-w-4xl mx-auto mt-20 glass p-10 rounded-2xl text-center">
   <h3 class="text-3xl font-bold mb-4">Need Personal Guidance?</h3>
-  <p class="text-gray-300 mb-6">
-    Take our AI-based career assessment to get clarity after 12th.
-  </p>
-  <a href="assessment.html"
-     class="inline-block bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
+  <p class="text-gray-300 mb-6">Take our AI-based career assessment to get clarity after 12th.</p>
+  <a href="assessment.html" class="inline-block bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
      Take Free Career Assessment
   </a>
 </section>
 
-<footer class="text-center text-gray-400 text-sm py-10 mt-20">
+<footer class="text-center text-gray-400 text-sm py-10 mt-20 border-t border-white/5">
   © 2025 CareerSteps • Career Guidance Platform
 </footer>
 
-<!-- MOBILE MENU SCRIPT -->
 <script>
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
