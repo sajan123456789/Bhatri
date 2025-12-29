@@ -25,17 +25,38 @@ body{
 
 <body class="px-4">
 
-<header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
+<!-- HEADER (DESKTOP + MOBILE) -->
+<header class="max-w-6xl mx-auto py-6 flex justify-between items-center relative">
+  
   <a href="index.html">
     <h1 class="text-2xl font-bold text-indigo-400">CareerSteps</h1>
   </a>
-  <nav class="space-x-6 text-gray-300">
+
+  <!-- DESKTOP NAV -->
+  <nav class="hidden md:flex space-x-6 text-gray-300">
     <a href="index.html" class="hover:text-white">Home</a>
     <a href="after10.html" class="hover:text-white">After 10th</a>
+    <a href="after12.html" class="hover:text-white">After 12th</a>
     <a href="assessment.html" class="hover:text-white">Assessment</a>
   </nav>
+
+  <!-- MOBILE MENU BUTTON -->
+  <button id="menuBtn" class="md:hidden text-white text-2xl">
+    ☰
+  </button>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu"
+    class="hidden absolute top-full right-0 mt-4 w-48 glass rounded-xl p-4 text-gray-300 space-y-3 z-50">
+    <a href="index.html" class="block hover:text-white">Home</a>
+    <a href="after10.html" class="block hover:text-white">After 10th</a>
+    <a href="after12.html" class="block hover:text-white">After 12th</a>
+    <a href="assessment.html" class="block hover:text-white">Assessment</a>
+  </div>
+
 </header>
 
+<!-- HERO -->
 <section class="max-w-4xl mx-auto mt-16 text-center">
   <h2 class="text-4xl font-extrabold mb-4">
     Career Options After <span class="text-indigo-400">Class 12</span>
@@ -45,6 +66,7 @@ body{
   </p>
 </section>
 
+<!-- STREAMS -->
 <section class="max-w-6xl mx-auto mt-16 grid md:grid-cols-3 gap-8">
 
   <div class="glass p-8 rounded-2xl">
@@ -114,6 +136,7 @@ body{
   </div>
 </section>
 
+<!-- EXAMS -->
 <section class="max-w-5xl mx-auto mt-20 glass p-10 rounded-2xl">
   <h3 class="text-3xl font-bold mb-6 text-center">
     Important Exams After 12th
@@ -128,6 +151,7 @@ body{
   </div>
 </section>
 
+<!-- GOVT CAREERS -->
 <section class="max-w-6xl mx-auto mt-16 glass p-10 rounded-2xl">
   <h3 class="text-3xl font-bold mb-6">Government Career Options</h3>
   <ul class="text-gray-300 list-disc list-inside space-y-2">
@@ -139,6 +163,7 @@ body{
   </ul>
 </section>
 
+<!-- SKILL CAREERS -->
 <section class="max-w-6xl mx-auto mt-16 glass p-10 rounded-2xl">
   <h3 class="text-3xl font-bold mb-6">Skill-Based & Emerging Careers</h3>
   <ul class="text-gray-300 list-disc list-inside space-y-2">
@@ -150,27 +175,7 @@ body{
   </ul>
 </section>
 
-<section class="max-w-4xl mx-auto mt-20 glass p-10 rounded-2xl">
-  <h3 class="text-3xl font-bold mb-6 text-center">
-    How to Decide Your Career After 12th?
-  </h3>
-  <ul class="text-gray-300 space-y-3">
-    <li>✔ Choose degree based on <strong>interest + aptitude</strong></li>
-    <li>✔ Don’t blindly follow trends or friends</li>
-    <li>✔ Understand long-term career scope</li>
-    <li>✔ Use career assessment for clarity</li>
-  </ul>
-</section>
-
-<section class="max-w-6xl mx-auto mt-20 glass p-10 rounded-2xl">
-  <h3 class="text-3xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
-  <div class="space-y-6 text-gray-300">
-    <p><strong>Q. Is CUET compulsory after 12th?</strong><br>Many universities use CUET, but some still have their own exams.</p>
-    <p><strong>Q. Can Arts students go for government jobs?</strong><br>Yes. Most government exams are open to all streams.</p>
-    <p><strong>Q. Is skill-based career safe?</strong><br>With proper planning, skills offer strong future opportunities.</p>
-  </div>
-</section>
-
+<!-- CTA -->
 <section class="max-w-4xl mx-auto mt-20 glass p-10 rounded-2xl text-center">
   <h3 class="text-3xl font-bold mb-4">Need Personal Guidance?</h3>
   <p class="text-gray-300 mb-6">
@@ -185,6 +190,16 @@ body{
 <footer class="text-center text-gray-400 text-sm py-10 mt-20">
   © 2025 CareerSteps • Career Guidance Platform
 </footer>
+
+<!-- MOBILE MENU SCRIPT -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
 
 </body>
 </html>
