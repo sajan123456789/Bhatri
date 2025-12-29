@@ -10,13 +10,12 @@
 <style>
     body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
     .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
-    .option-btn { background:rgba(30, 41, 59, 0.4); border:1px solid rgba(255,255,255,0.05); transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden; }
-    .option-btn:hover { border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(8px); }
+    .option-btn { background:rgba(30, 41, 59, 0.4); border:1px solid rgba(255,255,255,0.05); transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; }
+    .option-btn:hover { border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(5px); }
     .progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-slide-up { animation: slideUp 0.5s ease forwards; }
+    .text-tight { letter-spacing: -0.02em; line-height: 1.3; }
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -25,7 +24,7 @@
   <a href="index.html" class="flex items-center gap-2 transition-transform active:scale-95">
     <h1 class="text-2xl font-black italic tracking-tighter uppercase">
       CAREER<span class="text-blue-500">STEPS</span>
-      <span class="hidden sm:inline-block text-[9px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2 uppercase tracking-widest font-bold">Neural Core v4.0</span>
+      <span class="hidden sm:inline-block text-[9px] bg-indigo-500/20 px-2 py-1 rounded text-white ml-2 uppercase tracking-widest font-bold">Neural Core v4.5</span>
     </h1>
   </a>
   <div class="flex items-center gap-3">
@@ -36,70 +35,79 @@
 
 <main class="flex-grow flex items-center justify-center px-4 pb-12">
     
-    <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-10 text-center animate-slide-up">
+    <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-8 md:p-10 text-center">
         <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4 uppercase">Identity Protocol</div>
-        <h2 class="text-4xl font-black italic mb-6 uppercase tracking-tighter">Who is scanning?</h2>
-        <input id="userName" type="text" placeholder="ENTER FULL NAME" class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-xl mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-widest uppercase">
-        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20 active:scale-95">Initialize Engine →</button>
+        <h2 class="text-3xl md:text-4xl font-black italic mb-6 uppercase">Who is scanning?</h2>
+        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-lg mb-6 outline-none focus:border-indigo-500 transition-all font-bold uppercase tracking-widest">
+        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20">Initialize Engine →</button>
     </section>
 
-    <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[3rem] p-12 text-center animate-slide-up">
+    <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[2.5rem] p-10 text-center">
         <h2 id="welcomeText" class="text-2xl font-black italic mb-2 uppercase"></h2>
-        <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10 uppercase">Select Data Model for Calibration</p>
+        <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10 uppercase">Select Data Model</p>
         <div class="space-y-4">
-            <button onclick="startAI('10')" class="w-full py-8 glass border border-white/10 rounded-3xl hover:border-indigo-500 group transition-all text-left px-8">
-                <div class="text-indigo-400 font-black text-xl italic uppercase group-hover:translate-x-2 transition">After 10th Stream</div>
-                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Stream Alignment</div>
+            <button onclick="startAI('10')" class="w-full py-6 glass border border-white/10 rounded-2xl hover:border-indigo-500 transition-all text-left px-8 group">
+                <div class="text-indigo-400 font-black text-lg italic uppercase group-hover:translate-x-2 transition">Post-10th Stream</div>
+                <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Interest Alignment</div>
             </button>
-            <button onclick="startAI('12')" class="w-full py-8 glass border border-white/10 rounded-3xl hover:border-blue-500 group transition-all text-left px-8">
-                <div class="text-blue-400 font-black text-xl italic uppercase group-hover:translate-x-2 transition">After 12th Career</div>
+            <button onclick="startAI('12')" class="w-full py-6 glass border border-white/10 rounded-2xl hover:border-blue-500 transition-all text-left px-8 group">
+                <div class="text-blue-400 font-black text-lg italic uppercase group-hover:translate-x-2 transition">Post-12th Career</div>
                 <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Market Fit & Professional IQ</div>
             </button>
         </div>
     </section>
 
-    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[3rem] p-8 md:p-12 animate-slide-up">
-        <div class="flex justify-between items-center mb-10">
-            <div class="flex-grow mr-4">
-                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Node Syncing...</p>
+    <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[2.5rem] p-6 md:p-10">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex-grow mr-6">
+                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Syncing...</p>
                 <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
                     <div id="progressBar" class="progress-fill h-full w-0"></div>
                 </div>
             </div>
-            <div class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 italic tracking-widest uppercase">Live Scan</div>
+            <div class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 uppercase">Live Scan</div>
         </div>
         
-        <h3 id="questionBox" class="text-2xl md:text-3xl font-black italic mb-10 leading-tight tracking-tighter uppercase"></h3>
-        <div id="optionsBox" class="space-y-3"></div>
+        <h3 id="questionBox" class="text-xl md:text-2xl font-black italic mb-8 text-tight uppercase tracking-tight"></h3>
+        <div id="optionsBox" class="grid gap-3"></div>
     </section>
-
 </main>
 
 <script>
 let currentStep = 0;
-let scoreData = { tech: 0, business: 0, social: 0, art: 0 };
+let scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
 let currentQuestions = [];
 
 const AI_DATABASE = {
     "10": [
-        {q: "A new machine breaks down. What's your instinct?", o:["Open it and check the circuits","Think about the repair cost","Gather people to help fix it","Imagine a better way to design it"], tags:["tech","business","social","art"]},
-        {q: "Pick a secret superpower:", o:["Ability to speak to machines","Ability to predict market trends","Ability to read human emotions","Ability to manifest art from thoughts"], tags:["tech","business","social","art"]},
-        {q: "Your favorite way to spend a weekend?", o:["Building a complex LEGO or PC","Planning a small business idea","Volunteering at a local camp","Writing or drawing abstract things"], tags:["tech","business","social","art"]},
-        {q: "In a team project, you are the...", o:["The one who does the technical work","The one who manages the budget","The one who keeps the team happy","The one who creates the presentation"], tags:["tech","business","social","art"]},
-        {q: "What fascinates you most?", o:["How software algorithms work","How massive empires were built","How human minds behave","How colors and shapes impact mood"], tags:["tech","business","social","art"]}
+        {q: "A complex machine stops working. What's your first move?", o:["Analyze the internal circuits","Check if it's profitable to fix","Gather a team to brainstorm","Sketch a more beautiful design","None of the above"], tags:["tech","business","social","art","neutral"]},
+        {q: "If you could own a futuristic company, it would be:", o:["AI & Robotics Lab","Global Stock Exchange","Human Rights Organization","Digital Art Studio","Something else"], tags:["tech","business","social","art","neutral"]},
+        {q: "What do you do when you find a bug in a game?", o:["Try to find the code error","Think of how to sell the fix","Tell all your friends about it","Enjoy the weird visual glitch","I don't care"], tags:["tech","business","social","art","neutral"]},
+        {q: "Which world would you like to live in?", o:["A high-tech digital utopia","A booming economic center","A peaceful social community","A colorful creative paradise","None of these"], tags:["tech","business","social","art","neutral"]},
+        {q: "Pick a secret skill you want:", o:["Instantly fix any hardware","Know exactly where to invest","Read anyone's thoughts","Create music from thin air","Not sure"], tags:["tech","business","social","art","neutral"]},
+        {q: "How do you handle a big problem?", o:["Break it into logical steps","Find the most efficient way","Ask for expert advice","Look for a creative shortcut","I avoid problems"], tags:["tech","business","social","art","neutral"]},
+        {q: "Your favorite subject in school usually involves:", o:["Formulae and Logic","Data and Money","People and History","Colors and Imagination","None of these"], tags:["tech","business","social","art","neutral"]},
+        {q: "What makes a project 'Great'?", o:["Technical perfection","Financial success","Helping the society","Originality and Vibe","I don't know"], tags:["tech","business","social","art","neutral"]},
+        {q: "In a group, people see you as:", o:["The Problem Solver","The Decision Maker","The Peace Maker","The Creative Mind","Just a member"], tags:["tech","business","social","art","neutral"]},
+        {q: "Your final goal in life is to:", o:["Invent something new","Build a business empire","Change people's lives","Create a masterpiece","I haven't decided"], tags:["tech","business","social","art","neutral"]}
     ],
     "12": [
-        {q: "AI has replaced 50% of jobs. How do you lead?", o:["By programming more advanced AI","By investing in high-risk stocks","By managing human-centered law","By creating unique human art"], tags:["tech","business","social","art"]},
-        {q: "What is the true engine of the world?", o:["Precision Code and Physics","Global Trade and Capital","Empathy and Social Order","Originality and Visionary Design"], tags:["tech","business","social","art"]},
-        {q: "If you could solve one global crisis:", o:["Energy efficiency & Tech waste","Economic inequality & Debt","Universal education & Rights","A crisis of human creativity"], tags:["tech","business","social","art"]},
-        {q: "Choose your 'Executive Power':", o:["Total Tech Mastery","Absolute Market Control","Infinite Social Influence","Unmatched Creative Vision"], tags:["tech","business","social","art"]},
-        {q: "Your ideal workspace is...", o:["A high-tech lab with data","A fast-paced corporate office","A dynamic field office with people","A free-flowing creative studio"], tags:["tech","business","social","art"]}
+        {q: "AI has automated 50% of tasks. You survive by:", o:["Programming the AI itself","Managing the new economy","Leading human-led law","Designing the AI experience","I don't know yet"], tags:["tech","business","social","art","neutral"]},
+        {q: "The world's biggest engine is actually:", o:["Scientific Innovation","Cash Flow & Capital","Social Policies & Trust","Visual Culture & Arts","None of above"], tags:["tech","business","social","art","neutral"]},
+        {q: "If you had $1 Billion, you would:", o:["Build a Mars Colony","Start a Global Bank","End world hunger","Build the world's largest Museum","Save it"], tags:["tech","business","social","art","neutral"]},
+        {q: "Which crisis is most urgent?", o:["Cybersecurity Threats","Global Market Crash","Broken Education System","Loss of Human Culture","Not sure"], tags:["tech","business","social","art","neutral"]},
+        {q: "Your dream work environment is:", o:["A silent lab with high-end PCs","A fast-paced trading floor","A NGO camp helping people","A vibrant studio with music","Work from home"], tags:["tech","business","social","art","neutral"]},
+        {q: "A product is only successful if it is:", o:["Bug-free and powerful","Making massive profit","Sustainable for society","Visually stunning","Depends on the product"], tags:["tech","business","social","art","neutral"]},
+        {q: "What keeps you curious?", o:["How things work inside","How to scale a business","Why people act that way","How to express an idea","Nothing much"], tags:["tech","business","social","art","neutral"]},
+        {q: "Your 'Executive' style would be:", o:["Logical & Data-driven","Aggressive & Result-oriented","Empathetic & Collaborative","Visionary & Unconventional","Neutral"], tags:["tech","business","social","art","neutral"]},
+        {q: "If you wrote a book, it would be about:", o:["The Future of Tech","How to Get Rich","Improving the World","A Visual Journey","I won't write"], tags:["tech","business","social","art","neutral"]},
+        {q: "Pick your final legacy:", o:["A patent in your name","A brand that lives on","A law that helps millions","A work of art that inspires","Still searching"], tags:["tech","business","social","art","neutral"]}
     ]
 };
 
 function saveName() {
     const val = document.getElementById("userName").value.trim();
-    if(val.length < 2) return alert("Please enter valid name.");
+    if(val.length < 2) return alert("Please enter your full name.");
     localStorage.setItem("user_name", val);
     document.getElementById("nameSection").classList.add("hidden");
     document.getElementById("selectClass").classList.remove("hidden");
@@ -116,9 +124,9 @@ function startAI(type) {
 
 function loadNeuralNode() {
     const total = currentQuestions.length;
-    const progress = ((currentStep) / total) * 100;
+    const progress = (currentStep / total) * 100;
     document.getElementById("progressBar").style.width = `${progress}%`;
-    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1} / 0${total}`;
+    document.getElementById("progressText").innerText = `Mapping Node 0${currentStep + 1} / 10`;
     
     document.getElementById("questionBox").innerText = currentQuestions[currentStep].q;
     const box = document.getElementById("optionsBox");
@@ -126,10 +134,10 @@ function loadNeuralNode() {
     
     currentQuestions[currentStep].o.forEach((opt, i) => {
         const btn = document.createElement("button");
-        btn.className = "option-btn w-full p-6 rounded-2xl font-bold uppercase text-left flex justify-between items-center group animate-slide-up";
+        btn.className = "option-btn w-full p-5 rounded-xl font-bold uppercase text-left flex justify-between items-center group text-sm md:text-base";
         btn.innerHTML = `
-            <span class="text-sm tracking-wide">${opt}</span>
-            <span class="text-[8px] opacity-20 group-hover:opacity-100 transition-all font-black">CALCULATE →</span>
+            <span class="pr-4">${opt}</span>
+            <span class="text-[8px] opacity-30 group-hover:opacity-100 transition-all font-black">PROCESS →</span>
         `;
         btn.onclick = () => processInput(currentQuestions[currentStep].tags[i]);
         box.appendChild(btn);
@@ -149,17 +157,17 @@ function processInput(tag) {
 
 function processFinalReport() {
     document.getElementById("quiz").innerHTML = `
-        <div class="text-center py-20">
-            <div class="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-8"></div>
-            <h2 class="text-2xl font-black italic uppercase italic">Neural Synthesis in Progress...</h2>
-            <p class="text-[10px] text-slate-500 tracking-[0.4em] mt-4 uppercase">Mapping Professional Identity</p>
+        <div class="text-center py-24">
+            <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <h2 class="text-xl font-black italic uppercase">Analyzing Neural Patterns...</h2>
+            <p class="text-[9px] text-slate-500 tracking-[0.3em] mt-3 uppercase font-bold">Matching Career Matrices</p>
         </div>`;
 
     setTimeout(() => {
         const winner = Object.keys(scoreData).reduce((a, b) => scoreData[a] > scoreData[b] ? a : b);
         localStorage.setItem("careerResult", winner);
         window.location.href = "result.html";
-    }, 2500);
+    }, 2800);
 }
 </script>
 </body>
