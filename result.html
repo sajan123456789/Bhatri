@@ -2,225 +2,147 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CareerSteps – AI Neural Report</title>
+<title>Your AI Career Report – CareerSteps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
-    body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans', sans-serif; }
-    .main-card { background:#111827; border-radius:32px; border: 1px solid rgba(255,255,255,0.05); }
-    .status-badge { background:rgba(16,185,129,.1); color:#10b981; border: 1px solid rgba(16,185,129,.2); }
-    .chart-container { background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 30px; max-width: 400px; margin: 0 auto 30px auto; }
-    .badge-gold { background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; font-weight: 800; border-radius: 0 12px 0 12px; }
-    
-    /* Career Tag Styling */
-    .career-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 10px; color: #94a3b8; }
-
-    @media print { 
-        .no-print { display:none !important; } 
-        body { background:#fff !important; color:#000 !important; } 
-        .main-card { border: none !important; background: white !important; color: black !important; box-shadow: none !important; }
-    }
+    body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; }
+    .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
+    .result-glow { border: 1px solid rgba(99, 102, 241, 0.3); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
+    .college-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
 </style>
 </head>
+<body class="min-h-screen flex flex-col p-4">
 
-<body class="p-4 md:p-10">
-<div id="reportArea" class="max-w-2xl mx-auto">
-    <div class="main-card p-6 md:p-8 shadow-2xl relative">
-        
-        <div class="flex justify-between items-center mb-8 no-print">
-            <a href="index.html" class="hover:opacity-80 transition block">
-                <h1 class="text-xl font-black italic text-indigo-500 uppercase">CAREER<span class="text-white">STEPS</span></h1>
-            </a>
-            <div class="flex gap-2">
-                <button onclick="downloadPDF()" class="p-2 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition" title="Download PDF">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    <header class="max-w-5xl mx-auto w-full py-6 flex justify-between items-center px-4">
+        <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
+            CAREER<span class="text-blue-500">STEPS</span>
+        </a>
+        <a href="index.html" class="text-[10px] font-black uppercase tracking-widest bg-white/5 px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10 transition">
+            🏠 Home
+        </a>
+    </header>
+
+    <main id="reportContent" class="flex-grow flex items-center justify-center py-10">
+        <div class="max-w-2xl w-full glass rounded-[3rem] p-8 md:p-12 text-center relative border border-white/10">
+            
+            <div class="flex justify-between items-center mb-8">
+                <span class="bg-indigo-500/20 text-indigo-400 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Neural Analysis Complete</span>
+                <button onclick="shareResult()" class="p-2.5 bg-white/5 rounded-xl border border-white/10 hover:bg-indigo-500/20 transition">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 100-6 3 3 0 000 6zm0 12a3 3 0 100-6 3 3 0 000 6z"></path></svg>
                 </button>
-                <button onclick="shareResult()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition">Share Report</button>
             </div>
-        </div>
 
-        <div class="text-center mb-8">
-            <span class="status-badge px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider italic">Assessment Complete</span>
-            <h2 class="text-3xl font-black mt-4 uppercase italic leading-tight">Your Recommended <span class="text-indigo-500">Streams</span></h2>
-            <p id="userNameDisplay" class="text-slate-400 text-sm mt-2 italic">Analysis for User</p>
-        </div>
+            <h2 class="text-3xl font-black italic uppercase mb-2">Recommended <span id="typeLabel" class="text-indigo-500">Path</span></h2>
+            <p class="text-slate-500 text-[10px] font-bold tracking-[0.4em] mb-10 uppercase">System Analysis for <span id="userNameDisplay" class="text-white">User</span></p>
 
-        <div class="chart-container">
-            <canvas id="aptitudeChart"></canvas>
-        </div>
-
-        <div id="streamList" class="space-y-6"></div>
-
-        <div class="mt-10 text-center bg-white/5 p-8 rounded-3xl border border-white/10 no-print">
-            <h3 class="font-bold text-lg mb-2 italic uppercase">Explore Your Horizon</h3>
-            <p class="text-slate-400 text-xs mb-6 italic">Discover the full spectrum of professional possibilities.</p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <button onclick="location.href='careers.html'" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-indigo-500/20 active:scale-95 transition">Explore 900+ Careers</button>
-                <button onclick="location.href='assessment.html'" class="px-8 py-4 bg-slate-800 text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest border border-white/5 hover:bg-slate-700 transition">Retake Scan</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-const name = localStorage.getItem("user_name") || "Explorer";
-const stage = localStorage.getItem("academic_stage") || "10";
-const scoreData = JSON.parse(localStorage.getItem("scoreData")) || { technical: 0, finance: 0, social: 0, creative: 0 };
-
-document.getElementById("userNameDisplay").innerText = `System Analysis for ${name} (Post-${stage}th)`;
-
-// 
-const contentDB = {
-    "10": {
-        technical: { 
-            title: "Science Stream", icon: "🧪", 
-            desc: "Perfect for curious minds who love to explore, experiment, and understand the natural world.",
-            careers: ["Research Scientist", "Data Scientist","doctor", "Engineer", "Physicist"],
-            steps: ["Focus on Physics, Chemistry, biology, Math", "Participate in science fairs"] 
-        },
-        finance: { 
-            title: "Commerce Stream", icon: "📊", 
-            desc: "Ideal for strategic thinkers interested in resource management, finance, and trade.",
-            careers: ["Chartered Accountant", "Company Secretary", "Investment Banker", "Manager", "Stock Analyst"],
-            steps: ["Focus on Accountancy, Math, Economics", "Target IPMAT/CA exams"] 
-        },
-        social: { 
-            title: "Humanities Stream", icon: "🏛️", 
-            desc: "Great for those interested in human society, culture, history, and making a social impact.",
-            careers: ["Psychologist", "Lawyer", "civil services", "Social Worker", "Historian"],
-            steps: ["Focus on Political Science, psychology, History, other", "Develop communication skills"] 
-        },
-        creative: { 
-            title: "Fine Arts Stream", icon: "🎨", 
-            desc: "Perfect for creative souls who express themselves through visual arts, design, and forms of expression.",
-            careers: ["Graphic Designer", "Animator", "Fashion Designer", "Architect"],
-            steps: ["Build a strong art portfolio", "Attend design workshops"] 
-        }
-    },
-    "12": {
-        technical: { 
-            title: "Engineering & Tech", icon: "🚀", 
-            desc: "Focused on technical decomposition and building complex systems.",
-            careers: ["Software Engineer", "AI Specialist", "Robotics Designer"],
-            steps: ["Coding Labs", "Hackathons"] 
-        },
-        finance: { 
-            title: "Finance & Management", icon: "💰", 
-            desc: "High-level strategic resource management and financial logic.",
-            careers: ["Corporate Finance", "FinTech Expert", "MBA Professional"],
-            steps: ["Prepare for CAT/GMAT", "FinTech Internships"] 
-        },
-        social: { 
-            title: "Law & Civil Services", icon: "⚖️", 
-            desc: "Social intelligence, ethics, and institutional leadership.",
-            careers: ["Judge", "IAS/IPS Officer", "Social Lead"],
-            steps: ["UPSC Focus", "Moot Court"] 
-        },
-        creative: { 
-            title: "Digital Design", icon: "✨", 
-            desc: "Aesthetic visualization and product-led creative problem solving.",
-            careers: ["UX/UI Designer", "Game Designer", "Video Editor"],
-            steps: ["Agency Internships", "Freelance Work"] 
-        }
-    }
-};
-
-function render() {
-    const list = document.getElementById("streamList");
-    const sortedKeys = Object.keys(scoreData).sort((a,b) => scoreData[b] - scoreData[a]);
-    list.innerHTML = "";
-    
-    sortedKeys.forEach((key, index) => {
-        const item = contentDB[stage][key];
-        const isTop = index === 0;
-        const scoreValue = scoreData[key];
-
-        list.innerHTML += `
-            <div class="relative p-6 rounded-3xl border ${isTop ? 'border-indigo-500 bg-indigo-500/5' : 'border-white/5 bg-white/2'} mb-6">
-                ${isTop ? '<div class="absolute top-0 right-0 badge-gold px-4 py-1 text-[9px]">BEST MATCH</div>' : ''}
+            <div class="result-glow bg-white/5 rounded-[2.5rem] p-10 mb-8 transition-all">
+                <div id="resIcon" class="text-6xl mb-6">🚀</div>
+                <h1 id="resTitle" class="text-4xl font-black italic uppercase tracking-tighter mb-4 leading-none">Scanning Data...</h1>
+                <p id="resDesc" class="text-slate-400 text-sm leading-relaxed mb-8"></p>
                 
-                <div class="flex gap-4 mb-4">
-                    <div class="text-3xl p-3 bg-white/5 rounded-xl h-fit">${item.icon}</div>
-                    <div class="flex-1">
-                        <div class="flex justify-between">
-                            <h4 class="text-lg font-bold italic uppercase tracking-tight">${item.title}</h4>
-                            <div class="text-right">
-                                <span class="text-indigo-400 font-black text-xl leading-none">${scoreValue}</span>
-                                <p class="text-[8px] text-slate-500 uppercase font-bold">Match Score</p>
-                            </div>
+                <div class="pt-6 border-t border-white/10 text-left">
+                    <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">Target Institutions / Focus Areas:</p>
+                    <div id="collegeList" class="flex flex-wrap gap-2">
                         </div>
-                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">${item.desc}</p>
-                    </div>
                 </div>
+            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 pt-4 border-t border-white/5">
-                    <div>
-                        <p class="text-[10px] text-slate-500 font-black uppercase mb-3">Popular Careers:</p>
-                        <div class="flex flex-wrap gap-2">
-                            ${item.careers.map(c => `<span class="career-tag">${c}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-slate-500 font-black uppercase mb-3">Next Steps:</p>
-                        <ul class="space-y-1">
-                            ${item.steps.map(s => `<li class="text-[10px] text-slate-400">• ${s}</li>`).join('')}
-                        </ul>
-                    </div>
+            <div class="bg-white/5 rounded-3xl p-6 border border-white/10 mb-8">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4">Explore Your Horizon</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <a href="index.html#careers" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all shadow-xl shadow-indigo-500/20">
+                        Explore 900+ Careers
+                    </a>
+                    <button onclick="downloadPDF()" class="bg-white/10 hover:bg-white/20 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all">
+                        Download Report
+                    </button>
                 </div>
-            </div>`;
-    });
-}
+            </div>
 
-function initChart() {
-    const ctx = document.getElementById('aptitudeChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ['Technical', 'Finance', 'Social', 'Creative'],
-            datasets: [{
-                data: [scoreData.technical, scoreData.finance, scoreData.social, scoreData.creative],
-                backgroundColor: 'rgba(99, 102, 241, 0.2)',
-                borderColor: '#6366f1',
-                borderWidth: 3,
-                pointBackgroundColor: '#fff'
-            }]
-        },
-        options: {
-            scales: { r: { angleLines: { color: 'rgba(255,255,255,0.05)' }, grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#94a3b8', font: { size: 10, weight: '700' } }, ticks: { display: false } } },
-            plugins: { legend: { display: false } }
+            <button onclick="window.location.href='assessment.html'" class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 hover:text-white transition">
+                ← Retake Neural Scan
+            </button>
+        </div>
+    </main>
+
+    <script>
+        window.onload = function() {
+            const name = localStorage.getItem("user_name") || "Explorer";
+            const result = localStorage.getItem("careerResult");
+            const stage = localStorage.getItem("academic_stage");
+
+            document.getElementById("userNameDisplay").innerText = name;
+            document.getElementById("typeLabel").innerText = stage === "10" ? "Streams" : "Career Path";
+
+            const data = {
+                tech: { 
+                    title: "Science & Technology", icon: "⚙️", 
+                    desc: "You have a high aptitude for logical reasoning and technical systems. Engineering, AI Research, and pure sciences are your ideal zones.",
+                    colleges: ["IITs / NITs", "BITS Pilani", "IISc Bangalore", "MIT / Stanford"]
+                },
+                business: { 
+                    title: "Commerce & Business", icon: "💎", 
+                    desc: "Financial strategy and market analysis are your strengths. Management, Fintech, and Entrepreneurship will lead to high growth.",
+                    colleges: ["IIMs (IPMAT)", "SRCC Delhi", "St. Xavier's", "LSE London"]
+                },
+                social: { 
+                    title: "Humanities & Law", icon: "🏛️", 
+                    desc: "You possess strong communication and empathy. Civil Services, Corporate Law, and Psychology are where you can make an impact.",
+                    colleges: ["NLUs (CLAT)", "TISS Mumbai", "St. Stephens", "Harvard Law"]
+                },
+                art: { 
+                    title: "Design & Creative Arts", icon: "🎨", 
+                    desc: "Your creative vision is your biggest asset. Visual Communication, Product Design, and Filmmaking are your perfect career paths.",
+                    colleges: ["NID / NIFT", "IIT-IDC", "Srishti Institute", "UAL London"]
+                },
+                neutral: { 
+                    title: "Multi-Disciplinary", icon: "🧩", 
+                    desc: "You have a balanced profile. Consider Liberal Arts or interdisciplinary fields like Data Journalism or Management of Arts.",
+                    colleges: ["Ashoka University", "Flame University", "Symbiosis", "Liberal Arts Colleges"]
+                }
+            };
+
+            const final = data[result] || data.neutral;
+            document.getElementById("resTitle").innerText = final.title;
+            document.getElementById("resIcon").innerText = final.icon;
+            document.getElementById("resDesc").innerText = final.desc;
+
+            const list = document.getElementById("collegeList");
+            final.colleges.forEach(col => {
+                const span = document.createElement("span");
+                span.className = "college-tag px-4 py-2 rounded-xl text-[10px] font-bold text-slate-300";
+                span.innerText = col;
+                list.appendChild(span);
+            });
+        };
+
+        function downloadPDF() {
+            const element = document.getElementById('reportContent');
+            const opt = {
+                margin: 0.2,
+                filename: 'CareerSteps_Report.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, backgroundColor: '#020617' },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
         }
-    });
-}
 
-async function shareResult() {
-    const shareText = `I just mapped my career using CareerSteps AI! My top match is ${contentDB[stage][Object.keys(scoreData).sort((a,b)=>scoreData[b]-scoreData[a])[0]].title}.`;
-    if (navigator.share) {
-        try { await navigator.share({ title: 'My AI Career Roadmap', text: shareText, url: window.location.href }); } 
-        catch (err) { console.log("Share failed"); }
-    } else {
-        navigator.clipboard.writeText(shareText + " " + window.location.href);
-        alert("Link copied!");
-    }
-}
-
-function downloadPDF() {
-    const element = document.getElementById('reportArea');
-    const opt = {
-        margin: 10,
-        filename: `${name}_CareerSteps_Report.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, backgroundColor: '#020617' },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(element).save();
-}
-
-render();
-initChart();
-</script>
+        async function shareResult() {
+            const name = localStorage.getItem("user_name");
+            const career = document.getElementById("resTitle").innerText;
+            try {
+                await navigator.share({
+                    title: 'My CareerSteps Report',
+                    text: `Hey! My AI assessment is out. Recommended Path: ${career}`,
+                    url: window.location.href
+                });
+            } catch(e) { alert("Sharing not supported in this browser."); }
+        }
+    </script>
 </body>
 </html>
