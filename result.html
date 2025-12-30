@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Your AI Career Report – CareerSteps</title>
+<title>Career Report – CareerSteps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -13,6 +13,9 @@
     .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
     .result-glow { border: 1px solid rgba(99, 102, 241, 0.3); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
     .college-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+    /* Share Icon Visibility Fix */
+    .share-btn { background: #6366f1; color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
+    .share-btn:hover { background: #4f46e5; transform: scale(1.05); }
 </style>
 </head>
 <body class="min-h-screen flex flex-col p-4">
@@ -31,30 +34,32 @@
             
             <div class="flex justify-between items-center mb-8">
                 <span class="bg-indigo-500/20 text-indigo-400 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Neural Analysis Complete</span>
-                <button onclick="shareResult()" class="p-2.5 bg-white/5 rounded-xl border border-white/10 hover:bg-indigo-500/20 transition">
-                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 100-6 3 3 0 000 6zm0 12a3 3 0 100-6 3 3 0 000 6z"></path></svg>
+                
+                <button onclick="shareResult()" class="share-btn p-3 rounded-xl flex items-center justify-center" title="Share Report">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 100-6 3 3 0 000 6zm0 12a3 3 0 100-6 3 3 0 000 6z"></path>
+                    </svg>
                 </button>
             </div>
 
-            <h2 class="text-3xl font-black italic uppercase mb-2">Recommended <span id="typeLabel" class="text-indigo-500">Path</span></h2>
+            <h2 class="text-3xl font-black italic uppercase mb-2 leading-tight">Recommended <span id="typeLabel" class="text-indigo-500">Path</span></h2>
             <p class="text-slate-500 text-[10px] font-bold tracking-[0.4em] mb-10 uppercase">System Analysis for <span id="userNameDisplay" class="text-white">User</span></p>
 
-            <div class="result-glow bg-white/5 rounded-[2.5rem] p-10 mb-8 transition-all">
+            <div class="result-glow bg-white/5 rounded-[2.5rem] p-10 mb-8">
                 <div id="resIcon" class="text-6xl mb-6">🚀</div>
-                <h1 id="resTitle" class="text-4xl font-black italic uppercase tracking-tighter mb-4 leading-none">Scanning Data...</h1>
-                <p id="resDesc" class="text-slate-400 text-sm leading-relaxed mb-8"></p>
+                <h1 id="resTitle" class="text-3xl md:text-4xl font-black italic uppercase tracking-tighter mb-4 leading-none">Mapping Node...</h1>
+                <p id="resDesc" class="text-slate-400 text-sm leading-relaxed mb-8 px-4"></p>
                 
                 <div class="pt-6 border-t border-white/10 text-left">
                     <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">Target Institutions / Focus Areas:</p>
-                    <div id="collegeList" class="flex flex-wrap gap-2">
-                        </div>
+                    <div id="collegeList" class="flex flex-wrap gap-2"></div>
                 </div>
             </div>
 
             <div class="bg-white/5 rounded-3xl p-6 border border-white/10 mb-8">
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4">Explore Your Horizon</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4 uppercase">Explore Your Horizon</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <a href="index.html#careers" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all shadow-xl shadow-indigo-500/20">
+                    <a href="careers-data.js" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all flex items-center justify-center">
                         Explore 900+ Careers
                     </a>
                     <button onclick="downloadPDF()" class="bg-white/10 hover:bg-white/20 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all">
@@ -125,8 +130,8 @@
             const opt = {
                 margin: 0.2,
                 filename: 'CareerSteps_Report.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, backgroundColor: '#020617' },
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 3, backgroundColor: '#020617' },
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
             html2pdf().set(opt).from(element).save();
@@ -137,11 +142,14 @@
             const career = document.getElementById("resTitle").innerText;
             try {
                 await navigator.share({
-                    title: 'My CareerSteps Report',
-                    text: `Hey! My AI assessment is out. Recommended Path: ${career}`,
+                    title: 'CareerSteps AI Report',
+                    text: `Hey! I just finished my career assessment. Recommended Path: ${career}.`,
                     url: window.location.href
                 });
-            } catch(e) { alert("Sharing not supported in this browser."); }
+            } catch(e) { 
+                navigator.clipboard.writeText(window.location.href);
+                alert("Share link copied to clipboard!"); 
+            }
         }
     </script>
 </body>
