@@ -42,7 +42,7 @@ body{
       </span>
 
       <h1 id="resTitle" class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 leading-tight">
-        Commerce & <span class="text-indigo-400">Business</span>
+        Processing...
       </h1>
 
       <p class="text-green-400 font-mono text-sm mb-6">
@@ -50,20 +50,19 @@ body{
       </p>
 
       <p id="resIntro" class="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
-        Based on your aptitude, interest patterns and decision-making behaviour,
-        AI strongly recommends this path.
+        Based on your neural responses and decision patterns, AI recommends this path.
       </p>
 
       <div class="mt-12 text-left bg-white/5 p-8 rounded-[2rem] border border-white/5">
         <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Why this result?</h2>
         <ul id="logicList" class="space-y-3 text-gray-300 font-medium text-sm">
-          </ul>
+        </ul>
       </div>
 
       <div class="mt-8 text-left">
         <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Your Strength Areas</h2>
         <div id="strengthGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300 font-bold uppercase tracking-wide text-[11px]">
-          </div>
+        </div>
       </div>
 
       <div class="mt-14">
@@ -71,13 +70,13 @@ body{
           Best Career Matches for You
         </h2>
         <div id="careerGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          </div>
+        </div>
       </div>
 
       <div class="mt-14 pt-10 border-t border-white/10 text-left">
         <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Stream Comparison</h2>
         <div id="compList" class="space-y-4 text-gray-300 font-bold uppercase tracking-widest text-xs">
-          </div>
+        </div>
       </div>
     </section>
 </main>
@@ -85,19 +84,19 @@ body{
 <section class="max-w-4xl mx-auto mt-16 text-center">
   <div class="flex flex-wrap justify-center gap-4">
     <a href="careers.html"
-   class="bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl font-bold text-sm">
-   Explore 900+ Careers
+       class="bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl font-bold text-sm transition-all active:scale-95 shadow-lg shadow-indigo-500/20">
+       Explore 900+ Careers
     </a>
     <button onclick="window.print()"
-       class="bg-white/10 px-8 py-4 rounded-xl font-bold text-sm">
+       class="bg-white/10 px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/20 transition-all">
        Download Report
     </button>
     <a href="assessment.html"
-       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm">
+       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/10 transition-all">
        Retake Scan
     </a>
     <button onclick="shareResult()"
-       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm">
+       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/10 transition-all">
        Share Result
     </button>
   </div>
@@ -110,43 +109,48 @@ body{
 
 <script>
 window.onload = function() {
+    // Getting data from localStorage
     const scores = JSON.parse(localStorage.getItem("scoreData")) || { tech: 8, business: 4, social: 3 };
     const stage = localStorage.getItem("academic_stage") || "12";
     const name = localStorage.getItem("user_name") || "Explorer";
 
+    // Logic to find winner
     const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
     
+    // UI Heading logic for After 10th vs 12th
+    document.getElementById("careerHeading").innerText = stage === "10" ? "Best Stream Matches" : "Best Career Matches";
+
     const content = {
         tech: {
             title: stage === "10" ? "Science & <span class='text-indigo-400'>Tech</span>" : "Engineering & <span class='text-indigo-400'>Technology</span>",
             logic: ["Superior logical consistency detected", "High aptitude for complex systems", "Evidence-based decision model"],
             strengths: ["Analytical IQ ⭐⭐⭐⭐⭐", "Logical Depth ⭐⭐⭐⭐☆", "Technical Focus ⭐⭐⭐⭐⭐", "Innovation ⭐⭐⭐⭐☆"],
             careers: [
-                {name: "Software Engineer", info: "₹8–25 LPA"},
-                {name: "Data Scientist", info: "₹10–30 LPA"},
-                {name: "Aerospace Design", info: "High Growth"}
+                {name: stage === "10" ? "PCM / PCB" : "Software Engineer", info: stage === "10" ? "Engineering/Medical" : "₹8–25 LPA"},
+                {name: stage === "10" ? "Robotics" : "Data Scientist", info: stage === "10" ? "Skill Elective" : "₹10–30 LPA"},
+                {name: stage === "10" ? "Pure Science" : "Aerospace Design", info: stage === "10" ? "Research" : "High Growth"}
             ],
             comp: ["Science: 94%", "Commerce: 62%", "Arts: 48%"]
         },
         business: {
-            title: "Commerce & <span class='text-indigo-400'>Business</span>",
+            title: stage === "10" ? "Commerce & <span class='text-indigo-400'>Finance</span>" : "Commerce & <span class='text-indigo-400'>Business</span>",
             logic: ["High analytical & strategic thinking score", "Strong financial awareness", "Leadership & management inclination"],
             strengths: ["Strategic Thinking ⭐⭐⭐⭐☆", "Financial Logic ⭐⭐⭐⭐⭐", "Leadership ⭐⭐⭐⭐☆", "Creativity ⭐⭐⭐☆☆"],
             careers: [
-                {name: "Business Analyst", info: "₹6–18 LPA"},
-                {name: "Financial Analyst", info: "₹5–20 LPA"},
-                {name: "Startup Founder", info: "Unlimited"}
+                {name: stage === "10" ? "Commerce + Math" : "Business Analyst", info: stage === "10" ? "Finance/CA" : "₹6–18 LPA"},
+                {name: stage === "10" ? "Business Studies" : "Financial Analyst", info: stage === "10" ? "Management" : "₹5–20 LPA"},
+                {name: stage === "10" ? "Economics" : "Startup Founder", info: stage === "10" ? "Global Market" : "Unlimited"}
             ],
             comp: ["Commerce: 92%", "Science: 68%", "Arts: 61%"]
         },
         social: {
-            title: "Arts & <span class='text-indigo-400'>Humanities</span>",
+            title: stage === "10" ? "Humanities & <span class='text-indigo-400'>Arts</span>" : "Arts & <span class='text-indigo-400'>Humanities</span>",
             logic: ["High verbal/linguistic intelligence", "Strong social-cultural awareness", "Creative problem solving"],
             strengths: ["Creative IQ ⭐⭐⭐⭐⭐", "Social Intelligence ⭐⭐⭐⭐⭐", "Communication ⭐⭐⭐⭐☆", "Empathy ⭐⭐⭐⭐☆"],
             careers: [
-                {name: "Corporate Lawyer", info: "₹10–40 LPA"},
-                {name: "UX/UI Designer", info: "₹8–25 LPA"},
-                {name: "Media Expert", info: "₹6–20 LPA"}
+                {name: stage === "10" ? "Humanities Stream" : "Corporate Lawyer", info: stage === "10" ? "Law/Civils" : "₹10–40 LPA"},
+                {name: stage === "10" ? "Liberal Arts" : "UX/UI Designer", info: stage === "10" ? "Design" : "₹8–25 LPA"},
+                {name: stage === "10" ? "Mass Comm" : "Media Expert", info: stage === "10" ? "Journalism" : "₹6–20 LPA"}
             ],
             comp: ["Arts: 89%", "Commerce: 58%", "Science: 52%"]
         }
@@ -156,11 +160,11 @@ window.onload = function() {
     document.getElementById("resTitle").innerHTML = final.title;
     document.getElementById("resAccuracy").innerText = final.comp[0].split(": ")[1];
 
-    // Logic
+    // Populating Why This Result
     final.logic.forEach(l => { document.getElementById("logicList").innerHTML += `<li>✔ ${l}</li>`; });
-    // Strengths
+    // Populating Strengths
     final.strengths.forEach(s => { document.getElementById("strengthGrid").innerHTML += `<div class="bg-white/5 p-4 rounded-xl border border-white/5">${s}</div>`; });
-    // Careers
+    // Populating Career/Stream Cards
     final.careers.forEach(c => {
         document.getElementById("careerGrid").innerHTML += `
             <div class="glass p-6 rounded-2xl border border-white/10 text-left">
@@ -168,7 +172,7 @@ window.onload = function() {
                 <p class="text-sm text-gray-400">${c.info}</p>
             </div>`;
     });
-    // Comparison
+    // Populating Comparison
     final.comp.forEach((c, i) => {
         const parts = c.split(": ");
         document.getElementById("compList").innerHTML += `
@@ -180,8 +184,7 @@ window.onload = function() {
 };
 
 function shareResult(){
-    const name = localStorage.getItem("user_name") || "Explorer";
-    const text = `Hey! I just found my career path on CareerSteps AI for ${name}. Check it out!`;
+    const text = `I just found my career path on CareerSteps AI! Check it out!`;
     if(navigator.share){
         navigator.share({title: 'My Career Result', text: text, url: window.location.href});
     } else {
