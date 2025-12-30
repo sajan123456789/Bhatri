@@ -10,12 +10,19 @@
 <style>
     body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
     .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); }
-    .option-btn { background:rgba(30, 41, 59, 0.4); border:1px solid rgba(255,255,255,0.05); transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; }
+    /* Padding aur spacing badha di gayi hai */
+    .option-btn { 
+        background:rgba(30, 41, 59, 0.4); 
+        border:1px solid rgba(255,255,255,0.05); 
+        transition:0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        cursor: pointer; 
+        padding: 1.25rem 1.5rem; 
+        margin-bottom: 0.75rem;
+    }
     .option-btn:hover { border-color:#6366f1; background: rgba(99, 102, 241, 0.1); transform: translateX(5px); }
     .progress-fill { transition: width 0.8s ease-in-out; background: linear-gradient(90deg, #6366f1, #3b82f6); }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
-    .text-tight { letter-spacing: -0.02em; line-height: 1.3; }
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -29,7 +36,7 @@
   </a>
   <div class="flex items-center gap-3">
     <div class="status-dot"></div>
-    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden md:block">Neural Link: Active</span>
+    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hidden md:block">Neural Link: Active</span>
   </div>
 </header>
 
@@ -37,21 +44,21 @@
     
     <section id="nameSection" class="max-w-lg w-full glass rounded-[2.5rem] p-8 md:p-10 text-center">
         <div class="text-indigo-500 text-[10px] font-black tracking-[0.5em] mb-4 uppercase">Identity Protocol</div>
-        <h2 class="text-3xl md:text-4xl font-black italic mb-6 uppercase">Who is scanning?</h2>
-        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-lg mb-6 outline-none focus:border-indigo-500 transition-all font-bold uppercase tracking-widest">
-        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20">Initialize Engine →</button>
+        <h2 class="text-3xl font-extrabold mb-6">Who is scanning?</h2>
+        <input id="userName" type="text" placeholder="Enter Full Name..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-lg mb-6 outline-none focus:border-indigo-500 transition-all font-bold tracking-wide">
+        <button onclick="saveName()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-5 rounded-2xl font-black uppercase tracking-widest transition-all active:scale-95">Initialize Engine →</button>
     </section>
 
     <section id="selectClass" class="hidden max-w-lg w-full glass rounded-[2.5rem] p-10 text-center">
-        <h2 id="welcomeText" class="text-2xl font-black italic mb-2 uppercase"></h2>
+        <h2 id="welcomeText" class="text-2xl font-bold mb-2"></h2>
         <p class="text-slate-500 text-[10px] font-black tracking-widest mb-10 uppercase">Select Data Model</p>
         <div class="space-y-4">
             <button onclick="startAI('10')" class="w-full py-6 glass border border-white/10 rounded-2xl hover:border-indigo-500 transition-all text-left px-8 group">
-                <div class="text-indigo-400 font-black text-lg italic uppercase group-hover:translate-x-2 transition">Post-10th Stream</div>
+                <div class="text-indigo-400 font-black text-lg group-hover:translate-x-2 transition">Post-10th Stream Selection</div>
                 <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Aptitude & Interest Alignment</div>
             </button>
             <button onclick="startAI('12')" class="w-full py-6 glass border border-white/10 rounded-2xl hover:border-blue-500 transition-all text-left px-8 group">
-                <div class="text-blue-400 font-black text-lg italic uppercase group-hover:translate-x-2 transition">Post-12th Career</div>
+                <div class="text-blue-400 font-black text-lg group-hover:translate-x-2 transition">Post-12th Career Path</div>
                 <div class="text-[9px] text-slate-500 mt-1 uppercase font-bold tracking-widest">Market Fit & Professional IQ</div>
             </button>
         </div>
@@ -60,7 +67,7 @@
     <section id="quiz" class="hidden max-w-2xl w-full glass rounded-[2.5rem] p-6 md:p-10">
         <div class="flex justify-between items-center mb-8">
             <div class="flex-grow mr-6">
-                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Syncing...</p>
+                <p id="progressText" class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Mapping Node...</p>
                 <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
                     <div id="progressBar" class="progress-fill h-full w-0"></div>
                 </div>
@@ -68,8 +75,8 @@
             <div class="text-[9px] px-3 py-1 bg-white/5 rounded border border-white/10 font-bold text-slate-400 uppercase">Live Scan</div>
         </div>
         
-        <h3 id="questionBox" class="text-xl md:text-2xl font-black italic mb-8 text-tight uppercase tracking-tight"></h3>
-        <div id="optionsBox" class="grid gap-3"></div>
+        <h3 id="questionBox" class="text-xl md:text-2xl font-bold mb-10 leading-relaxed tracking-tight"></h3>
+        <div id="optionsBox" class="flex flex-col"></div>
     </section>
 </main>
 
@@ -111,7 +118,7 @@ function saveName() {
     localStorage.setItem("user_name", val);
     document.getElementById("nameSection").classList.add("hidden");
     document.getElementById("selectClass").classList.remove("hidden");
-    document.getElementById("welcomeText").innerText = `CORE ACCESS: ${val}`;
+    document.getElementById("welcomeText").innerText = `Access Granted: ${val}`;
 }
 
 function startAI(type) {
@@ -126,7 +133,7 @@ function loadNeuralNode() {
     const total = currentQuestions.length;
     const progress = (currentStep / total) * 100;
     document.getElementById("progressBar").style.width = `${progress}%`;
-    document.getElementById("progressText").innerText = `Mapping Node 0${currentStep + 1} / 10`;
+    document.getElementById("progressText").innerText = `Scanning Node 0${currentStep + 1} / 10`;
     
     document.getElementById("questionBox").innerText = currentQuestions[currentStep].q;
     const box = document.getElementById("optionsBox");
@@ -134,10 +141,10 @@ function loadNeuralNode() {
     
     currentQuestions[currentStep].o.forEach((opt, i) => {
         const btn = document.createElement("button");
-        btn.className = "option-btn w-full p-5 rounded-xl font-bold uppercase text-left flex justify-between items-center group text-sm md:text-base";
+        btn.className = "option-btn w-full rounded-2xl font-semibold text-left flex justify-between items-center group text-base leading-relaxed";
         btn.innerHTML = `
             <span class="pr-4">${opt}</span>
-            <span class="text-[8px] opacity-30 group-hover:opacity-100 transition-all font-black">PROCESS →</span>
+            <span class="text-[9px] opacity-30 group-hover:opacity-100 transition-all font-bold">ANALYZE →</span>
         `;
         btn.onclick = () => processInput(currentQuestions[currentStep].tags[i]);
         box.appendChild(btn);
@@ -159,8 +166,8 @@ function processFinalReport() {
     document.getElementById("quiz").innerHTML = `
         <div class="text-center py-24">
             <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-            <h2 class="text-xl font-black italic uppercase">Analyzing Neural Patterns...</h2>
-            <p class="text-[9px] text-slate-500 tracking-[0.3em] mt-3 uppercase font-bold">Matching Career Matrices</p>
+            <h2 class="text-xl font-bold">Analyzing Neural Patterns...</h2>
+            <p class="text-[10px] text-slate-500 tracking-[0.3em] mt-3 uppercase">Mapping Career Matrices</p>
         </div>`;
 
     setTimeout(() => {
