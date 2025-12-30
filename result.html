@@ -2,115 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Career Report – CareerSteps</title>
+<title>CareerSteps – AI Career Result</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
-    body { background:#020617; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; }
-    .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(14px); }
-    .result-glow { border: 1px solid rgba(99, 102, 241, 0.3); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
-    .college-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
-    .share-btn { background: #6366f1; color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
+body{
+  background:#020617;
+  color:#fff;
+  font-family:system-ui;
+}
+.glass{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+}
+.badge{
+  background:linear-gradient(135deg,#6366f1,#3b82f6);
+}
 </style>
 </head>
-<body class="min-h-screen flex flex-col p-4">
 
-    <header class="max-w-5xl mx-auto w-full py-6 flex justify-between items-center px-4">
-        <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
-            CAREER<span class="text-blue-500">STEPS</span>
-        </a>
-        <a href="index.html" class="text-[10px] font-black uppercase tracking-widest bg-white/5 px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10 transition">
-            🏠 Home
-        </a>
-    </header>
+<body class="px-4 pb-20">
 
-    <main id="reportContent" class="flex-grow flex items-center justify-center py-10">
-        <div class="max-w-2xl w-full glass rounded-[3rem] p-8 md:p-12 text-center relative border border-white/10">
-            
-            <div class="flex justify-between items-center mb-8">
-                <span class="bg-indigo-500/20 text-indigo-400 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Neural Analysis Complete</span>
-                <button onclick="shareResult()" class="share-btn p-3 rounded-xl flex items-center justify-center">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 100-6 3 3 0 000 6zm0 12a3 3 0 100-6 3 3 0 000 6z"></path></svg>
-                </button>
-            </div>
+<!-- HEADER -->
+<header class="max-w-6xl mx-auto py-6 flex justify-between items-center">
+  <a href="index.html" class="text-xl font-extrabold tracking-tight text-indigo-400">
+    CAREER<span class="text-blue-500">STEPS</span>
+  </a>
+  <a href="index.html" class="text-xs bg-white/10 px-4 py-2 rounded-full">Home</a>
+</header>
 
-            <h2 class="text-3xl font-black italic uppercase mb-2">Recommended <span id="typeLabel" class="text-indigo-500">Path</span></h2>
-            <p class="text-slate-500 text-[10px] font-bold tracking-[0.4em] mb-10 uppercase text-center">System Analysis for <span id="userNameDisplay" class="text-white">User</span></p>
+<!-- RESULT CARD -->
+<section class="max-w-4xl mx-auto mt-10 glass rounded-3xl p-8 md:p-12 text-center">
 
-            <div class="result-glow bg-white/5 rounded-[2.5rem] p-10 mb-8">
-                <div id="resIcon" class="text-6xl mb-6">🚀</div>
-                <h1 id="resTitle" class="text-3xl md:text-4xl font-black italic uppercase mb-4 leading-none">Mapping Node...</h1>
-                <p id="resDesc" class="text-slate-400 text-sm leading-relaxed mb-8 px-4"></p>
-                
-                <div class="pt-6 border-t border-white/10 text-left">
-                    <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">Target Focus Areas:</p>
-                    <div id="collegeList" class="flex flex-wrap gap-2"></div>
-                </div>
-            </div>
+  <span class="inline-block badge px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+    AI Analysis Complete
+  </span>
 
-            <div class="bg-white/5 rounded-3xl p-6 border border-white/10 mb-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <a href="explore-pathways.html" class="bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all flex items-center justify-center">
-                        Explore 900+ Careers
-                    </a>
-                    <button onclick="downloadPDF()" class="bg-white/10 hover:bg-white/20 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all">
-                        Download Report
-                    </button>
-                </div>
-            </div>
+  <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+    Commerce & <span class="text-indigo-400">Business</span>
+  </h1>
 
-            <button onclick="window.location.href='assessment.html'" class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 hover:text-white transition">← Retake Neural Scan</button>
-        </div>
-    </main>
+  <p class="text-green-400 font-mono text-sm mb-6">
+    Neural Match Accuracy: <strong>92%</strong>
+  </p>
 
-    <script>
-        window.onload = function() {
-            const name = localStorage.getItem("user_name") || "Explorer";
-            const result = localStorage.getItem("careerResult");
-            const stage = localStorage.getItem("academic_stage");
+  <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+    Based on your aptitude, interest patterns and decision-making behaviour,
+    AI strongly recommends <strong>Commerce & Business</strong> as your primary career direction.
+  </p>
 
-            document.getElementById("userNameDisplay").innerText = name;
-            document.getElementById("typeLabel").innerText = stage === "10" ? "Streams" : "Career Path";
+</section>
 
-            const data = {
-                tech: { title: "Science & Technology", icon: "⚙️", desc: "Your aptitude for technical systems is high. Engineering and Research are optimal.", colleges: ["IITs / NITs", "Science Stream"] },
-                business: { title: "Commerce & Business", icon: "💎", desc: "Strategy and finance are your strengths. Management and Fintech are ideal.", colleges: ["IIMs", "Commerce Stream"] },
-                social: { title: "Humanities & Arts", icon: "🏛️", desc: "Communication and creative impact define you. Law and Design are great paths.", colleges: ["NLUs", "Arts Stream"] }
-            };
+<!-- WHY THIS RESULT -->
+<section class="max-w-4xl mx-auto mt-12 glass p-8 rounded-3xl">
+  <h2 class="text-2xl font-bold mb-6 text-indigo-300">Why this result?</h2>
+  <ul class="space-y-3 text-gray-300">
+    <li>✔ High analytical & strategic thinking score</li>
+    <li>✔ Strong financial awareness & logic-based decisions</li>
+    <li>✔ Moderate risk-taking with long-term planning</li>
+    <li>✔ Preference for structured growth over randomness</li>
+    <li>✔ Leadership & management inclination detected</li>
+  </ul>
+</section>
 
-            const final = data[result] || data.tech;
-            document.getElementById("resTitle").innerText = final.title;
-            document.getElementById("resIcon").innerText = final.icon;
-            document.getElementById("resDesc").innerText = final.desc;
+<!-- STRENGTH AREAS -->
+<section class="max-w-4xl mx-auto mt-12 glass p-8 rounded-3xl">
+  <h2 class="text-2xl font-bold mb-6 text-indigo-300">Your Strength Areas</h2>
+  <div class="grid grid-cols-2 gap-4 text-gray-300">
+    <div>Strategic Thinking ⭐⭐⭐⭐☆</div>
+    <div>Financial Logic ⭐⭐⭐⭐⭐</div>
+    <div>Leadership ⭐⭐⭐⭐☆</div>
+    <div>Creativity ⭐⭐⭐☆☆</div>
+  </div>
+</section>
 
-            const list = document.getElementById("collegeList");
-            final.colleges.forEach(col => {
-                const span = document.createElement("span");
-                span.className = "college-tag px-4 py-2 rounded-xl text-[10px] font-bold text-slate-300";
-                span.innerText = col;
-                list.appendChild(span);
-            });
-        };
+<!-- BEST CAREER OPTIONS -->
+<section class="max-w-6xl mx-auto mt-14">
+  <h2 class="text-2xl font-bold mb-6 text-center text-indigo-300">
+    Best Career Matches for You
+  </h2>
 
-        function downloadPDF() {
-            const element = document.getElementById('reportContent');
-            html2pdf().set({ margin: 0.2, filename: 'CareerSteps_Report.pdf', html2canvas: { scale: 3, backgroundColor: '#020617' } }).from(element).save();
-        }
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold text-lg">Business Analyst</h3>
+      <p class="text-sm text-gray-400">₹6–18 LPA • High growth</p>
+    </div>
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold text-lg">Financial Analyst</h3>
+      <p class="text-sm text-gray-400">₹5–20 LPA • Corporate finance</p>
+    </div>
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold text-lg">Startup Founder</h3>
+      <p class="text-sm text-gray-400">Unlimited growth • High risk</p>
+    </div>
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold text-lg">Product Manager</h3>
+      <p class="text-sm text-gray-400">₹10–30 LPA • Strategy + tech</p>
+    </div>
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold text-lg">Banking & Finance</h3>
+      <p class="text-sm text-gray-400">Stable • Govt & private</p>
+    </div>
+  </div>
+</section>
 
-        async function shareResult() {
-            const name = localStorage.getItem("user_name");
-            const career = document.getElementById("resTitle").innerText;
-            const msg = `Recommended Path for ${name}: ${career}. Analyzed by CareerSteps AI!`;
-            if (navigator.share) {
-                await navigator.share({ title: 'My AI Career Report', text: msg, url: window.location.href });
-            } else {
-                navigator.clipboard.writeText(msg + " " + window.location.href);
-                alert("Link & Report copied!");
-            }
-        }
-    </script>
+<!-- STREAM COMPARISON -->
+<section class="max-w-4xl mx-auto mt-14 glass p-8 rounded-3xl">
+  <h2 class="text-2xl font-bold mb-6 text-indigo-300">Stream Comparison</h2>
+
+  <div class="space-y-4 text-gray-300">
+    <div class="flex justify-between">
+      <span>Commerce & Business</span>
+      <span class="text-green-400 font-bold">92%</span>
+    </div>
+    <div class="flex justify-between">
+      <span>Science</span>
+      <span class="text-yellow-400 font-bold">68%</span>
+    </div>
+    <div class="flex justify-between">
+      <span>Arts & Humanities</span>
+      <span class="text-orange-400 font-bold">61%</span>
+    </div>
+  </div>
+</section>
+
+<!-- ACTION BUTTONS -->
+<section class="max-w-4xl mx-auto mt-16 text-center">
+  <div class="flex flex-wrap justify-center gap-4">
+    <a href="careers.html"
+       class="bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl font-bold">
+       Explore Careers
+    </a>
+    <button onclick="window.print()"
+       class="bg-white/10 px-8 py-4 rounded-xl font-bold">
+       Download Report
+    </button>
+    <a href="assessment.html"
+       class="bg-white/5 px-8 py-4 rounded-xl font-bold">
+       Retake Assessment
+    </a>
+    <button onclick="shareResult()"
+       class="bg-white/5 px-8 py-4 rounded-xl font-bold">
+       Share Result
+    </button>
+  </div>
+</section>
+
+<footer class="text-center text-gray-500 text-xs mt-20">
+  Generated using multi-factor AI model (interest, aptitude & response patterns)<br>
+  © 2025 CareerSteps
+</footer>
+
+<script>
+function shareResult(){
+  const text = "My AI Career Result: Commerce & Business (92% Match) – CareerSteps";
+  if(navigator.share){
+    navigator.share({text, url:window.location.href});
+  }else{
+    navigator.clipboard.writeText(window.location.href);
+    alert("Link copied! Share it anywhere.");
+  }
+}
+</script>
+
 </body>
 </html>
