@@ -11,7 +11,7 @@
 body{
   background:#020617;
   color:#fff;
-  font-family: 'Plus Jakarta Sans', system-ui; /* Updated font for premium feel */
+  font-family: 'Plus Jakarta Sans', system-ui;
 }
 .glass{
   background:rgba(255,255,255,.05);
@@ -35,112 +35,69 @@ body{
   </a>
 </header>
 
-<section class="max-w-4xl mx-auto mt-6 glass rounded-[2.5rem] p-8 md:p-12 text-center border border-white/10">
+<main id="reportArea">
+    <section class="max-w-4xl mx-auto mt-6 glass rounded-[2.5rem] p-8 md:p-12 text-center border border-white/10">
+      <span class="inline-block badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+        AI Analysis Complete
+      </span>
 
-  <span class="inline-block badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
-    AI Analysis Complete
-  </span>
+      <h1 id="resTitle" class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 leading-tight">
+        Commerce & <span class="text-indigo-400">Business</span>
+      </h1>
 
-  <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4">
-    Commerce & <span class="text-indigo-400">Business</span>
-  </h1>
+      <p class="text-green-400 font-mono text-sm mb-6">
+        Neural Match Accuracy: <strong id="resAccuracy">92%</strong>
+      </p>
 
-  <p class="text-green-400 font-mono text-sm mb-6">
-    Neural Match Accuracy: <strong>92%</strong>
-  </p>
+      <p id="resIntro" class="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
+        Based on your aptitude, interest patterns and decision-making behaviour,
+        AI strongly recommends this path.
+      </p>
 
-  <p class="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
-    Based on your aptitude, interest patterns and decision-making behaviour,
-    AI strongly recommends <strong>Commerce & Business</strong> as your primary career direction.
-  </p>
+      <div class="mt-12 text-left bg-white/5 p-8 rounded-[2rem] border border-white/5">
+        <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Why this result?</h2>
+        <ul id="logicList" class="space-y-3 text-gray-300 font-medium text-sm">
+          </ul>
+      </div>
 
-</section>
+      <div class="mt-8 text-left">
+        <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Your Strength Areas</h2>
+        <div id="strengthGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300 font-bold uppercase tracking-wide text-[11px]">
+          </div>
+      </div>
 
-<section class="max-w-4xl mx-auto mt-12 glass p-8 rounded-[2rem] border border-white/10">
-  <h2 class="text-2xl font-black italic uppercase mb-6 text-indigo-300">Why this result?</h2>
-  <ul class="space-y-3 text-gray-300 font-medium">
-    <li>✔ High analytical & strategic thinking score</li>
-    <li>✔ Strong financial awareness & logic-based decisions</li>
-    <li>✔ Moderate risk-taking with long-term planning</li>
-    <li>✔ Preference for structured growth over randomness</li>
-    <li>✔ Leadership & management inclination detected</li>
-  </ul>
-</section>
+      <div class="mt-14">
+        <h2 id="careerHeading" class="text-2xl font-black italic uppercase mb-8 text-center text-indigo-300">
+          Best Career Matches for You
+        </h2>
+        <div id="careerGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          </div>
+      </div>
 
-<section class="max-w-4xl mx-auto mt-12 glass p-8 rounded-[2rem] border border-white/10">
-  <h2 class="text-2xl font-black italic uppercase mb-6 text-indigo-300">Your Strength Areas</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300 font-bold uppercase tracking-wide text-sm">
-    <div class="bg-white/5 p-4 rounded-xl border border-white/5">Strategic Thinking ⭐⭐⭐⭐☆</div>
-    <div class="bg-white/5 p-4 rounded-xl border border-white/5">Financial Logic ⭐⭐⭐⭐⭐</div>
-    <div class="bg-white/5 p-4 rounded-xl border border-white/5">Leadership ⭐⭐⭐⭐☆</div>
-    <div class="bg-white/5 p-4 rounded-xl border border-white/5">Creativity ⭐⭐⭐☆☆</div>
-  </div>
-</section>
-
-<section class="max-w-6xl mx-auto mt-14 px-2">
-  <h2 class="text-2xl font-black italic uppercase mb-8 text-center text-indigo-300">
-    Best Career Matches for You
-  </h2>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <div class="glass p-6 rounded-2xl border border-white/10">
-      <h3 class="font-black italic uppercase text-lg mb-1">Business Analyst</h3>
-      <p class="text-xs text-indigo-400 font-bold uppercase tracking-widest">₹6–18 LPA • High growth</p>
-    </div>
-    <div class="glass p-6 rounded-2xl border border-white/10">
-      <h3 class="font-black italic uppercase text-lg mb-1">Financial Analyst</h3>
-      <p class="text-xs text-indigo-400 font-bold uppercase tracking-widest">₹5–20 LPA • Corporate finance</p>
-    </div>
-    <div class="glass p-6 rounded-2xl border border-white/10">
-      <h3 class="font-black italic uppercase text-lg mb-1">Startup Founder</h3>
-      <p class="text-xs text-indigo-400 font-bold uppercase tracking-widest">Unlimited growth • High risk</p>
-    </div>
-    <div class="glass p-6 rounded-2xl border border-white/10">
-      <h3 class="font-black italic uppercase text-lg mb-1">Product Manager</h3>
-      <p class="text-xs text-indigo-400 font-bold uppercase tracking-widest">₹10–30 LPA • Strategy + tech</p>
-    </div>
-    <div class="glass p-6 rounded-2xl border border-white/10">
-      <h3 class="font-black italic uppercase text-lg mb-1">Banking & Finance</h3>
-      <p class="text-xs text-indigo-400 font-bold uppercase tracking-widest">Stable • Govt & private</p>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-4xl mx-auto mt-14 glass p-8 rounded-[2rem] border border-white/10">
-  <h2 class="text-2xl font-black italic uppercase mb-6 text-indigo-300 text-center">Stream Comparison</h2>
-
-  <div class="space-y-4 text-gray-300 font-bold uppercase tracking-widest text-xs">
-    <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-      <span>Commerce & Business</span>
-      <span class="text-green-400 font-black italic text-lg">92%</span>
-    </div>
-    <div class="flex justify-between items-center p-4">
-      <span>Science</span>
-      <span class="text-yellow-400">68%</span>
-    </div>
-    <div class="flex justify-between items-center p-4">
-      <span>Arts & Humanities</span>
-      <span class="text-orange-400">61%</span>
-    </div>
-  </div>
-</section>
+      <div class="mt-14 pt-10 border-t border-white/10 text-left">
+        <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Stream Comparison</h2>
+        <div id="compList" class="space-y-4 text-gray-300 font-bold uppercase tracking-widest text-xs">
+          </div>
+      </div>
+    </section>
+</main>
 
 <section class="max-w-4xl mx-auto mt-16 text-center">
   <div class="flex flex-wrap justify-center gap-4">
-    <a href="careers.html"
-       class="bg-indigo-600 hover:bg-indigo-500 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-indigo-500/20 transition-all active:scale-95">
+    <a href="index.html#careers"
+       class="bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl font-bold text-sm">
        Explore 900+ Careers
     </a>
     <button onclick="window.print()"
-       class="bg-white/10 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/20 transition-all">
+       class="bg-white/10 px-8 py-4 rounded-xl font-bold text-sm">
        Download Report
     </button>
     <a href="assessment.html"
-       class="bg-white/5 px-6 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all text-gray-400">
+       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm">
        Retake Scan
     </a>
     <button onclick="shareResult()"
-       class="bg-white/5 px-6 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all text-gray-400">
+       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm">
        Share Result
     </button>
   </div>
@@ -152,16 +109,86 @@ body{
 </footer>
 
 <script>
+window.onload = function() {
+    const scores = JSON.parse(localStorage.getItem("scoreData")) || { tech: 8, business: 4, social: 3 };
+    const stage = localStorage.getItem("academic_stage") || "12";
+    const name = localStorage.getItem("user_name") || "Explorer";
+
+    const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    
+    const content = {
+        tech: {
+            title: stage === "10" ? "Science & <span class='text-indigo-400'>Tech</span>" : "Engineering & <span class='text-indigo-400'>Technology</span>",
+            logic: ["Superior logical consistency detected", "High aptitude for complex systems", "Evidence-based decision model"],
+            strengths: ["Analytical IQ ⭐⭐⭐⭐⭐", "Logical Depth ⭐⭐⭐⭐☆", "Technical Focus ⭐⭐⭐⭐⭐", "Innovation ⭐⭐⭐⭐☆"],
+            careers: [
+                {name: "Software Engineer", info: "₹8–25 LPA"},
+                {name: "Data Scientist", info: "₹10–30 LPA"},
+                {name: "Aerospace Design", info: "High Growth"}
+            ],
+            comp: ["Science: 94%", "Commerce: 62%", "Arts: 48%"]
+        },
+        business: {
+            title: "Commerce & <span class='text-indigo-400'>Business</span>",
+            logic: ["High analytical & strategic thinking score", "Strong financial awareness", "Leadership & management inclination"],
+            strengths: ["Strategic Thinking ⭐⭐⭐⭐☆", "Financial Logic ⭐⭐⭐⭐⭐", "Leadership ⭐⭐⭐⭐☆", "Creativity ⭐⭐⭐☆☆"],
+            careers: [
+                {name: "Business Analyst", info: "₹6–18 LPA"},
+                {name: "Financial Analyst", info: "₹5–20 LPA"},
+                {name: "Startup Founder", info: "Unlimited"}
+            ],
+            comp: ["Commerce: 92%", "Science: 68%", "Arts: 61%"]
+        },
+        social: {
+            title: "Arts & <span class='text-indigo-400'>Humanities</span>",
+            logic: ["High verbal/linguistic intelligence", "Strong social-cultural awareness", "Creative problem solving"],
+            strengths: ["Creative IQ ⭐⭐⭐⭐⭐", "Social Intelligence ⭐⭐⭐⭐⭐", "Communication ⭐⭐⭐⭐☆", "Empathy ⭐⭐⭐⭐☆"],
+            careers: [
+                {name: "Corporate Lawyer", info: "₹10–40 LPA"},
+                {name: "UX/UI Designer", info: "₹8–25 LPA"},
+                {name: "Media Expert", info: "₹6–20 LPA"}
+            ],
+            comp: ["Arts: 89%", "Commerce: 58%", "Science: 52%"]
+        }
+    };
+
+    const final = content[winner] || content.tech;
+    document.getElementById("resTitle").innerHTML = final.title;
+    document.getElementById("resAccuracy").innerText = final.comp[0].split(": ")[1];
+
+    // Logic
+    final.logic.forEach(l => { document.getElementById("logicList").innerHTML += `<li>✔ ${l}</li>`; });
+    // Strengths
+    final.strengths.forEach(s => { document.getElementById("strengthGrid").innerHTML += `<div class="bg-white/5 p-4 rounded-xl border border-white/5">${s}</div>`; });
+    // Careers
+    final.careers.forEach(c => {
+        document.getElementById("careerGrid").innerHTML += `
+            <div class="glass p-6 rounded-2xl border border-white/10 text-left">
+                <h3 class="font-bold text-lg text-white">${c.name}</h3>
+                <p class="text-sm text-gray-400">${c.info}</p>
+            </div>`;
+    });
+    // Comparison
+    final.comp.forEach((c, i) => {
+        const parts = c.split(": ");
+        document.getElementById("compList").innerHTML += `
+            <div class="flex justify-between items-center ${i === 0 ? 'bg-indigo-500/10 p-4 rounded-xl text-indigo-300' : 'p-4'}">
+                <span>${parts[0]}</span>
+                <span class="text-lg font-black italic">${parts[1]}</span>
+            </div>`;
+    });
+};
+
 function shareResult(){
-  const text = "I just discovered my ideal career: Commerce & Business (92% Match) using CareerSteps AI! 🚀";
-  if(navigator.share){
-    navigator.share({text, url:window.location.href});
-  }else{
-    navigator.clipboard.writeText(window.location.href);
-    alert("Link copied! Share it anywhere.");
-  }
+    const name = localStorage.getItem("user_name") || "Explorer";
+    const text = `Hey! I just found my career path on CareerSteps AI for ${name}. Check it out!`;
+    if(navigator.share){
+        navigator.share({title: 'My Career Result', text: text, url: window.location.href});
+    } else {
+        navigator.clipboard.writeText(text + " " + window.location.href);
+        alert("Link copied!");
+    }
 }
 </script>
-
 </body>
 </html>
