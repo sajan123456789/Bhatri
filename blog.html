@@ -19,16 +19,12 @@ body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sa
 .article-content li { margin-bottom: 1rem; padding-left: 1.8rem; position: relative; color: #d1d5db; line-height: 1.8; }
 .article-content li::before { content: "⚡"; position: absolute; left: 0; color: #3b82f6; }
 
-.table-container { width: 100%; overflow-x: auto; margin: 50px 0; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+.table-container { width: 100%; overflow-x: auto; margin: 50px 0; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); }
 table { width: 100%; border-collapse: collapse; min-width: 950px; background: rgba(255,255,255,0.01); }
 th, td { padding: 24px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; text-transform: uppercase; font-weight: 900; letter-spacing: 0.15em; }
 
-.info-card { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%); border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; border-radius: 2rem; margin: 4rem 0; }
-.progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-top: 10px; }
-.progress-fill { height: 100%; background: #3b82f6; }
-
-#mobile-menu { display: none; transition: all 0.3s ease; }
+#mobile-menu { display: none; }
 #mobile-menu.active { display: block; }
 </style>
 </head>
@@ -44,6 +40,10 @@ th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; te
     </nav>
     <button onclick="toggleMenu()" class="md:hidden text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg></button>
   </div>
+  <div id="mobile-menu" class="md:hidden bg-[#020617] border-b border-white/10 px-6 py-6 text-center">
+    <a href="index.html" class="block text-xs font-bold uppercase py-2">Home</a>
+    <a href="assessment.html" class="block text-xs font-bold uppercase text-blue-500 py-2">Start Assessment</a>
+  </div>
 </header>
 
 <main class="max-w-4xl mx-auto px-6 py-16 md:py-24">
@@ -51,7 +51,7 @@ th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; te
         <h1 class="text-5xl md:text-8xl font-black italic uppercase tracking-tighter mb-10 leading-[0.85] text-center">
             The <span class="text-blue-500">Ultimate</span> 2025 Career Roadmap
         </h1>
-        <p class="text-xl font-medium text-slate-400 italic text-center mb-20">An Authoritative 2,500+ Word Guide for the Future-Ready Indian Student.</p>
+        <p class="text-xl font-medium text-slate-400 italic text-center mb-20 leading-relaxed">The authoritative 2500+ word deep-dive for the ambitious Indian student navigating the post-AI world.</p>
 
         <h2>1. The Post-AI Career Landscape</h2>
         <p>In 2025, the global economy is undergoing a "Cognitive Shift." For Indian students, this means traditional degrees are no longer the finish line—they are just the starting blocks. Automation is expected to replace 85 million roles globally by 2030, but it will create 97 million new ones. These new roles require a blend of human empathy and machine logic.</p>
@@ -61,7 +61,7 @@ th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; te
         
 
         <h2>2. Deep Dive: Stream Selection After Class 10</h2>
-        <p>Choosing your stream is the most significant decision of your adolescent life. Here is the expanded breakdown:</p>
+        <p>Choosing your stream is the most significant decision of your adolescent life. Here is the expanded breakdown for the modern era:</p>
 
         <h3>The Science Paradigm (The Technical Backbone)</h3>
         <p>Science remains the premium choice due to its "Option Value." A science student can switch to commerce or arts later, but the reverse is difficult.
@@ -88,10 +88,11 @@ th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; te
         </p>
 
         <h2>3. The 2025 Power Rankings (Top 10 Career Paths)</h2>
+        <p>Based on market demand, starting salaries, and future-proofing, these are the top 10 career paths for Indian students today:</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Rank</th><th>Path</th><th>Exam/Degree</th><th>Core Competency</th><th>Projected Salary (LPA)</th></tr>
+                    <tr><th>Rank</th><th>Path</th><th>Exam/Degree</th><th>Core Competency</th><th>Salary (LPA)</th></tr>
                 </thead>
                 <tbody>
                     <tr><td>01</td><td>AI Research Scientist</td><td>IIT / MS / PhD</td><td>Math, PyTorch, LLM Tuning</td><td>₹25 - 75+</td></tr>
@@ -109,26 +110,17 @@ th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; te
         </div>
 
         <h2>4. The Competitive Exam Strategy (2.0)</h2>
-        <p>In 2025, just "studying hard" is a losing strategy. You need **"Exam Intelligence."**</p>
+        <p>Success in India's top exams like JEE, NEET, and CLAT now requires more than just hard work—it requires a tactical approach to data and performance psychology.</p>
         
-        <div class="info-card">
-            <h3 class="mt-0 text-white italic underline">The Winning Formula for JEE/NEET</h3>
+        <div class="glass p-8 md:p-12 my-10 border-blue-500/30 rounded-3xl">
+            <h3 class="mt-0 text-white italic underline">The Winning Formula</h3>
             <p>1. <strong>Concept Clarity (40%):</strong> Don't memorize formulas; derive them. AI-based tutoring can help you visualize Physics concepts.</p>
-            <p>2. <strong>Error Analysis (40%):</strong> Every mock test you give should be followed by a 3-hour post-mortem. Why did you fail? Was it a silly mistake or a concept gap?</p>
+            <p>2. <strong>Error Analysis (40%):</strong> Every mock test should be followed by a 3-hour post-mortem. Why did you fail? Was it a silly mistake or a concept gap?</p>
             <p>3. <strong>Mental Resilience (20%):</strong> Competitive exams are a psychological battle. 90% of students lose because they burn out 3 months before the exam.</p>
         </div>
 
         <h2>5. Building a "Proof of Work" (The New Resume)</h2>
-        <p>Employers in 2025 don't care about your college name as much as they care about what you have **built**.
-            <ul>
-                <li><strong>For Coders:</strong> A high-quality GitHub profile with original contributions.</li>
-                <li><strong>For Designers:</strong> A Behance/Dribbble portfolio showing "Real World Problems" solved through design.</li>
-                <li><strong>For Writers/Analysts:</strong> A Substack or Medium blog analyzing market trends.</li>
-            </ul>
-        </p>
-
-        <h2>6. Conclusion: Your Journey Starts Today</h2>
-        <p>Career guidance is not about telling you what to do; it's about showing you what is possible. The 2025 landscape is vast, exciting, and slightly terrifying. But for those with a plan, it is the most lucrative era in human history.</p>
+        <p>In 2025, degrees are becoming secondary to skills. Companies are hiring based on "Proof of Work"—your ability to demonstrate real-world impact before you are even hired.</p>
 
         <div class="glass p-10 md:p-20 my-20 text-center rounded-[3.5rem] border-blue-500/20 relative overflow-hidden shadow-2xl">
             <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-indigo-600/10 blur-[120px]"></div>
@@ -141,34 +133,39 @@ th { background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 0.85rem; te
     </article>
 </main>
 
-<footer class="bg-[#01030a] border-t border-white/5 py-24 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16">
+<footer class="bg-black/50 border-t border-white/10 py-16 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-left">
         <div class="col-span-1">
-            <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase inline-block mb-8">CAREER<span class="text-blue-500">STEPS</span></a>
-            <p class="text-[11px] text-slate-500 font-bold uppercase tracking-[0.25em] leading-relaxed">The definitive intelligence platform for the next generation of Indian leaders.</p>
+            <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase inline-block mb-6">
+                CAREER<span class="text-blue-500">STEPS</span>
+            </a>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-loose">
+                India's trusted AI-driven career guidance platform. Empowering students with data and psychology.
+            </p>
         </div>
         <div>
-            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-10 border-b border-blue-500/50 pb-2 inline-block">Platform</h5>
-            <ul class="space-y-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                <li><a href="index.html" class="hover:text-blue-400 transition">Main Portal</a></li>
-                <li><a href="assessment.html" class="hover:text-blue-400 transition">Neural Test</a></li>
-                <li><a href="careers.html" class="hover:text-blue-400 transition">Job Roadmaps</a></li>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-6">Navigation</h5>
+            <ul class="space-y-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+                <li><a href="assessment.html" class="hover:text-blue-400 transition">Career Test</a></li>
+                <li><a href="careers.html" class="hover:text-blue-400 transition">Explore Careers</a></li>
             </ul>
         </div>
         <div>
-            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-10 border-b border-blue-500/50 pb-2 inline-block">Policies</h5>
-            <ul class="space-y-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                <li><a href="privacy.html" class="hover:text-blue-400 transition">Privacy Vault</a></li>
-                <li><a href="terms.html" class="hover:text-blue-400 transition">Usage Terms</a></li>
-                <li><a href="disclaimer.html" class="hover:text-blue-400 transition">Legal Notice</a></li>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-6">Legal</h5>
+            <ul class="space-y-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                <li><a href="privacy.html" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+                <li><a href="terms.html" class="hover:text-blue-400 transition">Terms of Use</a></li>
+                <li><a href="disclaimer.html" class="hover:text-blue-400 transition">Disclaimer</a></li>
             </ul>
         </div>
         <div>
-            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-10 border-b border-blue-500/50 pb-2 inline-block">HQ</h5>
-            <p class="text-[11px] text-slate-400 font-bold uppercase tracking-widest mb-2 leading-loose">support@careersteps.in<br>New Delhi, India</p>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-6">Connect</h5>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2">support@careersteps.in</p>
+            <p class="text-[10px] text-slate-400 italic uppercase tracking-widest">Built for the future of India.</p>
         </div>
     </div>
-    <div class="text-center mt-24 pt-10 border-t border-white/5 text-[9px] text-slate-700 font-black uppercase tracking-[0.6em]">
+    <div class="text-center mt-16 pt-8 border-t border-white/5 text-[9px] text-slate-600 font-black uppercase tracking-[0.4em]">
         © 2025 CAREERSTEPS GLOBAL. ALL RIGHTS RESERVED.
     </div>
 </footer>
