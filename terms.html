@@ -13,6 +13,10 @@
 body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
 .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(16px); }
 .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Mobile Menu Hidden by default */
+#mobile-menu { display: none; }
+#mobile-menu.active { display: block; }
 </style>
 </head>
 
@@ -23,11 +27,19 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
     <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase transition-all active:scale-95 text-white">
       CAREER<span class="text-blue-500">STEPS</span>
     </a>
-    <nav class="flex items-center space-x-6 md:space-x-10">
+    <nav class="hidden md:flex items-center space-x-10">
       <a href="index.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">Home</a>
       <a href="about.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">About</a>
       <a href="privacy.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">Privacy</a>
     </nav>
+    <button onclick="toggleMenu()" class="md:hidden text-white focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 text-center">
+    <a href="index.html" class="block text-xs font-bold uppercase py-4 border-b border-white/5">Home</a>
+    <a href="about.html" class="block text-xs font-bold uppercase py-4 border-b border-white/5">About</a>
+    <a href="privacy.html" class="block text-xs font-bold uppercase py-4">Privacy</a>
   </div>
 </header>
 
@@ -45,64 +57,85 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
   <div class="glass p-8 md:p-12 rounded-[2.5rem] space-y-12 border-b-2 border-blue-500/20">
 
     <div>
-      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">01. Introduction</h3>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">Introduction</h3>
       <p class="text-slate-400 leading-relaxed font-medium">
         These Terms and Conditions govern your use of the CareerSteps website. By accessing or using our website, you agree to be bound by these terms. If you do not agree with any part of these terms, you must not use our services.
       </p>
     </div>
 
     <div>
-      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">02. Nature of Our Services</h3>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">Nature of Our Services</h3>
       <p class="text-slate-400 leading-relaxed mb-4 font-medium">
-        CareerSteps is an online career guidance and informational platform designed to assist students. 
+        CareerSteps is an online career guidance and informational platform designed to assist students in understanding career options after Class 10 and Class 12. We provide assessments, educational content and general career-related information.
       </p>
-      <div class="bg-white/5 p-6 rounded-3xl border border-white/5 font-bold text-xs uppercase tracking-wide text-slate-300 space-y-2">
-        <p>⚠️ CareerSteps does not provide professional counselling.</p>
-        <p>⚠️ No admission guarantees or job placement services.</p>
-        <p>⚠️ No exam success assurances.</p>
-      </div>
+      <p class="text-slate-500 leading-relaxed mt-3 text-sm font-bold border-l-2 border-blue-500 pl-4 uppercase">
+        CareerSteps does not provide professional counselling, admission guarantees, job placement services or exam success assurances.
+      </p>
     </div>
 
     <div>
-      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">03. User Responsibilities</h3>
-      <ul class="grid md:grid-cols-2 gap-4 text-slate-300">
-        <li class="bg-white/5 p-4 rounded-2xl border border-white/5 font-bold text-[10px] uppercase tracking-wide">✅ Use for educational purposes only</li>
-        <li class="bg-white/5 p-4 rounded-2xl border border-white/5 font-bold text-[10px] uppercase tracking-wide">✅ Do not misuse assessments</li>
-        <li class="bg-white/5 p-4 rounded-2xl border border-white/5 font-bold text-[10px] uppercase tracking-wide">✅ Do not copy website content</li>
-        <li class="bg-white/5 p-4 rounded-2xl border border-white/5 font-bold text-[10px] uppercase tracking-wide">✅ Ensure accuracy of info provided</li>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">User Eligibility</h3>
+      <p class="text-slate-400 leading-relaxed font-medium">
+        Our services are intended for students, parents and individuals seeking career-related information. Users under the age of 13 should use this website only with parental guidance.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">User Responsibilities</h3>
+      <ul class="list-disc list-inside text-slate-400 space-y-3 font-medium">
+        <li>Use the website for lawful and educational purposes only</li>
+        <li>Do not misuse assessments or attempt to manipulate results</li>
+        <li>Do not copy, reproduce or redistribute website content without permission</li>
+        <li>Ensure accuracy of any information voluntarily provided</li>
       </ul>
     </div>
 
     <div class="bg-blue-600/10 p-8 rounded-3xl border border-blue-500/20">
-      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-white">04. Intellectual Property</h3>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-white">Intellectual Property Rights</h3>
       <p class="text-slate-300 leading-relaxed font-medium text-sm">
-        All content on CareerSteps—text, design, assessments, and branding—is the intellectual property of CareerSteps. Unauthorized reproduction is strictly prohibited.
+        All content on CareerSteps, including text, design, layout, assessments and branding, is the intellectual property of CareerSteps unless otherwise stated. Unauthorized use of our content is strictly prohibited.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">Limitation of Liability</h3>
+      <p class="text-slate-400 leading-relaxed font-medium">
+        CareerSteps shall not be held liable for any direct or indirect loss, damage or inconvenience arising from the use of our website or reliance on information provided.
+      </p>
+      <p class="text-slate-400 leading-relaxed mt-3 font-bold uppercase text-[11px] tracking-wider italic">
+        Career decisions should always be made after personal evaluation, academic consultation and parental discussion.
       </p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-10">
       <div>
-        <h3 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Limitation of Liability</h3>
-        <p class="text-slate-400 text-sm font-medium leading-relaxed">CareerSteps shall not be liable for any loss arising from the use of our website. Career decisions should be made after personal evaluation.</p>
+        <h4 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Third-Party Links</h4>
+        <p class="text-slate-400 text-sm font-medium">Our website may contain links to third-party services. We assume no responsibility for their content or policies.</p>
       </div>
       <div>
-        <h3 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Third-Party Links</h3>
-        <p class="text-slate-400 text-sm font-medium leading-relaxed">We have no control over the content or policies of third-party websites linked on our platform.</p>
+        <h4 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Advertisements</h4>
+        <p class="text-slate-400 text-sm font-medium">We may display ads (Google AdSense). We are not responsible for the claims made in these advertisements.</p>
       </div>
       <div>
-        <h3 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Governing Law</h3>
-        <p class="text-slate-400 text-sm font-medium leading-relaxed">These Terms and Conditions shall be governed and interpreted in accordance with the laws of India.</p>
+        <h4 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Termination of Access</h4>
+        <p class="text-slate-400 text-sm font-medium">We reserve the right to restrict or terminate access without notice if users violate these terms.</p>
       </div>
       <div>
-        <h3 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Changes to Terms</h3>
-        <p class="text-slate-400 text-sm font-medium leading-relaxed">We may update these terms at any time. Continued use implies acceptance of the updated terms.</p>
+        <h4 class="text-lg font-black mb-2 uppercase text-white tracking-tight">Governing Law</h4>
+        <p class="text-slate-400 text-sm font-medium">These Terms and Conditions shall be governed in accordance with the laws of India.</p>
       </div>
     </div>
 
-    <div class="pt-10 border-t border-white/5 text-center">
-      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">Questions?</h3>
-      <p class="text-slate-400 font-medium mb-6">Contact us through the information provided on our Contact page.</p>
-      <a href="mailto:support@careersteps.in" class="text-[10px] font-black uppercase tracking-widest bg-white text-black px-8 py-4 rounded-full hover:bg-blue-500 hover:text-white transition">Get Support</a>
+    <div class="pt-10 border-t border-white/5 space-y-8">
+      <div>
+        <h3 class="text-xl font-black mb-2 uppercase italic tracking-tight text-blue-400">Changes to Terms</h3>
+        <p class="text-slate-400 font-medium">CareerSteps may update these Terms at any time. Continued use implies acceptance.</p>
+      </div>
+      <div class="bg-white/5 p-8 rounded-[2.5rem] text-center">
+        <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-white">Contact Us</h3>
+        <p class="text-slate-400 font-medium mb-6">Questions regarding these terms? Contact us via our Support email.</p>
+        <p class="text-blue-500 font-black uppercase tracking-widest text-xs">support@careersteps.in</p>
+      </div>
     </div>
 
   </div>
@@ -137,6 +170,10 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
         © 2025 CAREERSTEPS GLOBAL • ALL RIGHTS RESERVED
     </div>
 </footer>
+
+<script>
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
+</script>
 
 </body>
 </html>
