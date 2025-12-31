@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Disclaimer | CareerSteps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Disclaimer page for CareerSteps. Understand the limitations and educational nature of our career guidance platform.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+.glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(16px); }
+.text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Mobile Menu Logic */
+#mobile-menu { display: none; }
+#mobile-menu.active { display: block; }
+</style>
+</head>
+
+<body class="overflow-x-hidden">
+
+<header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase transition-all active:scale-95 text-white">
+      CAREER<span class="text-blue-500">STEPS</span>
+    </a>
+    <nav class="hidden md:flex items-center space-x-10">
+      <a href="index.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">Home</a>
+      <a href="about.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">About</a>
+      <a href="privacy.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">Privacy</a>
+    </nav>
+    <button onclick="toggleMenu()" class="md:hidden text-white focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 text-center">
+    <a href="index.html" class="block text-xs font-bold uppercase py-4 border-b border-white/5">Home</a>
+    <a href="about.html" class="block text-xs font-bold uppercase py-4 border-b border-white/5">About</a>
+    <a href="privacy.html" class="block text-xs font-bold uppercase py-4">Privacy</a>
+  </div>
+</header>
+
+<section class="max-w-4xl mx-auto mt-20 text-center px-6">
+  <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">Important Information</span>
+  <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter italic uppercase leading-none">
+    Our <span class="text-gradient">Disclaimer</span>
+  </h1>
+  <p class="text-slate-400 text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+    This disclaimer sets out the limitations and educational nature of the services provided by CareerSteps.
+  </p>
+</section>
+
+<section class="max-w-5xl mx-auto mt-16 mb-32 px-6">
+  <div class="glass p-8 md:p-12 rounded-[2.5rem] space-y-12 border-b-2 border-blue-500/20">
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">1. Educational and Informational Purpose</h3>
+      <p class="text-slate-400 leading-relaxed font-medium">
+        The information provided on CareerSteps (accessible via www.careersteps.in) is for general educational and informational purposes only. Our platform is built to help Indian students after Class 10th and 12th explore various career possibilities through AI-driven neural analysis. All content, including career descriptions, stream choices, and educational roadmaps, should be viewed as a starting point for further personal research.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">2. No Professional Advice</h3>
+      <p class="text-slate-400 leading-relaxed font-medium">
+        CareerSteps is not a licensed professional career consultancy, nor do we provide legal, financial, or certified vocational training advice. While our neural engine provides insights based on modern data trends, these suggestions should not be considered absolute professional guidance. Users are strongly encouraged to consult with qualified academic counselors and industry professionals before making final career decisions.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">3. No Guarantees of Outcome</h3>
+      <div class="bg-blue-600/10 p-8 rounded-3xl border border-blue-500/20">
+        <p class="text-slate-300 leading-relaxed font-medium text-sm mb-4">
+          CareerSteps makes no guarantees regarding the following outcomes:
+        </p>
+        <ul class="grid md:grid-cols-2 gap-3 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+          <li class="flex items-center gap-2"><span class="text-blue-500">●</span> No College Admission Guarantees</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">●</span> No Entrance Exam Success Assurances</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">●</span> No Job or Placement Guarantees</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">●</span> No Future Salary or Income Claims</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">4. Information Accuracy Disclaimer</h3>
+      <p class="text-slate-400 leading-relaxed font-medium">
+        The educational landscape in India, including admission dates and industry salaries, changes frequently. While we strive for accuracy, CareerSteps makes no warranties about the completeness, reliability, or timeliness of the information. Any action you take upon the information you find on this website is strictly at your own risk.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">5. External Links Responsibility</h3>
+      <p class="text-slate-400 leading-relaxed font-medium">
+        Our website may contain links to external sites that are not operated by us. CareerSteps has no control over the content and practices of these third-party sites and cannot accept responsibility or liability for their respective privacy policies or terms.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-black mb-4 uppercase italic tracking-tight text-blue-400">6. User Responsibility and Consent</h3>
+      <p class="text-slate-400 leading-relaxed font-medium italic">
+        By using CareerSteps, you hereby consent to our disclaimer and agree to its terms. It is the user's responsibility to verify official notification from university or government websites before applying for any stream or job path.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="bg-black/50 border-t border-white/10 py-20 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16">
+        <div class="col-span-1">
+            <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase inline-block mb-8 text-white">CAREER<span class="text-blue-500">STEPS</span></a>
+            <p class="text-[11px] text-slate-500 font-bold uppercase tracking-[0.2em] leading-relaxed">India's trusted AI-driven career guidance platform.</p>
+        </div>
+        <div>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-10 border-b-2 border-blue-500 pb-2 inline-block">Navigation</h5>
+            <ul class="space-y-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+                <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-10 border-b-2 border-blue-500 pb-2 inline-block">Legal</h5>
+            <ul class="space-y-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <li><a href="privacy.html" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+                <li><a href="disclaimer.html" class="text-blue-400">Disclaimer</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-10 border-b-2 border-blue-500 pb-2 inline-block">Support</h5>
+            <p class="text-[11px] text-slate-400 font-black uppercase tracking-widest">support@careersteps.in</p>
+        </div>
+    </div>
+    <div class="text-center mt-20 pt-10 border-t border-white/5 text-[10px] text-slate-700 font-black uppercase tracking-[0.6em]">
+        © 2025 CAREERSTEPS GLOBAL • ALL RIGHTS RESERVED
+    </div>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
+</script>
+
+</body>
+</html>
