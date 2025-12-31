@@ -1,99 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Contact Us | CareerSteps</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Contact CareerSteps for career guidance, feedback, or collaboration." />
+<meta charset="UTF-8">
+<title>CareerSteps – AI Powered Career Guidance Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CareerSteps is an AI-powered career guidance platform helping students after 10th & 12th choose the right career using data, psychology and future trends.">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      background: #020617;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont;
-    }
-    .glass {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(14px);
-    }
-  </style>
+<style>
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(900px circle at 20% 10%, rgba(56,189,248,0.12), transparent 40%),
+    radial-gradient(700px circle at 80% 20%, rgba(59,130,246,0.10), transparent 40%),
+    #020617;
+}
+.card-box{
+  background:rgba(15,23,42,.6);
+  border:1px solid rgba(255,255,255,.06);
+  transition:.3s;
+}
+.card-box:hover{
+  transform:translateY(-6px);
+  border-color:#3b82f6;
+  background:rgba(30,41,59,.6);
+}
+.footer-premium{
+  background:#000208;
+  border-top:1px solid rgba(59,130,246,.2);
+}
+</style>
 </head>
 
-<body class="min-h-screen px-4">
+<body>
 
-  <!-- HEADER -->
-  <header class="max-w-6xl mx-auto py-6">
-    <a href="index.html" class="text-xl font-bold text-white">
-      Career<span class="text-blue-500">Steps</span>
+<header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-extrabold italic uppercase tracking-tight">
+      CAREER<span class="text-blue-500">STEPS</span>
     </a>
-  </header>
 
-  <!-- CONTENT -->
-  <main class="max-w-6xl mx-auto py-14">
-    <h1 class="text-4xl font-extrabold mb-4">
-      Contact Us
+    <nav class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+      <a href="index.html" class="text-white">Home</a>
+      <a href="assessment.html" class="hover:text-white transition">Assessment</a>
+      <a href="careers.html" class="hover:text-white transition">Explore Career</a>
+      <a href="about.html" class="hover:text-white transition">About</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition text-white">
+        Get Started
+      </a>
+
+      <button id="menuBtn" class="md:hidden text-white p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 transition-all">
+    <nav class="flex flex-col gap-6 text-[12px] font-bold uppercase tracking-widest text-slate-400 text-center">
+      <a href="index.html" class="text-white">Home</a>
+      <a href="assessment.html" class="hover:text-white transition">Assessment</a>
+      <a href="careers.html" class="hover:text-white transition">Explore Career</a>
+      <a href="about.html" class="hover:text-white transition">About</a>
+      <a href="assessment.html" class="text-blue-500 pt-4 border-t border-white/5">Start AI Test →</a>
+    </nav>
+  </div>
+</header>
+
+<section class="py-24 text-center">
+  <div class="max-w-4xl mx-auto px-6">
+    <h1 class="text-5xl md:text-7xl font-black italic mb-6">
+      AI-Powered Career Guidance<br>
+      <span class="text-blue-500">Built for Indian Students</span>
     </h1>
-    <p class="text-gray-400 mb-10 max-w-2xl">
-      We'd love to hear from you. Reach out for career guidance, feedback, corrections, or collaboration.
+    <p class="text-slate-400 text-lg mb-10">
+      Backed by data, psychology & future job trends — not guesses.
     </p>
 
-    <div class="grid md:grid-cols-2 gap-8">
-
-      <!-- LEFT -->
-      <div class="glass rounded-2xl p-8">
-        <h2 class="text-xl font-semibold mb-4">Get in Touch</h2>
-
-        <p class="text-gray-300 mb-4">
-          CareerSteps is a career guidance platform built for Indian students.
-        </p>
-
-        <p class="mb-2">
-          <strong>Email:</strong><br />
-          <a href="mailto:careersteps987@gmail.com" class="text-blue-400 hover:underline">
-            careersteps987@gmail.com
-          </a>
-        </p>
-
-        <p class="mb-2">
-          <strong>Response Time:</strong><br />
-          Within 24–48 hours
-        </p>
-
-        <p class="text-gray-400 text-sm mt-4">
-          Support: Career guidance, platform issues, and suggestions.
-        </p>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="glass rounded-2xl p-8">
-        <h2 class="text-xl font-semibold mb-4">Quick Contact</h2>
-
-        <p class="text-gray-300 mb-6">
-          Click below to send us an email directly from your device.
-        </p>
-
-        <a
-          href="mailto:careersteps987@gmail.com?subject=CareerSteps%20Support"
-          class="inline-block bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-xl font-semibold"
-        >
-          Send Email
-        </a>
-
-        <p class="text-gray-500 text-sm mt-6">
-          No forms required. Your default email app will open automatically.
-        </p>
-      </div>
-
+    <div class="max-w-md mx-auto mb-10 flex flex-col gap-4">
+      <a href="assessment.html"
+         class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-xl font-bold text-sm uppercase transition w-full shadow-lg shadow-blue-500/20 text-white flex items-center justify-center">
+        Start AI Career Test →
+      </a>
+      <a href="careers.html"
+         class="bg-slate-800 hover:bg-slate-700 px-8 py-5 rounded-xl font-bold text-sm uppercase border border-white/10 w-full text-white flex items-center justify-center">
+        Explore All Careers
+      </a>
     </div>
-  </main>
 
-  <!-- FOOTER -->
-  <footer class="max-w-6xl mx-auto py-10 text-center text-gray-500 text-sm">
-    © 2025 CareerSteps. All rights reserved.
-  </footer>
+    <div class="mt-10 flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-slate-400">
+      <span>✔ AI-Driven Analysis</span>
+      <span>✔ 900+ Verified Careers</span>
+      <span>✔ India-Focused Data</span>
+      <span>✔ Free Assessment</span>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8">
+  <a href="after10.html" class="card-box p-10 rounded-[32px]">
+    <div class="text-3xl mb-6">🎓</div>
+    <h3 class="text-3xl font-black italic uppercase mb-4">After 10th</h3>
+    <p class="text-slate-400 mb-6">Choose the right stream using AI-based aptitude & interest analysis.</p>
+    <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Explore Stream Roadmap →</span>
+  </a>
+
+  <a href="after12.html" class="card-box p-10 rounded-[32px]">
+    <div class="text-3xl mb-6">🏢</div>
+    <h3 class="text-3xl font-black italic uppercase mb-4">After 12th</h3>
+    <p class="text-slate-400 mb-6">Discover degrees, entrance exams & future-ready careers.</p>
+    <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Explore Career Pathways →</span>
+  </a>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <h2 class="text-center text-3xl font-black italic mb-16">
+    Career Options After <span class="text-blue-500">10th & 12th</span>
+  </h2>
+  <div class="grid md:grid-cols-2 gap-10">
+    <div class="card-box p-8 rounded-2xl">
+      <h3 class="text-xl font-extrabold uppercase mb-6 text-blue-400">After 10th</h3>
+      <ul class="space-y-3 text-slate-300 font-semibold">
+        <li>✔ Science (PCM / PCB)</li>
+        <li>✔ Commerce</li>
+        <li>✔ Arts / Humanities</li>
+        <li>✔ Polytechnic / Diploma</li>
+        <li>✔ ITI & Skill Courses</li>
+        <li>✔ NDA / Defence (early prep)</li>
+      </ul>
+    </div>
+    <div class="card-box p-8 rounded-2xl">
+      <h3 class="text-xl font-extrabold uppercase mb-6 text-blue-400">After 12th</h3>
+      <ul class="space-y-3 text-slate-300 font-semibold">
+        <li>✔ Engineering / Medical / Science</li>
+        <li>✔ CA / CS / CMA / B.Com / BBA</li>
+        <li>✔ Law, Journalism, Humanities</li>
+        <li>✔ Government Exams (SSC, Banking)</li>
+        <li>✔ Design, Media, Creative Fields</li>
+        <li>✔ AI, Data, Digital Careers</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-premium pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+      <p class="text-slate-400 text-sm font-semibold">India’s trusted AI career guidance platform.</p>
+    </div>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
+      <ul class="text-slate-300 text-sm font-bold space-y-4">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assessment.html">Career Test</a></li>
+        <li><a href="careers.html">Explore Career</a></li>
+      </ul>
+    </div>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
+      <ul class="text-slate-300 text-sm font-bold space-y-4">
+        <li><a href="after10.html">After 10th</a></li>
+        <li><a href="after12.html">After 12th</a></li>
+      </ul>
+    </div>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
+      <ul class="text-slate-300 text-sm font-bold space-y-4">
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center mt-16 pt-8 border-t border-white/5">
+    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest">© 2025 CareerSteps • AI-powered advisory platform.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+  // NOTE: startAssessment function and Input logic removed to keep code clean.
+</script>
 
 </body>
 </html>
