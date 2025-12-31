@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>CareerSteps Blog – Official Roadmaps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="description" content="Expert-written career guidance articles for Indian students. Sequential roadmap after 10th and 12th.">
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +13,6 @@
 body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sans-serif; }
 .blog-container { max-width: 900px; margin: 0 auto; }
 
-/* CareerCompass Style List */
 .blog-card { 
     background: rgba(255, 255, 255, 0.02); 
     border: 1px solid rgba(255, 255, 255, 0.08); 
@@ -37,7 +35,7 @@ body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sa
     color: white;
     border-radius: 16px;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 1.2rem;
+    font-weight: 900; font-size: 1.2rem;
     box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
 }
 #mobile-menu { display: none; }
@@ -59,11 +57,9 @@ body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sa
     </a>
     <nav class="hidden md:flex items-center space-x-10">
       <a href="index.html" class="text-[10px] font-black uppercase tracking-widest hover:text-indigo-400 transition">Home</a>
-      <a href="assessment.html" class="px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-[10px] font-extrabold tracking-widest text-white transition-all shadow-xl shadow-blue-600/25">START ASSESSMENT</a>
+      <a href="assessment.html" class="px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-[10px] font-black tracking-widest text-white transition-all shadow-xl shadow-blue-600/25 uppercase">Start Assessment</a>
     </nav>
-    <button onclick="toggleMenu()" class="md:hidden text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
-    </button>
+    <button onclick="toggleMenu()" class="md:hidden text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg></button>
   </div>
   <div id="mobile-menu" class="md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 text-center">
     <a href="index.html" class="block text-xs font-bold uppercase py-3">Home</a>
@@ -73,13 +69,12 @@ body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sa
 
 <section class="max-w-4xl mx-auto px-6 py-20 text-center">
   <h1 class="text-5xl md:text-8xl font-black italic uppercase tracking-tighter mb-6 leading-none">
-    Career <span class="text-blue-500 text-outline">Library</span>
+    Career <span class="text-blue-500">Library</span>
   </h1>
-  <p class="text-slate-400 text-sm md:text-lg font-medium uppercase tracking-[0.4em]">Sequential Guide to Success</p>
+  <p class="text-slate-400 text-xs md:text-sm font-black uppercase tracking-[0.5em]">Sequential Guide to Success</p>
 </section>
 
 <section class="blog-container px-6 pb-32">
-    
     <div id="blog-list"></div>
 
     <script>
@@ -101,9 +96,9 @@ body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sa
         <div class="blog-card">
             <div class="num-badge">${blog.id}</div>
             <div class="flex-1">
-                <h2 class="text-2xl font-extrabold text-white mb-3 tracking-tight">${blog.title}</h2>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">${blog.desc}</p>
-                <a href="${blog.link}" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 hover:text-white transition-all group">
+                <h2 class="text-2xl md:text-3xl font-black text-white mb-3 tracking-tight leading-tight uppercase italic">${blog.title}</h2>
+                <p class="text-slate-400 text-sm font-medium leading-relaxed mb-6">${blog.desc}</p>
+                <a href="${blog.link}" class="inline-flex items-center text-[11px] font-black uppercase tracking-[0.3em] text-blue-500 hover:text-white transition-all group">
                     READ FULL GUIDE 
                     <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </a>
@@ -120,26 +115,26 @@ body { background: #020617; color: #e5e7eb; font-family: 'Plus Jakarta Sans', sa
             <p class="text-[11px] text-slate-500 font-bold uppercase tracking-[0.2em] leading-relaxed">India's trusted AI-driven career guidance platform.</p>
         </div>
         <div>
-            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-10 border-b border-blue-500/50 pb-2 inline-block">Navigation</h5>
-            <ul class="space-y-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <h5 class="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-10 border-b-2 border-blue-500 pb-2 inline-block">Navigation</h5>
+            <ul class="space-y-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
                 <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
                 <li><a href="assessment.html" class="hover:text-blue-400 transition">Career Test</a></li>
             </ul>
         </div>
         <div>
-            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-10 border-b border-blue-500/50 pb-2 inline-block">Legal</h5>
-            <ul class="space-y-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <h5 class="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-10 border-b-2 border-blue-500 pb-2 inline-block">Legal</h5>
+            <ul class="space-y-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
                 <li><a href="privacy.html" class="hover:text-blue-400 transition">Privacy Policy</a></li>
                 <li><a href="terms.html" class="hover:text-blue-400 transition">Terms of Use</a></li>
             </ul>
         </div>
         <div>
-            <h5 class="text-white font-black text-[10px] uppercase tracking-widest mb-10 border-b border-blue-500/50 pb-2 inline-block">Support</h5>
-            <p class="text-[11px] text-slate-400 font-bold uppercase tracking-widest">support@careersteps.in</p>
+            <h5 class="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-10 border-b-2 border-blue-500 pb-2 inline-block">Support</h5>
+            <p class="text-[11px] text-slate-400 font-black uppercase tracking-widest">support@careersteps.in</p>
         </div>
     </div>
-    <div class="text-center mt-20 pt-10 border-t border-white/5 text-[9px] text-slate-700 font-black uppercase tracking-[0.5em]">
-        © 2025 CAREERSTEPS GLOBAL. ALL RIGHTS RESERVED.
+    <div class="text-center mt-20 pt-10 border-t border-white/5 text-[10px] text-slate-700 font-black uppercase tracking-[0.6em]">
+        © 2025 CAREERSTEPS GLOBAL.
     </div>
 </footer>
 
