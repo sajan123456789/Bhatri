@@ -32,24 +32,6 @@ body{
   background:#000208;
   border-top:1px solid rgba(59,130,246,.2);
 }
-
-/* --- NEW HERO ANIMATIONS --- */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-@keyframes pulse-glow {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(59,130,246,0.4)); opacity: 1; }
-  50% { filter: drop-shadow(0 0 25px rgba(59,130,246,0.8)); opacity: 0.8; }
-}
-
-.animate-spin-slow { animation: spin-slow 12s linear infinite; }
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-pulse-glow { animation: pulse-glow 3s infinite; }
 </style>
 </head>
 
@@ -57,20 +39,8 @@ body{
 
 <header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-white/5">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    
-    <a href="index.html" class="flex items-center gap-3 group shrink-0 transition-all duration-300 active:scale-95">
-      <div class="relative w-10 h-10 flex items-center justify-center">
-        <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" fill="none" stroke="#3b82f6" stroke-width="4" />
-          <path d="M35 65 L45 65 L45 55 L55 55 L55 45 L65 45" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <div class="flex flex-col leading-none">
-        <span class="text-xl font-black italic tracking-tighter uppercase text-white">
-          CAREER<span class="text-blue-500">STEPS</span>
-        </span>
-        <span class="text-[7px] font-bold tracking-[0.4em] uppercase text-slate-500">AI Guidance</span>
-      </div>
+    <a href="index.html" class="text-xl font-extrabold italic uppercase tracking-tight">
+      CAREER<span class="text-blue-500">STEPS</span>
     </a>
 
     <nav class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
@@ -84,9 +54,10 @@ body{
       <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition text-white">
         Get Started
       </a>
+
       <button id="menuBtn" class="md:hidden text-white p-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
@@ -103,36 +74,8 @@ body{
   </div>
 </header>
 
-<section class="py-20 text-center relative overflow-hidden">
-  <div class="max-w-4xl mx-auto px-6 relative z-10">
-    
-    <div class="flex justify-center mb-8">
-      <div class="relative w-48 h-48 md:w-64 md:h-64 animate-float">
-        <div class="absolute inset-0 animate-spin-slow opacity-30">
-          <svg viewBox="0 0 200 200" class="w-full h-full">
-            <circle cx="100" cy="100" r="90" stroke="#3b82f6" stroke-width="1" stroke-dasharray="10 10" fill="none" />
-            <circle cx="100" cy="100" r="70" stroke="#3b82f6" stroke-width="2" stroke-dasharray="20 30" fill="none" />
-            <circle cx="100" cy="100" r="90" fill="none">
-               <animateMotion dur="6s" repeatCount="indefinite" path="M100,10 a90,90 0 1,0 0,180 a90,90 0 1,0 0,-180" />
-               <circle r="4" fill="#60a5fa" />
-            </circle>
-          </svg>
-        </div>
-        
-        <div class="absolute inset-0 flex items-center justify-center animate-pulse-glow">
-          <svg viewBox="0 0 100 100" class="w-32 h-32 drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]">
-            <path d="M50 10 L85 30 L85 70 L50 90 L15 70 L15 30 Z" fill="rgba(30,58,138,0.3)" stroke="#3b82f6" stroke-width="2" />
-            <path d="M50 50 L50 20 M50 50 L75 35 M50 50 L75 65 M50 50 L50 80 M50 50 L25 65 M50 50 L25 35" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" />
-            <circle cx="50" cy="50" r="8" fill="#fff" />
-            <circle cx="50" cy="20" r="3" fill="#3b82f6" />
-            <circle cx="75" cy="35" r="3" fill="#3b82f6" />
-            <circle cx="75" cy="65" r="3" fill="#3b82f6" />
-            <circle cx="25" cy="65" r="3" fill="#3b82f6" />
-            <circle cx="25" cy="35" r="3" fill="#3b82f6" />
-          </svg>
-        </div>
-      </div>
-    </div>
+<section class="py-24 text-center">
+  <div class="max-w-4xl mx-auto px-6">
     <h1 class="text-5xl md:text-7xl font-black italic mb-6">
       AI-Powered Career Guidance<br>
       <span class="text-blue-500">Built for Indian Students</span>
@@ -210,15 +153,7 @@ body{
 <footer class="footer-premium pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10">
-          <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" fill="none" stroke="#3b82f6" stroke-width="4" />
-            <path d="M35 65 L45 65 L45 55 L55 55 L55 45 L65 45" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <h2 class="text-xl font-extrabold italic uppercase text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
-      </div>
+      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
       <p class="text-slate-400 text-sm font-semibold">India’s trusted AI career guidance platform.</p>
     </div>
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
@@ -241,9 +176,10 @@ body{
       <ul class="text-slate-300 text-sm font-bold space-y-4">
         <li><a href="about.html">About</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="disclaimer.html">Disclaimer</a></li>
         <li><a href="terms.html">Terms & Conditions</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html">contact</a></li>
       </ul>
     </div>
   </div>
@@ -253,9 +189,12 @@ body{
 </footer>
 
 <script>
+  // Mobile menu toggle
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+  // NOTE: startAssessment function and Input logic removed to keep code clean.
 </script>
 
 </body>
