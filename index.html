@@ -32,6 +32,12 @@ body{
   background:#000208;
   border-top:1px solid rgba(59,130,246,.2);
 }
+/* Advanced Logo Animation */
+@keyframes neonPulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(59,130,246,0.6)); }
+  50% { filter: drop-shadow(0 0 15px rgba(59,130,246,0.9)); }
+}
+.logo-animate { animation: neonPulse 3s infinite; }
 </style>
 </head>
 
@@ -41,18 +47,23 @@ body{
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     
     <a href="index.html" class="flex items-center gap-3 group shrink-0 transition-all duration-300 active:scale-95">
-      <div class="relative w-10 h-10 flex items-center justify-center">
-        <svg viewBox="0 0 24 24" class="w-full h-full drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" class="fill-blue-500/20 stroke-blue-500" stroke-width="1.8"/>
-          <path d="M9 15.5H11V13.5H13V11.5H15V9.5" class="stroke-white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="15" cy="9.5" r="1" class="fill-blue-400 group-hover:fill-white transition-colors" />
+      <div class="relative w-12 h-12 flex items-center justify-center logo-animate">
+        <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" fill="none" stroke="#3b82f6" stroke-width="3" class="opacity-40" />
+          <path d="M50 15 L80 32 L80 68 L50 85 L20 68 L20 32 Z" fill="rgba(59,130,246,0.15)" stroke="#60a5fa" stroke-width="2" />
+          <path d="M35 65 L45 65 L45 55 L55 55 L55 45 L65 45" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="65" cy="45" r="4" fill="#3b82f6">
+            <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
+          </circle>
         </svg>
       </div>
       <div class="flex flex-col leading-none">
-        <span class="text-xl font-black italic tracking-tighter uppercase text-white">
-          CAREER<span class="text-blue-500 group-hover:text-blue-400 transition-colors">STEPS</span>
+        <span class="text-2xl font-black italic tracking-tighter uppercase text-white">
+          CAREER<span class="text-blue-500 group-hover:text-blue-400 transition-colors duration-300">STEPS</span>
         </span>
-        <span class="text-[7px] font-bold tracking-[0.4em] uppercase text-slate-500">AI Powered Guidance</span>
+        <span class="text-[8px] font-bold tracking-[0.4em] uppercase text-slate-500 group-hover:text-blue-300 transition-colors">
+          Next-Gen AI Guidance
+        </span>
       </div>
     </a>
 
@@ -67,7 +78,6 @@ body{
       <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition text-white">
         Get Started
       </a>
-
       <button id="menuBtn" class="md:hidden text-white p-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -167,10 +177,10 @@ body{
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-8 h-8">
-          <svg viewBox="0 0 24 24" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" class="fill-blue-500/20 stroke-blue-500" stroke-width="2"/>
-            <path d="M9 15.5H11V13.5H13V11.5H15V9.5" class="stroke-white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <div class="w-10 h-10">
+          <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" fill="none" stroke="#3b82f6" stroke-width="4" />
+            <path d="M35 65 L45 65 L45 55 L55 55 L55 45 L65 45" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </div>
         <h2 class="text-xl font-extrabold italic uppercase text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
