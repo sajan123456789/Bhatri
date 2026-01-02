@@ -39,146 +39,114 @@ body{
 
 <header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-white/5">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="index.html" class="flex items-center gap-3 group transition-all duration-300 active:scale-95">
-  <div class="relative w-10 h-10 flex items-center justify-center">
-    <svg viewBox="0 0 24 24" class="w-full h-full drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" 
-            class="fill-blue-500/20 stroke-blue-500 transition-all duration-300 group-hover:fill-blue-500/30" 
-            stroke-width="1.8"/>
-      <path d="M8 15H10V13H12V11H14V9" 
-            class="stroke-white group-hover:stroke-blue-200 transition-colors duration-300" 
-            stroke-width="2" 
-            stroke-linecap="round" 
-            stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <div class="flex flex-col leading-none">
-    <span class="text-xl font-black italic tracking-tighter uppercase text-white">
-      CAREER<span class="text-blue-500 group-hover:text-blue-400 transition-colors">STEPS</span>
-    </span>
-    <span class="text-[7px] font-bold tracking-[0.4em] uppercase text-slate-500 group-hover:text-slate-400">
-      AI Career Guidance
-    </span>
-  </div>
+    
+    <a href="index.html" class="flex items-center gap-3 group shrink-0 transition-all duration-300 active:scale-95">
+      <div class="relative w-10 h-10 flex items-center justify-center">
+        <svg viewBox="0 0 24 24" class="w-full h-full drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" class="fill-blue-500/20 stroke-blue-500" stroke-width="1.8"/>
+          <path d="M8 15H10V13H12V11H14V9" class="stroke-white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="flex flex-col leading-none">
+        <span class="text-xl font-black italic tracking-tighter uppercase text-white">
+          CAREER<span class="text-blue-500">STEPS</span>
+        </span>
+        <span class="text-[7px] font-bold tracking-[0.4em] uppercase text-slate-500">AI Guidance</span>
+      </div>
     </a>
 
+    <nav class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+      <a href="index.html" class="text-white">Home</a>
+      <a href="assessment.html" class="hover:text-white transition">Assessment</a>
+      <a href="careers.html" class="hover:text-white transition">Explore Career</a>
+      <a href="blog.html" class="hover:text-white transition">Blog</a>
+    </nav>
 
-
-         nav c=ass="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-4
-          <a =ref="index.h ml" c=ass="text-whiHomeHome
-          <a =ref="assessment.h ml" c=ass="hover:text-white transitiAssessmentment
-          <a =ref="careers.h ml" c=ass="hover:text-white transitiExplore Careerreer
-          <a =ref="blog.h ml" c=ass="hover:text-white transitiBlogBlog
-        </
-
-         div c=ass="flex items-center gap
-          <a =ref="assessment.h ml" c=ass="hidden sm:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition text-whi
+    <div class="flex items-center gap-4">
+      <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition text-white">
         Get Started
-          
+      </a>
 
-          <bu to= id="menu tn" c=ass="md:hidden text-white p
-             svg x=lns="http://www.w3.org/2000/ vg" c=ass="h-6  -6" =ill="n ne" vie=Box="0 0 24 24" st=oke="currentCol
-              < ath stroke-lin=cap="ro nd" stroke-line=oin="ro nd" stroke-w=dth "=" d="M4 6h16M4 12h16M4 18 16
-            </
-          </but
-        </
-  >
-  </
+      <button id="menuBtn" class="md:hidden text-white p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </div>
 
-  
+  <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 transition-all">
+    <nav class="flex flex-col gap-6 text-[12px] font-bold uppercase tracking-widest text-slate-400 text-center">
+      <a href="index.html" class="text-white">Home</a>
+      <a href="assessment.html" class="hover:text-white transition">Assessment</a>
+      <a href="careers.html" class="hover:text-white transition">Explore Career</a>
+      <a href="about.html" class="hover:text-white transition">About</a>
+      <a href="assessment.html" class="text-blue-500 pt-4 border-t border-white/5">Start AI Test →</a>
+    </nav>
+  </div>
+</header>
 
-   di= id="mobileM nu" c=ass="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 transition-a
-         nav c=ass="flex flex-col gap-6 text-[12px] font-bold uppercase tracking-widest text-slate-400 text-cent
-          <a =ref="index.h ml" c=ass="text-whiHomeHome
-          <a =ref="assessment.h ml" c=ass="hover:text-white transitiAssessmentment
-          <a =ref="careers.h ml" c=ass="hover:text-white transitiExplore Careerreer
-          <a =ref="about.h ml" c=ass="hover:text-white transitiAboutbout
-          <a =ref="assessment.h ml" c=ass="text-blue-500 pt-4 border-t border-whiteStart AI Test →st →
-        </
-  >
-  </
-iv>
-</hea
-
-r>
-
-<sec ion c=ass="py-24 text-cent
-  >
-   div c=ass="max-w-4xl mx-auto px
-        <h1 c=ass="text-5xl md:text-7xl font-black italic mb
-      AI-Powered Career Guidanceance
-          < pan c=ass="text-blue-5Built for Indian Studentsents</s
-        <
-        <p c=ass="text-slate-400 text-lg mb-
+<section class="py-24 text-center">
+  <div class="max-w-4xl mx-auto px-6">
+    <h1 class="text-5xl md:text-7xl font-black italic mb-6">
+      AI-Powered Career Guidance<br>
+      <span class="text-blue-500">Built for Indian Students</span>
+    </h1>
+    <p class="text-slate-400 text-lg mb-10">
       Backed by data, psychology & future job trends — not guesses.
-        
+    </p>
 
-         div c=ass="max-w-md mx-auto mb-10 flex flex-col gap
-          <a =ref="assessment.h
-             c=ass="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-xl font-bold text-sm uppercase transition w-full shadow-lg shadow-blue-500/20 text-white flex items-center justify-cent
+    <div class="max-w-md mx-auto mb-10 flex flex-col gap-4">
+      <a href="assessment.html"
+         class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-xl font-bold text-sm uppercase transition w-full shadow-lg shadow-blue-500/20 text-white flex items-center justify-center">
         Start AI Career Test →
-          
-          <a =ref="careers.h
-             c=ass="bg-slate-800 hover:bg-slate-700 px-8 py-5 rounded-xl font-bold text-sm uppercase border border-white/10 w-full text-white flex items-center justify-cent
+      </a>
+      <a href="careers.html"
+         class="bg-slate-800 hover:bg-slate-700 px-8 py-5 rounded-xl font-bold text-sm uppercase border border-white/10 w-full text-white flex items-center justify-center">
         Explore All Careers
-          
-        </
+      </a>
+    </div>
 
-         div c=ass="mt-10 flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-slate-4
-          <s✔ AI-Driven Analysisysis</s
-          <s✔ 900+ Verified Careerseers</s
-          <s✔ India-Focused DataData</s
-          <s✔ Free Assessmentment</s
-        </
-  >
-  </
-iv>
-</sect
+    <div class="mt-10 flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-slate-400">
+      <span>✔ AI-Driven Analysis</span>
+      <span>✔ 900+ Verified Careers</span>
+      <span>✔ India-Focused Data</span>
+      <span>✔ Free Assessment</span>
+    </div>
+  </div>
+</section>
 
-n>
+<section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8">
+  <a href="after10.html" class="card-box p-10 rounded-[32px]">
+    <div class="text-3xl mb-6">🎓</div>
+    <h3 class="text-3xl font-black italic uppercase mb-4">After 10th</h3>
+    <p class="text-slate-400 mb-6">Choose the right stream using AI-based aptitude & interest analysis.</p>
+    <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Explore Stream Roadmap →</span>
+  </a>
 
-<sec ion c=ass="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap
-  >
-  <a =ref="after10.h ml" c=ass="card-box p-10 rounded-[32p
-         div c=ass="text-3xl mb🎓">🎓</
-        <h3 c=ass="text-3xl font-black italic uppercase mbAfter 10th10th<
-        <p c=ass="text-slate-400 mbChoose the right stream using AI-based aptitude & interest analysis.sis.
-        < pan c=ass="text-blue-500 font-bold uppercase tracking-widest text-Explore Stream Roadmap →ap →</s
-  >
-  
+  <a href="after12.html" class="card-box p-10 rounded-[32px]">
+    <div class="text-3xl mb-6">🏢</div>
+    <h3 class="text-3xl font-black italic uppercase mb-4">After 12th</h3>
+    <p class="text-slate-400 mb-6">Discover degrees, entrance exams & future-ready careers.</p>
+    <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Explore Career Pathways →</span>
+  </a>
+</section>
 
-  
-
-  <a =ref="after12.h ml" c=ass="card-box p-10 rounded-[32p
-         div c=ass="text-3xl mb🏢">🏢</
-        <h3 c=ass="text-3xl font-black italic uppercase mbAfter 12th12th<
-        <p c=ass="text-slate-400 mbDiscover degrees, entrance exams & future-ready careers.ers.
-        < pan c=ass="text-blue-500 font-bold uppercase tracking-widest text-Explore Career Pathways →ys →</s
-  >
-  
-/a>
-</sect
-
-n>
-
-<sec ion c=ass="max-w-7xl mx-auto px-6 py-
-  >
-  <h2 c=ass="text-center text-3xl font-black italic mb-
-    Career Options After ter < pan c=ass="text-blue-510th & 12th12th</s
-  >
-  <
-  >
-   div c=ass="grid md:grid-cols-2 gap-
-         div c=ass="card-box p-8 rounded-2
-          <h3 c=ass="text-xl font-extrabold uppercase mb-6 text-blue-4After 10th10th<
-          <ul c=ass="space-y-3 text-slate-300 font-semibo
-            ✔ Science (PCM / PCB)PCB)<
-            ✔ Commerceerce<
-            ✔ Arts / Humanitiesties<
-            ✔ Polytechnic / Diplomaloma<
-            ✔ ITI & Skill Coursesrses<
-            ✔ NDA / Defence (early prep)rep)<
-          <
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <h2 class="text-center text-3xl font-black italic mb-16">
+    Career Options After <span class="text-blue-500">10th & 12th</span>
+  </h2>
+  <div class="grid md:grid-cols-2 gap-10">
+    <div class="card-box p-8 rounded-2xl">
+      <h3 class="text-xl font-extrabold uppercase mb-6 text-blue-400">After 10th</h3>
+      <ul class="space-y-3 text-slate-300 font-semibold">
+        <li>✔ Science (PCM / PCB)</li>
+        <li>✔ Commerce</li>
+        <li>✔ Arts / Humanities</li>
+        <li>✔ Polytechnic / Diploma</li>
+        <li>✔ ITI & Skill Courses</li>
+        <li>✔ NDA / Defence (early prep)</li>
+      </ul>
     </div>
     <div class="card-box p-8 rounded-2xl">
       <h3 class="text-xl font-extrabold uppercase mb-6 text-blue-400">After 12th</h3>
@@ -197,7 +165,15 @@ n>
 <footer class="footer-premium pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-8">
+          <svg viewBox="0 0 24 24" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" class="fill-blue-500/20 stroke-blue-500" stroke-width="2"/>
+            <path d="M8 15H10V13H12V11H14V9" class="stroke-white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="text-xl font-extrabold italic uppercase text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+      </div>
       <p class="text-slate-400 text-sm font-semibold">India’s trusted AI career guidance platform.</p>
     </div>
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
@@ -220,10 +196,9 @@ n>
       <ul class="text-slate-300 text-sm font-bold space-y-4">
         <li><a href="about.html">About</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="about.html">About</a></li>
         <li><a href="disclaimer.html">Disclaimer</a></li>
         <li><a href="terms.html">Terms & Conditions</a></li>
-        <li><a href="contact.html">contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
@@ -233,12 +208,9 @@ n>
 </footer>
 
 <script>
-  // Mobile menu toggle
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-
-  // NOTE: startAssessment function and Input logic removed to keep code clean.
 </script>
 
 </body>
