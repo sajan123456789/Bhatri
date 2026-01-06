@@ -10542,5 +10542,260 @@ exams: ["N/A"],
 skills: ["Legal Software Implementation", "Workflow Automation", "Data Privacy", "Vendor Selection"],
 salary: { entry: "7-12 LPA", mid: "18-35 LPA", senior: "50-95 LPA" },
 future: "A new-age role bridging the gap between law and technology for large legal departments."
-}
+},
+  {
+    "id": "AF10_001",
+    "title": "Industrial Electrician",
+    "category": "ITI Trades",
+    "subCategory": "Electrical",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (NCVT/SCVT)",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "Government/Private ITIs, DGT",
+    "skills": ["Wiring", "Circuit Repair", "Motor Maintenance", "Safety Protocols"],
+    "salary": {
+      "entry": "1.8 - 2.4 LPA",
+      "mid": "3.5 - 5.0 LPA",
+      "senior": "6.0 - 9.0 LPA"
+    },
+    "futureScope": "High demand in Smart City projects, Green Energy (Solar), and Manufacturing sectors."
+  },
+  {
+    "id": "AF10_002",
+    "title": "Fitter (Mechanical)",
+    "category": "ITI Trades",
+    "subCategory": "Manufacturing",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (NCVT/SCVT)",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, Railway Training Institutes",
+    "skills": ["Machine Assembly", "Precision Measurement", "Drilling", "Lathe Work"],
+    "salary": {
+      "entry": "1.5 - 2.2 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.5 - 8.0 LPA"
+    },
+    "futureScope": "Critical role in 'Make in India' manufacturing hubs and Railway workshops."
+  },
+  {
+    "id": "AF10_003",
+    "title": "Medical Lab Technician (DMLT)",
+    "category": "Healthcare & Paramedical Technicians",
+    "subCategory": "Diagnostic Services",
+    "after10": "Class 10 Pass",
+    "pathway": "Diploma / Certification",
+    "courseDuration": "2 - 3 Years",
+    "keyInstitutesOrBodies": "State Medical Faculties, Red Cross",
+    "skills": ["Blood Sampling", "Pathology Test", "Lab Equipment Operation"],
+    "salary": {
+      "entry": "1.8 - 2.5 LPA",
+      "mid": "3.0 - 5.0 LPA",
+      "senior": "5.5 - 7.5 LPA"
+    },
+    "futureScope": "Rapid expansion of diagnostic chains and public health infrastructure."
+  },
+  {
+    "id": "AF10_004",
+    "title": "Junior Civil Engineer (Diploma)",
+    "category": "Polytechnic / Diploma Engineering",
+    "subCategory": "Construction",
+    "after10": "Class 10 Pass",
+    "pathway": "Polytechnic Diploma",
+    "courseDuration": "3 Years",
+    "keyInstitutesOrBodies": "State Boards of Technical Education",
+    "skills": ["Site Supervision", "CAD", "Surveying", "Cost Estimation"],
+    "salary": {
+      "entry": "2.4 - 3.6 LPA",
+      "mid": "5.0 - 8.0 LPA",
+      "senior": "10.0 - 15.0 LPA"
+    },
+    "futureScope": "Opportunities in NHAI, PWD, and private real estate infrastructure."
+  },
+  {
+    "id": "AF10_005",
+    "title": "Soldier (General Duty) - Agniveer",
+    "category": "Defence & Uniform Services",
+    "subCategory": "Indian Army",
+    "after10": "Class 10 Pass",
+    "pathway": "Direct Recruitment / Rally",
+    "courseDuration": "4 Years (Agnipath Scheme)",
+    "keyInstitutesOrBodies": "Ministry of Defence",
+    "skills": ["Physical Endurance", "Weapon Handling", "Discipline", "Tactical Skills"],
+    "salary": {
+      "entry": "3.6 - 4.8 LPA",
+      "mid": "N/A",
+      "senior": "N/A"
+    },
+    "futureScope": "Post-service reservations in CAPFs, PSUs, and corporate security leadership."
+  },
+  {
+    "id": "AF10_006",
+    "title": "EV Service Technician",
+    "category": "Automotive & EV Support Roles",
+    "subCategory": "Automobile",
+    "after10": "Class 10 Pass",
+    "pathway": "Short-term Certification / ITI",
+    "courseDuration": "6 Months - 1 Year",
+    "keyInstitutesOrBodies": "ASDC (Automotive Skills Development Council)",
+    "skills": ["Battery Management", "Motor Repair", "Software Diagnostics"],
+    "salary": {
+      "entry": "2.0 - 3.0 LPA",
+      "mid": "4.0 - 6.5 LPA",
+      "senior": "7.0 - 10.0 LPA"
+    },
+    "futureScope": "Highest growth sector as India transitions to 100% electric 2-wheelers."
+  },
+  {
+    "id": "AF10_007",
+    "title": "Computer Operator & Programming Assistant (COPA)",
+    "category": "Computer & IT Support",
+    "subCategory": "IT/Software",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (NCVT)",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "DGT, NIELIT",
+    "skills": ["Data Entry", "Database Management", "Basic Networking", "JavaScript"],
+    "salary": {
+      "entry": "1.5 - 2.4 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 7.0 LPA"
+    },
+    "futureScope": "Essential for Digitization in Government offices and MSMEs."
+  },
+  {
+    "id": "AF10_008",
+    "title": "X-Ray / Radiology Assistant",
+    "category": "Healthcare & Paramedical Technicians",
+    "subCategory": "Diagnostic Services",
+    "after10": "Class 10 Pass",
+    "pathway": "Certificate / Diploma",
+    "courseDuration": "1 - 2 Years",
+    "keyInstitutesOrBodies": "AIIMS, State Paramedical Boards",
+    "skills": ["Radiographic Imaging", "Radiation Safety", "Patient Positioning"],
+    "salary": {
+      "entry": "1.8 - 2.6 LPA",
+      "mid": "3.5 - 5.0 LPA",
+      "senior": "6.0 - 8.5 LPA"
+    },
+    "futureScope": "Steady growth in private hospitals and specialized imaging centers."
+  },
+  {
+    "id": "AF10_009",
+    "title": "Assistant Loco Pilot (RRB)",
+    "category": "Government Skill-based Jobs",
+    "subCategory": "Railways",
+    "after10": "Class 10 Pass + ITI/Diploma",
+    "pathway": "Railway Recruitment Board (RRB) Exam",
+    "courseDuration": "Direct Recruitment",
+    "keyInstitutesOrBodies": "Ministry of Railways",
+    "skills": ["Train Operation", "Mechanical Troubleshooting", "Safety Signals"],
+    "salary": {
+      "entry": "3.5 - 5.5 LPA",
+      "mid": "7.0 - 10.0 LPA",
+      "senior": "12.0 - 18.0 LPA"
+    },
+    "futureScope": "Lifelong stability with Indian Railways modernization and Vande Bharat expansion."
+  },
+  {
+    "id": "AF10_010",
+    "title": "Warehouse Associate / Storekeeper",
+    "category": "Logistics, Warehouse & Supply Chain",
+    "subCategory": "Operations",
+    "after10": "Class 10 Pass",
+    "pathway": "Certification / Direct Apprenticeship",
+    "courseDuration": "3 - 6 Months",
+    "keyInstitutesOrBodies": "Logistics Sector Skill Council (LSC)",
+    "skills": ["Inventory Management", "ERP Basics", "Safety Compliance"],
+    "salary": {
+      "entry": "1.4 - 2.2 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 7.5 LPA"
+    },
+    "futureScope": "Massive demand driven by E-commerce giants (Amazon, Flipkart)."
+  },
+  {
+    "id": "AF10_011",
+    "title": "Graphic Designer (Junior)",
+    "category": "Computer & IT Support",
+    "subCategory": "Creative Media",
+    "after10": "Class 10 Pass",
+    "pathway": "Certification / Diploma",
+    "courseDuration": "6 Months - 1 Year",
+    "keyInstitutesOrBodies": "Arena Animation, MAAC, NIELIT",
+    "skills": ["Photoshop", "Illustrator", "Typography", "Visual Branding"],
+    "salary": {
+      "entry": "1.8 - 3.0 LPA",
+      "mid": "4.0 - 7.0 LPA",
+      "senior": "8.0 - 15.0 LPA"
+    },
+    "futureScope": "High freelance potential and roles in Digital Marketing agencies."
+  },
+  {
+    "id": "AF10_012",
+    "title": "Fashion Design Assistant",
+    "category": "Self-employment & Entrepreneurship",
+    "subCategory": "Lifestyle",
+    "after10": "Class 10 Pass",
+    "pathway": "Diploma / ITI",
+    "courseDuration": "1 - 2 Years",
+    "keyInstitutesOrBodies": "NIFT (Short-term), State ITIs",
+    "skills": ["Garment Construction", "Pattern Making", "Fabric Knowledge"],
+    "salary": {
+      "entry": "1.5 - 2.5 LPA",
+      "mid": "3.5 - 6.0 LPA",
+      "senior": "7.0 - 12.0 LPA"
+    },
+    "futureScope": "Growth in organized retail and boutique entrepreneurship."
+  },
+  {
+    "id": "AF10_013",
+    "title": "HVAC Technician (AC & Refrigeration)",
+    "category": "Electrical / Mechanical / Civil Support Roles",
+    "subCategory": "Maintenance",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI Trade",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, NSDC",
+    "skills": ["Gas Charging", "Compressor Repair", "Installation"],
+    "salary": {
+      "entry": "1.8 - 2.6 LPA",
+      "mid": "3.5 - 5.5 LPA",
+      "senior": "6.0 - 8.0 LPA"
+    },
+    "futureScope": "Essential for booming real estate and cold storage infrastructure."
+  },
+  {
+    "id": "AF10_014",
+    "title": "Naval Shipwright (Apprentice)",
+    "category": "Aviation (Ground Staff / Technical only)",
+    "subCategory": "Maritime/Navy",
+    "after10": "Class 10 Pass",
+    "pathway": "Apprenticeship (NAVSAC)",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "Indian Navy (Naval Dockyards)",
+    "skills": ["Ship Repair", "Welding", "Structural Maintenance"],
+    "salary": {
+      "entry": "2.1 - 3.0 LPA",
+      "mid": "4.5 - 7.0 LPA",
+      "senior": "8.0 - 12.0 LPA"
+    },
+    "futureScope": "Strategic roles in Defence manufacturing and PSU shipyards."
+  },
+  {
+    "id": "AF10_015",
+    "title": "Dialysis Technician",
+    "category": "Healthcare & Paramedical Technicians",
+    "subCategory": "Clinical Support",
+    "after10": "Class 10 Pass",
+    "pathway": "Certificate / Diploma",
+    "courseDuration": "1 - 2 Years",
+    "keyInstitutesOrBodies": "PMKK (Pradhan Mantri Kaushal Kendra)",
+    "skills": ["Machine Setup", "Patient Monitoring", "Sterilization"],
+    "salary": {
+      "entry": "1.6 - 2.4 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 7.0 LPA"
+    },
+    "futureScope": "Critical need due to rising prevalence of chronic kidney diseases."
+  },            
 ];
