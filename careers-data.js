@@ -11138,4 +11138,174 @@ future: "A new-age role bridging the gap between law and technology for large le
     },
     "futureScope": "Growth in cosmetic dentistry and specialized dental clinic chains."
   },
+  {
+    "id": "AF10_036",
+    "title": "SSC Multi-Tasking Staff (MTS)",
+    "category": "Government Skill-based Jobs",
+    "subCategory": "General Administration",
+    "after10": "Class 10 Pass",
+    "pathway": "SSC MTS Competitive Exam",
+    "courseDuration": "Direct Recruitment",
+    "keyInstitutesOrBodies": "Staff Selection Commission (SSC)",
+    "skills": ["File Management", "Basic Computing", "Office Assistance", "Record Keeping"],
+    "salary": {
+      "entry": "2.2 - 3.2 LPA",
+      "mid": "4.5 - 6.0 LPA",
+      "senior": "7.0 - 10.0 LPA"
+    },
+    "futureScope": "Stable career with regular pay commissions and promotional avenues to Lower Division Clerk (LDC) and beyond."
+  },
+  {
+    "id": "AF10_037",
+    "title": "Baggage & Cargo Handling Associate",
+    "category": "Aviation (Ground Staff / Technical only)",
+    "subCategory": "Logistics",
+    "after10": "Class 10 Pass",
+    "pathway": "Certification / Direct Employment",
+    "courseDuration": "3 - 6 Months",
+    "keyInstitutesOrBodies": "AASSC (Aerospace & Aviation Sector Skill Council)",
+    "skills": ["Manual Handling", "Safety Scanning", "Load Distribution", "DGR Awareness"],
+    "salary": {
+      "entry": "1.8 - 2.6 LPA",
+      "mid": "3.5 - 5.0 LPA",
+      "senior": "6.0 - 8.5 LPA"
+    },
+    "futureScope": "Critical role in India's expanding cargo terminals and regional airports under UDAN 5.0."
+  },
+  {
+    "id": "AF10_038",
+    "title": "Railway Track Maintainer (Grade IV)",
+    "category": "Government Skill-based Jobs",
+    "subCategory": "Railways",
+    "after10": "Class 10 Pass",
+    "pathway": "RRB Group D Exam",
+    "courseDuration": "Direct Recruitment",
+    "keyInstitutesOrBodies": "Railway Recruitment Board (RRB)",
+    "skills": ["Track Inspection", "Level Crossing Operation", "Basic Mechanical Tools"],
+    "salary": {
+      "entry": "2.4 - 3.4 LPA",
+      "mid": "4.0 - 5.5 LPA",
+      "senior": "6.5 - 9.0 LPA"
+    },
+    "futureScope": "Ensuring safety for high-speed rail corridors and Dedicated Freight Corridors (DFC)."
+  },
+  {
+    "id": "AF10_039",
+    "title": "Forklift Operator",
+    "category": "Logistics, Warehouse & Supply Chain",
+    "subCategory": "Material Handling",
+    "after10": "Class 10 Pass",
+    "pathway": "Heavy Vehicle Driving License + Certification",
+    "courseDuration": "3 Months",
+    "keyInstitutesOrBodies": "Logistics Sector Skill Council (LSC), NSDC",
+    "skills": ["Machine Maneuvering", "Safety Checks", "Pallet Loading", "Visual Inspection"],
+    "salary": {
+      "entry": "1.8 - 2.8 LPA",
+      "mid": "3.5 - 4.5 LPA",
+      "senior": "5.5 - 7.5 LPA"
+    },
+    "futureScope": "High demand in automated warehouses and multi-modal logistics parks."
+  },
+  {
+    "id": "AF10_040",
+    "title": "Agniveer (Tradesman) - Indian Navy",
+    "category": "Defence & Uniform Services",
+    "subCategory": "Navy",
+    "after10": "Class 10 Pass",
+    "pathway": "Agniveer MR (Matric Recruit) Exam",
+    "courseDuration": "4 Years (Service Period)",
+    "keyInstitutesOrBodies": "Indian Navy",
+    "skills": ["Culinary Skills", "Stewardship", "Hygiene Maintenance", "Naval Discipline"],
+    "salary": {
+      "entry": "3.6 - 4.8 LPA",
+      "mid": "N/A",
+      "senior": "N/A"
+    },
+    "futureScope": "Weightage for Merchant Navy roles and Central Armed Police Forces (CAPF) post-service."
+  },
+  {
+    "id": "AF10_041",
+    "title": "Industrial Painter",
+    "category": "Manufacturing & Industrial Roles",
+    "subCategory": "Surface Treatment",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (Painter General)",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, Maruti Suzuki (Workmen Training)",
+    "skills": ["Spray Painting", "Powder Coating", "Surface Preparation", "Corrosion Control"],
+    "salary": {
+      "entry": "1.6 - 2.4 LPA",
+      "mid": "3.2 - 4.8 LPA",
+      "senior": "5.5 - 8.5 LPA"
+    },
+    "futureScope": "Vital for automotive assembly lines and heavy machinery manufacturing plants."
+  },
+  {
+    "id": "AF10_042",
+    "title": "Gramin Dak Sevak (GDS)",
+    "category": "Government Skill-based Jobs",
+    "subCategory": "Postal Services",
+    "after10": "Class 10 Pass",
+    "pathway": "Merit-based Selection (10th Marks)",
+    "courseDuration": "Direct Recruitment",
+    "keyInstitutesOrBodies": "India Post",
+    "skills": ["Mail Delivery", "Mobile Banking (IPPB)", "Stamp Sale", "Community Liaison"],
+    "salary": {
+      "entry": "1.4 - 2.0 LPA",
+      "mid": "2.5 - 3.8 LPA",
+      "senior": "4.0 - 6.0 LPA"
+    },
+    "futureScope": "Expanding role in rural financial inclusion and doorstep banking services."
+  },
+  {
+    "id": "AF10_043",
+    "title": "Data Entry & Office Assistant",
+    "category": "Computer & IT Support",
+    "subCategory": "Administration",
+    "after10": "Class 10 Pass",
+    "pathway": "Certification / Direct Employment",
+    "courseDuration": "3 - 6 Months",
+    "keyInstitutesOrBodies": "NIELIT, State Skill Missions",
+    "skills": ["Fast Typing", "MS Excel", "E-filing", "Internet Research"],
+    "salary": {
+      "entry": "1.5 - 2.2 LPA",
+      "mid": "3.0 - 4.2 LPA",
+      "senior": "5.0 - 6.5 LPA"
+    },
+    "futureScope": "Steady demand in legal firms, hospitals, and local government service centers (CSC)."
+  },
+  {
+    "id": "AF10_044",
+    "title": "E-commerce Fulfillment Associate",
+    "category": "Logistics, Warehouse & Supply Chain",
+    "subCategory": "E-commerce Operations",
+    "after10": "Class 10 Pass",
+    "pathway": "Short-term Certification (e.g., Amazon Academy)",
+    "courseDuration": "1 - 3 Months",
+    "keyInstitutesOrBodies": "NSDC, Logistics Sector Skill Council",
+    "skills": ["Order Picking", "Quality Grading", "Barcode Scanning", "Inventory Sync"],
+    "salary": {
+      "entry": "1.8 - 2.5 LPA",
+      "mid": "3.0 - 4.0 LPA",
+      "senior": "5.0 - 7.0 LPA"
+    },
+    "futureScope": "Fastest-growing entry-level role due to the 10-minute delivery (Quick-Commerce) boom."
+  },
+  {
+    "id": "AF10_045",
+    "title": "Civil Defence / Home Guard",
+    "category": "Defence & Uniform Services",
+    "subCategory": "Public Safety",
+    "after10": "Class 10 Pass",
+    "pathway": "Physical Test + Training",
+    "courseDuration": "Direct Selection",
+    "keyInstitutesOrBodies": "State Home Departments",
+    "skills": ["Disaster Response", "Traffic Control", "Crowd Management", "First Aid"],
+    "salary": {
+      "entry": "1.8 - 2.8 LPA",
+      "mid": "3.5 - 4.5 LPA",
+      "senior": "5.0 - 7.0 LPA"
+    },
+    "futureScope": "Preferred status in regular Police Constable recruitments and private security management."
+  },
 ];
