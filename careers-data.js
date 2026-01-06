@@ -10967,5 +10967,175 @@ future: "A new-age role bridging the gap between law and technology for large le
       "senior": "5.0 - 8.0 LPA"
     },
     "futureScope": "Transitioning to 'Green Plumbing' and maintenance in high-rise townships."
-  },  
+  },
+  {
+    "id": "AF10_026",
+    "title": "Operation Theatre (OT) Technician",
+    "category": "Healthcare & Paramedical Technicians",
+    "subCategory": "Surgical Support",
+    "after10": "Class 10 Pass",
+    "pathway": "Diploma / Certificate (State Medical Faculty)",
+    "courseDuration": "1 - 2 Years",
+    "keyInstitutesOrBodies": "State Paramedical Boards, PMKK",
+    "skills": ["Sterilization", "Surgical Instrument Handling", "Patient Safety"],
+    "salary": {
+      "entry": "1.8 - 2.5 LPA",
+      "mid": "3.5 - 5.0 LPA",
+      "senior": "6.0 - 8.0 LPA"
+    },
+    "futureScope": "Essential role in the rising number of multi-specialty surgical centers and trauma units."
+  },
+  {
+    "id": "AF10_027",
+    "title": "Architectural Assistant (Draughtsman)",
+    "category": "Construction & Infrastructure",
+    "subCategory": "Design & Planning",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI Trade / Diploma",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, State Technical Boards",
+    "skills": ["Blueprint Reading", "AutoCAD", "3D Modelling", "Building Bye-laws"],
+    "salary": {
+      "entry": "2.0 - 3.2 LPA",
+      "mid": "4.5 - 7.5 LPA",
+      "senior": "9.0 - 14.0 LPA"
+    },
+    "futureScope": "Growing demand in urban planning firms and large-scale residential infrastructure projects."
+  },
+  {
+    "id": "AF10_028",
+    "title": "DTP Operator (Desktop Publishing)",
+    "category": "Computer & IT Support",
+    "subCategory": "Media & Publishing",
+    "after10": "Class 10 Pass",
+    "pathway": "Certificate / ITI (NCVT)",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "NIELIT, State Skill Missions",
+    "skills": ["Page Layout", "CorelDraw", "InDesign", "Regional Language Typing"],
+    "salary": {
+      "entry": "1.4 - 2.2 LPA",
+      "mid": "3.0 - 4.8 LPA",
+      "senior": "5.5 - 7.5 LPA"
+    },
+    "futureScope": "Critical for regional language publishing houses and the packaging industry."
+  },
+  {
+    "id": "AF10_029",
+    "title": "Pump Operator-cum-Mechanic",
+    "category": "Manufacturing & Industrial Roles",
+    "subCategory": "Mechanical Support",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI Trade",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "DGT, Jal Shakti Abhiyan training centers",
+    "skills": ["Pump Maintenance", "Valve Repair", "Fluid Mechanics Basics"],
+    "salary": {
+      "entry": "1.5 - 2.4 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 7.0 LPA"
+    },
+    "futureScope": "Core requirement for the 'Har Ghar Jal' mission and industrial water treatment plants."
+  },
+  {
+    "id": "AF10_030",
+    "title": "Digital Photographer & Videographer",
+    "category": "Self-employment & Entrepreneurship",
+    "subCategory": "Creative Media",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI / Diploma / Certification",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "State ITIs, MESC (Media & Entertainment Skills Council)",
+    "skills": ["Lighting", "Video Editing", "Camera Operation", "Post-production"],
+    "salary": {
+      "entry": "1.8 - 3.0 LPA",
+      "mid": "4.5 - 8.0 LPA",
+      "senior": "10.0 - 25.0 LPA (Project-based)"
+    },
+    "futureScope": "Huge demand in the wedding industry, E-commerce product shoots, and content creation."
+  },
+  {
+    "id": "AF10_031",
+    "title": "Hospital Housekeeping Supervisor",
+    "category": "Healthcare & Paramedical Technicians",
+    "subCategory": "Hospital Operations",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI Trade / Short-term Certificate",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "DGT, THSC (Tourism & Hospitality Skill Council)",
+    "skills": ["Bio-medical Waste Management", "Sanitation Protocols", "Staff Management"],
+    "salary": {
+      "entry": "1.4 - 2.0 LPA",
+      "mid": "2.8 - 4.0 LPA",
+      "senior": "4.5 - 6.5 LPA"
+    },
+    "futureScope": "Rising quality standards in healthcare (NABH) drive the need for certified housekeeping."
+  },
+  {
+    "id": "AF10_032",
+    "title": "Lift & Escalator Mechanic",
+    "category": "Electrical / Mechanical / Civil Support Roles",
+    "subCategory": "Building Services",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (Mechanic-cum-Electrician) / Certification",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "NSDC, Leading Elevator Companies (Otis/Schindler Apprentice)",
+    "skills": ["Sensor Repair", "Hydraulic Systems", "Safety Braking Maintenance"],
+    "salary": {
+      "entry": "1.8 - 2.6 LPA",
+      "mid": "3.8 - 6.0 LPA",
+      "senior": "7.0 - 10.0 LPA"
+    },
+    "futureScope": "Essential service role as Indian cities verticalize with high-rise buildings."
+  },
+  {
+    "id": "AF10_033",
+    "title": "Bakery & Confectionery Specialist",
+    "category": "Retail, Sales & Operations",
+    "subCategory": "Food & Beverage",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (Food Production) / Craftsmanship Course",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "NCHMCT, State ITIs",
+    "skills": ["Baking Science", "Food Safety (FSSAI)", "Inventory Control"],
+    "salary": {
+      "entry": "1.4 - 2.2 LPA",
+      "mid": "3.0 - 5.5 LPA",
+      "senior": "6.0 - 10.0 LPA"
+    },
+    "futureScope": "Fast-growing niche in gourmet food retail and cloud kitchen startups."
+  },
+  {
+    "id": "AF10_034",
+    "title": "Instrument Mechanic (Chemical/Process)",
+    "category": "Manufacturing & Industrial Roles",
+    "subCategory": "Instrumentation",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI Trade",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, Oil & Gas PSUs (ONGC/IOCL)",
+    "skills": ["Calibration", "PLC Maintenance", "Pressure Gauge Repair"],
+    "salary": {
+      "entry": "2.0 - 3.0 LPA",
+      "mid": "4.0 - 6.5 LPA",
+      "senior": "7.5 - 12.0 LPA"
+    },
+    "futureScope": "Highly specialized role in automated pharmaceutical and chemical plants."
+  },
+  {
+    "id": "AF10_035",
+    "title": "Dental Lab Assistant",
+    "category": "Healthcare & Paramedical Technicians",
+    "subCategory": "Dental Services",
+    "after10": "Class 10 Pass",
+    "pathway": "Certificate / Diploma",
+    "courseDuration": "1 - 2 Years",
+    "keyInstitutesOrBodies": "State Dental Colleges, Paramedical Councils",
+    "skills": ["Denture Fabrication", "Orthodontic Appliance Repair", "Impression Casting"],
+    "salary": {
+      "entry": "1.5 - 2.4 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 7.5 LPA"
+    },
+    "futureScope": "Growth in cosmetic dentistry and specialized dental clinic chains."
+  },
 ];
