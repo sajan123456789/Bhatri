@@ -10797,5 +10797,175 @@ future: "A new-age role bridging the gap between law and technology for large le
       "senior": "5.0 - 7.0 LPA"
     },
     "futureScope": "Critical need due to rising prevalence of chronic kidney diseases."
-  },            
+  }, 
+  {
+    "id": "AF10_016",
+    "title": "Draughtsman (Mechanical)",
+    "category": "Polytechnic / Diploma Engineering",
+    "subCategory": "Design & Engineering",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (NCVT) / Diploma",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, MSME Tool Rooms",
+    "skills": ["AutoCAD", "SolidWorks", "Technical Drawing", "Geometric Dimensioning"],
+    "salary": {
+      "entry": "1.8 - 2.8 LPA",
+      "mid": "4.0 - 6.5 LPA",
+      "senior": "7.5 - 12.0 LPA"
+    },
+    "futureScope": "Essential for R&D centers and manufacturing plants under the 'Defense Corridor' initiative."
+  },
+  {
+    "id": "AF10_017",
+    "title": "CNC Machine Operator",
+    "category": "Manufacturing & Industrial Roles",
+    "subCategory": "Machining",
+    "after10": "Class 10 Pass",
+    "pathway": "Short-term Certification / ITI",
+    "courseDuration": "6 Months - 1 Year",
+    "keyInstitutesOrBodies": "NSDC, NTTF (Netur Technical Training Foundation)",
+    "skills": ["CNC Programming", "Tool Offsetting", "Quality Inspection"],
+    "salary": {
+      "entry": "1.6 - 2.4 LPA",
+      "mid": "3.5 - 5.0 LPA",
+      "senior": "6.0 - 8.5 LPA"
+    },
+    "futureScope": "High demand in precision engineering and aerospace component manufacturing."
+  },
+  {
+    "id": "AF10_018",
+    "title": "Solar Panel Installation Technician",
+    "category": "Electrical / Mechanical / Civil Support Roles",
+    "subCategory": "Renewable Energy",
+    "after10": "Class 10 Pass",
+    "pathway": "Suryamitra Skill Development Program",
+    "courseDuration": "3 - 6 Months",
+    "keyInstitutesOrBodies": "NISE (National Institute of Solar Energy)",
+    "skills": ["PV Module Alignment", "DC Wiring", "Inverter Troubleshooting"],
+    "salary": {
+      "entry": "1.8 - 2.5 LPA",
+      "mid": "3.5 - 4.8 LPA",
+      "senior": "5.5 - 9.0 LPA"
+    },
+    "futureScope": "Direct alignment with India's goal of 500GW non-fossil energy by 2030."
+  },
+  {
+    "id": "AF10_019",
+    "title": "Ground Handling Associate",
+    "category": "Aviation (Ground Staff / Technical only)",
+    "subCategory": "Airport Operations",
+    "after10": "Class 10 Pass",
+    "pathway": "Aviation Academy Certification",
+    "courseDuration": "6 Months",
+    "keyInstitutesOrBodies": "Air India SATS, Celebi, AASSC",
+    "skills": ["Baggage Handling", "Ramp Operations", "Safety Compliance"],
+    "salary": {
+      "entry": "1.8 - 2.4 LPA",
+      "mid": "3.0 - 4.2 LPA",
+      "senior": "5.0 - 7.0 LPA"
+    },
+    "futureScope": "Booming demand due to the UDAN scheme and new regional airport developments."
+  },
+  {
+    "id": "AF10_020",
+    "title": "Surveyor",
+    "category": "Construction & Infrastructure",
+    "subCategory": "Civil Engineering Support",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI (Surveyor Trade)",
+    "courseDuration": "2 Years",
+    "keyInstitutesOrBodies": "DGT, Survey of India",
+    "skills": ["Total Station Operation", "GPS Mapping", "Levelling"],
+    "salary": {
+      "entry": "2.0 - 3.0 LPA",
+      "mid": "4.5 - 7.0 LPA",
+      "senior": "8.0 - 13.0 LPA"
+    },
+    "futureScope": "Critical for Gati Shakti Master Plan and highway expansion projects."
+  },
+  {
+    "id": "AF10_021",
+    "title": "Beauty & Wellness Consultant",
+    "category": "Retail, Sales & Operations",
+    "subCategory": "Personal Care",
+    "after10": "Class 10 Pass",
+    "pathway": "Diploma / Certification",
+    "courseDuration": "6 Months - 1 Year",
+    "keyInstitutesOrBodies": "L’Oréal Academy, VLCC Institute, B&WSSC",
+    "skills": ["Skin Analysis", "Cosmetology", "Client Management"],
+    "salary": {
+      "entry": "1.4 - 2.2 LPA",
+      "mid": "3.0 - 5.5 LPA",
+      "senior": "6.0 - 10.0 LPA"
+    },
+    "futureScope": "Massive growth in organized salon chains and luxury wellness resorts."
+  },
+  {
+    "id": "AF10_022",
+    "title": "Front Office Executive",
+    "category": "Retail, Sales & Operations",
+    "subCategory": "Hospitality",
+    "after10": "Class 10 Pass",
+    "pathway": "Short-term Diploma",
+    "courseDuration": "6 Months - 1 Year",
+    "keyInstitutesOrBodies": "NCHMCT (Craftmanship Course), THSC",
+    "skills": ["Communication", "Guest Handling", "Computer Basics"],
+    "salary": {
+      "entry": "1.5 - 2.4 LPA",
+      "mid": "3.5 - 5.0 LPA",
+      "senior": "6.0 - 8.5 LPA"
+    },
+    "futureScope": "Opportunities in corporate offices, hotels, and high-end hospitals."
+  },
+  {
+    "id": "AF10_023",
+    "title": "Welder (Gas & Electric)",
+    "category": "Manufacturing & Industrial Roles",
+    "subCategory": "Metal Works",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI Trade",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "DGT, Indian Institute of Welding",
+    "skills": ["Arc Welding", "TIG/MIG Welding", "Blueprint Reading"],
+    "salary": {
+      "entry": "1.4 - 2.2 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 9.0 LPA"
+    },
+    "futureScope": "High demand in heavy engineering, oil & gas, and offshore sectors."
+  },
+  {
+    "id": "AF10_024",
+    "title": "Food Processing Technician",
+    "category": "Manufacturing & Industrial Roles",
+    "subCategory": "Food Technology",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI / Diploma",
+    "courseDuration": "1 - 2 Years",
+    "keyInstitutesOrBodies": "CFTRI (Short-term), FICSI",
+    "skills": ["Preservation Techniques", "Packaging", "Hygiene Standards"],
+    "salary": {
+      "entry": "1.5 - 2.1 LPA",
+      "mid": "2.8 - 4.2 LPA",
+      "senior": "5.0 - 7.5 LPA"
+    },
+    "futureScope": "Fast-growing sector under the PMKSY (Pradhan Mantri Kisan Sampada Yojana)."
+  },
+  {
+    "id": "AF10_025",
+    "title": "Assistant Plumber (Commercial)",
+    "category": "Construction & Infrastructure",
+    "subCategory": "Building Services",
+    "after10": "Class 10 Pass",
+    "pathway": "ITI / Apprenticeship",
+    "courseDuration": "1 Year",
+    "keyInstitutesOrBodies": "IPSC (Indian Plumbing Skills Council)",
+    "skills": ["Piping Layouts", "Sanitary Installation", "Pump Repair"],
+    "salary": {
+      "entry": "1.2 - 2.0 LPA",
+      "mid": "3.0 - 4.5 LPA",
+      "senior": "5.0 - 8.0 LPA"
+    },
+    "futureScope": "Transitioning to 'Green Plumbing' and maintenance in high-rise townships."
+  },  
 ];
