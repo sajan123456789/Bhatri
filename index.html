@@ -32,9 +32,17 @@ body{
   background:#000208;
   border-top:1px solid rgba(59,130,246,.2);
 }
+/* Logo size control */
+.nav-logo {
+  height: 50px; /* Aap ise apne hisaab se adjust kar sakte hain */
+  width: auto;
+}
+.footer-logo {
+  height: 60px;
+  width: auto;
+}
 </style>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BC0MZYBEDM"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC0MZYBEDM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -48,8 +56,8 @@ body{
 
 <header class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-white/5">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-extrabold italic uppercase tracking-tight">
-      CAREER<span class="text-blue-500">STEPS</span>
+    <a href="index.html" class="flex items-center">
+      <img src="1000143578.jpg" alt="CareerSteps Logo" class="nav-logo">
     </a>
 
     <nav class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
@@ -162,7 +170,7 @@ body{
 <footer class="footer-premium pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+      <img src="1000143578.jpg" alt="CareerSteps Logo" class="footer-logo mb-4">
       <p class="text-slate-400 text-sm font-semibold">India’s trusted AI career guidance platform.</p>
     </div>
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
