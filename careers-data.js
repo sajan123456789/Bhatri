@@ -3120,6 +3120,58 @@ future: "Powering India’s digital transformation, rural connectivity, and upco
     future: "High usage in social media marketing and app micro-interactions."
   },
   {
+    "id": "DES_021",
+    "title": "Visual Designer",
+    "category": "Design & Creative",
+    "subCategory": "Graphic Design",
+    "after10": "Basic design tools + visual thinking",
+    "after12": "Any stream",
+    "degree": "B.Des / Visual Communication / Design Diploma",
+    "exams": ["NID DAT", "UCEED", "Private Institute Tests"],
+    "skills": ["Visual Design", "Color Theory", "Layout", "Figma", "Adobe Suite"],
+    "salary": { "entry": "4-6 LPA", "mid": "8-15 LPA", "senior": "20-40 LPA" },
+    "future": "High demand in Indian startups, SaaS products and digital branding teams."
+  },
+  {
+    "id": "DES_022",
+    "title": "Advertising Creative Designer",
+    "category": "Design & Creative",
+    "subCategory": "Graphic Design",
+    "after10": "Creative aptitude + visual sense",
+    "after12": "Any stream",
+    "degree": "B.Des / BFA / Advertising & Design Diploma",
+    "exams": ["NID DAT", "Private Institute Tests"],
+    "skills": ["Ad Creatives", "Campaign Design", "Visual Storytelling", "Brand Communication"],
+    "salary": { "entry": "4-7 LPA", "mid": "10-18 LPA", "senior": "25-45 LPA" },
+    "future": "Strong growth with Indian advertising agencies, D2C brands and digital campaigns."
+  },
+  {
+    "id": "DES_023",
+    "title": "Print Media Designer",
+    "category": "Design & Creative",
+    "subCategory": "Graphic Design",
+    "after10": "Design basics + print understanding",
+    "after12": "Any stream",
+    "degree": "B.Des / Graphic Design Diploma",
+    "exams": ["NIFT", "NID DAT", "College Specific"],
+    "skills": ["Print Layout", "Typography", "Pre-Press", "InDesign"],
+    "salary": { "entry": "3-5 LPA", "mid": "6-12 LPA", "senior": "15-25 LPA" },
+    "future": "Continued relevance in Indian publishing, newspapers, packaging and regional media."
+  },
+  {
+    "id": "DES_024",
+    "title": "Information Design Specialist",
+    "category": "Design & Creative",
+    "subCategory": "Graphic Design",
+    "after10": "Creative + analytical thinking",
+    "after12": "Any stream",
+    "degree": "B.Des / Visual Communication",
+    "exams": ["UCEED", "NID DAT"],
+    "skills": ["Infographics", "Data Visualization", "Visual Hierarchy", "Storytelling"],
+    "salary": { "entry": "5-7 LPA", "mid": "10-20 LPA", "senior": "30-50 LPA" },
+    "future": "Rising demand in Indian government projects, reports, edtech and digital platforms."
+  },
+  {
     id: "DSN_017",
     title: "Footwear Designer",
     category: "Design & Creative",
