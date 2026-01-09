@@ -3185,19 +3185,6 @@ future: "Powering India’s digital transformation, rural connectivity, and upco
     future: "Sustainable, zero-plastic packaging solutions for E-commerce."
   },
   {
-    id: "DSN_022",
-    title: "Concept Artist",
-    category: "Design & Creative",
-    subCategory: "Game Art / Animation",
-    after10: "Secondary School Education",
-    after12: "BFA / B.Des",
-    degree: "Bachelor of Fine Arts",
-    exams: ["State BFA Entrance", "NID DAT"],
-    skills: ["Digital Painting", "World Building", "Character Silhouettes"],
-    salary: { entry: "4-7 LPA", mid: "10-18 LPA", senior: "22-50 LPA" },
-    future: "Defining the visual DNA for big-budget Indian mytho-fantasy films."
-  },
-  {
     "id": "DES_021",
     "title": "2D Game Artist",
     "category": "Design & Creative",
