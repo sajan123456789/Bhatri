@@ -3276,6 +3276,32 @@ future: "Powering India’s digital transformation, rural connectivity, and upco
     "future": "Indian gaming studios shifting from static to animated gameplay."
   },
   {
+    "id": "DES_026",
+    "title": "Concept Artist",
+    "category": "Design & Creative",
+    "subCategory": "Game Art & Animation",
+    "after10": "Strong drawing skills + visual storytelling practice",
+    "after12": "Any stream",
+    "degree": "BFA / B.Des / Concept Art Diploma",
+    "exams": ["NID DAT", "UCEED", "College Specific"],
+    "skills": ["Concept Sketching", "Visual Storytelling", "Digital Painting", "World Building"],
+    "salary": { "entry": "4-7 LPA", "mid": "10-18 LPA", "senior": "25-45 LPA" },
+    "future": "High demand in Indian gaming, animation studios, OTT content and film pre-production."
+  },
+  {
+    "id": "DES_027",
+    "title": "Game Artist",
+    "category": "Design & Creative",
+    "subCategory": "Game Art & Animation",
+    "after10": "Art fundamentals + digital illustration",
+    "after12": "Any stream",
+    "degree": "BFA / B.Des / Game Art Diploma",
+    "exams": ["UCEED", "NID DAT", "Private Institute Tests"],
+    "skills": ["Game Asset Design", "2D/3D Art", "Photoshop", "Unity Asset Workflow"],
+    "salary": { "entry": "4-8 LPA", "mid": "12-20 LPA", "senior": "30-50 LPA" },
+    "future": "Driven by rapid growth of Indian mobile gaming, esports and global outsourcing studios."
+  },
+  {
     id: "DSN_023",
     title: "Fashion Stylist",
     category: "Design & Creative",
