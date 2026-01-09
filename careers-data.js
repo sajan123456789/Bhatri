@@ -1139,7 +1139,7 @@ const careersData = [
     after12: "B.Tech in CS/IT",
     degree: "B.Tech + Cloud Certs (AWS/Azure)",
     exams: ["JEE Main", "MET"],
-    skills: ["Virtualization", "Networking", "Security", "Infrastructure as Code"],
+    skills: ["Virtualization", "Networking", "Security", "InfrastructuredegreeeeCode"],
     salary: { entry: "6-11 LPA", mid: "15-28 LPA", senior: "30-60 LPA" },
     future: "Supporting the backbone of India's digital public infrastructure (UPI/ONDC)."
   },
@@ -1371,7 +1371,7 @@ future: "Powering India’s digital transformation, rural connectivity, and upco
     subCategory: "Tax & Audit",
     after10: "Commerce with math",
     after12: "CA Foundation",
-BMS degree: "ICAI Membership (ACA/FCA)",
+degree: "ICAI Membership (ACA/FCA)",
     exams: ["CA Foundation", "CA Intermediate", "CA Final"],
     skills: ["Auditing", "Taxation", "Financial Reporting", "Strategic Management"],
     salary: { entry: "8-12 LPA", mid: "18-28 LPA", senior: "35-70 LPA" },
