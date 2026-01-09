@@ -3003,19 +3003,6 @@ future: "Powering India’s digital transformation, rural connectivity, and upco
     future: "Increased demand in OTT streaming content and ed-tech visual storytelling."
   },
   {
-    id: "DSN_007",
-    title: "Game Artist",
-    category: "Design & Creative",
-    subCategory: "Game Art",
-    after10: "Secondary School Education",
-    after12: "UCEED / NID DAT",
-    degree: "B.Des / B.Sc in Gaming",
-    exams: ["UCEED", "NID DAT"],
-    skills: ["ZBrush", "Unity", "Concept Art", "Texturing"],
-    salary: { entry: "4-8 LPA", mid: "10-20 LPA", senior: "25-55 LPA" },
-    future: "Explosion in Indian mobile gaming and Metaverse asset creation."
-  },
-  {
     id: "DSN_008",
     title: "Visual Effects (VFX) Compositor",
     category: "Design & Creative",
