@@ -3172,6 +3172,58 @@ future: "Powering India’s digital transformation, rural connectivity, and upco
     future: "Integrating data-driven creative strategies with traditional visual art."
   },
   {
+    "id": "MVC_003",
+    "title": "Visual Communication Designer",
+    "category": "Design & Creative",
+    "subCategory": "Media & Visual Communication",
+    "after10": "Drawing, visual thinking",
+    "after12": "Any stream",
+    "degree": "B.Des / BFA Visual Communication",
+    "exams": ["NID DAT", "UCEED"],
+    "skills": ["Visual Storytelling", "Typography", "Layout Design", "Brand Messaging"],
+    "salary": { "entry": "4-6 LPA", "mid": "8-14 LPA", "senior": "20-35 LPA" },
+    "future": "High demand in Indian branding agencies, media houses and digital platforms."
+  },
+  {
+    "id": "MVC_004",
+    "title": "Advertising Designer",
+    "category": "Design & Creative",
+    "subCategory": "Media & Visual Communication",
+    "after10": "Creative thinking",
+    "after12": "Any stream",
+    "degree": "B.Des / BFA / Advertising Design",
+    "exams": ["NID DAT", "Private Institute Tests"],
+    "skills": ["Campaign Design", "Ad Creatives", "Brand Strategy", "Copy-Visual Sync"],
+    "salary": { "entry": "4-7 LPA", "mid": "10-18 LPA", "senior": "30-50 LPA" },
+    "future": "Growth driven by Indian advertising agencies, political campaigns and digital marketing."
+  },
+  {
+    "id": "MVC_005",
+    "title": "Digital Media Designer",
+    "category": "Design & Creative",
+    "subCategory": "Media & Visual Communication",
+    "after10": "Digital creativity",
+    "after12": "Any stream",
+    "degree": "B.Des / Digital Media Design Diploma",
+    "exams": [],
+    "skills": ["Social Media Design", "Content Creatives", "Motion Basics", "Brand Visuals"],
+    "salary": { "entry": "4-6 LPA", "mid": "8-15 LPA", "senior": "22-40 LPA" },
+    "future": "Strong demand in Indian startups, influencers, YouTube brands and D2C companies."
+  },
+  {
+    "id": "MVC_006",
+    "title": "Content & Visual Strategist",
+    "category": "Design & Creative",
+    "subCategory": "Media & Visual Communication",
+    "after10": "Creative + analytical thinking",
+    "after12": "Any stream",
+    "degree": "Design / Media / Communication Degree",
+    "exams": [],
+    "skills": ["Visual Planning", "Brand Content Strategy", "Audience Psychology"],
+    "salary": { "entry": "5-8 LPA", "mid": "12-22 LPA", "senior": "35-60 LPA" },
+    "future": "Important role for Indian digital brands, edtech and content platforms."
+  },
+  {
     id: "DSN_015",
     title: "Furniture Designer",
     category: "Design & Creative",
