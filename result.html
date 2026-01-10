@@ -5,13 +5,9 @@
 <title>CareerSteps | AI Career Report</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
-
-<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -36,71 +32,47 @@ body{
 
 <body class="min-h-screen">
 
-<!-- HEADER -->
 <header class="no-print max-w-6xl mx-auto px-6 py-6 flex justify-between items-center relative">
-
   <a href="index.html" class="text-2xl font-black italic uppercase">
     CAREER<span class="text-blue-500">STEPS</span>
   </a>
 
-  <!-- Desktop -->
   <div class="hidden md:flex gap-3">
-    <a href="index.html" class="px-4 py-2 text-xs rounded-full bg-white/5 hover:bg-white/10">🏠 Home</a>
+    <a href="index.html" class="px-4 py-2 text-xs rounded-full bg-white/5">🏠 Home</a>
     <button onclick="downloadPDF()" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-black">
       Download PDF
     </button>
   </div>
 
-  <!-- Mobile -->
   <div class="md:hidden">
     <button onclick="toggleMenu()" class="w-10 h-10 rounded-full bg-white/10 text-xl">⋮</button>
-
-    <div id="mobileMenu" class="hidden absolute right-6 top-20 w-44 glass rounded-xl overflow-hidden z-50">
-      <a href="index.html" class="block px-4 py-3 text-sm hover:bg-white/10">🏠 Home</a>
-      <button onclick="downloadPDF()" class="w-full text-left px-4 py-3 text-sm hover:bg-white/10">
-        📄 Download PDF
-      </button>
-      <a href="assessment.html" class="block px-4 py-3 text-sm hover:bg-white/10">
-        🔁 Retake Test
-      </a>
+    <div id="mobileMenu" class="hidden absolute right-6 top-20 w-44 glass rounded-xl z-50">
+      <a href="index.html" class="block px-4 py-3 text-sm">🏠 Home</a>
+      <button onclick="downloadPDF()" class="w-full text-left px-4 py-3 text-sm">📄 Download PDF</button>
+      <a href="assessment.html" class="block px-4 py-3 text-sm">🔁 Retake Test</a>
     </div>
   </div>
-
 </header>
 
-<!-- MAIN -->
 <main class="max-w-5xl mx-auto px-6 pb-24">
 
 <section class="mb-10">
-  <span class="inline-block text-[10px] uppercase tracking-widest bg-indigo-500/10 px-4 py-2 rounded-full text-indigo-400 mb-4">
+  <span class="text-[10px] uppercase tracking-widest bg-indigo-500/10 px-4 py-2 rounded-full text-indigo-400">
     AI Career Intelligence Report
   </span>
-  <h1 class="text-4xl md:text-6xl font-black mb-3">
+  <h1 class="text-4xl md:text-6xl font-black mt-4">
     Your Future, <span id="displayName" class="gradient-text">Student</span>
   </h1>
-  <p id="careerDesc" class="text-slate-400 max-w-2xl"></p>
+  <p id="careerDesc" class="text-slate-400 mt-2"></p>
 </section>
 
 <section class="glass rounded-[2.5rem] p-8 md:p-12 mb-8">
   <span id="stageLabel" class="text-xs uppercase tracking-widest text-indigo-400 font-bold"></span>
 
-  <h2 id="careerTitle" class="text-3xl md:text-5xl font-black mt-3 mb-2"></h2>
-  <p id="accuracyText" class="text-green-400 text-sm font-mono mb-6"></p>
+  <h2 id="careerTitle" class="text-3xl md:text-5xl font-black mt-3"></h2>
+  <p id="accuracyText" class="text-green-400 text-sm font-mono mt-2"></p>
 
-  <div id="suggestionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-
-  <!-- Mobile toggle -->
-  <button id="toggleBtn"
-    class="sm:hidden mt-6 w-full px-5 py-3 rounded-xl bg-white/10 font-bold text-sm">
-    ➕ View Other Streams
-  </button>
-
-  <div id="optionalSection" class="hidden sm:block mt-8">
-    <h4 class="text-xs uppercase tracking-widest text-slate-500 mb-4">
-      Other Suitable Streams
-    </h4>
-    <div id="optionalGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-  </div>
+  <div id="suggestionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6"></div>
 </section>
 
 <section class="no-print flex flex-wrap gap-4 justify-center">
@@ -115,7 +87,7 @@ body{
 window.onload = () => {
 
 const name = localStorage.getItem("user_name") || "Student";
-const stage = localStorage.getItem("academic_stage") || "10"; // 🔥 IMPORTANT
+const stage = localStorage.getItem("academic_stage") || "10";
 const result = localStorage.getItem("careerResult") || "tech";
 
 document.getElementById("displayName").innerText = name;
@@ -123,76 +95,72 @@ document.getElementById("displayName").innerText = name;
 const accuracy = Math.floor(88 + Math.random()*8);
 document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
 
-/* ================= DATABASE ================= */
-
 const DB = {
-  "10": {
-    tech: {title:"Science (PCM)", desc:"Best for engineering & technical fields."},
-    art: {title:"Science (PCB)", desc:"Ideal for medical & life sciences."},
-    business:{title:"Commerce", desc:"Finance, business & management fields."},
-    social:{title:"Arts / Humanities", desc:"Law, UPSC, social sciences."},
-    neutral:{title:"Diploma / Polytechnic", desc:"Skill-based technical careers."}
+  "10":{
+    tech:{title:"Science (PCM)",desc:"Engineering & technical pathways"},
+    art:{title:"Science (PCB)",desc:"Medical & life sciences"},
+    business:{title:"Commerce",desc:"Finance & business"},
+    social:{title:"Arts / Humanities",desc:"Law & social sciences"},
+    neutral:{title:"Diploma / Polytechnic",desc:"Skill based careers"}
   },
-
-  "12": {
-    tech: {title:"Engineering & Technology", desc:"Software, AI, Core Engineering."},
-    art: {title:"Medical & Healthcare", desc:"MBBS, Pharmacy, Nursing, Biotech."},
-    business:{title:"Management & Finance", desc:"MBA, CA, Business, Economics."},
-    social:{title:"Law & Civil Services", desc:"Law, UPSC, Policy, Psychology."},
-    neutral:{title:"Creative & Design Careers", desc:"Design, Media, Animation."}
+  "12":{
+    tech:[
+      "Software Engineer",
+      "AI / Data Scientist",
+      "Core Engineer",
+      "Cyber Security"
+    ],
+    business:[
+      "MBA / Management",
+      "Chartered Accountant (CA)",
+      "Economics / Analyst",
+      "Banking & Finance"
+    ],
+    art:[
+      "MBBS / Medical",
+      "Pharmacy",
+      "Biotechnology",
+      "Healthcare Administration"
+    ],
+    social:[
+      "Law",
+      "UPSC / Civil Services",
+      "Psychology",
+      "Public Policy"
+    ],
+    neutral:[
+      "Design & Media",
+      "Animation",
+      "UI / UX",
+      "Content & Film"
+    ]
   }
 };
 
-/* ================= LABEL ================= */
-
 document.getElementById("stageLabel").innerText =
-  stage === "10"
-  ? "Post-10 Stream Recommendation"
-  : "Post-12 Career Recommendation";
+  stage==="10" ? "Post-10 Stream Recommendation" : "Post-12 Career Recommendation";
 
-/* ================= MAIN RESULT ================= */
+const grid = document.getElementById("suggestionsGrid");
 
-const main = DB[stage][result] || DB[stage].tech;
+if(stage==="10"){
+  const d = DB["10"][result];
+  document.getElementById("careerTitle").innerText = d.title;
+  document.getElementById("careerDesc").innerText = d.desc;
 
-document.getElementById("careerTitle").innerText = main.title;
-document.getElementById("careerDesc").innerText = main.desc;
+  grid.innerHTML = `<div class="glass p-5 rounded-xl font-bold">${d.title}</div>`;
+}else{
+  document.getElementById("careerTitle").innerText = "Top Career Matches";
+  document.getElementById("careerDesc").innerText = "Ranked based on your aptitude & responses";
 
-document.getElementById("suggestionsGrid").innerHTML = `
-  <div class="glass p-5 rounded-xl border border-indigo-500/40 font-bold text-sm">
-    ${main.title}
-  </div>`;
-
-/* ================= OPTIONAL (ONLY FOR 10th) ================= */
-
-const optionalGrid = document.getElementById("optionalGrid");
-const optionalSection = document.getElementById("optionalSection");
-const toggleBtn = document.getElementById("toggleBtn");
-
-if(stage === "10"){
-  Object.keys(DB["10"]).filter(k=>k!==result).forEach(k=>{
-    const d = DB["10"][k];
-    optionalGrid.innerHTML += `
-      <div class="glass p-5 rounded-xl text-sm">
-        <div class="font-bold mb-1">${d.title}</div>
-        <div class="text-slate-400 text-xs">${d.desc}</div>
+  DB["12"][result].forEach((c,i)=>{
+    grid.innerHTML += `
+      <div class="glass p-5 rounded-xl">
+        <div class="text-xs text-indigo-400 mb-1">Rank #${i+1}</div>
+        <div class="font-bold">${c}</div>
       </div>`;
   });
-
-  toggleBtn.onclick = ()=>{
-    optionalSection.classList.toggle("hidden");
-    toggleBtn.innerText = optionalSection.classList.contains("hidden")
-      ? "➕ View Other Streams"
-      : "➖ Hide Other Streams";
-  };
-}else{
-  // ❌ Post-12 me optional stream nahi
-  toggleBtn.style.display = "none";
-  optionalSection.style.display = "none";
+}
 };
-
-};
-
-/* ================= UI FUNCTIONS ================= */
 
 function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("hidden");
@@ -206,20 +174,15 @@ function downloadPDF(){
 }
 
 function shareResult(){
-  const title = document.getElementById("careerTitle").innerText;
-  const text = `My CareerSteps result: ${title}`;
-
+  const text = "My CareerSteps result: " + document.getElementById("careerTitle").innerText;
   if(navigator.share){
-    navigator.share({
-      title: "CareerSteps Result",
-      text,
-      url: location.href
-    });
+    navigator.share({title:"CareerSteps",text,url:location.href});
   }else{
-    navigator.clipboard.writeText(text + " " + location.href);
-    alert("Result copied to clipboard");
+    navigator.clipboard.writeText(text+" "+location.href);
+    alert("Result copied");
   }
 }
-    </script>
+</script>
+
 </body>
 </html>
