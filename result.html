@@ -5,9 +5,13 @@
 <title>CareerSteps | AI Career Report</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
+
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -32,30 +36,25 @@ body{
 
 <body class="min-h-screen">
 
+<!-- HEADER -->
 <header class="no-print max-w-6xl mx-auto px-6 py-6 flex justify-between items-center relative">
 
-  <!-- Logo -->
   <a href="index.html" class="text-2xl font-black italic uppercase">
     CAREER<span class="text-blue-500">STEPS</span>
   </a>
 
-  <!-- Desktop Buttons -->
+  <!-- Desktop -->
   <div class="hidden md:flex gap-3">
-    <a href="index.html" class="px-4 py-2 text-xs rounded-full bg-white/5 hover:bg-white/10">
-      🏠 Home
-    </a>
+    <a href="index.html" class="px-4 py-2 text-xs rounded-full bg-white/5 hover:bg-white/10">🏠 Home</a>
     <button onclick="downloadPDF()" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-black">
       Download PDF
     </button>
   </div>
 
-  <!-- Mobile More Button -->
+  <!-- Mobile -->
   <div class="md:hidden">
-    <button onclick="toggleMenu()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl">
-      ⋮
-    </button>
+    <button onclick="toggleMenu()" class="w-10 h-10 rounded-full bg-white/10 text-xl">⋮</button>
 
-    <!-- Dropdown -->
     <div id="mobileMenu" class="hidden absolute right-6 top-20 w-44 glass rounded-xl overflow-hidden z-50">
       <a href="index.html" class="block px-4 py-3 text-sm hover:bg-white/10">🏠 Home</a>
       <button onclick="downloadPDF()" class="w-full text-left px-4 py-3 text-sm hover:bg-white/10">
@@ -69,6 +68,7 @@ body{
 
 </header>
 
+<!-- MAIN -->
 <main class="max-w-5xl mx-auto px-6 pb-24">
 
 <section class="mb-10">
@@ -85,42 +85,21 @@ body{
   <span id="stageLabel" class="text-xs uppercase tracking-widest text-indigo-400 font-bold"></span>
 
   <h2 id="careerTitle" class="text-3xl md:text-5xl font-black mt-3 mb-2"></h2>
-
   <p id="accuracyText" class="text-green-400 text-sm font-mono mb-6"></p>
-
-  <h4 class="text-xs uppercase tracking-widest text-slate-500 mb-4">
-    Recommended Path
-  </h4>
 
   <div id="suggestionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 
-  <!-- MOBILE TOGGLE -->
+  <!-- Mobile toggle -->
   <button id="toggleBtn"
     class="sm:hidden mt-6 w-full px-5 py-3 rounded-xl bg-white/10 font-bold text-sm">
     ➕ View Other Streams
   </button>
 
-  <!-- OPTIONAL STREAMS -->
   <div id="optionalSection" class="hidden sm:block mt-8">
     <h4 class="text-xs uppercase tracking-widest text-slate-500 mb-4">
       Other Suitable Streams
     </h4>
     <div id="optionalGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-  </div>
-</section>
-
-<section class="grid md:grid-cols-2 gap-6 mb-12">
-  <div class="glass p-6 rounded-2xl">
-    <h3 class="font-bold text-indigo-400 mb-3">Why this recommendation?</h3>
-    <ul class="text-sm text-slate-300 space-y-2">
-      <li>✔ Interest & aptitude match</li>
-      <li>✔ Indian education pathways</li>
-      <li>✔ Career flexibility retained</li>
-    </ul>
-  </div>
-  <div class="glass p-6 rounded-2xl">
-    <h3 class="font-bold text-indigo-400 mb-3">Confidence Level</h3>
-    <p id="confidenceText" class="text-slate-300 text-sm"></p>
   </div>
 </section>
 
@@ -136,30 +115,24 @@ body{
 window.onload = () => {
 
 const name = localStorage.getItem("user_name") || "Student";
-const stage = localStorage.getItem("academic_stage") || "10";
 const result = localStorage.getItem("careerResult") || "tech";
 
 document.getElementById("displayName").innerText = name;
 
 const accuracy = Math.floor(88 + Math.random()*8);
 document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
-document.getElementById("confidenceText").innerText =
-  accuracy > 90 ? "High confidence recommendation" : "Moderate confidence – explore options";
 
 const DB = {
-  "10":{
-    tech:{title:"Science (PCM)",desc:"Best for logical & analytical thinkers."},
-    art:{title:"Science (PCB)",desc:"Suitable for healthcare & life sciences."},
-    business:{title:"Commerce",desc:"Ideal for finance & business fields."},
-    social:{title:"Arts / Humanities",desc:"Strong communication & social skills."},
-    neutral:{title:"Diploma / Polytechnic",desc:"Skill-based technical option."}
-  }
+  tech:{title:"Science (PCM)",desc:"Best for logical & analytical thinkers."},
+  art:{title:"Science (PCB)",desc:"Suitable for healthcare & life sciences."},
+  business:{title:"Commerce",desc:"Ideal for finance & business fields."},
+  social:{title:"Arts / Humanities",desc:"Strong communication & social skills."},
+  neutral:{title:"Diploma / Polytechnic",desc:"Skill-based technical option."}
 };
 
 document.getElementById("stageLabel").innerText = "Post-10 Stream Recommendation";
 
-// MAIN RESULT
-const main = DB["10"][result] || DB["10"].tech;
+const main = DB[result] || DB.tech;
 document.getElementById("careerTitle").innerText = main.title;
 document.getElementById("careerDesc").innerText = main.desc;
 
@@ -168,18 +141,15 @@ document.getElementById("suggestionsGrid").innerHTML = `
     ${main.title}
   </div>`;
 
-// OPTIONAL STREAMS
 const optionalGrid = document.getElementById("optionalGrid");
-["tech","art","business","social","neutral"].filter(x=>x!==result).forEach(k=>{
-  const d = DB["10"][k];
+Object.keys(DB).filter(k=>k!==result).forEach(k=>{
   optionalGrid.innerHTML += `
     <div class="glass p-5 rounded-xl text-sm">
-      <div class="font-bold mb-1">${d.title}</div>
-      <div class="text-slate-400 text-xs">${d.desc}</div>
+      <div class="font-bold mb-1">${DB[k].title}</div>
+      <div class="text-slate-400 text-xs">${DB[k].desc}</div>
     </div>`;
 });
 
-// MOBILE TOGGLE
 const btn = document.getElementById("toggleBtn");
 const sec = document.getElementById("optionalSection");
 btn.onclick = ()=>{
@@ -188,8 +158,11 @@ btn.onclick = ()=>{
     ? "➕ View Other Streams"
     : "➖ Hide Other Streams";
 };
-
 };
+
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+}
 
 function downloadPDF(){
   const { jsPDF } = window.jspdf;
@@ -199,14 +172,20 @@ function downloadPDF(){
 }
 
 function shareResult(){
-  navigator.clipboard.writeText("My CareerSteps result: "+document.getElementById("careerTitle").innerText);
-  alert("Result copied to clipboard");
+  const title = document.getElementById("careerTitle").innerText;
+  const text = `My CareerSteps result: ${title}`;
+
+  if(navigator.share){
+    navigator.share({
+      title: "CareerSteps Result",
+      text,
+      url: location.href
+    });
+  }else{
+    navigator.clipboard.writeText(text + " " + location.href);
+    alert("Result copied to clipboard");
+  }
 }
-  <script>
-function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("hidden");
-}
-</script>
 </script>
 
 </body>
