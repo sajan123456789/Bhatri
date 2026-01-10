@@ -32,16 +32,41 @@ body{
 
 <body class="min-h-screen">
 
-<header class="no-print max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+<header class="no-print max-w-6xl mx-auto px-6 py-6 flex justify-between items-center relative">
+
+  <!-- Logo -->
   <a href="index.html" class="text-2xl font-black italic uppercase">
     CAREER<span class="text-blue-500">STEPS</span>
   </a>
-  <div class="flex gap-3">
-    <a href="index.html" class="px-4 py-2 text-xs rounded-full bg-white/5 hover:bg-white/10">🏠 Home</a>
+
+  <!-- Desktop Buttons -->
+  <div class="hidden md:flex gap-3">
+    <a href="index.html" class="px-4 py-2 text-xs rounded-full bg-white/5 hover:bg-white/10">
+      🏠 Home
+    </a>
     <button onclick="downloadPDF()" class="px-4 py-2 text-xs font-bold rounded-full bg-white text-black">
       Download PDF
     </button>
   </div>
+
+  <!-- Mobile More Button -->
+  <div class="md:hidden">
+    <button onclick="toggleMenu()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl">
+      ⋮
+    </button>
+
+    <!-- Dropdown -->
+    <div id="mobileMenu" class="hidden absolute right-6 top-20 w-44 glass rounded-xl overflow-hidden z-50">
+      <a href="index.html" class="block px-4 py-3 text-sm hover:bg-white/10">🏠 Home</a>
+      <button onclick="downloadPDF()" class="w-full text-left px-4 py-3 text-sm hover:bg-white/10">
+        📄 Download PDF
+      </button>
+      <a href="assessment.html" class="block px-4 py-3 text-sm hover:bg-white/10">
+        🔁 Retake Test
+      </a>
+    </div>
+  </div>
+
 </header>
 
 <main class="max-w-5xl mx-auto px-6 pb-24">
