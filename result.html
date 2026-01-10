@@ -148,6 +148,40 @@ alert("Result copied!");
 }
 }
 </script>
+<script>
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
+  const name = localStorage.getItem("user_name") || "Student";
+  const career = document.getElementById("careerTitle").innerText;
+  const desc = document.getElementById("careerDesc").innerText;
+  const accuracy = document.getElementById("accuracyLabel").innerText;
+
+  let y = 20;
+  doc.setFontSize(18);
+  doc.text("CareerSteps – Career Report", 20, y);
+
+  y += 12;
+  doc.setFontSize(12);
+  doc.text("Name: " + name, 20, y);
+
+  y += 8;
+  doc.text(accuracy, 20, y);
+
+  y += 10;
+  doc.setFontSize(14);
+  doc.text("Recommended Career:", 20, y);
+
+  y += 8;
+  doc.setFontSize(12);
+  doc.text(career, 20, y);
+
+  y += 10;
+  doc.text(doc.splitTextToSize(desc, 170), 20, y);
+
+  doc.save("CareerSteps_Report.pdf");
+}
+</script>
 </body>
 </html>
