@@ -11,7 +11,7 @@
 body{
   background:#020617;
   color:#fff;
-  font-family: 'Plus Jakarta Sans', system-ui;
+  font-family:'Plus Jakarta Sans',system-ui;
 }
 .glass{
   background:rgba(255,255,255,.05);
@@ -27,289 +27,211 @@ body{
 <body class="px-4 pb-20">
 
 <header class="max-w-6xl mx-auto py-8 flex justify-between items-center">
-  <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase">
+  <a href="index.html" class="text-2xl font-black italic uppercase">
     CAREER<span class="text-blue-500">STEPS</span>
   </a>
-  <a href="index.html" class="text-[10px] font-black uppercase tracking-widest bg-white/5 px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10 transition">
+  <a href="index.html" class="text-[10px] font-black uppercase bg-white/5 px-5 py-2.5 rounded-full border border-white/10">
     🏠 Home
   </a>
 </header>
 
-<main id="reportArea">
-    <section class="max-w-4xl mx-auto mt-6 glass rounded-[2.5rem] p-8 md:p-12 text-center border border-white/10">
-      <span class="inline-block badge px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
-        AI Analysis Complete
-      </span>
+<main class="max-w-4xl mx-auto glass rounded-[2.5rem] p-8 md:p-12 text-center border border-white/10">
 
-      <h1 id="resTitle" class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 leading-tight">
-        Processing...
-      </h1>
+<span class="inline-block badge px-6 py-2 rounded-full text-[10px] font-black uppercase mb-6">
+AI Analysis Complete
+</span>
 
-      <p class="text-green-400 font-mono text-sm mb-6">
-        Neural Match Accuracy: <strong id="resAccuracy">92%</strong>
-      </p>
+<h1 id="resTitle" class="text-4xl md:text-6xl font-black italic mb-4">Processing…</h1>
 
-      <p id="resIntro" class="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
-        Based on your neural responses and decision patterns, AI recommends this path.
-      </p>
+<p class="text-green-400 font-mono text-sm mb-6">
+Match Accuracy: <strong id="resAccuracy">—</strong>
+</p>
 
-      <div class="mt-12 text-left bg-white/5 p-8 rounded-[2rem] border border-white/5">
-        <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Why this result?</h2>
-        <ul id="logicList" class="space-y-3 text-gray-300 font-medium text-sm">
-        </ul>
-      </div>
+<p id="resIntro" class="text-gray-300 mb-10">
+Based on aptitude, interest and response patterns, our AI recommends this path.
+</p>
 
-      <div class="mt-8 text-left">
-        <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Your Strength Areas</h2>
-        <div id="strengthGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300 font-bold uppercase tracking-wide text-[11px]">
-        </div>
-      </div>
+<!-- WHY -->
+<div class="text-left bg-white/5 p-8 rounded-2xl mb-8">
+<h2 class="text-xl font-black italic mb-4 text-indigo-300">Why this result?</h2>
+<ul id="logicList" class="space-y-2 text-sm text-gray-300"></ul>
+</div>
 
-      <div class="mt-14">
-        <h2 id="careerHeading" class="text-2xl font-black italic uppercase mb-8 text-center text-indigo-300">
-          Best Career Matches for You
-        </h2>
-        <div id="careerGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        </div>
-      </div>
+<!-- STRENGTH -->
+<div class="text-left mb-10">
+<h2 class="text-xl font-black italic mb-4 text-indigo-300">Your Strength Areas</h2>
+<div id="strengthGrid" class="grid sm:grid-cols-2 gap-4 text-xs font-bold uppercase"></div>
+</div>
 
-      <div class="mt-14 pt-10 border-t border-white/10 text-left">
-        <h2 class="text-xl font-black italic uppercase mb-6 text-indigo-300">Stream Comparison</h2>
-        <div id="compList" class="space-y-4 text-gray-300 font-bold uppercase tracking-widest text-xs">
-        </div>
-      </div>
-    </section>
+<!-- CAREERS -->
+<h2 id="careerHeading" class="text-2xl font-black italic mb-6 text-indigo-300">
+Best Matches
+</h2>
+
+<div id="careerGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+<!-- COMPARISON -->
+<div class="mt-12 text-left">
+<h2 class="text-xl font-black italic mb-4 text-indigo-300">Comparison</h2>
+<div id="compList" class="space-y-2 text-xs font-bold uppercase"></div>
+</div>
+
 </main>
 
-<section class="max-w-4xl mx-auto mt-16 text-center">
-  <div class="flex flex-wrap justify-center gap-4">
-    <a href="careers.html"
-       class="bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl font-bold text-sm transition-all active:scale-95 shadow-lg shadow-indigo-500/20">
-       Explore 900+ Careers
-    </a>
-    <button onclick="window.print()"
-       class="bg-white/10 px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/20 transition-all">
-       Download Report
-    </button>
-    <a href="assessment.html"
-       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/10 transition-all">
-       Retake Scan
-    </a>
-    <button onclick="shareResult()"
-       class="bg-white/5 px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/10 transition-all">
-       Share Result
-    </button>
-  </div>
-</section>
-
-<footer class="text-center text-gray-500 text-[9px] font-bold uppercase tracking-widest mt-20 mb-10">
-  Neural Core Analysis v4.5 • interest & aptitude patterns<br>
-  © 2025 CareerSteps
-</footer>
 <script>
-window.onload = function () {
+window.onload = () => {
 
   const scores = JSON.parse(localStorage.getItem("scoreData")) || {
-    tech: 0,
-    business: 0,
-    social: 0
+    tech:0,business:0,social:0
   };
-
   const stage = localStorage.getItem("academic_stage") || "12";
 
-  const winner = Object.keys(scores).reduce((a, b) =>
-    scores[a] > scores[b] ? a : b
-  );
-
+  const winner = getWinner(scores);
+  setAccuracy(scores, winner);
   clearUI();
 
-  if (stage === "10") {
-    showStreamResult(winner);
-  } else {
-    showCareerResult(winner);
-  }
+  stage === "10" ? showStream(winner) : showCareer(winner);
 };
 
-/* ---------------- STREAM RESULT (CLASS 10) ---------------- */
-
-function showStreamResult(type) {
-
-  document.getElementById("careerHeading").innerText = "Best Stream Matches For You";
-  document.getElementById("resAccuracy").innerText = "High";
-
-  const streamData = {
-    tech: {
-      title: "Science Stream",
-      logic: [
-        "Strong logical & analytical thinking",
-        "High interest in technology & problem solving",
-        "Good performance in numerical questions"
-      ],
-      strengths: [
-        "Logical Thinking ⭐⭐⭐⭐⭐",
-        "Problem Solving ⭐⭐⭐⭐☆",
-        "Technical Curiosity ⭐⭐⭐⭐⭐"
-      ],
-      cards: [
-        { name: "PCM (Engineering)", info: "Physics • Chemistry • Maths" },
-        { name: "PCB (Medical)", info: "Physics • Chemistry • Biology" },
-        { name: "Pure Science", info: "Research oriented stream" }
-      ],
-      comp: ["Science: 92%", "Commerce: 61%", "Arts: 47%"]
-    },
-
-    business: {
-      title: "Commerce Stream",
-      logic: [
-        "Strong financial & decision-making skills",
-        "Business-oriented mindset detected",
-        "Good numerical & reasoning balance"
-      ],
-      strengths: [
-        "Financial Logic ⭐⭐⭐⭐⭐",
-        "Decision Making ⭐⭐⭐⭐☆",
-        "Leadership ⭐⭐⭐⭐☆"
-      ],
-      cards: [
-        { name: "Commerce + Maths", info: "CA • MBA • Finance" },
-        { name: "Commerce", info: "Business & Management" }
-      ],
-      comp: ["Commerce: 90%", "Science: 64%", "Arts: 58%"]
-    },
-
-    social: {
-      title: "Arts / Humanities Stream",
-      logic: [
-        "Strong communication skills",
-        "Creative & social intelligence detected",
-        "Good verbal reasoning"
-      ],
-      strengths: [
-        "Creativity ⭐⭐⭐⭐⭐",
-        "Communication ⭐⭐⭐⭐☆",
-        "Social Awareness ⭐⭐⭐⭐☆"
-      ],
-      cards: [
-        { name: "Humanities", info: "Law • UPSC • Psychology" },
-        { name: "Arts", info: "Design • Media • Literature" }
-      ],
-      comp: ["Arts: 88%", "Commerce: 59%", "Science: 51%"]
-    }
-  };
-
-  renderResult(streamData[type]);
+/* ---------- SMART WINNER ---------- */
+function getWinner(scores){
+  const arr = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  return (arr[0][1]-arr[1][1] <= 1) ? "hybrid" : arr[0][0];
 }
 
-/* ---------------- CAREER RESULT (CLASS 12) ---------------- */
-
-function showCareerResult(type) {
-
-  document.getElementById("careerHeading").innerText = "Best Career Matches For You";
-  document.getElementById("resAccuracy").innerText = "High";
-
-  const careerData = {
-    tech: {
-      title: "Technology & Engineering Careers",
-      logic: [
-        "High aptitude for technical systems",
-        "Strong analytical performance",
-        "Problem-solving dominance"
-      ],
-      strengths: [
-        "Analytical IQ ⭐⭐⭐⭐⭐",
-        "Technical Skills ⭐⭐⭐⭐⭐",
-        "Innovation ⭐⭐⭐⭐☆"
-      ],
-      cards: [
-        { name: "Software Engineer", info: "₹8–25 LPA" },
-        { name: "Data Scientist", info: "₹10–30 LPA" },
-        { name: "AI / ML Engineer", info: "High Growth" }
-      ],
-      comp: ["Tech: 93%", "Business: 61%", "Arts: 46%"]
-    },
-
-    business: {
-      title: "Business & Finance Careers",
-      logic: [
-        "Strategic thinking strength",
-        "Financial awareness detected",
-        "Leadership mindset"
-      ],
-      strengths: [
-        "Business Strategy ⭐⭐⭐⭐☆",
-        "Finance ⭐⭐⭐⭐⭐",
-        "Leadership ⭐⭐⭐⭐☆"
-      ],
-      cards: [
-        { name: "Business Analyst", info: "₹6–18 LPA" },
-        { name: "Financial Analyst", info: "₹5–20 LPA" },
-        { name: "Startup Founder", info: "Unlimited Growth" }
-      ],
-      comp: ["Business: 91%", "Tech: 67%", "Arts: 55%"]
-    },
-
-    social: {
-      title: "Creative & Humanities Careers",
-      logic: [
-        "Strong verbal intelligence",
-        "Creative problem-solving",
-        "Human-centered thinking"
-      ],
-      strengths: [
-        "Creativity ⭐⭐⭐⭐⭐",
-        "Communication ⭐⭐⭐⭐☆",
-        "Empathy ⭐⭐⭐⭐☆"
-      ],
-      cards: [
-        { name: "UX/UI Designer", info: "₹8–25 LPA" },
-        { name: "Lawyer", info: "₹10–40 LPA" },
-        { name: "Media Professional", info: "₹6–20 LPA" }
-      ],
-      comp: ["Arts: 89%", "Business: 58%", "Tech: 52%"]
-    }
-  };
-
-  renderResult(careerData[type]);
+/* ---------- ACCURACY ---------- */
+function setAccuracy(scores, winner){
+  const total = Object.values(scores).reduce((a,b)=>a+b,1);
+  const val = scores[winner] || Math.max(...Object.values(scores));
+  document.getElementById("resAccuracy").innerText =
+    Math.min(95,Math.round((val/total)*100))+"%";
 }
 
-/* ---------------- RENDER FUNCTION ---------------- */
+/* ---------- CLASS 10 ---------- */
+function showStream(type){
+  document.getElementById("careerHeading").innerText="Best Stream Matches";
 
-function renderResult(data) {
+  const data={
+    tech:{
+      title:"Science Stream",
+      logic:["Strong logical aptitude","High technical curiosity"],
+      strengths:["Logic ⭐⭐⭐⭐⭐","Problem Solving ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"PCM",info:"Engineering focused"},
+        {name:"PCB",info:"Medical focused"},
+        {name:"Pure Science",info:"Research"}
+      ],
+      comp:["Science:92%","Commerce:61%","Arts:47%"]
+    },
+    business:{
+      title:"Commerce Stream",
+      logic:["Financial thinking","Decision making strength"],
+      strengths:["Finance ⭐⭐⭐⭐⭐","Leadership ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"Commerce + Maths",info:"CA / MBA"},
+        {name:"Commerce",info:"Management"}
+      ],
+      comp:["Commerce:90%","Science:64%","Arts:58%"]
+    },
+    social:{
+      title:"Arts / Humanities",
+      logic:["Creative & verbal intelligence"],
+      strengths:["Creativity ⭐⭐⭐⭐⭐","Communication ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"Humanities",info:"Law / UPSC"},
+        {name:"Arts",info:"Design / Media"}
+      ],
+      comp:["Arts:88%","Commerce:59%","Science:51%"]
+    },
+    hybrid:{
+      title:"Flexible Stream Profile",
+      logic:["Balanced aptitude detected","Multiple career pathways open"],
+      strengths:["Adaptability ⭐⭐⭐⭐⭐","Learning Ability ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"Science + Skills",info:"Flexible"},
+        {name:"Commerce + Tech",info:"Hybrid"},
+        {name:"Arts + Design",info:"Creative"}
+      ],
+      comp:["Science:78%","Commerce:76%","Arts:72%"]
+    }
+  };
+  render(data[type]);
+}
 
-  document.getElementById("resTitle").innerHTML = data.title;
+/* ---------- CLASS 12 ---------- */
+function showCareer(type){
+  document.getElementById("careerHeading").innerText="Best Career Matches";
 
-  data.logic.forEach(l =>
-    logicList.innerHTML += `<li>✔ ${l}</li>`
-  );
+  const data={
+    tech:{
+      title:"Technology Careers",
+      logic:["Analytical dominance","System thinking"],
+      strengths:["Tech IQ ⭐⭐⭐⭐⭐","Innovation ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"Software Engineer",info:"₹8–25 LPA"},
+        {name:"Data Scientist",info:"₹10–30 LPA"},
+        {name:"AI Engineer",info:"High Growth"}
+      ],
+      comp:["Tech:93%","Business:61%","Arts:46%"]
+    },
+    business:{
+      title:"Business & Finance",
+      logic:["Strategic mindset","Financial awareness"],
+      strengths:["Strategy ⭐⭐⭐⭐☆","Finance ⭐⭐⭐⭐⭐"],
+      cards:[
+        {name:"Business Analyst",info:"₹6–18 LPA"},
+        {name:"Financial Analyst",info:"₹5–20 LPA"},
+        {name:"Founder",info:"Unlimited"}
+      ],
+      comp:["Business:91%","Tech:67%","Arts:55%"]
+    },
+    social:{
+      title:"Creative & Humanities",
+      logic:["Human-centric thinking","Creative reasoning"],
+      strengths:["Creativity ⭐⭐⭐⭐⭐","Empathy ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"UX/UI Designer",info:"₹8–25 LPA"},
+        {name:"Lawyer",info:"₹10–40 LPA"},
+        {name:"Media Professional",info:"₹6–20 LPA"}
+      ],
+      comp:["Arts:89%","Business:58%","Tech:52%"]
+    },
+    hybrid:{
+      title:"Interdisciplinary Careers",
+      logic:["Multiple strengths detected","Cross-domain suitability"],
+      strengths:["Adaptability ⭐⭐⭐⭐⭐","Versatility ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"Product Manager",info:"₹10–30 LPA"},
+        {name:"UX Strategist",info:"₹8–22 LPA"},
+        {name:"Consultant",info:"₹7–20 LPA"}
+      ],
+      comp:["Tech:78%","Business:76%","Arts:72%"]
+    }
+  };
+  render(data[type]);
+}
 
-  data.strengths.forEach(s =>
-    strengthGrid.innerHTML += `<div class="bg-white/5 p-4 rounded-xl">${s}</div>`
-  );
-
-  data.cards.forEach(c =>
-    careerGrid.innerHTML += `
-      <div class="glass p-6 rounded-2xl">
-        <h3 class="font-bold text-lg">${c.name}</h3>
-        <p class="text-gray-400 text-sm">${c.info}</p>
-      </div>`
-  );
-
-  data.comp.forEach((c, i) => {
-    const [label, val] = c.split(": ");
-    compList.innerHTML += `
-      <div class="flex justify-between ${i === 0 ? "text-indigo-300 font-bold" : ""}">
-        <span>${label}</span><span>${val}</span>
-      </div>`;
+/* ---------- RENDER ---------- */
+function render(d){
+  resTitle.innerHTML=d.title;
+  d.logic.forEach(x=>logicList.innerHTML+=`<li>✔ ${x}</li>`);
+  d.strengths.forEach(x=>strengthGrid.innerHTML+=`<div class="bg-white/5 p-4 rounded-xl">${x}</div>`);
+  d.cards.forEach(x=>careerGrid.innerHTML+=`
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold">${x.name}</h3>
+      <p class="text-gray-400 text-sm">${x.info}</p>
+    </div>`);
+  d.comp.forEach((x,i)=>{
+    const [a,b]=x.split(": ");
+    compList.innerHTML+=`<div class="${i==0?'text-indigo-300 font-bold':''} flex justify-between"><span>${a}</span><span>${b}</span></div>`;
   });
 }
 
-/* ---------------- CLEAR UI ---------------- */
-
-function clearUI() {
-  logicList.innerHTML = "";
-  strengthGrid.innerHTML = "";
-  careerGrid.innerHTML = "";
-  compList.innerHTML = "";
+function clearUI(){
+  logicList.innerHTML="";
+  strengthGrid.innerHTML="";
+  careerGrid.innerHTML="";
+  compList.innerHTML="";
 }
 </script>
 </body>
