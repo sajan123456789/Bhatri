@@ -3,208 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Official Report | CareerSteps Intelligence</title>
+<title>CareerSteps | Official Career Report</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-    :root { --accent: #6366f1; --bg: #020617; }
-    body { background: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-    
-    .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px); }
-    
-    .nav-blur { background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-    .gradient-text { background: linear-gradient(135deg, #818cf8, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    
-    .skill-bar { height: 6px; border-radius: 10px; background: rgba(255,255,255,0.1); overflow: hidden; }
-    .skill-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #a855f7); transition: width 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-
-    .shimmer { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); background-size: 200% 100%; animation: shimmer 3s infinite linear; }
-    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-
-    @media print { .no-print { display: none !important; } }
+:root { --bg:#020617; --accent:#6366f1; }
+body{
+  background:var(--bg);
+  color:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.glass{
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+}
+.gradient-text{
+  background:linear-gradient(135deg,#818cf8,#3b82f6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+@media print{
+  .no-print{display:none!important}
+  body{background:#020617}
+}
 </style>
 </head>
 
-<body class="min-h-screen pb-20">
+<body class="min-h-screen pb-24">
 
-<nav class="fixed top-0 w-full z-50 nav-blur no-print">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black shadow-lg shadow-indigo-500/20 text-xl">C</div>
-            <span class="font-bold tracking-tighter text-xl uppercase">Career<span class="text-indigo-500">Steps</span></span>
-        </div>
-        <div class="flex items-center gap-6">
-            <a href="index.html" class="text-sm font-bold text-slate-400 hover:text-white transition">🏠 Home</a>
-            <button onclick="downloadPDF()" class="bg-white text-black px-5 py-2.5 rounded-xl text-xs font-extrabold hover:bg-slate-200 transition shadow-xl">DOWNLOAD PDF</button>
-        </div>
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-[#020617]/90 backdrop-blur border-b border-white/10 no-print">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+    
+    <!-- LOGO → HOME -->
+    <a href="index.html" class="flex items-center gap-3 font-black italic uppercase text-xl">
+      CAREER<span class="text-indigo-500">STEPS</span>
+    </a>
+
+    <div class="flex items-center gap-4">
+      <a href="index.html" class="text-xs font-bold px-4 py-2 rounded-full bg-white/5 border border-white/10">
+        🏠 Home
+      </a>
+      <button onclick="downloadPDF()" class="text-xs font-black px-4 py-2 rounded-full bg-white text-black">
+        ⬇ Download PDF
+      </button>
     </div>
+  </div>
 </nav>
 
-<main class="max-w-6xl mx-auto pt-32 px-6">
-    
-    <div class="grid lg:grid-cols-3 gap-12 mb-16 items-center">
-        <div class="lg:col-span-2 space-y-6">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-black tracking-widest uppercase shimmer">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                </span>
-                Neural Core Analysis V4.5 Active
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
-                Hello <span id="displayName" class="gradient-text">User</span>,<br>
-                Here is your <span class="text-white">Expert Roadmap.</span>
-            </h1>
-            <p id="careerDesc" class="text-slate-400 text-lg leading-relaxed max-w-2xl"></p>
-        </div>
-        
-        <div class="glass p-10 rounded-[3rem] text-center relative overflow-hidden group">
-            <div class="relative z-10">
-                <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6">Aptitude Match</p>
-                <div class="relative inline-flex items-center justify-center">
-                    <svg class="w-40 h-40 transform -rotate-90">
-                        <circle cx="80" cy="80" r="74" stroke="currentColor" stroke-width="10" fill="transparent" class="text-white/5" />
-                        <circle id="scoreCircle" cx="80" cy="80" r="74" stroke="currentColor" stroke-width="10" fill="transparent" stroke-dasharray="464.7" stroke-dashoffset="464.7" class="text-indigo-500 transition-all duration-1000" />
-                    </svg>
-                    <span id="scoreText" class="absolute text-4xl font-black italic">0%</span>
-                </div>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        </div>
-    </div>
+<main class="max-w-6xl mx-auto pt-28 px-6">
 
-    <div class="glass rounded-[3.5rem] p-10 md:p-16 mb-12 border-t border-white/10 relative overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-80 h-80 bg-indigo-600/10 blur-[120px]"></div>
-        
-        <div class="flex flex-col md:flex-row items-start justify-between gap-8 mb-16 border-b border-white/5 pb-12">
-            <div>
-                <span id="stageLabel" class="text-[10px] font-black text-indigo-400 tracking-[0.4em] uppercase mb-3 block">Top Recommended Stream</span>
-                <h2 id="careerTitle" class="text-5xl md:text-7xl font-black tracking-tighter">Analyzing...</h2>
-            </div>
-            <div class="no-print flex gap-3">
-                <button onclick="shareResult()" class="p-4 bg-white/5 hover:bg-white/10 rounded-2xl transition border border-white/10">Share Analysis</button>
-            </div>
-        </div>
+<!-- HEADER -->
+<section class="mb-14">
+  <span class="inline-block mb-4 px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+    AI Career Intelligence Report
+  </span>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="suggestionsGrid">
-            </div>
-    </div>
+  <h1 class="text-4xl md:text-6xl font-black mb-3">
+    Your Future, <span id="displayName" class="gradient-text">Mapped</span>
+  </h1>
+  <p id="careerDesc" class="text-slate-400 max-w-2xl"></p>
+</section>
 
-    <div class="grid md:grid-cols-2 gap-8 no-print">
-        <div class="glass p-10 rounded-[2.5rem]">
-            <h3 class="text-xl font-bold mb-8 flex items-center gap-3 text-indigo-400">
-                <span>⚡</span> Cognitive Strength Profile
-            </h3>
-            <div class="space-y-8">
-                <div>
-                    <div class="flex justify-between text-[10px] font-black uppercase mb-3 tracking-widest"><span>Technical Logic</span><span>94%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 94%"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-[10px] font-black uppercase mb-3 tracking-widest"><span>Systematic Thinking</span><span>88%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-[10px] font-black uppercase mb-3 tracking-widest"><span>Creative Output</span><span>72%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 72%"></div></div>
-                </div>
-            </div>
-        </div>
+<!-- RESULT CARD -->
+<section class="glass rounded-[3rem] p-8 md:p-14 mb-14 border border-white/10">
 
-        <div class="glass p-10 rounded-[2.5rem]">
-            <h3 class="text-xl font-bold mb-8 flex items-center gap-3 text-emerald-400">
-                <span>🎯</span> Next 12-Month Strategy
-            </h3>
-            <div class="space-y-6 text-sm text-slate-400 font-medium">
-                <div class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                    <span class="text-emerald-500 font-black italic">01</span>
-                    <p>Enroll in foundation courses related to <span class="text-white" id="adviceContext">your stream</span>.</p>
-                </div>
-                <div class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                    <span class="text-emerald-500 font-black italic">02</span>
-                    <p>Start preparing for Tier-1 entrance examinations early.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
+  <div>
+    <p id="stageLabel" class="text-indigo-400 text-xs font-black tracking-widest uppercase mb-2"></p>
+    <h2 id="careerTitle" class="text-4xl md:text-6xl font-black"></h2>
+    <p id="accuracyText" class="text-green-400 text-sm font-mono mt-2"></p>
+  </div>
+</div>
+
+<h4 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-4">
+Recommended Career Directions
+</h4>
+
+<div id="suggestionsGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+
+</section>
+
+<!-- FOOTER ACTIONS -->
+<footer class="no-print flex flex-wrap justify-center gap-4">
+
+<a href="careers.html" class="px-6 py-3 rounded-xl bg-indigo-600 font-bold text-sm">
+🔍 Explore Careers
+</a>
+
+<a href="assessment.html" class="px-6 py-3 rounded-xl bg-white/10 font-bold text-sm">
+🔁 Retake Test
+</a>
+
+<button onclick="shareResult()" class="px-6 py-3 rounded-xl bg-white/10 font-bold text-sm">
+🔗 Share Result
+</button>
+
+</footer>
 
 </main>
 
 <script>
 window.onload = () => {
-    const name = localStorage.getItem("user_name") || "Explorer";
-    const stage = localStorage.getItem("academic_stage") || "10";
-    const resultTag = localStorage.getItem("careerResult") || "tech";
-    const matchScore = Math.floor(85 + Math.random() * 10);
 
-    document.getElementById("displayName").innerText = name;
-    
-    // Animate Score
-    setTimeout(() => {
-        document.getElementById("scoreCircle").style.strokeDashoffset = 464.7 - (464.7 * matchScore) / 100;
-        document.getElementById("scoreText").innerText = `${matchScore}%`;
-    }, 400);
+const name = localStorage.getItem("user_name") || "Student";
+const stage = localStorage.getItem("academic_stage") || "10";
+const resultTag = localStorage.getItem("careerResult") || "tech";
 
-    const roadmapDB = {
-        "10": {
-            tech: { title: "Science (PCM)", desc: "Perfect for innovators. You have the analytical depth required for Engineering and Pure Sciences.", paths: ["JEE/Engineering", "Defence (NDA)", "Architecture", "Data Science"] },
-            business: { title: "Commerce (Maths)", desc: "Strategic and numerical mind. You are built for global finance and business leadership.", paths: ["Chartered Accountancy", "Finance Analyst", "MBA Foundations", "Actuarial Science"] },
-            social: { title: "Humanities / Arts", desc: "High EQ and social logic. You possess the vision for governance, law, and liberal arts.", paths: ["Law (CLAT)", "Civil Services", "Psychology", "Journalism"] },
-            art: { title: "Science (PCB)", desc: "Healthcare focused. Your scientific curiosity is best suited for medical and life sciences.", paths: ["Medical (NEET)", "Pharmacy", "Biotechnology", "Veterinary"] },
-            neutral: { title: "Diploma / Polytechnic", desc: "Skill-first professional. You prefer technical execution and practical industry exposure.", paths: ["CS Diploma", "Mech Engineering", "Civil Eng.", "Electrical Eng."] }
-        },
-        "12": {
-            tech: { title: "B.Tech / Specialized CS", desc: "Technical mastery. Focus on cutting-edge software and hardware integration.", paths: ["AI & ML", "Cybersecurity", "DevOps Eng.", "Robotics"] },
-            business: { title: "BBA / Strategic Mgmt", desc: "Corporate leadership. Market dynamics and business growth are your core strengths.", paths: ["Product Mgmt", "Fintech Specialist", "Digital Marketing", "HR Leadership"] },
-            social: { title: "Liberal Arts / Law", desc: "Social impact. You are built for leadership in legal and human-centric sectors.", paths: ["Corporate Law", "Clinical Psych", "Public Policy", "International Relations"] },
-            art: { title: "B.Des / Creative Media", desc: "Aesthetic innovation. Design thinking and creative economy are your domains.", paths: ["UX/UI Design", "VFX & Animation", "Fashion Design", "Film Direction"] }
-        }
-    };
+document.getElementById("displayName").innerText = name;
 
-    const data = roadmapDB[stage][resultTag] || roadmapDB[stage].tech;
-    document.getElementById("stageLabel").innerText = `Optimized Post-${stage} Profile`;
-    document.getElementById("careerTitle").innerText = data.title;
-    document.getElementById("careerDesc").innerText = data.desc;
-    document.getElementById("adviceContext").innerText = data.title;
+const accuracy = Math.floor(80 + Math.random()*15);
+document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
 
-    const grid = document.getElementById("suggestionsGrid");
-    data.paths.forEach(p => {
-        grid.innerHTML += `
-            <div class="glass p-8 rounded-3xl border border-white/5 hover:border-indigo-500/50 transition-all duration-500 group">
-                <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">✦</div>
-                <h4 class="font-bold text-lg text-white mb-2">${p}</h4>
-                <p class="text-[10px] text-slate-500 uppercase font-black tracking-widest">Growth: High</p>
-            </div>
-        `;
-    });
+const db = {
+  "10":{
+    tech:{title:"Science (PCM)",desc:"Strong analytical and logical aptitude detected.",paths:["Engineering","Defence (NDA)","Architecture","Research"]},
+    business:{title:"Commerce (Maths)",desc:"Finance and business mindset.",paths:["CA","BBA","Economics","Finance"]},
+    social:{title:"Humanities & Arts",desc:"Communication & social intelligence.",paths:["Law","UPSC","Psychology","Media"]},
+    art:{title:"Science (PCB)",desc:"Healthcare & life sciences interest.",paths:["Medical","Pharmacy","Biotech","Veterinary"]},
+    neutral:{title:"Diploma / Polytechnic",desc:"Practical skill-based profile.",paths:["Mechanical","Electrical","Civil","IT Diploma"]}
+  },
+  "12":{
+    tech:{title:"Technology Careers",desc:"Strong technical capability.",paths:["Software","AI/ML","Cybersecurity","Cloud"]},
+    business:{title:"Management & Finance",desc:"Leadership & strategy oriented.",paths:["MBA","Finance","Entrepreneurship","Consulting"]},
+    social:{title:"Law & Policy",desc:"Governance & advocacy mindset.",paths:["Law","Policy","Psychology","IR"]},
+    art:{title:"Design & Creative Media",desc:"Creative and visual thinking.",paths:["UI/UX","Film","Animation","Fashion"]}
+  }
 };
 
-function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const name = localStorage.getItem("user_name") || "Student";
-    const career = document.getElementById("careerTitle").innerText;
-    
-    doc.setFillColor(2, 6, 23);
-    doc.rect(0, 0, 210, 297, 'F');
-    doc.setTextColor(99, 102, 241);
-    doc.setFontSize(26);
-    doc.text("CAREERSTEPS REPORT", 20, 40);
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(14);
-    doc.text(`Candidate: ${name}`, 20, 55);
-    doc.text(`Recommendation: ${career}`, 20, 65);
-    doc.save(`Report_${name}.pdf`);
+const data = db[stage][resultTag] || db[stage].tech;
+
+document.getElementById("stageLabel").innerText = `Optimized Post-${stage} Path`;
+document.getElementById("careerTitle").innerText = data.title;
+document.getElementById("careerDesc").innerText = data.desc;
+
+const grid = document.getElementById("suggestionsGrid");
+data.paths.forEach(p=>{
+  grid.innerHTML += `
+    <div class="glass p-5 rounded-2xl border border-white/5 hover:border-indigo-500 transition">
+      <p class="font-bold">${p}</p>
+    </div>
+  `;
+});
+};
+
+function downloadPDF(){
+  window.print();
 }
 
-function shareResult() {
-    const text = `I just mapped my career on CareerSteps! Recommended: ${document.getElementById("careerTitle").innerText}`;
-    navigator.clipboard.writeText(text + " " + window.location.href);
-    alert("Result Copied to Clipboard!");
+function shareResult(){
+  const text = `My CareerSteps result: ${document.getElementById("careerTitle").innerText}`;
+  navigator.clipboard.writeText(text + " " + location.href);
+  alert("Result copied! Share anywhere.");
 }
 </script>
+
 </body>
 </html>
