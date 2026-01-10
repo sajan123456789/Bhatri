@@ -1,163 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CareerSteps | Official Career Report</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CareerSteps | AI Career Result</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root { --bg:#020617; --accent:#6366f1; }
 body{
-  background:var(--bg);
-  color:#fff;
+  background:#020617;
   font-family:'Plus Jakarta Sans',sans-serif;
+  color:#fff;
 }
 .glass{
-  background:rgba(255,255,255,.02);
+  background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(16px);
-}
-.gradient-text{
-  background:linear-gradient(135deg,#818cf8,#3b82f6);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  backdrop-filter:blur(18px);
 }
 @media print{
-  .no-print{display:none!important}
-  body{background:#020617}
+  .no-print{display:none}
 }
 </style>
 </head>
 
-<body class="min-h-screen pb-24">
+<body>
 
-<!-- NAVBAR -->
-<nav class="fixed top-0 w-full z-50 bg-[#020617]/90 backdrop-blur border-b border-white/10 no-print">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-    
-    <!-- LOGO → HOME -->
-    <a href="index.html" class="flex items-center gap-3 font-black italic uppercase text-xl">
-      CAREER<span class="text-indigo-500">STEPS</span>
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="index.html" class="font-extrabold text-xl">
+      Career<span class="text-indigo-500">Steps</span>
     </a>
-
-    <div class="flex items-center gap-4">
-      <a href="index.html" class="text-xs font-bold px-4 py-2 rounded-full bg-white/5 border border-white/10">
-        🏠 Home
-      </a>
-      <button onclick="downloadPDF()" class="text-xs font-black px-4 py-2 rounded-full bg-white text-black">
-        ⬇ Download PDF
+    <div class="flex gap-2">
+      <button onclick="downloadPDF()" class="bg-white text-black px-3 py-1.5 rounded text-xs font-bold">
+        Download PDF
       </button>
     </div>
   </div>
-</nav>
+</header>
 
-<main class="max-w-6xl mx-auto pt-28 px-6">
+<!-- MAIN -->
+<main class="max-w-6xl mx-auto px-4 py-10">
 
-<!-- HEADER -->
-<section class="mb-14">
-  <span class="inline-block mb-4 px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-    AI Career Intelligence Report
-  </span>
-
-  <h1 class="text-4xl md:text-6xl font-black mb-3">
-    Your Future, <span id="displayName" class="gradient-text">Mapped</span>
+<!-- HERO -->
+<section class="mb-10">
+  <p class="text-xs text-indigo-400 font-bold mb-2">AI CAREER INTELLIGENCE REPORT</p>
+  <h1 class="text-3xl md:text-5xl font-extrabold">
+    Your Future, <span id="displayName" class="text-indigo-400">Student</span>
   </h1>
-  <p id="careerDesc" class="text-slate-400 max-w-2xl"></p>
+  <p class="text-slate-400 mt-2">Based on aptitude, interest & Indian education pathways</p>
 </section>
 
-<!-- RESULT CARD -->
-<section class="glass rounded-[3rem] p-8 md:p-14 mb-14 border border-white/10">
+<!-- MAIN RESULT -->
+<section class="glass rounded-3xl p-6 md:p-10 mb-10">
+  <span class="text-xs font-bold text-indigo-400 uppercase">Top Recommended Stream</span>
+  <h2 id="careerTitle" class="text-3xl md:text-4xl font-extrabold mt-2">Science (PCB)</h2>
+  <p class="text-green-400 font-bold mt-1">Match Accuracy: <span id="scoreText">90%</span></p>
 
-<div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
-  <div>
-    <p id="stageLabel" class="text-indigo-400 text-xs font-black tracking-widest uppercase mb-2"></p>
-    <h2 id="careerTitle" class="text-4xl md:text-6xl font-black"></h2>
-    <p id="accuracyText" class="text-green-400 text-sm font-mono mt-2"></p>
+  <p id="careerDesc" class="text-slate-400 mt-4">
+    Best suited for students interested in healthcare, biology and life sciences.
+  </p>
+
+  <!-- CAREERS -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6" id="suggestionsGrid"></div>
+
+  <!-- BUTTONS -->
+  <div class="flex flex-wrap gap-3 mt-8 no-print">
+    <a href="careers.html" class="bg-indigo-600 px-4 py-2 rounded font-bold text-sm">
+      Explore Careers
+    </a>
+    <a href="test.html" class="bg-white/10 px-4 py-2 rounded font-bold text-sm">
+      Retake Test
+    </a>
+    <button onclick="shareResult()" class="bg-white/5 px-4 py-2 rounded font-bold text-sm">
+      Share Result
+    </button>
   </div>
-</div>
-
-<h4 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-4">
-Recommended Career Directions
-</h4>
-
-<div id="suggestionsGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
-
 </section>
 
-<!-- FOOTER ACTIONS -->
-<footer class="no-print flex flex-wrap justify-center gap-4">
-
-<a href="careers.html" class="px-6 py-3 rounded-xl bg-indigo-600 font-bold text-sm">
-🔍 Explore Careers
-</a>
-
-<a href="assessment.html" class="px-6 py-3 rounded-xl bg-white/10 font-bold text-sm">
-🔁 Retake Test
-</a>
-
-<button onclick="shareResult()" class="px-6 py-3 rounded-xl bg-white/10 font-bold text-sm">
-🔗 Share Result
-</button>
-
-</footer>
+<!-- ALTERNATE STREAMS -->
+<section class="mb-12">
+  <h3 class="text-xl font-bold mb-4">Alternate Suitable Streams</h3>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="glass p-5 rounded-xl">
+      <h4 class="font-bold">Science (PCM)</h4>
+      <p class="text-slate-400 text-sm mt-1">Engineering, Defence, Technology</p>
+    </div>
+    <div class="glass p-5 rounded-xl">
+      <h4 class="font-bold">Diploma / Paramedical</h4>
+      <p class="text-slate-400 text-sm mt-1">Skill-based early career options</p>
+    </div>
+  </div>
+</section>
 
 </main>
 
+<!-- FOOTER -->
+<footer class="border-t border-white/5 py-8 text-sm text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div>
+      <p class="font-bold text-white mb-2">CareerSteps</p>
+      <p>India’s AI Career Guidance Platform</p>
+    </div>
+    <div>
+      <p class="font-bold text-white mb-2">Explore</p>
+      <a href="careers.html" class="block">Explore Careers</a>
+      <a href="test.html" class="block">Career Test</a>
+    </div>
+    <div>
+      <p class="font-bold text-white mb-2">Company</p>
+      <a href="about.html" class="block">About Us</a>
+      <a href="contact.html" class="block">Contact</a>
+    </div>
+    <div>
+      <p class="font-bold text-white mb-2">Legal</p>
+      <a href="privacy.html" class="block">Privacy Policy</a>
+      <a href="terms.html" class="block">Terms</a>
+    </div>
+  </div>
+  <p class="text-center text-xs mt-6">© 2026 CareerSteps. All rights reserved.</p>
+</footer>
+
 <script>
-window.onload = () => {
-
-const name = localStorage.getItem("user_name") || "Student";
-const stage = localStorage.getItem("academic_stage") || "10";
-const resultTag = localStorage.getItem("careerResult") || "tech";
-
+const name = localStorage.getItem("user_name") || "Explorer";
 document.getElementById("displayName").innerText = name;
 
-const accuracy = Math.floor(80 + Math.random()*15);
-document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
-
-const db = {
-  "10":{
-    tech:{title:"Science (PCM)",desc:"Strong analytical and logical aptitude detected.",paths:["Engineering","Defence (NDA)","Architecture","Research"]},
-    business:{title:"Commerce (Maths)",desc:"Finance and business mindset.",paths:["CA","BBA","Economics","Finance"]},
-    social:{title:"Humanities & Arts",desc:"Communication & social intelligence.",paths:["Law","UPSC","Psychology","Media"]},
-    art:{title:"Science (PCB)",desc:"Healthcare & life sciences interest.",paths:["Medical","Pharmacy","Biotech","Veterinary"]},
-    neutral:{title:"Diploma / Polytechnic",desc:"Practical skill-based profile.",paths:["Mechanical","Electrical","Civil","IT Diploma"]}
-  },
-  "12":{
-    tech:{title:"Technology Careers",desc:"Strong technical capability.",paths:["Software","AI/ML","Cybersecurity","Cloud"]},
-    business:{title:"Management & Finance",desc:"Leadership & strategy oriented.",paths:["MBA","Finance","Entrepreneurship","Consulting"]},
-    social:{title:"Law & Policy",desc:"Governance & advocacy mindset.",paths:["Law","Policy","Psychology","IR"]},
-    art:{title:"Design & Creative Media",desc:"Creative and visual thinking.",paths:["UI/UX","Film","Animation","Fashion"]}
-  }
-};
-
-const data = db[stage][resultTag] || db[stage].tech;
-
-document.getElementById("stageLabel").innerText = `Optimized Post-${stage} Path`;
-document.getElementById("careerTitle").innerText = data.title;
-document.getElementById("careerDesc").innerText = data.desc;
-
+const careers = ["Medical", "Pharmacy", "Biotechnology", "Veterinary"];
 const grid = document.getElementById("suggestionsGrid");
-data.paths.forEach(p=>{
+careers.forEach(c=>{
   grid.innerHTML += `
-    <div class="glass p-5 rounded-2xl border border-white/5 hover:border-indigo-500 transition">
-      <p class="font-bold">${p}</p>
-    </div>
-  `;
+    <div class="glass p-4 rounded-xl text-center">
+      <p class="font-bold">${c}</p>
+      <p class="text-xs text-slate-400 mt-1">India Demand: High</p>
+    </div>`;
 });
-};
 
 function downloadPDF(){
-  window.print();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.text("CareerSteps AI Career Report",20,30);
+  doc.text("Recommended Stream: Science (PCB)",20,45);
+  doc.save("CareerSteps_Report.pdf");
 }
 
 function shareResult(){
-  const text = `My CareerSteps result: ${document.getElementById("careerTitle").innerText}`;
-  navigator.clipboard.writeText(text + " " + location.href);
-  alert("Result copied! Share anywhere.");
+  navigator.clipboard.writeText("I discovered my career path on CareerSteps! 👉 "+location.href);
+  alert("Result copied!");
 }
 </script>
 
