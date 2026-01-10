@@ -106,91 +106,210 @@ body{
   Neural Core Analysis v4.5 • interest & aptitude patterns<br>
   © 2025 CareerSteps
 </footer>
-
 <script>
-window.onload = function() {
-    // Getting data from localStorage
-    const scores = JSON.parse(localStorage.getItem("scoreData")) || { tech: 8, business: 4, social: 3 };
-    const stage = localStorage.getItem("academic_stage") || "12";
-    const name = localStorage.getItem("user_name") || "Explorer";
+window.onload = function () {
 
-    // Logic to find winner
-    const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    
-    // UI Heading logic for After 10th vs 12th
-    document.getElementById("careerHeading").innerText = stage === "10" ? "Best Stream Matches" : "Best Career Matches";
+  const scores = JSON.parse(localStorage.getItem("scoreData")) || {
+    tech: 0,
+    business: 0,
+    social: 0
+  };
 
-    const content = {
-        tech: {
-            title: stage === "10" ? "Science & <span class='text-indigo-400'>Tech</span>" : "Engineering & <span class='text-indigo-400'>Technology</span>",
-            logic: ["Superior logical consistency detected", "High aptitude for complex systems", "Evidence-based decision model"],
-            strengths: ["Analytical IQ ⭐⭐⭐⭐⭐", "Logical Depth ⭐⭐⭐⭐☆", "Technical Focus ⭐⭐⭐⭐⭐", "Innovation ⭐⭐⭐⭐☆"],
-            careers: [
-                {name: stage === "10" ? "PCM / PCB" : "Software Engineer", info: stage === "10" ? "Engineering/Medical" : "₹8–25 LPA"},
-                {name: stage === "10" ? "Robotics" : "Data Scientist", info: stage === "10" ? "Skill Elective" : "₹10–30 LPA"},
-                {name: stage === "10" ? "Pure Science" : "Aerospace Design", info: stage === "10" ? "Research" : "High Growth"}
-            ],
-            comp: ["Science: 94%", "Commerce: 62%", "Arts: 48%"]
-        },
-        business: {
-            title: stage === "10" ? "Commerce & <span class='text-indigo-400'>Finance</span>" : "Commerce & <span class='text-indigo-400'>Business</span>",
-            logic: ["High analytical & strategic thinking score", "Strong financial awareness", "Leadership & management inclination"],
-            strengths: ["Strategic Thinking ⭐⭐⭐⭐☆", "Financial Logic ⭐⭐⭐⭐⭐", "Leadership ⭐⭐⭐⭐☆", "Creativity ⭐⭐⭐☆☆"],
-            careers: [
-                {name: stage === "10" ? "Commerce + Math" : "Business Analyst", info: stage === "10" ? "Finance/CA" : "₹6–18 LPA"},
-                {name: stage === "10" ? "Business Studies" : "Financial Analyst", info: stage === "10" ? "Management" : "₹5–20 LPA"},
-                {name: stage === "10" ? "Economics" : "Startup Founder", info: stage === "10" ? "Global Market" : "Unlimited"}
-            ],
-            comp: ["Commerce: 92%", "Science: 68%", "Arts: 61%"]
-        },
-        social: {
-            title: stage === "10" ? "Humanities & <span class='text-indigo-400'>Arts</span>" : "Arts & <span class='text-indigo-400'>Humanities</span>",
-            logic: ["High verbal/linguistic intelligence", "Strong social-cultural awareness", "Creative problem solving"],
-            strengths: ["Creative IQ ⭐⭐⭐⭐⭐", "Social Intelligence ⭐⭐⭐⭐⭐", "Communication ⭐⭐⭐⭐☆", "Empathy ⭐⭐⭐⭐☆"],
-            careers: [
-                {name: stage === "10" ? "Humanities Stream" : "Corporate Lawyer", info: stage === "10" ? "Law/Civils" : "₹10–40 LPA"},
-                {name: stage === "10" ? "Liberal Arts" : "UX/UI Designer", info: stage === "10" ? "Design" : "₹8–25 LPA"},
-                {name: stage === "10" ? "Mass Comm" : "Media Expert", info: stage === "10" ? "Journalism" : "₹6–20 LPA"}
-            ],
-            comp: ["Arts: 89%", "Commerce: 58%", "Science: 52%"]
-        }
-    };
+  const stage = localStorage.getItem("academic_stage") || "12";
 
-    const final = content[winner] || content.tech;
-    document.getElementById("resTitle").innerHTML = final.title;
-    document.getElementById("resAccuracy").innerText = final.comp[0].split(": ")[1];
+  const winner = Object.keys(scores).reduce((a, b) =>
+    scores[a] > scores[b] ? a : b
+  );
 
-    // Populating Why This Result
-    final.logic.forEach(l => { document.getElementById("logicList").innerHTML += `<li>✔ ${l}</li>`; });
-    // Populating Strengths
-    final.strengths.forEach(s => { document.getElementById("strengthGrid").innerHTML += `<div class="bg-white/5 p-4 rounded-xl border border-white/5">${s}</div>`; });
-    // Populating Career/Stream Cards
-    final.careers.forEach(c => {
-        document.getElementById("careerGrid").innerHTML += `
-            <div class="glass p-6 rounded-2xl border border-white/10 text-left">
-                <h3 class="font-bold text-lg text-white">${c.name}</h3>
-                <p class="text-sm text-gray-400">${c.info}</p>
-            </div>`;
-    });
-    // Populating Comparison
-    final.comp.forEach((c, i) => {
-        const parts = c.split(": ");
-        document.getElementById("compList").innerHTML += `
-            <div class="flex justify-between items-center ${i === 0 ? 'bg-indigo-500/10 p-4 rounded-xl text-indigo-300' : 'p-4'}">
-                <span>${parts[0]}</span>
-                <span class="text-lg font-black italic">${parts[1]}</span>
-            </div>`;
-    });
+  clearUI();
+
+  if (stage === "10") {
+    showStreamResult(winner);
+  } else {
+    showCareerResult(winner);
+  }
 };
 
-function shareResult(){
-    const text = `I just found my career path on CareerSteps AI! Check it out!`;
-    if(navigator.share){
-        navigator.share({title: 'My Career Result', text: text, url: window.location.href});
-    } else {
-        navigator.clipboard.writeText(text + " " + window.location.href);
-        alert("Link copied!");
+/* ---------------- STREAM RESULT (CLASS 10) ---------------- */
+
+function showStreamResult(type) {
+
+  document.getElementById("careerHeading").innerText = "Best Stream Matches For You";
+  document.getElementById("resAccuracy").innerText = "High";
+
+  const streamData = {
+    tech: {
+      title: "Science Stream",
+      logic: [
+        "Strong logical & analytical thinking",
+        "High interest in technology & problem solving",
+        "Good performance in numerical questions"
+      ],
+      strengths: [
+        "Logical Thinking ⭐⭐⭐⭐⭐",
+        "Problem Solving ⭐⭐⭐⭐☆",
+        "Technical Curiosity ⭐⭐⭐⭐⭐"
+      ],
+      cards: [
+        { name: "PCM (Engineering)", info: "Physics • Chemistry • Maths" },
+        { name: "PCB (Medical)", info: "Physics • Chemistry • Biology" },
+        { name: "Pure Science", info: "Research oriented stream" }
+      ],
+      comp: ["Science: 92%", "Commerce: 61%", "Arts: 47%"]
+    },
+
+    business: {
+      title: "Commerce Stream",
+      logic: [
+        "Strong financial & decision-making skills",
+        "Business-oriented mindset detected",
+        "Good numerical & reasoning balance"
+      ],
+      strengths: [
+        "Financial Logic ⭐⭐⭐⭐⭐",
+        "Decision Making ⭐⭐⭐⭐☆",
+        "Leadership ⭐⭐⭐⭐☆"
+      ],
+      cards: [
+        { name: "Commerce + Maths", info: "CA • MBA • Finance" },
+        { name: "Commerce", info: "Business & Management" }
+      ],
+      comp: ["Commerce: 90%", "Science: 64%", "Arts: 58%"]
+    },
+
+    social: {
+      title: "Arts / Humanities Stream",
+      logic: [
+        "Strong communication skills",
+        "Creative & social intelligence detected",
+        "Good verbal reasoning"
+      ],
+      strengths: [
+        "Creativity ⭐⭐⭐⭐⭐",
+        "Communication ⭐⭐⭐⭐☆",
+        "Social Awareness ⭐⭐⭐⭐☆"
+      ],
+      cards: [
+        { name: "Humanities", info: "Law • UPSC • Psychology" },
+        { name: "Arts", info: "Design • Media • Literature" }
+      ],
+      comp: ["Arts: 88%", "Commerce: 59%", "Science: 51%"]
     }
+  };
+
+  renderResult(streamData[type]);
+}
+
+/* ---------------- CAREER RESULT (CLASS 12) ---------------- */
+
+function showCareerResult(type) {
+
+  document.getElementById("careerHeading").innerText = "Best Career Matches For You";
+  document.getElementById("resAccuracy").innerText = "High";
+
+  const careerData = {
+    tech: {
+      title: "Technology & Engineering Careers",
+      logic: [
+        "High aptitude for technical systems",
+        "Strong analytical performance",
+        "Problem-solving dominance"
+      ],
+      strengths: [
+        "Analytical IQ ⭐⭐⭐⭐⭐",
+        "Technical Skills ⭐⭐⭐⭐⭐",
+        "Innovation ⭐⭐⭐⭐☆"
+      ],
+      cards: [
+        { name: "Software Engineer", info: "₹8–25 LPA" },
+        { name: "Data Scientist", info: "₹10–30 LPA" },
+        { name: "AI / ML Engineer", info: "High Growth" }
+      ],
+      comp: ["Tech: 93%", "Business: 61%", "Arts: 46%"]
+    },
+
+    business: {
+      title: "Business & Finance Careers",
+      logic: [
+        "Strategic thinking strength",
+        "Financial awareness detected",
+        "Leadership mindset"
+      ],
+      strengths: [
+        "Business Strategy ⭐⭐⭐⭐☆",
+        "Finance ⭐⭐⭐⭐⭐",
+        "Leadership ⭐⭐⭐⭐☆"
+      ],
+      cards: [
+        { name: "Business Analyst", info: "₹6–18 LPA" },
+        { name: "Financial Analyst", info: "₹5–20 LPA" },
+        { name: "Startup Founder", info: "Unlimited Growth" }
+      ],
+      comp: ["Business: 91%", "Tech: 67%", "Arts: 55%"]
+    },
+
+    social: {
+      title: "Creative & Humanities Careers",
+      logic: [
+        "Strong verbal intelligence",
+        "Creative problem-solving",
+        "Human-centered thinking"
+      ],
+      strengths: [
+        "Creativity ⭐⭐⭐⭐⭐",
+        "Communication ⭐⭐⭐⭐☆",
+        "Empathy ⭐⭐⭐⭐☆"
+      ],
+      cards: [
+        { name: "UX/UI Designer", info: "₹8–25 LPA" },
+        { name: "Lawyer", info: "₹10–40 LPA" },
+        { name: "Media Professional", info: "₹6–20 LPA" }
+      ],
+      comp: ["Arts: 89%", "Business: 58%", "Tech: 52%"]
+    }
+  };
+
+  renderResult(careerData[type]);
+}
+
+/* ---------------- RENDER FUNCTION ---------------- */
+
+function renderResult(data) {
+
+  document.getElementById("resTitle").innerHTML = data.title;
+
+  data.logic.forEach(l =>
+    logicList.innerHTML += `<li>✔ ${l}</li>`
+  );
+
+  data.strengths.forEach(s =>
+    strengthGrid.innerHTML += `<div class="bg-white/5 p-4 rounded-xl">${s}</div>`
+  );
+
+  data.cards.forEach(c =>
+    careerGrid.innerHTML += `
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="font-bold text-lg">${c.name}</h3>
+        <p class="text-gray-400 text-sm">${c.info}</p>
+      </div>`
+  );
+
+  data.comp.forEach((c, i) => {
+    const [label, val] = c.split(": ");
+    compList.innerHTML += `
+      <div class="flex justify-between ${i === 0 ? "text-indigo-300 font-bold" : ""}">
+        <span>${label}</span><span>${val}</span>
+      </div>`;
+  });
+}
+
+/* ---------------- CLEAR UI ---------------- */
+
+function clearUI() {
+  logicList.innerHTML = "";
+  strengthGrid.innerHTML = "";
+  careerGrid.innerHTML = "";
+  compList.innerHTML = "";
 }
 </script>
 </body>
