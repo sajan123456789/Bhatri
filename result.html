@@ -115,6 +115,7 @@ body{
 window.onload = () => {
 
 const name = localStorage.getItem("user_name") || "Student";
+const stage = localStorage.getItem("academic_stage") || "10"; // 🔥 IMPORTANT
 const result = localStorage.getItem("careerResult") || "tech";
 
 document.getElementById("displayName").innerText = name;
@@ -122,17 +123,37 @@ document.getElementById("displayName").innerText = name;
 const accuracy = Math.floor(88 + Math.random()*8);
 document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
 
+/* ================= DATABASE ================= */
+
 const DB = {
-  tech:{title:"Science (PCM)",desc:"Best for logical & analytical thinkers."},
-  art:{title:"Science (PCB)",desc:"Suitable for healthcare & life sciences."},
-  business:{title:"Commerce",desc:"Ideal for finance & business fields."},
-  social:{title:"Arts / Humanities",desc:"Strong communication & social skills."},
-  neutral:{title:"Diploma / Polytechnic",desc:"Skill-based technical option."}
+  "10": {
+    tech: {title:"Science (PCM)", desc:"Best for engineering & technical fields."},
+    art: {title:"Science (PCB)", desc:"Ideal for medical & life sciences."},
+    business:{title:"Commerce", desc:"Finance, business & management fields."},
+    social:{title:"Arts / Humanities", desc:"Law, UPSC, social sciences."},
+    neutral:{title:"Diploma / Polytechnic", desc:"Skill-based technical careers."}
+  },
+
+  "12": {
+    tech: {title:"Engineering & Technology", desc:"Software, AI, Core Engineering."},
+    art: {title:"Medical & Healthcare", desc:"MBBS, Pharmacy, Nursing, Biotech."},
+    business:{title:"Management & Finance", desc:"MBA, CA, Business, Economics."},
+    social:{title:"Law & Civil Services", desc:"Law, UPSC, Policy, Psychology."},
+    neutral:{title:"Creative & Design Careers", desc:"Design, Media, Animation."}
+  }
 };
 
-document.getElementById("stageLabel").innerText = "Post-10 Stream Recommendation";
+/* ================= LABEL ================= */
 
-const main = DB[result] || DB.tech;
+document.getElementById("stageLabel").innerText =
+  stage === "10"
+  ? "Post-10 Stream Recommendation"
+  : "Post-12 Career Recommendation";
+
+/* ================= MAIN RESULT ================= */
+
+const main = DB[stage][result] || DB[stage].tech;
+
 document.getElementById("careerTitle").innerText = main.title;
 document.getElementById("careerDesc").innerText = main.desc;
 
@@ -141,24 +162,37 @@ document.getElementById("suggestionsGrid").innerHTML = `
     ${main.title}
   </div>`;
 
-const optionalGrid = document.getElementById("optionalGrid");
-Object.keys(DB).filter(k=>k!==result).forEach(k=>{
-  optionalGrid.innerHTML += `
-    <div class="glass p-5 rounded-xl text-sm">
-      <div class="font-bold mb-1">${DB[k].title}</div>
-      <div class="text-slate-400 text-xs">${DB[k].desc}</div>
-    </div>`;
-});
+/* ================= OPTIONAL (ONLY FOR 10th) ================= */
 
-const btn = document.getElementById("toggleBtn");
-const sec = document.getElementById("optionalSection");
-btn.onclick = ()=>{
-  sec.classList.toggle("hidden");
-  btn.innerText = sec.classList.contains("hidden")
-    ? "➕ View Other Streams"
-    : "➖ Hide Other Streams";
+const optionalGrid = document.getElementById("optionalGrid");
+const optionalSection = document.getElementById("optionalSection");
+const toggleBtn = document.getElementById("toggleBtn");
+
+if(stage === "10"){
+  Object.keys(DB["10"]).filter(k=>k!==result).forEach(k=>{
+    const d = DB["10"][k];
+    optionalGrid.innerHTML += `
+      <div class="glass p-5 rounded-xl text-sm">
+        <div class="font-bold mb-1">${d.title}</div>
+        <div class="text-slate-400 text-xs">${d.desc}</div>
+      </div>`;
+  });
+
+  toggleBtn.onclick = ()=>{
+    optionalSection.classList.toggle("hidden");
+    toggleBtn.innerText = optionalSection.classList.contains("hidden")
+      ? "➕ View Other Streams"
+      : "➖ Hide Other Streams";
+  };
+}else{
+  // ❌ Post-12 me optional stream nahi
+  toggleBtn.style.display = "none";
+  optionalSection.style.display = "none";
 };
+
 };
+
+/* ================= UI FUNCTIONS ================= */
 
 function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("hidden");
@@ -186,7 +220,6 @@ function shareResult(){
     alert("Result copied to clipboard");
   }
 }
-</script>
-
+    </script>
 </body>
 </html>
