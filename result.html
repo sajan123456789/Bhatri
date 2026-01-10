@@ -35,7 +35,7 @@ body{
   </a>
 </header>
 
-<main id="report" class="max-w-4xl mx-auto glass rounded-[2.5rem] p-8 md:p-12 text-center border border-white/10">
+<main class="max-w-4xl mx-auto glass rounded-[2.5rem] p-8 md:p-12 text-center border border-white/10">
 
 <span class="inline-block badge px-6 py-2 rounded-full text-[10px] font-black uppercase mb-6">
 AI Analysis Complete
@@ -51,23 +51,19 @@ Match Accuracy: <strong id="resAccuracy">—</strong>
 
 <p id="resIntro" class="text-gray-300 mb-10"></p>
 
-<!-- WHY -->
 <div class="text-left bg-white/5 p-8 rounded-2xl mb-8">
 <h2 class="text-xl font-black italic mb-4 text-indigo-300">Why this result?</h2>
 <ul id="logicList" class="space-y-2 text-sm text-gray-300"></ul>
 </div>
 
-<!-- STRENGTH -->
 <div class="text-left mb-10">
 <h2 class="text-xl font-black italic mb-4 text-indigo-300">Your Strength Areas</h2>
 <div id="strengthGrid" class="grid sm:grid-cols-2 gap-4 text-xs font-bold uppercase"></div>
 </div>
 
-<!-- CAREERS -->
 <h2 id="careerHeading" class="text-2xl font-black italic mb-6 text-indigo-300"></h2>
 <div id="careerGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
 
-<!-- COMPARISON -->
 <div class="mt-12 text-left">
 <h2 class="text-xl font-black italic mb-4 text-indigo-300">Comparison</h2>
 <div id="compList" class="space-y-2 text-xs font-bold uppercase"></div>
@@ -75,65 +71,126 @@ Match Accuracy: <strong id="resAccuracy">—</strong>
 
 </main>
 
-<!-- ACTION BUTTONS -->
 <section class="max-w-4xl mx-auto mt-10 flex flex-wrap justify-center gap-4 text-sm font-bold">
-
 <a href="careers.html" class="bg-indigo-600 px-6 py-3 rounded-xl">🔍 Explore Careers</a>
-
-<button onclick="downloadPDF()" class="bg-white/10 px-6 py-3 rounded-xl">
-📄 Download PDF
-</button>
-
-<a href="assessment.html" class="bg-white/10 px-6 py-3 rounded-xl">
-🔁 Retake Test
-</a>
-
-<button onclick="shareResult()" class="bg-white/10 px-6 py-3 rounded-xl">
-🔗 Share Result
-</button>
-
+<button onclick="window.print()" class="bg-white/10 px-6 py-3 rounded-xl">📄 Download PDF</button>
+<a href="assessment.html" class="bg-white/10 px-6 py-3 rounded-xl">🔁 Retake Test</a>
+<button onclick="shareResult()" class="bg-white/10 px-6 py-3 rounded-xl">🔗 Share Result</button>
 </section>
 
 <footer class="text-center text-gray-500 text-[9px] font-bold uppercase tracking-widest mt-16">
-Neural Core Analysis v4.6 • Interest & Aptitude Patterns<br>
-© 2025 CareerSteps
+Neural Core Analysis v4.6 • © 2025 CareerSteps
 </footer>
 
 <script>
-window.onload = () => {
+/* ---------- SAFETY FALLBACK (REMOVE IN PROD) ---------- */
+if(!localStorage.getItem("scoreData")){
+  localStorage.setItem("scoreData",JSON.stringify({tech:4,business:3,social:7}));
+  localStorage.setItem("academic_stage","12");
+  localStorage.setItem("user_name","Demo User");
+}
 
-  const scores = JSON.parse(localStorage.getItem("scoreData")) || {tech:0,business:0,social:0};
-  const stage = localStorage.getItem("academic_stage") || "12";
-  const user = localStorage.getItem("user_name") || "You";
-
-  const winner = getWinner(scores);
-  const accuracy = setAccuracy(scores, winner);
-
-  document.getElementById("resIntro").innerText =
-    `${user}, based on your aptitude and response patterns, our AI recommends this path.`;
-
-  document.getElementById("confidenceLabel").innerText =
-    accuracy >= 75 ? "High Confidence Result" :
-    accuracy >= 55 ? "Medium Confidence Result" :
-    "Exploratory Recommendation";
+/* ---------- MAIN ---------- */
+window.onload=()=>{
+  const scores=JSON.parse(localStorage.getItem("scoreData"));
+  const stage=localStorage.getItem("academic_stage");
+  const user=localStorage.getItem("user_name");
 
   clearUI();
-  stage==="10" ? showStream(winner) : showCareer(winner);
+  const winner=getWinner(scores);
+  const acc=setAccuracy(scores,winner);
+
+  resIntro.innerText=`${user}, based on your aptitude and response patterns, our AI recommends this path.`;
+  confidenceLabel.innerText=acc>=75?"High Confidence Result":acc>=55?"Medium Confidence Result":"Exploratory Recommendation";
+
+  stage==="10"?showStream(winner):showCareer(winner);
 };
 
-/* ---------- WINNER ---------- */
-function getWinner(scores){
-  const a = Object.entries(scores).sort((x,y)=>y[1]-x[1]);
+/* ---------- LOGIC ---------- */
+function getWinner(s){
+  const a=Object.entries(s).sort((x,y)=>y[1]-x[1]);
   return (a[0][1]-a[1][1]<=1)?"hybrid":a[0][0];
 }
-
-/* ---------- ACCURACY ---------- */
-function setAccuracy(scores,w){
-  const total = Object.values(scores).reduce((a,b)=>a+b,1);
-  const val = scores[w] || Math.max(...Object.values(scores));
-  const pct = Math.min(95,Math.round((val/total)*100));
-  resAccuracy.innerText = pct+"%";
-  return pct;
+function setAccuracy(s,w){
+  const t=Object.values(s).reduce((a,b)=>a+b,1);
+  const v=s[w]||Math.max(...Object.values(s));
+  const p=Math.min(95,Math.round(v/t*100));
+  resAccuracy.innerText=p+"%";return p;
 }
 
-/* ---------- STREAM + CAREER DATA (UNCHANGED LOGIC) ---------- */
+/* ---------- DATA ---------- */
+function showCareer(t){
+  careerHeading.innerText="Best Career Matches";
+  const d={
+    tech:{
+      title:"Technology Careers",
+      logic:["Strong analytical thinking","Interest in systems & data","Problem-solving mindset"],
+      strengths:["Programming ⭐⭐⭐⭐⭐","Logic ⭐⭐⭐⭐☆","Innovation ⭐⭐⭐⭐⭐"],
+      cards:[
+        {name:"Software Engineer",info:"₹6–20 LPA"},
+        {name:"Data Scientist",info:"₹8–25 LPA"},
+        {name:"Cybersecurity Analyst",info:"₹7–18 LPA"}
+      ],
+      comp:["Tech:93%","Business:61%","Arts:46%"]
+    },
+    social:{
+      title:"Creative & Humanities",
+      logic:["Human-centric thinking","Creative reasoning","Strong communication"],
+      strengths:["Creativity ⭐⭐⭐⭐⭐","Empathy ⭐⭐⭐⭐☆","Expression ⭐⭐⭐⭐⭐"],
+      cards:[
+        {name:"UX/UI Designer",info:"₹5–15 LPA"},
+        {name:"Lawyer",info:"₹8–25 LPA"},
+        {name:"Media Professional",info:"₹4–12 LPA"}
+      ],
+      comp:["Arts:89%","Business:58%","Tech:52%"]
+    },
+    business:{
+      title:"Business & Finance",
+      logic:["Strategic mindset","Financial understanding","Leadership traits"],
+      strengths:["Finance ⭐⭐⭐⭐⭐","Strategy ⭐⭐⭐⭐☆","Leadership ⭐⭐⭐⭐☆"],
+      cards:[
+        {name:"Investment Banker",info:"₹10–30 LPA"},
+        {name:"Management Consultant",info:"₹8–22 LPA"},
+        {name:"Entrepreneur",info:"High Risk / Reward"}
+      ],
+      comp:["Business:91%","Tech:67%","Arts:55%"]
+    },
+    hybrid:{
+      title:"Interdisciplinary Careers",
+      logic:["Balanced interests","Multi-domain capability","Adaptability"],
+      strengths:["Versatility ⭐⭐⭐⭐⭐","Collaboration ⭐⭐⭐⭐☆","Innovation ⭐⭐⭐⭐⭐"],
+      cards:[
+        {name:"Product Manager",info:"₹12–30 LPA"},
+        {name:"Digital Marketer",info:"₹6–18 LPA"},
+        {name:"HR Consultant",info:"₹7–20 LPA"}
+      ],
+      comp:["Tech:78%","Business:76%","Arts:72%"]
+    }
+  };
+  render(d[t]);
+}
+
+/* ---------- RENDER ---------- */
+function render(d){
+  resTitle.innerHTML=d.title;
+  d.logic.forEach(x=>logicList.innerHTML+=`<li>✔ ${x}</li>`);
+  d.strengths.forEach(x=>strengthGrid.innerHTML+=`<div class="bg-white/5 p-4 rounded-xl">${x}</div>`);
+  d.cards.forEach(x=>careerGrid.innerHTML+=`
+    <div class="glass p-6 rounded-2xl">
+      <h3 class="font-bold">${x.name}</h3>
+      <p class="text-gray-400 text-sm">${x.info}</p>
+    </div>`);
+  d.comp.forEach((x,i)=>{
+    const[a,b]=x.split(": ");
+    compList.innerHTML+=`<div class="${i==0?'text-indigo-300 font-bold':''} flex justify-between"><span>${a}</span><span>${b}</span></div>`;
+  });
+}
+function clearUI(){logicList.innerHTML=strengthGrid.innerHTML=careerGrid.innerHTML=compList.innerHTML="";}
+function shareResult(){
+  navigator.share?
+  navigator.share({title:"My Career Result",text:`I got my Career Result on CareerSteps!`,url:location.href}):
+  alert("Sharing not supported");
+}
+</script>
+</body>
+</html>
