@@ -177,5 +177,38 @@ function processFinalReport() {
     }, 2800);
 }
 </script>
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+    authDomain: "careersteps-afa5d.firebaseapp.com",
+    projectId: "careersteps-afa5d",
+    storageBucket: "careersteps-afa5d.firebasestorage.app",
+    messagingSenderId: "197033973372",
+    appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9",
+    measurementId: "G-90SZVYJ200"
+  };
+
+  // Init
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+
+  // 🔴 IMPORTANT: ye function GLOBAL banana hai
+  window.saveTestData = async function(data){
+    try{
+      await addDoc(collection(db, "testResults"), {
+        ...data,
+        createdAt: serverTimestamp()
+      });
+      console.log("✅ Data saved");
+    }catch(e){
+      console.error("❌ Error", e);
+    }
+  }
+    </script>
 </body>
 </html>
