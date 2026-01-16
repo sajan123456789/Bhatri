@@ -100,6 +100,14 @@ body{
     social:{title:"Law & Civil Services",desc:"Law, Judiciary, UPSC."}
   }
 };
+  function calculatePercentages(scoreData){
+  const total = Object.values(scoreData).reduce((a,b)=>a+b,0) || 1;
+  const perc = {};
+  for(const k in scoreData){
+    perc[k] = Math.round((scoreData[k] / total) * 100);
+  }
+  return perc;
+}
 /* ================= PAGE DATA ================= */
 window.onload = () => {
   const name  = localStorage.getItem("user_name") || "Student";
