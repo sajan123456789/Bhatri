@@ -94,24 +94,7 @@ window.onload = () => {
 
   document.getElementById("displayName").innerText = name;
 
-  const accuracy = Math.floor(88 + Math.random()*8);
-  document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
-
-  const DB = {
-    "10":{
-      tech:{title:"Science (PCM)",desc:"Best for engineering & technical careers."},
-      art:{title:"Science (PCB)",desc:"Medical & life science pathways."},
-      business:{title:"Commerce",desc:"Business, finance & economics fields."},
-      social:{title:"Arts / Humanities",desc:"Law, UPSC & social sciences."}
-    },
-    "12":{
-      tech:{title:"Engineering & Technology",desc:"Software, AI, core engineering careers."},
-      art:{title:"Medical & Healthcare",desc:"MBBS, Pharmacy, Nursing, Biotech."},
-      business:{title:"Management & Finance",desc:"MBA, CA, Business, Economics."},
-      social:{title:"Law & Civil Services",desc:"Law, UPSC, policy careers."}
-    }
-  };
-
+  
   document.getElementById("stageLabel").innerText =
     stage === "10" ? "Post-10 Stream Recommendation" : "Post-12 Career Recommendation";
 
