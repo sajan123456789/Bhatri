@@ -91,7 +91,9 @@ window.onload = () => {
   const name  = localStorage.getItem("user_name") || "Student";
   const stage = localStorage.getItem("academic_stage") || "10";
   const result = localStorage.getItem("careerResult") || "business";
-
+const stream = localStorage.getItem("selected_stream");
+  const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
+  console.log("STREAM:", stream, "SCORES:", scoreData);
   document.getElementById("displayName").innerText = name;
 
   
