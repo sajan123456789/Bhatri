@@ -126,6 +126,8 @@ const stream = localStorage.getItem("selected_stream");
   const main = DB[stage][result] || DB[stage].business;
 
   document.getElementById("careerTitle").innerText = main.title;
+  document.getElementById("accuracyText").innerText =
+  `Match Accuracy: ${percentages[result] || 0}%`;
   document.getElementById("careerDesc").innerText = main.desc;
 
   const grid = document.getElementById("suggestionsGrid");
