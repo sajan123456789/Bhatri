@@ -84,7 +84,9 @@ body{
 </section>
 
 </main>
-const DB = {
+
+<script>
+  const DB = {
   "10":{
     tech:{title:"Science (PCM)",desc:"Engineering & technical foundation."},
     art:{title:"Science (PCB)",desc:"Medical & life sciences path."},
@@ -98,7 +100,6 @@ const DB = {
     social:{title:"Law & Civil Services",desc:"Law, Judiciary, UPSC."}
   }
 };
-<script>
 /* ================= PAGE DATA ================= */
 window.onload = () => {
   const name  = localStorage.getItem("user_name") || "Student";
