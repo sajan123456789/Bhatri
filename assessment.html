@@ -137,8 +137,16 @@ function saveName() {
 
 function startAI(type) {
     localStorage.setItem("academic_stage", type);
-    currentQuestions = AI_DATABASE[type];
     document.getElementById("selectClass").classList.add("hidden");
+
+    if(type === "12"){
+        // 🔵 Post-12: stream first
+        document.getElementById("streamSelect").classList.remove("hidden");
+        return;
+    }
+
+    // ✅ Post-10: direct test
+    currentQuestions = AI_DATABASE[type];
     document.getElementById("quiz").classList.remove("hidden");
     loadNeuralNode();
 }
