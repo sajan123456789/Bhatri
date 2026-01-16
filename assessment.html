@@ -176,7 +176,19 @@ function processInput(tag) {
     }
 }
 
-function processFinalReport() {
+function processFinalReport()<script>
+/* 🔵 NEW: handle Post-12 stream selection */
+
+function selectStream(stream){
+  localStorage.setItem("selected_stream", stream);
+
+  document.getElementById("streamSelect").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+
+  currentQuestions = AI_DATABASE["12"];
+  loadNeuralNode();
+}
+</script> {
     document.getElementById("quiz").innerHTML = `
         <div class="text-center py-24">
             <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
