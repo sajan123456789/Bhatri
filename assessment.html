@@ -192,7 +192,36 @@ function processInput(tag) {
         processFinalReport();
     }
 }
+function processFinalReport() {
+    document.getElementById("quiz").innerHTML = `
+        <div class="text-center py-24">
+            <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <h2 class="text-xl font-bold">Analyzing Neural Patterns...</h2>
+            <p class="text-[10px] text-slate-500 tracking-[0.3em] mt-3 uppercase">
+              Mapping Career Matrices
+            </p>
+        </div>`;
 
+    (async () => {
+      await window.saveTestData({
+        name: localStorage.getItem("user_name"),
+        class: localStorage.getItem("academic_stage"),
+        scores: scoreData,
+        finalResult: Object.keys(scoreData).reduce((a, b) =>
+          scoreData[a] > scoreData[b] ? a : b
+        ),
+        device: navigator.userAgent
+      });
+
+      setTimeout(() => {
+        const winner = Object.keys(scoreData).reduce((a, b) =>
+          scoreData[a] > scoreData[b] ? a : b
+        );
+        localStorage.setItem("careerResult", winner);
+        window.location.href = "result.html";
+      }, 2000);
+    })();
+}
 
     document.getElementById("quiz").innerHTML = `
         <div class="text-center py-24">
