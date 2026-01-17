@@ -138,42 +138,7 @@ const specificCareers = {
     "commerce_business": ["Chartered Accountant", "Investment Banker", "MBA Finance", "Stock Broker", "Auditor"]
 };
 
-/* ================= PAGE DATA LOAD LOGIC ================= */
-window.onload = () => {
-    const name = localStorage.getItem("user_name") || "Student";
-    const stage = localStorage.getItem("academic_stage") || "10";
-    const resultKey = localStorage.getItem("careerResult") || "neutral";
-    const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
-    
-    // UI Elements Update
-    document.getElementById("displayName").innerText = name;
-    document.getElementById("stageLabel").innerText = stage === "10" ? "Post-10th Path" : "Post-12th Path";
 
-    // Database lookup
-    const mainResult = DB_MAP[resultKey] || DB_MAP["neutral"];
-    document.getElementById("careerTitle").innerText = mainResult.title;
-    document.getElementById("careerDesc").innerText = mainResult.desc;
-    
-    // Accuracy logic
-    const scoreKey = resultKey.includes('_') ? resultKey.split('_')[1] : resultKey;
-    const total = Object.values(scoreData).reduce((a,b)=>a+b, 0) || 1;
-    const accuracy = Math.round(((scoreData[scoreKey] || 0) / total) * 100);
-    document.getElementById("accuracyText").innerText = `Match Accuracy: ${accuracy}%`;
-
-    // Suggestions Grid
-    const grid = document.getElementById("suggestionsGrid");
-    grid.innerHTML = "";
-    
-    const careersToShow = specificCareers[resultKey] || ["Career Path 1", "Career Path 2", "Career Path 3", "Career Path 4", "Career Path 5"];
-
-    careersToShow.forEach((c, i) => {
-        grid.innerHTML += `
-            <div class="glass p-5 rounded-xl border border-white/5 hover:border-indigo-500/50 transition duration-300">
-                <div class="text-indigo-400 font-bold text-xs mb-1">RECOMMENDED 0${i+1}</div>
-                <div class="font-bold text-lg">${c}</div>
-            </div>`;
-    });
-};
 
 /* ================= PAGE DATA LOAD LOGIC ================= */
 window.onload = () => {
