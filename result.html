@@ -363,11 +363,12 @@ y += 8;
   doc.setTextColor(50, 50, 50);
   
   // Grid se careers utha kar PDF mein daalna
-  const gridItems = document.querySelectorAll("#suggestionsGrid .font-bold");
-  gridItems.forEach((item, index) => {
-      doc.text(`${index + 1}. ${item.innerText}`, 25, y);
-      y += 7;
-  });
+  const careers = window.pdfCareers || [];
+
+careers.forEach((career, index) => {
+  doc.text(`${index + 1}. ${career}`, 25, y);
+  y += 7;
+});
 
   /* Watermark */
   doc.setFontSize(45);
