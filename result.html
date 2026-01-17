@@ -106,6 +106,8 @@ body{
   for(const k in scoreData){
     perc[k] = Math.round((scoreData[k] / total) * 100);
   }
+    return perc;
+  }
     const STREAM_MAP_10 = {
   pcm: {
     label: "Science (PCM)",
@@ -132,8 +134,7 @@ body{
     careers: ["Lawyer", "Journalist", "Designer", "Civil Services"]
   }
 };
-  return perc;
-}
+  
 /* ================= UPDATED CAREER DATABASE ================= */
 const DB_MAP = {
     // 10th Class
