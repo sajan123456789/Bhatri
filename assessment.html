@@ -206,7 +206,10 @@ function selectStream(stream){
   document.getElementById("streamSelect").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
 
-  currentQuestions = AI_DATABASE["12"];
+  // Pehle yahan currentQuestions = AI_DATABASE["12"] tha
+  // Ab hum ise dynamic banayenge (e.g., "12_pcm", "12_arts")
+  currentQuestions = AI_DATABASE["12_" + stream];
+  
   loadNeuralNode();
 }
 function loadNeuralNode() {
