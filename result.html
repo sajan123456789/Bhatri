@@ -159,7 +159,42 @@ window.onload = () => {
     const resultKey = localStorage.getItem("careerResult") || "neutral";
     const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
     const percentages = calculatePercentages(scoreData);
+if(stage === "10"){
+  const streams = [
+    { key:"business", label:"Commerce Stream" },
+    { key:"social", label:"Humanities Stream" },
+    { key:"art", label:"Arts Stream" },
+    { key:"tech", label:"Science Stream" }
+  ];
 
+  streams.sort((a,b)=> (scoreData[b.key]||0) - (scoreData[a.key]||0));
+
+  document.getElementById("careerTitle").innerText =
+    "Your Recommended Streams";
+
+  document.getElementById("careerDesc").innerText =
+    "Based on your responses, these streams match your aptitude best:";
+
+  const grid = document.getElementById("suggestionsGrid");
+  grid.innerHTML = "";
+
+  streams.slice(0,3).forEach((s,i)=>{
+    const score = scoreData[s.key] || 0;
+    grid.innerHTML += `
+      <div class="glass p-5 rounded-xl border ${i===0?"border-indigo-500":"border-white/10"}">
+        <div class="text-xs font-bold text-indigo-400">
+          ${i===0 ? "BEST MATCH" : "MATCH"}
+        </div>
+        <div class="text-xl font-black mt-1">${s.label}</div>
+        <div class="text-green-400 text-sm mt-1">
+          Match Score: ${score}
+        </div>
+      </div>
+    `;
+  });
+
+  return; // 🔒 yahin stop, 12th ka code niche chale
+}
     document.getElementById("displayName").innerText = name;
     document.getElementById("stageLabel").innerText = 
         stage === "10" ? "Post-10th Stream Path" : "Post-12th Career Path";
