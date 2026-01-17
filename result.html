@@ -204,6 +204,7 @@ const specificCareers = {
 window.onload = () => {
     const name = localStorage.getItem("user_name") || "Student";
   document.getElementById("displayName").innerText = name;
+  window.bestStreamPDF = null;
     const stage = localStorage.getItem("academic_stage") || "10";
     const resultKey = localStorage.getItem("careerResult") || "neutral";
     const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
