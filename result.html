@@ -106,6 +106,32 @@ body{
   for(const k in scoreData){
     perc[k] = Math.round((scoreData[k] / total) * 100);
   }
+    const STREAM_MAP_10 = {
+  pcm: {
+    label: "Science (PCM)",
+    keys: ["tech"],
+    desc: "Best for students strong in Maths, Logic, Technology & Problem Solving.",
+    careers: ["Engineer", "Data Scientist", "Pilot", "Architect"]
+  },
+  pcb: {
+    label: "Science (PCB)",
+    keys: ["social"],
+    desc: "Ideal for Biology lovers interested in healthcare & life sciences.",
+    careers: ["Doctor", "Psychologist", "Biotechnologist", "Pharmacist"]
+  },
+  commerce: {
+    label: "Commerce",
+    keys: ["business"],
+    desc: "Suitable for analytical minds interested in business, finance & economics.",
+    careers: ["CA", "Investment Banker", "Business Analyst"]
+  },
+  arts: {
+    label: "Arts / Humanities",
+    keys: ["art", "social"],
+    desc: "Perfect for creative & social thinkers interested in society, law & design.",
+    careers: ["Lawyer", "Journalist", "Designer", "Civil Services"]
+  }
+};
   return perc;
 }
 /* ================= UPDATED CAREER DATABASE ================= */
