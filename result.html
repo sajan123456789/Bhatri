@@ -218,7 +218,7 @@ if(stage === "10"){
       score += scoreData[k] || 0;
     });
 
-    streamScores.push({ ...stream, score });
+    streamScores.push({ ...stream, score, key });
   }
 
   streamScores.sort((a,b)=>b.score - a.score);
