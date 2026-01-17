@@ -203,6 +203,7 @@ const specificCareers = {
 /* ================= PAGE DATA LOAD LOGIC ================= */
 window.onload = () => {
     const name = localStorage.getItem("user_name") || "Student";
+  document.getElementById("displayName").innerText = name;
     const stage = localStorage.getItem("academic_stage") || "10";
     const resultKey = localStorage.getItem("careerResult") || "neutral";
     const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
