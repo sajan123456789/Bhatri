@@ -109,37 +109,81 @@ body{
   return perc;
 }
 /* ================= PAGE DATA ================= */
+/* ================= UPDATED CAREER DATABASE ================= */
+const DB_MAP = {
+    // 10th Class Suggestions
+    "tech": { title: "Science (PCM)", desc: "Engineering, Robotics, and Technical foundation." },
+    "art": { title: "Fine Arts & Design", desc: "Creative fields, Fashion, and Animation." },
+    "business": { title: "Commerce", desc: "Business, Finance, and Economics path." },
+    "social": { title: "Humanities / Arts", desc: "Law, Civil Services, and Social Sciences." },
+    "neutral": { title: "General Studies", desc: "Liberal Arts and Vocational training." },
+
+    // 12th ARTS
+    "arts_art": { title: "Fine Arts & Design Specialist", desc: "Top careers: Fashion Designer, Interior Designer, Animator." },
+    "arts_social": { title: "Law & Civil Services", desc: "Top careers: Corporate Lawyer, IAS/IPS, Psychologist." },
+    "arts_tech": { title: "Creative Tech & Design", desc: "Top careers: UI/UX Designer, Game Designer, Digital Marketer." },
+    "arts_business": { title: "Management & PR", desc: "Top careers: Event Manager, HR Specialist, Hotel Management." },
+
+    // 12th PCM
+    "pcm_tech": { title: "Core Engineering & AI", desc: "Top careers: Software Engineer, Data Scientist, AI Researcher." },
+    "pcm_business": { title: "Fintech & Product Management", desc: "Top careers: Product Manager, Quant Analyst, Technical Consultant." },
+
+    // 12th PCB
+    "pcb_social": { title: "Medical & Healthcare", desc: "Top careers: Doctor (MBBS), Psychiatrist, Physiotherapist." },
+    "pcb_tech": { title: "Bio-Sciences & Research", desc: "Top careers: Biotechnologist, Genetics Specialist, Researcher." },
+
+    // 12th COMMERCE
+    "commerce_business": { title: "Finance & Accounting", desc: "Top careers: Chartered Accountant (CA), Investment Banker, CFA." },
+    "commerce_tech": { title: "Business Analytics", desc: "Top careers: Business Analyst, Fintech Expert, Digital Auditor." }
+};
+
+/* ================= PAGE DATA LOAD LOGIC ================= */
 window.onload = () => {
-  const name  = localStorage.getItem("user_name") || "Student";
-  const stage = localStorage.getItem("academic_stage") || "10";
-  const result = localStorage.getItem("careerResult") || "business";
-const stream = localStorage.getItem("selected_stream");
-  const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
-  const percentages = calculatePercentages(scoreData);
-  console.log("STREAM:", stream, "SCORES:", scoreData);
-  document.getElementById("displayName").innerText = name;
+    const name = localStorage.getItem("user_name") || "Student";
+    const stage = localStorage.getItem("academic_stage") || "10";
+    const resultKey = localStorage.getItem("careerResult") || "neutral";
+    const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
+    const percentages = calculatePercentages(scoreData);
 
-  
-  document.getElementById("stageLabel").innerText =
-    stage === "10" ? "Post-10 Stream Recommendation" : "Post-12 Career Recommendation";
+    document.getElementById("displayName").innerText = name;
+    document.getElementById("stageLabel").innerText = 
+        stage === "10" ? "Post-10th Stream Path" : "Post-12th Career Path";
 
-  const main = DB[stage][result] || DB[stage].business;
+    // Get Data from our New Map
+    const mainResult = DB_MAP[resultKey] || DB_MAP["neutral"];
 
-  document.getElementById("careerTitle").innerText = main.title;
-  document.getElementById("accuracyText").innerText =
-  `Match Accuracy: ${percentages[result] || 0}%`;
-  document.getElementById("careerDesc").innerText = main.desc;
+    document.getElementById("careerTitle").innerText = mainResult.title;
+    document.getElementById("careerDesc").innerText = mainResult.desc;
+    
+    // Accuracy logic
+    // Agar resultKey 'arts_social' hai, toh hum 'social' wala score dikhayenge
+    const scoreKey = resultKey.includes('_') ? resultKey.split('_')[1] : resultKey;
+    document.getElementById("accuracyText").innerText = 
+        `Match Accuracy: ${percentages[scoreKey] || 0}%`;
 
-  const grid = document.getElementById("suggestionsGrid");
-  grid.innerHTML = "";
+    // Suggestions Grid
+    const grid = document.getElementById("suggestionsGrid");
+    grid.innerHTML = "";
 
-  Object.values(DB[stage]).forEach((c,i)=>{
-    grid.innerHTML += `
-      <div class="glass p-5 rounded-xl ${c.title===main.title?'border border-indigo-500/50':''}">
-        <div class="font-bold">${i+1}. ${c.title}</div>
-        <div class="text-slate-400 text-sm">${c.desc}</div>
-      </div>`;
-  });
+    // Show top 5 specific career names based on resultKey
+    const specificCareers = {
+        "arts_social": ["Corporate Lawyer", "Psychologist", "IAS Officer", "Journalist", "NGO Manager"],
+        "arts_art": ["Fashion Designer", "Animator", "Interior Designer", "Photographer", "Architect"],
+        "arts_tech": ["UI/UX Designer", "Digital Marketer", "Game Designer", "Video Editor", "Web Stylist"],
+        "pcm_tech": ["Software Developer", "Data Scientist", "Pilot", "Mechanical Engineer", "AI Specialist"],
+        "pcb_social": ["MBBS Surgeon", "Dentist", "Pharmacist", "Physiotherapist", "Nurse"],
+        "commerce_business": ["Chartered Accountant", "Stock Broker", "MBA Finance", "Bank Manager", "Auditor"]
+    };
+
+    const careersToShow = specificCareers[resultKey] || ["Career Option 1", "Career Option 2", "Career Option 3", "Career Option 4", "Career Option 5"];
+
+    careersToShow.forEach((c, i) => {
+        grid.innerHTML += `
+            <div class="glass p-5 rounded-xl border border-white/5 hover:border-indigo-500/50 transition">
+                <div class="text-indigo-400 font-bold text-xs mb-1">RECOMMENDED 0${i+1}</div>
+                <div class="font-bold text-lg">${c}</div>
+            </div>`;
+    });
 };
 
 /* ================= ADVANCED PDF ================= */
