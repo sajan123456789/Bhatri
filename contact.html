@@ -71,48 +71,42 @@
 <div class="glass rounded-2xl p-8">
   <h2 class="text-xl font-semibold mb-4">Send a Message</h2>
 
-  <form
-  name="contact"
-  method="POST"
-  data-netlify="true"
-  action="/bhatri/thank-you.html"
+<form
+  action="/thank-you.html"
+  method="GET"
   class="space-y-4"
 >
-    <!-- REQUIRED FOR NETLIFY -->
-    <input type="hidden" name="form-name" value="contact" />
-    <input type="hidden" name="subject" value="New message from CareerSteps">
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 outline-none"
+  />
 
-    <input
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      required
-      class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 outline-none"
-    />
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 outline-none"
+  />
 
-    <input
-      type="email"
-      name="email"
-      placeholder="Your Email"
-      required
-      class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 outline-none"
-    />
+  <textarea
+    name="message"
+    rows="5"
+    placeholder="Your Message"
+    required
+    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 outline-none"
+  ></textarea>
 
-    <textarea
-      name="message"
-      rows="5"
-      placeholder="Your Message"
-      required
-      class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 outline-none"
-    ></textarea>
-
-    <button
-      type="submit"
-      class="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-xl font-semibold"
-    >
-      Send Message
-    </button>
-  </form>
+  <button
+    type="submit"
+    class="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-xl font-semibold"
+  >
+    Send Message
+  </button>
+</form>
 
   <p class="text-gray-500 text-sm mt-4">
     Message will be delivered securely. No email app opens.
