@@ -328,7 +328,9 @@ function downloadPDF(){
   const name  = localStorage.getItem("user_name") || "Student";
   const stage = localStorage.getItem("academic_stage") || "10";
   const bestStream = window.bestStreamPDF || "Recommended Stream";
-  const desc  = document.getElementById("careerDesc").innerText;
+  const desc = stage === "10"
+  ? "Based on aptitude & interest analysis, this stream is the most suitable."
+  : document.getElementById("careerDesc").innerText;
 
   /* Header Bar */
   doc.setFillColor(30,64,175);
