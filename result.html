@@ -282,7 +282,9 @@ if(stage === "10"){
     
     // Accuracy logic
     // Agar resultKey 'arts_social' hai, toh hum 'social' wala score dikhayenge
-    const scoreKey = resultKey.includes('_') ? resultKey.split('_')[1] : resultKey;
+    const scoreKey = resultKey.includes('_')
+  ? resultKey.split('_')[1]
+  : (percentages[resultKey] ? resultKey : "neutral");
     document.getElementById("accuracyText").innerText = 
         `Match Accuracy: ${percentages[scoreKey] || 0}%`;
 
