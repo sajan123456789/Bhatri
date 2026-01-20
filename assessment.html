@@ -186,6 +186,8 @@ function saveName() {
 }
 
 function startAI(type) {
+    currentStep = 0;
+scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
     localStorage.setItem("academic_stage", type);
     document.getElementById("selectClass").classList.add("hidden");
 
