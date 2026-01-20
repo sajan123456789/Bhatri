@@ -204,6 +204,8 @@ scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
 }
 /* 🔵 Post-12 stream handler */
 function selectStream(stream){
+    currentStep = 0;
+scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
   localStorage.setItem("selected_stream", stream);
 
   document.getElementById("streamSelect").classList.add("hidden");
