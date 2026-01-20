@@ -220,6 +220,31 @@ window.onload = () => {
   window.bestStreamPDF = null;
     const stage = localStorage.getItem("academic_stage") || "10";
     const resultKey = localStorage.getItem("careerResult") || "neutral";
+  /* ===== SMART 3 SECTION LOGIC (ONLY ONCE) ===== */
+
+const trait = resultKey.includes("_")
+  ? resultKey.split("_")[1]
+  : resultKey;
+
+// clear old data
+document.getElementById("whyResult").innerHTML = "";
+document.getElementById("careerRoadmap").innerHTML = "";
+document.getElementById("careerScope").innerHTML = "";
+
+// WHY
+WHY_MAP[trait]?.forEach(t => {
+  document.getElementById("whyResult").innerHTML += `<li>• ${t}</li>`;
+});
+
+// ROADMAP
+ROADMAP_MAP[trait]?.forEach(t => {
+  document.getElementById("careerRoadmap").innerHTML += `<li>• ${t}</li>`;
+});
+
+// SCOPE
+SCOPE_MAP[trait]?.forEach(t => {
+  document.getElementById("careerScope").innerHTML += `<li>• ${t}</li>`;
+});
     const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
     const percentages = calculatePercentages(scoreData);
 if(stage === "10"){
