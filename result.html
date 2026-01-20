@@ -306,7 +306,8 @@ if(stage === "10"){
     };
 
     const careersToShow = fullCareerList[resultKey] || ["Career Option 1", "Career Option 2", "Career Option 3", "Career Option 4", "Career Option 5"];
-
+// 🔴 ADD THIS for 12th PDF
+window.pdfCareers = fullCareerList[resultKey] || [];
 
     careersToShow.forEach((c, i) => {
         grid.innerHTML += `
