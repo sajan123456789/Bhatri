@@ -221,12 +221,13 @@ they open doors to life-changing opportunities.
   </div>
 </footer>
 <script>
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-
-  // NOTE: startAssessment function and Input logic removed to keep code clean.
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+if(menuBtn && mobileMenu){
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+}
 </script>
 </body>
 </html>
