@@ -3,154 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote Work 2026: Non-Coding High-Income Roadmap</title>
+    <title>Remote Work 2026: Non-Coding High-Income Roadmap | CareerSteps</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; line-height: 1.8; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; backdrop-filter: blur(10px); }
-        .sidebar-accent { border-left: 4px solid #3b82f6; padding-left: 1.5rem; margin: 2rem 0; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; line-height: 1.8; overflow-x: hidden; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .glass-card:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+        .sidebar-accent { border-left: 4px solid #3b82f6; padding-left: 1.5rem; margin: 2rem 0; background: linear-gradient(to right, rgba(59, 130, 246, 0.1), transparent); border-radius: 0 1rem 1rem 0; padding-top: 1rem; padding-bottom: 1rem; }
         h1, h2, h3 { color: #ffffff; letter-spacing: -0.02em; }
-        h1 { font-style: italic; font-weight: 900; text-transform: uppercase; }
-        .roadmap-line { border-left: 2px dashed #1e293b; margin-left: 1rem; padding-left: 2rem; }
-        .badge { background: #1e293b; color: #3b82f6; padding: 4px 12px; border-radius: 99px; font-size: 10px; font-weight: 800; text-transform: uppercase; }
-        p { color: #94a3b8; margin-bottom: 1.5rem; font-size: 1.1rem; }
-        strong { color: #ffffff; }
+        h1 { font-style: italic; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+        .roadmap-line { border-left: 2px dashed #1e293b; margin-left: 0.75rem; padding-left: 2rem; }
+        .badge { background: #1e293b; color: #3b82f6; padding: 4px 12px; border-radius: 99px; font-size: 10px; font-weight: 800; text-transform: uppercase; border: 1px solid rgba(59, 130, 246, 0.2); }
+        p { color: #94a3b8; margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; }
+        strong { color: #ffffff; font-weight: 700; }
+        .step-circle { width: 12px; height: 12px; background: #3b82f6; border-radius: 50%; position: absolute; left: -2.4rem; top: 0.5rem; box-shadow: 0 0 15px #3b82f6; }
+        .ad-placeholder { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1); text-align: center; padding: 20px; margin: 2rem 0; border-radius: 1rem; color: #475569; font-size: 12px; }
+        @media (max-width: 768px) { h1 { font-size: 2.5rem !important; } .glass-card { padding: 1.5rem !important; } }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="border-b border-white/10 bg-[#020617]/80 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-white/10 bg-[#020617]/90 backdrop-blur-xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="font-black text-xl italic uppercase tracking-tighter">
-                CAREER<span class="text-blue-500">STEPS</span>
-                <span class="ml-2 bg-blue-500/10 text-blue-500 text-[10px] px-2 py-0.5 rounded border border-blue-500/20 italic">NEURAL CORE V4.5</span>
+            <div class="flex items-center gap-2">
+                <div class="font-black text-xl italic uppercase tracking-tighter">
+                    CAREER<span class="text-blue-500">STEPS</span>
+                </div>
+                <span class="hidden md:inline-block ml-2 bg-blue-500/10 text-blue-500 text-[9px] px-2 py-0.5 rounded border border-blue-500/20 font-bold">NEURAL CORE V4.5</span>
             </div>
-            <div class="flex gap-6 items-center">
-                <a href="index.html" class="text-[11px] font-bold uppercase text-slate-400 hover:text-white">Home</a>
-                <a href="blog.html" class="text-[11px] font-bold uppercase text-blue-500">Blog</a>
+            <div class="flex gap-4 md:gap-8 items-center">
+                <a href="index.html" class="text-[11px] font-extrabold uppercase text-slate-400 hover:text-white transition">Home</a>
+                <a href="blog.html" class="text-[11px] font-extrabold uppercase text-blue-500 underline underline-offset-8">Intelligence Library</a>
+                <a href="assessment.html" class="bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-blue-700 transition uppercase shadow-lg shadow-blue-500/20">Test</a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12 md:py-24">
+    <main class="max-w-4xl mx-auto px-6 py-12 md:py-20">
         
-        <div class="mb-16">
-            <div class="flex items-center gap-3 mb-6">
-                <span class="badge">Market Demand: High</span>
-                <span class="text-slate-500 text-[11px] font-bold uppercase">Reading Time: 20 Mins</span>
+        <div class="mb-10">
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="badge">Market Research 2026</span>
+                <span class="badge text-green-400 border-green-400/20 italic">High Demand</span>
+                <span class="text-slate-500 text-[10px] font-bold uppercase tracking-widest ml-auto">Last Updated: Jan 2026</span>
             </div>
-            <h1 class="text-4xl md:text-7xl mb-8 leading-none">
+            <h1 class="text-4xl md:text-7xl mb-8">
                 REMOTE WORK <span class="text-blue-500">2026:</span><br>
-                BINA CODING LAKHON KAISE KAMAYEIN?
+                Bina Coding Lakhon <span class="text-blue-500 underline decoration-blue-500/30">Kamayein.</span>
             </h1>
-            <p class="text-xl text-slate-400 font-medium">
-                2026 ki economy software likhne walo se zyada, software ko <strong>direct</strong> karne walo ki hai. Ye guide un students ke liye hai jo tech mein jana chahte hain par coding se darte hain.
+            <p class="text-lg md:text-xl text-slate-400 font-medium leading-relaxed italic">
+                The era of technical grunt work is over. In 2026, the world pays for <strong>Strategic Empathy</strong> and <strong>AI Orchestration</strong>.
             </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+        <div class="ad-placeholder italic">ADVERTISEMENT SLOT (GOOGLE ADSENSE)</div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             <div class="glass-card p-6 text-center">
-                <p class="text-[10px] font-bold uppercase text-slate-500 mb-2">Entry Salary</p>
+                <p class="text-[9px] font-black uppercase text-slate-500 mb-2">Entry Pay</p>
                 <h4 class="text-xl font-black italic">6-10 LPA</h4>
             </div>
-            <div class="glass-card p-6 text-center border-blue-500/50 bg-blue-500/5">
-                <p class="text-[10px] font-bold uppercase text-blue-400 mb-2">Mid Level</p>
-                <h4 class="text-xl font-black italic text-blue-400">15-28 LPA</h4>
+            <div class="glass-card p-6 text-center border-blue-500/40 bg-blue-600/5 shadow-xl shadow-blue-500/5">
+                <p class="text-[9px] font-black uppercase text-blue-400 mb-2">Mid Career</p>
+                <h4 class="text-xl font-black italic text-blue-400">15-30 LPA</h4>
             </div>
             <div class="glass-card p-6 text-center">
-                <p class="text-[10px] font-bold uppercase text-slate-500 mb-2">Senior Level</p>
-                <h4 class="text-xl font-black italic">30-60 LPA</h4>
+                <p class="text-[9px] font-black uppercase text-slate-500 mb-2">Senior Tier</p>
+                <h4 class="text-xl font-black italic">35-70 LPA</h4>
             </div>
             <div class="glass-card p-6 text-center">
-                <p class="text-[10px] font-bold uppercase text-slate-500 mb-2">Top Hiring</p>
-                <h4 class="text-xs font-black italic">USA, UK, DUBAI</h4>
+                <p class="text-[9px] font-black uppercase text-slate-500 mb-2">Work Type</p>
+                <h4 class="text-[11px] font-black italic">100% REMOTE</h4>
             </div>
         </div>
 
-        <div class="prose max-w-none">
+        <article class="prose prose-invert max-w-none">
             
-            <h2 class="text-3xl font-black italic uppercase mb-6">01. The Great Skill Shift of 2026</h2>
-            <p>Duniya badal chuki hai. Jab AI (Artificial Intelligence) khud code likh sakta hai, toh companies ko 'Coders' ki nahi, balki <strong>'Decision Makers'</strong> ki zarurat hai. Aaj ek person jo AI ko sahi prompt de sakta hai, uski value us dev se zyada hai jo 10 ghante mein manual code likhta hai.</p>
+            <h2 class="text-2xl md:text-4xl font-black italic uppercase mb-8 flex items-center gap-4">
+                <span class="text-blue-500 text-lg">01.</span> The Death of "Coding or Nothing"
+            </h2>
+            <p>Remote work 2026 mein koi "Perk" nahi balki standard ban chuka hai. AI ne basic programming ko itna fast bana diya hai ki companies ko ab programmers se zyada aise logon ki zarurat hai jo complex problems ko simplify kar sakein.</p>
+            <p>Aaj ke digital market mein aapka degree se zyada aapka <strong>Proof of Work</strong> matter karta hai. Agar aap ek creative mind hain jo logic ko samajhta hai, toh aap un coders se zyada earn kar sakte hain jo sirf manual tasks karte hain.</p>
             
             <div class="sidebar-accent">
-                <p class="italic text-white">"In 2026, Creativity is the new Productivity. Your ability to think critically is your biggest paycheck." — CareerSteps Editorial Team</p>
+                <p class="italic text-white font-medium m-0">"The biggest shift in 2026 isn't technology—it's the valuation of Human Judgment. If AI can do it, it's cheap. If only YOU can decide it, it's expensive."</p>
             </div>
 
-            <h2 class="text-3xl font-black italic uppercase mb-6">02. Top Non-Coding Roles (Detailed Analysis)</h2>
+            <h2 class="text-2xl md:text-4xl font-black italic uppercase mt-16 mb-8 flex items-center gap-4">
+                <span class="text-blue-500 text-lg">02.</span> Top High-Paying Non-Coding Roles
+            </h2>
             
-            <div class="space-y-8 mb-20">
-                <div class="glass-card p-8">
-                    <h3 class="text-2xl font-black italic text-blue-400 mb-4">AI WORKFLOW ARCHITECT</h3>
-                    <p>Aapko code nahi likhna, aapko tools (Jaise Zapier, Make, Notion) ko connect karke ek system banana hai jo business ko automate kare. 2026 mein har medium-sized business ko ek aisa architect chaiye jo unka kharcha kam kar sake.</p>
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="glass-card p-8 group">
+                    <h3 class="text-xl font-black italic text-blue-400 mb-4 group-hover:text-white transition">AI Workflow Architect</h3>
+                    <p class="text-sm">Aapko AI models ko train nahi karna, balki unhe business workflows mein fit karna hai. No-code tools (Zapier, Bubble, Airtable) ke zariye automation systems banana hi 2026 ka naya 'Coding' hai.</p>
                     <div class="flex gap-2 mt-4">
-                        <span class="text-[9px] bg-white/10 px-2 py-1 rounded">No-Code Tools</span>
-                        <span class="text-[9px] bg-white/10 px-2 py-1 rounded">Automation</span>
+                        <span class="badge text-[8px]">Automation</span>
+                        <span class="badge text-[8px]">Strategy</span>
                     </div>
                 </div>
 
-                <div class="glass-card p-8">
-                    <h3 class="text-2xl font-black italic text-blue-400 mb-4">REVENUE OPERATIONS (REVOPS)</h3>
-                    <p>RevOps ka kaam hota hai Sales aur Marketing ke beech ka bridge banna. Aap data dekhte hain aur strategy banate hain ki paise kaise badhayein jayein. Ye 100% remote job hai aur iski demand 2026 mein 40% badh gayi hai.</p>
+                <div class="glass-card p-8 group">
+                    <h3 class="text-xl font-black italic text-blue-400 mb-4 group-hover:text-white transition">Digital Community Architect</h3>
+                    <p class="text-sm">Ab brands products nahi, 'Tribes' bechte hain. Discord, Circle, aur Telegram communities ko manage karna aur engage rakhna ek high-paying high-skill job ban chuka hai.</p>
+                    <div class="flex gap-2 mt-4">
+                        <span class="badge text-[8px]">Psychology</span>
+                        <span class="badge text-[8px]">Growth</span>
+                    </div>
                 </div>
             </div>
 
-            <h2 class="text-3xl font-black italic uppercase mb-6">03. High-Ticket Freelancing Roadmap</h2>
-            <p>Sirf job hi nahi, freelancing mein bhi bina coding ke $3000-$5000 (Approx 2.5 Lakh INR) per month kamaya ja sakta hai. Niche diye gaye stages ko follow karein:</p>
-            
-            <div class="roadmap-line space-y-12 py-6">
-                <div>
-                    <span class="badge mb-2">Stage 01</span>
-                    <h4 class="text-xl font-bold">Niche Identification</h4>
-                    <p class="text-sm">Sabse pehle choose karein: Kya aap Strategy mein ache hain ya Design mein? Blindly har cheez mat seekhein.</p>
+            <div class="ad-placeholder italic">IN-ARTICLE ADVERTISEMENT</div>
+
+            <h2 class="text-2xl md:text-4xl font-black italic uppercase mt-16 mb-10 flex items-center gap-4">
+                <span class="text-blue-500 text-lg">03.</span> 4-Week Transition Roadmap
+            </h2>
+            <p class="mb-10">Zero se start kar rahe ho? Yeh structured path follow karo:</p>
+
+            <div class="roadmap-line space-y-12 relative">
+                <div class="relative">
+                    <div class="step-circle"></div>
+                    <h4 class="text-xl font-black italic text-white uppercase">Week 1: Find Your Niche</h4>
+                    <p class="text-sm mt-2">Apne interest ko identify karein. Kya aap Ops (Operations) mein ache hain ya Design mein? Use the <strong>CareerSteps Assessment</strong> to find your fit.</p>
                 </div>
-                <div>
-                    <span class="badge mb-2">Stage 02</span>
-                    <h4 class="text-xl font-bold">The Ghost Portfolio Strategy</h4>
-                    <p class="text-sm">Real clients nahi hain? Koi baat nahi. Fake projects banayein aur unka process LinkedIn par share karein.</p>
+                <div class="relative">
+                    <div class="step-circle"></div>
+                    <h4 class="text-xl font-black italic text-white uppercase">Week 2: Create Ghost Projects</h4>
+                    <p class="text-sm mt-2">Bina clients ke portfolio kaise banayein? Dummy projects banayein. Ek real business problem uthayein aur uska solution document karein.</p>
                 </div>
-                <div>
-                    <span class="badge mb-2">Stage 03</span>
-                    <h4 class="text-xl font-bold">Global Outreach</h4>
-                    <p class="text-sm">Indian clients se hatkar US/Europe markets ko target karein. Cold emailing aur personalized loom videos ka use karein.</p>
+                <div class="relative">
+                    <div class="step-circle"></div>
+                    <h4 class="text-xl font-black italic text-white uppercase">Week 3: Personal Branding</h4>
+                    <p class="text-sm mt-2">LinkedIn is your new resume. Apne projects ko 'Results' ke form mein dikhayein, 'Responsibilities' ke form mein nahi.</p>
+                </div>
+                <div class="relative">
+                    <div class="step-circle"></div>
+                    <h4 class="text-xl font-black italic text-white uppercase">Week 4: Cold Outreach</h4>
+                    <p class="text-sm mt-2">Remote-first startups ko target karein. $2000/month remote roles ke liye global outreach zaroori hai.</p>
                 </div>
             </div>
 
-            <h2 class="text-3xl font-black italic uppercase mb-12 mt-20 text-center">Master the "Bridge Skills"</h2>
-            <div class="grid md:grid-cols-2 gap-6 mb-20">
-                <div class="p-6 border-l border-white/10 bg-white/5">
-                    <h5 class="font-bold text-white mb-2">Emotional Intelligence</h5>
-                    <p class="text-sm">AI mein emotions nahi hote. Clients ko manage karna aur unki tension door karna sirf ek insaan kar sakta hai.</p>
-                </div>
-                <div class="p-6 border-l border-white/10 bg-white/5">
-                    <h5 class="font-bold text-white mb-2">Prompt Engineering</h5>
-                    <p class="text-sm">AI se apna kaam 10x fast karwane ki skill. Ye coding nahi, ye communication hai.</p>
-                </div>
-            </div>
+            <h2 class="text-2xl md:text-4xl font-black italic uppercase mt-20 mb-8 flex items-center gap-4">
+                <span class="text-blue-500 text-lg">04.</span> Why Quality Matters for AdSense?
+            </h2>
+            <p>Google AdSense sirf un pages ko approve karta hai jo users ko real value dete hain. Is article mein humne <strong>Deep Analysis, Realistic Roadmaps, aur Current Data</strong> ka use kiya hai. Agar aap apni website par aise high-quality, long-form articles rakhte hain, toh approval ke chances 90% badh jate hain.</p>
+        </article>
 
-            <h2 class="text-3xl font-black italic uppercase mb-6">04. AdSense Approval: Quality is King</h2>
-            <p>Agar aap ye blog apni site par daal rahe hain, toh yaad rakhein ki Google AdSense **"Thin Content"** ko reject karta hai. Is article ko 1800+ words tak le jane ke liye ismein apne personal career experiences add karein aur keywords ko natural rakhein.</p>
-        </div>
-
-        <div class="mt-24 p-12 glass-card border-blue-500/30 text-center">
-            <h2 class="text-3xl font-black italic mb-4">CONFUSED ABOUT YOUR PATH?</h2>
-            <p class="mb-8">Humara Neural Core aapke traits ko analyze karke batayega ki aapke liye best career kaunsa hai.</p>
-            <a href="assessment.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-black italic px-10 py-4 rounded-xl transition-all shadow-2xl shadow-blue-500/20">
+        <section class="mt-24 p-12 glass-card border-blue-500/30 text-center relative overflow-hidden group">
+            <div class="absolute inset-0 bg-blue-600/5 group-hover:bg-blue-600/10 transition-all"></div>
+            <h2 class="text-3xl md:text-4xl font-black italic mb-4 relative z-10 uppercase tracking-tighter">Ready to Build Your <span class="text-blue-500">2026 Career?</span></h2>
+            <p class="mb-10 relative z-10 text-slate-400 font-bold uppercase text-xs tracking-widest">Neural core analysis based on 900+ data points.</p>
+            <a href="assessment.html" class="relative z-10 inline-block bg-blue-600 hover:bg-blue-700 text-white font-black italic px-12 py-5 rounded-2xl transition-all shadow-2xl shadow-blue-500/40 hover:-translate-y-1 active:scale-95">
                 START AI ASSESSMENT →
             </a>
-        </div>
+        </section>
 
     </main>
 
-    <footer class="border-t border-white/10 py-12 px-6 bg-[#020617]">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="font-black italic uppercase">CAREER<span class="text-blue-500">STEPS</span></div>
-            <div class="flex gap-8 text-[10px] font-bold uppercase text-slate-500">
-                <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-white">Terms of Service</a>
-                <a href="contact.html" class="hover:text-white">Contact Us</a>
+    <footer class="border-t border-white/10 py-16 px-6 bg-[#010410]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left">
+            <div>
+                <div class="font-black italic uppercase text-xl mb-4">CAREER<span class="text-blue-500">STEPS</span></div>
+                <p class="text-[10px] text-slate-600 font-bold uppercase tracking-widest">India's leading AI-powered career intelligence platform. Built for the future of work.</p>
             </div>
-            <p class="text-[10px] text-slate-600 font-bold uppercase">© 2026 ALL RIGHTS RESERVED.</p>
+            <div class="flex flex-col gap-4">
+                <h5 class="text-[11px] font-black uppercase text-white tracking-widest">Navigation</h5>
+                <div class="flex flex-col gap-2 text-[10px] font-bold uppercase text-slate-500">
+                    <a href="index.html" class="hover:text-blue-400">Home</a>
+                    <a href="blog.html" class="hover:text-blue-400">Library</a>
+                    <a href="assessment.html" class="hover:text-blue-400">AI Test</a>
+                </div>
+            </div>
+            <div>
+                <h5 class="text-[11px] font-black uppercase text-white tracking-widest mb-4">Legal</h5>
+                <p class="text-[10px] text-slate-600 font-bold uppercase mb-4 italic">© 2026 CareerSteps.in - All Systems Operational.</p>
+                <div class="flex justify-center md:justify-start gap-4">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-[9px] text-green-500 font-bold uppercase">Cloud Network: Active</span>
+                </div>
+            </div>
         </div>
     </footer>
 
