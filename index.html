@@ -280,12 +280,16 @@ body{
 </div>
 
 <script>
-// Aapki Nayi API Key
 const GEMINI_API_KEY = "AIzaSyC1CfjXOd_Un1-ewDDf9mXbSqZVVO-GGZ0"; 
 
 function toggleChat() { 
     document.getElementById('chat-window').classList.toggle('hidden'); 
 }
+
+// Enter key press par message send karne ke liye
+document.getElementById('user-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') askAI();
+});
 
 async function askAI() {
     const input = document.getElementById('user-input');
@@ -308,7 +312,7 @@ async function askAI() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: `System: You are Disha, a helpful career guide for CareerSteps.in. Help Indian students after 10th/12th. User: ${userText}` }] }]
+                contents: [{ parts: [{ text: `System: You are Disha, a helpful career guide for CareerSteps.in. Help Indian students after 10th/12th. Keep answers short and professional. User: ${userText}` }] }]
             })
         });
 
@@ -321,10 +325,11 @@ async function askAI() {
         msgBox.scrollTop = msgBox.scrollHeight;
     } catch (e) {
         if(thinking) msgBox.removeChild(thinking);
-        msgBox.innerHTML += `<div class="text-red-400 text-[10px]">Error: Connection issue. 5 min wait karein ya Incognito use karein.</div>`;
+        msgBox.innerHTML += `<div class="text-red-400 text-[10px] p-2">Error: API Key activate ho rahi hai. 5 min baad refresh karein.</div>`;
     }
 }
 </script>
+  
   
 </body>
 </html>
