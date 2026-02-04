@@ -280,11 +280,17 @@ body{
 </div>
 
 <script>
-const GEMINI_API_KEY = "AIzaSyBFVXd2aJT8aU6zWvvw62p7AKbAFwxmcvs"; // Apni key yahan dalein
+// Nayi aur restricted API key yahan hai
+const GEMINI_API_KEY = "AIzaSyBFVXd2aJT8aU6zWvw62p7AKbAFwxmcvs"; 
 
 function toggleChat() { 
     document.getElementById('chat-window').classList.toggle('hidden'); 
 }
+
+// Enter key se message send karne ke liye
+document.getElementById('user-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') askAI();
+});
 
 async function askAI() {
     const input = document.getElementById('user-input');
@@ -294,10 +300,8 @@ async function askAI() {
     const userText = input.value;
     input.value = '';
 
-    // User Message display
     msgBox.innerHTML += `<div class="bg-blue-600 p-3 rounded-2xl rounded-tr-none self-end max-w-[85%] text-white border border-blue-400/20">${userText}</div>`;
     
-    // Thinking indicator
     const thinking = document.createElement('div');
     thinking.className = "bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 italic text-slate-400";
     thinking.innerText = "Disha is thinking...";
@@ -309,19 +313,22 @@ async function askAI() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: `System: You are Disha, a career guide for CareerSteps.in. Help Indian students after 10th/12th. User: ${userText}` }] }]
+                contents: [{ parts: [{ text: `System: You are Disha, a helpful career guide for CareerSteps.in. Help Indian students after 10th/12th. User: ${userText}` }] }]
             })
         });
 
         const data = await response.json();
-        const aiResponse = data.candidates[0].content.parts[0].text;
+        
+        if(data.error) throw new Error(data.error.message);
 
+        const aiResponse = data.candidates[0].content.parts[0].text;
         msgBox.removeChild(thinking);
         msgBox.innerHTML += `<div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 text-white">${aiResponse}</div>`;
         msgBox.scrollTop = msgBox.scrollHeight;
     } catch (e) {
-        msgBox.removeChild(thinking);
-        msgBox.innerHTML += `<div class="text-red-400 text-[10px]">Error: Key check karein ya restriction check karein.</div>`;
+        if(thinking) msgBox.removeChild(thinking);
+        console.error("Error:", e);
+        msgBox.innerHTML += `<div class="text-red-400 text-[10px]">Maaf kijiye, abhi Disha busy hai. Please check your internet or refresh.</div>`;
     }
 }
 </script>
