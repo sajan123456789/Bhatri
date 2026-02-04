@@ -309,164 +309,83 @@ const SCOPE_MAP = {
 /* ================= PAGE DATA LOAD LOGIC ================= */
 window.onload = () => {
     const name = localStorage.getItem("user_name") || "Student";
-  document.getElementById("displayName").innerText = name;
-  window.bestStreamPDF = null;
     const stage = localStorage.getItem("academic_stage") || "10";
     const resultKey = localStorage.getItem("careerResult") || "neutral";
-  /* ===== SMART 3 SECTION LOGIC (ONLY ONCE) ===== */
-
-const trait = resultKey.includes("_")
-  ? resultKey.split("_")[1]
-  : resultKey;
-
-// clear old data
-document.getElementById("whyResult").innerHTML = "";
-document.getElementById("careerRoadmap").innerHTML = "";
-document.getElementById("careerScope").innerHTML = "";
-
-// WHY
-WHY_MAP[trait]?.forEach(t => {
-  document.getElementById("whyResult").innerHTML += `<li>• ${t}</li>`;
-});
-
-// ROADMAP
-ROADMAP_MAP[trait]?.forEach(t => {
-  document.getElementById("careerRoadmap").innerHTML += `<li>• ${t}</li>`;
-});
-
-// SCOPE
-SCOPE_MAP[trait]?.forEach(t => {
-  document.getElementById("careerScope").innerHTML += `<li>• ${t}</li>`;
-});
     const scoreData = JSON.parse(localStorage.getItem("scoreData") || "{}");
     const percentages = calculatePercentages(scoreData);
-if(stage === "10"){
-  const streamScores = [];
 
-  for(const key in STREAM_MAP_10){
-    const stream = STREAM_MAP_10[key];
-    let score = 0;
-
-    stream.keys.forEach(k=>{
-      score += scoreData[k] || 0;
-    });
-
-// detect core trait
-const finalKey = localStorage.getItem("careerResult") || "neutral";
-const trait = finalKey.includes("_") ? finalKey.split("_")[1] : finalKey;
-
-// fill WHY section
-WHY_MAP[trait]?.forEach(t => {
-  document.getElementById("whyResult").innerHTML += `<li>• ${t}</li>`;
-});
-
-// fill ROADMAP section
-ROADMAP_MAP[trait]?.forEach(t => {
-  document.getElementById("careerRoadmap").innerHTML += `<li>• ${t}</li>`;
-});
-
-// fill SCOPE section
-SCOPE_MAP[trait]?.forEach(t => {
-  document.getElementById("careerScope").innerHTML += `<li>• ${t}</li>`;
-});
-    streamScores.push({ ...stream, score, key });
-  }
-
-  streamScores.sort((a,b)=>b.score - a.score);
-
-  document.getElementById("careerTitle").innerText =
-    "Your Recommended Streams (Post-10)";
-
-  document.getElementById("careerDesc").innerText =
-    "Based on aptitude, interests & thinking pattern:";
-
-  const grid = document.getElementById("suggestionsGrid");
-  grid.innerHTML = "";
-
-  streamScores.forEach((s,i)=>{
-
-  if(i === 0){
-    window.bestStreamPDF = s.label;
-    window.pdfCareers = s.careers;  
-  }
-    grid.innerHTML += `
-      <div class="glass p-5 rounded-xl border ${i===0?"border-indigo-500":"border-white/10"}">
-        <div class="text-xs font-bold text-indigo-400">
-          ${i===0 ? "BEST MATCH" : "MATCH"}
-        </div>
-        <div class="text-xl font-black mt-1">${s.label}</div>
-        <div class="text-slate-400 text-sm mt-2">${s.desc}</div>
-        <div class="text-green-400 text-sm mt-2">
-  Careers: ${s.careers.join(", ")}
-  <div class="mt-3 text-xs text-slate-300">
-  <b>Why this stream?</b><br>
-  ${STREAM_EXPLANATION_10[s.key].why}
-</div>
-
-<div class="mt-2 text-xs text-slate-300">
-  <b>Key Subjects:</b><br>
-  ${STREAM_EXPLANATION_10[s.key].subjects}
-</div>
-
-<div class="mt-2 text-xs text-slate-300">
-  <b>Next Steps:</b><br>
-  ${STREAM_EXPLANATION_10[s.key].steps}
-</div>
-
-    `;
-  });
-
-  return; // 🔒 12th logic yahin stop
-}
+    document.getElementById("displayName").innerText = name;
     
-    document.getElementById("stageLabel").innerText = 
-        stage === "10" ? "Post-10th Stream Path" : "Post-12th Career Path";
-
-    // Get Data from our New Map
-    const mainResult = DB_MAP[resultKey] || DB_MAP["neutral"];
-
-    document.getElementById("careerTitle").innerText = mainResult.title;
-    document.getElementById("careerDesc").innerText = mainResult.desc;
-    
-    // Accuracy logic
-    // Agar resultKey 'arts_social' hai, toh hum 'social' wala score dikhayenge
-    const scoreKey = resultKey.includes('_')
-  ? resultKey.split('_')[1]
-  : (percentages[resultKey] ? resultKey : "neutral");
-    document.getElementById("accuracyText").innerText = 
-        `Match Accuracy: ${percentages[scoreKey] || 0}%`;
-
-    // Suggestions Grid
-    const grid = document.getElementById("suggestionsGrid");
-    grid.innerHTML = "";
-
-    // Show top 5 specific career names based on resultKey
-        // Nayi Detailed List with "etc."
-    const fullCareerList = {
-        "pcm_tech": ["Software Developer", "Data Scientist", "Pilot", "Robotics Engineer", "AI Specialist & More..."],
-        "pcm_business": ["Product Manager", "Fintech Analyst", "Supply Chain Lead", "Quantitative Trader", "Tech Entrepreneur etc."],
-        "pcb_social": ["MBBS Surgeon", "Physiotherapist", "Psychiatrist", "Clinical Nutritionist", "Healthcare Admin etc."],
-        "pcb_tech": ["Biotechnologist", "Geneticist", "Pharmacist", "Bio-Medical Engineer", "Forensic Scientist etc."],
-        "commerce_business": ["Chartered Accountant", "Investment Banker", "Stock Broker", "MBA Finance", "Tax Consultant etc."],
-        "commerce_tech": ["Business Intelligence", "Fintech Manager", "Data Auditor", "Forensic Accountant", "E-com Specialist etc."],
-        "arts_social": ["Corporate Lawyer", "IAS/IPS Officer", "Psychologist", "Journalist", "Public Policy Expert etc."],
-        "arts_art": ["Fashion Designer", "Animator", "Interior Designer", "Photographer", "Architectural Assistant etc."],
-        "arts_tech": ["UI/UX Designer", "Digital Marketer", "Game Designer", "Video Editor", "Web Architect etc."],
-        "neutral": ["Professional Consultant", "Academic Educator", "General Manager", "Govt Service", "Freelance Expert etc."]
+    // Clear old data safely
+    const clearUI = () => {
+        document.getElementById("whyResult").innerHTML = "";
+        document.getElementById("careerRoadmap").innerHTML = "";
+        document.getElementById("careerScope").innerHTML = "";
     };
 
-    const careersToShow = fullCareerList[resultKey] || ["Career Option 1", "Career Option 2", "Career Option 3", "Career Option 4", "Career Option 5"];
-// 🔴 ADD THIS for 12th PDF
-window.pdfCareers = fullCareerList[resultKey] || [];
+    if (stage === "10") {
+        clearUI();
+        const streamScores = [];
+        for (const key in STREAM_MAP_10) {
+            const stream = STREAM_MAP_10[key];
+            let score = stream.keys.reduce((acc, k) => acc + (scoreData[k] || 0), 0);
+            streamScores.push({ ...stream, score, key });
+        }
+        streamScores.sort((a, b) => b.score - a.score);
 
-    careersToShow.forEach((c, i) => {
-        grid.innerHTML += `
+        const best = streamScores[0];
+        window.bestStreamPDF = best.label;
+        window.pdfCareers = best.careers;
+
+        document.getElementById("careerTitle").innerText = "Recommended Streams (Post-10)";
+        document.getElementById("careerDesc").innerText = "Based on aptitude, interests & thinking pattern:";
+        
+        // 10th Specific WHY/Roadmap logic
+        const info = STREAM_EXPLANATION_10[best.key];
+        document.getElementById("whyResult").innerHTML = `<li>• ${info.why}</li>`;
+        document.getElementById("careerRoadmap").innerHTML = `<li>• ${info.steps}</li>`;
+        document.getElementById("careerScope").innerHTML = `<li>• Key Subjects: ${info.subjects}</li>`;
+
+        const grid = document.getElementById("suggestionsGrid");
+        grid.innerHTML = streamScores.map((s, i) => `
+            <div class="glass p-5 rounded-xl border ${i === 0 ? "border-indigo-500 shadow-lg shadow-indigo-500/10" : "border-white/10"}">
+                <div class="text-[10px] font-bold ${i === 0 ? "text-indigo-400" : "text-slate-500"} uppercase tracking-tighter">
+                    ${i === 0 ? "★ Best Match" : "Match Option"}
+                </div>
+                <div class="text-xl font-black mt-1">${s.label}</div>
+                <div class="text-slate-400 text-sm mt-2">${s.desc}</div>
+                <div class="text-indigo-300 text-xs font-bold mt-3">Careers: ${s.careers.join(", ")}</div>
+            </div>
+        `).join('');
+
+    } else {
+        // 12th LOGIC
+        clearUI();
+        const trait = resultKey.includes("_") ? resultKey.split("_")[1] : resultKey;
+        const mainResult = DB_MAP[resultKey] || DB_MAP["neutral"];
+
+        document.getElementById("careerTitle").innerText = mainResult.title;
+        document.getElementById("careerDesc").innerText = mainResult.desc;
+        document.getElementById("accuracyText").innerText = `Match Accuracy: ${percentages[trait] || 0}%`;
+        window.bestStreamPDF = mainResult.title;
+
+        // Populate 3-Section Data
+        WHY_MAP[trait]?.forEach(t => document.getElementById("whyResult").innerHTML += `<li>• ${t}</li>`);
+        ROADMAP_MAP[trait]?.forEach(t => document.getElementById("careerRoadmap").innerHTML += `<li>• ${t}</li>`);
+        SCOPE_MAP[trait]?.forEach(t => document.getElementById("careerScope").innerHTML += `<li>• ${t}</li>`);
+
+        const careers = specificCareers[resultKey] || specificCareers["neutral"];
+        window.pdfCareers = careers;
+        
+        document.getElementById("suggestionsGrid").innerHTML = careers.map((c, i) => `
             <div class="glass p-5 rounded-xl border border-white/5 hover:border-indigo-500/50 transition">
-                <div class="text-indigo-400 font-bold text-xs mb-1">RECOMMENDED 0${i+1}</div>
+                <div class="text-indigo-400 font-bold text-xs mb-1">PATHWAY 0${i + 1}</div>
                 <div class="font-bold text-lg">${c}</div>
-            </div>`;
-    });
+            </div>
+        `).join('');
+    }
 };
+
 
 /* ================= ADVANCED PDF ================= */
 function downloadPDF(){
