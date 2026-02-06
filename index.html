@@ -299,12 +299,15 @@ async function askAI() {
   const userText = input.value;
   input.value = "";
 
-  msgBox.innerHTML += `<div class="bg-blue-600 p-3 rounded-2xl self-end text-white">${userText}</div>`;
+  // User Message
+  msgBox.innerHTML += `<div class="bg-blue-600 p-3 rounded-2xl rounded-tr-none self-end max-w-[85%] text-white border border-blue-400/20">${userText}</div>`;
 
+  // Thinking Message
   const thinking = document.createElement("div");
-  thinking.className = "bg-slate-800 p-3 rounded-2xl italic text-slate-400";
+  thinking.className = "bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 italic text-slate-400";
   thinking.innerText = "Disha is thinking...";
   msgBox.appendChild(thinking);
+  msgBox.scrollTop = msgBox.scrollHeight;
 
   try {
     const res = await fetch("https://careersteps-ai.sajanpandit585.workers.dev", {
@@ -316,12 +319,15 @@ async function askAI() {
     const data = await res.json();
     msgBox.removeChild(thinking);
 
-    msgBox.innerHTML += `<div class="bg-slate-800 p-3 rounded-2xl text-white">${data.reply}</div>`;
-  } catch {
-    msgBox.removeChild(thinking);
-    msgBox.innerHTML += `<div class="text-red-400">Server error</div>`;
+    // Disha's Reply
+    msgBox.innerHTML += `<div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 text-white">${data.reply}</div>`;
+    msgBox.scrollTop = msgBox.scrollHeight;
+  } catch (e) {
+    if(thinking) msgBox.removeChild(thinking);
+    msgBox.innerHTML += `<div class="text-red-400 text-[10px]">Server error. Please try again.</div>`;
   }
 }
+  
 </script>
   
   
