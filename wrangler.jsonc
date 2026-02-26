@@ -1,14 +1,24 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "careersteps-ai",
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "my-worker-dev",
   "compatibility_date": "2025-09-27",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "observability": {
     "enabled": true
   },
-  "assets": {
-    "directory": "."
+  "vars": {
+    "API_HOST": "example.com",
+    "API_ACCOUNT_ID": "example_user",
+    "SERVICE_X_DATA": {
+      "URL": "service-x-api.dev.example",
+      "MY_ID": 123
+    },
+    "GEMINI_API_KEY": "AIzaSyCbyNHoeZPoTvRqNRre2GngnBBLbZ7U_Mc",
+    "GEMINI_MODEL": "gemini-flash-2.5"
   },
-  "compatibility_flags": [
-    "nodejs_compat"
+  "routes": [
+    { "pattern": "mydomain.com/api/chat", "custom_domain": true }
   ]
 }
