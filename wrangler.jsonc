@@ -1,7 +1,14 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "careersteps-ai",
   "main": "src/index.js",
   "compatibility_date": "2026-02-27",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    "GEMINI_MODEL": "gemini-2.5-pro"
+  },
   "routes": [
     {
       "pattern": "careersteps.in/api/*",
@@ -9,4 +16,3 @@
     }
   ]
 }
-
