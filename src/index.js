@@ -9,7 +9,7 @@ export default {
       const { message } = await request.json();
       
       // Yahan hum dashboard wali key "GEMINI_API_KEY" use kar rahe hain
-      const apiKey = env.GEMINI_API_KEY; 
+      const apiKey = env.GEMINI_KEY; 
       const model = env.GEMINI_MODEL || "gemini-1.5-flash";
 
       const response = await fetch(
