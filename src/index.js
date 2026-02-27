@@ -1,14 +1,16 @@
 export default {
-  async fetch(request, env, ctx) {
-    // Check if the request is a POST request
-    if (request.method !== "POST") {
-      return new Response("Send a POST request with your message", { status: 400 });
-    }
+  async fetch(request, env) {
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    };
+
+    if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
     try {
       const { message } = await request.json();
-      
-      // Yahan hum dashboard wali key "GEMINI_API_KEY" use kar rahe hain
+      // Dashboard wala "GEMINI_KEY" yahan use ho raha hai
       const apiKey = env.GEMINI_KEY; 
       const model = env.GEMINI_MODEL || "gemini-1.5-flash";
 
@@ -17,25 +19,22 @@ export default {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: message }] }],
-          }),
+          body: JSON.stringify({ contents: [{ parts: [{ text: message }] }] }),
         }
       );
 
       const data = await response.json();
-      const aiResponse = data.candidates[0].content.parts[0].text;
+      const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "AI Error: Check Key";
 
       return new Response(JSON.stringify({ reply: aiResponse }), {
-        headers: { "Content-Type": "application/json" },
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
-
-    } catch (error) {
-      // Agar error aaye toh ye error message dikhayega
-      return new Response(JSON.stringify({ error: "Server error: " + error.message }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
+    } catch (e) {
+      return new Response(JSON.stringify({ reply: "Server error: " + e.message }), { 
+        status: 500, 
+        headers: corsHeaders 
       });
     }
   },
 };
+
