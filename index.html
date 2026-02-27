@@ -312,7 +312,7 @@ async function askAI() {
   msgBox.scrollTop = msgBox.scrollHeight;
 
   try {
-    const res = await fetch("https://careersteps-ai.sajanpandit585.workers.dev", {
+    const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: userText })
