@@ -322,7 +322,9 @@ async function askAI() {
     msgBox.removeChild(thinking);
 
     // Disha's Reply
-    msgBox.innerHTML += `<div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 text-white">${data.reply}</div>`;
+    msgBox.innerHTML += `<div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 text-white">
+${data.response}
+</div>`;
     msgBox.scrollTop = msgBox.scrollHeight;
   } catch (e) {
     if(thinking) msgBox.removeChild(thinking);
