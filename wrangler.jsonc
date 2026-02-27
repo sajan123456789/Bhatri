@@ -14,8 +14,7 @@
   },
   "routes": [
     {
-      "pattern": "careersteps.in/api/chat",
-      "custom_domain": true
+      "pattern": "careersteps.in/api/chat"
     }
   ]
 }
