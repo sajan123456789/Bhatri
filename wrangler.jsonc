@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "my-worker-dev",
+  "name": "careersteps-ai",
   "main": "src/index.js",
   "compatibility_date": "2025-09-27",
   "compatibility_flags": [
@@ -10,16 +10,6 @@
     "enabled": true
   },
   "vars": {
-    "API_HOST": "example.com",
-    "API_ACCOUNT_ID": "example_user",
-    "SERVICE_X_DATA": {
-      "URL": "service-x-api.dev.example",
-      "MY_ID": 123
-    },
-    
     "GEMINI_MODEL": "gemini-2.5-pro"
-  },
-  "routes": [
-    { "pattern": "mydomain.com/api/chat", "custom_domain": true }
-  ]
+  }
 }
