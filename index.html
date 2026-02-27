@@ -323,7 +323,7 @@ async function askAI() {
 
     // Disha's Reply
     msgBox.innerHTML += `<div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/5 text-white">
-${data.candidates?.[0]?.content?.parts?.[0]?.text || "No response"}
+${data.reply}
 </div>`;
     msgBox.scrollTop = msgBox.scrollHeight;
   } catch (e) {
