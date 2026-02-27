@@ -13,22 +13,24 @@ export default {
         apiKey: env.GEMINI_API_KEY,
       });
 
-      const response = await ai.models.generateContent({
+      const result = await ai.models.generateContent({
         model: env.GEMINI_MODEL,
         contents: message,
       });
 
+      const reply =
+        result?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "No response from AI";
+
       return new Response(
-        JSON.stringify({
-          reply: response.text,
-        }),
+        JSON.stringify({ reply }),
         {
           headers: { "Content-Type": "application/json" },
         }
       );
     } catch (error) {
       return new Response(
-        JSON.stringify({ error: error.message }),
+        JSON.stringify({ reply: "Server error" }),
         { status: 500 }
       );
     }
