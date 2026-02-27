@@ -14,7 +14,7 @@
   },
   "routes": [
     {
-      "pattern": "careersteps.in/api/chat"
+      "pattern": "careersteps.in/api/*"
     }
   ]
 }
