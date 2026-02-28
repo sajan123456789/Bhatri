@@ -14,10 +14,6 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
 .glass { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(16px); }
 .glow-card:hover { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.1); transform: translateY(-5px); }
 .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-/* Mobile Menu Hidden by default */
-#mobile-menu { display: none; }
-#mobile-menu.active { display: block; }
 </style>
 </head>
 
@@ -25,22 +21,30 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
 
 <header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
   <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-    <a href="index.html" class="text-2xl font-black italic tracking-tighter uppercase transition-all active:scale-95">
-      CAREER<span class="text-blue-500">STEPS</span>
+    <a href="index.html" class="flex items-center gap-3 group">
+      <img src="android-chrome-192x192.png" alt="Logo" class="h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform">
+      <span class="text-2xl font-black italic tracking-tighter uppercase text-white">
+        CAREER<span class="text-blue-500">STEPS</span>
+      </span>
     </a>
+
     <nav class="hidden md:flex items-center space-x-10">
       <a href="index.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">Home</a>
       <a href="blog.html" class="text-[10px] font-black uppercase tracking-widest hover:text-blue-400 transition">Blog</a>
       <a href="assessment.html" class="px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-[10px] font-extrabold tracking-widest text-white transition-all shadow-xl shadow-blue-600/25">START ASSESSMENT</a>
     </nav>
-    <button onclick="toggleMenu()" class="md:hidden text-white focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+
+    <button id="menuBtn" class="md:hidden text-white focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7" /></svg>
     </button>
   </div>
-  <div id="mobile-menu" class="md:hidden bg-[#020617] border-b border-white/10 px-6 py-8 text-center">
-    <a href="index.html" class="block text-xs font-bold uppercase py-4 border-b border-white/5">Home</a>
-    <a href="blog.html" class="block text-xs font-bold uppercase py-4 border-b border-white/5">Blog</a>
-    <a href="assessment.html" class="block text-xs font-bold uppercase text-blue-500 py-4">Start Assessment</a>
+
+  <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-10 text-center animate-in fade-in slide-in-from-top-2 duration-300">
+    <nav class="flex flex-col gap-6">
+      <a href="index.html" class="text-xs font-black uppercase tracking-widest text-white">Home</a>
+      <a href="blog.html" class="text-xs font-black uppercase tracking-widest text-slate-400">Blog</a>
+      <a href="assessment.html" class="text-xs font-black uppercase tracking-widest text-blue-500 pt-4 border-t border-white/5">Start Assessment →</a>
+    </nav>
   </div>
 </header>
 
@@ -51,7 +55,7 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
     <span class="text-gradient">Guidance</span>
   </h1>
   <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
-    Empowering Indian students with neural analysis to discover high-growth career paths in the age of AI.
+    Empowering students with neural analysis to discover high-growth career paths in the age of AI.
   </p>
 </section>
 
@@ -86,84 +90,82 @@ body { background:#020617; color:#ffffff; font-family: 'Plus Jakarta Sans', sans
         </p>
     </div>
     <div class="bg-blue-600 p-10 rounded-[2.5rem] shadow-2xl shadow-blue-500/20 flex flex-col justify-center">
-        <h2 class="text-2xl font-black mb-4 uppercase tracking-tighter text-white italic">Our Mission</h2>
-        <p class="text-blue-50 text-lg leading-relaxed font-bold">
-            To provide unbiased, AI-powered mentor access to every student in India, free of charge.
+        <h2 class="text-2xl font-black mb-4 uppercase tracking-tighter text-white italic text-center">Our Mission</h2>
+        <p class="text-blue-50 text-lg leading-relaxed font-bold text-center">
+            To provide unbiased, AI-powered mentor access to every student, free of charge.
         </p>
     </div>
   </div>
 
-  <div class="glass p-12 rounded-[3rem]">
-    <h2 class="text-3xl font-black mb-12 italic uppercase tracking-tighter text-white text-center">Our Specialized Analysis</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all text-center">
-            <div class="text-4xl mb-6">🎯</div>
-            <h4 class="font-black text-white mb-3 uppercase text-[10px] tracking-widest">Stream Logic</h4>
-            <p class="text-slate-500 text-xs font-bold leading-relaxed uppercase">Perfect path after 10th Selection.</p>
+  <div class="grid md:grid-cols-2 gap-12 items-center py-12">
+    <div>
+      <h2 class="text-4xl font-black italic uppercase tracking-tighter mb-8 text-white">Why we <span class="text-blue-500">Built this?</span></h2>
+      <p class="text-slate-400 text-lg mb-6 leading-relaxed">
+        Har saal millions of students galat stream ya career choose kar lete hain kyunki unke paas sahi information nahi hoti. CareerSteps ko isliye banaya gaya taaki AI ki madad se har student ko wahi premium guidance mile jo pehle sirf kuch logo tak mehdood thi.
+      </p>
+      <div class="flex gap-6">
+        <div class="flex items-center gap-2">
+            <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+            <span class="text-[10px] font-black uppercase tracking-widest text-slate-300">No Hidden Fees</span>
         </div>
-        <div class="p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all text-center">
-            <div class="text-4xl mb-6">📊</div>
-            <h4 class="font-black text-white mb-3 uppercase text-[10px] tracking-widest">Match Analysis</h4>
-            <p class="text-slate-500 text-xs font-bold leading-relaxed uppercase">Skill-Industry Compatibility.</p>
+        <div class="flex items-center gap-2">
+            <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+            <span class="text-[10px] font-black uppercase tracking-widest text-slate-300">Global Standards</span>
         </div>
-        <div class="p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all text-center">
-            <div class="text-4xl mb-6">🛤️</div>
-            <h4 class="font-black text-white mb-3 uppercase text-[10px] tracking-widest">Roadmap Gen</h4>
-            <p class="text-slate-500 text-xs font-bold leading-relaxed uppercase">Step-by-step guides.</p>
-        </div>
-        <div class="p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all text-center">
-            <div class="text-4xl mb-6">🌐</div>
-            <h4 class="font-black text-white mb-3 uppercase text-[10px] tracking-widest">Global Data</h4>
-            <p class="text-slate-500 text-xs font-bold leading-relaxed uppercase">Real-time Market Salaries.</p>
-        </div>
+      </div>
+    </div>
+    <div class="glass p-8 rounded-[3rem] border-blue-500/10 text-center">
+        <div class="text-blue-500 text-xs font-black uppercase tracking-[0.4em] mb-4">Powered By</div>
+        <div class="text-5xl font-black italic text-white opacity-20">NEURAL AI</div>
     </div>
   </div>
 </section>
 
 <footer class="footer-premium pt-20 pb-10 bg-[#000208] border-t border-blue-500/20 mt-20">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-    
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
-      <p class="text-slate-400 text-sm font-semibold">India’s trusted AI career guidance platform.</p>
+      <p class="text-slate-400 text-sm font-semibold">The world's trusted AI-powered career discovery platform.</p>
     </div>
-
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
       <ul class="text-slate-300 text-sm font-bold space-y-4">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="assessment.html">Career Test</a></li>
-        <li><a href="careers.html">Explore Career</a></li>
+        <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+        <li><a href="assessment.html" class="hover:text-blue-400">Career Test</a></li>
+        <li><a href="blog.html" class="hover:text-blue-400">Blog</a></li>
       </ul>
     </div>
-
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
       <ul class="text-slate-300 text-sm font-bold space-y-4">
-        <li><a href="after10.html">After 10th</a></li>
-        <li><a href="after12.html">After 12th</a></li>
+        <li><a href="#" class="hover:text-blue-400">After 10th</a></li>
+        <li><a href="#" class="hover:text-blue-400">After 12th</a></li>
       </ul>
     </div>
-
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
       <ul class="text-slate-300 text-sm font-bold space-y-4">
-        <li><a href="about.html">About</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms & Conditions</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html" class="hover:text-blue-400">Privacy Policy</a></li>
+        <li><a href="terms.html" class="hover:text-blue-400">Terms</a></li>
+        <li><a href="contact.html" class="hover:text-blue-400">Contact</a></li>
       </ul>
     </div>
-
   </div>
-
   <div class="text-center mt-16 pt-8 border-t border-white/5">
-    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest">© 2026 CareerSteps • AI-inspired career guidance based on research and trends.</p>
+    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest">© 2026 CareerSteps • Global AI career guidance.</p>
   </div>
 </footer>
 
 <script>
-function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
+  // Mobile Menu Toggle Logic
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
 </script>
 
 </body>
