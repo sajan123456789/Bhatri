@@ -238,13 +238,22 @@ body{
 </footer>
 
 <script>
-  // Mobile menu toggle
+  // Mobile Menu Toggle Logic
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
-  // NOTE: startAssessment function and Input logic removed to keep code clean.
+  if (menuBtn && mobileMenu) {
+    menuBtn.onclick = function() {
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    };
+  }
 </script>
+
+  
 <div id="career-chat" class="fixed bottom-6 right-6 z-[100]">
   <div id="chat-window" class="hidden w-80 md:w-96 bg-[#0f172a] border border-blue-500/30 rounded-2xl shadow-2xl mb-4 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
     <div class="bg-blue-600 p-4 font-bold flex justify-between items-center text-white">
