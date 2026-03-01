@@ -1,156 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCA Career Guide 2026 | CareerSteps</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        body { background: #020617; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; scroll-behavior: smooth; }
-        
-        /* Smooth Spacing for Content */
-        .article-wrapper { max-width: 850px; margin: 120px auto 100px; padding: 0 24px; }
-        
-        /* Heading Styles */
-        h1, h2, h3 { color: #ffffff; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
-        h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 2.5rem; font-style: italic; }
-        h2 { font-size: 1.8rem; margin-top: 5rem; margin-bottom: 2rem; color: #3b82f6; display: flex; items: center; gap: 15px; }
-        h2::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(to right, #3b82f6, transparent); opacity: 0.3; }
-        
-        /* Readability Improvements */
-        p { margin-bottom: 1.8rem; font-size: 1.15rem; color: #94a3b8; font-weight: 400; }
-        .glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.3); backdrop-filter: blur(12px); border-radius: 32px; padding: 40px; margin: 40px 0; }
-        
-        .highlight-box { border-left: 4px solid #3b82f6; padding-left: 24px; margin: 40px 0; font-style: italic; color: #e2e8f0; }
-        
-        /* Table Styling */
-        table { border-collapse: separate; border-spacing: 0 10px; width: 100%; }
-        th { color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 12px; }
-        td { background: rgba(30, 41, 59, 0.4); padding: 20px; color: #f8fafc; }
-        td:first-child { border-radius: 16px 0 0 16px; font-weight: 700; }
-        td:last-child { border-radius: 0 16px 16px 0; }
-    </style>
+<meta charset="UTF-8">
+<title>BCA Career Guide – Salary, Jobs & Exams (2026)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Complete BCA career guide with jobs list, salary in dollars, entrance exams, pros and cons. Easy to read guide for students.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+background:#0f172a;
+color:#e2e8f0;
+font-family:system-ui;
+}
+.article p{margin-top:1.2rem;line-height:1.9;color:#cbd5e1;font-size:1.1rem;}
+.article h2{margin-top:3.5rem;font-size:2rem;font-weight:800;color:white;border-bottom: 2px solid #3b82f6; display: inline-block; padding-bottom: 5px;}
+.article h3{margin-top:2.5rem;font-size:1.4rem;font-weight:700;color:#93c5fd}
+.box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.5rem;margin-top:1.5rem}
+ul{margin-top:1.2rem;padding-left:1.5rem;list-style:disc}
+li{margin-bottom: 0.8rem; color:#cbd5e1;}
+.salary-tag { color: #4ade80; font-weight: 800; }
+</style>
 </head>
+
 <body>
 
-<header class="fixed top-0 w-full z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5">
+<header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
   <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
     <a href="index.html" class="flex items-center gap-3">
-      <img src="android-chrome-192x192.png" alt="Logo" class="h-10 w-auto rounded-lg shadow-lg">
+      <img src="android-chrome-192x192.png" alt="Logo" class="h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
       <span class="text-2xl font-black italic uppercase tracking-tighter text-white">CAREER<span class="text-blue-600">STEPS</span></span>
     </a>
-    <nav class="hidden md:flex gap-8">
-      <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">Home</a>
-      <a href="careers.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">Explore</a>
-      <a href="blog.html" class="text-xs font-bold uppercase tracking-widest text-white transition">Blogs</a>
+    <nav class="hidden md:flex gap-10 items-center">
+      <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-blue-500 transition-colors">Home</a>
+      <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">About</a>
+      <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Explore Careers</a>
+      <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-white transition-colors">Blogs</a>
     </nav>
-    <a href="assessment.html" class="bg-blue-600 px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-600/20">AI Test →</a>
+    <div class="flex items-center gap-4">
+      <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-7 py-3 rounded-xl text-[12px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20">Get Started →</a>
+      <button id="menuBtn" class="md:hidden text-white p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8">
+    <nav class="flex flex-col gap-6 text-[16px] font-bold uppercase tracking-widest text-slate-300 text-center">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blogs</a>
+      <a href="assessment.html" class="text-blue-500 pt-4 border-t border-white/5 font-black">Start AI Test →</a>
+    </nav>
   </div>
 </header>
 
-<main class="article-wrapper">
-    <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-6">
-        <span>Blog</span> <span class="text-slate-700">/</span> <span>Technology</span> <span class="text-slate-700">/</span> <span class="text-slate-300">BCA Guide</span>
+<header class="text-center py-12 border-b border-white/10 bg-[#020617]/50">
+<h1 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-white">BCA Career Guide <span class="text-blue-500">2026</span></h1>
+<p class="text-slate-400 text-sm mt-4 uppercase tracking-[0.3em]">The ultimate roadmap for tech enthusiasts</p>
+</header>
+
+<section class="max-w-4xl mx-auto px-6 py-12 article">
+
+<p>Thinking about a career in IT but don't want to spend 4 years in a B.Tech program? The <span class="text-blue-400 font-bold">Bachelor of Computer Applications (BCA)</span> is the fastest gateway to the tech world.</p>
+
+<p>BCA is a 3-year undergraduate degree that focuses on software development, web apps, and database management. It is designed to turn you into a skilled programmer in a short time.</p>
+
+<h2>What is BCA?</h2>
+<p>BCA stands for Bachelor of Computer Applications. While B.Tech is an engineering degree, BCA is an <strong>application-based</strong> degree. It focuses more on "how to use" and "how to build" software rather than complex hardware engineering.</p>
+
+<h2>Why BCA is a Great Choice</h2>
+<ul>
+<li>Short duration (3 Years)</li>
+<li>Focus on practical coding skills</li>
+<li>Lower fees compared to B.Tech</li>
+<li>Open for Arts and Commerce students too</li>
+<li>Huge demand in the global IT sector</li>
+</ul>
+
+<h2>BCA Career Options</h2>
+
+<h3>1. Full Stack Developer</h3>
+<p>You build both the look of a website (front-end) and the brain of the website (back-end).</p>
+<div class="box">
+<p><strong>Exams:</strong> College Entrance / Skill-based hiring</p>
+<p><strong>Salary 💰:</strong> <span class="salary-tag">$8,000 – $65,000/year</span></p>
+<p><strong>Pros:</strong> High demand, can do freelancing</p>
+</div>
+
+<h3>2. Cyber Security Analyst</h3>
+<p>You protect companies and people from digital hackers and data theft.</p>
+<div class="box">
+<p><strong>Exams:</strong> Specialized certifications (CEH, CISSP)</p>
+<p><strong>Salary 💰:</strong> <span class="salary-tag">$10,000 – $80,000/year</span></p>
+<p><strong>Pros:</strong> Very high job security</p>
+</div>
+
+<h3>3. Data Analyst</h3>
+<p>You help companies make decisions by looking at their data patterns.</p>
+<div class="box">
+<p><strong>Exams:</strong> Interviews + Portfolio</p>
+<p><strong>Salary 💰:</strong> <span class="salary-tag">$7,000 – $55,000/year</span></p>
+<p><strong>Pros:</strong> Clean corporate job, great growth</p>
+</div>
+
+<h2>BCA Entrance Exams</h2>
+<p>Many top universities require an entrance test to check your logic and math skills.</p>
+<ul>
+<li><strong>IPU CET:</strong> For top colleges in Delhi/NCR.</li>
+<li><strong>CUET (UG):</strong> For major Central Universities across India.</li>
+<li><strong>SET:</strong> For Symbiosis International University.</li>
+<li><strong>BITSAT:</strong> For Birla Institute of Technology.</li>
+</ul>
+
+<h2>Global Salary Comparison ($)</h2>
+<p>Tech is one of the few fields where you can earn in dollars by working remotely for foreign companies.</p>
+
+<div class="overflow-x-auto mt-6">
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="text-blue-400 border-b border-white/10">
+                <th class="py-4">Role</th>
+                <th class="py-4">Entry Level</th>
+                <th class="py-4">Expert Level</th>
+            </tr>
+        </thead>
+        <tbody class="text-sm">
+            <tr class="border-b border-white/5">
+                <td class="py-4">Software Dev</td>
+                <td class="py-4">$9,000</td>
+                <td class="py-4">$70,000+</td>
+            </tr>
+            <tr class="border-b border-white/5">
+                <td class="py-4">Cloud Admin</td>
+                <td class="py-4">$11,000</td>
+                <td class="py-4">$85,000+</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Pros & Cons of BCA</h2>
+
+<div class="grid md:grid-cols-2 gap-6 mt-8">
+    <div class="box border-green-500/20">
+        <h3 class="mt-0 text-green-400">Advantages</h3>
+        <ul>
+            <li>Early entry into IT career</li>
+            <li>Practical syllabus</li>
+            <li>Great for remote work</li>
+        </ul>
     </div>
-
-    <h1>The Ultimate Guide to <span class="text-blue-500">BCA</span> in 2026</h1>
-    
-    <div class="highlight-box">
-        Thinking about a career in IT but don't want to do a 4-year B.Tech? The Bachelor of Computer Applications (BCA) might be your perfect match.
+    <div class="box border-red-500/20">
+        <h3 class="mt-0 text-red-400">Disadvantages</h3>
+        <ul>
+            <li>Might need MCA for top roles</li>
+            <li>High competition</li>
+            <li>Requires daily coding practice</li>
+        </ul>
     </div>
+</div>
 
-    <div class="toc bg-blue-600/5 rounded-3xl p-8 border border-blue-500/10 mb-12">
-        <h3 class="text-xs font-black uppercase tracking-widest text-blue-400 mb-6">Quick Navigation</h3>
-        <div class="grid md:grid-cols-2 gap-4">
-            <a href="#what-is-bca" class="text-sm font-semibold hover:text-blue-500 transition">01. What is BCA?</a>
-            <a href="#entrance-exams" class="text-sm font-semibold hover:text-blue-500 transition">02. Major Entrance Exams</a>
-            <a href="#career-list" class="text-sm font-semibold hover:text-blue-500 transition">03. Top Career Paths</a>
-            <a href="#salary" class="text-sm font-semibold hover:text-blue-500 transition">04. Salary in Dollars ($)</a>
-        </div>
+<h2>FAQs – BCA</h2>
+<h3>Is Math compulsory for BCA?</h3>
+<p>For some top colleges like IP University, yes. But many private universities accept students without Math in Class 12.</p>
+
+<h3>Can I get a job in USA after BCA?</h3>
+<p>Yes, but usually people prefer to do an MCA or MS abroad to increase their chances for a high-paying visa job.</p>
+
+<h3>Is BCA better than B.Sc IT?</h3>
+<p>BCA is more focused on software **applications**, while B.Sc IT is more theoretical and research-oriented. BCA is usually better for jobs.</p>
+
+</section>
+
+<footer class="footer-premium pt-20 pb-10 border-t border-white/5 mt-20">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center md:text-left">
+      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+      <p class="text-slate-400 text-sm font-semibold">The world's trusted AI-powered career discovery platform.</p>
     </div>
-
-    <section id="what-is-bca">
-        <h2>What is Bachelor of Computer Applications?</h2>
-        <p>BCA is a 3-year undergraduate degree that focuses on computer applications and software development. Unlike a B.Tech which covers both hardware and software, BCA is more focused on the <strong>application</strong> side of things.</p>
-        <p>In 2026, as AI and Cloud Computing dominate the market, the BCA syllabus has evolved. Students now learn Python, Java, Machine Learning, and Web 3.0 technologies.</p>
-    </section>
-
-    <section id="entrance-exams">
-        <h2>Entrance Exams You Must Know</h2>
-        <p>To get into a top-tier college, you usually need to clear an entrance exam. These test your Mathematics and Logic.</p>
-        <div class="glass-card">
-            <ul class="space-y-6">
-                <li class="flex items-start gap-4">
-                    <span class="bg-blue-600/20 text-blue-500 p-2 rounded-lg text-xs font-bold">IPU</span>
-                    <div><strong class="text-white block">IPU CET</strong> Highly popular for Delhi/NCR colleges.</div>
-                </li>
-                <li class="flex items-start gap-4">
-                    <span class="bg-blue-600/20 text-blue-500 p-2 rounded-lg text-xs font-bold">CUET</span>
-                    <div><strong class="text-white block">CUET (UG)</strong> The standard for Central Universities.</div>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="career-list">
-        <h2>Top Career Paths After BCA</h2>
-        <div class="grid md:grid-cols-2 gap-6 my-10">
-            <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
-                <h3 class="text-blue-500 text-sm mb-2">Development</h3>
-                <p class="text-white font-bold text-xl">Full Stack Developer</p>
-                <p class="text-xs mt-2">Manage both Front-end and Back-end systems.</p>
-            </div>
-            <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
-                <h3 class="text-purple-500 text-sm mb-2">Security</h3>
-                <p class="text-white font-bold text-xl">Cyber Security Analyst</p>
-                <p class="text-xs mt-2">Protect global data from emerging AI threats.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="salary">
-        <h2>Salary in Dollars ($) 💰</h2>
-        <p>The tech industry is global. Here is the estimated annual salary for BCA graduates in 2026:</p>
-        
-        <div class="overflow-x-auto mt-8">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="text-left">Role</th>
-                        <th class="text-left">Entry Level (USD)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Software Developer</td>
-                        <td><span class="text-emerald-400 font-bold">$8,000 - $12,000</span></td>
-                    </tr>
-                    <tr>
-                        <td>Cloud Architect</td>
-                        <td><span class="text-emerald-400 font-bold">$10,000 - $15,000</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <div class="mt-20 p-12 bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/20 rounded-[40px] text-center">
-        <h2 class="inline-block text-2xl mb-4 border-none p-0">Unsure if BCA is right for you?</h2>
-        <p class="text-slate-400 mb-8">Let our AI analyze your skills and find the perfect roadmap.</p>
-        <a href="assessment.html" class="inline-block bg-blue-600 hover:bg-blue-500 px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-white transition-all">Start AI Test →</a>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest text-blue-500">Navigation</h5>
+      <ul class="text-slate-300 text-sm font-bold space-y-4">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assessment.html">Career Test</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
     </div>
-</main>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest text-blue-500">Legal</h5>
+      <ul class="text-slate-300 text-sm font-bold space-y-4">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center">
+        <p class="text-xs font-bold text-slate-400 uppercase mb-4">Ready to start?</p>
+        <a href="assessment.html" class="bg-blue-600 px-6 py-3 rounded-xl text-[10px] font-black uppercase text-white">Take AI Test</a>
+    </div>
+  </div>
+  <div class="text-center mt-16 pt-8 border-t border-white/5">
+    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest">© 2026 CareerSteps • Empowering Students Worldwide</p>
+  </div>
+</footer>
 
 <script>
-  // Mobile Menu Logic
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
-  if(menuBtn) {
-    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-  }
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
 </script>
 
 </body>
