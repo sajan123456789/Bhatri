@@ -24,6 +24,26 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
 .toc-container a:hover { color: #ffffff; text-decoration: underline; }
 .roadmap-step { border-left: 2px dashed #3b82f6; padding-left: 20px; margin-bottom: 20px; position: relative; }
 .roadmap-step::before { content: ''; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 10px #3b82f6; }
+
+/* New CTA Style */
+.impact-cta {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 2px solid #3b82f6;
+    position: relative;
+    overflow: hidden;
+}
+.impact-cta::after {
+    content: 'NEW';
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+}
 </style>
 </head>
 <body>
@@ -82,17 +102,18 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
     <ul class="grid md:grid-cols-2 gap-x-4 gap-y-2 m-0 p-0 list-none">
       <li><a href="#what-is-ai">1. Understanding Modern AI</a></li>
       <li><a href="#why-choose-ai">2. Market Demand & Growth</a></li>
-      <li><a href="#career-options">3. Roles & High-Paying Salaries</a></li>
-      <li><a href="#education-exams">4. Educational Pathways 2026</a></li>
-      <li><a href="#core-skills">5. Technical & Soft Skill Stack</a></li>
+      <li><a href="#career-impact">3. Will AI Replace Your Job?</a></li>
+      <li><a href="#career-options">4. Roles & High-Paying Salaries</a></li>
+      <li><a href="#education-exams">5. Educational Pathways 2026</a></li>
       <li><a href="#roadmap">6. 12-Month Mastery Roadmap</a></li>
-      <li><a href="#pros-cons">7. The Reality: Pros & Cons</a></li>
-      <li><a href="#faqs">8. Expert Answers (FAQs)</a></li>
+      <li><a href="#faqs">7. Expert Answers (FAQs)</a></li>
     </ul>
   </div>
 
   <h2 id="what-is-ai">1. What Exactly Is Artificial Intelligence?</h2>
   <p>AI is the science of creating <span class="highlight">intelligent machines</span> that can simulate human cognitive functions. In 2026, this has evolved into three distinct tiers: Narrow AI (specialized tasks), Generative AI (creative production), and emerging AGI research.</p>
+
+  [attachment_0](attachment)
   
   <h2 id="why-choose-ai">2. Why Choose an AI Career in 2026?</h2>
   <ul>
@@ -100,6 +121,16 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
     <li><span class="highlight">Crisis-Proof Career:</span> Automation is replacing roles, but AI creation is immune to it.</li>
     <li><span class="highlight">High Compensation:</span> AI specialists earn 40-50% more than standard software developers.</li>
   </ul>
+
+  <div id="career-impact" class="box impact-cta">
+    <h3 class="mt-0 text-white flex items-center gap-2">
+      <span class="text-2xl">🚨</span> Important Note: The AI Impact
+    </h3>
+    <p class="text-slate-200">Before diving into technical skills, it is crucial to understand how AI is reshaping traditional jobs like Accounting, Coding, and Law. Will your dream career still exist in 5 years?</p>
+    <a href="ai-impact-on-careers.html" class="inline-block mt-4 bg-white text-blue-900 font-bold px-6 py-2 rounded-lg hover:bg-blue-100 transition-all">
+      Read: How AI is Impacting 50+ Careers (2026 Guide) →
+    </a>
+  </div>
 
   <h2 id="career-options">3. Top AI Career Options & Global Salaries</h2>
   
@@ -129,7 +160,8 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
     <li><strong>The "Skill-First" Route:</strong> Professional certifications from NVIDIA, Google, and Microsoft.</li>
   </ul>
 
-  <h2 id="roadmap">6. Step-by-Step AI Learning Roadmap</h2>
+  <h2 id="roadmap">5. Step-by-Step AI Learning Roadmap</h2>
+  
   <div class="roadmap-step">
     <h4 class="text-blue-400 font-bold m-0 text-lg">Month 1-3: Mathematics & Python</h4>
     <p class="text-sm mt-1">Master Linear Algebra, Probability, and Python data libraries (NumPy, Pandas).</p>
@@ -143,7 +175,7 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
     <p class="text-sm mt-1">Specialization in Neural Networks (CNNs, Transformers) and deploying models on AWS/Azure.</p>
   </div>
 
-  <h2 id="faqs">8. Frequently Asked Questions (FAQs)</h2>
+  <h2 id="faqs">6. Frequently Asked Questions (FAQs)</h2>
   <div class="box">
     <p class="font-bold text-white text-lg m-0">Do I need a PhD to work in AI?</p>
     <p class="text-sm mt-2">Not anymore. While research roles might require it, 80% of engineering roles only require a strong portfolio and a Bachelor's degree.</p>
@@ -159,9 +191,8 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
 <footer class="bg-[#000000] pt-20 pb-10 border-t border-white/10 mt-20">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-600">STEPS</span></h2>
       <p class="text-slate-400 text-sm font-semibold">The world's trusted AI-powered career discovery platform.</p>
-      
     </div>
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
@@ -183,9 +214,7 @@ li{margin-bottom: 0.8rem; color:#cbd5e1; font-size:1.05rem;}
       <ul class="text-slate-300 text-sm font-bold space-y-4">
         <li><a href="about.html">About</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="cookies.html">cookies</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
         <li><a href="terms.html">Terms & Conditions</a></li>
         <li><a href="contact.html">contact</a></li>
       </ul>
