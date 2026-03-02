@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Psychology Career Guide 2026: Salary, Specializations & The Future of Mental Health</title>
+<title>Psychology Career Guide India 2026: Skills, Salary & Jobs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ultimate 2026 Psychology career guide. Discover how to become a licensed psychologist, explore high-paying specializations like Neuropsychology, and learn global salary trends.">
+<meta name="description" content="Explore the ultimate 2026 Psychology career guide. Learn about clinical, industrial, and forensic psychology, salaries in INR/USD, and top recruitment areas.">
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -12,294 +12,205 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
     
     body { 
-        background: #020617; 
-        color: #e2e8f0; 
+        background: #0b1120; 
+        color: #f8fafc; 
         font-family: 'Plus Jakarta Sans', sans-serif; 
-        line-height: 1.8;
+        line-height: 1.6;
     }
 
-    /* Colourful Highlights */
+    /* Glassmorphism Card Style */
+    .glass-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 1.5rem;
+    }
+
     .text-gradient {
-        background: linear-gradient(to right, #60a5fa, #a855f7, #ec4899);
+        background: linear-gradient(to right, #60a5fa, #a855f7);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
-    .article-section {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 4rem 1.5rem;
-    }
-
-    .article-section h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-top: 4rem;
-        margin-bottom: 1.5rem;
-        color: #fff;
-        background: linear-gradient(90deg, #3b82f6 0%, transparent 100%);
-        padding-left: 1rem;
-        border-left: 6px solid #3b82f6;
-    }
-
-    .article-section p {
-        font-size: 1.15rem;
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Humanized Content Box */
-    .expert-note {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-        border: 1px dashed #6366f1;
-        border-radius: 24px;
-        padding: 2rem;
-        margin: 2.5rem 0;
-        position: relative;
-    }
-
-    .expert-note::before {
-        content: "💡 Expert Advice";
-        position: absolute;
-        top: -12px;
-        left: 20px;
-        background: #6366f1;
-        padding: 2px 15px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-
-    /* Cards with hover effects */
-    .job-card {
-        background: #0f172a;
-        border: 1px solid #1e293b;
-        border-radius: 20px;
-        padding: 2rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .job-card:hover {
-        border-color: #3b82f6;
-        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
-        transform: translateY(-5px);
-    }
-
-    .salary-tag {
-        background: #064e3b;
-        color: #34d399;
-        padding: 4px 12px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-
-    /* Roadmap UI */
-    .roadmap-container {
-        border-left: 2px solid #334155;
-        margin-left: 1rem;
-        padding-left: 2rem;
-    }
-
-    .roadmap-item {
-        position: relative;
-        margin-bottom: 3rem;
-    }
-
-    .roadmap-item::before {
-        content: "";
-        position: absolute;
-        left: -41px;
-        top: 0;
-        width: 18px;
-        height: 18px;
-        background: #3b82f6;
-        border-radius: 50%;
-        box-shadow: 0 0 15px #3b82f6;
-    }
-
-    /* Colourful Pathway Section UI */
-    .pathway-cta-box {
-        background: linear-gradient(135deg, rgba(16, 24, 39, 0.8) 0%, rgba(2, 6, 23, 1) 100%);
-        border: 2px solid rgba(59, 130, 246, 0.2);
-        border-radius: 30px;
-        position: relative;
+    /* Table Styling like CareerCompass */
+    .custom-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.5rem 0;
+        background: rgba(15, 23, 42, 0.6);
+        border-radius: 12px;
         overflow: hidden;
-        margin-top: 5rem;
     }
-    .pathway-cta-box::after {
-        content: '';
-        position: absolute;
-        bottom: -50px;
-        right: -50px;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
-        border-radius: 50%;
-        filter: blur(20px);
+    .custom-table th {
+        background: rgba(51, 65, 85, 0.5);
+        color: #94a3b8;
+        padding: 12px;
+        text-align: left;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .custom-table td {
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.95rem;
+    }
+
+    /* Grid for Skills and Recruitment */
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 1rem;
+    }
+    .info-tag {
+        background: #1e293b;
+        padding: 10px 16px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 0.85rem;
+        border: 1px solid rgba(59, 130, 246, 0.1);
     }
 </style>
 </head>
 <body>
 
-<header class="p-6 border-b border-white/10 sticky top-0 bg-slate-950/80 backdrop-blur-md z-50">
+<header class="p-5 border-b border-white/5 sticky top-0 bg-[#0b1120]/90 backdrop-blur-md z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="index.html" class="text-2xl font-black tracking-tighter uppercase italic text-white">CAREER<span class="text-blue-500">STEPS</span></a>
-        <div class="flex gap-6">
-            <a href="blog.html" class="font-bold text-blue-400">Back to Insights</a>
-            <a href="assessment.html" class="hidden sm:block bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 rounded-full font-bold text-sm text-white">Free AI Career Test</a>
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-bold">C</div>
+            <span class="text-xl font-extrabold tracking-tight">Career<span class="text-blue-500">Steps</span></span>
         </div>
+        <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-400">
+            <a href="index.html" class="hover:text-white">Home</a>
+            <a href="careers.html" class="hover:text-white">All Careers</a>
+            <a href="blog.html" class="hover:text-white">Insights</a>
+        </nav>
+        <a href="assessment.html" class="bg-blue-600 px-5 py-2 rounded-full text-xs font-bold text-white uppercase tracking-widest hover:bg-blue-500">Stream Test</a>
     </div>
 </header>
 
-<main class="article-section">
-    <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
-            The Psychology <span class="text-gradient">Career Revolution</span> 2026
-        </h1>
-        <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-            Why mental health is becoming the world's most valuable asset and how you can lead this global shift.
-        </p>
-    </div>
-
-    <p>Think about the last time you felt truly understood. That feeling is the product of centuries of scientific inquiry into the human mind. In 2026, <strong>Psychology</strong> has moved out of the therapist's couch and into the boardroom, the sports arena, and even the code behind Artificial Intelligence. If you've ever wondered what makes people "tick," you aren't just curious—you’re looking at a $120 billion global industry.</p>
-
-    <div class="expert-note">
-        <p class="m-0 text-white italic">"Modern psychology is no longer just about 'treating problems.' It's about optimizing the human experience. Whether it's helping an athlete perform under pressure or helping a tech giant design non-addictive apps, the opportunities are endless."</p>
-    </div>
-
-    <h2 id="why-2026">Why 2026 is the "Golden Year" for Psychology</h2>
-    <p>Until recently, mental health was a secondary priority. But 2026 marks a historic peak in demand. Governments worldwide are now allocating up to 10% of their health budgets specifically for psychological services. For students, this means higher starting salaries, faster licensing processes, and a career that is practically recession-proof.</p>
+<main class="max-w-4xl mx-auto px-6 py-12">
     
-    
-    <h2 id="specializations">Top 4 "High-Status" Career Paths</h2>
-    <p>Don't just be a "psychologist." In 2026, specialization is where the real money and impact reside.</p>
+    <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Psychology Career Guide India 2026: <span class="text-gradient">Skills, Salary & Jobs</span></h1>
+    <p class="text-slate-400 text-sm mb-6">Published: March 2026</p>
 
-    <div class="grid md:grid-cols-2 gap-6 mt-8">
-        <div class="job-card">
-            <h3 class="text-blue-400 text-xl font-bold mb-2">Neuropsychologist</h3>
-            <p class="text-sm mb-4">Studying the physical brain to understand behavior. They work in high-tech labs and hospitals.</p>
-            <span class="salary-tag">$98,000 - $185,000</span>
+    <p class="text-slate-300 mb-8 leading-relaxed">
+        India's **mental health market** is witnessing a massive shift. With increasing corporate stress and awareness, the demand for licensed psychologists is projected to grow by 25% by 2028. From clinical practice to AI-driven behavioral analysis, psychology is now a high-stakes, high-reward field.
+    </p>
+
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">🧠 Career Paths in Psychology</h3>
+    <ul class="space-y-3 mb-10">
+        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">Clinical Psychologist:</strong> Diagnose and treat mental, emotional, and behavioral disorders.</li>
+        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">I/O Psychologist:</strong> Apply psychology to the workplace to improve productivity and culture.</li>
+        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">Forensic Psychologist:</strong> Work within the legal system to understand criminal behavior.</li>
+        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">Counsellor:</strong> Help people manage everyday stress, relationships, and career transitions.</li>
+    </ul>
+
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">💰 Salary Ranges (2026 Projections)</h3>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Experience</th>
+                <th>Salary (₹ LPA)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Junior Counsellor</td>
+                <td>0-2 years</td>
+                <td>₹4-7 LPA</td>
+            </tr>
+            <tr>
+                <td>Clinical Psychologist</td>
+                <td>2-5 years</td>
+                <td>₹8-15 LPA</td>
+            </tr>
+            <tr>
+                <td>Industrial Psychologist</td>
+                <td>5-8 years</td>
+                <td>₹15-28 LPA</td>
+            </tr>
+            <tr>
+                <td>Forensic Consultant</td>
+                <td>8+ years</td>
+                <td>₹25-40+ LPA</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">🎓 Education & Skills Required</h3>
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+        <div class="glass-card">
+            <h4 class="text-blue-400 font-bold mb-4 border-b border-white/5 pb-2">Academic Degrees</h4>
+            <ul class="text-sm text-slate-400 space-y-2">
+                <li>• B.A / B.Sc in Psychology (General)</li>
+                <li>• M.A / M.Sc in Specialized Psychology</li>
+                <li>• M.Phil (Clinical Psychology) for RCI license</li>
+                <li>• Ph.D for Research and Academia</li>
+            </ul>
         </div>
-        <div class="job-card">
-            <h3 class="text-purple-400 text-xl font-bold mb-2">Industrial-Organizational</h3>
-            <p class="text-sm mb-4">The "Secret Weapon" of HR. They design workplaces that prevent burnout and boost profit.</p>
-            <span class="salary-tag">$112,000 - $210,000</span>
-        </div>
-        <div class="job-card">
-            <h3 class="text-pink-400 text-xl font-bold mb-2">Sports Psychologist</h3>
-            <p class="text-sm mb-4">Working with elite athletes to master the mental game. High glamour and high travel.</p>
-            <span class="salary-tag">$80,000 - $160,000</span>
-        </div>
-        <div class="job-card">
-            <h3 class="text-emerald-400 text-xl font-bold mb-2">AI Ethics Psychologist</h3>
-            <p class="text-sm mb-4">A new 2026 role: Teaching AI models to understand human empathy and avoid bias.</p>
-            <span class="salary-tag">$125,000+</span>
+        <div class="glass-card">
+            <h4 class="text-purple-400 font-bold mb-4 border-b border-white/5 pb-2">Key Skills & Tools</h4>
+            <ul class="text-sm text-slate-400 space-y-2">
+                <li>• Active Listening & Empathy</li>
+                <li>• Psychological Testing Tools</li>
+                <li>• SPSS & Data Analytics (for research)</li>
+                <li>• Cognitive Behavioral Therapy (CBT)</li>
+            </ul>
         </div>
     </div>
 
-    <h2 id="roadmap">The 10-Year Masterplan (Step-by-Step)</h2>
-    <p>Becoming a psychologist is a marathon, not a sprint. Here is the most realistic roadmap for 2026.</p>
-    
-    
-    <div class="roadmap-container mt-12">
-        <div class="roadmap-item">
-            <h4 class="text-white font-bold text-xl">The Academic Foundation (Years 1-3)</h4>
-            <p>Your Bachelor's degree (BA/BSc). Focus heavily on <strong>Statistics</strong> and <strong>Research Methodology</strong>. In 2026, data is as important as empathy.</p>
-        </div>
-        <div class="roadmap-item">
-            <h4 class="text-white font-bold text-xl">Clinical Specialization (Years 4-5)</h4>
-            <p>Your Master's degree. This is where you choose your "niche." Ensure your university has tie-ups with hospitals or corporate firms for internships.</p>
-        </div>
-        <div class="roadmap-item border-transparent">
-            <h4 class="text-white font-bold text-xl">The "Doctorate" Leap (Years 6-9)</h4>
-            <p>Whether it's a PhD (Research) or a PsyD (Clinical), this title is your ticket to the top 1% of earners globally.</p>
-        </div>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">🏢 Top Recruitment Areas</h3>
+    <div class="info-grid mb-10">
+        <div class="info-tag">Private Hospitals</div>
+        <div class="info-tag">Corporate HR Depts</div>
+        <div class="info-tag">NGOs & Rehabs</div>
+        <div class="info-tag">Ed-Tech Platforms</div>
+        <div class="info-tag">Defense Services</div>
+        <div class="info-tag">Sports Academies</div>
+        <div class="info-tag">Mental Health Startups</div>
+        <div class="info-tag">Legal Firms</div>
     </div>
 
-    <h2 id="human-touch">The "Humanization" Aspect: Is it for you?</h2>
-    <p>Here’s the truth that textbooks won't tell you: Psychology is emotionally heavy. You will listen to stories of trauma, failure, and pain. To succeed in 2026, you need more than just a degree; you need <strong>Emotional Resiliency</strong>. You must be able to leave your clients' problems at the office door.</p>
-    
-    <div class="expert-note" style="border-color: #ec4899;">
-        <p class="m-0 text-white font-bold text-center italic">"If you are the person everyone comes to for advice, you have the raw material. If you can listen without judging, you have the talent. If you can study for 7 years, you have the career."</p>
-    </div>
-
-    <h2 id="faq">Frequently Asked Questions</h2>
-    <div class="space-y-4">
-        <details class="group bg-slate-900 p-6 rounded-2xl border border-white/5 cursor-pointer">
-            <summary class="font-bold text-lg text-white list-none flex justify-between items-center">
-                Can I earn in Dollars while living in India?
-                <span class="text-blue-500 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="mt-4 text-slate-400">Absolutely. In 2026, tele-therapy is huge. Licensed Indian psychologists often work for US-based platforms like BetterHelp or Talkspace, earning $30-$50 per hour.</p>
-        </details>
-        
-        <details class="group bg-slate-900 p-6 rounded-2xl border border-white/5 cursor-pointer">
-            <summary class="font-bold text-lg text-white list-none flex justify-between items-center">
-                Is AI going to replace psychologists?
-                <span class="text-blue-500 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="mt-4 text-slate-400">AI can suggest coping mechanisms, but it cannot provide the <strong>Human Connection</strong>. In fact, AI is creating more jobs for psychologists who need to monitor AI-human interactions.</p>
-        </details>
-    </div>
-
-    <div class="pathway-cta-box p-10 md:p-16 flex flex-col md:flex-row items-center gap-8 shadow-2xl shadow-purple-600/10">
-        <div class="flex-1 text-center md:text-left">
-            <span class="inline-block text-xs font-bold uppercase tracking-widest text-purple-400 mb-2">Next Steps for Students</span>
-            <h2 class="mt-0 border-0 bg-transparent text-white text-3xl md:text-4xl leading-tight">Finished School? Explore Pathways After 12th</h2>
-            <p class="text-slate-300 mb-0 mt-4 text-lg">Don't stop at Psychology. Dive deep into a curated list of futuristic streams, medical options, and high-paying creative careers available after school.</p>
-        </div>
-        <div class="flex-none">
-            <a href="career after 12.html" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-lg shadow-purple-600/30">
-                Explore Streams →
-            </a>
-        </div>
+    <div class="bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-white/10 rounded-2xl p-8 text-center">
+        <h3 class="text-2xl font-bold mb-4">Confused about the right stream?</h3>
+        <p class="text-slate-300 mb-6">Discover the most high-paying career options tailored for your interests after school.</p>
+        <a href="career after 12.html" class="inline-block bg-white text-blue-900 px-8 py-3 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform">
+            Explore Careers After 12th →
+        </a>
     </div>
 
 </main>
 
-<footer class="bg-black py-20 px-6 border-t border-white/10 mt-20">
-    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left">
+<footer class="bg-black py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
         <div class="col-span-2 md:col-span-1">
-            <a href="index.html" class="text-xl font-black tracking-tighter uppercase italic text-white">CAREER<span class="text-blue-500">STEPS</span></a>
-            <p class="text-slate-600 text-xs mt-4 uppercase tracking-[5px]">Global Guidance Unit</p>
+            <span class="text-xl font-extrabold tracking-tight italic">CAREER<span class="text-blue-500">STEPS</span></span>
+            <p class="text-slate-500 text-xs mt-4">AI-powered career discovery platform serving students worldwide.</p>
         </div>
-        <div class="space-y-4">
-            <h5 class="text-white font-bold text-sm">Navigation</h5>
-            <div class="flex flex-col gap-3 text-slate-400 text-sm">
-                <a href="careers.html">Career Library</a>
-                <a href="blog.html">Blogs</a>
-            </div>
+        <div>
+            <h5 class="text-white font-bold text-sm mb-4">Navigation</h5>
+            <ul class="text-slate-500 text-sm space-y-2">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+            </ul>
         </div>
-        <div class="space-y-4">
-            <h5 class="text-white font-bold text-sm">Pathways</h5>
-            <div class="flex flex-col gap-3 text-slate-400 text-sm">
-                <a href="after10.html">After 10th</a>
-                <a href="career after 12.html">After 12th</a>
-            </div>
-        </div>
-        <div class="space-y-4">
-            <h5 class="text-white font-bold text-sm">Legal</h5>
-            <div class="flex flex-col gap-3 text-slate-400 text-sm">
-                <a href="privacy.html">Privacy</a>
-                <a href="contact.html">Contact</a>
-            </div>
+        <div>
+            <h5 class="text-white font-bold text-sm mb-4">Legal</h5>
+            <ul class="text-slate-500 text-sm space-y-2">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
         </div>
     </div>
-    <div class="text-center mt-16 pt-8 border-t border-white/5">
-        <p class="text-slate-700 text-xs font-bold uppercase tracking-widest">© 2026 CAREERSTEPS • Empowering Human Potential</p>
+    <div class="text-center mt-12 pt-8 border-t border-white/5">
+        <p class="text-slate-700 text-[10px] font-bold uppercase tracking-widest">© 2026 CareerSteps - Smart Guidance</p>
     </div>
 </footer>
-
-<script>
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  if(menuBtn) {
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  }
-</script>
 
 </body>
 </html>
