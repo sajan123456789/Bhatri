@@ -117,23 +117,44 @@
         border-radius: 50%;
         box-shadow: 0 0 15px #3b82f6;
     }
+
+    /* Colourful Pathway Section UI */
+    .pathway-cta-box {
+        background: linear-gradient(135deg, rgba(16, 24, 39, 0.8) 0%, rgba(2, 6, 23, 1) 100%);
+        border: 2px solid rgba(59, 130, 246, 0.2);
+        border-radius: 30px;
+        position: relative;
+        overflow: hidden;
+        margin-top: 5rem;
+    }
+    .pathway-cta-box::after {
+        content: '';
+        position: absolute;
+        bottom: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(20px);
+    }
 </style>
 </head>
 <body>
 
 <header class="p-6 border-b border-white/10 sticky top-0 bg-slate-950/80 backdrop-blur-md z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="index.html" class="text-2xl font-black tracking-tighter uppercase italic">CAREER<span class="text-blue-500">STEPS</span></a>
+        <a href="index.html" class="text-2xl font-black tracking-tighter uppercase italic text-white">CAREER<span class="text-blue-500">STEPS</span></a>
         <div class="flex gap-6">
             <a href="blog.html" class="font-bold text-blue-400">Back to Insights</a>
-            <a href="assessment.html" class="hidden sm:block bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 rounded-full font-bold text-sm">Free AI Career Test</a>
+            <a href="assessment.html" class="hidden sm:block bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 rounded-full font-bold text-sm text-white">Free AI Career Test</a>
         </div>
     </div>
 </header>
 
 <main class="article-section">
     <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-tight">
+        <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
             The Psychology <span class="text-gradient">Career Revolution</span> 2026
         </h1>
         <p class="text-xl text-slate-400 max-w-3xl mx-auto">
@@ -151,7 +172,6 @@
     <p>Until recently, mental health was a secondary priority. But 2026 marks a historic peak in demand. Governments worldwide are now allocating up to 10% of their health budgets specifically for psychological services. For students, this means higher starting salaries, faster licensing processes, and a career that is practically recession-proof.</p>
     
     
-
     <h2 id="specializations">Top 4 "High-Status" Career Paths</h2>
     <p>Don't just be a "psychologist." In 2026, specialization is where the real money and impact reside.</p>
 
@@ -182,7 +202,6 @@
     <p>Becoming a psychologist is a marathon, not a sprint. Here is the most realistic roadmap for 2026.</p>
     
     
-
     <div class="roadmap-container mt-12">
         <div class="roadmap-item">
             <h4 class="text-white font-bold text-xl">The Academic Foundation (Years 1-3)</h4>
@@ -192,7 +211,7 @@
             <h4 class="text-white font-bold text-xl">Clinical Specialization (Years 4-5)</h4>
             <p>Your Master's degree. This is where you choose your "niche." Ensure your university has tie-ups with hospitals or corporate firms for internships.</p>
         </div>
-        <div class="roadmap-item">
+        <div class="roadmap-item border-transparent">
             <h4 class="text-white font-bold text-xl">The "Doctorate" Leap (Years 6-9)</h4>
             <p>Whether it's a PhD (Research) or a PsyD (Clinical), this title is your ticket to the top 1% of earners globally.</p>
         </div>
@@ -208,7 +227,7 @@
     <h2 id="faq">Frequently Asked Questions</h2>
     <div class="space-y-4">
         <details class="group bg-slate-900 p-6 rounded-2xl border border-white/5 cursor-pointer">
-            <summary class="font-bold text-lg list-none flex justify-between items-center">
+            <summary class="font-bold text-lg text-white list-none flex justify-between items-center">
                 Can I earn in Dollars while living in India?
                 <span class="text-blue-500 group-open:rotate-180 transition-transform">▼</span>
             </summary>
@@ -216,7 +235,7 @@
         </details>
         
         <details class="group bg-slate-900 p-6 rounded-2xl border border-white/5 cursor-pointer">
-            <summary class="font-bold text-lg list-none flex justify-between items-center">
+            <summary class="font-bold text-lg text-white list-none flex justify-between items-center">
                 Is AI going to replace psychologists?
                 <span class="text-blue-500 group-open:rotate-180 transition-transform">▼</span>
             </summary>
@@ -224,26 +243,63 @@
         </details>
     </div>
 
-    <div class="mt-20 p-10 bg-blue-600 rounded-[40px] text-center">
-        <h2 class="mt-0 border-0 bg-transparent text-white text-3xl">Ready to find your path?</h2>
-        <p class="text-white/80 mb-8">Take our specialized Psychology Aptitude Test to see if you have the personality traits of a top therapist.</p>
-        <a href="assessment.html" class="bg-white text-blue-600 px-10 py-4 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block">Start Free Test →</a>
+    <div class="pathway-cta-box p-10 md:p-16 flex flex-col md:flex-row items-center gap-8 shadow-2xl shadow-purple-600/10">
+        <div class="flex-1 text-center md:text-left">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-purple-400 mb-2">Next Steps for Students</span>
+            <h2 class="mt-0 border-0 bg-transparent text-white text-3xl md:text-4xl leading-tight">Finished School? Explore Pathways After 12th</h2>
+            <p class="text-slate-300 mb-0 mt-4 text-lg">Don't stop at Psychology. Dive deep into a curated list of futuristic streams, medical options, and high-paying creative careers available after school.</p>
+        </div>
+        <div class="flex-none">
+            <a href="career after 12.html" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-lg shadow-purple-600/30">
+                Explore Streams →
+            </a>
+        </div>
     </div>
+
 </main>
 
 <footer class="bg-black py-20 px-6 border-t border-white/10 mt-20">
-    <div class="max-w-7xl mx-auto text-center">
-        <p class="text-slate-500 text-sm uppercase tracking-[5px] mb-8">Empowering the next generation of healers</p>
-        <div class="flex justify-center gap-8 mb-12 text-slate-400 font-bold">
-            <a href="about.html">About</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="contact.html">Contact</a>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left">
+        <div class="col-span-2 md:col-span-1">
+            <a href="index.html" class="text-xl font-black tracking-tighter uppercase italic text-white">CAREER<span class="text-blue-500">STEPS</span></a>
+            <p class="text-slate-600 text-xs mt-4 uppercase tracking-[5px]">Global Guidance Unit</p>
         </div>
-        <p class="text-slate-700 text-xs">© 2026 CAREERSTEPS GLOBAL. ALL RIGHTS RESERVED.</p>
+        <div class="space-y-4">
+            <h5 class="text-white font-bold text-sm">Navigation</h5>
+            <div class="flex flex-col gap-3 text-slate-400 text-sm">
+                <a href="careers.html">Career Library</a>
+                <a href="blog.html">Blogs</a>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <h5 class="text-white font-bold text-sm">Pathways</h5>
+            <div class="flex flex-col gap-3 text-slate-400 text-sm">
+                <a href="after10.html">After 10th</a>
+                <a href="career after 12.html">After 12th</a>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <h5 class="text-white font-bold text-sm">Legal</h5>
+            <div class="flex flex-col gap-3 text-slate-400 text-sm">
+                <a href="privacy.html">Privacy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-16 pt-8 border-t border-white/5">
+        <p class="text-slate-700 text-xs font-bold uppercase tracking-widest">© 2026 CAREERSTEPS • Empowering Human Potential</p>
     </div>
 </footer>
 
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  if(menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
+
 </body>
 </html>
-
-
