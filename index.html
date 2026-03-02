@@ -335,7 +335,7 @@ async function askAI() {
   msgBox.scrollTop = msgBox.scrollHeight;
 
   try {
-    const res = await fetch("/api/?message=" + encodeURIComponent(userText));
+    const res = await fetch("/api/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: userText })
