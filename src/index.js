@@ -12,7 +12,7 @@ export default {
       const { message } = await request.json();
       // Dashboard wala "GEMINI_KEY" yahan use ho raha hai
       const apiKey = env.GEMINI_KEY; 
-      const model = env.GEMINI_MODEL || "gemini-1.5-flash";
+      const model = env.GEMINI_MODEL || "gemini-2.0-flash";
 
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
