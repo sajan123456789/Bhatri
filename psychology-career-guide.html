@@ -18,7 +18,6 @@
         line-height: 1.6;
     }
 
-    /* Glassmorphism Card Style like CareerCompass */
     .glass-card {
         background: rgba(30, 41, 59, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -33,7 +32,6 @@
         -webkit-text-fill-color: transparent;
     }
 
-    /* Table Styling like CareerCompass */
     .custom-table {
         width: 100%;
         border-collapse: separate;
@@ -58,7 +56,6 @@
         font-size: 0.95rem;
     }
 
-    /* Grid for Skills and Recruitment */
     .info-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -75,7 +72,6 @@
         color: #cbd5e1;
     }
 
-    /* Related Article Card */
     .article-card {
         background: #1e293b;
         border-radius: 12px;
@@ -93,171 +89,148 @@
 
 <header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
   <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-    
     <a href="index.html" class="flex items-center gap-3">
       <img src="android-chrome-192x192.png" alt="Logo" class="h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
       <span class="text-2xl font-black italic uppercase tracking-tighter text-white">
         CAREER<span class="text-blue-600">STEPS</span>
       </span>
     </a>
-
     <nav class="hidden md:flex gap-10 items-center">
-      <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-white hover:text-blue-500 transition-colors">Home</a>
-      <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">About</a>
-      <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Explore Careers</a>
-      <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Blogs</a>
+      <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-white">Home</a>
+      <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200">About</a>
+      <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200">Explore Careers</a>
+      <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200">Blogs</a>
     </nav>
-
     <div class="flex items-center gap-4">
-      <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-7 py-3 rounded-xl text-[12px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20">
-        Get Started →
-      </a>
-      
-      <button id="menuBtn" class="md:hidden text-white p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <a href="assessment.html" class="hidden sm:block bg-blue-600 px-7 py-3 rounded-xl text-[12px] font-black uppercase tracking-widest text-white">Get Started →</a>
     </div>
-  </div>
-
-  <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8">
-    <nav class="flex flex-col gap-6 text-[16px] font-bold uppercase tracking-widest text-slate-300 text-center">
-      <a href="index.html" class="text-white">Home</a>
-      <a href="about.html" class="hover:text-white">About</a>
-      <a href="careers.html" class="hover:text-white">Explore Career</a>
-      <a href="blog.html" class="hover:text-white">Blogs</a>
-      <a href="assessment.html" class="text-blue-500 pt-4 border-t border-white/5 font-black">Start AI Test →</a>
-    </nav>
   </div>
 </header>
 
 <main class="max-w-4xl mx-auto px-6 py-12">
     
-    <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Psychology Career Guide India 2026: <span class="text-gradient">Skills, Salary & Jobs</span></h1>
-    <p class="text-slate-400 text-sm mb-6 uppercase tracking-widest font-bold">Published: March 2026</p>
+    <h1 class="text-3xl md:text-5xl font-extrabold mb-4 uppercase italic">The Psychology <span class="text-gradient">Career Revolution</span> 2026</h1>
+    <p class="text-slate-400 text-sm mb-6 uppercase tracking-widest font-bold">Updated: March 2026 • 10 min read</p>
 
-    <p class="text-slate-300 mb-8 leading-relaxed text-lg">
-        India's **Psychology market** is projected to grow significantly by 2028. With increasing corporate awareness and digital health adoption, demand for licensed professionals is skyrocketing. Salaries range from **₹4 LPA to ₹40+ LPA** for top-tier experts.
-    </p>
+    <div class="glass-card border-l-4 border-purple-500 my-8">
+        <span class="bg-purple-600 text-[10px] font-black px-2 py-1 rounded mb-3 inline-block uppercase tracking-tighter">Expert Advice</span>
+        <p class="text-slate-200 italic font-medium leading-relaxed">"In 2026, psychology has moved from the therapist's couch to the boardroom. Whether it's helping an athlete perform under pressure or helping a tech giant design non-addictive apps, the opportunities are limitless."</p>
+    </div>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">🧠 Career Paths in Psychology</h3>
-    <div class="space-y-4 mb-10">
-        <div class="flex items-start gap-3 text-slate-300">
-            <span class="text-blue-500 font-bold">•</span>
-            <p><strong>Clinical Psychologist:</strong> Diagnose and treat mental, emotional, and behavioral disorders in clinical settings.</p>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-6 italic">💎 Top "High-Status" Career Paths</h3>
+    <div class="grid md:grid-cols-2 gap-4 mb-10">
+        <div class="glass-card">
+            <h4 class="font-bold text-blue-400">Clinical Neuropsychologist</h4>
+            <p class="text-xs text-slate-400 mt-1">Diagnosis of brain disorders and cognitive rehabilitation.</p>
         </div>
-        <div class="flex items-start gap-3 text-slate-300">
-            <span class="text-blue-500 font-bold">•</span>
-            <p><strong>I/O Psychologist:</strong> Apply psychology to the workplace to improve productivity, culture, and employee well-being.</p>
-        </div>
-        <div class="flex items-start gap-3 text-slate-300">
-            <span class="text-blue-500 font-bold">•</span>
-            <p><strong>Forensic Psychologist:</strong> Work within the legal system to understand criminal behavior and witness testimony.</p>
-        </div>
-        <div class="flex items-start gap-3 text-slate-300">
-            <span class="text-blue-500 font-bold">•</span>
-            <p><strong>Counsellor:</strong> Help people manage everyday life stress, personal relationships, and school/career transitions.</p>
+        <div class="glass-card">
+            <h4 class="font-bold text-purple-400">Industrial-Organizational</h4>
+            <p class="text-xs text-slate-400 mt-1">Optimizing workplace behavior and human capital ROI.</p>
         </div>
     </div>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">💰 Salary Ranges (2026 Projections)</h3>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">💰 Detailed Salary Structure 2026 (India)</h3>
     <table class="custom-table">
         <thead>
             <tr>
-                <th>Role</th>
+                <th>Expertise Level</th>
                 <th>Experience</th>
-                <th>Salary (₹ LPA)</th>
+                <th>Avg. Salary (₹ LPA)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Junior Counsellor</td>
-                <td>0-2 years</td>
-                <td>₹4-7 LPA</td>
+                <td class="font-bold text-blue-300 italic">Entry Level</td>
+                <td>0-2 Years</td>
+                <td>₹4.5 - ₹7.2 LPA</td>
             </tr>
             <tr>
-                <td>Clinical Psychologist</td>
-                <td>2-5 years</td>
-                <td>₹8-15 LPA</td>
+                <td class="font-bold text-purple-300 italic">Mid Level</td>
+                <td>3-7 Years</td>
+                <td>₹12.0 - ₹22.0 LPA</td>
             </tr>
             <tr>
-                <td>Industrial Psychologist</td>
-                <td>5-8 years</td>
-                <td>₹15-28 LPA</td>
-            </tr>
-            <tr>
-                <td>Forensic Consultant</td>
-                <td>8+ years</td>
-                <td>₹25-40+ LPA</td>
+                <td class="font-bold text-green-300 italic">Experienced</td>
+                <td>8+ Years</td>
+                <td>₹28.0 - ₹45.0+ LPA</td>
             </tr>
         </tbody>
     </table>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">🎓 Education & Skills Required</h3>
-    <div class="grid md:grid-cols-2 gap-6 mb-10">
-        <div class="glass-card">
-            <h4 class="text-blue-400 font-bold mb-4 border-b border-white/5 pb-2 uppercase text-xs tracking-widest">Degrees</h4>
-            <ul class="text-sm text-slate-300 space-y-3">
-                <li>• B.A / B.Sc in Psychology</li>
-                <li>• M.A / M.Sc in Specialized Domain</li>
-                <li>• M.Phil (Clinical) for RCI license</li>
-                <li>• Ph.D for Academia & Research</li>
-            </ul>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-6 italic">🏛️ Top 5 Psychology Colleges in India</h3>
+    <div class="space-y-4 mb-10">
+        <div class="glass-card flex justify-between items-center">
+            <div>
+                <h5 class="font-bold text-white">1. NIMHANS, Bengaluru</h5>
+                <p class="text-xs text-slate-400">The Gold Standard for Clinical Psychology & Research.</p>
+            </div>
+            <span class="text-blue-500 font-black">#01</span>
         </div>
-        <div class="glass-card">
-            <h4 class="text-purple-400 font-bold mb-4 border-b border-white/5 pb-2 uppercase text-xs tracking-widest">Key Skills & Tools</h4>
-            <ul class="text-sm text-slate-300 space-y-3">
-                <li>• CBT & Therapy Methodologies</li>
-                <li>• Active Listening & Empathy</li>
-                <li>• SPSS & Psychological Testing</li>
-                <li>• Behavioral Data Analysis</li>
-            </ul>
+        <div class="glass-card flex justify-between items-center">
+            <div>
+                <h5 class="font-bold text-white">2. TISS (Tata Institute of Social Sciences), Mumbai</h5>
+                <p class="text-xs text-slate-400">Top choice for Counseling and Applied Psychology.</p>
+            </div>
+            <span class="text-blue-500 font-black">#02</span>
+        </div>
+        <div class="glass-card flex justify-between items-center">
+            <div>
+                <h5 class="font-bold text-white">3. Lady Shri Ram College (LSR), Delhi</h5>
+                <p class="text-xs text-slate-400">Premier UG destination for Psychology Honours.</p>
+            </div>
+            <span class="text-blue-500 font-black">#03</span>
+        </div>
+        <div class="glass-card flex justify-between items-center">
+            <div>
+                <h5 class="font-bold text-white">4. Christ University, Bengaluru</h5>
+                <p class="text-xs text-slate-400">Renowned for clinical and holistic development programs.</p>
+            </div>
+            <span class="text-blue-500 font-black">#04</span>
+        </div>
+        <div class="glass-card flex justify-between items-center">
+            <div>
+                <h5 class="font-bold text-white">5. Banaras Hindu University (BHU), Varanasi</h5>
+                <p class="text-xs text-slate-400">Deep academic heritage with extensive research facilities.</p>
+            </div>
+            <span class="text-blue-500 font-black">#05</span>
         </div>
     </div>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">🏢 Top Recruitment Sectors</h3>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-6 italic">🎓 Key Recruitment Sectors</h3>
     <div class="info-grid mb-12">
-        <div class="info-tag">Private Hospitals</div>
-        <div class="info-tag">Corporate HR Depts</div>
-        <div class="info-tag">NGOs & Rehabs</div>
-        <div class="info-tag">Ed-Tech Platforms</div>
-        <div class="info-tag">Defense Services</div>
-        <div class="info-tag">Sports Academies</div>
-        <div class="info-tag">Legal Firms</div>
-        <div class="info-tag">Research Labs</div>
+        <div class="info-tag">Multinational Corps (MNCs)</div>
+        <div class="info-tag">Rehabilitation Centers</div>
+        <div class="info-tag">Government Research Units</div>
+        <div class="info-tag">AI & Tech Startups</div>
     </div>
 
     <h3 class="flex items-center gap-2 text-xl font-bold mb-6 italic">📚 Related Articles</h3>
     <div class="grid md:grid-cols-2 gap-6 mb-12">
         <a href="https://careersteps.in/career-after-12th.html" class="article-card block">
-            <h4 class="text-white font-bold text-lg mb-2">High-Paying Careers After 12th</h4>
+            <h4 class="text-white font-bold text-lg mb-2 italic">High-Paying Careers After 12th</h4>
             <p class="text-slate-400 text-sm mb-4">Complete 2026 guide for streams and career pathways after school.</p>
-            <span class="text-blue-500 text-xs font-bold uppercase tracking-widest">Read More →</span>
+            <span class="text-blue-500 text-xs font-bold uppercase">Read More →</span>
         </a>
         <div class="article-card">
-            <h4 class="text-white font-bold text-lg mb-2">Government Jobs Roadmap</h4>
+            <h4 class="text-white font-bold text-lg mb-2 italic">Government Jobs Roadmap</h4>
             <p class="text-slate-400 text-sm mb-4">How to prepare for PSC, UPSC and PSU jobs with Psychology.</p>
-            <span class="text-blue-500 text-xs font-bold uppercase tracking-widest">Coming Soon</span>
+            <span class="text-blue-500 text-xs font-bold uppercase">Coming Soon</span>
         </div>
     </div>
 
-    <div class="bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-white/10 rounded-2xl p-8 text-center">
-        <h3 class="text-2xl font-bold mb-4 italic italic">Confused about the right stream?</h3>
-        <p class="text-slate-300 mb-6 italic italic">Discover the most high-paying career options tailored for your interests after school.</p>
-        <a href="career after 12.html" class="inline-block bg-white text-blue-900 px-8 py-3 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
-            Explore Careers After 12th →
-        </a>
+    <div class="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h3 class="text-2xl font-black mb-2 uppercase italic">Confused about the right stream?</h3>
+        <p class="text-blue-100 mb-6 font-medium">Discover the high-paying career options tailored for your interests after school.</p>
+        <a href="career after 12.html" class="inline-block bg-white text-blue-900 px-10 py-4 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition-transform">Explore Careers After 12th →</a>
     </div>
 
 </main>
 
 <footer class="bg-[#000000] pt-20 pb-10 border-t border-white/10 mt-20">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center md:text-left">
       <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
       <p class="text-slate-400 text-sm font-semibold">The world's trusted AI-powered career discovery platform.</p>
-      
     </div>
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
       <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
@@ -279,11 +252,8 @@
       <ul class="text-slate-300 text-sm font-bold space-y-4">
         <li><a href="about.html">About</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="cookies.html">cookies</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
         <li><a href="terms.html">Terms & Conditions</a></li>
-        <li><a href="contact.html">contact</a></li>
       </ul>
     </div>
   </div>
@@ -291,16 +261,6 @@
     <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest"> © 2026 CareerSteps • Global AI-powered career guidance platform serving students worldwide.</p>
   </div>
 </footer>
-
-<script>
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  if(menuBtn) {
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  }
-</script>
 
 </body>
 </html>
