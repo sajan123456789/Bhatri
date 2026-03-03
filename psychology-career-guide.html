@@ -18,7 +18,7 @@
         line-height: 1.6;
     }
 
-    /* Glassmorphism Card Style */
+    /* Glassmorphism Card Style like CareerCompass */
     .glass-card {
         background: rgba(30, 41, 59, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -72,6 +72,20 @@
         text-align: center;
         font-size: 0.85rem;
         border: 1px solid rgba(59, 130, 246, 0.1);
+        color: #cbd5e1;
+    }
+
+    /* Related Article Card */
+    .article-card {
+        background: #1e293b;
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: 0.3s;
+    }
+    .article-card:hover {
+        border-color: #3b82f6;
+        transform: translateY(-3px);
     }
 </style>
 </head>
@@ -121,21 +135,33 @@
 <main class="max-w-4xl mx-auto px-6 py-12">
     
     <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Psychology Career Guide India 2026: <span class="text-gradient">Skills, Salary & Jobs</span></h1>
-    <p class="text-slate-400 text-sm mb-6">Published: March 2026</p>
+    <p class="text-slate-400 text-sm mb-6 uppercase tracking-widest font-bold">Published: March 2026</p>
 
-    <p class="text-slate-300 mb-8 leading-relaxed">
-        India's **mental health market** is witnessing a massive shift. With increasing corporate stress and awareness, the demand for licensed psychologists is projected to grow by 25% by 2028. From clinical practice to AI-driven behavioral analysis, psychology is now a high-stakes, high-reward field.
+    <p class="text-slate-300 mb-8 leading-relaxed text-lg">
+        India's **Psychology market** is projected to grow significantly by 2028. With increasing corporate awareness and digital health adoption, demand for licensed professionals is skyrocketing. Salaries range from **₹4 LPA to ₹40+ LPA** for top-tier experts.
     </p>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">🧠 Career Paths in Psychology</h3>
-    <ul class="space-y-3 mb-10">
-        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">Clinical Psychologist:</strong> Diagnose and treat mental, emotional, and behavioral disorders.</li>
-        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">I/O Psychologist:</strong> Apply psychology to the workplace to improve productivity and culture.</li>
-        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">Forensic Psychologist:</strong> Work within the legal system to understand criminal behavior.</li>
-        <li class="flex gap-2 text-slate-300"><strong class="text-blue-400 min-w-[150px]">Counsellor:</strong> Help people manage everyday stress, relationships, and career transitions.</li>
-    </ul>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">🧠 Career Paths in Psychology</h3>
+    <div class="space-y-4 mb-10">
+        <div class="flex items-start gap-3 text-slate-300">
+            <span class="text-blue-500 font-bold">•</span>
+            <p><strong>Clinical Psychologist:</strong> Diagnose and treat mental, emotional, and behavioral disorders in clinical settings.</p>
+        </div>
+        <div class="flex items-start gap-3 text-slate-300">
+            <span class="text-blue-500 font-bold">•</span>
+            <p><strong>I/O Psychologist:</strong> Apply psychology to the workplace to improve productivity, culture, and employee well-being.</p>
+        </div>
+        <div class="flex items-start gap-3 text-slate-300">
+            <span class="text-blue-500 font-bold">•</span>
+            <p><strong>Forensic Psychologist:</strong> Work within the legal system to understand criminal behavior and witness testimony.</p>
+        </div>
+        <div class="flex items-start gap-3 text-slate-300">
+            <span class="text-blue-500 font-bold">•</span>
+            <p><strong>Counsellor:</strong> Help people manage everyday life stress, personal relationships, and school/career transitions.</p>
+        </div>
+    </div>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">💰 Salary Ranges (2026 Projections)</h3>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">💰 Salary Ranges (2026 Projections)</h3>
     <table class="custom-table">
         <thead>
             <tr>
@@ -168,44 +194,58 @@
         </tbody>
     </table>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">🎓 Education & Skills Required</h3>
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">🎓 Education & Skills Required</h3>
     <div class="grid md:grid-cols-2 gap-6 mb-10">
         <div class="glass-card">
-            <h4 class="text-blue-400 font-bold mb-4 border-b border-white/5 pb-2">Academic Degrees</h4>
-            <ul class="text-sm text-slate-400 space-y-2">
-                <li>• B.A / B.Sc in Psychology (General)</li>
-                <li>• M.A / M.Sc in Specialized Psychology</li>
-                <li>• M.Phil (Clinical Psychology) for RCI license</li>
-                <li>• Ph.D for Research and Academia</li>
+            <h4 class="text-blue-400 font-bold mb-4 border-b border-white/5 pb-2 uppercase text-xs tracking-widest">Degrees</h4>
+            <ul class="text-sm text-slate-300 space-y-3">
+                <li>• B.A / B.Sc in Psychology</li>
+                <li>• M.A / M.Sc in Specialized Domain</li>
+                <li>• M.Phil (Clinical) for RCI license</li>
+                <li>• Ph.D for Academia & Research</li>
             </ul>
         </div>
         <div class="glass-card">
-            <h4 class="text-purple-400 font-bold mb-4 border-b border-white/5 pb-2">Key Skills & Tools</h4>
-            <ul class="text-sm text-slate-400 space-y-2">
+            <h4 class="text-purple-400 font-bold mb-4 border-b border-white/5 pb-2 uppercase text-xs tracking-widest">Key Skills & Tools</h4>
+            <ul class="text-sm text-slate-300 space-y-3">
+                <li>• CBT & Therapy Methodologies</li>
                 <li>• Active Listening & Empathy</li>
-                <li>• Psychological Testing Tools</li>
-                <li>• SPSS & Data Analytics (for research)</li>
-                <li>• Cognitive Behavioral Therapy (CBT)</li>
+                <li>• SPSS & Psychological Testing</li>
+                <li>• Behavioral Data Analysis</li>
             </ul>
         </div>
     </div>
 
-    <h3 class="flex items-center gap-2 text-xl font-bold mb-4">🏢 Top Recruitment Areas</h3>
-    <div class="info-grid mb-10">
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-4 italic">🏢 Top Recruitment Sectors</h3>
+    <div class="info-grid mb-12">
         <div class="info-tag">Private Hospitals</div>
         <div class="info-tag">Corporate HR Depts</div>
         <div class="info-tag">NGOs & Rehabs</div>
         <div class="info-tag">Ed-Tech Platforms</div>
         <div class="info-tag">Defense Services</div>
         <div class="info-tag">Sports Academies</div>
-        <div class="info-tag">Mental Health Startups</div>
         <div class="info-tag">Legal Firms</div>
+        <div class="info-tag">Research Labs</div>
+    </div>
+
+    <h3 class="flex items-center gap-2 text-xl font-bold mb-6 italic">📚 Related Articles</h3>
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <a href="https://careersteps.in/career-after-12th.html" class="article-card block">
+            <h4 class="text-white font-bold text-lg mb-2">High-Paying Careers After 12th</h4>
+            <p class="text-slate-400 text-sm mb-4">Complete 2026 guide for streams and career pathways after school.</p>
+            <span class="text-blue-500 text-xs font-bold uppercase tracking-widest">Read More →</span>
+        </a>
+        <div class="article-card">
+            <h4 class="text-white font-bold text-lg mb-2">Government Jobs Roadmap</h4>
+            <p class="text-slate-400 text-sm mb-4">How to prepare for PSC, UPSC and PSU jobs with Psychology.</p>
+            <span class="text-blue-500 text-xs font-bold uppercase tracking-widest">Coming Soon</span>
+        </div>
     </div>
 
     <div class="bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-white/10 rounded-2xl p-8 text-center">
-        <h3 class="text-2xl font-bold mb-4">Confused about the right stream?</h3>
-        <p class="text-slate-300 mb-6">Discover the most high-paying career options tailored for your interests after school.</p>
-        <a href="career after 12.html" class="inline-block bg-white text-blue-900 px-8 py-3 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform">
+        <h3 class="text-2xl font-bold mb-4 italic italic">Confused about the right stream?</h3>
+        <p class="text-slate-300 mb-6 italic italic">Discover the most high-paying career options tailored for your interests after school.</p>
+        <a href="career after 12.html" class="inline-block bg-white text-blue-900 px-8 py-3 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
             Explore Careers After 12th →
         </a>
     </div>
@@ -251,6 +291,16 @@
     <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest"> © 2026 CareerSteps • Global AI-powered career guidance platform serving students worldwide.</p>
   </div>
 </footer>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  if(menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
 
 </body>
 </html>
