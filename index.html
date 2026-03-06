@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
 <meta charset="UTF-8">
 
@@ -223,23 +223,29 @@ class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-sm">
 const themeToggle = document.getElementById("themeToggle");
 const html = document.documentElement;
 
-// saved theme load
-if (localStorage.getItem("theme") === "light") {
+// page load theme
+if(localStorage.getItem("theme") === "light"){
   html.classList.remove("dark");
+  themeToggle.textContent = "☀️";
+}else{
+  html.classList.add("dark");
+  themeToggle.textContent = "🌙";
 }
 
-// toggle theme
-themeToggle.onclick = () => {
+// toggle click
+themeToggle.addEventListener("click", () => {
+
   html.classList.toggle("dark");
 
-  if (html.classList.contains("dark")) {
+  if(html.classList.contains("dark")){
     localStorage.setItem("theme","dark");
     themeToggle.textContent = "🌙";
-  } else {
+  }else{
     localStorage.setItem("theme","light");
     themeToggle.textContent = "☀️";
   }
-};
+
+});
   </script>
   
 <footer class="footer-premium pt-20 pb-10">
