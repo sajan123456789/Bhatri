@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 
@@ -15,31 +15,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-tailwind.config = {
-  darkMode: "class"
-}
-  </script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 body{
   font-family:'Plus Jakarta Sans',sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(900px circle at 20% 10%, rgba(56,189,248,0.12), transparent 40%),
+    radial-gradient(700px circle at 80% 20%, rgba(59,130,246,0.10), transparent 40%),
+    #020617;
 }
 .card-box{
-  background:#ffffff;
-  border:1px solid #e5e7eb;
-  transition:.3s;
-}
-
-.dark .card-box{
   background:rgba(15,23,42,.6);
   border:1px solid rgba(255,255,255,.06);
+  transition:.3s;
 }
-
 .card-box:hover{
   transform:translateY(-6px);
   border-color:#3b82f6;
+  background:rgba(30,41,59,.6);
 }
 .footer-premium{
   background:#000208;
@@ -57,9 +52,9 @@ body{
 </script>
 </head>
 
-<body class="bg-white text-gray-900 dark:bg-[#020617] dark:text-white">
+<body>
 
-<header class="sticky top-0 z-50 bg-white dark:bg-[#020617]/95 backdrop-blur-xl border-b border-gray-200 dark:border-white/10">
+<header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
   <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
     
     <a href="index.html" class="flex items-center gap-3">
@@ -77,10 +72,6 @@ body{
     </nav>
 
     <div class="flex items-center gap-4">
-      <button id="themeToggle" 
-class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-sm">
-🌙
-      </button>
       <a href="assessment.html" class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-7 py-3 rounded-xl text-[12px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20">
         Get Started →
       </a>
@@ -223,35 +214,6 @@ class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-sm">
     </div>
   </div>
 </section>
-
-  <script>
-const themeToggle = document.getElementById("themeToggle");
-const html = document.documentElement;
-
-// page load theme
-if(localStorage.getItem("theme") === "light"){
-  html.classList.remove("dark");
-  themeToggle.textContent = "☀️";
-}else{
-  html.classList.add("dark");
-  themeToggle.textContent = "🌙";
-}
-
-// toggle click
-themeToggle.addEventListener("click", () => {
-
-  html.classList.toggle("dark");
-
-  if(html.classList.contains("dark")){
-    localStorage.setItem("theme","dark");
-    themeToggle.textContent = "🌙";
-  }else{
-    localStorage.setItem("theme","light");
-    themeToggle.textContent = "☀️";
-  }
-
-});
-  </script>
   
 <footer class="footer-premium pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
