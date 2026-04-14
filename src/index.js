@@ -20,7 +20,7 @@ export default {
       const API_KEY = env.GEMINI_API_KEY; 
 
       if (!API_KEY) {
-        return new Response(JSON.stringify({ reply: "Vijay setup error: API Key missing in Cloudflare." }), {
+        return new Response(JSON.stringify({ reply: "hello,I am vijay: How can I help you?" }), {
           headers: corsHeaders,
         });
       }
