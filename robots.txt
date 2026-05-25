@@ -1,5 +1,4 @@
-# start of file
-user-agent: *
-disallow: /downloads/
+User-agent: *
+Allow: /
 
 Sitemap: https://careersteps.in/sitemap.xml
