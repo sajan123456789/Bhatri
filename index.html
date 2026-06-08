@@ -97,6 +97,41 @@ body::after{
   box-shadow:
   0 0 50px rgba(59,130,246,.25);
 }
+
+ #testimonial-card{
+position:relative;
+overflow:hidden;
+}
+
+#testimonial-card::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(59,130,246,.12),
+transparent
+);
+
+transform:rotate(25deg);
+animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+0%{
+transform:translateX(-100%) rotate(25deg);
+}
+100%{
+transform:translateX(100%) rotate(25deg);
+}
+}
+ 
 .footer-premium{
   background:#000208;
   border-top:1px solid rgba(59,130,246,.2);
@@ -425,6 +460,29 @@ Yes, students can explore career guidance resources and career assessments throu
  
 <script>
 
+ 
+let touchStartX = 0;
+let touchEndX = 0;
+
+const card =
+document.getElementById("testimonial-card");
+
+card.addEventListener("touchstart",(e)=>{
+touchStartX = e.changedTouches[0].screenX;
+});
+
+card.addEventListener("touchend",(e)=>{
+touchEndX = e.changedTouches[0].screenX;
+
+if(touchEndX < touchStartX - 50){
+nextTestimonial();
+}
+
+if(touchEndX > touchStartX + 50){
+prevTestimonial();
+}
+});
+ 
 const testimonials = [
 
 {
@@ -452,7 +510,11 @@ text:"I discovered AI and Data Science careers through CareerSteps and now I hav
 
 let current = 0;
 
-function updateTestimonial(){
+const dots = document.querySelectorAll(".dot");
+
+function showTestimonial(index){
+
+current = index;
 
 document.getElementById("testimonial-name").innerText =
 testimonials[current].name;
@@ -466,25 +528,44 @@ testimonials[current].text;
 document.getElementById("testimonial-img").src =
 testimonials[current].img;
 
-document.querySelectorAll(".dot").forEach((dot,index)=>{
+dots.forEach(dot=>{
 dot.classList.remove("bg-blue-500");
 dot.classList.add("bg-white/20");
-
-if(index===current){
-dot.classList.remove("bg-white/20");
-dot.classList.add("bg-blue-500");
-}
 });
 
+dots[current].classList.remove("bg-white/20");
+dots[current].classList.add("bg-blue-500");
+
+}
+
+function nextTestimonial(){
 current++;
-if(current>=testimonials.length){
-current=0;
+if(current>=testimonials.length) current=0;
+showTestimonial(current);
 }
 
+function prevTestimonial(){
+current--;
+if(current<0) current=testimonials.length-1;
+showTestimonial(current);
 }
 
-setInterval(updateTestimonial,4000);
+document.getElementById("nextBtn")
+.addEventListener("click",nextTestimonial);
 
+document.getElementById("prevBtn")
+.addEventListener("click",prevTestimonial);
+
+dots.forEach((dot,index)=>{
+dot.addEventListener("click",()=>{
+showTestimonial(index);
+});
+});
+
+showTestimonial(0);
+
+setInterval(nextTestimonial,3000);
+ 
 </script>
  
  <!-- FOOTER -->
