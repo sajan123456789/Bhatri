@@ -154,6 +154,55 @@ transform:translateX(100%) rotate(25deg);
     transparent
   );
 }
+
+ .footer-premium{
+  background:linear-gradient(
+    to bottom,
+    rgba(2,6,23,.95),
+    #000208
+  );
+  border-top:1px solid rgba(59,130,246,.25);
+  position:relative;
+  overflow:hidden;
+}
+
+.footer-premium::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:1px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #3b82f6,
+    transparent
+  );
+}
+
+.footer-premium::after{
+  content:"";
+  position:absolute;
+  bottom:-120px;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:700px;
+  height:300px;
+
+  background:radial-gradient(
+    circle,
+    rgba(59,130,246,.25) 0%,
+    rgba(59,130,246,.08) 40%,
+    transparent 75%
+  );
+
+  filter:blur(70px);
+  pointer-events:none;
+}
+ 
 </style>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC0MZYBEDM"></script>
@@ -228,7 +277,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     AI Career Test & Career Planning
   </span>
     </h1>
-<p class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+<p class="text-slate-400 text-xl leading-9 mb-10 max-w-3xl mx-auto">
+ 
   Global AI-powered career guidance platform trusted by students across USA, UK, Canada & India to discover future-ready careers.
 </p>
 
