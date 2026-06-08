@@ -333,39 +333,56 @@ Trusted By Students Worldwide
 </div>
  
 </section>
-
- <section class="max-w-6xl mx-auto px-6 py-20">
+<section class="max-w-5xl mx-auto px-6 py-20">
 
 <h2 class="text-center text-4xl font-black mb-12">
 Student Success Stories
 </h2>
 
-<div class="grid md:grid-cols-3 gap-6">
+<div class="relative">
 
-<div class="card-box p-6 rounded-3xl">
+<div id="testimonial-card"
+class="card-box rounded-[32px] p-10 text-center transition-all duration-700">
+
+<div class="text-yellow-400 text-2xl mb-4">
 ★★★★★
-<p class="mt-4 text-slate-300">
-CareerSteps helped me choose the right stream after Class 10.
+</div>
+
+<p id="testimonial-text"
+class="text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
+CareerSteps helped me discover the right career path based on my strengths and interests.
+</p>
+
+<div class="mt-8">
+<img id="testimonial-img"
+src="https://i.pravatar.cc/100?img=12"
+class="w-16 h-16 rounded-full mx-auto mb-3 border border-blue-500">
+
+<h4 id="testimonial-name"
+class="font-bold text-lg">
+Arjun Verma
+</h4>
+
+<p id="testimonial-role"
+class="text-slate-400 text-sm">
+Engineering Student
 </p>
 </div>
 
-<div class="card-box p-6 rounded-3xl">
-★★★★★
-<p class="mt-4 text-slate-300">
-The AI report gave me clarity about my future career.
-</p>
 </div>
 
-<div class="card-box p-6 rounded-3xl">
-★★★★★
-<p class="mt-4 text-slate-300">
-I discovered AI and Data Science careers through CareerSteps.
-</p>
+<div class="flex justify-center gap-3 mt-6">
+
+<button class="dot w-3 h-3 rounded-full bg-blue-500"></button>
+<button class="dot w-3 h-3 rounded-full bg-white/20"></button>
+<button class="dot w-3 h-3 rounded-full bg-white/20"></button>
+
 </div>
 
 </div>
 
 </section>
+
  
 <section class="max-w-4xl mx-auto px-6 py-16">
 
@@ -406,6 +423,71 @@ Yes, students can explore career guidance resources and career assessments throu
 
 </section>
 
+ 
+<script>
+
+const testimonials = [
+
+{
+name:"Arjun Verma",
+role:"Engineering Student",
+img:"https://i.pravatar.cc/100?img=12",
+text:"CareerSteps helped me discover the right career path based on my strengths and interests."
+},
+
+{
+name:"Priya Sharma",
+role:"Class 12 Student",
+img:"https://i.pravatar.cc/100?img=32",
+text:"The AI report gave me clarity about my future and helped me choose the right stream."
+},
+
+{
+name:"Rahul Singh",
+role:"AI Aspirant",
+img:"https://i.pravatar.cc/100?img=15",
+text:"I discovered AI and Data Science careers through CareerSteps and now I have a clear roadmap."
+}
+
+];
+
+let current = 0;
+
+function updateTestimonial(){
+
+document.getElementById("testimonial-name").innerText =
+testimonials[current].name;
+
+document.getElementById("testimonial-role").innerText =
+testimonials[current].role;
+
+document.getElementById("testimonial-text").innerText =
+testimonials[current].text;
+
+document.getElementById("testimonial-img").src =
+testimonials[current].img;
+
+document.querySelectorAll(".dot").forEach((dot,index)=>{
+dot.classList.remove("bg-blue-500");
+dot.classList.add("bg-white/20");
+
+if(index===current){
+dot.classList.remove("bg-white/20");
+dot.classList.add("bg-blue-500");
+}
+});
+
+current++;
+if(current>=testimonials.length){
+current=0;
+}
+
+}
+
+setInterval(updateTestimonial,4000);
+
+</script>
+ 
  <!-- FOOTER -->
 
 <footer class="footer-premium pt-20 pb-10 mt-20 border-t border-white/10">
