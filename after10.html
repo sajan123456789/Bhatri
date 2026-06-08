@@ -54,6 +54,20 @@ body::after{
   filter:blur(40px);
 }
 
+.card-box{
+  background:rgba(15,23,42,.55);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 0 30px rgba(59,130,246,.08);
+  transition:.35s ease;
+}
+
+.card-box:hover{
+  transform:translateY(-6px);
+  border-color:#3b82f6;
+  box-shadow:0 0 40px rgba(59,130,246,.20);
+}
+  
 .glass{
   background:rgba(15,23,42,.55);
   backdrop-filter:blur(20px);
@@ -69,7 +83,13 @@ body::after{
 }
   
 body{ background:#020617; color:#fff; font-family:system-ui; }
-.glass{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); }
+backdrop-filter:blur(14px); }
+
+.footer-premium{
+  background:#000208;
+  border-top:1px solid rgba(59,130,246,.2);
+}
+  
 </style>
 </head>
 <body class="px-4">
@@ -191,12 +211,12 @@ Science
 <li>✔ AI & Data Science</li>
 <li>✔ Research</li>
 </ul>
-</div>
-
-<a href="science-stream.html"
+  <a href="science-stream.html"
 class="inline-block mt-6 text-blue-400 font-bold hover:text-blue-300">
 Learn More →
-</a>
+  </a>
+  
+</div>
   
 
 <div class="card-box p-8 rounded-3xl">
@@ -213,12 +233,13 @@ Commerce
 <li>✔ CA / CS</li>
 <li>✔ Finance</li>
 </ul>
-</div>
 
 <a href="commerce-stream.html"
 class="inline-block mt-6 text-green-400 font-bold hover:text-green-300">
 Learn More →
 </a>
+  
+</div>
 
   
 <div class="card-box p-8 rounded-3xl">
@@ -235,7 +256,6 @@ Arts
 <li>✔ Law</li>
 <li>✔ Civil Services</li>
 </ul>
-</div>
 
 <a href="arts-stream.html"
 class="inline-block mt-6 text-purple-400 font-bold hover:text-purple-300">
@@ -443,28 +463,28 @@ Yes. Through Data Analytics and Business Analytics.
 </div>
 
 <div>
-<h3 class="text-xl font-bold mb-2">
+<h3 class="font-bold text-xl">
 Can Science students switch to Commerce or Arts later?
 </h3>
-<p class="text-slate-300">
+<p class="text-slate-400">
 Yes. Many students change their career path after Class 12 or graduation based on their interests and goals.
 </p>
 </div>
 
 <div>
-<h3 class="text-xl font-bold mb-2">
+<h3 class="font-bold text-xl">
 Which stream has the highest salary opportunities?
 </h3>
-<p class="text-slate-300">
+<p class="text-slate-400">
 All streams offer high-paying careers. Success depends more on skills, experience and dedication than the stream itself.
 </p>
 </div>
 
 <div>
-<h3 class="text-xl font-bold mb-2">
+<h3 class="font-bold text-xl">
 How do I choose the right stream after 10th?
 </h3>
-<p class="text-slate-300">
+<p class="text-slate-400">
 Choose a stream based on your interests, strengths, career goals and aptitude rather than following friends or trends.
 </p>
 </div>  
