@@ -629,11 +629,16 @@ if(current<0) current=testimonials.length-1;
 showTestimonial(current);
 }
 
-document.getElementById("nextBtn")
-.addEventListener("click",nextTestimonial);
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 
-document.getElementById("prevBtn")
-.addEventListener("click",prevTestimonial);
+if(nextBtn){
+  nextBtn.addEventListener("click", nextTestimonial);
+}
+
+if(prevBtn){
+  prevBtn.addEventListener("click", prevTestimonial);
+}
 
 dots.forEach((dot,index)=>{
 dot.addEventListener("click",()=>{
@@ -645,7 +650,7 @@ showTestimonial(0);
 
 let autoSlide = setInterval(() => {
   nextTestimonial();
-}, 4000);
+}, 3000);
  
 </script>
  
