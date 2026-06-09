@@ -103,12 +103,6 @@ body::after{
   position:relative;
 }
   
- .footer-premium{
-background:#020617;
-border-top:1px solid rgba(255,255,255,.1);
-margin-top:80px;
-}
-  
 </style>
 
 <script type="application/ld+json">
@@ -123,7 +117,28 @@ margin-top:80px;
  }
 }
 </script>
-  
+ 
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BreadcrumbList",
+ "itemListElement":[
+ {
+ "@type":"ListItem",
+ "position":1,
+ "name":"Home",
+ "item":"https://careersteps.in/"
+ },
+ {
+ "@type":"ListItem",
+ "position":2,
+ "name":"After 12th",
+ "item":"https://careersteps.in/after12.html"
+ }
+ ]
+}
+</script>
+ 
 </head>
 
   <body>
@@ -185,13 +200,19 @@ Explore the best courses, entrance exams, government jobs, salary packages and f
 </div>
 </section>
     
-<h1 class="text-4xl md:text-5xl font-extrabold mb-4">
-    Career Options After <span class="text-indigo-400">Class 12</span>
-  </h1>
-  <p class="text-gray-300 text-lg max-w-3xl mx-auto leading-8">
-Explore the best career options after 12th Science, Commerce and Arts. Compare courses, entrance exams, salary packages, government jobs, professional degrees and future career opportunities to make the right decision for your future.
-  </p>
+<section class="max-w-5xl mx-auto px-6 pb-10 text-center">
+
+<h2 class="text-2xl md:text-3xl font-bold text-blue-400 mb-4">
+Best Career Options After 12th Science, Commerce & Arts
+</h2>
+
+<p class="text-slate-400">
+Compare courses, entrance exams, salary, government jobs and future scope after Class 12.
+</p>
+
 </section>
+
+
 
 <section class="max-w-6xl mx-auto mt-16 grid md:grid-cols-3 gap-8">
   
@@ -431,10 +452,25 @@ Choosing the right course based on interests and skills
 is more important than choosing a popular degree.
 </p>
 
+<div class="flex flex-wrap gap-4 mt-8">
 
-<a href="science-stream.html">Science Stream</a>
-<a href="commerce-stream.html">Commerce Stream</a>
-<a href="arts-stream.html">Arts Stream</a>
+<a href="science-stream.html"
+class="bg-cyan-600 px-5 py-2 rounded-xl font-bold hover:bg-cyan-500 transition">
+🔬 Science Stream
+</a>
+
+<a href="commerce-stream.html"
+class="bg-green-600 px-5 py-2 rounded-xl font-bold hover:bg-green-500 transition">
+💼 Commerce Stream
+</a>
+
+<a href="arts-stream.html"
+class="bg-purple-600 px-5 py-2 rounded-xl font-bold hover:bg-purple-500 transition">
+🎨 Arts Stream
+</a>
+
+</div>
+
 
   
 </div>
@@ -721,25 +757,123 @@ Start Free Assessment →
  "@context":"https://schema.org",
  "@type":"FAQPage",
  "mainEntity":[
- {
- "@type":"Question",
- "name":"Is CUET compulsory after 12th?",
- "acceptedAnswer":{
- "@type":"Answer",
- "text":"Many universities use CUET, but some still have their own entrance exams."
- }
- },
- {
- "@type":"Question",
- "name":"Can Arts students apply for government jobs?",
- "acceptedAnswer":{
- "@type":"Answer",
- "text":"Yes, most government exams are open to students from all streams."
- }
- }
+
+  {
+   "@type":"Question",
+   "name":"Is CUET compulsory after 12th?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Many central universities use CUET for admissions, but some private and state universities have their own admission process or entrance exams."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"Which course has the highest salary after 12th?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Courses like B.Tech Computer Science, MBBS, Chartered Accountancy, Data Science, Artificial Intelligence, Law and Investment Banking often lead to high-paying careers depending on skills and experience."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"Can Arts students apply for government jobs?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. Arts students can apply for UPSC, SSC, Banking, Railways, State PSC, Defence and many other government examinations."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"What are the best government jobs after 12th?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Popular government jobs after 12th include SSC CHSL, SSC MTS, NDA, Indian Army, Railway Recruitment, Police Constable and various state government vacancies."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"Can I change my stream after 12th?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. Many degree programs allow students to switch fields. Arts students can pursue Law, Management and Design courses, while Commerce students can enter IT or Data Analytics through specific programs."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"What are the best career options after 12th Science?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Engineering, Medical, Artificial Intelligence, Data Science, Biotechnology, Cybersecurity, Architecture and Research are among the most popular options for Science students."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"What are the best career options after 12th Commerce?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Commerce students can pursue CA, CS, CMA, B.Com, BBA, Banking, Finance, Investment Banking, Digital Marketing and Business Management careers."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"What are the best career options after 12th Arts?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Arts students can build careers in UPSC, Law, Psychology, Journalism, Design, International Relations, Public Policy, Social Work and Teaching."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"Is a degree necessary for a successful career?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Not always. Skill-based careers such as Digital Marketing, Graphic Design, Content Creation, Web Development and Freelancing can also provide excellent opportunities when supported by strong skills and experience."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"How can CareerSteps help after 12th?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"CareerSteps provides career guidance, stream selection support, career roadmaps, entrance exam information and AI-powered career assessment tools to help students make informed decisions."
+   }
+  }
+
  ]
 }
 </script>
   
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BreadcrumbList",
+ "itemListElement":[
+  {
+   "@type":"ListItem",
+   "position":1,
+   "name":"Home",
+   "item":"https://careersteps.in/"
+  },
+  {
+   "@type":"ListItem",
+   "position":2,
+   "name":"After 12th",
+   "item":"https://careersteps.in/after12.html"
+  }
+ ]
+}
+</script>
+
+
+
 </body>
 </html>
