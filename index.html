@@ -104,6 +104,13 @@ overflow:hidden;
  #testimonial-card{
   transition: opacity 0.4s ease;
  }
+
+ #testimonial-card{
+  position:relative;
+  overflow:hidden;
+  touch-action:pan-y;
+  transition:all .4s ease;
+}
  
 #testimonial-card::before{
 content:"";
@@ -636,7 +643,9 @@ showTestimonial(index);
 
 showTestimonial(0);
 
-setInterval(nextTestimonial,3000);
+let autoSlide = setInterval(() => {
+  nextTestimonial();
+}, 4000);
  
 </script>
  
