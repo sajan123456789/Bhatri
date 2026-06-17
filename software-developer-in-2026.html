@@ -102,6 +102,15 @@ min-width:700px;
       overflow-x:auto;
       -webkit-overflow-scrolling:touch;
     }
+
+    .interactive-card{
+  transition:all .3s ease;
+}
+
+.interactive-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(59,130,246,.25);
+}
   </style>
 
   <!-- Google Snippet Rich Engine -->
@@ -390,13 +399,39 @@ Yes. Many software developers start without prior experience. By learning progra
   </p>
 
 <!-- elegibility -->
-  <h2>Eligibility to Become a Software Developer</h2>
+<h2>Eligibility to Become a Software Developer</h2>
 
-<ul>
-<li>Class 12 from any stream.</li>
-<li>B.Tech, BCA, B.Sc Computer Science, or similar degrees are helpful but not mandatory.</li>
-<li>Strong projects and practical coding skills are highly valued.</li>
-</ul>
+<div class="grid md:grid-cols-2 gap-4 mt-5">
+
+  <div class="box bg-gradient-to-r from-blue-600/15 to-cyan-500/10 border-blue-500/30">
+    <h3 class="text-white font-bold mb-3">🎓 Educational Qualification</h3>
+    <ul class="list-none p-0 m-0 space-y-3">
+      <li>✅ Class 12 pass from any stream (Science, Commerce, or Arts).</li>
+      <li>✅ B.Tech, BCA, B.Sc Computer Science, MCA, or similar degrees are helpful but not mandatory.</li>
+      <li>✅ Self-taught developers can also become software developers by building strong projects.</li>
+    </ul>
+  </div>
+
+  <div class="box bg-gradient-to-r from-purple-600/15 to-pink-500/10 border-purple-500/30">
+    <h3 class="text-white font-bold mb-3">💻 Essential Requirements</h3>
+    <ul class="list-none p-0 m-0 space-y-3">
+      <li>✅ Strong problem-solving and logical thinking skills.</li>
+      <li>✅ Knowledge of at least one programming language (Python, JavaScript, Java, etc.).</li>
+      <li>✅ Understanding of databases, Git, and software development fundamentals.</li>
+      <li>✅ Projects, internships, and practical coding experience are highly valued.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="box text-center bg-gradient-to-r from-emerald-600/15 to-green-500/10 border-green-500/30">
+  <h3 class="text-white font-bold mb-2">🚀 CareerSteps Insight</h3>
+  <p class="text-slate-300 m-0">
+    In 2026, companies hire developers primarily based on skills, projects,
+    internships, open-source contributions, and problem-solving ability.
+    A computer science degree is beneficial but not compulsory.
+  </p>
+</div>
 
 
   
@@ -496,14 +531,45 @@ Yes. Many software developers start without prior experience. By learning progra
 <!-- project for beginners -->
 <h2>Projects Every Beginner Should Build</h2>
 
-<ul>
-<li>To-Do List Application</li>
-<li>Weather App</li>
-<li>Blog Website</li>
-<li>E-Commerce Website</li>
-<li>Chat Application</li>
-<li>Portfolio Website</li>
-</ul>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+
+  <div class="box text-center m-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/10 border-blue-500/30">
+    <div class="text-3xl mb-2">✅</div>
+    <h3 class="text-white font-bold">To-Do App</h3>
+    <p class="text-slate-400 text-sm mt-2">Learn CRUD operations and state management.</p>
+  </div>
+
+  <div class="box text-center m-0 bg-gradient-to-r from-purple-500/20 to-pink-500/10 border-purple-500/30">
+    <div class="text-3xl mb-2">🌦️</div>
+    <h3 class="text-white font-bold">Weather App</h3>
+    <p class="text-slate-400 text-sm mt-2">Learn APIs and asynchronous JavaScript.</p>
+  </div>
+
+  <div class="box text-center m-0 bg-gradient-to-r from-green-500/20 to-emerald-500/10 border-green-500/30">
+    <div class="text-3xl mb-2">📝</div>
+    <h3 class="text-white font-bold">Blog Website</h3>
+    <p class="text-slate-400 text-sm mt-2">Learn authentication and content management.</p>
+  </div>
+
+  <div class="box text-center m-0 bg-gradient-to-r from-orange-500/20 to-red-500/10 border-orange-500/30">
+    <div class="text-3xl mb-2">🛒</div>
+    <h3 class="text-white font-bold">E-Commerce Site</h3>
+    <p class="text-slate-400 text-sm mt-2">Learn payments, databases and APIs.</p>
+  </div>
+
+  <div class="box text-center m-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/10 border-cyan-500/30">
+    <div class="text-3xl mb-2">💬</div>
+    <h3 class="text-white font-bold">Chat Application</h3>
+    <p class="text-slate-400 text-sm mt-2">Learn real-time communication and sockets.</p>
+  </div>
+
+  <div class="box text-center m-0 bg-gradient-to-r from-pink-500/20 to-purple-500/10 border-pink-500/30">
+    <div class="text-3xl mb-2">🌐</div>
+    <h3 class="text-white font-bold">Portfolio Website</h3>
+    <p class="text-slate-400 text-sm mt-2">Showcase your skills and projects.</p>
+  </div>
+
+</div>
 
   
   
@@ -520,14 +586,51 @@ Yes. Many software developers start without prior experience. By learning progra
 
   <h2>Best Platforms to Learn Software Development</h2>
 
-<ul>
-<li>freeCodeCamp</li>
-<li>Coursera</li>
-<li>Udemy</li>
-<li>edX</li>
-<li>The Odin Project</li>
-<li>MDN Web Docs</li>
-</ul>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+
+  <a href="https://www.freecodecamp.org" target="_blank"
+     class="box text-center m-0 bg-gradient-to-r from-green-500/20 to-emerald-500/10 border-green-500/30 hover:scale-105 transition">
+    <div class="text-3xl mb-2">🔥</div>
+    <h3 class="text-white font-bold">freeCodeCamp</h3>
+    <p class="text-slate-400 text-sm mt-2">Completely free coding curriculum.</p>
+  </a>
+
+  <a href="https://www.coursera.org" target="_blank"
+     class="box text-center m-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/10 border-blue-500/30 hover:scale-105 transition">
+    <div class="text-3xl mb-2">🎓</div>
+    <h3 class="text-white font-bold">Coursera</h3>
+    <p class="text-slate-400 text-sm mt-2">University courses and certificates.</p>
+  </a>
+
+  <a href="https://www.udemy.com" target="_blank"
+     class="box text-center m-0 bg-gradient-to-r from-purple-500/20 to-pink-500/10 border-purple-500/30 hover:scale-105 transition">
+    <div class="text-3xl mb-2">📚</div>
+    <h3 class="text-white font-bold">Udemy</h3>
+    <p class="text-slate-400 text-sm mt-2">Affordable project-based courses.</p>
+  </a>
+
+  <a href="https://www.edx.org" target="_blank"
+     class="box text-center m-0 bg-gradient-to-r from-red-500/20 to-orange-500/10 border-red-500/30 hover:scale-105 transition">
+    <div class="text-3xl mb-2">🏛️</div>
+    <h3 class="text-white font-bold">edX</h3>
+    <p class="text-slate-400 text-sm mt-2">Courses from top universities.</p>
+  </a>
+
+  <a href="https://www.theodinproject.com" target="_blank"
+     class="box text-center m-0 bg-gradient-to-r from-indigo-500/20 to-blue-500/10 border-indigo-500/30 hover:scale-105 transition">
+    <div class="text-3xl mb-2">⚔️</div>
+    <h3 class="text-white font-bold">The Odin Project</h3>
+    <p class="text-slate-400 text-sm mt-2">Free full-stack web development path.</p>
+  </a>
+
+  <a href="https://developer.mozilla.org" target="_blank"
+     class="box text-center m-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/10 border-yellow-500/30 hover:scale-105 transition">
+    <div class="text-3xl mb-2">📖</div>
+    <h3 class="text-white font-bold">MDN Web Docs</h3>
+    <p class="text-slate-400 text-sm mt-2">Best documentation for web technologies.</p>
+  </a>
+
+</div>
 
   
   <h2>Software Developer Salary in 2026 (Global)</h2>
