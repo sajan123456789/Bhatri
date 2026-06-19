@@ -125,6 +125,14 @@ body {
 <section class="blog-container px-6 pb-24">
 <div id="blog-list"></div>
 
+<div class="text-center mt-10">
+  <button id="loadMoreBtn"
+    class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition shadow-lg shadow-blue-600/20">
+    Load More Articles →
+  </button>
+</div>
+ 
+
 <script>
 const myBlogs = [
 
@@ -272,13 +280,50 @@ category:"Artificial Intelligence",readTime:"12 min read",date:"June 2026"
 
 const listDiv = document.getElementById("blog-list");
 
-listDiv.innerHTML = myBlogs.map(blog => `
-<div class="blog-card">
-    <div class="blog-title">${blog.title}</div>
-    <div class="blog-desc">${blog.desc}</div>
-    <a href="${blog.link}" class="read-link">Read More →</a>
-</div>
-`).join('');
+const listDiv = document.getElementById("blog-list");
+const loadBtn = document.getElementById("loadMoreBtn");
+
+let currentIndex = 0;
+const blogsPerLoad = 10;
+
+function loadBlogs() {
+
+  const nextBlogs = myBlogs.slice(
+    currentIndex,
+    currentIndex + blogsPerLoad
+  );
+
+  nextBlogs.forEach(blog => {
+
+    listDiv.innerHTML += `
+      <article class="blog-card">
+        <div class="blog-title">
+          ${blog.title}
+        </div>
+
+        <div class="blog-desc">
+          ${blog.desc}
+        </div>
+
+        <a href="${blog.link}"
+           class="read-link">
+           Read More →
+        </a>
+      </article>
+    `;
+  });
+
+  currentIndex += blogsPerLoad;
+
+  if (currentIndex >= myBlogs.length) {
+    loadBtn.style.display = "none";
+  }
+}
+
+loadBlogs();
+
+loadBtn.addEventListener("click", loadBlogs);
+ 
 </script>
 
 </section>
