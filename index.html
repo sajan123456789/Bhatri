@@ -287,6 +287,27 @@ transform:translateX(100%) rotate(25deg);
   
 <body>
 
+<div id="human-check"
+     style="position:fixed;top:0;left:0;width:100%;height:100%;
+     background:#020617;display:flex;justify-content:center;
+     align-items:center;z-index:99999;">
+
+  <div style="background:#0f172a;padding:30px;border-radius:20px;
+              text-align:center;max-width:350px;width:90%;
+              box-shadow:0 0 30px rgba(59,130,246,.25);">
+
+    <h2 style="color:white;margin-bottom:20px;">
+      Verify you are human
+    </h2>
+
+    <div class="cf-turnstile"
+         data-sitekey="0x4AAAAAADpKrrrOa-WvC5VW2ZNwhh3UtyI"
+         data-callback="verified">
+    </div>
+
+  </div>
+</div>
+ 
  <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WT8P3XRR"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
