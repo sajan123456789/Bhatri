@@ -292,7 +292,7 @@ transform:translateX(100%) rotate(25deg);
 
   <div class="bg-white rounded-2xl p-6 shadow-2xl">
     <div class="cf-turnstile"
-         data-sitekey="YOUR_SITE_KEY"
+         data-sitekey="0x4AAAAAADpKrnTa8X_ZNgSY"
          data-callback="verified">
     </div>
   </div>
@@ -979,10 +979,12 @@ let autoSlide = setInterval(() => {
 }
 </script>
  
- <script>
+<script>
 function verified() {
   document.getElementById("human-check").style.display = "none";
+  document.body.style.overflow = "auto";
 }
+document.body.style.overflow = "hidden";
 </script>
 
  
