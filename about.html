@@ -32,16 +32,18 @@
     .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
     /* Scroll Reveal Logic */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-      will-change: transform, opacity;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* Modified Reveal Logic */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px); /* 30px se 20px kiya taaki mobile par layout shift na dikhe */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: transform, opacity;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
   </style>
 </head>
 
@@ -292,6 +294,39 @@
   menuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
   });
+
+  // Bulletproof Mobile Friendly Scroll Reveal
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll(".reveal");
+    
+    const observer = new Intersection Observer(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target); 
+          }
+        });
+      },
+      {
+        threshold: 0.01, // 1% par hi trigger ho jayega (Khaas karke mobile blank screen issue fix karne ke liye)
+        rootMargin: "0px 0px -10px 0px" // Margin loose rakhi taaki scroll block na ho
+      }
+    );
+
+    reveals.forEach((reveal) => {
+      observer.observe(reveal);
+    });
+  }
+
+  // Ensure execution on DOM load and secure fallback
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollReveal);
+  } else {
+    initScrollReveal();
+  }
+</script>
+
 
   // Intersection Observer for Automatic Slide up on Scroll
   document.addEventListener("DOMContentLoaded", function () {
