@@ -31,16 +31,20 @@
     .glow-card:hover { border-color: #3b82f6; box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); transform: translateY(-5px); }
     .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    /* Solid & Smooth Transition Styles */
+    /* Premium Uddisha-style Swipe/Reveal Animation */
     .reveal {
       opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-      will-change: transform, opacity;
+      transform: translateY(40px) scale(0.98);
+      filter: blur(4px);
+      transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                  transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                  filter 0.8s ease-out;
+      will-change: transform, opacity, filter;
     }
     .reveal.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
     }
   </style>
 </head>
@@ -88,6 +92,7 @@
   </div>
 </header>
   
+<!-- HERO SECTION (Loads Instantly for good UX) -->
 <section class="max-w-6xl mx-auto mt-20 text-center px-6">
   <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.6em] mb-4 block">
     About CareerSteps
@@ -102,6 +107,7 @@
   </p>
 </section>
 
+<!-- WHY WE BUILT -->
 <section class="reveal max-w-5xl mx-auto mt-24 px-6 text-center">
   <h2 class="text-3xl font-black mb-6 uppercase">Why CareerSteps?</h2>
   <p class="text-slate-300 text-lg leading-relaxed">
@@ -112,6 +118,7 @@
   </p>
 </section>
 
+<!-- STATS -->
 <section class="reveal max-w-6xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
   <div class="glass p-8 rounded-2xl text-center glow-card transition duration-300">
     <div class="text-3xl font-black text-blue-500">900+</div>
@@ -131,6 +138,7 @@
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
 <section class="reveal max-w-6xl mx-auto mt-28 px-6 text-center">
   <h2 class="text-3xl font-black mb-16 uppercase">How It Works</h2>
   <div class="grid md:grid-cols-3 gap-8">
@@ -152,9 +160,11 @@
   </div>
 </section>
     
+<!-- OUR TEAM -->
 <section class="reveal max-w-6xl mx-auto mt-28 px-6 text-center">
   <h2 class="text-3xl font-black mb-16 uppercase">Our Team</h2>
   <div class="grid md:grid-cols-2 gap-8">
+    <!-- SAJAN -->
     <div class="glass p-10 rounded-3xl text-center glow-card transition duration-300">
       <h3 class="text-xl font-black mb-2">Sajan</h3>
       <p class="text-blue-500 text-xs font-bold uppercase mb-4">Founder & CEO</p>
@@ -163,6 +173,7 @@
         to help students make smarter career decisions using AI.
       </p>
     </div>
+    <!-- VIJAY -->
     <div class="glass p-10 rounded-3xl text-center glow-card transition duration-300">
       <h3 class="text-xl font-black mb-2">Vijay</h3>
       <p class="text-purple-400 text-xs font-bold uppercase mb-4">Co-Founder</p>
@@ -174,6 +185,7 @@
   </div>
 </section>
 
+<!-- OUR MISSION -->
 <section class="reveal max-w-6xl mx-auto mt-32 px-6">
   <div class="bg-white/5 border border-white/10 rounded-3xl p-10 text-center shadow-xl">
     <div class="flex justify-center mb-6">
@@ -204,6 +216,7 @@
   </div>
 </section>
     
+<!-- TRUST SECTION -->
 <section class="reveal max-w-6xl mx-auto mt-28 px-6 text-center">
   <h2 class="text-3xl font-black mb-16 uppercase">Why Students Trust Us</h2>
   <div class="grid md:grid-cols-3 gap-6">
@@ -225,6 +238,7 @@
 <script>(function(s){s.dataset.zone='11063112',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <div id="container-da26969e11031016ae3374527157e47a"></div>
 
+<!-- CTA -->
 <section class="reveal text-center mt-28 mb-20 px-6">
   <h2 class="text-3xl font-black mb-6 uppercase">Start Your Career Journey</h2>
   <a href="assessment.html" class="inline-block bg-blue-600 px-8 py-4 rounded-xl font-bold uppercase hover:bg-blue-500 transition shadow-xl shadow-blue-600/20 text-white">
@@ -274,8 +288,9 @@
   </div>
 </footer>
 
+<!-- Premium Responsive Reveal Engine -->
 <script>
-  // Mobile Menu Toggle
+  // Mobile Menu
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if (menuBtn && mobileMenu) {
@@ -284,46 +299,33 @@
     });
   }
 
-  // Final Robust Scroll Reveal Function with Universal Fallback
+  // Smooth High-Performance Scroll Reveal Logic
   function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal");
-    
-    // 1. Force instant activation fallback after 600ms if observer gets stuck on mobile
-    setTimeout(() => {
-      reveals.forEach(el => {
-        if (!el.classList.contains('active')) {
-          el.classList.add('active');
-        }
-      });
-    }, 600);
 
-    // 2. Standard Observer execution
     if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-              observer.unobserve(entry.target); 
-            }
-          });
-        },
-        {
-          threshold: 0.01,
-          rootMargin: "0px 0px -10px 0px"
-        }
-      );
+      const observerOptions = {
+        threshold: 0.08,             // Triggers when 8% of card is inside view
+        rootMargin: "0px 0px -40px 0px" // Dynamic buffer for natural scroll feel
+      };
 
-      reveals.forEach((reveal) => {
-        observer.observe(reveal);
-      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target); // Animates only once
+          }
+        });
+      }, observerOptions);
+
+      reveals.forEach((reveal) => observer.observe(reveal));
     } else {
-      // Fallback for very old browsers
+      // Fallback for older browsers
       reveals.forEach(el => el.classList.add('active'));
     }
   }
 
-  // Running core initialization safely
+  // Bind to DOM Ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initScrollReveal);
   } else {
