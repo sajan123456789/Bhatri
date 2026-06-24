@@ -32,18 +32,16 @@
     .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
     /* Scroll Reveal Logic */
-/* Modified Reveal Logic */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px); /* 30px se 20px kiya taaki mobile par layout shift na dikhe */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: transform, opacity;
-}
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: transform, opacity;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -79,7 +77,6 @@
     </div>
   </div>
 
-  <!-- Mobile Menu Links Fixed for Consistency -->
   <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8">
     <nav class="flex flex-col gap-6 text-[16px] font-bold uppercase tracking-widest text-slate-300 text-center">
       <a href="index.html" class="text-white">Home</a>
@@ -91,7 +88,6 @@
   </div>
 </header>
   
-<!-- HERO SECTION (Stays static for instant loading visual) -->
 <section class="max-w-6xl mx-auto mt-20 text-center px-6">
   <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.6em] mb-4 block">
     About CareerSteps
@@ -106,7 +102,6 @@
   </p>
 </section>
 
-<!-- WHY WE BUILT (Reveal On Scroll Added) -->
 <section class="reveal max-w-5xl mx-auto mt-24 px-6 text-center">
   <h2 class="text-3xl font-black mb-6 uppercase">Why CareerSteps?</h2>
   <p class="text-slate-300 text-lg leading-relaxed">
@@ -117,7 +112,6 @@
   </p>
 </section>
 
-<!-- STATS (Reveal On Scroll Added) -->
 <section class="reveal max-w-6xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
   <div class="glass p-8 rounded-2xl text-center glow-card transition duration-300">
     <div class="text-3xl font-black text-blue-500">900+</div>
@@ -137,7 +131,6 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS (Reveal On Scroll Added) -->
 <section class="reveal max-w-6xl mx-auto mt-28 px-6 text-center">
   <h2 class="text-3xl font-black mb-16 uppercase">How It Works</h2>
   <div class="grid md:grid-cols-3 gap-8">
@@ -159,11 +152,9 @@
   </div>
 </section>
     
-<!-- OUR TEAM (Reveal On Scroll Added) -->
 <section class="reveal max-w-6xl mx-auto mt-28 px-6 text-center">
   <h2 class="text-3xl font-black mb-16 uppercase">Our Team</h2>
   <div class="grid md:grid-cols-2 gap-8">
-    <!-- SAJAN -->
     <div class="glass p-10 rounded-3xl text-center glow-card transition duration-300">
       <h3 class="text-xl font-black mb-2">Sajan</h3>
       <p class="text-blue-500 text-xs font-bold uppercase mb-4">Founder & CEO</p>
@@ -172,7 +163,6 @@
         to help students make smarter career decisions using AI.
       </p>
     </div>
-    <!-- VIJAY -->
     <div class="glass p-10 rounded-3xl text-center glow-card transition duration-300">
       <h3 class="text-xl font-black mb-2">Vijay</h3>
       <p class="text-purple-400 text-xs font-bold uppercase mb-4">Co-Founder</p>
@@ -184,7 +174,6 @@
   </div>
 </section>
 
-<!-- OUR MISSION (Reveal On Scroll Added) -->
 <section class="reveal max-w-6xl mx-auto mt-32 px-6">
   <div class="bg-white/5 border border-white/10 rounded-3xl p-10 text-center shadow-xl">
     <div class="flex justify-center mb-6">
@@ -215,7 +204,6 @@
   </div>
 </section>
     
-<!-- TRUST SECTION (Reveal On Scroll Added) -->
 <section class="reveal max-w-6xl mx-auto mt-28 px-6 text-center">
   <h2 class="text-3xl font-black mb-16 uppercase">Why Students Trust Us</h2>
   <div class="grid md:grid-cols-3 gap-6">
@@ -237,7 +225,6 @@
 <script>(function(s){s.dataset.zone='11063112',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <div id="container-da26969e11031016ae3374527157e47a"></div>
 
-<!-- CTA (Reveal On Scroll Added) -->
 <section class="reveal text-center mt-28 mb-20 px-6">
   <h2 class="text-3xl font-black mb-6 uppercase">Start Your Career Journey</h2>
   <a href="assessment.html" class="inline-block bg-blue-600 px-8 py-4 rounded-xl font-bold uppercase hover:bg-blue-500 transition shadow-xl shadow-blue-600/20 text-white">
@@ -287,15 +274,15 @@
   </div>
 </footer>
 
-<!-- Scripts Management -->
 <script>
+  // Mobile Menu Toggle
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
   });
 
-  // Bulletproof Mobile Friendly Scroll Reveal
+  // Bulletproof Scroll Reveal Function
   function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal");
     
@@ -309,8 +296,8 @@
         });
       },
       {
-        threshold: 0.01, // 1% par hi trigger ho jayega (Khaas karke mobile blank screen issue fix karne ke liye)
-        rootMargin: "0px 0px -10px 0px" // Margin loose rakhi taaki scroll block na ho
+        threshold: 0.01, // Quick trigger for instant fluid experience
+        rootMargin: "0px 0px -20px 0px"
       }
     );
 
@@ -319,36 +306,12 @@
     });
   }
 
-  // Ensure execution on DOM load and secure fallback
+  // Proper DOM execution handling
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initScrollReveal);
   } else {
     initScrollReveal();
   }
-</script>
-
-
-  // Intersection Observer for Automatic Slide up on Scroll
-  document.addEventListener("DOMContentLoaded", function () {
-    const reveals = document.querySelectorAll(".reveal");
-    const observer = new Intersection Observer(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-            observer.unobserve(entry.target); 
-          }
-        });
-      },
-      {
-        threshold: 0.05, 
-        rootMargin: "0px 0px -40px 0px" 
-      }
-    );
-    reveals.forEach((reveal) => {
-      observer.observe(reveal);
-    });
-  });
 </script>
 <script src="https://pl29615986.effectivecpmnetwork.com/e4/59/55/e459551ce28cd5823efbdd24e4ac830d.js"></script>
      
