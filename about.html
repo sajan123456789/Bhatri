@@ -32,6 +32,22 @@ body {
 }
 .glow-card:hover { border-color: #3b82f6; box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); transform: translateY(-5px); }
 .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Initial State: Chupa hua aur thoda niche */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+/* Active State: Scroll karte hi upar aayega */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 </style>
 </head>
 
@@ -331,6 +347,33 @@ body {
   });
 </script>
 <script src="https://pl29615986.effectivecpmnetwork.com/e4/59/55/e459551ce28cd5823efbdd24e4ac830d.js"></script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new Intersection Observer(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target); // Ek baar animate hone ke baad tracking rok dega (Better performance)
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Jab 10% section screen par dikhega, animation trigger ho jayegi
+        rootMargin: "0px 0px -50px 0px" // Mobile par screen end hone se pehle hi smooth trigger ke liye
+      }
+    );
+
+    reveals.forEach((reveal) => {
+      observer.observe(reveal);
+    });
+  });
+</script>
+
      
 </body>
 </html>
