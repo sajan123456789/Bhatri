@@ -31,11 +31,11 @@
     .glow-card:hover { border-color: #3b82f6; box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); transform: translateY(-5px); }
     .text-gradient { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    /* Scroll Reveal Logic */
+    /* Solid & Smooth Transition Styles */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: translateY(15px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
       will-change: transform, opacity;
     }
     .reveal.active {
@@ -278,35 +278,52 @@
   // Mobile Menu Toggle
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Bulletproof Scroll Reveal Function
-  function initScrollReveal() {
-    const reveals = document.querySelectorAll(".reveal");
-    
-    const observer = new Intersection Observer(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-            observer.unobserve(entry.target); 
-          }
-        });
-      },
-      {
-        threshold: 0.01, // Quick trigger for instant fluid experience
-        rootMargin: "0px 0px -20px 0px"
-      }
-    );
-
-    reveals.forEach((reveal) => {
-      observer.observe(reveal);
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
   }
 
-  // Proper DOM execution handling
+  // Final Robust Scroll Reveal Function with Universal Fallback
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll(".reveal");
+    
+    // 1. Force instant activation fallback after 600ms if observer gets stuck on mobile
+    setTimeout(() => {
+      reveals.forEach(el => {
+        if (!el.classList.contains('active')) {
+          el.classList.add('active');
+        }
+      });
+    }, 600);
+
+    // 2. Standard Observer execution
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target); 
+            }
+          });
+        },
+        {
+          threshold: 0.01,
+          rootMargin: "0px 0px -10px 0px"
+        }
+      );
+
+      reveals.forEach((reveal) => {
+        observer.observe(reveal);
+      });
+    } else {
+      // Fallback for very old browsers
+      reveals.forEach(el => el.classList.add('active'));
+    }
+  }
+
+  // Running core initialization safely
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initScrollReveal);
   } else {
