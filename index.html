@@ -1013,10 +1013,11 @@ window.googleLogout = () => {
   signOut(csAuth);
 };
 
-getRedirectResult(auth)
+getRedirectResult(csAuth)
   .then((result) => {
     console.log(result);
   })
+
   .catch((error) => {
     alert(
       "Code: " + error.code +
