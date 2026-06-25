@@ -1040,6 +1040,22 @@ onAuthStateChanged(csAuth, (user) => {
   if (!authArea) return;
 
   if (user) {
+
+   Notification.requestPermission().then(async (permission) => {
+
+  if (permission === "granted") {
+
+    const token = await getToken(messaging, {
+      vapidKey: "BOjvZHxTatfLyyJTa-s-ey-3qQfsv2JSLgjD0twb4VWTnX6wN0Ux3GXJ7UYcnR7rnAeGzg4ZDFsDkd_2ZBq7VsU"
+    });
+
+    console.log("FCM Token:", token);
+
+  }
+
+});
+
+ 
     authArea.innerHTML = `
       <div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
         <img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover">
