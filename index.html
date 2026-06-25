@@ -964,6 +964,47 @@ let autoSlide = setInterval(() => {
 }
 </script>
 
+
+ <!-- login -->
+ <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+  authDomain: "careersteps-afa5d.firebaseapp.com",
+  projectId: "careersteps-afa5d",
+  storageBucket: "careersteps-afa5d.firebasestorage.app",
+  messagingSenderId: "197033973372",
+  appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9",
+  measurementId: "G-90SZVYJ200"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+window.googleLogin = async function () {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (e) {
+    alert(e.message);
+  }
+};
+
+window.googleLogout = async function () {
+  await signOut(auth);
+};
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Logged in:", user.displayName);
+  } else {
+    console.log("Logged out");
+  }
+});
+</script>
+
  
 </body>
 </html>
