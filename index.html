@@ -990,6 +990,13 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
+import {
+  getMessaging,
+  getToken,
+  onMessage
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js";
+ 
+ 
 const firebaseConfig = {
   apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
   authDomain: "careersteps-afa5d.firebaseapp.com",
@@ -1003,6 +1010,9 @@ const firebaseConfig = {
 // Unique variable names to prevent identifier collision errors
 const csApp = initializeApp(firebaseConfig);
 const csAuth = getAuth(csApp);
+
+ const messaging = getMessaging(csApp);
+ 
 const provider = new GoogleAuthProvider();
 // Naya Login function jo Popup use karega aur error nahi dega
 window.googleLogin = () => {
