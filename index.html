@@ -306,21 +306,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Blogs</a>
     </nav>
 
-<div class="flex items-center gap-4">
-
-  <div id="auth-area"></div>
+<div class="flex items-center gap-3 md:gap-4 shrink-0">
+  <!-- Auth Area Wrapper -->
+  <div id="auth-area" class="flex items-center"></div>
 
   <a href="assessment.html"
-     class="hidden sm:block bg-blue-600 hover:bg-blue-500 px-7 py-3 rounded-xl text-[12px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20">
+     class="hidden sm:inline-block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20 whitespace-nowrap">
      Get Started →
   </a>
 
-  <button id="menuBtn" class="md:hidden text-white p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
+  <button id="menuBtn" class="md:hidden text-white p-2 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+</div>
+
   </div>
 
   <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8">
@@ -972,6 +973,7 @@ let autoSlide = setInterval(() => {
  <!-- login -->
 
 
+<!-- login -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 import {
@@ -993,32 +995,34 @@ const firebaseConfig = {
   measurementId: "G-90SZVYJ200"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Unique variable names to prevent identifier collision errors
+const csApp = initializeApp(firebaseConfig);
+const csAuth = getAuth(csApp);
 const provider = new GoogleAuthProvider();
 
 window.googleLogin = () => {
-  signInWithRedirect(auth, provider);
+  signInWithRedirect(csAuth, provider);
 };
 
 window.googleLogout = () => {
-  signOut(auth);
+  signOut(csAuth);
 };
 
-getRedirectResult(auth).catch((error) => {
+getRedirectResult(csAuth).catch((error) => {
   console.error(error);
 });
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(csAuth, (user) => {
   const authArea = document.getElementById("auth-area");
+  if (!authArea) return;
 
   if (user) {
     authArea.innerHTML = `
-      <div class="flex items-center gap-3">
-        <img src="${user.photoURL}" class="w-10 h-10 rounded-full border border-blue-500">
-        <span class="hidden md:block text-white font-semibold">${user.displayName}</span>
+      <div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+        <img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover">
+        <span class="hidden lg:block text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span>
         <button onclick="googleLogout()"
-          class="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg text-xs font-bold text-white">
+          class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">
           Logout
         </button>
       </div>
@@ -1026,13 +1030,14 @@ onAuthStateChanged(auth, (user) => {
   } else {
     authArea.innerHTML = `
       <button onclick="googleLogin()"
-        class="bg-white text-black px-5 py-2 rounded-xl font-bold hover:bg-gray-200">
-        Continue with Google
+        class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap">
+        Sign In
       </button>
     `;
   }
 });
 </script>
+
 
  
 </body>
