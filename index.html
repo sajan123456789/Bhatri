@@ -989,16 +989,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebas
 import {
   getAuth,
   GoogleAuthProvider,
- signInWithPopup ,
-  getRedirectResult,
+  signInWithPopup,
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
   getMessaging,
-  getToken,
-  onMessage
+  getToken
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js";
  
 import {
@@ -1006,7 +1004,6 @@ import {
   doc,
   setDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
- 
  
 const firebaseConfig = {
   apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
@@ -1021,19 +1018,15 @@ const firebaseConfig = {
 // Unique variable names to prevent identifier collision errors
 const csApp = initializeApp(firebaseConfig);
 const csAuth = getAuth(csApp);
-
- const messaging = getMessaging(csApp);
-
- 
- const db = getFirestore(csApp);
- 
+const messaging = getMessaging(csApp);
+const db = getFirestore(csApp);
 const provider = new GoogleAuthProvider();
-// Naya Login function jo Popup use karega aur error nahi dega
+
+// Popup Login function
 window.googleLogin = () => {
   signInWithPopup(csAuth, provider)
     .then((result) => {
       console.log("Logged in user:", result.user);
-      // Login hote hi page automatically refresh ho jayega taaki header update ho sake
       window.location.reload(); 
     })
     .catch((error) => {
@@ -1048,58 +1041,87 @@ window.googleLogout = () => {
   });
 };
 
-
+// Dono areas (Desktop aur Mobile) ko handle karne ka sahi logic
 onAuthStateChanged(csAuth, (user) => {
-  const authArea = document.getElementById("auth-area");
-  if (!authArea) return;
+  const authDesktop = document.getElementById("auth-area-desktop");
+  const authMobile = document.getElementById("auth-area-mobile");
 
   if (user) {
+    // Notification aur FCM Token logic
+    Notification.requestPermission().then(async (permission) => {
+      if (permission === "granted") {
+        try {
+          const token = await getToken(messaging, {
+            vapidKey: "BOjvZHxTatfLyyJTa-s-ey-3qQfsv2JSLgjD0twb4VWTnX6wN0Ux3GXJ7UYcnR7rnAeGzg4ZDFsDkd_2ZBq7VsU"
+          });
+          console.log("FCM Token:", token);
 
-   Notification.requestPermission().then(async (permission) => {
-
-  if (permission === "granted") {
-
-    const token = await getToken(messaging, {
-      vapidKey: "BOjvZHxTatfLyyJTa-s-ey-3qQfsv2JSLgjD0twb4VWTnX6wN0Ux3GXJ7UYcnR7rnAeGzg4ZDFsDkd_2ZBq7VsU"
+          if (csAuth.currentUser) {
+            await setDoc(
+              doc(db, "fcmTokens", csAuth.currentUser.uid),
+              {
+                uid: csAuth.currentUser.uid,
+                token: token,
+                updatedAt: new Date().toISOString()
+              }
+            );
+          }
+        } catch (err) {
+          console.error("FCM Token Error:", err);
+        }
+      }
     });
 
-    console.log("FCM Token:", token);
-
-if (csAuth.currentUser) {
-  await setDoc(
-    doc(db, "fcmTokens", csAuth.currentUser.uid),
-    {
-      uid: csAuth.currentUser.uid,
-      token: token,
-      updatedAt: new Date().toISOString()
+    // 1. Desktop HTML Render
+    if (authDesktop) {
+      authDesktop.innerHTML = `
+        <div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+          <img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover">
+          <span class="hidden lg:block text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span>
+          <button onclick="googleLogout()"
+            class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">
+            Logout
+          </button>
+        </div>
+      `;
     }
-  );
 
-  }
- }
-});
-
- 
-    authArea.innerHTML = `
-      <div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
-        <img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover">
-        <span class="hidden lg:block text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span>
-        <button onclick="googleLogout()"
-          class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">
-          Logout
-        </button>
-      </div>
-    `;
+    // 2. Mobile Menu HTML Render
+    if (authMobile) {
+      authMobile.innerHTML = `
+        <div class="flex flex-col items-center gap-3 w-full max-w-[200px]">
+          <div class="flex items-center gap-2">
+            <img src="${user.photoURL}" class="w-8 h-8 rounded-full border border-blue-500 object-cover">
+            <span class="text-white text-sm font-semibold truncate max-w-[120px]">${user.displayName}</span>
+          </div>
+          <button onclick="googleLogout()"
+            class="w-full bg-red-600 hover:bg-red-500 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-white transition">
+            Logout
+          </button>
+        </div>
+      `;
+    }
   } else {
-    authArea.innerHTML = `
+    // Agar login nahi hai toh dono jagah Sign In ka proper button dikhao
+    const signInBtnDesktop = `
       <button onclick="googleLogin()"
         class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap">
         Sign In
       </button>
     `;
+    const signInBtnMobile = `
+      <button onclick="googleLogin()"
+        class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap w-full">
+        Sign In
+      </button>
+    `;
+
+    if (authDesktop) authDesktop.innerHTML = signInBtnDesktop;
+    if (authMobile) authMobile.innerHTML = signInBtnMobile;
   }
 });
 </script>
+
 
 
  
