@@ -996,6 +996,12 @@ import {
   onMessage
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js";
  
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+ 
  
 const firebaseConfig = {
   apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
@@ -1012,6 +1018,9 @@ const csApp = initializeApp(firebaseConfig);
 const csAuth = getAuth(csApp);
 
  const messaging = getMessaging(csApp);
+
+ 
+ const db = getFirestore(csApp);
  
 const provider = new GoogleAuthProvider();
 // Naya Login function jo Popup use karega aur error nahi dega
@@ -1050,6 +1059,16 @@ onAuthStateChanged(csAuth, (user) => {
     });
 
     console.log("FCM Token:", token);
+
+if (csAuth.currentUser) {
+  await setDoc(
+    doc(db, "fcmTokens", csAuth.currentUser.uid),
+    {
+      uid: csAuth.currentUser.uid,
+      token: token,
+      updatedAt: new Date().toISOString()
+    }
+  );
 
   }
 
