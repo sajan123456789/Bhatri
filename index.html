@@ -1013,9 +1013,17 @@ window.googleLogout = () => {
   signOut(csAuth);
 };
 
-getRedirectResult(csAuth).catch((error) => {
-  console.error(error);
-});
+getRedirectResult(auth)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    alert(
+      "Code: " + error.code +
+      "\nMessage: " + error.message
+    );
+    console.error(error);
+  });
 
 onAuthStateChanged(csAuth, (user) => {
   const authArea = document.getElementById("auth-area");
