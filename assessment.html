@@ -136,7 +136,7 @@
 let currentStep = 0;
 let scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
 let currentQuestions = [];
-let globalUserInstance = null; // Strict track storage instance
+let currentUser = null; 
 
 const AI_DATABASE = {
     "10": [
@@ -202,7 +202,7 @@ const AI_DATABASE = {
 };
 
 function saveName() {
-    if (!globalUserInstance) {
+    if (!currentUser) {
       alert("Please login with Google first.");
       window.googleLogin();
       return;
@@ -216,7 +216,7 @@ function saveName() {
 }
 
 function startAI(type) {
-    if (!globalUserInstance) return window.googleLogin();
+    if (!currentUser) return window.googleLogin();
     currentStep = 0;
     scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
     localStorage.setItem("academic_stage", type);
@@ -233,7 +233,7 @@ function startAI(type) {
 }
 
 function selectStream(stream){
-    if (!globalUserInstance) return window.googleLogin();
+    if (!currentUser) return window.googleLogin();
     currentStep = 0;
     scoreData = { tech: 0, business: 0, social: 0, art: 0, neutral: 0 };
     localStorage.setItem("selected_stream", stream);
@@ -298,9 +298,9 @@ function processFinalReport() {
 
     (async () => {
       await window.saveTestData({
-        uid: globalUserInstance.uid,
-        email: globalUserInstance.email,
-        photo: globalUserInstance.photoURL,
+        uid: currentUser.uid,
+        email: currentUser.email,
+        photo: currentUser.photoURL,
         name: localStorage.getItem("user_name"),
         class: stage,
         stream: stream || "10th",
@@ -318,18 +318,21 @@ function processFinalReport() {
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
   import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyB-H8_Xn1q_bYvPlfT3mXR2XWDoZp9LM38",
-    authDomain: "careersteps-login.firebaseapp.com",
-    projectId: "careersteps-login",
-    storageBucket: "careersteps-login.appspot.com",
-    messagingSenderId: "389274928402",
-    appId: "1:389274928402:web:c7b8e1920ac3f8dbe83efd"
+    apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+    authDomain: "careersteps-afa5d.firebaseapp.com",
+    projectId: "careersteps-afa5d",
+    storageBucket: "careersteps-afa5d.firebasestorage.app",
+    messagingSenderId: "197033973372",
+    appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9",
+    measurementId: "G-90SZVYJ200"
   };
 
   const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
   const db = getFirestore(app);
 
   window.saveTestData = async function(data){
@@ -338,7 +341,7 @@ function processFinalReport() {
         ...data,
         createdAt: serverTimestamp()
       });
-      console.log("✅ Data saved in careersteps-login");
+      console.log("✅ Data saved in careersteps-afa5d");
     }catch(e){
       console.error("❌ Error saving test data", e);
     }
@@ -360,12 +363,13 @@ import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/12.2.
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
  
 const firebaseConfig = {
-  apiKey: "AIzaSyB-H8_Xn1q_bYvPlfT3mXR2XWDoZp9LM38",
-  authDomain: "careersteps-login.firebaseapp.com",
-  projectId: "careersteps-login",
-  storageBucket: "careersteps-login.appspot.com",
-  messagingSenderId: "389274928402",
-  appId: "1:389274928402:web:c7b8e1920ac3f8dbe83efd"
+  apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+  authDomain: "careersteps-afa5d.firebaseapp.com",
+  projectId: "careersteps-afa5d",
+  storageBucket: "careersteps-afa5d.firebasestorage.app",
+  messagingSenderId: "197033973372",
+  appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9",
+  measurementId: "G-90SZVYJ200"
 };
 
 const csApp = initializeApp(firebaseConfig);
@@ -378,7 +382,6 @@ window.googleLogin = () => {
   signInWithPopup(csAuth, provider)
     .then((result) => {
       console.log("Logged in user:", result.user);
-      window.location.reload(); 
     })
     .catch((error) => {
       alert("Sign-in Error: " + error.message);
@@ -393,14 +396,13 @@ window.googleLogout = () => {
 };
  
 onAuthStateChanged(csAuth, (user) => {
-  globalUserInstance = user; 
+  currentUser = user; 
   const authDesktop = document.getElementById("auth-area-desktop");
   const authMobile = document.getElementById("auth-area-mobile");
   const loginGatekeeper = document.getElementById("loginGatekeeper");
   const nameSection = document.getElementById("nameSection");
 
   if (user) {
-    // UI Panels toggles: Gatekeeper band, Identity open!
     if(loginGatekeeper) loginGatekeeper.classList.add("hidden");
     if(nameSection) {
         nameSection.classList.remove("hidden");
@@ -454,7 +456,6 @@ onAuthStateChanged(csAuth, (user) => {
       `;
     }
   } else {
-    // Safe mode fallback: user logout hai toh UI locked rakho
     if(loginGatekeeper) loginGatekeeper.classList.remove("hidden");
     if(nameSection) nameSection.classList.add("hidden");
 
