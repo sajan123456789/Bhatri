@@ -354,13 +354,17 @@ function processFinalReport() {
 
     (async () => {
       await window.saveTestData({
-        name: localStorage.getItem("user_name"),
-        class: stage,
-        stream: stream || "10th",
-        scores: scoreData,
-        finalResult: finalKey,
-        device: navigator.userAgent
-      });
+  uid: currentUser.uid,
+  email: currentUser.email,
+  photo: currentUser.photoURL,
+
+  name: localStorage.getItem("user_name"),
+  class: stage,
+  stream: stream || "10th",
+  scores: scoreData,
+  finalResult: finalKey,
+  device: navigator.userAgent
+});
 
       setTimeout(() => {
         window.location.href = "result.html";
@@ -484,6 +488,11 @@ onAuthStateChanged(csAuth, (user) => {
   const authMobile = document.getElementById("auth-area-mobile");
 
   if (user) {
+
+  if (document.getElementById("userName")) {
+  document.getElementById("userName").value = user.displayName;
+}
+   
     // Notification aur FCM Token logic
     Notification.requestPermission().then(async (permission) => {
       if (permission === "granted") {
