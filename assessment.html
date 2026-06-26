@@ -568,6 +568,14 @@ onAuthStateChanged(csAuth, (user) => {
 });
 </script>
 
+ <script>
+  // Mobile Menu Logic
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+ </script>
  
 </body>
 </html>
