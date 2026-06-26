@@ -246,6 +246,13 @@ const AI_DATABASE = {
 };
 
 function saveName() {
+
+ if (!currentUser) {
+  alert("Please login with Google first.");
+  googleLogin();
+  return;
+}
+ 
     const val = document.getElementById("userName").value.trim();
     if(val.length < 2) return alert("Please enter your full name.");
     localStorage.setItem("user_name", val);
@@ -463,8 +470,16 @@ window.googleLogout = () => {
   });
 };
 
-// Dono areas (Desktop aur Mobile) ko handle karne ka sahi logic
+
+ 
+ 
+ // Dono areas (Desktop aur Mobile) ko handle karne ka sahi logic
+
+ let currentUser = null;
+ 
 onAuthStateChanged(csAuth, (user) => {
+
+ currentUser = user;
   const authDesktop = document.getElementById("auth-area-desktop");
   const authMobile = document.getElementById("auth-area-mobile");
 
