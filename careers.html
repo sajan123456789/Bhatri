@@ -419,6 +419,22 @@ onAuthStateChanged(csAuth, (user) => {
   }
 });
 </script>
+
+<script>
+  // Mobile Menu Toggle Logic
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.onclick = function() {
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    };
+  }
+</script>
  
 </body>
 </html>
