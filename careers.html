@@ -285,25 +285,9 @@ currentResults.slice(start,end).forEach(c => {
                     <a href="career-detail.html?id=${c.id}" class="mt-8 bg-blue-600 hover:bg-blue-500 py-4 rounded-xl text-[10px] font-black text-center uppercase tracking-widest text-white transition-all">View Roadmap</a>
                 </div>`;
             });
-const totalPages = Math.ceil(currentResults.length / perPage);
-
-document.getElementById("pageNumber").innerText =
-`Page ${currentPage} / ${totalPages}`;
-
-document.getElementById("prevBtn").disabled = currentPage === 1;
-document.getElementById("nextBtn").disabled = currentPage >= totalPages;
-
          
          
-     document.getElementById("pageNumber").innerText =
-"Page " + currentPage;
-
-document.getElementById("prevBtn").disabled =
-(currentPage === 1);
-
-document.getElementById("nextBtn").disabled =
-(currentPage * perPage >= currentResults.length);
-         
+     
         }
 
         
