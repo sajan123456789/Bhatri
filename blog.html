@@ -28,7 +28,7 @@
     .blog-card{
     position:relative;
     overflow:hidden;
-    background:linear-gradient(180deg,#111827,#0f172a);
+    background:#111827;
     border:1px solid rgba(255,255,255,.06);
     border-radius:20px;
     padding:1.8rem;
@@ -37,16 +37,7 @@
     box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
     
-   .blog-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:3px;
-    background:#2563eb;
-}
-
+   
 .blog-card:hover{
     transform:translateY(-6px);
     border-color:#2563eb;
@@ -251,26 +242,40 @@
         const cat = blog.category || "Career Guide";
         const rTime = blog.readTime || "5 min read";
 
-        listDiv.innerHTML += `
-          <article class="blog-card flex flex-col justify-between h-full">
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-2 py-1 rounded">
-                        ${cat}
-                    </span>
-                    <span class="text-xs text-slate-500">
-                        ${rTime}
-                    </span>
-                </div>
-                <div class="blog-title">${blog.title}</div>
-                <div class="blog-desc">${blog.desc}</div>
-            </div>
-            <a href="${blog.link}" class="read-link mt-4 inline-flex items-center gap-1 group w-max">
-               Read Article 
-               <span class="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </article>
-        `;
+        
+        <article class="blog-card flex flex-col overflow-hidden">
+
+  <img src="images/${blog.id}.webp"
+       alt="${blog.title}"
+       class="w-full h-44 object-cover rounded-t-xl">
+
+  <div class="p-5 flex flex-col flex-1">
+
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-[10px] font-bold text-blue-400 uppercase bg-blue-500/10 px-2 py-1 rounded">
+        ${cat}
+      </span>
+
+      <span class="text-xs text-slate-500">
+        ${rTime}
+      </span>
+    </div>
+
+    <h3 class="blog-title">
+      ${blog.title}
+    </h3>
+
+    <p class="blog-desc">
+      ${blog.desc}
+    </p>
+
+    <a href="${blog.link}" class="read-link mt-auto">
+      Read Article →
+    </a>
+
+  </div>
+
+</article>
       });
     }
 
