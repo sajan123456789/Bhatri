@@ -321,51 +321,63 @@ category:"Artificial Intelligence",readTime:"12 min read",date:"June 2026"
 ];
 
 
-
 const listDiv = document.getElementById("blog-list");
 const loadBtn = document.getElementById("loadMoreBtn");
 
-let currentIndex = 0;
 const blogsPerLoad = 10;
+// Session storage se check karo kitne blogs pehle load ho chuke the, default 10
+let blogsToLoad = parseInt(sessionStorage.getItem('loadedBlogsCount')) || blogsPerLoad;
 
-function loadBlogs() {
-
-  const nextBlogs = myBlogs.slice(
-    currentIndex,
-    currentIndex + blogsPerLoad
-  );
-
-  nextBlogs.forEach(blog => {
-
+function renderBlogs(startIndex, endIndex) {
+  const blogsToRender = myBlogs.slice(startIndex, endIndex);
+  
+  blogsToRender.forEach(blog => {
     listDiv.innerHTML += `
       <article class="blog-card">
-        <div class="blog-title">
-          ${blog.title}
-        </div>
-
-        <div class="blog-desc">
-          ${blog.desc}
-        </div>
-
-        <a href="${blog.link}"
-           class="read-link">
-           Read More →
-        </a>
+        <div class="blog-title">${blog.title}</div>
+        <div class="blog-desc">${blog.desc}</div>
+        <a href="${blog.link}" class="read-link">Read More →</a>
       </article>
     `;
   });
+}
 
-  currentIndex += blogsPerLoad;
-
-  if (currentIndex >= myBlogs.length) {
+// Initial load (page khulte hi)
+function initBlogs() {
+  listDiv.innerHTML = ""; // Clear existing
+  renderBlogs(0, blogsToLoad);
+  
+  if (blogsToLoad >= myBlogs.length) {
     loadBtn.style.display = "none";
   }
 }
 
-loadBlogs();
+// Jab "Load More" click ho
+function loadMoreBlogs() {
+  const nextIndex = blogsToLoad + blogsPerLoad;
+  renderBlogs(blogsToLoad, nextIndex);
+  
+  blogsToLoad = nextIndex;
+  // State save kar lo taki back aane par yaad rahe
+  sessionStorage.setItem('loadedBlogsCount', blogsToLoad);
 
-loadBtn.addEventListener("click", loadBlogs);
- 
+  if (blogsToLoad >= myBlogs.length) {
+    loadBtn.style.display = "none";
+  }
+}
+
+initBlogs();
+loadBtn.addEventListener("click", loadMoreBlogs);
+
+// Optional: Clear storage if they leave the website entirely (not just navigating between your pages)
+window.addEventListener('beforeunload', function (e) {
+    if (!document.activeElement.href?.includes(window.location.origin)) {
+        sessionStorage.removeItem('loadedBlogsCount');
+    }
+});
+
+
+  
 </script>
 
 </section>
