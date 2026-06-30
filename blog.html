@@ -26,14 +26,33 @@
     }
 
     .blog-card{
-        background:#111827;
-        border:1px solid #1f2937;
-        border-radius:16px;
-        padding:1.8rem;
-        margin-bottom:1.2rem;
-        transition:0.2s ease;
-    }
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(180deg,#111827,#0f172a);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:20px;
+    padding:1.8rem;
+    margin-bottom:1.2rem;
+    transition:all .3s ease;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+    
+   .blog-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:#2563eb;
+}
 
+.blog-card:hover{
+    transform:translateY(-6px);
+    border-color:#2563eb;
+    box-shadow:0 20px 40px rgba(37,99,235,.18);
+}
+    
     .blog-card:hover{
         border-color:#3b82f6;
         background:#0b1220;
@@ -62,8 +81,6 @@
         text-decoration:underline;
     }
 
- transform: translateY(-8px);
-box-shadow:0 20px 40px rgba(59,130,246,.18);
     
   </style>
 </head>
