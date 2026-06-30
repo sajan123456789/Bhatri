@@ -142,7 +142,114 @@ body {
 
 <!-- BLOG LIST -->
 <section class="blog-container px-6 pb-24">
-<div id="blog-list"></div>
+
+ <div class="max-w-2xl mx-auto mb-10">
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+      <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search for AI, MBA, Freelancing, Data Science..." 
+           class="w-full bg-[#111827] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-lg">
+  </div>
+</div>
+
+<div id="blog-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div> ```
+
+#### STEP 2: Apne JS Logic ko Update karein
+Aapka jo abhi ka script hai usme Search filter ka logic aur Naya Card UI add kar diya hai. Apne purane `renderBlogs`, `initBlogs`, aur `loadMoreBlogs` wale logic ko isse replace kar do:
+
+```javascript
+const listDiv = document.getElementById("blog-list");
+const loadBtn = document.getElementById("loadMoreBtn");
+const searchInput = document.getElementById("searchInput");
+
+const blogsPerLoad = 10;
+let blogsToLoad = parseInt(sessionStorage.getItem('loadedBlogsCount')) || blogsPerLoad;
+
+// 🟢 UPGRADED UI: Yahan humne Category aur Read Time dikhane ka logic add kiya hai
+function renderBlogs(startIndex, endIndex, dataArray = myBlogs) {
+  const blogsToRender = dataArray.slice(startIndex, endIndex);
+  
+  blogsToRender.forEach(blog => {
+    // Agar kisi blog me category ya time nahi hai, toh default ye dikhega
+    const cat = blog.category || "Career Guide";
+    const rTime = blog.readTime || "5 min read";
+
+    listDiv.innerHTML += `
+      <article class="blog-card flex flex-col justify-between h-full">
+        <div>
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-2 py-1 rounded">
+                    ${cat}
+                </span>
+                <span class="text-xs text-slate-500">
+                    ${rTime}
+                </span>
+            </div>
+            <div class="blog-title">${blog.title}</div>
+            <div class="blog-desc">${blog.desc}</div>
+        </div>
+        <a href="${blog.link}" class="read-link mt-4 inline-flex items-center gap-1 group w-max">
+           Read Article 
+           <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </article>
+    `;
+  });
+}
+
+function initBlogs() {
+  listDiv.innerHTML = ""; 
+  renderBlogs(0, blogsToLoad, myBlogs);
+  if (blogsToLoad >= myBlogs.length) loadBtn.style.display = "none";
+}
+
+function loadMoreBlogs() {
+  const nextIndex = blogsToLoad + blogsPerLoad;
+  renderBlogs(blogsToLoad, nextIndex, myBlogs);
+  blogsToLoad = nextIndex;
+  sessionStorage.setItem('loadedBlogsCount', blogsToLoad);
+  if (blogsToLoad >= myBlogs.length) loadBtn.style.display = "none";
+}
+
+// 🟢 NEW FEATURE: LIVE SEARCH LOGIC
+searchInput.addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  
+  if (query === "") {
+    // Agar search khali hai, toh normal list dikhao
+    listDiv.innerHTML = "";
+    renderBlogs(0, blogsToLoad, myBlogs);
+    loadBtn.style.display = (blogsToLoad >= myBlogs.length) ? "none" : "inline-block";
+  } else {
+    // Agar kuch search kiya hai, toh filter karo
+    const filteredBlogs = myBlogs.filter(b => 
+      b.title.toLowerCase().includes(query) || 
+      b.desc.toLowerCase().includes(query) ||
+      (b.category && b.category.toLowerCase().includes(query))
+    );
+    
+    listDiv.innerHTML = "";
+    if (filteredBlogs.length > 0) {
+        renderBlogs(0, filteredBlogs.length, filteredBlogs);
+    } else {
+        listDiv.innerHTML = `<p class="text-slate-400 text-center w-full col-span-2 py-10">No blogs found for "${query}". Try another keyword.</p>`;
+    }
+    loadBtn.style.display = "none"; // Search ke time Load More hide kardo
+  }
+});
+
+initBlogs();
+loadBtn.addEventListener("click", loadMoreBlogs);
+
+window.addEventListener('beforeunload', function (e) {
+    if (!document.activeElement.href?.includes(window.location.origin)) {
+        sessionStorage.removeItem('loadedBlogsCount');
+    }
+});
+
+ 
+ <div id="blog-list"></div>
 
 <div class="text-center mt-10">
   <button id="loadMoreBtn"
