@@ -158,6 +158,43 @@
     </div>
   </div>
 
+<!-- category buttons-->
+ <div class="flex flex-wrap justify-center gap-3 mt-8">
+
+<button class="px-5 py-2 rounded-full bg-blue-600 text-white font-semibold">
+All
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+AI Careers
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+Technology
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+Government Jobs
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+Study Abroad
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+Freelancing
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+MBA
+</button>
+
+<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+Career Guide
+</button>
+
+</div>
+  
 <div class="mb-10">
 
 <p class="text-yellow-400 text-sm font-bold uppercase mb-4">
@@ -312,9 +349,20 @@ Read Article →
 
           <p class="blog-desc">${blog.desc}</p>
 
-          <a href="${blog.link}" class="read-link mt-auto">
-            Read Article →
-          </a>
+<div class="flex justify-between text-xs text-slate-500 mt-3 mb-5">
+
+<span>
+📅 ${blog.date || "June 2026"}
+</span>
+
+<span>
+🕒 ${rTime}
+</span>
+
+</div>
+         <span class="text-blue-400 font-semibold hover:text-blue-300 transition">
+Read Article →
+</span> 
 
         </div>
 
