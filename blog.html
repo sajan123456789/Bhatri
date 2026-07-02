@@ -178,35 +178,35 @@ box-shadow:0 20px 40px rgba(37,99,235,.25);
 <!-- category buttons-->
  <div class="flex flex-wrap justify-center gap-3 mt-8">
 
-<button class="px-5 py-2 rounded-full bg-blue-600 text-white font-semibold">
+<button data-category="All" class="category-btn px-5 py-2 rounded-full bg-blue-600 text-white font-semibold">
 All
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="Artificial Intelligence" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 AI Careers
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="Technology" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 Technology
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="Government Jobs" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 Government Jobs
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="Study Abroad" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 Study Abroad
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="Freelancing" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 Freelancing
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="MBA" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 MBA
 </button>
 
-<button class="px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
+<button data-category="Career Guide" class="category-btn px-5 py-2 rounded-full bg-[#111827] hover:bg-blue-600 transition">
 Career Guide
 </button>
 
@@ -429,6 +429,35 @@ Read Article →
     });
 
     initBlogs();
+
+   document.querySelectorAll(".category-btn").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".category-btn").forEach(b => {
+      b.classList.remove("bg-blue-600","text-white");
+      b.classList.add("bg-[#111827]");
+    });
+
+    btn.classList.remove("bg-[#111827]");
+    btn.classList.add("bg-blue-600","text-white");
+
+    const category = btn.dataset.category;
+
+    listDiv.innerHTML = "";
+
+    if(category === "All"){
+      renderBlogs(0, blogsToLoad, myBlogs);
+      return;
+    }
+
+    const filtered = myBlogs.filter(blog => blog.category === category);
+
+    renderBlogs(0, filtered.length, filtered);
+
+  });
+
+}); 
     loadBtn.addEventListener("click", loadMoreBlogs);
 
     window.addEventListener('beforeunload', function (e) {
