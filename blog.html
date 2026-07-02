@@ -41,7 +41,14 @@
     box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
     
-   
+.blog-card img{
+transition:.4s ease;
+}
+
+.blog-card:hover img{
+transform:scale(1.06);
+}
+    
 .blog-card:hover{
     transform:translateY(-6px);
     border-color:#2563eb;
@@ -76,6 +83,15 @@
         text-decoration:underline;
     }
 
+    
+.featured-card{
+transition:.35s ease;
+}
+
+.featured-card:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(37,99,235,.25);
+}
     
   </style>
 </head>
@@ -329,10 +345,8 @@ Read Article →
     listDiv.innerHTML += `
       <article class="blog-card flex flex-col overflow-hidden">
 
-        <img src="blog-placeholder.png"
-     alt="${blog.title}"
-     class="w-full h-44 object-cover">
-
+      <img src="blog-placeholder.png"
+class="w-full h-full object-cover transition duration-500 hover:scale-105">  
         <div class="p-5 flex flex-col flex-1">
 
           <div class="flex justify-between items-center mb-3">
@@ -360,9 +374,11 @@ Read Article →
 </span>
 
 </div>
-         <span class="text-blue-400 font-semibold hover:text-blue-300 transition">
+
+   <a href="${blog.link}"
+class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-semibold text-white transition mt-auto">
 Read Article →
-</span> 
+</a>     
 
         </div>
 
