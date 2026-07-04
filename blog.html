@@ -95,14 +95,9 @@
   
   <div class="mb-10 mt-10">
     <p class="text-yellow-400 text-sm font-bold uppercase mb-4">Featured Article</p>
-    <div class="featured-card grid md:grid-cols-2 bg-[#111827] rounded-3xl overflow-hidden border border-white/10">
-      <img src="blog-placeholder.png" class="w-full h-full object-cover transition duration-500 hover:scale-105">
-      <div class="p-8">
-        <span class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full">Career Guide</span>
-        <h2 class="text-3xl font-bold text-white mt-5">Psychology Career Guide 2026</h2>
-        <p class="text-slate-400 mt-4">Complete roadmap, salary, future scope, education, skills and career opportunities.</p>
-        <a href="psychology-career-guide.html" class="inline-block mt-6 bg-blue-600 px-6 py-3 rounded-xl font-bold text-white">Read Article →</a>
-      </div>
+    <!-- Featured Article Dynamic Container -->
+    <div id="featured-container" class="featured-card grid md:grid-cols-2 bg-[#111827] rounded-3xl overflow-hidden border border-white/10">
+      <!-- Content loads via JavaScript -->
     </div>
   </div>
 
@@ -179,10 +174,25 @@
     const loadBtn = document.getElementById("loadMoreBtn");
     const searchInput = document.getElementById("searchInput");
     const categoryBtns = document.querySelectorAll(".category-btn");
+    const featuredContainer = document.getElementById('featured-container');
 
     let currentCategory = "All";
     let searchQuery = "";
     let visibleCount = 10;
+
+    // Featured Article Logic
+    function renderFeatured() {
+      const latestBlog = myBlogs[myBlogs.length - 1];
+      featuredContainer.innerHTML = `
+        <img src="blog-placeholder.png" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+        <div class="p-8">
+          <span class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full">${latestBlog.category}</span>
+          <h2 class="text-3xl font-bold text-white mt-5">${latestBlog.title}</h2>
+          <p class="text-slate-400 mt-4">${latestBlog.desc}</p>
+          <a href="${latestBlog.link}" class="inline-block mt-6 bg-blue-600 px-6 py-3 rounded-xl font-bold text-white">Read Article →</a>
+        </div>
+      `;
+    }
 
     function renderBlogs() {
       const filtered = myBlogs.filter(blog => {
@@ -248,6 +258,8 @@
       renderBlogs();
     });
 
+    // Initialize Page
+    renderFeatured();
     renderBlogs();
   </script>
 </section>
