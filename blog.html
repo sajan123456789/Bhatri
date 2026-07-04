@@ -108,159 +108,162 @@
   </div>
  
   <script>
-    const myBlogs = [
-      { id: "01", title: "Psychology Career Guide 2026", desc: "Global psychology roadmap with salary 💰, licensing & job opportunities.", link: "psychology-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "02", title: "Data Science Career Guide 2026", desc: "Global salary, skills & career path in Data Science.", link: "data-science-career-guide.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
-      { id: "03", title: "Science vs Commerce vs Arts", desc: "Compare streams based on aptitude, jobs & growth.", link: "science-commerce-arts.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "04", title: "Competitive Exams Guide", desc: "JEE, NEET, UPSC & Banking exam roadmap.", link: "competitive-exams.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "05", title: "Computer IT Support Career Guide", desc: "IT support roles, salary & beginner roadmap.", link: "computer-it-support.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
-      { id: "06", title: "Skill-Based Careers Without Degree", desc: "High-income skills without college degree.", link: "skill-based-careers.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "07", title: "Cyber Security Career Guide", desc: "Cyber security salary & global demand.", link: "cyber-security.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
-      { id: "08", title: "Government Jobs Guide", desc: "UPSC, SSC & defence roadmap.", link: "government-jobs-guide.html", category: "Government Jobs", readTime: "5 min read", date: "June 2026" },
-      { id: "09", title: "Common Career Mistakes", desc: "Avoid wrong career decisions.", link: "career-mistakes-students.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "10", title: "Career Planning Guide", desc: "Step-by-step career planning framework.", link: "career-planning-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "11", title: "Why Career Guidance Matters", desc: "How guidance saves time & money.", link: "why-career-guidance-important.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "12", title: "Artificial Intelligence Career Guide", desc: "AI salary, skills & global roles.", link: "artificial-intelligence.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
-      { id: "13", title: "Study Abroad Guide", desc: "IELTS, GRE & scholarship roadmap.", link: "study-abroad-guide.html", category: "Study Abroad", readTime: "5 min read", date: "June 2026" },
-      { id: "14", title: "Freelancing Portfolio Guide", desc: "Build strong portfolio for freelancing.", link: "freelancing-portfolio-guide.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
-      { id: "15", title: "Fashion Design Career Guide", desc: "Fashion career roadmap & salary.", link: "fashion-design.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "16", title: "Creative Career Guide", desc: "Design, UI/UX & content careers.", link: "creative-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "17", title: "Freelancing Portfolio (Advanced)", desc: "Start earning while studying.", link: "freelancing-portfolio-guide.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
-      { id: "18", title: "AI Impact on Careers", desc: "How AI is reshaping global jobs.", link: "ai-impact-on-careers.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
-      { id: "19", title: "Freelancing Jobs 2026", desc: "Freelancing income roadmap.", link: "freelancing-jobs-2026.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
-      { id: "20", title: "Freelancing vs Remote Job", desc: "Comparison for beginners.", link: "freelancing-vs-remote-job.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
-      { id: "21", title: "Global Career Guide 2026", desc: "Career guidance for students worldwide.", link: "global-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "22", title: "BCA Career Guide 2026", desc: "BCA entrance exams & salary in USD.", link: "bca-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "23", title: "MBA Career Guide 2026", desc: "Global MBA salary 💰, specializations & business careers.", link: "mba-career-guide.html", category: "MBA", readTime: "5 min read", date: "June 2026" },
-      { id: "24", title: "AI Career Guide 2026", desc: "Artificial Intelligence roadmap with global opportunities.", link: "ai-guide.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
-      { id: "25", title: "AI Impact on Career Growth", desc: "Automation, future jobs & 2026 workforce trends.", link: "ai-impact-on-careers.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
-      { id: "26", title: "Data Science Global Scope 2026", desc: "Machine learning, analytics & tech demand worldwide.", link: "data-science-career-guide.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
-      { id: "27", title: "Teacher Career Guide 2026: Salary 💰, Exams, Education & Global Opportunities", desc: "Complete teacher career guide covering salary in USD, teaching exams, education path, recruitment sectors and future scope worldwide.", category: "Career Guide", readTime: "11 min read", date: "January 2026", link: "teacher-career-guide.html" },
-      { id: "28", title: "Professor / Lecturer Career Guide 2026", desc: "Learn how to become a professor, required PhD path, salary and global university careers.", link: "professor-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "29", title: "Education Consultant Career Guide 2026", desc: "Explore education consulting careers, global salary, required skills and study abroad advisory roles.", link: "education-consultant-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "30", title: "Online Educator Career Guide 2026 – Remote Teaching Jobs 💰", desc: "Complete guide to online educator careers including remote teaching jobs, salary and EdTech opportunities.", link: "online-educator-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "31", title: "Best Diploma Courses After 12th Commerce", desc: "Top diploma courses after 12th commerce including digital marketing, accounting, banking and business management.", link: "best-diploma-courses-after-12th-commerce.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "32", title: "Freelancing Jobs for Students (2026 Guide)", desc: "Learn about the best freelancing jobs students can start online including content writing, graphic design, video editing and web development.", category: "Freelancing", readTime: "5 min read", date: "Jan 2026", link: "freelancing-jobs-for-students.html" },
-      { id: "33", title: "Career Options After 12th Arts (2026 Guide)", desc: "Explore the best career options after 12th arts including law, journalism, psychology, design and government jobs.", link: "career-options-after-12th-arts.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "34", title: "Career Options After 10th (2026 Guide)", desc: "Complete guide to career options after 10th including science, commerce, arts, diploma courses, skills and future scope.", category: "Career Guide", link: "career-after-10th.html", readTime: "5 min read", date: "June 2026" },
-      { id: "35", title: "YouTube Career Guide 2026 – Earn Money Online 💰", desc: "Complete guide to becoming a YouTuber. Learn income sources, growth strategy, skills and how to earn from YouTube in 2026.", category: "Digital Career", readTime: "10 min read", date: "February 2026", link: "youtube-career-guide.html" },
-      { id: "36", title: "Instagram Career Guide 2026", desc: "Learn how to become an influencer and earn money on Instagram.", link: "instagram-career-guide.html", category: "Digital Career", readTime: "5 min read", date: "June 2026" },
-      { id: "37", title: "Influencer Career Guide 2026", desc: "Complete guide to becoming a social media influencer, earning money through brand deals, sponsorships and digital content.", category: "Digital Career", date: "Jan 2026", link: "influencer-career-guide.html", readTime: "5 min read" },
-      { id: "38", title: "Content Creator Career Guide 2026", desc: "Learn how to become a content creator and earn money online through social media and digital platforms.", link: "content-creator-career-guide.html", category: "Digital Career", readTime: "5 min read", date: "June 2026" },
-      { id: "39", title: "Best Career Options for Introverts After 12th (2026 Guide)", desc: "Discover the best high-paying careers for introverts including software developer, writer, designer and more.", link: "best-career-for-introverts-after-12th.html", date: "May 2026", category: "Career Guide", readTime: "5 min read" },
-      { id: "40", title: "Best Career Options for Extroverts After 12th (2026 Guide)", desc: "Explore top careers for extroverts including marketing, sales, HR, content creation and more with high salary potential.", link: "best-career-for-extroverts-after-12th.html", date: "May 2026", category: "Career Guide", readTime: "5 min read" },
-      { id: "41", title: "Best Career Options for Ambiverts After 12th (2026 Guide)", desc: "Discover balanced careers for ambiverts with high salary and flexibility.", link: "best-career-for-ambiverts-after-12th.html", date: "May 2026", category: "Career Guide", readTime: "5 min read" },
-      { id: "42", title: "Best Hosting for Beginners in India (2026 Guide)", desc: "Discover the best hosting for beginners in India with affordable pricing, fast speed, and easy setup. Complete guide for starting your website.", link: "best-hosting-for-beginners-india.html", category: "Blogging", readTime: "10 min read", date: "2026" },
-      { id: "43", title: "Highest Paying Careers in India (2026 Guide)", desc: "Discover the highest paying careers in India for 2026. Detailed insights into highest salary jobs across tech, AI, finance, and management fields.", link: "highest-paying-careers-india.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
-      { id: "44", title: "Best AI Careers in 2026: Salary, Skills, Roadmap & Future Scope", desc: "Discover the best AI careers in 2026. Complete roadmap, comprehensive salaries in India & USA, core skills, certifications, and future scope for artificial intelligence jobs.", link: "best-ai-careers-2026.html", category: "Artificial Intelligence", readTime: "15 min read", date: "June 2026" },
-      { id: "45", title: "How to Become a Prompt Engineer in 2026: Salary, Skills & Career Roadmap", desc: "Learn how to become a Prompt Engineer in 2026. Explore required skills, AI tools, salary, certifications, career roadmap and future opportunities.", link: "how-to-become-prompt-engineer-in-2026.html", category: "Artificial Intelligence", readTime: "10 min read", date: "June 2026" },
-      { id: "46", title: "How to Become an AI Engineer in 2026: Salary, Skills, Roadmap & Career Guide", desc: "Learn how to become an AI Engineer in 2026. Complete guide covering salary, coding skills, machine learning, certifications, roadmap, job roles and future scope.", link: "ai-engineer-career-guide.html", category: "Artificial Intelligence", readTime: "12 min read", date: "June 2026" },
-      { id: "47", title: "How to Become a Machine Learning Engineer in 2026: Salary, Roadmap & Skills", desc: "The ultimate production MLOps blueprint. Discover mandatory mathematical foundations, pipeline ecosystems, and step-by-step career path structures.", link: "machine-learning-engineer-career-guide.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
-      { id: "48", title: "How to Become a Data Scientist in 2026: Salary, Roadmap & Skills", desc: "The ultimate enterprise analytics blueprint. Discover crucial mathematical models, statistical libraries, big data pipelines, and step-by-step career path structures.", link: "data-scientist-career-guide.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
-      { id: "49", title: "How to Become a Software Developer in 2026: Salary, Roadmap & Skills", desc: "The ultimate full-stack core development blueprint. Discover mandatory architecture frameworks, microservice orchestration tools, and step-by-step career path structures.", link: "software-developer-in-2026.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
-      { id: "50", title: "Final Checklist Before Your SSC Computer-Based Examination Day", link: "ssc-jobs-after-10th.html", category: "Application Guide", readTime: "7 min read", date: "August 2025", desc: "Admit card protocols, original photo identity validations, and testing room rules to ensure a smooth, stress-free exam experience." },
-      { id: "51", title: "SSC CHSL Career Guide 2026: Exams, Eligibility, Salary & Syllabus", link: "ssc-chsl-career-guide.html", category: "Government Jobs", readTime: "9 min read", date: "June 2026", desc: "Ultimate 12th-pass Central Government career manual detailing LDC, JSA, and Data Entry Operator structures, tier patterns, and 2026 salary scales." },
-      { id: "52", title: "SSC CGL Career Guide 2026: Jobs, Eligibility, Salary & Tier Patterns", link: "ssc-cgl-career-guide.html", category: "Government Jobs", readTime: "14 min read", date: "June 2026", desc: "Comprehensive graduate-level roadmap detailing Group B & C technical frameworks, structural tier alterations, key sectional locks, and post-wise level-8 salary matrices." },
-      { id: "53", title: "The No-Code Revolution 2026: Building a Tech Career Without Writing Code", desc: "Ultimate career roadmap detailing how to design, deploy, and scale high-value digital applications using advanced visual tech ecosystems and AI automation in 2026.", link: "no-code-career-guide.html", category: "Career Guide", readTime: "10 min read", date: "June 2026" },
-      { id: "54", title: "Is Coding Dead in 2026? The Reality of AI Automation & Software Careers", desc: "Is coding dead due to generative AI? Discover the shifting software engineering landscape in 2026, structural programming salaries, and future-proof career roadmaps.", link: "is-coding-dead.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
-      { id: "55", title: "Developer Portfolio 2026: Building Production-Grade AI & Systems Architectures", desc: "Step-by-step roadmap to building a future-proof tech portfolio in 2026. Learn to highlight edge worker pipelines, Supabase database setups, and zero-boilerplate orchestration rules.", link: "portfolio.html", category: "Career Guide", readTime: "11 min read", date: "June 2026" },
-      { id: "56", title: "AI Solutions Architect Roadmap 2026: The Global Tech Salary Crown", desc: "The definitive 2026 career roadmap to becoming an Enterprise AI Solutions Architect. Discover high-paying salaries, required LLM tool stacks, certifications, and AI consultant pipelines.", link: "ai-solutions-architect-career-guide.html", category: "Artificial Intelligence", readTime: "12 min read", date: "June 2026" },
-      { id: "57", title: "Best Tech Careers Without Coding After 12th: 2026 High-Salary Roadmap", desc: "Break into the technology sector without writing syntax. Discover high-paying no-code pathways, essential industry software tool stacks, and dual-currency (INR & USD) target salary grids.", link: "non-coding-tech-careers.html", category: "Career Guide", readTime: "8 min read", date: "June 2026" },
-      { id: "58", title: "Media & Journalism Career Guide India 2026: Salary, Scope & Roadmap", desc: "Discover the ultimate 2026 guide to media and journalism careers in India after 12th or graduation. Explore salary frameworks, top institutions, digital transformations, and core tool ecosystems.", link: "media-journalism-career-guide.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
-      { id: "59", title: "Media & Journalism Careers After BA: 2026 Comprehensive Strategy", link: "media-journalism-careers-after-ba.html", desc: "Ultimate 2026 graduation blueprint tracking high-paying media tracks, elite PG institutions, dynamic tool stacks, and dual-currency income structures maximizing high ad arbitrage.", category: "Career Guide", readTime: "14 min read", date: "June 2026" }
-    ];
+const myBlogs = [
+  { id: "01", title: "Psychology Career Guide 2026", image: "images/psychology-career-guide.webp", desc: "Global psychology roadmap with salary 💰, licensing & job opportunities.", link: "psychology-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "02", title: "Data Science Career Guide 2026", image: "images/data-science-career-guide.webp", desc: "Global salary, skills & career path in Data Science.", link: "data-science-career-guide.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
+  { id: "03", title: "Science vs Commerce vs Arts", image: "images/science-commerce-arts.webp", desc: "Compare streams based on aptitude, jobs & growth.", link: "science-commerce-arts.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "04", title: "Competitive Exams Guide", image: "images/competitive-exams.webp", desc: "JEE, NEET, UPSC & Banking exam roadmap.", link: "competitive-exams.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "05", title: "Computer IT Support Career Guide", image: "images/computer-it-support.webp", desc: "IT support roles, salary & beginner roadmap.", link: "computer-it-support.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
+  { id: "06", title: "Skill-Based Careers Without Degree", image: "images/skill-based-careers.webp", desc: "High-income skills without college degree.", link: "skill-based-careers.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "07", title: "Cyber Security Career Guide", image: "images/cyber-security.webp", desc: "Cyber security salary & global demand.", link: "cyber-security.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
+  { id: "08", title: "Government Jobs Guide", image: "images/government-jobs-guide.webp", desc: "UPSC, SSC & defence roadmap.", link: "government-jobs-guide.html", category: "Government Jobs", readTime: "5 min read", date: "June 2026" },
+  { id: "09", title: "Common Career Mistakes", image: "images/career-mistakes-students.webp", desc: "Avoid wrong career decisions.", link: "career-mistakes-students.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "10", title: "Career Planning Guide", image: "images/career-planning-guide.webp", desc: "Step-by-step career planning framework.", link: "career-planning-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "11", title: "Why Career Guidance Matters", image: "images/why-career-guidance-important.webp", desc: "How guidance saves time & money.", link: "why-career-guidance-important.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "12", title: "Artificial Intelligence Career Guide", image: "images/artificial-intelligence.webp", desc: "AI salary, skills & global roles.", link: "artificial-intelligence.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
+  { id: "13", title: "Study Abroad Guide", image: "images/study-abroad-guide.webp", desc: "IELTS, GRE & scholarship roadmap.", link: "study-abroad-guide.html", category: "Study Abroad", readTime: "5 min read", date: "June 2026" },
+  { id: "14", title: "Freelancing Portfolio Guide", image: "images/freelancing-portfolio-guide.webp", desc: "Build strong portfolio for freelancing.", link: "freelancing-portfolio-guide.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
+  { id: "15", title: "Fashion Design Career Guide", image: "images/fashion-design.webp", desc: "Fashion career roadmap & salary.", link: "fashion-design.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "16", title: "Creative Career Guide", image: "images/creative-career-guide.webp", desc: "Design, UI/UX & content careers.", link: "creative-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "17", title: "Freelancing Portfolio (Advanced)", image: "images/freelancing-portfolio-guide-adv.webp", desc: "Start earning while studying.", link: "freelancing-portfolio-guide.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
+  { id: "18", title: "AI Impact on Careers", image: "images/ai-impact-on-careers.webp", desc: "How AI is reshaping global jobs.", link: "ai-impact-on-careers.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
+  { id: "19", title: "Freelancing Jobs 2026", image: "images/freelancing-jobs-2026.webp", desc: "Freelancing income roadmap.", link: "freelancing-jobs-2026.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
+  { id: "20", title: "Freelancing vs Remote Job", image: "images/freelancing-vs-remote-job.webp", desc: "Comparison for beginners.", link: "freelancing-vs-remote-job.html", category: "Freelancing", readTime: "5 min read", date: "June 2026" },
+  { id: "21", title: "Global Career Guide 2026", image: "images/global-career-guide.webp", desc: "Career guidance for students worldwide.", link: "global-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "22", title: "BCA Career Guide 2026", image: "images/bca-guide.webp", desc: "BCA entrance exams & salary in USD.", link: "bca-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "23", title: "MBA Career Guide 2026", image: "images/mba-career-guide.webp", desc: "Global MBA salary 💰, specializations & business careers.", link: "mba-career-guide.html", category: "MBA", readTime: "5 min read", date: "June 2026" },
+  { id: "24", title: "AI Career Guide 2026", image: "images/ai-guide.webp", desc: "Artificial Intelligence roadmap with global opportunities.", link: "ai-guide.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
+  { id: "25", title: "AI Impact on Career Growth", image: "images/ai-impact-on-career-growth.webp", desc: "Automation, future jobs & 2026 workforce trends.", link: "ai-impact-on-careers.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
+  { id: "26", title: "Data Science Global Scope 2026", image: "images/data-science-global-scope.webp", desc: "Machine learning, analytics & tech demand worldwide.", link: "data-science-career-guide.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
+  { id: "27", title: "Teacher Career Guide 2026", image: "images/teacher-career-guide.webp", desc: "Complete teacher career guide covering salary in USD, teaching exams, education path, recruitment sectors and future scope worldwide.", category: "Career Guide", readTime: "11 min read", date: "January 2026", link: "teacher-career-guide.html" },
+  { id: "28", title: "Professor / Lecturer Career Guide 2026", image: "images/professor-career-guide.webp", desc: "Learn how to become a professor, required PhD path, salary and global university careers.", link: "professor-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "29", title: "Education Consultant Career Guide 2026", image: "images/education-consultant-career-guide.webp", desc: "Explore education consulting careers, global salary, required skills and study abroad advisory roles.", link: "education-consultant-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "30", title: "Online Educator Career Guide 2026", image: "images/online-educator-career-guide.webp", desc: "Complete guide to online educator careers including remote teaching jobs, salary and EdTech opportunities.", link: "online-educator-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "31", title: "Best Diploma Courses After 12th Commerce", image: "images/best-diploma-courses-after-12th-commerce.webp", desc: "Top diploma courses after 12th commerce including digital marketing, accounting, banking and business management.", link: "best-diploma-courses-after-12th-commerce.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "32", title: "Freelancing Jobs for Students", image: "images/freelancing-jobs-for-students.webp", desc: "Learn about the best freelancing jobs students can start online including content writing, graphic design, video editing and web development.", category: "Freelancing", readTime: "5 min read", date: "Jan 2026", link: "freelancing-jobs-for-students.html" },
+  { id: "33", title: "Career Options After 12th Arts", image: "images/career-options-after-12th-arts.webp", desc: "Explore the best career options after 12th arts including law, journalism, psychology, design and government jobs.", link: "career-options-after-12th-arts.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "34", title: "Career Options After 10th", image: "images/career-after-10th.webp", desc: "Complete guide to career options after 10th including science, commerce, arts, diploma courses, skills and future scope.", category: "Career Guide", link: "career-after-10th.html", readTime: "5 min read", date: "June 2026" },
+  { id: "35", title: "YouTube Career Guide 2026", image: "images/youtube-career-guide.webp", desc: "Complete guide to becoming a YouTuber. Learn income sources, growth strategy, skills and how to earn from YouTube in 2026.", category: "Digital Career", readTime: "10 min read", date: "February 2026", link: "youtube-career-guide.html" },
+  { id: "36", title: "Instagram Career Guide 2026", image: "images/instagram-career-guide.webp", desc: "Learn how to become an influencer and earn money on Instagram.", link: "instagram-career-guide.html", category: "Digital Career", readTime: "5 min read", date: "June 2026" },
+  { id: "37", title: "Influencer Career Guide 2026", image: "images/influencer-career-guide.webp", desc: "Complete guide to becoming a social media influencer, earning money through brand deals, sponsorships and digital content.", category: "Digital Career", date: "Jan 2026", link: "influencer-career-guide.html", readTime: "5 min read" },
+  { id: "38", title: "Content Creator Career Guide 2026", image: "images/content-creator-career-guide.webp", desc: "Learn how to become a content creator and earn money online through social media and digital platforms.", link: "content-creator-career-guide.html", category: "Digital Career", readTime: "5 min read", date: "June 2026" },
+  { id: "39", title: "Best Career Options for Introverts After 12th", image: "images/best-career-for-introverts-after-12th.webp", desc: "Discover the best high-paying careers for introverts including software developer, writer, designer and more.", link: "best-career-for-introverts-after-12th.html", date: "May 2026", category: "Career Guide", readTime: "5 min read" },
+  { id: "40", title: "Best Career Options for Extroverts After 12th", image: "images/best-career-for-extroverts-after-12th.webp", desc: "Explore top careers for extroverts including marketing, sales, HR, content creation and more with high salary potential.", link: "best-career-for-extroverts-after-12th.html", date: "May 2026", category: "Career Guide", readTime: "5 min read" },
+  { id: "41", title: "Best Career Options for Ambiverts After 12th", image: "images/best-career-for-ambiverts-after-12th.webp", desc: "Discover balanced careers for ambiverts with high salary and flexibility.", link: "best-career-for-ambiverts-after-12th.html", date: "May 2026", category: "Career Guide", readTime: "5 min read" },
+  { id: "42", title: "Best Hosting for Beginners in India", image: "images/best-hosting-for-beginners-india.webp", desc: "Discover the best hosting for beginners in India with affordable pricing, fast speed, and easy setup.", link: "best-hosting-for-beginners-india.html", category: "Blogging", readTime: "10 min read", date: "2026" },
+  { id: "43", title: "Highest Paying Careers in India", image: "images/highest-paying-careers-india.webp", desc: "Discover the highest paying careers in India for 2026. Detailed insights into highest salary jobs across tech, AI, finance, and management fields.", link: "highest-paying-careers-india.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
+  { id: "44", title: "Best AI Careers in 2026", image: "images/best-ai-careers-2026.webp", desc: "Discover the best AI careers in 2026. Complete roadmap, comprehensive salaries in India & USA.", link: "best-ai-careers-2026.html", category: "Artificial Intelligence", readTime: "15 min read", date: "June 2026" },
+  { id: "45", title: "How to Become a Prompt Engineer in 2026", image: "images/how-to-become-prompt-engineer-in-2026.webp", desc: "Learn how to become a Prompt Engineer in 2026. Explore required skills, AI tools, salary, certifications.", link: "how-to-become-prompt-engineer-in-2026.html", category: "Artificial Intelligence", readTime: "10 min read", date: "June 2026" },
+  { id: "46", title: "How to Become an AI Engineer in 2026", image: "images/ai-engineer-career-guide.webp", desc: "Learn how to become an AI Engineer in 2026. Complete guide covering salary, coding skills, machine learning.", link: "ai-engineer-career-guide.html", category: "Artificial Intelligence", readTime: "12 min read", date: "June 2026" },
+  { id: "47", title: "How to Become a Machine Learning Engineer in 2026", image: "images/machine-learning-engineer-career-guide.webp", desc: "The ultimate production MLOps blueprint. Discover mandatory mathematical foundations.", link: "machine-learning-engineer-career-guide.html", category: "Artificial Intelligence", readTime: "5 min read", date: "June 2026" },
+  { id: "48", title: "How to Become a Data Scientist in 2026", image: "images/data-scientist-career-guide.webp", desc: "The ultimate enterprise analytics blueprint. Discover crucial mathematical models.", link: "data-scientist-career-guide.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
+  { id: "49", title: "How to Become a Software Developer in 2026", image: "images/software-developer-in-2026.webp", desc: "The ultimate full-stack core development blueprint. Discover mandatory architecture frameworks.", link: "software-developer-in-2026.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
+  { id: "50", title: "Final Checklist Before Your SSC Exam Day", image: "images/ssc-jobs-after-10th.webp", link: "ssc-jobs-after-10th.html", category: "Application Guide", readTime: "7 min read", date: "August 2025", desc: "Admit card protocols, original photo identity validations, and testing room rules." },
+  { id: "51", title: "SSC CHSL Career Guide 2026", image: "images/ssc-chsl-career-guide.webp", link: "ssc-chsl-career-guide.html", category: "Government Jobs", readTime: "9 min read", date: "June 2026", desc: "Ultimate 12th-pass Central Government career manual detailing LDC, JSA, and Data Entry Operator structures." },
+  { id: "52", title: "SSC CGL Career Guide 2026", image: "images/ssc-cgl-career-guide.webp", link: "ssc-cgl-career-guide.html", category: "Government Jobs", readTime: "14 min read", date: "June 2026", desc: "Comprehensive graduate-level roadmap detailing Group B & C technical frameworks." },
+  { id: "53", title: "The No-Code Revolution 2026", image: "images/no-code-career-guide.webp", desc: "Ultimate career roadmap detailing how to design, deploy, and scale high-value digital applications.", link: "no-code-career-guide.html", category: "Career Guide", readTime: "10 min read", date: "June 2026" },
+  { id: "54", title: "Is Coding Dead in 2026?", image: "images/is-coding-dead.webp", desc: "Is coding dead due to generative AI? Discover the shifting software engineering landscape in 2026.", link: "is-coding-dead.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
+  { id: "55", title: "Developer Portfolio 2026", image: "images/portfolio.webp", desc: "Step-by-step roadmap to building a future-proof tech portfolio in 2026.", link: "portfolio.html", category: "Career Guide", readTime: "11 min read", date: "June 2026" },
+  { id: "56", title: "AI Solutions Architect Roadmap 2026", image: "images/ai-solutions-architect-career-guide.webp", desc: "The definitive 2026 career roadmap to becoming an Enterprise AI Solutions Architect.", link: "ai-solutions-architect-career-guide.html", category: "Artificial Intelligence", readTime: "12 min read", date: "June 2026" },
+  { id: "57", title: "Best Tech Careers Without Coding After 12th", image: "images/non-coding-tech-careers.webp", desc: "Break into the technology sector without writing syntax. Discover high-paying no-code pathways.", link: "non-coding-tech-careers.html", category: "Career Guide", readTime: "8 min read", date: "June 2026" },
+  { id: "58", title: "Media & Journalism Career Guide India 2026", image: "images/media-journalism-career-guide.webp", desc: "Discover the ultimate 2026 guide to media and journalism careers in India after 12th or graduation.", link: "media-journalism-career-guide.html", category: "Career Guide", readTime: "12 min read", date: "June 2026" },
+  { id: "59", title: "Media & Journalism Careers After BA", image: "images/media-journalism-careers-after-ba.webp", desc: "Ultimate 2026 graduation blueprint tracking high-paying media tracks, elite PG institutions.", link: "media-journalism-careers-after-ba.html", category: "Career Guide", readTime: "14 min read", date: "June 2026" }
+];
 
-    const listDiv = document.getElementById("blog-list");
-    const loadBtn = document.getElementById("loadMoreBtn");
-    const searchInput = document.getElementById("searchInput");
-    const categoryBtns = document.querySelectorAll(".category-btn");
-    const featuredContainer = document.getElementById('featured-container');
+const listDiv = document.getElementById("blog-list");
+const loadBtn = document.getElementById("loadMoreBtn");
+const searchInput = document.getElementById("searchInput");
+const categoryBtns = document.querySelectorAll(".category-btn");
+const featuredContainer = document.getElementById('featured-container');
 
-    let currentCategory = "All";
-    let searchQuery = "";
-    let visibleCount = 10;
+let currentCategory = "All";
+let searchQuery = "";
+let visibleCount = 10;
 
-    // Featured Article Logic
-    function renderFeatured() {
-      const latestBlog = myBlogs[myBlogs.length - 1];
-      featuredContainer.innerHTML = `
-        <img src="blog-placeholder.png" class="w-full h-full object-cover transition duration-500 hover:scale-105">
-        <div class="p-8">
-          <span class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full">${latestBlog.category}</span>
-          <h2 class="text-3xl font-bold text-white mt-5">${latestBlog.title}</h2>
-          <p class="text-slate-400 mt-4">${latestBlog.desc}</p>
-          <a href="${latestBlog.link}" class="inline-block mt-6 bg-blue-600 px-6 py-3 rounded-xl font-bold text-white">Read Article →</a>
+// Update 1: Pulls the image from the array for the Featured post
+function renderFeatured() {
+  const latestBlog = myBlogs[myBlogs.length - 1];
+  featuredContainer.innerHTML = `
+    <img src="${latestBlog.image || 'images/default-blog.webp'}" onerror="this.src='blog-placeholder.png'" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+    <div class="p-8">
+      <span class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full">${latestBlog.category}</span>
+      <h2 class="text-3xl font-bold text-white mt-5">${latestBlog.title}</h2>
+      <p class="text-slate-400 mt-4">${latestBlog.desc}</p>
+      <a href="${latestBlog.link}" class="inline-block mt-6 bg-blue-600 px-6 py-3 rounded-xl font-bold text-white">Read Article →</a>
+    </div>
+  `;
+}
+
+// Update 2: Pulls the image from the array for all normal posts
+function renderBlogs() {
+  const filtered = myBlogs.filter(blog => {
+    const matchesCategory = (currentCategory === "All" || blog.category === currentCategory);
+    const matchesSearch = (
+      blog.title.toLowerCase().includes(searchQuery) || 
+      blog.desc.toLowerCase().includes(searchQuery) ||
+      (blog.category && blog.category.toLowerCase().includes(searchQuery))
+    );
+    return matchesCategory && matchesSearch;
+  });
+
+  listDiv.innerHTML = "";
+  if (filtered.length === 0) {
+    listDiv.innerHTML = `<p class="text-slate-400 text-center w-full col-span-1 md:col-span-2 py-10">No articles found matching your criteria.</p>`;
+    loadBtn.style.display = "none";
+    return;
+  }
+
+  const blogsToRender = filtered.slice(0, visibleCount);
+  blogsToRender.forEach(blog => {
+    listDiv.innerHTML += `
+      <article class="blog-card flex flex-col overflow-hidden">
+        <img src="${blog.image || 'images/default-blog.webp'}" onerror="this.src='blog-placeholder.png'" class="w-full h-48 object-cover transition duration-500 hover:scale-105">  
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-[10px] font-bold text-blue-400 uppercase bg-blue-500/10 px-2 py-1 rounded">${blog.category}</span>
+            <span class="text-xs text-slate-500">${blog.readTime || "5 min read"}</span>
+          </div>
+          <h3 class="blog-title">${blog.title}</h3>
+          <p class="blog-desc">${blog.desc}</p>
+          <div class="flex justify-between text-xs text-slate-500 mt-3 mb-5">
+            <span>📅 ${blog.date || "June 2026"}</span>
+            <span>🕒 ${blog.readTime || "5 min read"}</span>
+          </div>
+          <a href="${blog.link}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-semibold text-white transition mt-auto">Read Article →</a>     
         </div>
-      `;
-    }
+      </article>
+    `;
+  });
+  loadBtn.style.display = (visibleCount >= filtered.length) ? "none" : "block";
+}
 
-    function renderBlogs() {
-      const filtered = myBlogs.filter(blog => {
-        const matchesCategory = (currentCategory === "All" || blog.category === currentCategory);
-        const matchesSearch = (
-          blog.title.toLowerCase().includes(searchQuery) || 
-          blog.desc.toLowerCase().includes(searchQuery) ||
-          (blog.category && blog.category.toLowerCase().includes(searchQuery))
-        );
-        return matchesCategory && matchesSearch;
-      });
+searchInput.addEventListener("input", (e) => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  visibleCount = 10;
+  renderBlogs();
+});
 
-      listDiv.innerHTML = "";
-      if (filtered.length === 0) {
-        listDiv.innerHTML = `<p class="text-slate-400 text-center w-full col-span-1 md:col-span-2 py-10">No articles found matching your criteria.</p>`;
-        loadBtn.style.display = "none";
-        return;
-      }
-
-      const blogsToRender = filtered.slice(0, visibleCount);
-      blogsToRender.forEach(blog => {
-        listDiv.innerHTML += `
-          <article class="blog-card flex flex-col overflow-hidden">
-            <img src="blog-placeholder.png" class="w-full h-48 object-cover transition duration-500 hover:scale-105">  
-            <div class="p-5 flex flex-col flex-1">
-              <div class="flex justify-between items-center mb-3">
-                <span class="text-[10px] font-bold text-blue-400 uppercase bg-blue-500/10 px-2 py-1 rounded">${blog.category}</span>
-                <span class="text-xs text-slate-500">${blog.readTime || "5 min read"}</span>
-              </div>
-              <h3 class="blog-title">${blog.title}</h3>
-              <p class="blog-desc">${blog.desc}</p>
-              <div class="flex justify-between text-xs text-slate-500 mt-3 mb-5">
-                <span>📅 ${blog.date || "June 2026"}</span>
-                <span>🕒 ${blog.readTime || "5 min read"}</span>
-              </div>
-              <a href="${blog.link}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-semibold text-white transition mt-auto">Read Article →</a>     
-            </div>
-          </article>
-        `;
-      });
-      loadBtn.style.display = (visibleCount >= filtered.length) ? "none" : "block";
-    }
-
-    searchInput.addEventListener("input", (e) => {
-      searchQuery = e.target.value.toLowerCase().trim();
-      visibleCount = 10;
-      renderBlogs();
-    });
-
-    categoryBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        categoryBtns.forEach(b => { b.classList.remove("bg-blue-600", "text-white"); b.classList.add("bg-[#111827]"); });
-        btn.classList.remove("bg-[#111827]");
-        btn.classList.add("bg-blue-600", "text-white");
-        currentCategory = btn.dataset.category;
-        visibleCount = 10;
-        renderBlogs();
-      });
-    });
-
-    loadBtn.addEventListener("click", () => {
-      visibleCount += 10;
-      renderBlogs();
-    });
-
-    // Initialize Page
-    renderFeatured();
+categoryBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    categoryBtns.forEach(b => { b.classList.remove("bg-blue-600", "text-white"); b.classList.add("bg-[#111827]"); });
+    btn.classList.remove("bg-[#111827]");
+    btn.classList.add("bg-blue-600", "text-white");
+    currentCategory = btn.dataset.category;
+    visibleCount = 10;
     renderBlogs();
+  });
+});
+
+loadBtn.addEventListener("click", () => {
+  visibleCount += 10;
+  renderBlogs();
+});
+
+// Initialize Page
+renderFeatured();
+renderBlogs();
+
+    
   </script>
 </section>
 
