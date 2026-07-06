@@ -34,7 +34,7 @@
     body{
       background:#0f172a;
       color:#e2e8f0;
-      font-family:system-ui;
+      font-family:system-ui, -apple-system, sans-serif;
     }
     .article p{
       margin-top:1.25rem;
@@ -92,11 +92,9 @@
       padding:1.5rem;
       margin-top:1.5rem;
     }
-    /* Smooth Scroll configuration */
     html {
       scroll-behavior: smooth;
     }
-    /* Sticky Container Layout updates */
     .toc-sticky {
       position: -webkit-sticky;
       position: sticky;
@@ -237,7 +235,6 @@
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 article">
   <div class="box text-center py-6">
-    <!-- Section 22: E-E-A-T Trust Signals Panel -->
     <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-400 border-b border-white/5 pb-4 mb-4">
       <span class="flex items-center gap-1 text-emerald-400">🛡️ Fact Checked</span>
       <span class="text-slate-600">|</span>
@@ -264,34 +261,33 @@
       <div class="box text-center m-0 bg-white/5 border-white/10">🚀 Key Factor<br><strong>Skills Over Degrees</strong></div>
     </div>
 
-<!-- what is-->
-    <div style="background: rgba(30, 41, 59, 0.7); border-radius: 16px; padding: 30px; margin: 30px 0; border: 1px solid rgba(59, 130, 246, 0.2); font-family: system-ui, -apple-system, sans-serif; color: #f8fafc; backdrop-blur: md;">
-    <h2 style="color: #ffffff; margin-top: 0; font-size: 1.6rem; text-align: center; margin-bottom: 24px; font-weight: 800; tracking: tight;">
-        ⚡ 60-Second Verdict: BCA vs. BTech CSE
-    </h2>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-        <div style="background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 12px; border-top: 4px solid #06b6d4; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-            <strong style="color: #06b6d4; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                💻 BCA (Bachelor of Computer Applications)
-            </strong>
-            <p style="margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">
-                A <strong>3-year undergraduate program</strong> heavily focused on software deployment, web development, and application building. It provides a faster, cost-efficient path into the IT industry and does not mandate high school engineering physics or calculus.
-            </p>
-        </div>
+    <div style="background: rgba(30, 41, 59, 0.7); border-radius: 16px; padding: 30px; margin: 30px 0; border: 1px solid rgba(59, 130, 246, 0.2); color: #f8fafc; backdrop-filter: blur(8px);">
+        <h2 style="color: #ffffff; margin-top: 0; font-size: 1.6rem; text-align: center; margin-bottom: 24px; font-weight: 800; letter-spacing: -0.025em; border: none; padding: 0;">
+            ⚡ 60-Second Verdict: BCA vs. BTech CSE
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 12px; border-top: 4px solid #06b6d4; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <strong style="color: #06b6d4; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                    💻 BCA (Bachelor of Computer Applications)
+                </strong>
+                <p style="margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">
+                    A <strong>3-year undergraduate program</strong> heavily focused on software deployment, web development, and application building. It provides a faster, cost-efficient path into the IT industry and does not mandate high school engineering physics or calculus.
+                </p>
+            </div>
 
-        <div style="background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 12px; border-top: 4px solid #3b82f6; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-            <strong style="color: #3b82f6; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                ⚙️ BTech CSE (Computer Science Engineering)
-            </strong>
-            <p style="margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">
-                A <strong>4-year professional engineering degree</strong> exploring deep hardware architectures, core compiler design, and complex computing logic. Highly prioritized globally for deep tech development, R&D, and on-campus international engineering workflows.
-            </p>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 12px; border-top: 4px solid #3b82f6; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <strong style="color: #3b82f6; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                    ⚙️ BTech CSE (Computer Science Engineering)
+                </strong>
+                <p style="margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">
+                    A <strong>4-year professional engineering degree</strong> exploring deep hardware architectures, core compiler design, and complex computing logic. Highly prioritized globally for deep tech development, R&D, and on-campus international engineering workflows.
+                </p>
+            </div>
         </div>
     </div>
-</div>
 
-    <!-- Section 1: Quick Comparison Matrix (Immediately below H1 block) -->
+    <!-- Section 1: Quick Comparison Matrix -->
     <div class="table-wrap my-6 border border-white/10 rounded-xl overflow-hidden bg-slate-900/40">
       <table class="m-0" aria-label="BCA vs BTech Quick Evaluation Matrix">
         <caption class="sr-only">Comprehensive overview of BCA and BTech across ten metrics</caption>
@@ -355,13 +351,13 @@
   <!-- Section 1 -->
   <h2 id="core-difference">1. Core Philosophy: Application vs. Engineering</h2>
   <p>
-    Choosing between a Bachelor of Computer Applications (**BCA**) and a Bachelor of Technology in Computer Science Engineering (**BTech CSE**) dictates your everyday professional focus. 
+    Choosing between a Bachelor of Computer Applications (<strong>BCA</strong>) and a Bachelor of Technology in Computer Science Engineering (<strong>BTech CSE</strong>) dictates your everyday professional focus. 
   </p>
   <p>
-    **BCA** is primarily software application-oriented. It focuses strictly on teaching you how to use existing tools, languages, and frameworks to deploy commercial business software packages efficiently. On the other hand, **BTech** is rooted deeply in fundamental engineering principles. It analyzes the hardware-software connection, algorithm design efficiency, and architectural layouts from the ground up.
+    <strong>BCA</strong> is primarily software application-oriented. It focuses strictly on teaching you how to use existing tools, languages, and frameworks to deploy commercial business software packages efficiently. On the other hand, <strong>BTech</strong> is rooted deeply in fundamental engineering principles. It analyzes the hardware-software connection, algorithm design efficiency, and architectural layouts from the ground up.
   </p>
 
-  <!-- Section 3 & 4: Profile Compatibility Selectors (Who should choose which) -->
+  <!-- Section 3 & 4: Profile Compatibility Selectors -->
   <h2 id="quick-selectors">2. Choice Vectors: Who Fits Best Where?</h2>
   <p>
     Both streams fit different types of student backgrounds, budget constraints, and long-term tech aspirations.
@@ -469,7 +465,7 @@
   <!-- High-CPM Ad Network Script Placeholder Location B -->
   <script src="https://pl29615986.effectivecpmnetwork.com/e4/59/55/e459551ce28cd5823efbdd24e4ac830d.js"></script>
 
-  <!-- Section 6: Skills Recruiters Actually Want (Helpful content/E-E-A-T booster) -->
+  <!-- Section 6: Skills Recruiters Actually Want -->
   <h2 id="recruiter-skills">6. Professional Competence Demands: Skills Recruiters Actually Want</h2>
   <p>
     Global technology platforms do not run compile routines on paper degrees. Whether you hold a BCA or a BTech, modern recruitment focuses on your ability to deploy scalable apps and maintain reliable tech infrastructure. Teams prioritize candidate performance over traditional qualification labels.
@@ -477,14 +473,14 @@
   <div class="box bg-slate-900/60 border border-white/10">
     <h3 class="text-white font-extrabold text-lg mt-0 mb-4">🔧 High-Yield Recruiter Skill Dashboard</h3>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-slate-300">
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Code Orchestration:</strong> Git, GitHub, GitLab ecosystem control.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Core Syntaxes:</strong> Clean control of Python, Java, and JavaScript engine parameters.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Web Foundations:</strong> React, Node.js framework infrastructure.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Data Architecture:</strong> SQL architecture alongside deep index styling.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Infrastructure:</strong> Linux system environments and secure shell manipulation.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Micro-Services:</strong> Docker environment container setups and REST APIs design.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">Soft Dynamics:</strong> Clean problem-solving frameworks and documentation clarity.</div>
-      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong class="text-blue-400">E-E-A-T Portfolio:</strong> Production-ready GitHub links and verified internship proofs.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Code Orchestration:</strong> Git, GitHub, GitLab ecosystem control.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Core Syntaxes:</strong> Clean control of Python, Java, and JavaScript engine parameters.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Web Foundations:</strong> React, Node.js framework infrastructure.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Data Architecture:</strong> SQL architecture alongside deep index styling.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Infrastructure:</strong> Linux system environments and secure shell manipulation.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Micro-Services:</strong> Docker environment container setups and REST APIs design.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>Soft Dynamics:</strong> Clean problem-solving frameworks and documentation clarity.</div>
+      <div class="p-3 bg-white/5 rounded-lg border border-white/5"><strong>E-E-A-T Portfolio:</strong> Production-ready GitHub links and verified internship proofs.</div>
     </div>
   </div>
 
@@ -546,7 +542,7 @@
     </table>
   </div>
 
-  <!-- Section 8: Global Salaries Expansion (International Audience Focus) -->
+  <!-- Section 8: Global Salaries Expansion -->
   <p class="mt-6 text-sm text-slate-300">
     Let's analyze how international markets value specialized engineering and applications talent across several regions.
   </p>
@@ -641,15 +637,15 @@
   <!-- Section 5 original -->
   <h2 id="eeat-framework">11. Industry Realities: The E-E-A-T Skill Evaluation Rule</h2>
   <p>
-    According to global corporate standards, modern software engineering recruiters look past raw degree titles. Companies utilize a strict **Experience, Expertise, Authoritativeness, and Trustworthiness (E-E-A-T)** filter to vet talent:
+    According to global corporate standards, modern software engineering recruiters look past raw degree titles. Companies utilize a strict <strong>Experience, Expertise, Authoritativeness, and Trustworthiness (E-E-A-T)</strong> filter to vet talent:
   </p>
   <div class="box bg-gradient-to-r from-slate-900 to-blue-950/40 border-blue-500/20">
-    <p class="m-0 text-sm leading-relaxed text-slate-300">
+    <div class="text-sm leading-relaxed text-slate-300">
       <strong>How to build corporate authority as a student:</strong><br>
       1. <a href="software-engineering-career-guide.html" class="text-blue-400 hover:underline"><strong>Proven Expertise:</strong></a> Build production-ready code repositories on GitHub containing real, active full-stack applications.<br>
       2. <strong>Authoritativeness:</strong> Write comprehensive technical analyses on LinkedIn or medium blogs documenting architectural debugging workflows.<br>
       3. <a href="cloud-computing-career-guide.html" class="text-blue-400 hover:underline"><strong>Trustworthiness:</strong></a> Contribute to verified open-source environments and complete industry-certified specialization paths like AWS Cloud Practitioner or Google Professional Cloud Architect.
-    </p>
+    </div>
   </div>
 
   <!-- Section 6 original with Section 11 Higher Education Extensions Added -->
@@ -818,13 +814,13 @@
   <!-- Section 17: Common Mistakes Students Make -->
   <h2 id="student-pitfalls">18. Avoidable Strategic Choice Pitfalls</h2>
   <div class="box border-red-500/20 bg-slate-900/60">
-    <p class="m-0 text-sm leading-relaxed text-slate-300">
+    <div class="text-sm leading-relaxed text-slate-300">
       ⚠️ <strong>Key Pitfalls to Avoid During Your Training:</strong><br>
       • <strong>Chasing Status Labels:</strong> Don't choose an academic track based solely on generic salary charts without looking at the course curriculum.<br>
       • <strong>Neglecting Practical Portfolios:</strong> Avoid relying entirely on textbook terms while neglecting your active developer accounts like GitHub.<br>
       • <strong>Skipping Technical Internships:</strong> Ensure you gain real-world project experience before entering the job placement market.<br>
       • <strong>Ignoring Professional Networking:</strong> Connect with working tech professionals on platforms like LinkedIn to build industry connections.
-    </p>
+    </div>
   </div>
 
   <!-- Section 7 (Old Title replaced with "Expert Recommendation" Section 18) -->
@@ -833,7 +829,7 @@
     Your choice should match your individual profile limitations and timeline preferences perfectly:
   </p>
   <p>
-    Pick **BCA** if you want a faster, budget-friendly 3-year route into the software market, bypassing intense PCM high-school requirements, and plan to build your market authority through cloud certifications and open-source contributions. Choose **BTech** if you enjoy intense mathematical analysis, want to work in core hardware-software engineering domains, and want to leverage high-tier on-campus institutional recruitment networks from day one.
+    Pick <strong>BCA</strong> if you want a faster, budget-friendly 3-year route into the software market, bypassing intense PCM high-school requirements, and plan to build your market authority through cloud certifications and open-source contributions. Choose <strong>BTech</strong> if you enjoy intense mathematical analysis, want to work in core hardware-software engineering domains, and want to leverage high-tier on-campus institutional recruitment networks from day one.
   </p>
 
   <div class="box text-center border-emerald-500/30 bg-emerald-950/20 my-8">
@@ -849,7 +845,7 @@
     In summary, neither degree is universally superior for every individual. Long-term professional growth within the global technology sector depends on your hands-on coding skills, verified development portfolios, practical experience, strong technical communication, and a commitment to continuous learning.
   </p>
 
-  <!-- Section 8 & 21: Comprehensive FAQs expansion (15 Structural Search Engine Optimization FAQs) -->
+  <!-- Section 8 & 21: Comprehensive FAQs expansion -->
   <section class="mt-8 border-t border-white/5 pt-6">
     <h2 id="academic-faqs">20. Frequently Asked Academic Intel FAQs</h2>
 
@@ -929,7 +925,7 @@
     </div>
   </section>
 
-  <!-- RELATED PATHWAYS (Section 20: Natural contextual internal links integrated throughout) -->
+  <!-- RELATED PATHWAYS -->
   <section class="mt-20">
     <h2 class="text-3xl font-extrabold mb-10 border-l-4 border-blue-600 pl-4">
       Explore High-Tier Alternative Career Tracks
