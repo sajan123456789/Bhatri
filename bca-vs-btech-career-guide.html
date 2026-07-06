@@ -388,6 +388,32 @@
 
 </main>
   
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BreadcrumbList",
+ "itemListElement":[
+  {
+   "@type":"ListItem",
+   "position":1,
+   "name":"Home",
+   "item":"https://careersteps.in"
+  },
+  {
+   "@type":"ListItem",
+   "position":2,
+   "name":"Blogs",
+   "item":"https://careersteps.in/blog.html"
+  },
+  {
+   "@type":"ListItem",
+   "position":3,
+   "name":"BCA vs BTech Career Guide"
+  }
+ ]
+}
+</script>
 <footer class="footer-premium pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
@@ -427,42 +453,61 @@
   </div>
 </footer>
 
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"BreadcrumbList",
- "itemListElement":[
-  {
-   "@type":"ListItem",
-   "position":1,
-   "name":"Home",
-   "item":"https://careersteps.in"
-  },
-  {
-   "@type":"ListItem",
-   "position":2,
-   "name":"Blogs",
-   "item":"https://careersteps.in/blog.html"
-  },
-  {
-   "@type":"ListItem",
-   "position":3,
-   "name":"BCA vs BTech Career Guide"
-  }
- ]
-}
-</script>
-
 <script>
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.onclick = function() {
+      if (mobileMenu.classList.contains('hidden')) { mobileMenu.classList.remove('hidden'); } 
+      else { mobileMenu.classList.add('hidden'); }
+    };
+  }
+</script>
+<script src="https://pl29615986.effectivecpmnetwork.com/e4/59/55/e459551ce28cd5823efbdd24e4ac830d.js"></script>
 
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-  });
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+ 
+const firebaseConfig = {
+  apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+  authDomain: "careersteps-afa5d.firebaseapp.com",
+  projectId: "careersteps-afa5d",
+  storageBucket: "careersteps-afa5d.firebasestorage.app",
+  messagingSenderId: "197033973372",
+  appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9",
+  measurementId: "G-90SZVYJ200"
+};
+
+const csApp = initializeApp(firebaseConfig);
+const csAuth = getAuth(csApp);
+const messaging = getMessaging(csApp);
+const db = getFirestore(csApp);
+const provider = new GoogleAuthProvider();
+
+window.googleLogin = () => {
+  signInWithPopup(csAuth, provider)
+    .then((result) => { window.location.reload(); })
+    .catch((error) => { alert("Sign-in Error: " + error.message); });
+};
+
+window.googleLogout = () => { signOut(csAuth).then(() => { window.location.reload(); }); };
+
+onAuthStateChanged(csAuth, (user) => {
+  const authDesktop = document.getElementById("auth-area-desktop");
+  const authMobile = document.getElementById("auth-area-mobile");
+  if (user) {
+    if (authDesktop) authDesktop.innerHTML = `<div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl"><img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover"><span class="hidden lg:block text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span><button onclick="googleLogout()" class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">Logout</button></div>`;
+    if (authMobile) authMobile.innerHTML = `<div class="flex flex-col items-center gap-3 w-full max-w-[200px]"><div class="flex items-center gap-2"><img src="${user.photoURL}" class="w-8 h-8 rounded-full border border-blue-500 object-cover"><span class="text-white text-sm font-semibold truncate max-w-[120px]">${user.displayName}</span></div><button onclick="googleLogout()" class="w-full bg-red-600 hover:bg-red-500 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-white transition">Logout</button></div>`;
+  } else {
+    if (authDesktop) authDesktop.innerHTML = `<button onclick="googleLogin()" class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap">Sign In</button>`;
+    if (authMobile) authMobile.innerHTML = `<button onclick="googleLogin()" class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap w-full">Sign In</button>`;
+  }
+});
 </script>
 
-<script src="https://pl29615986.effectivecpmnetwork.com/e4/59/55/e459551ce28cd5823efbdd24e4ac830d.js"></script>
-   
+
 </body>
 </html>
