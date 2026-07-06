@@ -36,12 +36,23 @@
       color:#e2e8f0;
       font-family:system-ui, -apple-system, sans-serif;
     }
-    .article p{
-      margin-top:1.25rem;
-      line-height:2;
-      color:#d1d5db;
-      font-size:1.05rem;
-    }
+.article p{
+  margin:1.25rem 0;
+  font-size:1.1rem;
+  line-height:2;
+  color:#cbd5e1;
+}
+
+.article h2{
+  margin-top:4rem;
+  margin-bottom:1.5rem;
+}
+
+.article h3{
+  margin-top:2rem;
+  margin-bottom:.8rem;
+}
+    
     .article h2{
       margin-top:2.75rem;
       font-size:1.8rem;
@@ -57,9 +68,13 @@
       color:#93c5fd;
     }
     .table-wrap{
-      overflow-x:auto;
-      -webkit-overflow-scrolling:touch;
+    width:100%;
+    overflow-x:auto;
+    border-radius:18px;
+    margin:2rem 0;
     }
+
+
     table{
       min-width:700px;
       width:100%;
@@ -223,7 +238,8 @@
 <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 article">
   
   <!-- FIXED CONTAINER WRAPPER FOR HEADING -->
-  <div class="max-w-4xl mx-auto text-center py-6">
+<div class="max-w-5xl mx-auto text-center py-12">
+
     <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-400 border-b border-white/5 pb-4 mb-4">
       <span class="flex items-center gap-1 text-emerald-400">🛡️ Fact Checked</span>
       <span class="text-slate-600">|</span>
@@ -245,8 +261,8 @@
   </div>
 
   <!-- MAIN WRAPPER: This ensures all text and tables stay centered with proper margins -->
-  <div class="max-w-4xl mx-auto px-4">
-    
+  <div class="max-w-5xl mx-auto px-5 lg:px-8">
+ 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
       <div class="box text-center m-0 bg-white/5 border-white/10">⏱ BCA Duration<br><strong class="text-cyan-400">3 Years</strong></div>
       <div class="box text-center m-0 bg-white/5 border-white/10">⏱ BTech Duration<br><strong class="text-blue-400">4 Years</strong></div>
