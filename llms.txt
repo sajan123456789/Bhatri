@@ -1,0 +1,41 @@
+# CareerSteps
+
+CareerSteps is an AI-powered career guidance platform helping students worldwide choose the right careers after 10th and 12th.
+
+Website:
+https://careersteps.in
+
+Description:
+Free AI Career Test, Career Guidance, Career Planning, Career Options, Entrance Exams, Study Abroad, Government Jobs, AI Careers, Engineering, Medical, Commerce, Arts and Future Skills.
+
+Important Pages
+
+Home
+https://careersteps.in/
+
+AI Career Test
+https://careersteps.in/assessment.html
+
+Explore Careers
+https://careersteps.in/careers.html
+
+Career Blogs
+https://careersteps.in/blog.html
+
+Career Options After 10th
+https://careersteps.in/after10.html
+
+Career Options After 12th
+https://careersteps.in/after12.html
+
+About
+https://careersteps.in/about.html
+
+Contact
+https://careersteps.in/contact.html
+
+Sitemap
+https://careersteps.in/sitemap.xml
+
+Robots
+https://careersteps.in/robots.txt
