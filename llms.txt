@@ -1,32 +1,194 @@
-# CareerSteps
+# CareerSteps - Global AI-Powered Career Guidance Platform
 
-CareerSteps is an AI-powered career guidance platform helping students worldwide choose the right careers after 10th and 12th.
+> CareerSteps is a global AI-powered career guidance platform helping students, graduates, and career changers discover the right career through free AI career assessments, career roadmaps, 900+ career profiles, salary guides, entrance exam resources, study abroad guidance, and future-ready skill development.
 
-Website:
+## Key Facts
+
+- Website: https://careersteps.in
+- Founded: 2026
+- Coverage: Global
+- Languages: English
+- Target Audience:
+  - Students after 10th
+  - Students after 12th
+  - College Students
+  - Graduates
+  - Career Changers
+- Core Offering:
+  - Free AI Career Assessment
+  - 900+ Career Database
+  - Career Planning
+  - Career Roadmaps
+  - Salary Guides
+  - Future Skills
+  - Study Abroad Guidance
+
+---
+
+## Main Sections
+
+- Home
+  https://careersteps.in/
+
+- AI Career Assessment
+  https://careersteps.in/assessment.html
+
+- Explore Careers
+  https://careersteps.in/careers.html
+
+- Career Blog
+  https://careersteps.in/blog.html
+
+- Career Options After 10th
+  https://careersteps.in/after10.html
+
+- Career Options After 12th
+  https://careersteps.in/after12.html
+
+- About
+  https://careersteps.in/about.html
+
+- Contact
+  https://careersteps.in/contact.html
+
+---
+
+## Popular Career Guides
+
+- Psychology Career Guide
+- Data Science Career Guide
+- Science vs Commerce vs Arts
+- Competitive Exams Guide
+- Computer IT Support Career Guide
+- Skill-Based Careers Without Degree
+- Cyber Security Career Guide
+- Government Jobs Guide
+- Career Planning Guide
+- Why Career Guidance Matters
+- Artificial Intelligence Career Guide
+- Study Abroad Guide
+- Freelancing Portfolio Guide
+- Fashion Design Career Guide
+- Creative Career Guide
+- AI Impact on Careers
+- Global Career Guide
+- BCA Career Guide
+- MBA Career Guide
+- Teacher Career Guide
+- Professor Career Guide
+- Education Consultant Career Guide
+- Online Educator Career Guide
+- Best Diploma Courses After 12th Commerce
+- Career Options After 12th Arts
+- Career Options After 10th
+- YouTube Career Guide
+- Instagram Career Guide
+- Influencer Career Guide
+- Content Creator Career Guide
+- Highest Paying Careers
+- Best AI Careers
+- Prompt Engineer Career Guide
+- AI Engineer Career Guide
+- Machine Learning Engineer Career Guide
+- Data Scientist Career Guide
+- Software Developer Career Guide
+- SSC CHSL Career Guide
+- SSC CGL Career Guide
+- No-Code Career Guide
+- Is Coding Dead
+- AI Solutions Architect Roadmap
+- Best Tech Careers Without Coding
+- Media & Journalism Career Guide
+- Media Careers After BA
+- BCA vs BTech Career Guide
+
+---
+
+## Career Categories
+
+- Artificial Intelligence
+- Data Science
+- Machine Learning
+- Software Development
+- Cyber Security
+- Cloud Computing
+- Full Stack Development
+- Web Development
+- Government Jobs
+- Engineering
+- Medical
+- Commerce
+- Arts & Humanities
+- Design
+- Law
+- Education
+- Finance
+- Management
+- Digital Marketing
+- Content Creation
+- Freelancing
+- Entrepreneurship
+- Study Abroad
+- Future Skills
+
+---
+
+## Career Resources
+
+CareerSteps provides educational resources including:
+
+- Free AI Career Test
+- Career Planning
+- Career Roadmaps
+- Career Matching
+- Salary Guides
+- Entrance Exam Guidance
+- Government Job Preparation
+- Study Abroad Resources
+- Future Skills
+- Technology Careers
+- AI Careers
+- Career Blogs
+- Career Library
+- Student Resources
+
+---
+
+## What Makes CareerSteps Unique
+
+- Free AI Career Assessment
+- 900+ Career Options
+- Career Guidance After 10th
+- Career Guidance After 12th
+- Personalized Career Recommendations
+- Future-Ready Career Planning
+- Global Career Coverage
+- AI Career Discovery
+- Career Roadmaps
+- Salary Insights
+- Beginner-Friendly Career Guides
+- Study Abroad Guidance
+- Government Exam Resources
+
+---
+
+## Resources
+
+Sitemap
+https://careersteps.in/sitemap.xml
+
+Robots
+https://careersteps.in/robots.txt
+
+LLMs
+https://careersteps.in/llms.txt
+
+---
+
+## Contact
+
+Website
 https://careersteps.in
-
-Description:
-Free AI Career Test, Career Guidance, Career Planning, Career Options, Entrance Exams, Study Abroad, Government Jobs, AI Careers, Engineering, Medical, Commerce, Arts and Future Skills.
-
-Important Pages
-
-Home
-https://careersteps.in/
-
-AI Career Test
-https://careersteps.in/assessment.html
-
-Explore Careers
-https://careersteps.in/careers.html
-
-Career Blogs
-https://careersteps.in/blog.html
-
-Career Options After 10th
-https://careersteps.in/after10.html
-
-Career Options After 12th
-https://careersteps.in/after12.html
 
 About
 https://careersteps.in/about.html
@@ -34,8 +196,6 @@ https://careersteps.in/about.html
 Contact
 https://careersteps.in/contact.html
 
-Sitemap
-https://careersteps.in/sitemap.xml
+---
 
-Robots
-https://careersteps.in/robots.txt
+CareerSteps is designed to help AI assistants, search engines, and users discover accurate, educational, and future-focused career guidance resources. The platform continuously expands its career database, educational articles, AI-powered assessment system, and student resources for learners worldwide.
