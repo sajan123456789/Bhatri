@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Import Colleges</title>
+</head>
+<body>
+
+<h2>Importing Colleges...</h2>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+  authDomain: "careersteps-afa5d.firebaseapp.com",
+  projectId: "careersteps-afa5d",
+  storageBucket: "careersteps-afa5d.firebasestorage.app",
+  messagingSenderId: "197033973372",
+  appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const res = await fetch("data/colleges-batch1.json");
+const colleges = await res.json();
+
+for (const college of colleges) {
+  await addDoc(collection(db, "colleges"), college);
+  console.log("Added:", college.name);
+}
+
+document.body.innerHTML="<h1>✅ Batch 1 Imported Successfully</h1>";
+</script>
+
+</body>
+</html>
