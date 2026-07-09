@@ -114,7 +114,7 @@
   <section class="relative py-12 lg:py-20 px-4 border-b border-white/5 bg-gradient-to-b from-brand-dark to-[#0f172a]">
     <div class="max-w-4xl mx-auto text-center relative z-10">
       <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Find the Best College</h1>
-      <p class="text-slate-400 text-sm md:text-base mb-8">From 5000+ Colleges Across India</p>
+      <p class="text-slate-400 text-sm md:text-base mb-8">From 500+ Colleges Across India</p>
       
       <div class="relative max-w-3xl mx-auto shadow-2xl shadow-blue-900/20 rounded-2xl">
         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -387,7 +387,9 @@ const highestPkg = formatPackage(data.highestPackage);
       
       const nirf = data.nirfRank ? `🏆 NIRF ${data.nirfRank}` : '';
       const naac = data.naac ? `⭐ NAAC ${data.naac}` : '';
-      const placement = data.placement ? `📈 ${data.placement} Placement` : '';
+      const placement = data.placement
+  ? `📈 ${data.placement}% Placement`
+  : '';
 
       return `
         <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group">
