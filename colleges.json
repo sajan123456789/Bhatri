@@ -1015,4 +1015,82 @@
     "PhD"
   ]
 }
+  ,
+{
+  "name": "National Institute of Technology Agartala",
+  "shortName": "NIT Agartala",
+  "city": "Agartala",
+  "state": "Tripura",
+  "type": "Government",
+  "description": "Premier National Institute of Technology offering quality engineering, science and management education.",
+  "established": 1965,
+  "fees": 165000,
+  "avgPackage": 13.2,
+  "highestPackage": 52,
+  "placement": 86,
+  "nirfRank": 82,
+  "naac": "A",
+  "website": "https://www.nita.ac.in",
+  "image": "images/colleges/nit-agartala.webp",
+  "logo": "logos/nit-agartala.png",
+  "courses": [
+    "B.Tech",
+    "B.Arch",
+    "M.Tech",
+    "M.Sc",
+    "MBA",
+    "MCA",
+    "PhD"
+  ]
+},
+{
+  "name": "National Institute of Technology Arunachal Pradesh",
+  "shortName": "NIT Arunachal Pradesh",
+  "city": "Yupia",
+  "state": "Arunachal Pradesh",
+  "type": "Government",
+  "description": "National Institute of Technology focused on engineering education, innovation and research.",
+  "established": 2010,
+  "fees": 165000,
+  "avgPackage": 11.3,
+  "highestPackage": 40,
+  "placement": 81,
+  "nirfRank": 101,
+  "naac": "A",
+  "website": "https://www.nitap.ac.in",
+  "image": "images/colleges/nit-arunachal-pradesh.webp",
+  "logo": "logos/nit-arunachal-pradesh.png",
+  "courses": [
+    "B.Tech",
+    "M.Tech",
+    "M.Sc",
+    "PhD"
+  ]
+},
+{
+  "name": "International Institute of Information Technology Hyderabad",
+  "shortName": "IIIT Hyderabad",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "type": "Private",
+  "description": "India's leading institute for Computer Science, Artificial Intelligence and Information Technology.",
+  "established": 1998,
+  "fees": 450000,
+  "avgPackage": 32.0,
+  "highestPackage": 105,
+  "placement": 98,
+  "nirfRank": 47,
+  "naac": "A++",
+  "website": "https://www.iiit.ac.in",
+  "image": "images/colleges/iiit-hyderabad.webp",
+  "logo": "logos/iiit-hyderabad.png",
+  "courses": [
+    "B.Tech",
+    "B.Tech + MS",
+    "MS",
+    "M.Tech",
+    "MSc",
+    "PhD"
+  ]
+}
 ]
