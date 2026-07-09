@@ -369,8 +369,12 @@
       const type = data.type || 'Private';
       const cover = data.image || 'https://via.placeholder.com/600x400/1e293b/94a3b8?text=Campus';
       const logo = data.logo || 'https://via.placeholder.com/100?text=Logo';
-      const fees = data.fees ? `₹ ${data.fees} LPA` : 'N/A';
-      const pkg = data.avgPackage ? `₹ ${data.avgPackage} LPA` : 'N/A';
+      
+      // Formatting Values using toLocaleString('en-IN') and correct suffixes
+      const fees = data.fees ? `₹${Number(data.fees).toLocaleString('en-IN')} / Year` : 'N/A';
+      const pkg = data.avgPackage ? `₹${data.avgPackage} LPA` : 'N/A';
+      const highestPkg = data.highestPackage ? `₹${data.highestPackage} LPA` : 'N/A';
+      
       const nirf = data.nirfRank ? `🏆 NIRF ${data.nirfRank}` : '';
       const naac = data.naac ? `⭐ NAAC ${data.naac}` : '';
       const placement = data.placement ? `📈 ${data.placement} Placement` : '';
@@ -407,14 +411,18 @@
               ${nirf ? `<span class="text-[10px] font-bold px-2 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">${nirf}</span>` : ''}
             </div>
 
-            <div class="grid grid-cols-2 gap-3 mb-5 p-3 bg-slate-800/30 rounded-xl border border-white/5">
+            <div class="grid grid-cols-3 gap-2 mb-5 p-3 bg-slate-800/30 rounded-xl border border-white/5">
               <div>
-                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wide">Avg Package</p>
-                <p class="text-sm font-extrabold text-white">${pkg}</p>
+                <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wide">Avg Pkg</p>
+                <p class="text-[13px] font-extrabold text-white truncate" title="${pkg}">${pkg}</p>
               </div>
               <div>
-                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wide">First Year Fees</p>
-                <p class="text-sm font-extrabold text-white">${fees}</p>
+                <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wide">Highest</p>
+                <p class="text-[13px] font-extrabold text-white truncate" title="${highestPkg}">${highestPkg}</p>
+              </div>
+              <div>
+                <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wide">Fees/Yr</p>
+                <p class="text-[13px] font-extrabold text-white truncate" title="${fees}">${fees}</p>
               </div>
             </div>
 
@@ -478,8 +486,10 @@
           // Client-side filtering for complex bounds (Fees, Search Text) due to Firestore limits
           let pass = true;
           
-          // Using 'fees' field instead of 'feesLPA'
-          if (currentFilters.maxFeeLPA < 20 && (data.fees > currentFilters.maxFeeLPA || !data.fees)) pass = false;
+          // Slider value is in LPA (e.g., 20 LPA), but data.fees is in INR (e.g., 255000)
+          // So convert LPA limit to INR for accurate filtering
+          const maxFeeINR = currentFilters.maxFeeLPA * 100000;
+          if (currentFilters.maxFeeLPA < 20 && (data.fees > maxFeeINR || !data.fees)) pass = false;
           
           if (currentFilters.search) {
             const s = currentFilters.search.toLowerCase();
