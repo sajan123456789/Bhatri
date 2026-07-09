@@ -1,14 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colleges - CareerSteps</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover & Compare Top Colleges - CareerSteps</title>
+  <meta name="description" content="Search, compare, and apply to 5000+ top engineering, medical, and management colleges across India. Find fees, placements, NIRF rankings, and admission details.">
+  <meta name="theme-color" content="#020617">
+  
+  <meta property="og:title" content="Discover & Compare Top Colleges - CareerSteps">
+  <meta property="og:description" content="AI-powered college recommendations, detailed fees, placement stats, and authentic student reviews.">
+  <meta property="og:image" content="https://careersteps.in/images/college-directory-og.jpg">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              dark: '#020617',
+              card: '#111827',
+              blue: '#3b82f6',
+              blueHover: '#2563eb'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0f172a; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
+    
+    /* Custom Scrollbar for Filters */
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    
+    /* Card Hover Effects */
+    .college-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .college-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); }
+    .college-card img.cover-img { transition: transform 0.5s ease; }
+    .college-card:hover img.cover-img { transform: scale(1.05); }
+
+    /* Range Slider Styling */
+    input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #3b82f6; cursor: pointer; margin-top: -6px; }
+    input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px; }
+
+    /* Skeleton Loading Animation */
+    .skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+    @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* Mobile Filter Sidebar */
+    #filterSidebar { transition: transform 0.3s ease-in-out; }
+    .sidebar-open { transform: translateX(0) !important; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Top Colleges in India",
+    "description": "Directory of over 5000+ colleges across India with admission details, fees, and placements.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CareerSteps",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://careersteps.in/careersteps-logo.png"
+      }
+    }
+  }
+  </script>
 </head>
 
-<body>
+<body class="bg-[#0f172a] text-slate-200">
 
-<h1>CareerSteps College Directory</h1>
+  <header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <img src="careersteps-logo.png" alt="CareerSteps Logo" onerror="this.src='https://via.placeholder.com/40?text=CS'" class="h-8 sm:h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
+        <span class="text-xl sm:text-2xl font-black italic uppercase tracking-tighter text-white">
+          CAREER<span class="text-blue-600">STEPS</span>
+        </span>
+      </a>
 
+      <nav class="hidden lg:flex gap-6 xl:gap-10 items-center">
+        <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">Home</a>
+        <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">Careers</a>
+        <a href="colleges.html" class="text-[14px] font-extrabold uppercase tracking-wider text-blue-500 hover:text-blue-400 transition-colors">Colleges</a>
+        <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">Blogs</a>
+        <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+        <button class="hidden md:block text-slate-300 hover:text-white p-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+        <div id="auth-area-desktop" class="hidden md:flex items-center"></div>
+        <button id="mobileMenuBtn" class="lg:hidden text-white p-1.5 hover:bg-white/5 rounded-xl transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative py-12 lg:py-20 px-4 border-b border-white/5 bg-gradient-to-b from-brand-dark to-[#0f172a]">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Find the Best College</h1>
+      <p class="text-slate-400 text-sm md:text-base mb-8">From 5000+ Colleges Across India</p>
+      
+      <div class="relative max-w-3xl mx-auto shadow-2xl shadow-blue-900/20 rounded-2xl">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg class="h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input type="text" id="mainSearchInput" placeholder="Search college name, course, location..." class="w-full bg-brand-card border border-slate-700/50 rounded-2xl py-4 pl-12 pr-32 text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue text-lg transition-all">
+        <button id="searchBtn" class="absolute right-2 top-2 bottom-2 bg-brand-blue hover:bg-brand-blueHover text-white font-bold px-6 rounded-xl transition-colors">
+          Search
+        </button>
+      </div>
+    </div>
+    
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1000px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+  </section>
+
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 flex flex-col lg:flex-row gap-8 items-start relative">
+
+    <div class="w-full lg:hidden flex justify-between items-center mb-2">
+      <span id="mobileResultCount" class="text-slate-400 text-sm font-semibold">Loading...</span>
+      <button id="openFiltersBtn" class="flex items-center gap-2 bg-brand-card border border-slate-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-800 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+        Filters
+      </button>
+    </div>
+
+    <aside id="filterSidebar" class="fixed inset-y-0 left-0 z-[60] w-[280px] bg-brand-dark lg:bg-transparent lg:static lg:block lg:w-[300px] lg:z-auto lg:translate-x-0 -translate-x-full border-r border-slate-800 lg:border-none shadow-2xl lg:shadow-none shrink-0 h-screen lg:h-auto overflow-y-auto lg:overflow-visible custom-scrollbar">
+      
+      <div class="p-6 lg:p-0 lg:sticky lg:top-[100px]">
+        <div class="flex justify-between items-center lg:hidden mb-6">
+          <h2 class="text-xl font-bold text-white">Filters</h2>
+          <button id="closeFiltersBtn" class="text-slate-400 hover:text-white p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        </div>
+
+        <div class="space-y-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">State</label>
+            <div class="relative">
+              <select id="filterState" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer">
+                <option value="All States">All States</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+              </select>
+              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">City</label>
+            <div class="relative">
+              <select id="filterCity" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer" disabled>
+                <option value="All Cities">Select State First</option>
+              </select>
+              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Institution Type</label>
+            <div class="relative">
+              <select id="filterType" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer">
+                <option value="All Types">All Types</option>
+                <option value="Government">Government</option>
+                <option value="Private">Private</option>
+              </select>
+              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Course / Stream</label>
+            <div class="relative">
+              <select id="filterCourse" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer">
+                <option value="All Courses">All Courses</option>
+                <option value="B.Tech">Engineering (B.Tech)</option>
+                <option value="MBA">Management (MBA)</option>
+                <option value="MBBS">Medical (MBBS)</option>
+                <option value="B.Sc">Science (B.Sc)</option>
+              </select>
+              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 pt-5">
+            <label class="flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+              <span>Fee Range (Annual)</span>
+              <span id="feeDisplay" class="text-brand-blue font-bold tracking-normal">₹0 - ₹20 LPA+</span>
+            </label>
+            <input type="range" id="filterFee" min="0" max="20" step="1" value="20">
+            <div class="flex justify-between text-[10px] text-slate-500 mt-2 font-semibold">
+              <span>₹0</span>
+              <span>₹20 LPA+</span>
+            </div>
+          </div>
+
+          <div class="flex gap-3 pt-4 border-t border-slate-800">
+            <button id="resetFiltersBtn" class="w-1/3 py-3 rounded-xl border border-slate-700 text-sm font-bold hover:bg-slate-800 transition">Reset</button>
+            <button id="applyFiltersBtn" class="w-2/3 bg-brand-blue hover:bg-brand-blueHover text-white py-3 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 transition">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[50] hidden lg:hidden"></div>
+
+    <main class="flex-1 w-full min-w-0">
+      
+      <div class="hidden lg:flex justify-between items-center mb-6">
+        <h2 id="desktopResultCount" class="text-slate-300 font-semibold text-sm">Showing <span class="text-white">0</span> of <span class="text-white">0</span> colleges</h2>
+        <div class="flex items-center gap-3">
+          <span class="text-sm text-slate-400">Sort By:</span>
+          <select id="sortSelect" class="bg-brand-card border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-brand-blue">
+            <option value="popularity">Popularity</option>
+            <option value="ranking_asc">NIRF Ranking (High to Low)</option>
+            <option value="fees_asc">Fees (Low to High)</option>
+            <option value="package_desc">Avg Package (High to Low)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="collegesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        </div>
+
+      <div id="loadMoreContainer" class="mt-12 text-center hidden">
+        <button id="loadMoreBtn" class="bg-transparent border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-blue-500/10">
+          Load More Colleges
+        </button>
+      </div>
+      
+      <div id="noResultsContainer" class="mt-12 text-center py-16 bg-brand-card rounded-2xl border border-slate-800 hidden">
+        <svg class="w-16 h-16 mx-auto text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <h3 class="text-xl font-bold text-white mb-2">No colleges found</h3>
+        <p class="text-slate-400 text-sm">Try adjusting your filters or search term to find what you're looking for.</p>
+        <button id="clearFiltersEmptyBtn" class="mt-6 text-brand-blue font-semibold hover:underline">Clear all filters</button>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="pt-20 pb-10 border-t border-white/5 bg-brand-dark mt-10">
+    <div class="max-w-[1400px] mx-auto px-6 grid md:grid-cols-4 gap-8">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-brand-blue">STEPS</span></h2>
+        <p class="text-slate-400 text-sm font-semibold leading-relaxed">The world's trusted AI-powered career & college discovery platform.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
+        <ul class="text-slate-300 text-sm font-bold space-y-4">
+          <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+          <li><a href="assessment.html" class="hover:text-white transition">Career Test</a></li>
+          <li><a href="colleges.html" class="hover:text-white transition text-brand-blue">Colleges</a></li>
+        </ul>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
+        <ul class="text-slate-300 text-sm font-bold space-y-4">
+          <li><a href="engineering.html" class="hover:text-white transition">Engineering</a></li>
+          <li><a href="management.html" class="hover:text-white transition">Management</a></li>
+          <li><a href="medical.html" class="hover:text-white transition">Medical</a></li>
+        </ul>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
+        <ul class="text-slate-300 text-sm font-bold space-y-4">
+          <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+          <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center mt-16 pt-8 border-t border-white/5">
+      <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest"> © 2026 CareerSteps • Empowering student choices worldwide.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getFirestore, collection, query, where, orderBy, limit, startAfter, getDocs, getCountFromServer } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+     
+    // Config based on provided context
+    const firebaseConfig = {
+      apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
+      authDomain: "careersteps-afa5d.firebaseapp.com",
+      projectId: "careersteps-afa5d",
+      storageBucket: "careersteps-afa5d.firebasestorage.app",
+      messagingSenderId: "197033973372",
+      appId: "1:197033973372:web:b5c6ad50bf8f68aee5dbf9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    // ================= AUTHENTICATION LOGIC =================
+    window.googleLogin = () => signInWithPopup(auth, provider).catch(e => console.error("Login error", e));
+    window.googleLogout = () => signOut(auth);
+
+    onAuthStateChanged(auth, (user) => {
+      const authDesktop = document.getElementById("auth-area-desktop");
+      if (user) {
+        if (authDesktop) authDesktop.innerHTML = `<div class="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl"><img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-brand-blue object-cover"><span class="text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span><button onclick="googleLogout()" class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase text-white transition">Logout</button></div>`;
+      } else {
+        if (authDesktop) authDesktop.innerHTML = `<button onclick="googleLogin()" class="bg-brand-blue text-white px-5 py-2 rounded-xl text-[12px] font-black uppercase tracking-wider hover:bg-brand-blueHover transition shadow-lg shadow-blue-500/20">Sign In</button>`;
+      }
+    });
+
+    // ================= MOBILE UI LOGIC =================
+    const sidebar = document.getElementById('filterSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    document.getElementById('openFiltersBtn').addEventListener('click', () => {
+      sidebar.classList.add('sidebar-open');
+      overlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    const closeSidebar = () => {
+      sidebar.classList.remove('sidebar-open');
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+    
+    document.getElementById('closeFiltersBtn').addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // ================= COLLEGE DATA LOGIC =================
+    const PAGE_LIMIT = 20;
+    let lastDoc = null;
+    let currentFilters = { state: 'All States', type: 'All Types', course: 'All Courses', maxFeeLPA: 20, search: '', sort: 'popularity' };
+    let isFetching = false;
+    let loadedColleges = [];
+    let totalCount = 0;
+
+    const grid = document.getElementById('collegesGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    const desktopCount = document.getElementById('desktopResultCount');
+    const mobileCount = document.getElementById('mobileResultCount');
+    const noResults = document.getElementById('noResultsContainer');
+
+    // UI Feedback
+    const feeSlider = document.getElementById('filterFee');
+    feeSlider.addEventListener('input', (e) => {
+      const val = e.target.value;
+      document.getElementById('feeDisplay').textContent = val == 20 ? `₹0 - ₹20 LPA+` : `₹0 - ₹${val} LPA`;
+    });
+
+    // Render Skeletons
+    const renderSkeletons = (count = 6) => {
+      let html = '';
+      for(let i=0; i<count; i++){
+        html += `
+          <div class="bg-brand-card rounded-2xl border border-slate-800 overflow-hidden h-[420px] flex flex-col">
+            <div class="h-48 w-full skeleton"></div>
+            <div class="p-5 flex-1 flex flex-col gap-4 relative">
+              <div class="w-14 h-14 rounded-full skeleton absolute -top-10 left-5 border-4 border-brand-card"></div>
+              <div class="mt-4 h-6 w-3/4 rounded skeleton"></div>
+              <div class="h-4 w-1/2 rounded skeleton"></div>
+              <div class="flex gap-2"><div class="h-5 w-16 rounded skeleton"></div><div class="h-5 w-16 rounded skeleton"></div></div>
+              <div class="mt-auto grid grid-cols-2 gap-4"><div class="h-10 rounded skeleton"></div><div class="h-10 rounded skeleton"></div></div>
+            </div>
+          </div>`;
+      }
+      grid.innerHTML = html;
+    };
+
+    // Card Template Generation
+    const createCollegeCard = (data, id) => {
+      // Data normalization fallbacks
+      const name = data.name || 'Unknown College';
+      const city = data.city || '';
+      const state = data.state || '';
+      const type = data.type || 'Private';
+      const cover = data.coverImage || 'https://via.placeholder.com/600x400/1e293b/94a3b8?text=Campus';
+      const logo = data.logo || 'https://via.placeholder.com/100?text=Logo';
+      const fees = data.feesLPA ? `₹ ${data.feesLPA} LPA` : 'N/A';
+      const pkg = data.avgPackageLPA ? `₹ ${data.avgPackageLPA} LPA` : 'N/A';
+      const rating = data.rating || '4.0';
+      const nirf = data.nirfRank ? `🏆 NIRF ${data.nirfRank}` : '';
+      const naac = data.naacGrade ? `⭐ NAAC ${data.naacGrade}` : '';
+
+      return `
+        <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group">
+          <div class="relative h-48 overflow-hidden bg-slate-900">
+            <img src="${cover}" alt="${name}" loading="lazy" class="cover-img w-full h-full object-cover opacity-90 group-hover:opacity-100">
+            <button class="absolute top-3 right-3 bg-black/40 backdrop-blur hover:bg-red-500/80 p-2 rounded-full text-white transition z-10" title="Save College">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </button>
+            <div class="absolute bottom-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 border border-white/10">
+              <span class="text-yellow-400 text-xs">★</span><span class="text-white text-xs font-bold">${rating}</span>
+            </div>
+          </div>
+          
+          <div class="p-5 flex-1 flex flex-col relative">
+            <div class="absolute -top-10 left-5 p-1 bg-brand-card rounded-full shadow-lg">
+              <img src="${logo}" alt="logo" class="w-14 h-14 rounded-full object-cover border border-slate-700 bg-white">
+            </div>
+            
+            <div class="mt-6 mb-3">
+              <h3 class="text-lg font-bold text-white leading-tight mb-1 line-clamp-1" title="${name}">${name}</h3>
+              <p class="text-xs text-slate-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                ${city}, ${state}
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-[10px] font-bold px-2 py-1 rounded bg-blue-500/10 text-brand-blue border border-blue-500/20 uppercase tracking-wider">${type}</span>
+              ${naac ? `<span class="text-[10px] font-bold px-2 py-1 rounded bg-green-500/10 text-green-400 border border-green-500/20">${naac}</span>` : ''}
+              ${nirf ? `<span class="text-[10px] font-bold px-2 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">${nirf}</span>` : ''}
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-5 p-3 bg-slate-800/30 rounded-xl border border-white/5">
+              <div>
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wide">Avg Package</p>
+                <p class="text-sm font-extrabold text-white">${pkg}</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wide">First Year Fees</p>
+                <p class="text-sm font-extrabold text-white">${fees}</p>
+              </div>
+            </div>
+
+            <div class="mt-auto grid grid-cols-2 gap-3">
+              <a href="college-detail.html?id=${id}" class="text-center py-2.5 rounded-lg border border-slate-700 hover:bg-slate-800 text-xs font-bold text-white transition">View Details</a>
+              <button class="bg-brand-blue hover:bg-brand-blueHover text-white py-2.5 rounded-lg text-xs font-bold transition shadow-lg shadow-blue-500/20">Apply Now</button>
+            </div>
+          </div>
+        </div>
+      `;
+    };
+
+    // Fetch and Filter Logic
+    const fetchColleges = async (isLoadMore = false) => {
+      if(isFetching) return;
+      isFetching = true;
+      
+      if(!isLoadMore) {
+        grid.innerHTML = '';
+        renderSkeletons();
+        loadedColleges = [];
+        noResults.classList.add('hidden');
+        loadMoreContainer.classList.add('hidden');
+      } else {
+        loadMoreBtn.innerHTML = 'Loading...';
+      }
+
+      try {
+        const collRef = collection(db, "colleges");
+        let queryConstraints = [];
+
+        // Firestore Index-friendly filters
+        if(currentFilters.state !== 'All States') queryConstraints.push(where("state", "==", currentFilters.state));
+        if(currentFilters.type !== 'All Types') queryConstraints.push(where("type", "==", currentFilters.type));
+        
+        // Note: For production, sorting requires compound indexes in Firestore.
+        // Assuming 'popularity' field exists for default sort.
+        if(currentFilters.sort === 'popularity') queryConstraints.push(orderBy("popularity", "desc"));
+        else if (currentFilters.sort === 'ranking_asc') queryConstraints.push(orderBy("nirfRank", "asc"));
+        else if (currentFilters.sort === 'fees_asc') queryConstraints.push(orderBy("feesLPA", "asc"));
+        else if (currentFilters.sort === 'package_desc') queryConstraints.push(orderBy("avgPackageLPA", "desc"));
+
+        // Pagination
+        queryConstraints.push(limit(PAGE_LIMIT));
+        if (isLoadMore && lastDoc) queryConstraints.push(startAfter(lastDoc));
+
+        const finalQuery = query(collRef, ...queryConstraints);
+        const snapshot = await getDocs(finalQuery);
+
+        // Optional: Get total count (can be expensive in huge DBs, but good for UI)
+        if(!isLoadMore) {
+          const countQuery = query(collRef, ...queryConstraints.filter(c => c.type !== 'limit' && c.type !== 'startAfter'));
+          try {
+            const countSnapshot = await getCountFromServer(countQuery);
+            totalCount = countSnapshot.data().count;
+          } catch(e) { totalCount = "5000+"; } // Fallback
+        }
+
+        const newDocs = [];
+        snapshot.forEach(doc => {
+          let data = doc.data();
+          
+          // Client-side filtering for complex/inequality bounds (Fees, Search Text) due to Firestore limits
+          let pass = true;
+          if (currentFilters.maxFeeLPA < 20 && (data.feesLPA > currentFilters.maxFeeLPA || !data.feesLPA)) pass = false;
+          
+          if (currentFilters.search) {
+            const s = currentFilters.search.toLowerCase();
+            const n = (data.name || '').toLowerCase();
+            const c = (data.city || '').toLowerCase();
+            if(!n.includes(s) && !c.includes(s)) pass = false;
+          }
+
+          if(pass) newDocs.push({ id: doc.id, ...data });
+        });
+
+        lastDoc = snapshot.docs[snapshot.docs.length - 1];
+        loadedColleges = [...loadedColleges, ...newDocs];
+        
+        // Render
+        if(!isLoadMore) grid.innerHTML = '';
+        
+        if (loadedColleges.length === 0) {
+          noResults.classList.remove('hidden');
+          updateCountUI(0, 0);
+        } else {
+          newDocs.forEach(c => grid.insertAdjacentHTML('beforeend', createCollegeCard(c, c.id)));
+          updateCountUI(loadedColleges.length, totalCount);
+          
+          // Show/Hide load more
+          if(snapshot.docs.length < PAGE_LIMIT) {
+            loadMoreContainer.classList.add('hidden');
+          } else {
+            loadMoreContainer.classList.remove('hidden');
+            loadMoreBtn.innerHTML = 'Load More Colleges';
+          }
+        }
+
+      } catch (error) {
+        console.error("Error fetching colleges:", error);
+        if(!isLoadMore) grid.innerHTML = `<div class="col-span-full text-center text-red-400 py-10">Failed to load data. Please check your connection.</div>`;
+      } finally {
+        isFetching = false;
+      }
+    };
+
+    const updateCountUI = (showing, total) => {
+      const txt = `Showing <span class="text-white">${showing}</span> of <span class="text-white">${total}</span> colleges`;
+      desktopCount.innerHTML = txt;
+      mobileCount.innerHTML = `${showing} / ${total}`;
+    };
+
+    // Event Listeners
+    document.getElementById('applyFiltersBtn').addEventListener('click', () => {
+      currentFilters.state = document.getElementById('filterState').value;
+      currentFilters.type = document.getElementById('filterType').value;
+      currentFilters.course = document.getElementById('filterCourse').value;
+      currentFilters.maxFeeLPA = parseFloat(document.getElementById('filterFee').value);
+      if(window.innerWidth < 1024) closeSidebar();
+      fetchColleges();
+    });
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      currentFilters.search = document.getElementById('mainSearchInput').value.trim();
+      fetchColleges();
+    });
+
+    document.getElementById('mainSearchInput').addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        currentFilters.search = e.target.value.trim();
+        fetchColleges();
+      }
+    });
+
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      currentFilters.sort = e.target.value;
+      fetchColleges();
+    });
+
+    const resetFilters = () => {
+      document.getElementById('filterState').value = 'All States';
+      document.getElementById('filterType').value = 'All Types';
+      document.getElementById('filterCourse').value = 'All Courses';
+      document.getElementById('filterFee').value = 20;
+      document.getElementById('mainSearchInput').value = '';
+      document.getElementById('feeDisplay').textContent = '₹0 - ₹20 LPA+';
+      currentFilters = { state: 'All States', type: 'All Types', course: 'All Courses', maxFeeLPA: 20, search: '', sort: document.getElementById('sortSelect').value };
+      fetchColleges();
+    };
+
+    document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
+    document.getElementById('clearFiltersEmptyBtn').addEventListener('click', resetFilters);
+    document.getElementById('loadMoreBtn').addEventListener('click', () => fetchColleges(true));
+
+    // Initial Load
+    document.addEventListener("DOMContentLoaded", () => fetchColleges());
+
+  </script>
 </body>
 </html>
