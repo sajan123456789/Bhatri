@@ -165,36 +165,12 @@
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">City</label>
-            <div class="relative">
-              <select id="filterCity" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer" disabled>
-                <option value="All Cities">Select State First</option>
-              </select>
-              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
-            </div>
-          </div>
-
-          <div>
             <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Institution Type</label>
             <div class="relative">
               <select id="filterType" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer">
                 <option value="All Types">All Types</option>
                 <option value="Government">Government</option>
                 <option value="Private">Private</option>
-              </select>
-              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Course / Stream</label>
-            <div class="relative">
-              <select id="filterCourse" class="w-full bg-brand-card border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white appearance-none focus:outline-none focus:border-brand-blue cursor-pointer">
-                <option value="All Courses">All Courses</option>
-                <option value="B.Tech">Engineering (B.Tech)</option>
-                <option value="MBA">Management (MBA)</option>
-                <option value="MBBS">Medical (MBBS)</option>
-                <option value="B.Sc">Science (B.Sc)</option>
               </select>
               <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
             </div>
@@ -229,7 +205,6 @@
         <div class="flex items-center gap-3">
           <span class="text-sm text-slate-400">Sort By:</span>
           <select id="sortSelect" class="bg-brand-card border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-brand-blue">
-            <option value="popularity">Popularity</option>
             <option value="ranking_asc">NIRF Ranking (High to Low)</option>
             <option value="fees_asc">Fees (Low to High)</option>
             <option value="package_desc">Avg Package (High to Low)</option>
@@ -347,7 +322,7 @@
     // ================= COLLEGE DATA LOGIC =================
     const PAGE_LIMIT = 20;
     let lastDoc = null;
-    let currentFilters = { state: 'All States', type: 'All Types', course: 'All Courses', maxFeeLPA: 20, search: '', sort: 'popularity' };
+    let currentFilters = { state: 'All States', type: 'All Types', maxFeeLPA: 20, search: '', sort: 'ranking_asc' };
     let isFetching = false;
     let loadedColleges = [];
     let totalCount = 0;
@@ -387,18 +362,18 @@
 
     // Card Template Generation
     const createCollegeCard = (data, id) => {
-      // Data normalization fallbacks
-      const name = data.name || 'Unknown College';
+      // Data normalization fallbacks using ONLY the approved field names
+      const name = data.name || data.shortName || 'Unknown College';
       const city = data.city || '';
       const state = data.state || '';
       const type = data.type || 'Private';
-      const cover = data.coverImage || 'https://via.placeholder.com/600x400/1e293b/94a3b8?text=Campus';
+      const cover = data.image || 'https://via.placeholder.com/600x400/1e293b/94a3b8?text=Campus';
       const logo = data.logo || 'https://via.placeholder.com/100?text=Logo';
-      const fees = data.feesLPA ? `₹ ${data.feesLPA} LPA` : 'N/A';
-      const pkg = data.avgPackageLPA ? `₹ ${data.avgPackageLPA} LPA` : 'N/A';
-      const rating = data.rating || '4.0';
+      const fees = data.fees ? `₹ ${data.fees} LPA` : 'N/A';
+      const pkg = data.avgPackage ? `₹ ${data.avgPackage} LPA` : 'N/A';
       const nirf = data.nirfRank ? `🏆 NIRF ${data.nirfRank}` : '';
-      const naac = data.naacGrade ? `⭐ NAAC ${data.naacGrade}` : '';
+      const naac = data.naac ? `⭐ NAAC ${data.naac}` : '';
+      const placement = data.placement ? `📈 ${data.placement} Placement` : '';
 
       return `
         <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group">
@@ -407,9 +382,10 @@
             <button class="absolute top-3 right-3 bg-black/40 backdrop-blur hover:bg-red-500/80 p-2 rounded-full text-white transition z-10" title="Save College">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </button>
+            ${placement ? `
             <div class="absolute bottom-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 border border-white/10">
-              <span class="text-yellow-400 text-xs">★</span><span class="text-white text-xs font-bold">${rating}</span>
-            </div>
+              <span class="text-white text-xs font-bold">${placement}</span>
+            </div>` : ''}
           </div>
           
           <div class="p-5 flex-1 flex flex-col relative">
@@ -421,7 +397,7 @@
               <h3 class="text-lg font-bold text-white leading-tight mb-1 line-clamp-1" title="${name}">${name}</h3>
               <p class="text-xs text-slate-400 flex items-center gap-1">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                ${city}, ${state}
+                ${city}${city && state ? ', ' : ''}${state}
               </p>
             </div>
 
@@ -444,7 +420,7 @@
 
             <div class="mt-auto grid grid-cols-2 gap-3">
               <a href="college-detail.html?id=${id}" class="text-center py-2.5 rounded-lg border border-slate-700 hover:bg-slate-800 text-xs font-bold text-white transition">View Details</a>
-              <button class="bg-brand-blue hover:bg-brand-blueHover text-white py-2.5 rounded-lg text-xs font-bold transition shadow-lg shadow-blue-500/20">Apply Now</button>
+              ${data.website ? `<a href="${data.website}" target="_blank" class="text-center bg-brand-blue hover:bg-brand-blueHover text-white py-2.5 rounded-lg text-xs font-bold transition shadow-lg shadow-blue-500/20">Apply Now</a>` : `<button class="bg-brand-blue hover:bg-brand-blueHover text-white py-2.5 rounded-lg text-xs font-bold transition shadow-lg shadow-blue-500/20">Apply Now</button>`}
             </div>
           </div>
         </div>
@@ -474,12 +450,10 @@
         if(currentFilters.state !== 'All States') queryConstraints.push(where("state", "==", currentFilters.state));
         if(currentFilters.type !== 'All Types') queryConstraints.push(where("type", "==", currentFilters.type));
         
-        // Note: For production, sorting requires compound indexes in Firestore.
-        // Assuming 'popularity' field exists for default sort.
-        if(currentFilters.sort === 'popularity') queryConstraints.push(orderBy("popularity", "desc"));
-        else if (currentFilters.sort === 'ranking_asc') queryConstraints.push(orderBy("nirfRank", "asc"));
-        else if (currentFilters.sort === 'fees_asc') queryConstraints.push(orderBy("feesLPA", "asc"));
-        else if (currentFilters.sort === 'package_desc') queryConstraints.push(orderBy("avgPackageLPA", "desc"));
+        // Sorting logic based on strictly allowed fields
+        if (currentFilters.sort === 'ranking_asc') queryConstraints.push(orderBy("nirfRank", "asc"));
+        else if (currentFilters.sort === 'fees_asc') queryConstraints.push(orderBy("fees", "asc"));
+        else if (currentFilters.sort === 'package_desc') queryConstraints.push(orderBy("avgPackage", "desc"));
 
         // Pagination
         queryConstraints.push(limit(PAGE_LIMIT));
@@ -501,15 +475,18 @@
         snapshot.forEach(doc => {
           let data = doc.data();
           
-          // Client-side filtering for complex/inequality bounds (Fees, Search Text) due to Firestore limits
+          // Client-side filtering for complex bounds (Fees, Search Text) due to Firestore limits
           let pass = true;
-          if (currentFilters.maxFeeLPA < 20 && (data.feesLPA > currentFilters.maxFeeLPA || !data.feesLPA)) pass = false;
+          
+          // Using 'fees' field instead of 'feesLPA'
+          if (currentFilters.maxFeeLPA < 20 && (data.fees > currentFilters.maxFeeLPA || !data.fees)) pass = false;
           
           if (currentFilters.search) {
             const s = currentFilters.search.toLowerCase();
             const n = (data.name || '').toLowerCase();
+            const sn = (data.shortName || '').toLowerCase();
             const c = (data.city || '').toLowerCase();
-            if(!n.includes(s) && !c.includes(s)) pass = false;
+            if(!n.includes(s) && !sn.includes(s) && !c.includes(s)) pass = false;
           }
 
           if(pass) newDocs.push({ id: doc.id, ...data });
@@ -555,7 +532,6 @@
     document.getElementById('applyFiltersBtn').addEventListener('click', () => {
       currentFilters.state = document.getElementById('filterState').value;
       currentFilters.type = document.getElementById('filterType').value;
-      currentFilters.course = document.getElementById('filterCourse').value;
       currentFilters.maxFeeLPA = parseFloat(document.getElementById('filterFee').value);
       if(window.innerWidth < 1024) closeSidebar();
       fetchColleges();
@@ -581,11 +557,10 @@
     const resetFilters = () => {
       document.getElementById('filterState').value = 'All States';
       document.getElementById('filterType').value = 'All Types';
-      document.getElementById('filterCourse').value = 'All Courses';
       document.getElementById('filterFee').value = 20;
       document.getElementById('mainSearchInput').value = '';
       document.getElementById('feeDisplay').textContent = '₹0 - ₹20 LPA+';
-      currentFilters = { state: 'All States', type: 'All Types', course: 'All Courses', maxFeeLPA: 20, search: '', sort: document.getElementById('sortSelect').value };
+      currentFilters = { state: 'All States', type: 'All Types', maxFeeLPA: 20, search: '', sort: document.getElementById('sortSelect').value };
       fetchColleges();
     };
 
