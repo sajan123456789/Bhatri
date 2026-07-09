@@ -372,8 +372,18 @@
       
       // Formatting Values using toLocaleString('en-IN') and correct suffixes
       const fees = data.fees ? `₹${Number(data.fees).toLocaleString('en-IN')} / Year` : 'N/A';
-      const pkg = data.avgPackage ? `₹${data.avgPackage} LPA` : 'N/A';
-      const highestPkg = data.highestPackage ? `₹${data.highestPackage} LPA` : 'N/A';
+      function formatPackage(value) {
+  if (!value) return "N/A";
+
+  if (value >= 100) {
+    return `₹${(value / 100).toFixed(1).replace(".0","")} Cr`;
+  }
+
+  return `₹${value} LPA`;
+}
+
+const pkg = formatPackage(data.avgPackage);
+const highestPkg = formatPackage(data.highestPackage);
       
       const nirf = data.nirfRank ? `🏆 NIRF ${data.nirfRank}` : '';
       const naac = data.naac ? `⭐ NAAC ${data.naac}` : '';
