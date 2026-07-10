@@ -320,7 +320,7 @@
     overlay.addEventListener('click', closeSidebar);
 
     // ================= COLLEGE DATA LOGIC =================
-    const PAGE_LIMIT = 20;
+    const PAGE_LIMIT = 10;
     let lastDoc = null;
     let currentFilters = { state: 'All States', type: 'All Types', maxFeeLPA: 20, search: '', sort: 'ranking_asc' };
     let isFetching = false;
@@ -492,6 +492,9 @@ const highestPkg = formatPackage(data.highestPackage);
         const newDocs = [];
         snapshot.forEach(doc => {
           let data = doc.data();
+
+          console.log(doc.id);
+console.log(data);
           
           // Client-side filtering for complex bounds (Fees, Search Text) due to Firestore limits
           let pass = true;
