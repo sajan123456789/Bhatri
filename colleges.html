@@ -213,19 +213,13 @@
       </div>
 
       <div id="collegesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        </div>
-
-            <div id="collegesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        <!-- Colleges will populate here -->
+        <!-- Colleges populate dynamically -->
       </div>
 
-      <!-- REPLACE the loadMoreContainer with this new pagination container -->
+      <!-- Numbered dynamic pagination container -->
       <div id="paginationContainer" class="mt-14 flex flex-wrap justify-center items-center gap-2 hidden">
-        <!-- Numbered pages will be injected here via JS -->
+        <!-- Numbered pages dynamically injected here -->
       </div>
-      
-      <div id="noResultsContainer" class="mt-12 text-center py-16 bg-brand-card rounded-2xl border border-slate-800 hidden">
-
       
       <div id="noResultsContainer" class="mt-12 text-center py-16 bg-brand-card rounded-2xl border border-slate-800 hidden">
         <svg class="w-16 h-16 mx-auto text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -276,9 +270,10 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    import { getFirestore, collection, query, where, orderBy, limit, startAfter, getDocs, getCountFromServer } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    // Fix routing paths for specific Firestore imports
+    import { getFirestore as initFirestore, collection as getColl, query as setQuery, where as filterWhere, getDocs as loadDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
      
-    // Config based on provided context
     const firebaseConfig = {
       apiKey: "AIzaSyBm-B0nhpfBt776iDZJuQRplNrOhy9xdiY",
       authDomain: "careersteps-afa5d.firebaseapp.com",
@@ -290,7 +285,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const db = getFirestore(app);
+    const db = initFirestore(app);
     const provider = new GoogleAuthProvider();
 
     // ================= AUTHENTICATION LOGIC =================
@@ -326,28 +321,27 @@
     overlay.addEventListener('click', closeSidebar);
 
     // ================= COLLEGE DATA LOGIC =================
-    const PAGE_LIMIT = 10;
-    let lastDoc = null;
+    const PAGE_LIMIT = 12;
+    let currentPage = 1;
+    let allColleges = [];
+    let filteredColleges = [];
     let currentFilters = { state: 'All States', type: 'All Types', maxFeeLPA: 20, search: '', sort: 'ranking_asc' };
     let isFetching = false;
-    let loadedColleges = [];
-    let totalCount = 0;
 
     const grid = document.getElementById('collegesGrid');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    const paginationContainer = document.getElementById('paginationContainer');
     const desktopCount = document.getElementById('desktopResultCount');
     const mobileCount = document.getElementById('mobileResultCount');
     const noResults = document.getElementById('noResultsContainer');
 
-    // UI Feedback
+    // UI Feedback for Fee Range Slider
     const feeSlider = document.getElementById('filterFee');
     feeSlider.addEventListener('input', (e) => {
       const val = e.target.value;
       document.getElementById('feeDisplay').textContent = val == 20 ? `₹0 - ₹20 LPA+` : `₹0 - ₹${val} LPA`;
     });
 
-    // Render Skeletons
+    // Render Skeletons during data loading
     const renderSkeletons = (count = 6) => {
       let html = '';
       for(let i=0; i<count; i++){
@@ -368,57 +362,35 @@
 
     // Card Template Generation
     const createCollegeCard = (data, id) => {
-      // Data normalization fallbacks using ONLY the approved field names
       const name = data.name || data.shortName || 'Unknown College';
       const city = data.city || '';
       const state = data.state || '';
       const type = data.type || 'Private';
-      const cover=data.image ||data.Image ||data.cover ||data.coverImage || "https://via.placeholder.com/600x400/1e293b/94a3b8?text=Campus";
-      const logo = data.logo || 'https://via.placeholder.com/100?text=Logo';
-      
-      // Formatting Values using toLocaleString('en-IN') and correct suffixes
+      const cover = data.image || data.Image || data.cover || data.coverImage || "https://via.placeholder.com/600x400/1e293b/94a3b8?text=Campus";
       const fees = data.fees ? `₹${Number(data.fees).toLocaleString('en-IN')} / Year` : 'N/A';
-      function formatPackage(value) {
-  if (!value) return "N/A";
-
-  if (value >= 100) {
-    return `₹${(value / 100).toFixed(1).replace(".0","")} Cr`;
-  }
-
-  return `₹${value} LPA`;
-}
-
-const pkg = formatPackage(data.avgPackage);
-const highestPkg = formatPackage(data.highestPackage);
       
+      function formatPackage(value) {
+        if (!value) return "N/A";
+        if (value >= 100) return `₹${(value / 100).toFixed(1).replace(".0","")} Cr`;
+        return `₹${value} LPA`;
+      }
+
+      const pkg = formatPackage(data.avgPackage);
+      const highestPkg = formatPackage(data.highestPackage);
       const nirf = data.nirfRank ? `🏆 NIRF ${data.nirfRank}` : '';
       const naac = data.naac ? `⭐ NAAC ${data.naac}` : '';
-      const placement = data.placement
-  ? `📈 ${data.placement}% Placement`
-  : '';
+      const placement = data.placement ? `📈 ${data.placement}% Placement` : '';
 
       return `
-        <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group">
+        <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group animate-fade-in">
           <div class="relative h-48 overflow-hidden bg-slate-900">
-           <img
-    src="${cover}"
-    alt="${name}"
-    loading="lazy"
-    class="cover-img w-full h-full object-cover"
-    onerror="this.src='https://via.placeholder.com/600x400/1e293b/94a3b8?text=College'">
-    
+            <img src="${cover}" alt="${name}" loading="lazy" class="cover-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x400/1e293b/94a3b8?text=College'">
             <button class="absolute top-3 right-3 bg-black/40 backdrop-blur hover:bg-red-500/80 p-2 rounded-full text-white transition z-10" title="Save College">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </button>
-            ${placement ? `
-            <div class="absolute bottom-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 border border-white/10">
-              <span class="text-white text-xs font-bold">${placement}</span>
-            </div>` : ''}
+            ${placement ? `<div class="absolute bottom-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 border border-white/10"><span class="text-white text-xs font-bold">${placement}</span></div>` : ''}
           </div>
-          
           <div class="p-5 flex-1 flex flex-col relative">
-            
-            
             <div class="mb-3">
               <h3 class="text-lg font-bold text-white leading-tight mb-1 line-clamp-1" title="${name}">${name}</h3>
               <p class="text-xs text-slate-400 flex items-center gap-1">
@@ -426,13 +398,11 @@ const highestPkg = formatPackage(data.highestPackage);
                 ${city}${city && state ? ', ' : ''}${state}
               </p>
             </div>
-
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="text-[10px] font-bold px-2 py-1 rounded bg-blue-500/10 text-brand-blue border border-blue-500/20 uppercase tracking-wider">${type}</span>
               ${naac ? `<span class="text-[10px] font-bold px-2 py-1 rounded bg-green-500/10 text-green-400 border border-green-500/20">${naac}</span>` : ''}
               ${nirf ? `<span class="text-[10px] font-bold px-2 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">${nirf}</span>` : ''}
             </div>
-
             <div class="grid grid-cols-3 gap-2 mb-5 p-3 bg-slate-800/30 rounded-xl border border-white/5">
               <div>
                 <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wide">Avg Pkg</p>
@@ -447,7 +417,6 @@ const highestPkg = formatPackage(data.highestPackage);
                 <p class="text-[13px] font-extrabold text-white truncate" title="${fees}">${fees}</p>
               </div>
             </div>
-
             <div class="mt-auto grid grid-cols-2 gap-3">
               <a href="college-detail.html?id=${id}" class="text-center py-2.5 rounded-lg border border-slate-700 hover:bg-slate-800 text-xs font-bold text-white transition">View Details</a>
               ${data.website ? `<a href="${data.website}" target="_blank" class="text-center bg-brand-blue hover:bg-brand-blueHover text-white py-2.5 rounded-lg text-xs font-bold transition shadow-lg shadow-blue-500/20">Apply Now</a>` : `<button class="bg-brand-blue hover:bg-brand-blueHover text-white py-2.5 rounded-lg text-xs font-bold transition shadow-lg shadow-blue-500/20">Apply Now</button>`}
@@ -457,113 +426,150 @@ const highestPkg = formatPackage(data.highestPackage);
       `;
     };
 
-    // Fetch and Filter Logic
-    const fetchColleges = async (isLoadMore = false) => {
+    // Main Fetch Operation (Triggers on structural state/type change)
+    const fetchColleges = async () => {
       if(isFetching) return;
       isFetching = true;
       
-      if(!isLoadMore) {
-        grid.innerHTML = '';
-        renderSkeletons();
-        loadedColleges = [];
-        noResults.classList.add('hidden');
-        loadMoreContainer.classList.add('hidden');
-      } else {
-        loadMoreBtn.innerHTML = 'Loading...';
-      }
+      grid.innerHTML = '';
+      renderSkeletons();
+      noResults.classList.add('hidden');
+      paginationContainer.classList.add('hidden');
 
       try {
-        const collRef = collection(db, "colleges");
+        const collRef = getColl(db, "colleges");
         let queryConstraints = [];
 
-        // Firestore Index-friendly filters
-        if(currentFilters.state !== 'All States') queryConstraints.push(where("state", "==", currentFilters.state));
-        if(currentFilters.type !== 'All Types') queryConstraints.push(where("type", "==", currentFilters.type));
+        if(currentFilters.state !== 'All States') queryConstraints.push(filterWhere("state", "==", currentFilters.state));
+        if(currentFilters.type !== 'All Types') queryConstraints.push(filterWhere("type", "==", currentFilters.type));
         
-        // Sorting logic based on strictly allowed fields
-        if (currentFilters.sort === 'ranking_asc') queryConstraints.push(orderBy("nirfRank", "asc"));
-        else if (currentFilters.sort === 'fees_asc') queryConstraints.push(orderBy("fees", "asc"));
-        else if (currentFilters.sort === 'package_desc') queryConstraints.push(orderBy("avgPackage", "desc"));
+        const finalQuery = setQuery(collRef, ...queryConstraints);
+        const snapshot = await loadDocs(finalQuery);
 
-        // Pagination
-        queryConstraints.push(limit(PAGE_LIMIT));
-        if (isLoadMore && lastDoc) queryConstraints.push(startAfter(lastDoc));
-
-        const finalQuery = query(collRef, ...queryConstraints);
-        const snapshot = await getDocs(finalQuery);
-
-        // Optional: Get total count (can be expensive in huge DBs, but good for UI)
-        if(!isLoadMore) {
-          const countQuery = query(collRef, ...queryConstraints.filter(c => c.type !== 'limit' && c.type !== 'startAfter'));
-          try {
-            const countSnapshot = await getCountFromServer(countQuery);
-            totalCount = countSnapshot.data().count;
-          } catch(e) { totalCount = "5000+"; } // Fallback
-        }
-
-        const newDocs = [];
+        allColleges = [];
         snapshot.forEach(doc => {
-          let data = doc.data();
-
-          console.log(doc.id);
-console.log(data);
-          
-          // Client-side filtering for complex bounds (Fees, Search Text) due to Firestore limits
-          let pass = true;
-          
-          // Slider value is in LPA (e.g., 20 LPA), but data.fees is in INR (e.g., 255000)
-          // So convert LPA limit to INR for accurate filtering
-          const maxFeeINR = currentFilters.maxFeeLPA * 100000;
-          if (currentFilters.maxFeeLPA < 20 && (data.fees > maxFeeINR || !data.fees)) pass = false;
-          
-          if (currentFilters.search) {
-            const s = currentFilters.search.toLowerCase();
-            const n = (data.name || '').toLowerCase();
-            const sn = (data.shortName || '').toLowerCase();
-            const c = (data.city || '').toLowerCase();
-            if(!n.includes(s) && !sn.includes(s) && !c.includes(s)) pass = false;
-          }
-
-          if(pass) newDocs.push({ id: doc.id, ...data });
+          allColleges.push({ id: doc.id, ...doc.data() });
         });
 
-        lastDoc = snapshot.docs[snapshot.docs.length - 1];
-        loadedColleges = [...loadedColleges, ...newDocs];
-        
-        // Render
-        if(!isLoadMore) grid.innerHTML = '';
-        
-        if (loadedColleges.length === 0) {
-          noResults.classList.remove('hidden');
-          updateCountUI(0, 0);
-        } else {
-          newDocs.forEach(c => grid.insertAdjacentHTML('beforeend', createCollegeCard(c, c.id)));
-          updateCountUI(loadedColleges.length, totalCount);
-          
-          // Show/Hide load more
-          if(snapshot.docs.length < PAGE_LIMIT) {
-            loadMoreContainer.classList.add('hidden');
-          } else {
-            loadMoreContainer.classList.remove('hidden');
-            loadMoreBtn.innerHTML = 'Load More Colleges';
-          }
-        }
+        currentPage = 1;
+        applyFiltersAndRender();
 
       } catch (error) {
-        console.error("Error fetching colleges:", error);
-        if(!isLoadMore) grid.innerHTML = `<div class="col-span-full text-center text-red-400 py-10">Failed to load data. Please check your connection.</div>`;
+        console.error("Error loading college catalog:", error);
+        grid.innerHTML = `<div class="col-span-full text-center text-red-400 py-10">Failed to load directory. Please check your internet connection.</div>`;
       } finally {
         isFetching = false;
       }
     };
 
-    const updateCountUI = (showing, total) => {
-      const txt = `Showing <span class="text-white">${showing}</span> of <span class="text-white">${total}</span> colleges`;
-      desktopCount.innerHTML = txt;
-      mobileCount.innerHTML = `${showing} / ${total}`;
+    // Client-side execution pipeline for filter variables, sorts, and current page bounds
+    const applyFiltersAndRender = () => {
+      // 1. Filter out parameters matching sliders and search texts
+      filteredColleges = allColleges.filter(data => {
+        let matchesSearchFee = true;
+        
+        const maxFeeINR = currentFilters.maxFeeLPA * 100000;
+        if (currentFilters.maxFeeLPA < 20 && (Number(data.fees) > maxFeeINR || !data.fees)) matchesSearchFee = false;
+        
+        if (currentFilters.search) {
+          const s = currentFilters.search.toLowerCase();
+          const n = (data.name || '').toLowerCase();
+          const sn = (data.shortName || '').toLowerCase();
+          const c = (data.city || '').toLowerCase();
+          const st = (data.state || '').toLowerCase();
+          if(!n.includes(s) && !sn.includes(s) && !c.includes(s) && !st.includes(s)) matchesSearchFee = false;
+        }
+        return matchesSearchFee;
+      });
+
+      // 2. Sorting Process
+      filteredColleges.sort((a, b) => {
+        if (currentFilters.sort === 'ranking_asc') {
+          return (Number(a.nirfRank) || Infinity) - (Number(b.nirfRank) || Infinity);
+        } else if (currentFilters.sort === 'fees_asc') {
+          return (Number(a.fees) || Infinity) - (Number(b.fees) || Infinity);
+        } else if (currentFilters.sort === 'package_desc') {
+          return (Number(b.avgPackage) || 0) - (Number(a.avgPackage) || 0);
+        }
+        return 0;
+      });
+
+      // 3. Handle page ranges and list segmentation
+      const totalItems = filteredColleges.length;
+      const totalPages = Math.ceil(totalItems / PAGE_LIMIT);
+      
+      if(currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+      const startIdx = (currentPage - 1) * PAGE_LIMIT;
+      const endIdx = Math.min(startIdx + PAGE_LIMIT, totalItems);
+      const activePageItems = filteredColleges.slice(startIdx, endIdx);
+
+      grid.innerHTML = '';
+
+      if (totalItems === 0) {
+        noResults.classList.remove('hidden');
+        paginationContainer.classList.add('hidden');
+        updateCountUI(0, 0, 0);
+        return;
+      }
+
+      noResults.classList.add('hidden');
+      activePageItems.forEach(c => grid.insertAdjacentHTML('beforeend', createCollegeCard(c, c.id)));
+      updateCountUI(startIdx + 1, endIdx, totalItems);
+      renderPaginationControls(totalPages);
     };
 
-    // Event Listeners
+    // Update Counter text arrays
+    const updateCountUI = (start, end, total) => {
+      const textMarkup = total === 0 ? `Showing <span class="text-white">0</span> of <span class="text-white">0</span> colleges` : `Showing <span class="text-white">${start}-${end}</span> of <span class="text-white">${total}</span> colleges`;
+      desktopCount.innerHTML = textMarkup;
+      mobileCount.innerHTML = total === 0 ? `0 / 0` : `${start}-${end} / ${total}`;
+    };
+
+    // Build functional custom page buttons inside container element
+    const renderPaginationControls = (totalPages) => {
+      if (totalPages <= 1) {
+        paginationContainer.classList.add('hidden');
+        return;
+      }
+      paginationContainer.classList.remove('hidden');
+
+      let controlsHtml = '';
+
+      // Prev Button Configuration
+      if (currentPage > 1) {
+        controlsHtml += `<button onclick="changeActivePage(${currentPage - 1})" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">Prev</button>`;
+      } else {
+        controlsHtml += `<button class="px-3.5 py-2 rounded-xl bg-slate-900/40 border border-slate-800/50 text-slate-600 text-sm font-bold cursor-not-allowed" disabled>Prev</button>`;
+      }
+
+      // Dynamic Numeric Indexes
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === currentPage) {
+          controlsHtml += `<button class="px-3.5 py-2 rounded-xl bg-brand-blue text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition">${i}</button>`;
+        } else {
+          controlsHtml += `<button onclick="changeActivePage(${i})" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">${i}</button>`;
+        }
+      }
+
+      // Next Button Configuration
+      if (currentPage < totalPages) {
+        controlsHtml += `<button onclick="changeActivePage(${currentPage + 1})" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">Next</button>`;
+      } else {
+        controlsHtml += `<button class="px-3.5 py-2 rounded-xl bg-slate-900/40 border border-slate-800/50 text-slate-600 text-sm font-bold cursor-not-allowed" disabled>Next</button>`;
+      }
+
+      paginationContainer.innerHTML = controlsHtml;
+    };
+
+    // Page window switcher link attached globally
+    window.changeActivePage = (targetPage) => {
+      currentPage = targetPage;
+      applyFiltersAndRender();
+      window.scrollTo({ top: grid.offsetTop - 120, behavior: 'smooth' });
+    };
+
+    // Action Observers
     document.getElementById('applyFiltersBtn').addEventListener('click', () => {
       currentFilters.state = document.getElementById('filterState').value;
       currentFilters.type = document.getElementById('filterType').value;
@@ -574,19 +580,22 @@ console.log(data);
 
     document.getElementById('searchBtn').addEventListener('click', () => {
       currentFilters.search = document.getElementById('mainSearchInput').value.trim();
-      fetchColleges();
+      currentPage = 1;
+      applyFiltersAndRender();
     });
 
     document.getElementById('mainSearchInput').addEventListener('keypress', (e) => {
       if(e.key === 'Enter') {
         currentFilters.search = e.target.value.trim();
-        fetchColleges();
+        currentPage = 1;
+        applyFiltersAndRender();
       }
     });
 
     document.getElementById('sortSelect').addEventListener('change', (e) => {
       currentFilters.sort = e.target.value;
-      fetchColleges();
+      currentPage = 1;
+      applyFiltersAndRender();
     });
 
     const resetFilters = () => {
@@ -601,9 +610,8 @@ console.log(data);
 
     document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
     document.getElementById('clearFiltersEmptyBtn').addEventListener('click', resetFilters);
-    document.getElementById('loadMoreBtn').addEventListener('click', () => fetchColleges(true));
 
-    // Initial Load
+    // Initial Processing
     document.addEventListener("DOMContentLoaded", () => fetchColleges());
 
   </script>
