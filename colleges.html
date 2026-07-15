@@ -47,7 +47,7 @@
     /* Card Hover Effects */
     .college-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .college-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); }
-    .college-card img.cover-img { transition: transform 0.5s ease; }
+    .college-card img.cover-img { transition: transform 0.5s ease, opacity 0.4s ease; }
     .college-card:hover img.cover-img { transform: scale(1.05); }
 
     /* Range Slider Styling */
@@ -213,10 +213,13 @@
       </div>
 
       <div id="collegesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        </div>
+        <!-- Colleges populate dynamically -->
+      </div>
 
+      <!-- Numbered dynamic pagination container -->
       <div id="paginationContainer" class="mt-14 flex flex-wrap justify-center items-center gap-2 hidden">
-        </div>
+        <!-- Numbered pages dynamically injected here -->
+      </div>
       
       <div id="noResultsContainer" class="mt-12 text-center py-16 bg-brand-card rounded-2xl border border-slate-800 hidden">
         <svg class="w-16 h-16 mx-auto text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -267,7 +270,6 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    // Fixed broken imports path here
     import { getFirestore as initFirestore, collection as getColl, query as setQuery, where as filterWhere, getDocs as loadDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
      
     const firebaseConfig = {
@@ -317,7 +319,7 @@
     overlay.addEventListener('click', closeSidebar);
 
     // ================= COLLEGE DATA LOGIC =================
-    const PAGE_LIMIT = 12; // Ek page par 12 colleges load honge jo bilkul instant speed denge
+    const PAGE_LIMIT = 12; 
     let currentPage = 1;
     let allColleges = [];
     let filteredColleges = [];
@@ -379,8 +381,8 @@
 
       return `
         <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group">
-          <div class="relative h-48 overflow-hidden bg-slate-900">
-            <img src="${cover}" alt="${name}" loading="lazy" class="cover-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x400/1e293b/94a3b8?text=College'">
+          <div class="relative h-48 overflow-hidden bg-slate-800 skeleton">
+            <img src="${cover}" alt="${name}" loading="lazy" class="cover-img w-full h-full object-cover opacity-0" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');" onerror="this.src='https://via.placeholder.com/600x400/1e293b/94a3b8?text=College'; this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
             <button class="absolute top-3 right-3 bg-black/40 backdrop-blur hover:bg-red-500/80 p-2 rounded-full text-white transition z-10" title="Save College">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </button>
@@ -571,11 +573,18 @@
       });
     };
 
-    // Page window switcher link
+    // Page window switcher link with clean skeleton loading state delay
     const changeActivePage = (targetPage) => {
       currentPage = targetPage;
-      applyFiltersAndRender();
+      
+      // Trigger skeleton state immediately on click to simulate premium transitions
+      renderSkeletons(PAGE_LIMIT); 
       window.scrollTo({ top: grid.offsetTop - 120, behavior: 'smooth' });
+      
+      // Small 250ms transition window to let images buffer and look clean
+      setTimeout(() => {
+        applyFiltersAndRender();
+      }, 250);
     };
 
     // Action Observers
