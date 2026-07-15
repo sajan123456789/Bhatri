@@ -213,13 +213,10 @@
       </div>
 
       <div id="collegesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        <!-- Colleges populate dynamically -->
-      </div>
+        </div>
 
-      <!-- Numbered dynamic pagination container -->
       <div id="paginationContainer" class="mt-14 flex flex-wrap justify-center items-center gap-2 hidden">
-        <!-- Numbered pages dynamically injected here -->
-      </div>
+        </div>
       
       <div id="noResultsContainer" class="mt-12 text-center py-16 bg-brand-card rounded-2xl border border-slate-800 hidden">
         <svg class="w-16 h-16 mx-auto text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -270,8 +267,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    // Fix routing paths for specific Firestore imports
+    // Fixed broken imports path here
     import { getFirestore as initFirestore, collection as getColl, query as setQuery, where as filterWhere, getDocs as loadDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
      
     const firebaseConfig = {
@@ -321,7 +317,7 @@
     overlay.addEventListener('click', closeSidebar);
 
     // ================= COLLEGE DATA LOGIC =================
-    const PAGE_LIMIT = 12;
+    const PAGE_LIMIT = 12; // Ek page par 12 colleges load honge jo bilkul instant speed denge
     let currentPage = 1;
     let allColleges = [];
     let filteredColleges = [];
@@ -382,7 +378,7 @@
       const placement = data.placement ? `📈 ${data.placement}% Placement` : '';
 
       return `
-        <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group animate-fade-in">
+        <div class="college-card bg-brand-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col relative group">
           <div class="relative h-48 overflow-hidden bg-slate-900">
             <img src="${cover}" alt="${name}" loading="lazy" class="cover-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x400/1e293b/94a3b8?text=College'">
             <button class="absolute top-3 right-3 bg-black/40 backdrop-blur hover:bg-red-500/80 p-2 rounded-full text-white transition z-10" title="Save College">
@@ -426,7 +422,7 @@
       `;
     };
 
-    // Main Fetch Operation (Triggers on structural state/type change)
+    // Main Fetch Operation
     const fetchColleges = async () => {
       if(isFetching) return;
       isFetching = true;
@@ -462,9 +458,8 @@
       }
     };
 
-    // Client-side execution pipeline for filter variables, sorts, and current page bounds
+    // Client-side execution pipeline for lightning-fast dynamic filtering and rendering
     const applyFiltersAndRender = () => {
-      // 1. Filter out parameters matching sliders and search texts
       filteredColleges = allColleges.filter(data => {
         let matchesSearchFee = true;
         
@@ -482,7 +477,7 @@
         return matchesSearchFee;
       });
 
-      // 2. Sorting Process
+      // Sorting Process
       filteredColleges.sort((a, b) => {
         if (currentFilters.sort === 'ranking_asc') {
           return (Number(a.nirfRank) || Infinity) - (Number(b.nirfRank) || Infinity);
@@ -494,7 +489,7 @@
         return 0;
       });
 
-      // 3. Handle page ranges and list segmentation
+      // Handle segments according to PAGE_LIMIT
       const totalItems = filteredColleges.length;
       const totalPages = Math.ceil(totalItems / PAGE_LIMIT);
       
@@ -519,7 +514,7 @@
       renderPaginationControls(totalPages);
     };
 
-    // Update Counter text arrays
+    // Update Counter texts
     const updateCountUI = (start, end, total) => {
       const textMarkup = total === 0 ? `Showing <span class="text-white">0</span> of <span class="text-white">0</span> colleges` : `Showing <span class="text-white">${start}-${end}</span> of <span class="text-white">${total}</span> colleges`;
       desktopCount.innerHTML = textMarkup;
@@ -538,7 +533,7 @@
 
       // Prev Button Configuration
       if (currentPage > 1) {
-        controlsHtml += `<button onclick="changeActivePage(${currentPage - 1})" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">Prev</button>`;
+        controlsHtml += `<button id="prevPageBtn" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">Prev</button>`;
       } else {
         controlsHtml += `<button class="px-3.5 py-2 rounded-xl bg-slate-900/40 border border-slate-800/50 text-slate-600 text-sm font-bold cursor-not-allowed" disabled>Prev</button>`;
       }
@@ -546,24 +541,38 @@
       // Dynamic Numeric Indexes
       for (let i = 1; i <= totalPages; i++) {
         if (i === currentPage) {
-          controlsHtml += `<button class="px-3.5 py-2 rounded-xl bg-brand-blue text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition">${i}</button>`;
+          controlsHtml += `<button class="page-num-btn px-3.5 py-2 rounded-xl bg-brand-blue text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition" data-page="${i}">${i}</button>`;
         } else {
-          controlsHtml += `<button onclick="changeActivePage(${i})" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">${i}</button>`;
+          controlsHtml += `<button class="page-num-btn px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="${i}">${i}</button>`;
         }
       }
 
       // Next Button Configuration
       if (currentPage < totalPages) {
-        controlsHtml += `<button onclick="changeActivePage(${currentPage + 1})" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">Next</button>`;
+        controlsHtml += `<button id="nextPageBtn" class="px-3.5 py-2 rounded-xl bg-brand-card border border-slate-800 text-sm font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition">Next</button>`;
       } else {
         controlsHtml += `<button class="px-3.5 py-2 rounded-xl bg-slate-900/40 border border-slate-800/50 text-slate-600 text-sm font-bold cursor-not-allowed" disabled>Next</button>`;
       }
 
       paginationContainer.innerHTML = controlsHtml;
+
+      // Attach Event Listeners inside module scope safely
+      const prevBtn = document.getElementById('prevPageBtn');
+      if(prevBtn) prevBtn.addEventListener('click', () => changeActivePage(currentPage - 1));
+
+      const nextBtn = document.getElementById('nextPageBtn');
+      if(nextBtn) nextBtn.addEventListener('click', () => changeActivePage(currentPage + 1));
+
+      document.querySelectorAll('.page-num-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const targetPage = parseInt(e.target.getAttribute('data-page'));
+          changeActivePage(targetPage);
+        });
+      });
     };
 
-    // Page window switcher link attached globally
-    window.changeActivePage = (targetPage) => {
+    // Page window switcher link
+    const changeActivePage = (targetPage) => {
       currentPage = targetPage;
       applyFiltersAndRender();
       window.scrollTo({ top: grid.offsetTop - 120, behavior: 'smooth' });
@@ -612,7 +621,7 @@
     document.getElementById('clearFiltersEmptyBtn').addEventListener('click', resetFilters);
 
     // Initial Processing
-    document.addEventListener("DOMContentLoaded", () => fetchColleges());
+    fetchColleges();
 
   </script>
 </body>
