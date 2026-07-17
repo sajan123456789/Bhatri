@@ -37,11 +37,13 @@
           fontFamily: { sans: ['Inter', 'sans-serif'] },
           colors: {
             brand: {
-              dark: '#020617',
-              card: '#111827',
-              blue: '#3b82f6',
-              blueHover: '#2563eb',
-              border: 'rgba(255,255,255,0.08)'
+              lightBg: '#f8fafc',
+              card: '#ffffff',
+              blue: '#2563eb',
+              blueHover: '#1d4ed8',
+              border: '#e2e8f0',
+              textPrimary: '#0f172a',
+              textSecondary: '#475569'
             }
           }
         }
@@ -50,30 +52,29 @@
   </script>
   
   <style>
-    body { background-color: #0f172a; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
+    body { background-color: #f8fafc; color: #334155; -webkit-font-smoothing: antialiased; }
     
     .glass-card {
-      background: linear-gradient(135deg, rgba(17, 24, 39, 0.7) 0%, rgba(3, 7, 18, 0.8) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
     }
     
     .glass-navbar {
-      background: rgba(2, 6, 23, 0.85);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid #e2e8f0;
     }
 
     .tab-active {
-      color: #3b82f6 !important;
-      border-bottom-color: #3b82f6 !important;
-      background: linear-gradient(360deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0) 100%);
+      color: #2563eb !important;
+      border-bottom-color: #2563eb !important;
+      background: linear-gradient(360deg, rgba(37, 99, 235, 0.04) 0%, rgba(37, 99, 235, 0) 100%);
     }
 
     .skeleton {
-      background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
       background-size: 200% 100%;
       animation: loading-pulse 1.6s infinite ease-in-out;
     }
@@ -92,16 +93,16 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     .glow-input:focus {
-      box-shadow: 0 0 20px 0 rgba(59, 130, 246, 0.15);
-      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 20px 0 rgba(37, 99, 235, 0.15);
+      border-color: rgba(37, 99, 235, 0.4);
     }
   </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 min-h-screen flex flex-col antialiased">
+<body class="bg-brand-lightBg text-brand-textSecondary min-h-screen flex flex-col antialiased">
 
   <!-- ================= LOADING FULLSCREEN OVERLAY ================= -->
-  <div id="loadingOverlay" class="fixed inset-0 z-[100] bg-brand-dark flex flex-col">
-    <div class="h-16 border-b border-white/5 bg-brand-dark flex items-center px-6">
+  <div id="loadingOverlay" class="fixed inset-0 z-[100] bg-white flex flex-col">
+    <div class="h-16 border-b border-slate-200 bg-white flex items-center px-6">
       <div class="h-6 w-36 skeleton rounded"></div>
     </div>
     <div class="w-full h-64 skeleton"></div>
@@ -120,16 +121,16 @@
   </div>
 
   <!-- ================= ERROR SCREEN CONTAINER ================= -->
-  <div id="errorScreen" class="fixed inset-0 z-[90] bg-brand-dark hidden flex-col justify-center items-center px-4">
-    <div class="glass-card max-w-md w-full p-8 rounded-3xl text-center shadow-2xl relative overflow-hidden">
-      <div class="absolute -top-24 -left-24 w-48 h-48 bg-red-500/10 blur-[60px] rounded-full"></div>
-      <div class="w-20 h-20 mx-auto bg-red-500/10 border border-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-6">
+  <div id="errorScreen" class="fixed inset-0 z-[90] bg-slate-50 hidden flex-col justify-center items-center px-4">
+    <div class="glass-card max-w-md w-full p-8 rounded-3xl text-center shadow-xl relative overflow-hidden bg-white">
+      <div class="absolute -top-24 -left-24 w-48 h-48 bg-red-500/5 blur-[60px] rounded-full"></div>
+      <div class="w-20 h-20 mx-auto bg-red-500/10 border border-red-500/20 text-red-600 rounded-2xl flex items-center justify-center mb-6">
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
         </svg>
       </div>
-      <h1 class="text-2xl font-black text-white mb-2 tracking-tight">College Not Found</h1>
-      <p class="text-slate-400 text-sm mb-8 leading-relaxed">The unique identifier specified in the URL path parameters does not match any authenticated system document record inside our directory databases.</p>
+      <h1 class="text-2xl font-black text-brand-textPrimary mb-2 tracking-tight">College Not Found</h1>
+      <p class="text-slate-500 text-sm mb-8 leading-relaxed">The unique identifier specified in the URL path parameters does not match any authenticated system document record inside our directory databases.</p>
       <a href="colleges.html" class="inline-flex w-full justify-center items-center bg-brand-blue hover:bg-brand-blueHover text-white font-bold py-3.5 px-6 rounded-xl transition duration-300 shadow-lg shadow-blue-500/25 text-sm uppercase tracking-wider">
         Back to Colleges
       </a>
@@ -140,25 +141,25 @@
   <header class="sticky top-0 z-50 glass-navbar">
     <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <img src="careersteps-logo.png" alt="CareerSteps Logo" onerror="this.src='https://via.placeholder.com/40?text=CS'" class="h-8 sm:h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
-        <span class="text-xl sm:text-2xl font-black italic uppercase tracking-tighter text-white">
+        <!-- Text layout optimized to keep desktop brand visibility clean and uniform -->
+        <span class="text-xl sm:text-2xl font-black italic uppercase tracking-tighter text-slate-900">
           CAREER<span class="text-blue-600">STEPS</span>
         </span>
       </a>
 
       <nav class="hidden lg:flex gap-6 xl:gap-10 items-center">
-        <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">Home</a>
-        <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">Careers</a>
-        <a href="colleges.html" class="text-[14px] font-extrabold uppercase tracking-wider text-blue-500 hover:text-blue-400 transition-colors">Colleges</a>
-        <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">Blogs</a>
-        <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-300 hover:text-white transition-colors">About</a>
+        <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-600 hover:text-slate-900 transition-colors">Home</a>
+        <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-600 hover:text-slate-900 transition-colors">Careers</a>
+        <a href="colleges.html" class="text-[14px] font-extrabold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors">Colleges</a>
+        <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-600 hover:text-slate-900 transition-colors">Blogs</a>
+        <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-600 hover:text-slate-900 transition-colors">About</a>
       </nav>
 
       <div class="flex items-center gap-3 sm:gap-4 shrink-0">
         <div id="authAreaContainer" class="flex items-center">
           <!-- Populated by dynamic Firebase listener state changes -->
         </div>
-        <button id="mobileSidebarToggle" class="lg:hidden text-white p-1.5 hover:bg-white/5 rounded-xl transition">
+        <button id="mobileSidebarToggle" class="lg:hidden text-slate-800 p-1.5 hover:bg-slate-100 rounded-xl transition">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
       </div>
@@ -166,38 +167,38 @@
   </header>
 
   <!-- Mobile Sidebar Dropdown -->
-  <div id="mobileNavigationDrawer" class="fixed inset-y-0 right-0 w-[280px] z-[55] bg-brand-dark border-l border-white/10 p-6 shadow-2xl transform translate-x-full transition-transform duration-300 lg:hidden">
+  <div id="mobileNavigationDrawer" class="fixed inset-y-0 right-0 w-[280px] z-[55] bg-white border-l border-slate-200 p-6 shadow-2xl transform translate-x-full transition-transform duration-300 lg:hidden">
     <div class="flex justify-between items-center mb-8">
-      <span class="text-sm font-black text-white tracking-widest uppercase">Menu</span>
-      <button id="mobileSidebarClose" class="text-slate-400 hover:text-white p-1"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+      <span class="text-sm font-black text-slate-900 tracking-widest uppercase">Menu</span>
+      <button id="mobileSidebarClose" class="text-slate-500 hover:text-slate-800 p-1"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
     </div>
     <div class="flex flex-col gap-5 font-bold uppercase text-sm tracking-wider">
-      <a href="index.html" class="text-slate-300 hover:text-white py-2 border-b border-white/5">Home</a>
-      <a href="careers.html" class="text-slate-300 hover:text-white py-2 border-b border-white/5">Careers</a>
-      <a href="colleges.html" class="text-blue-500 py-2 border-b border-white/5">Colleges</a>
-      <a href="blog.html" class="text-slate-300 hover:text-white py-2 border-b border-white/5">Blogs</a>
-      <a href="about.html" class="text-slate-300 hover:text-white py-2 border-b border-white/5">About</a>
+      <a href="index.html" class="text-slate-600 hover:text-slate-900 py-2 border-b border-slate-100">Home</a>
+      <a href="careers.html" class="text-slate-600 hover:text-slate-900 py-2 border-b border-slate-100">Careers</a>
+      <a href="colleges.html" class="text-blue-600 py-2 border-b border-slate-100">Colleges</a>
+      <a href="blog.html" class="text-slate-600 hover:text-slate-900 py-2 border-b border-slate-100">Blogs</a>
+      <a href="about.html" class="text-slate-600 hover:text-slate-900 py-2 border-b border-slate-100">About</a>
     </div>
   </div>
-  <div id="drawerOverlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[51] hidden lg:hidden"></div>
+  <div id="drawerOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[51] hidden lg:hidden"></div>
 
   <!-- ================= MAIN CORE CONTENT FRAMEWORK ================= -->
   <main id="mainPageContent" class="flex-1 opacity-0 transition-opacity duration-300">
     
-    <!-- HERO COMPONENT -->
-    <section class="relative border-b border-white/5 overflow-hidden">
+    <!-- HERO COMPONENT (Hybrid Dark Mode for Image Contrast Preservation) -->
+    <section class="relative border-b border-slate-200 overflow-hidden bg-slate-950">
       <!-- Background Image Container Layer -->
-      <div class="absolute inset-0 h-[300px] md:h-[400px] bg-slate-900 overflow-hidden skeleton">
+      <div class="absolute inset-0 h-[280px] md:h-[360px] bg-slate-900 overflow-hidden skeleton">
         <img id="collegeHeroCover" src="" alt="" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/70 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
       </div>
 
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-[180px] md:pt-[260px] pb-10 relative z-10">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-[160px] md:pt-[220px] pb-10 relative z-10">
         <div class="flex flex-col lg:flex-row items-start lg:items-end gap-6 md:gap-8">
           
           <!-- Logo Wrapper Block -->
-          <div class="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-brand-dark p-3 border border-white/10 shadow-2xl relative shrink-0 overflow-hidden group">
-            <div class="w-full h-full rounded-2xl bg-slate-800 skeleton overflow-hidden">
+          <div class="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-white p-3 border border-slate-200 shadow-2xl relative shrink-0 overflow-hidden group">
+            <div class="w-full h-full rounded-2xl bg-slate-50 skeleton overflow-hidden">
               <img id="collegeHeroLogo" src="" alt="" class="w-full h-full object-contain opacity-0" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
             </div>
           </div>
@@ -205,19 +206,19 @@
           <!-- Metadata Context Column -->
           <div class="flex-1 space-y-3">
             <div class="flex flex-wrap items-center gap-2">
-              <span id="badgeType" class="text-[10px] md:text-xs font-black px-2.5 py-1 rounded-md bg-blue-500/10 text-brand-blue border border-blue-500/20 uppercase tracking-widest">Type</span>
+              <span id="badgeType" class="text-[10px] md:text-xs font-black px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-widest">Type</span>
               <span id="badgeNaac" class="text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden">NAAC</span>
               <span id="badgeNirf" class="text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20 hidden">NIRF</span>
-              <span id="badgeEst" class="text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-md bg-white/5 text-slate-400 border border-white/5">Est: </span>
+              <span id="badgeEst" class="text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-md bg-white/10 text-slate-300 border border-white/5">Est: </span>
             </div>
             
             <h1 id="collegeHeroName" class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-none">College Full Title Name</h1>
             
-            <p class="text-slate-400 text-sm md:text-base font-medium flex flex-wrap items-center gap-2">
+            <p class="text-slate-300 text-sm md:text-base font-medium flex flex-wrap items-center gap-2">
               <span id="collegeHeroShort" class="text-white font-bold tracking-wide">SHORT</span>
-              <span class="text-slate-600">•</span>
+              <span class="text-slate-500">•</span>
               <span id="collegeHeroLocation" class="inline-flex items-center gap-1">
-                <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 City, State
               </span>
             </p>
@@ -225,14 +226,14 @@
 
           <!-- CTAs Interaction Box -->
           <div class="w-full lg:w-auto flex flex-wrap sm:flex-nowrap items-center gap-3 pt-4 lg:pt-0 shrink-0">
-            <button id="saveCollegeBtn" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold px-5 py-3.5 rounded-xl transition text-sm">
+            <button id="saveCollegeBtn" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-5 py-3.5 rounded-xl transition text-sm">
               <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
               <span>Save</span>
             </button>
-            <a id="externalWebsiteBtn" href="" target="_blank" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 font-bold px-5 py-3.5 rounded-xl transition text-sm">
+            <a id="externalWebsiteBtn" href="" target="_blank" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold px-5 py-3.5 rounded-xl transition text-sm">
               Visit Site
             </a>
-            <a id="applyNowBtnTop" href="" target="_blank" class="flex-[2] sm:flex-none justify-center items-center inline-flex bg-brand-blue hover:bg-brand-blueHover text-white font-black px-6 py-3.5 rounded-xl transition text-sm uppercase tracking-wider shadow-lg shadow-blue-500/20">
+            <a id="applyNowBtnTop" href="" target="_blank" class="flex-[2] sm:flex-none justify-center items-center inline-flex bg-brand-blue hover:bg-brand-blueHover text-white font-black px-6 py-3.5 rounded-xl transition text-sm uppercase tracking-wider shadow-lg shadow-blue-600/20">
               Apply Now
             </a>
           </div>
@@ -245,48 +246,44 @@
     <section class="max-w-[1400px] mx-auto px-4 sm:px-6 py-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         
-        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-blue-500/30 transition-all duration-300">
-          <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-500/5 blur-xl group-hover:scale-150 transition-transform duration-500 rounded-full"></div>
-          <p class="text-[10px] md:text-xs font-black uppercase text-slate-500 tracking-widest mb-2">Average Package</p>
-          <p id="statAvgPackage" class="text-xl md:text-3xl font-black text-white tracking-tight">Counting...</p>
-          <div class="w-full h-1 bg-blue-500/20 rounded-full mt-4 overflow-hidden"><div class="w-2/3 h-full bg-brand-blue rounded-full"></div></div>
+        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-blue-400 transition-all duration-300 bg-white shadow-sm">
+          <p class="text-[10px] md:text-xs font-bold uppercase text-slate-400 tracking-widest mb-1.5">Average Package</p>
+          <p id="statAvgPackage" class="text-xl md:text-3xl font-black text-slate-900 tracking-tight">Counting...</p>
+          <div class="w-full h-1 bg-slate-100 rounded-full mt-4 overflow-hidden"><div class="w-2/3 h-full bg-brand-blue rounded-full"></div></div>
         </div>
 
-        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-purple-500/30 transition-all duration-300">
-          <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-purple-500/5 blur-xl group-hover:scale-150 transition-transform duration-500 rounded-full"></div>
-          <p class="text-[10px] md:text-xs font-black uppercase text-slate-500 tracking-widest mb-2">Highest Package</p>
-          <p id="statHighestPackage" class="text-xl md:text-3xl font-black text-purple-400 tracking-tight">Counting...</p>
-          <div class="w-full h-1 bg-purple-500/20 rounded-full mt-4 overflow-hidden"><div class="w-4/5 h-full bg-purple-500 rounded-full"></div></div>
+        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-purple-400 transition-all duration-300 bg-white shadow-sm">
+          <p class="text-[10px] md:text-xs font-bold uppercase text-slate-400 tracking-widest mb-1.5">Highest Package</p>
+          <p id="statHighestPackage" class="text-xl md:text-3xl font-black text-slate-900 tracking-tight">Counting...</p>
+          <div class="w-full h-1 bg-slate-100 rounded-full mt-4 overflow-hidden"><div class="w-4/5 h-full bg-purple-600 rounded-full"></div></div>
         </div>
 
-        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-300">
-          <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-500/5 blur-xl group-hover:scale-150 transition-transform duration-500 rounded-full"></div>
-          <p class="text-[10px] md:text-xs font-black uppercase text-slate-500 tracking-widest mb-2">Placement Rate</p>
-          <p id="statPlacementRate" class="text-xl md:text-3xl font-black text-emerald-400 tracking-tight">Counting...</p>
-          <div class="w-full h-1 bg-emerald-500/20 rounded-full mt-4 overflow-hidden"><div id="statPlacementBar" class="h-full bg-emerald-500 rounded-full" style="width: 0%"></div></div>
+        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-emerald-400 transition-all duration-300 bg-white shadow-sm">
+          <p class="text-[10px] md:text-xs font-bold uppercase text-slate-400 tracking-widest mb-1.5">Placement Rate</p>
+          <p id="statPlacementRate" class="text-xl md:text-3xl font-black text-slate-900 tracking-tight">Counting...</p>
+          <div class="w-full h-1 bg-slate-100 rounded-full mt-4 overflow-hidden"><div id="statPlacementBar" class="h-full bg-emerald-600 rounded-full" style="width: 0%"></div></div>
         </div>
 
-        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-amber-500/30 transition-all duration-300">
-          <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-amber-500/5 blur-xl group-hover:scale-150 transition-transform duration-500 rounded-full"></div>
-          <p class="text-[10px] md:text-xs font-black uppercase text-slate-500 tracking-widest mb-2">Annual General Fee</p>
-          <p id="statAnnualFee" class="text-xl md:text-3xl font-black text-amber-400 tracking-tight">Counting...</p>
-          <div class="w-full h-1 bg-amber-500/20 rounded-full mt-4 overflow-hidden"><div class="w-1/2 h-full bg-amber-500 rounded-full"></div></div>
+        <div class="glass-card p-5 md:p-6 rounded-2xl relative overflow-hidden group hover:border-amber-400 transition-all duration-300 bg-white shadow-sm">
+          <p class="text-[10px] md:text-xs font-bold uppercase text-slate-400 tracking-widest mb-1.5">Annual General Fee</p>
+          <p id="statAnnualFee" class="text-xl md:text-3xl font-black text-slate-900 tracking-tight">Counting...</p>
+          <div class="w-full h-1 bg-slate-100 rounded-full mt-4 overflow-hidden"><div class="w-1/2 h-full bg-amber-600 rounded-full"></div></div>
         </div>
 
       </div>
     </section>
 
     <!-- STICKY SMOOTH NAV BAR -->
-    <div class="sticky top-[69px] z-40 bg-brand-dark/95 backdrop-blur border-b border-white/5 shadow-xl">
+    <div class="sticky top-[69px] z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
       <div class="max-w-[1400px] mx-auto px-4 overflow-x-auto no-scrollbar flex items-center">
         <div class="flex shrink-0 border-b border-transparent">
-          <button onclick="scrollToTabSection('sectionOverview')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Overview</button>
-          <button onclick="scrollToTabSection('sectionCourses')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Courses</button>
-          <button onclick="scrollToTabSection('sectionPlacements')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Placements</button>
-          <button onclick="scrollToTabSection('sectionFees')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Fees</button>
-          <button onclick="scrollToTabSection('sectionAdmission')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Admission</button>
-          <button onclick="scrollToTabSection('sectionLocation')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Location</button>
-          <button onclick="scrollToTabSection('sectionSimilar')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Similar Colleges</button>
+          <button onclick="scrollToTabSection('sectionOverview')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Overview</button>
+          <button onclick="scrollToTabSection('sectionCourses')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Courses</button>
+          <button onclick="scrollToTabSection('sectionPlacements')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Placements</button>
+          <button onclick="scrollToTabSection('sectionFees')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Fees</button>
+          <button onclick="scrollToTabSection('sectionAdmission')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Admission</button>
+          <button onclick="scrollToTabSection('sectionLocation')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Location</button>
+          <button onclick="scrollToTabSection('sectionSimilar')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Similar Colleges</button>
         </div>
       </div>
     </div>
@@ -301,17 +298,17 @@
         <section id="sectionOverview" class="scroll-mt-36 fade-in space-y-6">
           <div class="flex items-center gap-3">
             <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Institutional Overview</h2>
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Institutional Overview</h2>
           </div>
-          <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
-            <p id="overviewDescriptionText" class="text-slate-300 text-sm md:text-base leading-relaxed whitespace-pre-line">
+          <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6 bg-white">
+            <p id="overviewDescriptionText" class="text-slate-600 text-sm md:text-base leading-relaxed whitespace-pre-line">
               Loading documentation description...
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-white/5 text-sm">
-              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">Affiliation Status</span><span id="overviewMetaType" class="text-white font-bold">Government</span></div>
-              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">Established Incorporation</span><span id="overviewMetaEst" class="text-white font-bold">1959</span></div>
-              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">Regional Jurisdiction</span><span id="overviewMetaLocation" class="text-white font-bold">Chennai, Tamil Nadu</span></div>
-              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">NIRF Classification</span><span id="overviewMetaNirf" class="text-purple-400 font-bold">Rank 3</span></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-slate-100 text-sm">
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Affiliation Status</span><span id="overviewMetaType" class="text-slate-900 font-bold">Government</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Established Incorporation</span><span id="overviewMetaEst" class="text-slate-900 font-bold">1959</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Regional Jurisdiction</span><span id="overviewMetaLocation" class="text-slate-900 font-bold">Chennai, Tamil Nadu</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">NIRF Classification</span><span id="overviewMetaNirf" class="text-purple-600 font-bold">Rank 3</span></div>
             </div>
           </div>
         </section>
@@ -320,7 +317,7 @@
         <section id="sectionCourses" class="scroll-mt-36 space-y-6">
           <div class="flex items-center gap-3">
             <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Academic Curriculums & Streams</h2>
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Academic Curriculums & Streams</h2>
           </div>
           <div id="coursesGridDisplay" class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Dynamic Injection Pattern Loops -->
@@ -331,34 +328,34 @@
         <section id="sectionPlacements" class="scroll-mt-36 space-y-6">
           <div class="flex items-center gap-3">
             <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Placement Records & Recruitment Stats</h2>
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Placement Records & Recruitment Stats</h2>
           </div>
-          <div class="glass-card p-6 md:p-8 rounded-2xl space-y-8">
+          <div class="glass-card p-6 md:p-8 rounded-2xl space-y-8 bg-white">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              <div class="text-center p-4 bg-white/5 border border-white/5 rounded-xl">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-1">Average Metrics</span>
-                <span id="placementBlockAvg" class="text-2xl font-black text-white">N/A</span>
+              <div class="text-center p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Average Metrics</span>
+                <span id="placementBlockAvg" class="text-2xl font-black text-slate-900">N/A</span>
               </div>
-              <div class="text-center p-4 bg-white/5 border border-white/5 rounded-xl">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-1">Highest Allocation</span>
-                <span id="placementBlockHighest" class="text-2xl font-black text-purple-400">N/A</span>
+              <div class="text-center p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Highest Allocation</span>
+                <span id="placementBlockHighest" class="text-2xl font-black text-purple-600">N/A</span>
               </div>
-              <div class="text-center p-4 bg-white/5 border border-white/5 rounded-xl">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-1">Secured Rate</span>
-                <span id="placementBlockRate" class="text-2xl font-black text-emerald-400">N/A</span>
+              <div class="text-center p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Secured Rate</span>
+                <span id="placementBlockRate" class="text-2xl font-black text-emerald-600">N/A</span>
               </div>
 
             </div>
 
-            <div class="space-y-4 pt-4 border-t border-white/5">
+            <div class="space-y-4 pt-4 border-t border-slate-100">
               <div>
                 <div class="flex justify-between text-xs font-bold uppercase tracking-wide mb-2">
-                  <span class="text-slate-400">Institutional Placement Probability Index</span>
-                  <span id="placementProbabilityPercent" class="text-emerald-400">0%</span>
+                  <span class="text-slate-500">Institutional Placement Probability Index</span>
+                  <span id="placementProbabilityPercent" class="text-emerald-600">0%</span>
                 </div>
-                <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-white/5">
-                  <div id="placementProbabilityBar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200">
+                  <div id="placementProbabilityBar" class="h-full bg-gradient-to-r from-blue-600 to-emerald-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
                 </div>
               </div>
               <p class="text-slate-400 text-xs leading-relaxed">Statistics metrics are aggregated from real-time dynamic historical reports filed directly by registered operational boards.</p>
@@ -370,16 +367,16 @@
         <section id="sectionFees" class="scroll-mt-36 space-y-6">
           <div class="flex items-center gap-3">
             <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Fee Structure Schedule</h2>
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Fee Structure Schedule</h2>
           </div>
-          <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white">
             <div>
-              <h4 class="text-white font-extrabold text-base mb-1">General Academic Remittance Tiers</h4>
-              <p class="text-slate-400 text-xs max-w-md">Estimated average baseline fee structured for a single full primary year enrollment term course cycle layout.</p>
+              <h4 class="text-slate-900 font-extrabold text-base mb-1">General Academic Remittance Tiers</h4>
+              <p class="text-slate-500 text-xs max-w-md">Estimated average baseline fee structured for a single full primary year enrollment term course cycle layout.</p>
             </div>
             <div class="text-left md:text-right shrink-0">
-              <span class="text-[10px] text-slate-500 uppercase font-black tracking-widest block mb-1">Annual Remittance</span>
-              <span id="feeScheduleCostText" class="text-3xl font-black text-amber-400 tracking-tight">₹0 / Year</span>
+              <span class="text-[10px] text-slate-400 uppercase font-black tracking-widest block mb-1">Annual Remittance</span>
+              <span id="feeScheduleCostText" class="text-3xl font-black text-amber-600 tracking-tight">₹0 / Year</span>
             </div>
           </div>
         </section>
@@ -388,14 +385,14 @@
         <section id="sectionAdmission" class="scroll-mt-36 space-y-6">
           <div class="flex items-center gap-3">
             <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Admission Registration Portals</h2>
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Admission Registration Portals</h2>
           </div>
-          <div class="glass-card p-6 md:p-8 rounded-2xl bg-gradient-to-r from-brand-card to-slate-900 border border-white/10 relative overflow-hidden">
-            <div class="absolute right-0 top-0 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none"></div>
+          <div class="glass-card p-6 md:p-8 rounded-2xl bg-[#0f172a] border border-slate-800 relative overflow-hidden">
+            <div class="absolute right-0 top-0 w-64 h-64 bg-blue-600/10 blur-[80px] rounded-full pointer-events-none"></div>
             <h3 class="text-lg md:text-xl font-black text-white mb-2">Secure Active Enrollment Direct Access Lines</h3>
             <p class="text-slate-400 text-xs md:text-sm max-w-xl mb-6 leading-relaxed">Initiate registration procedures directly via verified integration gateways. Prepare verified high-resolution document transcripts beforehand.</p>
             <div class="flex flex-wrap gap-4">
-              <a id="applyNowBtnBottom" href="" target="_blank" class="bg-brand-blue hover:bg-brand-blueHover text-white font-black text-xs md:text-sm px-6 py-4 rounded-xl shadow-xl shadow-blue-500/20 transition uppercase tracking-wider">
+              <a id="applyNowBtnBottom" href="" target="_blank" class="bg-brand-blue hover:bg-brand-blueHover text-white font-black text-xs md:text-sm px-6 py-4 rounded-xl shadow-xl shadow-blue-600/20 transition uppercase tracking-wider">
                 Open Electronic Application Form
               </a>
               <a id="admissionPortalBtn" href="" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs md:text-sm px-5 py-4 rounded-xl border border-slate-700 transition">
@@ -409,15 +406,15 @@
         <section id="sectionLocation" class="scroll-mt-36 space-y-6">
           <div class="flex items-center gap-3">
             <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Geographic Hub Node</h2>
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Geographic Hub Node</h2>
           </div>
-          <div class="glass-card p-4 rounded-2xl space-y-4">
-            <div class="h-64 rounded-xl bg-slate-950 border border-white/5 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
-              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
-              <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 text-brand-blue flex items-center justify-center mb-3 animate-bounce shadow-xl shadow-blue-500/10">
+          <div class="glass-card p-4 rounded-2xl space-y-4 bg-white">
+            <div class="h-64 rounded-xl bg-slate-50 border border-slate-200 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
+              <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px]"></div>
+              <div class="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 text-brand-blue flex items-center justify-center mb-3 animate-bounce shadow-md">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
               </div>
-              <h4 id="locationMapTitle" class="text-white text-base font-black tracking-tight">City, State Location Axis</h4>
+              <h4 id="locationMapTitle" class="text-slate-900 text-base font-black tracking-tight">City, State Location Axis</h4>
               <p class="text-slate-500 text-xs max-w-xs mt-1">Satellite tracking coordinates mapping node interface link connected securely.</p>
             </div>
           </div>
@@ -429,44 +426,44 @@
       <div class="space-y-8 lg:sticky lg:top-[160px]">
         
         <!-- CALL TO ACTION APPLICATION CONTROL BOX -->
-        <div class="glass-card p-6 rounded-2xl border border-blue-500/20 bg-gradient-to-b from-slate-900 to-brand-dark shadow-2xl relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl pointer-events-none rounded-full"></div>
-          <h3 class="text-white text-lg font-black tracking-tight mb-2">Application Advisory</h3>
-          <p class="text-slate-400 text-xs leading-relaxed mb-6">Enrolling profiles are processed instantly across decentralized secure priority pathways.</p>
+        <div class="glass-card p-6 rounded-2xl border border-blue-100 bg-white shadow-md relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl pointer-events-none rounded-full"></div>
+          <h3 class="text-slate-900 text-lg font-black tracking-tight mb-2">Application Advisory</h3>
+          <p class="text-slate-500 text-xs leading-relaxed mb-6">Enrolling profiles are processed instantly across decentralized secure priority pathways.</p>
           
           <div class="space-y-4">
-            <div class="p-3 bg-white/5 border border-white/5 rounded-xl flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-brand-blue flex items-center justify-center text-xs font-black">1</div>
+            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xs font-black">1</div>
               <div>
-                <span class="text-white font-bold text-xs block">Verify Parameters</span>
-                <span class="text-[10px] text-slate-500">Check streams & matching criteria</span>
+                <span class="text-slate-900 font-bold text-xs block">Verify Parameters</span>
+                <span class="text-[10px] text-slate-400">Check streams & matching criteria</span>
               </div>
             </div>
-            <div class="p-3 bg-white/5 border border-white/5 rounded-xl flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xs font-black">2</div>
+            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xs font-black">2</div>
               <div>
-                <span class="text-white font-bold text-xs block">File Transcripts</span>
-                <span class="text-[10px] text-slate-500">Upload identity documentation logs</span>
+                <span class="text-slate-900 font-bold text-xs block">File Transcripts</span>
+                <span class="text-[10px] text-slate-400">Upload identity documentation logs</span>
               </div>
             </div>
           </div>
 
-          <a id="applyNowBtnSidebar" href="" target="_blank" class="w-full text-center block bg-brand-blue hover:bg-brand-blueHover text-white font-black py-3.5 px-6 rounded-xl mt-6 text-xs md:text-sm transition uppercase tracking-wider shadow-xl shadow-blue-500/20">
+          <a id="applyNowBtnSidebar" href="" target="_blank" class="w-full text-center block bg-brand-blue hover:bg-brand-blueHover text-white font-black py-3.5 px-6 rounded-xl mt-6 text-xs md:text-sm transition uppercase tracking-wider shadow-xl shadow-blue-600/10">
             Proceed with Registration
           </a>
         </div>
 
         <!-- SAVE / INTERACTION TELEMETRY MODULE -->
-        <div class="glass-card p-5 rounded-2xl space-y-4 text-center">
-          <span class="text-slate-500 text-[10px] font-black uppercase tracking-widest block">Metrics Telemetry Tracker</span>
+        <div class="glass-card p-5 rounded-2xl space-y-4 text-center bg-white shadow-sm">
+          <span class="text-slate-400 text-[10px] font-black uppercase tracking-widest block">Metrics Telemetry Tracker</span>
           <div class="grid grid-cols-2 gap-2 text-left">
-            <div class="p-3 bg-slate-950 border border-white/5 rounded-xl">
-              <span class="text-[9px] text-slate-600 block uppercase font-bold">NIRF Matrix</span>
-              <span id="sidebarNirfRankText" class="text-sm font-black text-white">Rank N/A</span>
+            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+              <span class="text-[9px] text-slate-400 block uppercase font-bold">NIRF Matrix</span>
+              <span id="sidebarNirfRankText" class="text-sm font-black text-slate-900">Rank N/A</span>
             </div>
-            <div class="p-3 bg-slate-950 border border-white/5 rounded-xl">
-              <span class="text-[9px] text-slate-600 block uppercase font-bold">NAAC Standard</span>
-              <span id="sidebarNaacRankText" class="text-sm font-black text-white">N/A</span>
+            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+              <span class="text-[9px] text-slate-400 block uppercase font-bold">NAAC Standard</span>
+              <span id="sidebarNaacRankText" class="text-sm font-black text-slate-900">N/A</span>
             </div>
           </div>
         </div>
@@ -476,11 +473,11 @@
     </div>
 
     <!-- SIMILAR DISCOVERY CATALOG ROW VIEW -->
-    <section id="sectionSimilar" class="max-w-[1400px] mx-auto px-4 sm:px-6 py-12 border-t border-white/5 scroll-mt-36">
+    <section id="sectionSimilar" class="max-w-[1400px] mx-auto px-4 sm:px-6 py-12 border-t border-slate-200 scroll-mt-36">
       <div class="flex justify-between items-center mb-8">
         <div class="flex items-center gap-3">
           <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-          <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Recommended Matching Alternatives</h2>
+          <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Recommended Matching Alternatives</h2>
         </div>
       </div>
       
@@ -492,51 +489,51 @@
   </main>
 
   <!-- STICKY MOBILE NAVIGATION CONTROLS BAR LAYOUT BLOCK -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden p-4 bg-gradient-to-t from-brand-dark via-brand-dark to-transparent pointer-events-none">
+  <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden p-4 bg-gradient-to-t from-slate-50 via-slate-50 to-transparent pointer-events-none">
     <div class="max-w-md mx-auto flex gap-3 pointer-events-auto">
-      <button id="saveCollegeMobileBtn" class="flex-1 bg-slate-900/90 backdrop-blur border border-white/10 text-white font-bold p-3.5 rounded-xl flex justify-center items-center gap-2 shadow-2xl">
+      <button id="saveCollegeMobileBtn" class="flex-1 bg-white border border-slate-200 text-slate-800 font-bold p-3.5 rounded-xl flex justify-center items-center gap-2 shadow-xl">
         <svg class="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
       </button>
-      <a id="applyNowMobileBtn" href="" target="_blank" class="flex-[3] text-center bg-brand-blue hover:bg-brand-blueHover text-white font-black p-3.5 rounded-xl text-sm uppercase tracking-wider shadow-xl shadow-blue-500/20 flex justify-center items-center">
+      <a id="applyNowMobileBtn" href="" target="_blank" class="flex-[3] text-center bg-brand-blue hover:bg-brand-blueHover text-white font-black p-3.5 rounded-xl text-sm uppercase tracking-wider shadow-xl shadow-blue-600/20 flex justify-center items-center">
         Apply Now
       </a>
     </div>
   </div>
 
   <!-- ================= FOOTER BOILERPLATE ================= -->
-  <footer class="pt-20 pb-24 lg:pb-10 border-t border-white/5 bg-brand-dark mt-auto relative z-10">
+  <footer class="pt-20 pb-24 lg:pb-10 border-t border-slate-200 bg-white mt-auto relative z-10">
     <div class="max-w-[1400px] mx-auto px-6 grid md:grid-cols-4 gap-8">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-brand-blue">STEPS</span></h2>
-        <p class="text-slate-400 text-sm font-semibold leading-relaxed">The world's trusted AI-powered career & college discovery platform.</p>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+        <h2 class="text-xl font-extrabold italic uppercase mb-3 text-slate-900">CAREER<span class="text-brand-blue">STEPS</span></h2>
+        <p class="text-slate-500 text-sm font-semibold leading-relaxed">The world's trusted AI-powered career & college discovery platform.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
-        <ul class="text-slate-300 text-sm font-bold space-y-4">
-          <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-          <li><a href="careers.html" class="hover:text-white transition">Career Test</a></li>
-          <li><a href="colleges.html" class="hover:text-white transition text-brand-blue">Colleges</a></li>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+        <h5 class="text-slate-900 font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
+        <ul class="text-slate-600 text-sm font-bold space-y-4">
+          <li><a href="index.html" class="hover:text-slate-900 transition">Home</a></li>
+          <li><a href="careers.html" class="hover:text-slate-900 transition">Career Test</a></li>
+          <li><a href="colleges.html" class="hover:text-slate-900 transition text-brand-blue">Colleges</a></li>
         </ul>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
-        <ul class="text-slate-300 text-sm font-bold space-y-4">
-          <li><a href="engineering.html" class="hover:text-white transition">Engineering</a></li>
-          <li><a href="management.html" class="hover:text-white transition">Management</a></li>
-          <li><a href="medical.html" class="hover:text-white transition">Medical</a></li>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+        <h5 class="text-slate-900 font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
+        <ul class="text-slate-600 text-sm font-bold space-y-4">
+          <li><a href="engineering.html" class="hover:text-slate-900 transition">Engineering</a></li>
+          <li><a href="management.html" class="hover:text-slate-900 transition">Management</a></li>
+          <li><a href="medical.html" class="hover:text-slate-900 transition">Medical</a></li>
         </ul>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
-        <ul class="text-slate-300 text-sm font-bold space-y-4">
-          <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-          <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+        <h5 class="text-slate-900 font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
+        <ul class="text-slate-600 text-sm font-bold space-y-4">
+          <li><a href="about.html" class="hover:text-slate-900 transition">About Us</a></li>
+          <li><a href="privacy.html" class="hover:text-slate-900 transition">Privacy Policy</a></li>
+          <li><a href="terms.html" class="hover:text-slate-900 transition">Terms & Conditions</a></li>
         </ul>
       </div>
     </div>
-    <div class="text-center mt-16 pt-8 border-t border-white/5">
-      <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest">© 2026 CareerSteps • Empowering student choices worldwide.</p>
+    <div class="text-center mt-16 pt-8 border-t border-slate-100">
+      <p class="text-slate-400 text-[11px] font-bold uppercase tracking-widest">© 2026 CareerSteps • Empowering student choices worldwide.</p>
     </div>
   </footer>
 
@@ -570,15 +567,15 @@
     onAuthStateChanged(auth, (user) => {
       if (user) {
         authContainer.innerHTML = `
-          <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+          <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
             <img src="${user.photoURL || 'https://via.placeholder.com/32'}" alt="" class="w-7 h-7 rounded-full border border-brand-blue object-cover">
-            <span class="text-white text-xs font-semibold max-w-[90px] truncate hidden sm:inline">${user.displayName || 'Account'}</span>
-            <button onclick="googleLogout()" class="bg-red-600/90 hover:bg-red-500 px-2.5 py-1.5 rounded-lg text-[10px] font-black uppercase text-white transition">Logout</button>
+            <span class="text-slate-800 text-xs font-semibold max-w-[90px] truncate hidden sm:inline">${user.displayName || 'Account'}</span>
+            <button onclick="googleLogout()" class="bg-red-600 hover:bg-red-500 px-2.5 py-1.5 rounded-lg text-[10px] font-black uppercase text-white transition">Logout</button>
           </div>
         `;
       } else {
         authContainer.innerHTML = `
-          <button onclick="googleLogin()" class="bg-brand-blue text-white px-5 py-2.5 rounded-xl text-[12px] font-black uppercase tracking-wider hover:bg-brand-blueHover transition shadow-lg shadow-blue-500/25">Sign In</button>
+          <button onclick="googleLogin()" class="bg-brand-blue text-white px-5 py-2.5 rounded-xl text-[12px] font-black uppercase tracking-wider hover:bg-brand-blueHover transition shadow-md shadow-blue-500/10">Sign In</button>
         `;
       }
     });
@@ -668,20 +665,20 @@
         desktopBtn.querySelector('span').textContent = 'Saved';
         desktopBtn.querySelector('svg').classList.add('fill-red-500', 'text-red-500');
         desktopBtn.querySelector('svg').classList.remove('fill-none');
-        desktopBtn.classList.add('bg-red-500/10', 'border-red-500/30');
+        desktopBtn.classList.add('bg-red-50/80', 'border-red-200');
         
         mobileBtn.querySelector('svg').classList.add('fill-red-500', 'text-red-500');
         mobileBtn.querySelector('svg').classList.remove('fill-none');
-        mobileBtn.classList.add('bg-red-500/10', 'border-red-500/30');
+        mobileBtn.classList.add('bg-red-50/80', 'border-red-200');
       } else {
         desktopBtn.querySelector('span').textContent = 'Save';
         desktopBtn.querySelector('svg').classList.remove('fill-red-500', 'text-red-500');
         desktopBtn.querySelector('svg').classList.add('fill-none');
-        desktopBtn.classList.remove('bg-red-500/10', 'border-red-500/30');
+        desktopBtn.classList.remove('bg-red-50/80', 'border-red-200');
         
         mobileBtn.querySelector('svg').classList.remove('fill-red-500', 'text-red-500');
         mobileBtn.querySelector('svg').classList.add('fill-none');
-        mobileBtn.classList.remove('bg-red-500/10', 'border-red-500/30');
+        mobileBtn.classList.remove('bg-red-50/80', 'border-red-200');
       }
     };
 
@@ -824,7 +821,7 @@
       document.getElementById("collegeHeroName").textContent = data.name || "Unnamed Institutional Entity";
       document.getElementById("collegeHeroShort").textContent = data.shortName || "N/A";
       document.getElementById("collegeHeroLocation").innerHTML = `
-        <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
         ${data.city || 'Unknown Axis'}, ${data.state || 'India'}
       `;
 
@@ -832,7 +829,7 @@
       const typeLabel = document.getElementById("badgeType");
       typeLabel.textContent = data.type || "Private";
       if (data.type?.toLowerCase() === 'government') {
-        typeLabel.className = "text-[10px] md:text-xs font-black px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 uppercase tracking-widest";
+        typeLabel.className = "text-[10px] md:text-xs font-black px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-600 border border-amber-500/20 uppercase tracking-widest";
       }
 
       if (data.naac) {
@@ -899,13 +896,13 @@
       if (Array.isArray(data.courses) && data.courses.length > 0) {
         data.courses.forEach(stream => {
           const streamCardMarkup = `
-            <div class="glass-card p-5 rounded-2xl border border-white/5 bg-gradient-to-br from-brand-card to-slate-950 flex flex-col justify-between group hover:border-blue-500/20 transition duration-300">
+            <div class="glass-card p-5 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between group hover:border-blue-300 transition duration-300 shadow-sm">
               <div>
-                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-brand-blue flex items-center justify-center font-bold text-xs uppercase mb-3 tracking-wide">Deg</div>
-                <h3 class="text-white font-black text-base tracking-tight mb-1 group-hover:text-blue-400 transition-colors">${stream}</h3>
-                <p class="text-slate-500 text-xs">Full-Time Academic Program Term</p>
+                <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs uppercase mb-3 tracking-wide">Deg</div>
+                <h3 class="text-slate-900 font-black text-base tracking-tight mb-1 group-hover:text-blue-600 transition-colors">${stream}</h3>
+                <p class="text-slate-400 text-xs">Full-Time Academic Program Term</p>
               </div>
-              <div class="flex items-center justify-between mt-5 pt-3 border-t border-white/5 text-[11px] text-slate-400 font-bold uppercase tracking-wider">
+              <div class="flex items-center justify-between mt-5 pt-3 border-t border-slate-100 text-[11px] text-slate-500 font-bold uppercase tracking-wider">
                 <span>Duration: 4 Years</span>
                 <span class="text-brand-blue">Active Stream</span>
               </div>
@@ -915,7 +912,7 @@
         });
       } else {
         catalogContainer.innerHTML = `
-          <div class="col-span-full p-6 bg-white/5 rounded-xl border border-white/5 text-center text-xs text-slate-500 font-medium tracking-wide">
+          <div class="col-span-full p-6 bg-slate-50 rounded-xl border border-slate-200 text-center text-xs text-slate-400 font-medium tracking-wide">
             No dynamic academic streams arrays lists currently populated for this index card reference.
           </div>
         `;
@@ -958,7 +955,7 @@
 
         if (terminalOutputSelection.length === 0) {
           discoveryGrid.innerHTML = `
-            <div class="col-span-full text-center py-8 text-xs font-semibold text-slate-500 tracking-wide">
+            <div class="col-span-full text-center py-8 text-xs font-semibold text-slate-400 tracking-wide">
               No adjacent alternative matches structured in directory index tables metrics yet.
             </div>`;
           return;
@@ -972,24 +969,24 @@
           const formattedPkg = entity.avgPackage ? formatPackageMetricText(entity.avgPackage) : "N/A";
 
           const optionCardLayoutNode = `
-            <div class="glass-card rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all duration-300">
-              <div class="h-40 bg-slate-800 skeleton relative overflow-hidden shrink-0">
-                <img src="${alternateImage}" alt="${subTitleName}" loading="lazy" class="w-full h-full object-cover opacity-0 transition-opacity duration-300" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');" onerror="this.src='https://via.placeholder.com/600x400/1e293b/94a3b8?text=College'; this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
-                <span class="absolute top-3 left-3 bg-brand-dark/80 backdrop-blur px-2 py-0.5 rounded text-[9px] font-black uppercase text-brand-blue tracking-widest border border-white/10">${entity.type || 'Private'}</span>
+            <div class="glass-card rounded-2xl overflow-hidden flex flex-col group hover:border-slate-300 transition-all duration-300 bg-white shadow-sm">
+              <div class="h-40 bg-slate-100 skeleton relative overflow-hidden shrink-0">
+                <img src="${alternateImage}" alt="${subTitleName}" loading="lazy" class="w-full h-full object-cover opacity-0 transition-opacity duration-300" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');" onerror="this.src='https://via.placeholder.com/600x400/e2e8f0/64748b?text=College'; this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
+                <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur px-2 py-0.5 rounded text-[9px] font-black uppercase text-blue-400 tracking-widest border border-white/10">${entity.type || 'Private'}</span>
               </div>
               <div class="p-4 flex-1 flex flex-col justify-between">
                 <div>
-                  <h4 class="text-white font-extrabold text-sm tracking-tight line-clamp-1 mb-1" title="${subTitleName}">${subTitleName}</h4>
+                  <h4 class="text-slate-900 font-extrabold text-sm tracking-tight line-clamp-1 mb-1" title="${subTitleName}">${subTitleName}</h4>
                   <p class="text-[11px] text-slate-500 flex items-center gap-0.5 mb-3 font-medium">
-                    <svg class="w-3 h-3 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                    <svg class="w-3 h-3 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                     ${locationText}
                   </p>
-                  <div class="grid grid-cols-2 gap-2 py-2 border-t border-b border-white/5 mb-4 text-[11px]">
-                    <div><span class="text-slate-600 block text-[9px] uppercase font-bold">Avg Package</span><span class="text-white font-black">${formattedPkg}</span></div>
-                    <div><span class="text-slate-600 block text-[9px] uppercase font-bold">Annual Fee</span><span class="text-amber-400 font-black">${formattedFee}</span></div>
+                  <div class="grid grid-cols-2 gap-2 py-2 border-t border-b border-slate-100 mb-4 text-[11px]">
+                    <div><span class="text-slate-400 block text-[9px] uppercase font-bold">Avg Package</span><span class="text-slate-900 font-black">${formattedPkg}</span></div>
+                    <div><span class="text-slate-400 block text-[9px] uppercase font-bold">Annual Fee</span><span class="text-amber-600 font-black">${formattedFee}</span></div>
                   </div>
                 </div>
-                <a href="college-detail.html?id=${entity.id}" class="w-full text-center block bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold py-2.5 rounded-lg border border-slate-700 transition">
+                <a href="college-detail.html?id=${entity.id}" class="w-full text-center block bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold py-2.5 rounded-lg border border-slate-200 transition">
                   View Details
                 </a>
               </div>
