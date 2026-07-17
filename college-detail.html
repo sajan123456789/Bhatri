@@ -130,56 +130,66 @@
         </svg>
       </div>
       <h1 class="text-2xl font-black text-brand-textPrimary mb-2 tracking-tight">College Not Found</h1>
-      <p class="text-slate-500 text-sm mb-8 leading-relaxed">The unique identifier specified in the URL path parameters does not match any authenticated system document record inside our directory databases.</p>
-      <a href="colleges.html" class="inline-flex w-full justify-center items-center bg-brand-blue hover:bg-brand-blueHover text-white font-bold py-3.5 px-6 rounded-xl transition duration-300 shadow-lg shadow-blue-500/25 text-sm uppercase tracking-wider">
+      <p class="text-slate-500 text-sm mb-8 leading-relaxed">The unique identifier specified in the URL path parameters does not match any authenticated system document record inside our directory database.</p>
+      <a href="colleges.html" class="inline-flex w-full justify-center items-center bg-brand-blue hover:bg-brand-blueHover text-white font-bold py-3.5 px-6 rounded-xl transition duration-300 shadow-lg">
         Back to Colleges
       </a>
     </div>
   </div>
 
   <!-- ================= STICKY HEADER ================= -->
-   <header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-    <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0">
-      <img src="careersteps-logo.png" alt="CareerSteps Logo" class="h-8 sm:h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
-      <span class="text-xl sm:text-2xl font-black italic uppercase tracking-tighter text-white">
-        CAREER<span class="text-blue-600">STEPS</span>
-      </span>
-    </a>
+  <header class="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <img src="careersteps-logo.png" alt="CareerSteps Logo" class="h-8 sm:h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
+        <span class="text-xl sm:text-2xl font-black italic uppercase tracking-tighter text-white">
+          CAREER<span class="text-blue-600">STEPS</span>
+        </span>
+      </a>
 
-    <nav class="hidden md:flex gap-6 lg:gap-10 items-center">
-      <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-white hover:text-blue-500 transition-colors">Home</a>
-      <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">About</a>
-      <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Explore Careers</a>
-      <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Blogs</a>
-    </nav>
+      <nav class="hidden md:flex gap-6 lg:gap-10 items-center">
+        <a href="index.html" class="text-[14px] font-extrabold uppercase tracking-wider text-white hover:text-blue-500 transition-colors">Home</a>
+        <a href="about.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">About</a>
+        <a href="careers.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Explore Careers</a>
+        <a href="blog.html" class="text-[14px] font-extrabold uppercase tracking-wider text-slate-200 hover:text-white transition-colors">Blogs</a>
+      </nav>
 
-    <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-      <div id="auth-area-desktop" class="hidden md:flex items-center"></div>
-      <a href="assessment.html" class="hidden md:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20 whitespace-nowrap">Get Started →</a>
-      <button id="menuBtn" class="md:hidden text-white p-1.5 hover:bg-white/5 rounded-xl transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
-      </button>
+      <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+        <div id="auth-area-desktop" class="hidden md:flex items-center"></div>
+        <a href="assessment.html" class="hidden md:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20">
+          Self Assessment
+        </a>
+        <button id="menuBtn" class="md:hidden text-white p-1.5 hover:bg-white/5 rounded-xl transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8">
-    <nav class="flex flex-col gap-6 text-[15px] font-bold uppercase tracking-widest text-slate-300 text-center items-center">
-      <a href="index.html" class="text-white w-full">Home</a>
-      <a href="about.html" class="hover:text-white transition-colors w-full">About</a>
-      <a href="careers.html" class="hover:text-white transition-colors w-full">Explore Career</a>
-      <a href="blog.html" class="hover:text-white transition-colors w-full">Blogs</a>
-      <a href="assessment.html" class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition text-white text-center shadow-xl shadow-blue-600/20 mt-2">Start AI Test →</a>
-      <div id="auth-area-mobile" class="w-full pt-4 border-t border-white/5 flex justify-center"></div>
-    </nav>
-  </div>
-</header>
+    <div id="mobileMenu" class="hidden md:hidden bg-[#020617] border-b border-white/10 px-6 py-8">
+      <nav class="flex flex-col gap-6 text-[15px] font-bold uppercase tracking-widest text-slate-300 text-center items-center">
+        <a href="index.html" class="text-white w-full">Home</a>
+        <a href="about.html" class="hover:text-white transition-colors w-full">About</a>
+        <a href="careers.html" class="hover:text-white transition-colors w-full">Explore Career</a>
+        <a href="blog.html" class="hover:text-white transition-colors w-full">Blogs</a>
+        <a href="assessment.html" class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition text-white text-center shadow-xl shadow-blue-600/20">
+          Self Assessment
+        </a>
+        <div id="auth-area-mobile" class="w-full pt-4 border-t border-white/5 flex justify-center"></div>
+      </nav>
+    </div>
+  </header>
    
   <!-- Mobile Sidebar Dropdown -->
   <div id="mobileNavigationDrawer" class="fixed inset-y-0 right-0 w-[280px] z-[55] bg-white border-l border-slate-200 p-6 shadow-2xl transform translate-x-full transition-transform duration-300 lg:hidden">
     <div class="flex justify-between items-center mb-8">
       <span class="text-sm font-black text-slate-900 tracking-widest uppercase">Menu</span>
-      <button id="mobileSidebarClose" class="text-slate-500 hover:text-slate-800 p-1"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+      <button id="mobileSidebarClose" class="text-slate-500 hover:text-slate-800 p-1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
     </div>
     <div class="flex flex-col gap-5 font-bold uppercase text-sm tracking-wider">
       <a href="index.html" class="text-slate-600 hover:text-slate-900 py-2 border-b border-slate-100">Home</a>
@@ -227,7 +237,9 @@
               <span id="collegeHeroShort" class="text-white font-bold tracking-wide">SHORT</span>
               <span class="text-slate-500">•</span>
               <span id="collegeHeroLocation" class="inline-flex items-center gap-1">
-                <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                </svg>
                 City, State
               </span>
             </p>
@@ -235,14 +247,16 @@
 
           <!-- CTAs Interaction Box -->
           <div class="w-full lg:w-auto flex flex-wrap sm:flex-nowrap items-center gap-3 pt-4 lg:pt-0 shrink-0">
-            <button id="saveCollegeBtn" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-5 py-3.5 rounded-xl transition text-sm">
-              <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            <button id="saveCollegeBtn" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-5 py-3.5 rounded-xl transition duration-300">
+              <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
               <span>Save</span>
             </button>
-            <a id="externalWebsiteBtn" href="" target="_blank" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold px-5 py-3.5 rounded-xl transition text-sm">
+            <a id="externalWebsiteBtn" href="" target="_blank" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 font-bold px-5 py-3.5 rounded-xl transition duration-300">
               Visit Site
             </a>
-            <a id="applyNowBtnTop" href="" target="_blank" class="flex-[2] sm:flex-none justify-center items-center inline-flex bg-brand-blue hover:bg-brand-blueHover text-white font-black px-6 py-3.5 rounded-xl transition text-sm uppercase tracking-wider shadow-lg shadow-blue-600/20">
+            <a id="applyNowBtnTop" href="" target="_blank" class="flex-[2] sm:flex-none justify-center items-center inline-flex bg-brand-blue hover:bg-brand-blueHover text-white font-black px-6 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-blue-600/30">
               Apply Now
             </a>
           </div>
@@ -292,7 +306,7 @@
           <button onclick="scrollToTabSection('sectionFees')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Fees</button>
           <button onclick="scrollToTabSection('sectionAdmission')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Admission</button>
           <button onclick="scrollToTabSection('sectionLocation')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Location</button>
-          <button onclick="scrollToTabSection('sectionSimilar')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Similar Colleges</button>
+          <button onclick="scrollToTabSection('sectionSimilar')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-900 transition duration-200">Similar</button>
         </div>
       </div>
     </div>
@@ -314,10 +328,10 @@
               Loading documentation description...
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-slate-100 text-sm">
-              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Affiliation Status</span><span id="overviewMetaType" class="text-slate-900 font-bold">Government</span></div>
-              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Established Incorporation</span><span id="overviewMetaEst" class="text-slate-900 font-bold">1959</span></div>
-              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Regional Jurisdiction</span><span id="overviewMetaLocation" class="text-slate-900 font-bold">Chennai, Tamil Nadu</span></div>
-              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">NIRF Classification</span><span id="overviewMetaNirf" class="text-purple-600 font-bold">Rank 3</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Affiliation Status</span><span id="overviewMetaType" class="text-slate-900 font-bold">N/A</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Established Incorporation</span><span id="overviewMetaEst" class="text-slate-900 font-bold">N/A</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">Regional Jurisdiction</span><span id="overviewMetaLocation" class="text-slate-900 font-bold">N/A</span></div>
+              <div class="flex justify-between py-2 border-b border-slate-100"><span class="text-slate-400 font-medium">NIRF Classification</span><span id="overviewMetaNirf" class="text-purple-600 font-bold">N/A</span></div>
             </div>
           </div>
         </section>
@@ -399,12 +413,12 @@
           <div class="glass-card p-6 md:p-8 rounded-2xl bg-[#0f172a] border border-slate-800 relative overflow-hidden">
             <div class="absolute right-0 top-0 w-64 h-64 bg-blue-600/10 blur-[80px] rounded-full pointer-events-none"></div>
             <h3 class="text-lg md:text-xl font-black text-white mb-2">Secure Active Enrollment Direct Access Lines</h3>
-            <p class="text-slate-400 text-xs md:text-sm max-w-xl mb-6 leading-relaxed">Initiate registration procedures directly via verified integration gateways. Prepare verified high-resolution document transcripts beforehand.</p>
+            <p class="text-slate-400 text-xs md:text-sm max-w-xl mb-6 leading-relaxed">Initiate registration procedures directly via verified integration gateways. Prepare verified high-resolution documentation.</p>
             <div class="flex flex-wrap gap-4">
-              <a id="applyNowBtnBottom" href="" target="_blank" class="bg-brand-blue hover:bg-brand-blueHover text-white font-black text-xs md:text-sm px-6 py-4 rounded-xl shadow-xl shadow-blue-600/20 transition uppercase tracking-wider">
+              <a id="applyNowBtnBottom" href="" target="_blank" class="bg-brand-blue hover:bg-brand-blueHover text-white font-black text-xs md:text-sm px-6 py-4 rounded-xl shadow-xl shadow-blue-600/20 transition duration-300">
                 Open Electronic Application Form
               </a>
-              <a id="admissionPortalBtn" href="" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs md:text-sm px-5 py-4 rounded-xl border border-slate-700 transition">
+              <a id="admissionPortalBtn" href="" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs md:text-sm px-5 py-4 rounded-xl border border-slate-700 transition duration-300">
                 Institutional Portal Website
               </a>
             </div>
@@ -421,7 +435,9 @@
             <div class="h-64 rounded-xl bg-slate-50 border border-slate-200 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
               <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px]"></div>
               <div class="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 text-brand-blue flex items-center justify-center mb-3 animate-bounce shadow-md">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                </svg>
               </div>
               <h4 id="locationMapTitle" class="text-slate-900 text-base font-black tracking-tight">City, State Location Axis</h4>
               <p class="text-slate-500 text-xs max-w-xs mt-1">Satellite tracking coordinates mapping node interface link connected securely.</p>
@@ -457,7 +473,7 @@
             </div>
           </div>
 
-          <a id="applyNowBtnSidebar" href="" target="_blank" class="w-full text-center block bg-brand-blue hover:bg-brand-blueHover text-white font-black py-3.5 px-6 rounded-xl mt-6 text-xs md:text-sm transition uppercase tracking-wider shadow-xl shadow-blue-600/10">
+          <a id="applyNowBtnSidebar" href="" target="_blank" class="w-full text-center block bg-brand-blue hover:bg-brand-blueHover text-white font-black py-3.5 px-6 rounded-xl mt-6 text-xs md:text-sm transition duration-300 shadow-lg">
             Proceed with Registration
           </a>
         </div>
@@ -501,56 +517,55 @@
   <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden p-4 bg-gradient-to-t from-slate-50 via-slate-50 to-transparent pointer-events-none">
     <div class="max-w-md mx-auto flex gap-3 pointer-events-auto">
       <button id="saveCollegeMobileBtn" class="flex-1 bg-white border border-slate-200 text-slate-800 font-bold p-3.5 rounded-xl flex justify-center items-center gap-2 shadow-xl">
-        <svg class="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <svg class="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
       </button>
-      <a id="applyNowMobileBtn" href="" target="_blank" class="flex-[3] text-center bg-brand-blue hover:bg-brand-blueHover text-white font-black p-3.5 rounded-xl text-sm uppercase tracking-wider shadow-xl shadow-blue-600/20 flex justify-center items-center">
+      <a id="applyNowMobileBtn" href="" target="_blank" class="flex-[3] text-center bg-brand-blue hover:bg-brand-blueHover text-white font-black p-3.5 rounded-xl text-sm uppercase tracking-wider shadow-lg">
         Apply Now
       </a>
     </div>
   </div>
 
-  
- <!-- FOOTER -->
-
-<footer class="footer-premium pt-20 pb-10">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
-      <p class="text-slate-400 text-sm font-semibold">The world's trusted AI-powered career discovery platform.</p>
-      
+  <!-- FOOTER -->
+  <footer class="footer-premium pt-20 pb-10 bg-[#020617] border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h2 class="text-xl font-extrabold italic uppercase mb-3 text-white">CAREER<span class="text-blue-500">STEPS</span></h2>
+        <p class="text-slate-400 text-sm font-semibold">The world's trusted AI-powered career discovery platform.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
+        <ul class="text-slate-300 text-sm font-bold space-y-4">
+          <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+          <li><a href="assessment.html" class="hover:text-white transition">Career Test</a></li>
+          <li><a href="careers.html" class="hover:text-white transition">Explore Career</a></li>
+        </ul>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
+        <ul class="text-slate-300 text-sm font-bold space-y-4">
+          <li><a href="after10.html" class="hover:text-white transition">After 10th</a></li>
+          <li><a href="after12.html" class="hover:text-white transition">After 12th</a></li>
+        </ul>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
+        <ul class="text-slate-300 text-sm font-bold space-y-4">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="cookies.html" class="hover:text-white transition">Cookies</a></li>
+          <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+          <li><a href="disclaimer.html" class="hover:text-white transition">Disclaimer</a></li>
+          <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Navigation</h5>
-      <ul class="text-slate-300 text-sm font-bold space-y-4">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="assessment.html">Career Test</a></li>
-        <li><a href="careers.html">Explore Career</a></li>
-      </ul>
+    <div class="text-center mt-16 pt-8 border-t border-white/5">
+      <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest">© 2026 CareerSteps • Global AI-powered career guidance platform serving students worldwide.</p>
     </div>
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Pathways</h5>
-      <ul class="text-slate-300 text-sm font-bold space-y-4">
-        <li><a href="after10.html">After 10th</a></li>
-        <li><a href="after12.html">After 12th</a></li>
-      </ul>
-    </div>
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h5 class="text-white font-extrabold text-xs uppercase mb-5 tracking-widest">Legal</h5>
-      <ul class="text-slate-300 text-sm font-bold space-y-4">
-        <li><a href="about.html">About</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="cookies.html">cookies</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
-        <li><a href="terms.html">Terms & Conditions</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="text-center mt-16 pt-8 border-t border-white/5">
-    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-widest"> © 2026 CareerSteps • Global AI-powered career guidance platform serving students worldwide.</p>
-  </div>
-</footer>
+  </footer>
 
   <!-- ================= CORE COMPILER INJECTION CORE SCRIPT ENGINE ================= -->
   <script type="module">
@@ -578,43 +593,54 @@
     window.googleLogout = () => signOut(auth).catch(err => console.error("Sign-out callback failure execution:", err));
 
     // Observe persistent system authorization states runtime
-    const authContainer = document.getElementById("authAreaContainer");
+    const authAreaDesktop = document.getElementById("auth-area-desktop");
+    const authAreaMobile = document.getElementById("auth-area-mobile");
+
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        authContainer.innerHTML = `
-          <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
-            <img src="${user.photoURL || 'https://via.placeholder.com/32'}" alt="" class="w-7 h-7 rounded-full border border-brand-blue object-cover">
-            <span class="text-slate-800 text-xs font-semibold max-w-[90px] truncate hidden sm:inline">${user.displayName || 'Account'}</span>
-            <button onclick="googleLogout()" class="bg-red-600 hover:bg-red-500 px-2.5 py-1.5 rounded-lg text-[10px] font-black uppercase text-white transition">Logout</button>
-          </div>
-        `;
-      } else {
-        authContainer.innerHTML = `
-          <button onclick="googleLogin()" class="bg-brand-blue text-white px-5 py-2.5 rounded-xl text-[12px] font-black uppercase tracking-wider hover:bg-brand-blueHover transition shadow-md shadow-blue-500/10">Sign In</button>
-        `;
-      }
+      const authHTML = user ? `
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+          <img src="${user.photoURL || 'https://via.placeholder.com/32'}" alt="" class="w-7 h-7 rounded-full border border-brand-blue object-cover">
+          <span class="text-slate-800 text-xs font-semibold max-w-[90px] truncate hidden sm:inline">${user.displayName || 'Account'}</span>
+          <button onclick="googleLogout()" class="bg-red-600 hover:bg-red-500 px-2.5 py-1.5 rounded-lg text-[10px] font-black uppercase text-white transition">Logout</button>
+        </div>
+      ` : `
+        <button onclick="googleLogin()" class="bg-brand-blue text-white px-5 py-2.5 rounded-xl text-[12px] font-black uppercase tracking-wider hover:bg-brand-blueHover transition shadow-md">
+          Sign In
+        </button>
+      `;
+
+      if (authAreaDesktop) authAreaDesktop.innerHTML = authHTML;
+      if (authAreaMobile) authAreaMobile.innerHTML = authHTML;
     });
 
     // Mobile Navigation Controls Triggers
-    const mobileToggle = document.getElementById("mobileSidebarToggle");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
     const mobileClose = document.getElementById("mobileSidebarClose");
     const navDrawer = document.getElementById("mobileNavigationDrawer");
     const drawerOverlay = document.getElementById("drawerOverlay");
 
-    mobileToggle.addEventListener('click', () => {
-      navDrawer.classList.remove('translate-x-full');
-      drawerOverlay.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    });
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
 
-    const closeMenuDrawer = () => {
-      navDrawer.classList.add('translate-x-full');
-      drawerOverlay.classList.add('hidden');
-      document.body.style.overflow = '';
-    };
+    if (mobileClose) {
+      mobileClose.addEventListener('click', () => {
+        navDrawer.classList.add('translate-x-full');
+        drawerOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    }
 
-    mobileClose.addEventListener('click', closeMenuDrawer);
-    drawerOverlay.addEventListener('click', closeMenuDrawer);
+    if (drawerOverlay) {
+      drawerOverlay.addEventListener('click', () => {
+        navDrawer.classList.add('translate-x-full');
+        drawerOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    }
 
     // Tab Interface Anchors Matrix Controller
     window.scrollToTabSection = (elementId) => {
@@ -753,27 +779,23 @@
 
     const compileSEOTelemetry = (data, uid) => {
       const fallbackName = data.name || "College Directory Profile";
-      const summaryContext = data.description ? data.description.substring(0, 155) + "..." : "Explore extensive parameters including tuition structure fees, direct records placement statistics, academic courses structures.";
+      const summaryContext = data.description ? data.description.substring(0, 155) + "..." : "Explore extensive parameters including tuition structure fees, direct records placement statistics.";
       const operationalLink = window.location.href;
 
-      // Primary Head Data Tags Injections
       document.getElementById("seoTitle").textContent = `${fallbackName} - Placement, Fee Structure, Course Cutoffs | CareerSteps`;
       document.getElementById("seoDesc").setAttribute("content", summaryContext);
       document.getElementById("canonicalUrl").setAttribute("href", operationalLink);
 
-      // Open Graph Framework Bindings
-      document.getElementById("ogUrl").setAttribute("href", operationalLink);
-      document.getElementById("ogTitle").textContent = `${fallbackName} Details - CareerSteps`;
+      document.getElementById("ogUrl").setAttribute("content", operationalLink);
+      document.getElementById("ogTitle").setAttribute("content", `${fallbackName} Details - CareerSteps`);
       document.getElementById("ogDesc").setAttribute("content", summaryContext);
       if (data.image) document.getElementById("ogImage").setAttribute("content", data.image);
 
-      // Twitter Cards Target Connectors
-      document.getElementById("twitterUrl").setAttribute("href", operationalLink);
-      document.getElementById("twitterTitle").textContent = `${fallbackName} Review Matrix`;
+      document.getElementById("twitterUrl").setAttribute("content", operationalLink);
+      document.getElementById("twitterTitle").setAttribute("content", `${fallbackName} Review Matrix`);
       document.getElementById("twitterDesc").setAttribute("content", summaryContext);
       if (data.image) document.getElementById("twitterImage").setAttribute("content", data.image);
 
-      // Dynamic Inject Structured JSON-LD Data Engine Schema markup profiles safely
       const breadcrumbSchema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -823,7 +845,6 @@
     };
 
     const populateDOMInterfaceMatrices = (data) => {
-      // Images Asset Pipelines
       const heroCover = document.getElementById("collegeHeroCover");
       heroCover.src = data.image || "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80";
       heroCover.alt = `${data.name || 'Campus'} Cover Backdrop`;
@@ -832,15 +853,15 @@
       brandLogo.src = data.logo || "https://via.placeholder.com/150/111827/ffffff?text=" + (data.shortName || "CS");
       brandLogo.alt = `${data.shortName || 'College'} Official Crest`;
 
-      // Hero Elements text node blocks mapping sets
       document.getElementById("collegeHeroName").textContent = data.name || "Unnamed Institutional Entity";
       document.getElementById("collegeHeroShort").textContent = data.shortName || "N/A";
       document.getElementById("collegeHeroLocation").innerHTML = `
-        <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+        </svg>
         ${data.city || 'Unknown Axis'}, ${data.state || 'India'}
       `;
 
-      // Badge Matrix Rendering Arrays Control Lines
       const typeLabel = document.getElementById("badgeType");
       typeLabel.textContent = data.type || "Private";
       if (data.type?.toLowerCase() === 'government') {
@@ -859,7 +880,6 @@
       }
       document.getElementById("badgeEst").textContent = `Est. Incorporation: ${data.established || 'N/A'}`;
 
-      // URL Action Trigger Mappings Lines Links
       const targetWebsite = data.website || "#";
       document.getElementById("externalWebsiteBtn").setAttribute("href", targetWebsite);
       document.getElementById("applyNowBtnTop").setAttribute("href", targetWebsite);
@@ -868,7 +888,6 @@
       document.getElementById("applyNowMobileBtn").setAttribute("href", targetWebsite);
       document.getElementById("admissionPortalBtn").setAttribute("href", targetWebsite);
 
-      // System Quick Stats Counters Matrix Loading Setters
       document.getElementById("statAvgPackage").textContent = formatPackageMetricText(data.avgPackage);
       document.getElementById("statHighestPackage").textContent = formatPackageMetricText(data.highestPackage);
       document.getElementById("statPlacementRate").textContent = data.placement ? `${data.placement}%` : "N/A";
@@ -878,11 +897,9 @@
         document.getElementById("statPlacementBar").style.width = `${data.placement}%`;
       }
 
-      // Sidebar Matrix Status Block values settings
       document.getElementById("sidebarNirfRankText").textContent = data.nirfRank ? `Rank #${data.nirfRank}` : "Unranked";
       document.getElementById("sidebarNaacRankText").textContent = data.naac ? `Grade ${data.naac}` : "N/A";
 
-      // Overview descriptive layout segment markers
       document.getElementById("overviewDescriptionText").textContent = data.description || "Detailed descriptive specification logs are not presently declared for this institution profile.";
       document.getElementById("overviewMetaType").textContent = data.type || "N/A";
       document.getElementById("overviewMetaEst").textContent = data.established || "N/A";
@@ -890,7 +907,6 @@
       document.getElementById("overviewMetaNirf").textContent = data.nirfRank ? `Rank #${data.nirfRank}` : "Unranked";
       document.getElementById("locationMapTitle").textContent = `${data.city || 'City Region'}, ${data.state || 'State Territory'}`;
 
-      // Placement Detailed Section Progress Engines Metrics Configuration
       document.getElementById("placementBlockAvg").textContent = formatPackageMetricText(data.avgPackage);
       document.getElementById("placementBlockHighest").textContent = formatPackageMetricText(data.highestPackage);
       document.getElementById("placementBlockRate").textContent = data.placement ? `${data.placement}%` : "N/A";
@@ -901,10 +917,8 @@
         document.getElementById("placementProbabilityBar").style.width = `${numericalRate}%`;
       }, 400);
 
-      // Fee Structures formatting parameters standard injections
       document.getElementById("feeScheduleCostText").textContent = data.fees ? `${IndianNumberFormattingStandard(data.fees)} / Annum` : "Structure Unspecified";
 
-      // Academic Catalog Loop Array Processing Generator Lines Matrix
       const catalogContainer = document.getElementById("coursesGridDisplay");
       catalogContainer.innerHTML = '';
       
@@ -984,40 +998,44 @@
           const formattedPkg = entity.avgPackage ? formatPackageMetricText(entity.avgPackage) : "N/A";
 
           const optionCardLayoutNode = `
-            <div class="glass-card rounded-2xl overflow-hidden flex flex-col group hover:border-slate-300 transition-all duration-300 bg-white shadow-sm">
+            <a href="college-detail.html?id=${entity.id}" class="glass-card rounded-2xl overflow-hidden flex flex-col group hover:border-slate-300 transition-all duration-300 bg-white shadow-sm hover:shadow-md">
               <div class="h-40 bg-slate-100 skeleton relative overflow-hidden shrink-0">
-                <img src="${alternateImage}" alt="${subTitleName}" loading="lazy" class="w-full h-full object-cover opacity-0 transition-opacity duration-300" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');" onerror="this.src='https://via.placeholder.com/600x400/e2e8f0/64748b?text=College'; this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
-                <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur px-2 py-0.5 rounded text-[9px] font-black uppercase text-blue-400 tracking-widest border border-white/10">${entity.type || 'Private'}</span>
+                <img src="${alternateImage}" alt="${subTitleName}" loading="lazy" class="w-full h-full object-cover opacity-0 transition-opacity duration-300" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
+                <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur px-2 py-0.5 rounded text-[9px] font-black uppercase text-blue-400 tracking-widest border border-white/10">${entity.type || "Institution"}</span>
               </div>
               <div class="p-4 flex-1 flex flex-col justify-between">
                 <div>
                   <h4 class="text-slate-900 font-extrabold text-sm tracking-tight line-clamp-1 mb-1" title="${subTitleName}">${subTitleName}</h4>
                   <p class="text-[11px] text-slate-500 flex items-center gap-0.5 mb-3 font-medium">
-                    <svg class="w-3 h-3 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                    <svg class="w-3 h-3 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    </svg>
                     ${locationText}
                   </p>
                   <div class="grid grid-cols-2 gap-2 py-2 border-t border-b border-slate-100 mb-4 text-[11px]">
                     <div><span class="text-slate-400 block text-[9px] uppercase font-bold">Avg Package</span><span class="text-slate-900 font-black">${formattedPkg}</span></div>
-                    <div><span class="text-slate-400 block text-[9px] uppercase font-bold">Annual Fee</span><span class="text-amber-600 font-black">${formattedFee}</span></div>
+                    <div><span class="text-slate-400 block text-[9px] uppercase font-bold">Annual Fee</span><span class="text-slate-900 font-black">${formattedFee}</span></div>
                   </div>
                 </div>
-                <a href="college-detail.html?id=${entity.id}" class="w-full text-center block bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold py-2.5 rounded-lg border border-slate-200 transition">
+                <button onclick="event.preventDefault(); window.location.href='college-detail.html?id=${entity.id}'" class="w-full text-center bg-brand-blue hover:bg-brand-blueHover text-white font-bold text-xs py-2 rounded-lg transition duration-300">
                   View Details
-                </a>
+                </button>
               </div>
-            </div>
+            </a>
           `;
           discoveryGrid.insertAdjacentHTML('beforeend', optionCardLayoutNode);
         });
 
       } catch (err) {
-        console.error("Failure compiling matching catalog recommendations:", err);
+        console.error("Error generating alternatives:", err);
+        discoveryGrid.innerHTML = `<div class="col-span-full p-6 bg-red-50 rounded-xl text-center text-xs text-red-600">Error loading alternatives</div>`;
       }
     };
 
-    // Operational Initialisation Core Entrypoint Call execution flow
-    executeDirectoryQueryPipeline();
+    // **CRITICAL FIX** - Call the initialization function when the page loads
+    document.addEventListener('DOMContentLoaded', executeDirectoryQueryPipeline);
 
   </script>
+
 </body>
 </html>
