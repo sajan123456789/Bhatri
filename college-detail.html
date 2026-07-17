@@ -88,11 +88,9 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Hide scrollbar functionality but keep working scroll mechanism */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Custom Input States */
     .glow-input:focus {
       box-shadow: 0 0 20px 0 rgba(59, 130, 246, 0.15);
       border-color: rgba(59, 130, 246, 0.4);
@@ -183,84 +181,65 @@
   </div>
   <div id="drawerOverlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[51] hidden lg:hidden"></div>
 
-<!-- ================= MAIN CORE CONTENT FRAMEWORK ================= -->
-<main id="mainPageContent" class="flex-1 opacity-0 transition-opacity duration-300">
-  
-  <!-- HERO COVER BANNER COMPONENT -->
-  <section class="relative border-b border-white/5 overflow-hidden">
-    <div class="absolute inset-0 h-[280px] md:h-[360px] bg-slate-900 overflow-hidden skeleton">
-      <img id="collegeHeroCover" src="" alt="" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>
-    </div>
-
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-[160px] md:pt-[240px] pb-6 relative z-10">
-      <!-- Breadcrumb Navigation Layer -->
-      <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6 bg-brand-dark/60 backdrop-blur-md inline-flex px-3 py-1.5 rounded-lg border border-white/5">
-        <a href="index.html" class="hover:text-white transition">Home</a>
-        <span class="text-slate-600">/</span>
-        <a href="colleges.html" class="hover:text-white transition">Colleges</a>
-        <span class="text-slate-600">/</span>
-        <span id="breadcrumbCurrent" class="text-blue-400">Loading Profile...</span>
+  <!-- ================= MAIN CORE CONTENT FRAMEWORK ================= -->
+  <main id="mainPageContent" class="flex-1 opacity-0 transition-opacity duration-300">
+    
+    <!-- HERO COMPONENT -->
+    <section class="relative border-b border-white/5 overflow-hidden">
+      <!-- Background Image Container Layer -->
+      <div class="absolute inset-0 h-[300px] md:h-[400px] bg-slate-900 overflow-hidden skeleton">
+        <img id="collegeHeroCover" src="" alt="" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/70 to-transparent"></div>
       </div>
 
-      <!-- Main Institutional Profile Title Wrapper Card -->
-      <div class="glass-card p-6 md:p-8 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-2xl">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
-          <!-- Perfectly Circular Logo Frame Matrix Layout -->
-          <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white p-2 border-2 border-brand-blue/30 shadow-2xl shrink-0 overflow-hidden flex items-center justify-center">
-            <div class="w-full h-full rounded-full bg-slate-100 overflow-hidden flex items-center justify-center skeleton">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-[180px] md:pt-[260px] pb-10 relative z-10">
+        <div class="flex flex-col lg:flex-row items-start lg:items-end gap-6 md:gap-8">
+          
+          <!-- Logo Wrapper Block -->
+          <div class="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-brand-dark p-3 border border-white/10 shadow-2xl relative shrink-0 overflow-hidden group">
+            <div class="w-full h-full rounded-2xl bg-slate-800 skeleton overflow-hidden">
               <img id="collegeHeroLogo" src="" alt="" class="w-full h-full object-contain opacity-0" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('skeleton');">
             </div>
           </div>
 
-          <!-- Metadata Context Titles Column -->
-          <div class="space-y-3">
-            <h1 id="collegeHeroName" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">College Full Title Name</h1>
-            <p id="collegeHeroSubtitleName" class="text-slate-400 text-sm font-medium tracking-wide">Detailed Institutional Name Registry</p>
+          <!-- Metadata Context Column -->
+          <div class="flex-1 space-y-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="badgeType" class="text-[10px] md:text-xs font-black px-2.5 py-1 rounded-md bg-blue-500/10 text-brand-blue border border-blue-500/20 uppercase tracking-widest">Type</span>
+              <span id="badgeNaac" class="text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden">NAAC</span>
+              <span id="badgeNirf" class="text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20 hidden">NIRF</span>
+              <span id="badgeEst" class="text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-md bg-white/5 text-slate-400 border border-white/5">Est: </span>
+            </div>
             
-            <p class="text-slate-400 text-xs md:text-sm font-medium flex flex-wrap items-center gap-2">
-              <span id="collegeHeroLocation" class="inline-flex items-center gap-1 text-slate-300">
-                <svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                City, State Axis
+            <h1 id="collegeHeroName" class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-none">College Full Title Name</h1>
+            
+            <p class="text-slate-400 text-sm md:text-base font-medium flex flex-wrap items-center gap-2">
+              <span id="collegeHeroShort" class="text-white font-bold tracking-wide">SHORT</span>
+              <span class="text-slate-600">•</span>
+              <span id="collegeHeroLocation" class="inline-flex items-center gap-1">
+                <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                City, State
               </span>
             </p>
-
-            <div class="flex flex-wrap items-center gap-2 pt-1">
-              <span id="badgeType" class="text-[10px] font-black px-2.5 py-1 rounded-md bg-blue-500/10 text-brand-blue border border-blue-500/20 uppercase tracking-widest">Type</span>
-              <span id="badgeNaac" class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden">NAAC</span>
-              <span id="badgeNirf" class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20 hidden">NIRF</span>
-            </div>
           </div>
-        </div>
 
-        <!-- Right Side Dynamic Review Matrix Display & Interactions Box -->
-        <div class="w-full md:w-auto flex flex-row md:flex-col items-end justify-between md:justify-end gap-4 shrink-0 border-t border-white/5 md:border-t-0 pt-4 md:pt-0">
-          <div class="bg-white/5 border border-white/10 p-3 rounded-2xl flex items-center gap-3 text-right">
-            <div>
-              <div class="text-2xl font-black text-white tracking-tight leading-none" id="metricReviewScore">4.7</div>
-              <div class="text-[10px] text-amber-400 font-bold mt-1">★★★★★</div>
-              <span class="text-[9px] text-slate-500 block font-medium mt-0.5">(124 Reviews)</span>
-            </div>
-          </div>
-          
-          <div class="flex flex-col gap-2 w-full sm:w-auto min-w-[160px]">
-            <button id="saveCollegeBtn" class="w-full justify-center items-center inline-flex gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold px-4 py-2.5 rounded-xl transition text-xs">
-              <svg class="w-3.5 h-3.5 text-red-500 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              <span>Save College</span>
+          <!-- CTAs Interaction Box -->
+          <div class="w-full lg:w-auto flex flex-wrap sm:flex-nowrap items-center gap-3 pt-4 lg:pt-0 shrink-0">
+            <button id="saveCollegeBtn" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold px-5 py-3.5 rounded-xl transition text-sm">
+              <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+              <span>Save</span>
             </button>
-            <button id="compareCollegeBtn" class="w-full justify-center items-center inline-flex gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 font-bold px-4 py-2.5 rounded-xl transition text-xs">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/></svg>
-              <span>Compare</span>
-            </button>
-            <a id="applyNowBtnTop" href="" target="_blank" class="w-full text-center justify-center items-center inline-flex bg-brand-blue hover:bg-brand-blueHover text-white font-black px-4 py-2.5 rounded-xl transition text-xs uppercase tracking-wider shadow-lg shadow-blue-500/20">
+            <a id="externalWebsiteBtn" href="" target="_blank" class="flex-1 sm:flex-none justify-center items-center inline-flex gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 font-bold px-5 py-3.5 rounded-xl transition text-sm">
+              Visit Site
+            </a>
+            <a id="applyNowBtnTop" href="" target="_blank" class="flex-[2] sm:flex-none justify-center items-center inline-flex bg-brand-blue hover:bg-brand-blueHover text-white font-black px-6 py-3.5 rounded-xl transition text-sm uppercase tracking-wider shadow-lg shadow-blue-500/20">
               Apply Now
             </a>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <!-- QUICK STATS CONTAINER MESH -->
     <section class="max-w-[1400px] mx-auto px-4 sm:px-6 py-8">
@@ -296,41 +275,57 @@
 
       </div>
     </section>
-  <!-- STICKY SMOOTH NAV BAR -->
-  <div class="sticky top-[69px] z-40 bg-brand-dark/95 backdrop-blur border-b border-white/5 shadow-xl">
-    <div class="max-w-[1400px] mx-auto px-4 overflow-x-auto no-scrollbar flex items-center">
-      <div class="flex shrink-0 border-b border-transparent">
-        <button onclick="scrollToTabSection('sectionOverview')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Overview</button>
-        <button onclick="scrollToTabSection('sectionCourses')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Courses</button>
-        <button onclick="scrollToTabSection('sectionFees')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Fees</button>
-        <button onclick="scrollToTabSection('sectionPlacements')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Placements</button>
-        <button class="px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 cursor-not-allowed transition duration-200">Facilities</button>
-        <button onclick="scrollToTabSection('sectionAdmission')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Admission</button>
-        <button class="px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 cursor-not-allowed transition duration-200">Reviews</button>
-        <button class="px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-500 cursor-not-allowed transition duration-200">Gallery</button>
+
+    <!-- STICKY SMOOTH NAV BAR -->
+    <div class="sticky top-[69px] z-40 bg-brand-dark/95 backdrop-blur border-b border-white/5 shadow-xl">
+      <div class="max-w-[1400px] mx-auto px-4 overflow-x-auto no-scrollbar flex items-center">
+        <div class="flex shrink-0 border-b border-transparent">
+          <button onclick="scrollToTabSection('sectionOverview')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Overview</button>
+          <button onclick="scrollToTabSection('sectionCourses')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Courses</button>
+          <button onclick="scrollToTabSection('sectionPlacements')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Placements</button>
+          <button onclick="scrollToTabSection('sectionFees')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Fees</button>
+          <button onclick="scrollToTabSection('sectionAdmission')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Admission</button>
+          <button onclick="scrollToTabSection('sectionLocation')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Location</button>
+          <button onclick="scrollToTabSection('sectionSimilar')" class="tab-nav-btn px-5 py-4 text-xs md:text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition duration-200">Similar Colleges</button>
+        </div>
       </div>
     </div>
-  </div>
-    
-  <!-- MAIN TWO COLUMN GRID BODY METRICS -->
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-    
-    <!-- LEFT PRIMARY SCROLL TRACK -->
-    <div class="lg:col-span-2 space-y-12 min-w-0">
-      
-      <!-- OVERVIEW SEGMENT -->
-      <section id="sectionOverview" class="scroll-mt-36 fade-in space-y-6">
-        <div class="flex items-center gap-3">
-          <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
-          <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">About College</h2>
-        </div>
-        <div class="glass-card p-6 md:p-8 rounded-2xl">
-          <p id="overviewDescriptionText" class="text-slate-300 text-sm md:text-base leading-relaxed whitespace-pre-line">
-            Loading documentation description...
-          </p>
-        </div>
-      </section>
 
+    <!-- MAIN TWO COLUMN GRID BODY METRICS -->
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      
+      <!-- LEFT PRIMARY SCROLL TRACK -->
+      <div class="lg:col-span-2 space-y-12 min-w-0">
+        
+        <!-- OVERVIEW SEGMENT -->
+        <section id="sectionOverview" class="scroll-mt-36 fade-in space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
+            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Institutional Overview</h2>
+          </div>
+          <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+            <p id="overviewDescriptionText" class="text-slate-300 text-sm md:text-base leading-relaxed whitespace-pre-line">
+              Loading documentation description...
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-white/5 text-sm">
+              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">Affiliation Status</span><span id="overviewMetaType" class="text-white font-bold">Government</span></div>
+              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">Established Incorporation</span><span id="overviewMetaEst" class="text-white font-bold">1959</span></div>
+              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">Regional Jurisdiction</span><span id="overviewMetaLocation" class="text-white font-bold">Chennai, Tamil Nadu</span></div>
+              <div class="flex justify-between py-2 border-b border-white/5"><span class="text-slate-500 font-medium">NIRF Classification</span><span id="overviewMetaNirf" class="text-purple-400 font-bold">Rank 3</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- COURSES CATALOG SEGMENT -->
+        <section id="sectionCourses" class="scroll-mt-36 space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="w-1 h-6 bg-brand-blue rounded-full"></div>
+            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Academic Curriculums & Streams</h2>
+          </div>
+          <div id="coursesGridDisplay" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Dynamic Injection Pattern Loops -->
+          </div>
+        </section>
 
         <!-- PLACEMENTS DETAIL ANALYTICS -->
         <section id="sectionPlacements" class="scroll-mt-36 space-y-6">
@@ -417,7 +412,6 @@
             <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Geographic Hub Node</h2>
           </div>
           <div class="glass-card p-4 rounded-2xl space-y-4">
-            <!-- Vector Modern Abstract Dark Map Placeholder System Layout -->
             <div class="h-64 rounded-xl bg-slate-950 border border-white/5 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
               <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
               <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 text-brand-blue flex items-center justify-center mb-3 animate-bounce shadow-xl shadow-blue-500/10">
@@ -501,7 +495,7 @@
   <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden p-4 bg-gradient-to-t from-brand-dark via-brand-dark to-transparent pointer-events-none">
     <div class="max-w-md mx-auto flex gap-3 pointer-events-auto">
       <button id="saveCollegeMobileBtn" class="flex-1 bg-slate-900/90 backdrop-blur border border-white/10 text-white font-bold p-3.5 rounded-xl flex justify-center items-center gap-2 shadow-2xl">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <svg class="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
       </button>
       <a id="applyNowMobileBtn" href="" target="_blank" class="flex-[3] text-center bg-brand-blue hover:bg-brand-blueHover text-white font-black p-3.5 rounded-xl text-sm uppercase tracking-wider shadow-xl shadow-blue-500/20 flex justify-center items-center">
         Apply Now
@@ -645,6 +639,52 @@
       });
     });
 
+    // Save/Bookmark logic tracking interface using localized storage system engine
+    const handleCollegeSaveInteraction = (collegeId) => {
+      const savedColleges = JSON.parse(localStorage.getItem('savedColleges') || '[]');
+      const desktopBtn = document.getElementById('saveCollegeBtn');
+      const mobileBtn = document.getElementById('saveCollegeMobileBtn');
+      
+      const isCurrentlySaved = savedColleges.includes(collegeId);
+      let updatedPool = [];
+      
+      if (isCurrentlySaved) {
+        updatedPool = savedColleges.filter(id => id !== collegeId);
+      } else {
+        updatedPool = [...savedColleges, collegeId];
+      }
+      
+      localStorage.setItem('savedColleges', JSON.stringify(updatedPool));
+      renderSavedStateUI(updatedPool.includes(collegeId));
+    };
+
+    const renderSavedStateUI = (isSaved) => {
+      const desktopBtn = document.getElementById('saveCollegeBtn');
+      const mobileBtn = document.getElementById('saveCollegeMobileBtn');
+      
+      if (!desktopBtn || !mobileBtn) return;
+      
+      if (isSaved) {
+        desktopBtn.querySelector('span').textContent = 'Saved';
+        desktopBtn.querySelector('svg').classList.add('fill-red-500', 'text-red-500');
+        desktopBtn.querySelector('svg').classList.remove('fill-none');
+        desktopBtn.classList.add('bg-red-500/10', 'border-red-500/30');
+        
+        mobileBtn.querySelector('svg').classList.add('fill-red-500', 'text-red-500');
+        mobileBtn.querySelector('svg').classList.remove('fill-none');
+        mobileBtn.classList.add('bg-red-500/10', 'border-red-500/30');
+      } else {
+        desktopBtn.querySelector('span').textContent = 'Save';
+        desktopBtn.querySelector('svg').classList.remove('fill-red-500', 'text-red-500');
+        desktopBtn.querySelector('svg').classList.add('fill-none');
+        desktopBtn.classList.remove('bg-red-500/10', 'border-red-500/30');
+        
+        mobileBtn.querySelector('svg').classList.remove('fill-red-500', 'text-red-500');
+        mobileBtn.querySelector('svg').classList.add('fill-none');
+        mobileBtn.classList.remove('bg-red-500/10', 'border-red-500/30');
+      }
+    };
+
     // Core execution pipeline initialization setup metrics logic loader engines
     const executeDirectoryQueryPipeline = async () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -654,6 +694,16 @@
         toggleErrorScreenDisplay();
         return;
       }
+
+      // Initialize click hooks for bookmark state layers
+      const desktopSave = document.getElementById('saveCollegeBtn');
+      const mobileSave = document.getElementById('saveCollegeMobileBtn');
+      
+      if (desktopSave) desktopSave.addEventListener('click', () => handleCollegeSaveInteraction(documentId));
+      if (mobileSave) mobileSave.addEventListener('click', () => handleCollegeSaveInteraction(documentId));
+      
+      const initiallySavedPool = JSON.parse(localStorage.getItem('savedColleges') || '[]');
+      renderSavedStateUI(initiallySavedPool.includes(documentId));
 
       try {
         const targetDocRef = doc(db, "colleges", documentId);
@@ -881,7 +931,6 @@
       let matchingAccumulator = [];
 
       try {
-        // Condition Segment Path One Primary Vector Rule Target
         if (type) {
           const operationalQueryOne = query(collectionReference, where("type", "==", type), limit(8));
           const executionSnapshot = await getDocs(operationalQueryOne);
@@ -892,13 +941,11 @@
           });
         }
 
-        // Deduplication and prioritisation pipeline architecture execution arrays maps
         const absoluteUniqueMap = new Map();
         matchingAccumulator.forEach(obj => absoluteUniqueMap.set(obj.id, obj));
         
         let contextualPoolArray = Array.from(absoluteUniqueMap.values());
 
-        // Sort pool based on regional parameter match state variables weights
         if (state) {
           contextualPoolArray.sort((firstNode, secondNode) => {
             const deltaA = firstNode.state === state ? 1 : 0;
