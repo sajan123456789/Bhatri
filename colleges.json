@@ -576,7 +576,7 @@
   ,
 {
   "name": "National Institute of Technology Jaipur",
-  "shortName": "MNIT Jaipur",
+  "shortName": "NIT Jaipur",
   "city": "Jaipur",
   "state": "Rajasthan",
   "type": "Government",
@@ -590,7 +590,7 @@
   "naac": "A",
   "website": "https://www.mnit.ac.in",
   "image": "images/colleges/nit-jaipur.webp",
-  "logo": "logos/mnit-jaipur.png",
+  "logo": "logos/nit-jaipur.png",
   "courses": [
     "B.Tech",
     "B.Arch",
