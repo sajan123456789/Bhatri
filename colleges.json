@@ -758,31 +758,6 @@
   ]
 },
 {
-  "name": "National Institute of Technology Agartala",
-  "shortName": "NIT Agartala",
-  "city": "Agartala",
-  "state": "Tripura",
-  "type": "Government",
-  "description": "Leading engineering institute in Northeast India with strong academics and research.",
-  "established": 1965,
-  "fees": 165000,
-  "avgPackage": 10.9,
-  "highestPackage": 42,
-  "placement": 82,
-  "nirfRank": 82,
-  "naac": "A",
-  "website": "https://www.nita.ac.in",
-  "image": "images/colleges/nit-agartala.webp",
-  "logo": "logos/nit-agartala.png",
-  "courses": [
-    "B.Tech",
-    "M.Tech",
-    "MBA",
-    "MCA",
-    "PhD"
-  ]
-},
-{
   "name": "National Institute of Technology Delhi",
   "shortName": "NIT Delhi",
   "city": "New Delhi",
