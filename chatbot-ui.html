@@ -54,7 +54,6 @@
         }
     </script>
     <style>
-        /* Custom Scrollbar */
         .chat-scroll::-webkit-scrollbar { width: 5px; }
         .chat-scroll::-webkit-scrollbar-track { background: transparent; }
         .chat-scroll::-webkit-scrollbar-thumb { background-color: rgba(100, 116, 139, 0.4); border-radius: 10px; }
@@ -63,9 +62,8 @@
         textarea::-webkit-scrollbar { display: none; }
         textarea { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Glassmorphism Effects */
         .glass-panel {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -78,7 +76,6 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        /* Enhanced Markdown Styles */
         .markdown-content p { margin-bottom: 0.75rem; line-height: 1.6; }
         .markdown-content p:last-child { margin-bottom: 0; }
         .markdown-content strong { color: #f8fafc; font-weight: 600; }
@@ -97,8 +94,8 @@
         .markdown-content th, .markdown-content td { border: 1px solid rgba(51, 65, 85, 0.6); padding: 0.5rem; text-align: left; }
         .markdown-content th { background-color: rgba(30, 41, 59, 0.9); color: #f8fafc; }
         .markdown-content blockquote { border-left: 3px solid #2563eb; padding-left: 0.75rem; margin-left: 0; margin-right: 0; color: #94a3b8; font-style: italic; }
+        .markdown-content a { color: #38bdf8; text-decoration: underline; }
 
-        /* Typing Indicator Wave Animation */
         .thinking-dot {
             width: 6px;
             height: 6px;
@@ -115,7 +112,6 @@
             40% { transform: scale(1.0); opacity: 1; }
         }
 
-        /* Streaming Cursor */
         .stream-cursor::after {
             content: '';
             display: inline-block;
@@ -128,31 +124,45 @@
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 h-screen w-screen overflow-hidden flex items-center justify-center font-sans antialiased selection:bg-blue-600 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen w-full font-sans antialiased selection:bg-blue-600 selection:text-white">
 
-    <!-- Background Simulation Grid -->
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="text-slate-400 text-center p-10 z-0">
+    <div class="relative z-0 max-w-4xl mx-auto px-6 py-20 text-center">
         <div class="inline-flex items-center justify-center p-3 bg-blue-600/10 border border-blue-500/20 rounded-2xl mb-4 text-blue-400">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
         </div>
-        <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2">CareerSteps AI Platform</h1>
-        <p class="max-w-md mx-auto text-sm text-slate-400">Your intelligent career counseling assistant. Click the floating AI button in the bottom right corner to begin your journey.</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">CareerSteps AI Platform</h1>
+        <p class="max-w-lg mx-auto text-base text-slate-400 mb-8">Your intelligent career counseling assistant. Click the floating AI assistant button in the bottom-right corner to start your consultation session instantly.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
+            <div class="glass-bubble-ai p-4 rounded-2xl border border-slate-800">
+                <h3 class="font-bold text-white mb-1">🎓 College Guidance</h3>
+                <p class="text-xs text-slate-400">Find the right streams and institutions after 10th and 12th.</p>
+            </div>
+            <div class="glass-bubble-ai p-4 rounded-2xl border border-slate-800">
+                <h3 class="font-bold text-white mb-1">🚀 Career Roadmaps</h3>
+                <p class="text-xs text-slate-400">Step-by-step guidance for tech, medical, and government jobs.</p>
+            </div>
+            <div class="glass-bubble-ai p-4 rounded-2xl border border-slate-800">
+                <h3 class="font-bold text-white mb-1">📄 Resume Review</h3>
+                <p class="text-xs text-slate-400">Professional tips to optimize your resume for ATS and recruiters.</p>
+            </div>
+        </div>
     </div>
 
-    <!-- 1. Floating AI Button with Tooltip & Notification Badge -->
+    <!-- Backdrop Overlay for Mobile/Desktop Popup -->
+    <div id="chatbot-backdrop" class="hidden fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+
+    <!-- Floating AI Button -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center group">
-        <!-- Tooltip -->
         <div class="absolute right-full mr-3 px-3 py-1.5 bg-slate-900 border border-slate-700/80 text-white text-xs font-medium rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            CareerSteps AI
+            CareerSteps AI Assistant
         </div>
         
         <button id="chatbot-toggle-btn" aria-label="Open CareerSteps AI Chatbot" class="relative bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-600 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center animate-pulse-glow">
-            <!-- Notification Badge -->
             <span id="notification-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 text-slate-950 text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-slate-950">1</span>
             
             <svg class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -163,10 +173,10 @@
         </button>
     </div>
 
-    <!-- 2. Chatbot Window Container -->
-    <div id="chatbot-window" role="dialog" aria-modal="true" aria-label="CareerSteps AI Assistant" class="hidden fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full md:w-[440px] h-full md:h-[720px] md:max-h-[85vh] flex flex-col glass-panel md:rounded-3xl shadow-2xl overflow-hidden origin-bottom-right transition-all">
+    <!-- Chatbot Window Container -->
+    <div id="chatbot-window" role="dialog" aria-modal="true" aria-label="CareerSteps AI Assistant" class="hidden fixed inset-x-0 bottom-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full md:w-[420px] h-[90vh] md:h-[700px] flex flex-col glass-panel rounded-t-3xl md:rounded-3xl shadow-2xl overflow-hidden origin-bottom-right transition-all">
         
-        <!-- 3. Professional Header -->
+        <!-- Header -->
         <div class="flex items-center justify-between px-5 py-4 bg-slate-900/90 border-b border-slate-800/80 shrink-0">
             <div class="flex items-center gap-3">
                 <div class="relative">
@@ -181,36 +191,31 @@
                 </div>
                 <div>
                     <h2 class="text-white font-bold text-sm tracking-wide flex items-center gap-1.5">
-                        CareerSteps AI <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded font-mono border border-blue-500/30">v2.5</span>
+                        <span id="header-username">CareerSteps AI</span> <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded font-mono border border-blue-500/30">v2.5</span>
                     </h2>
-                    <p class="text-xs text-slate-400 font-medium">Expert Counselor • Online</p>
+                    <p class="text-xs text-slate-400 font-medium" id="header-status">Expert Counselor • Online</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-1">
-                <!-- User Avatar Placeholder -->
                 <div id="user-avatar-placeholder" class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-slate-300 mr-1 overflow-hidden" title="Logged in user">
                     <span>CS</span>
                 </div>
-                <!-- Settings Button -->
                 <button id="settings-btn" class="p-2 text-slate-400 hover:text-white hover:bg-slate-800/80 rounded-xl transition-all" aria-label="Settings" title="Settings">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </button>
-                <!-- Clear Chat Button -->
                 <button id="clear-chat-btn" class="p-2 text-slate-400 hover:text-white hover:bg-slate-800/80 rounded-xl transition-all" aria-label="Clear Chat" title="Clear Chat History">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 </button>
-                <!-- Close Button -->
                 <button id="close-chat-btn" class="p-2 text-slate-400 hover:text-white hover:bg-slate-800/80 rounded-xl transition-all" aria-label="Close Chat" title="Close">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>
 
-        <!-- 5. Chat Area & 4. Welcome Screen with Suggestion Cards -->
+        <!-- Chat Area -->
         <div id="chat-area" class="flex-1 p-5 overflow-y-auto chat-scroll flex flex-col gap-5 text-sm relative">
             
-            <!-- Welcome Banner / Empty State -->
             <div id="welcome-screen" class="flex flex-col items-center text-center my-auto py-6 px-4 animate-fade-in">
                 <div class="w-16 h-16 rounded-3xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4 shadow-xl">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -218,7 +223,6 @@
                 <h3 class="text-xl font-bold text-white mb-1">Hello 👋 I'm CareerSteps AI</h3>
                 <p class="text-slate-400 text-xs max-w-xs mb-6">Your expert counselor for colleges, courses, career roadmaps, and interview preparation.</p>
                 
-                <!-- Suggestion Cards Grid -->
                 <div class="grid grid-cols-2 gap-2.5 w-full text-left">
                     <button class="suggestion-card p-3 rounded-2xl glass-bubble-ai hover:border-blue-500/50 hover:bg-slate-800 transition-all flex flex-col gap-1 group text-left">
                         <span class="text-base">🎓</span>
@@ -247,39 +251,15 @@
                 </div>
             </div>
 
-            <!-- Initial AI Greeting Message -->
-            <div class="flex gap-3 max-w-[92%] animate-fade-in">
-                <div class="w-8 h-8 rounded-2xl bg-blue-600 flex shrink-0 items-center justify-center mt-1 shadow-md shadow-blue-600/30">
-                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>
-                </div>
-                <div class="flex flex-col gap-1.5 flex-1">
-                    <div class="glass-bubble-ai text-slate-200 rounded-3xl rounded-tl-sm px-4 py-3 shadow-lg markdown-content">
-                        <p>Welcome! I am your <strong>CareerSteps AI Counselor</strong>. 🚀</p>
-                        <p>How can I assist you with your education, career roadmaps, or professional preparation today?</p>
-                    </div>
-                    <!-- 7. AI Message Toolbar -->
-                    <div class="flex items-center gap-2 text-slate-400 text-xs px-1">
-                        <span class="text-[10px] font-mono">Just now</span>
-                        <div class="flex items-center gap-1.5 ml-auto">
-                            <button class="p-1 hover:text-white transition-colors" title="Copy"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></button>
-                            <button class="p-1 hover:text-white transition-colors" title="Regenerate"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg></button>
-                            <button class="p-1 hover:text-white transition-colors" title="Like"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg></button>
-                            <button class="p-1 hover:text-white transition-colors" title="Dislike"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"></path></svg></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- 11. Floating Scroll to Bottom Button -->
         <div id="scroll-bottom-container" class="absolute bottom-24 right-6 z-20 hidden">
             <button id="scroll-bottom-btn" class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 text-slate-300 shadow-xl flex items-center justify-center hover:bg-slate-700 hover:text-white transition-all">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </button>
         </div>
 
-        <!-- 9. Modern Input Area -->
+        <!-- Input Area -->
         <div class="p-4 bg-slate-900/95 border-t border-slate-800 shrink-0">
             <div class="relative flex flex-col bg-slate-800/80 border border-slate-700/80 focus-within:border-blue-500 rounded-2xl px-3 py-2 shadow-inner transition-colors">
                 <textarea 
@@ -291,15 +271,12 @@
                 
                 <div class="flex items-center justify-between pt-2 border-t border-slate-700/40 mt-1">
                     <div class="flex items-center gap-1">
-                        <!-- Attachment Button Placeholder -->
                         <button type="button" class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors" title="Attach file or resume">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.415a6 6 0 108.486 8.486L20.5 13"></path></svg>
                         </button>
-                        <!-- Mic Button Placeholder -->
                         <button type="button" class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors" title="Voice input">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
                         </button>
-                        <!-- Character Counter -->
                         <span id="char-counter" class="text-[10px] text-slate-500 font-mono ml-2">0/2000</span>
                     </div>
 
@@ -312,14 +289,13 @@
                 </div>
             </div>
 
-            <!-- 16. Footer Disclaimer -->
             <div class="text-center mt-2.5">
                 <p class="text-[10px] text-slate-500">CareerSteps AI may generate mistakes. Always verify important information with official counseling boards.</p>
             </div>
         </div>
     </div>
 
-    <!-- 13. Settings Modal -->
+    <!-- Settings Modal -->
     <div id="settings-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
         <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-700">
             <div class="flex items-center justify-between mb-5 pb-3 border-b border-slate-800">
@@ -364,12 +340,46 @@
         </div>
     </div>
 
-    <!-- 18. JavaScript Core Logic -->
+    <!-- Firebase SDK Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const app = initializeApp();
+                const auth = getAuth(app);
+                onAuthStateChanged(auth, (user) => {
+                    const avatarContainer = document.getElementById('user-avatar-placeholder');
+                    const headerUsername = document.getElementById('header-username');
+                    const headerStatus = document.getElementById('header-status');
+                    if (user) {
+                        const displayName = user.displayName || user.email || 'User';
+                        const photoURL = user.photoURL;
+                        if (headerUsername) headerUsername.textContent = displayName;
+                        if (headerStatus) headerStatus.textContent = 'Active Counselor Session';
+                        if (avatarContainer) {
+                            if (photoURL) {
+                                avatarContainer.innerHTML = `<img src="${photoURL}" alt="${displayName}" class="w-full h-full object-cover">`;
+                            } else {
+                                const initials = displayName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                                avatarContainer.innerHTML = `<span>${initials}</span>`;
+                            }
+                        }
+                    }
+                });
+            } catch (e) {
+                // Firebase initialization handled safely if config is supplied via hosting environment
+            }
+        });
+    </script>
+
+    <!-- Main Client-Side Controller -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // DOM Elements matching required IDs and new upgrade selectors
             const toggleBtn = document.getElementById('chatbot-toggle-btn');
             const chatWindow = document.getElementById('chatbot-window');
+            const backdrop = document.getElementById('chatbot-backdrop');
             const closeBtn = document.getElementById('close-chat-btn');
             const clearBtn = document.getElementById('clear-chat-btn');
             const chatArea = document.getElementById('chat-area');
@@ -390,31 +400,69 @@
 
             let isChatOpen = false;
             let isWaitingForResponse = false;
+            let messages = [];
+            let currentAbortController = null;
 
-            // 1. Toggle Window & Badge Management
+            const STORAGE_KEY = 'careersteps_chat_history_v2';
+
+            function loadChatHistory() {
+                try {
+                    const saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved) {
+                        messages = JSON.parse(saved);
+                        if (messages.length > 0 && welcomeScreen) {
+                            welcomeScreen.classList.add('hidden');
+                        }
+                        messages.forEach(msg => {
+                            appendMessageToDOM(msg.content, msg.role === 'user' ? 'user' : 'assistant', false);
+                        });
+                    }
+                } catch (e) {
+                    messages = [];
+                }
+            }
+
+            function saveChatHistory() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+                } catch (e) {}
+            }
+
+            loadChatHistory();
+
             const toggleChat = () => {
                 isChatOpen = !isChatOpen;
                 if (isChatOpen) {
                     chatWindow.classList.remove('hidden');
                     chatWindow.classList.remove('animate-slide-down');
                     chatWindow.classList.add('animate-slide-up');
+                    
+                    backdrop.classList.remove('hidden');
+                    setTimeout(() => { backdrop.classList.remove('opacity-0'); }, 10);
+                    
+                    document.body.style.overflow = 'hidden';
                     toggleBtn.classList.add('scale-90', 'opacity-80');
                     if (notificationBadge) notificationBadge.style.display = 'none';
                     setTimeout(() => chatInput.focus(), 350);
                 } else {
                     chatWindow.classList.remove('animate-slide-up');
                     chatWindow.classList.add('animate-slide-down');
+                    
+                    backdrop.classList.add('opacity-0');
                     setTimeout(() => {
+                        backdrop.classList.add('hidden');
                         chatWindow.classList.add('hidden');
                     }, 300);
+                    
+                    document.body.style.overflow = '';
                     toggleBtn.classList.remove('scale-90', 'opacity-80');
                 }
             };
 
             toggleBtn.addEventListener('click', toggleChat);
             closeBtn.addEventListener('click', toggleChat);
+            backdrop.addEventListener('click', toggleChat);
 
-            // 14. Accessibility: Escape key closes chatbot and modals
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (!settingsModal.classList.contains('hidden')) {
@@ -425,12 +473,10 @@
                 }
             });
 
-            // Settings Modal Events
             settingsBtn.addEventListener('click', () => settingsModal.classList.remove('hidden'));
             closeSettingsBtn.addEventListener('click', () => settingsModal.classList.add('hidden'));
             settingsDoneBtn.addEventListener('click', () => settingsModal.classList.add('hidden'));
 
-            // 2. Suggestion Cards Click Handler
             suggestionCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const text = card.querySelector('span:nth-child(2)').textContent;
@@ -442,7 +488,6 @@
                 });
             });
 
-            // 9. Input Auto-resize, Counter & Send Enable
             chatInput.addEventListener('input', function() {
                 this.style.height = 'auto';
                 this.style.height = (this.scrollHeight) + 'px';
@@ -453,7 +498,6 @@
                 sendBtn.disabled = this.value.trim() === '' || isWaitingForResponse || length > 2000;
             });
 
-            // Enter & Shift+Enter Handling
             chatInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
@@ -463,10 +507,29 @@
 
             sendBtn.addEventListener('click', handleSend);
 
-            // 5 & 6. Send Message & Streaming Mock Handler
-            function handleSend() {
-                const message = chatInput.value.trim();
-                if (!message || isWaitingForResponse) return;
+            function formatMarkdown(content) {
+                return content
+                    .replace(/### (.*?)\n/g, '<h3 class="font-bold text-white text-base mt-2 mb-1">$1</h3>')
+                    .replace(/## (.*?)\n/g, '<h2 class="font-bold text-white text-lg mt-2 mb-1">$1</h2>')
+                    .replace(/# (.*?)\n/g, '<h1 class="font-bold text-white text-xl mt-2 mb-1">$1</h1>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+                    .replace(/- \*\*(.*?)\*\*/g, '• <strong>$1</strong>')
+                    .replace(/- (.*?)\n/g, '• $1<br>')
+                    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+                    .replace(/`([^`]+)`/g, '<code>$1</code>')
+                    .replace(/\n/g, '<br>');
+            }
+
+            async function handleSend() {
+                const messageText = chatInput.value.trim();
+                if (!messageText) return;
+
+                if (currentAbortController) {
+                    currentAbortController.abort();
+                }
+                currentAbortController = new AbortController();
 
                 if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
                     welcomeScreen.classList.add('hidden');
@@ -477,49 +540,97 @@
                 charCounter.textContent = '0/2000';
                 sendBtn.disabled = true;
 
-                // Append User Message
-                appendMessage(message, 'user');
+                messages.push({ role: 'user', content: messageText });
+                saveChatHistory();
+                appendMessageToDOM(messageText, 'user', true);
 
                 isWaitingForResponse = true;
-                const typingId = appendThinkingIndicator();
+                const thinkingId = appendThinkingIndicator();
                 scrollToBottom();
 
-                // Mock streaming response simulation for production readiness
-                setTimeout(() => {
-                    removeMessage(typingId);
-                    isWaitingForResponse = false;
-                    
-                    const mockAiResponse = getContextualResponse(message);
-                    appendStreamingMessage(mockAiResponse);
-                }, 1200);
-            }
+                try {
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ messages: messages }),
+                        signal: currentAbortController.signal
+                    });
 
-            // Contextual mock generator for CareerSteps AI
-            function getContextualResponse(query) {
-                const q = query.toLowerCase();
-                if (q.includes('10th') || q.includes('after 10th')) {
-                    return `### Career Options After 10th Standard\n\nChoosing the right path after 10th is crucial. Here are your primary streams:\n\n- **Science (PCM/PCB):** Ideal for Engineering, Medicine, Research, and Tech.\n- **Commerce (With/Without Maths):** Great for Banking, CA, Finance, and Business Management.\n- **Arts / Humanities:** Excellent for Civil Services, Psychology, Law, Journalism, and Design.\n- **Diploma / Polytechnic Courses:** Direct technical entry into engineering branches for job readiness.`;
-                } else if (q.includes('12th') || q.includes('courses')) {
-                    return `### Top Professional Courses After 12th\n\nDepending on your stream, here are top recommendations:\n\n1. **Engineering & Tech:** B.Tech in CSE, AI & Data Science, ECE.\n2. **Medical & Allied:** MBBS, BDS, Nursing, Pharmacy, Biotechnology.\n3. **Management & Law:** Integrated BBA-MBA, B.Com (Hons), B.A. LL.B (5-year law).\n4. **Creative & Emerging:** UI/UX Design, Digital Marketing, Animation & VFX.`;
-                } else if (q.includes('government') || q.includes('gov')) {
-                    return `### Major Government Job Pathways\n\n- **UPSC Civil Services:** For IAS, IPS, IFS (Requires graduation).\n- **SSC CGL / CHSL:** For central government ministries and departments.\n- **Banking Exams:** IBPS PO, SBI Clerk, RBI Grade B.\n- **Defense Services:** NDA (After 12th), CDS / AFCAT (After Graduation).`;
-                } else if (q.includes('resume') || q.includes('cv')) {
-                    return `### Professional Resume Review Tips\n\n- **Format:** Keep it clean, ATS-friendly, and strictly 1 page (for students/freshers).\n- **Structure:** Contact Info -> Education -> Skills -> Projects / Internships -> Certifications.\n- **Action Verbs:** Start bullet points with strong verbs like *Developed*, *Led*, *Engineered*, or *Optimized*.`;
-                } else {
-                    return `### Career Guidance Insights\n\nI can help you build a personalized roadmap for **${query}**.\n\n- **Recommended Step:** Research foundational requirements, required entrance examinations, and top colleges.\n- **Skill Development:** Focus on problem-solving, communication, and domain-specific technical training.\n\nWould you like specific college cut-offs or study plans for this path?`;
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    removeMessage(thinkingId);
+                    
+                    const assistantMsgId = appendStreamingBubble();
+                    const textNode = document.getElementById(assistantMsgId);
+                    
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    let accumulatedContent = '';
+
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) break;
+
+                        const chunk = decoder.decode(value, { stream: true });
+                        const lines = chunk.split('\n');
+                        
+                        for (const line of lines) {
+                            if (line.startsWith('data:')) {
+                                const dataStr = line.replace('data:', '').trim();
+                                if (dataStr === '[DONE]') break;
+                                try {
+                                    const parsed = JSON.parse(dataStr);
+                                    const token = parsed.text || parsed.content || parsed.delta || '';
+                                    accumulatedContent += token;
+                                    if (textNode) {
+                                        textNode.innerHTML = formatMarkdown(accumulatedContent);
+                                        scrollToBottom();
+                                    }
+                                } catch (e) {
+                                    accumulatedContent += dataStr;
+                                    if (textNode) {
+                                        textNode.innerHTML = formatMarkdown(accumulatedContent);
+                                        scrollToBottom();
+                                    }
+                                }
+                            } else if (line.trim().length > 0) {
+                                accumulatedContent += line;
+                                if (textNode) {
+                                    textNode.innerHTML = formatMarkdown(accumulatedContent);
+                                    scrollToBottom();
+                                }
+                            }
+                        }
+                    }
+
+                    if (textNode) {
+                        textNode.classList.remove('stream-cursor');
+                    }
+
+                    messages.push({ role: 'assistant', content: accumulatedContent });
+                    saveChatHistory();
+
+                } catch (error) {
+                    if (error.name === 'AbortError') return;
+                    removeMessage(thinkingId);
+                    appendRetryMessage();
+                } finally {
+                    isWaitingForResponse = false;
+                    sendBtn.disabled = chatInput.value.trim() === '';
                 }
             }
 
-            // 5. Clear Chat Logic
             clearBtn.addEventListener('click', () => {
-                const greeting = chatArea.firstElementChild;
+                messages = [];
+                localStorage.removeItem(STORAGE_KEY);
                 chatArea.innerHTML = '';
                 if (welcomeScreen) {
                     welcomeScreen.classList.remove('hidden');
                     chatArea.appendChild(welcomeScreen);
-                }
-                if (greeting && greeting !== welcomeScreen) {
-                    chatArea.appendChild(greeting);
                 }
             });
 
@@ -528,29 +639,23 @@
                 settingsModal.classList.add('hidden');
             });
 
-            // Export Chat
             exportChatBtn.addEventListener('click', () => {
-                const chatContent = chatArea.innerText;
-                const blob = new Blob([chatContent], { type: 'text/plain' });
+                const chatContent = JSON.stringify(messages, null, 2);
+                const blob = new Blob([chatContent], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'careersteps-chat-export.txt';
+                a.download = 'careersteps-chat-export.json';
                 a.click();
                 settingsModal.classList.add('hidden');
             });
 
-            // 6 & 7. UI Helper & Toolbar Injection
-            function appendMessage(content, sender) {
+            function appendMessageToDOM(content, sender, animate = true) {
                 const msgDiv = document.createElement('div');
                 const isUser = sender === 'user';
-                msgDiv.className = `flex gap-3 max-w-[92%] animate-fade-in ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
+                msgDiv.className = `flex gap-3 max-w-[92%] ${animate ? 'animate-fade-in' : ''} ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
                 
-                const parsedContent = content
-                    .replace(/### (.*?)\n/g, '<h3 class="font-bold text-white text-base mt-2 mb-1">$1</h3>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/- \*\*(.*?)\*\*/g, '• <strong>$1</strong>')
-                    .replace(/\n/g, '<br>');
+                const parsedContent = formatMarkdown(content);
 
                 const avatarHTML = isUser 
                     ? `<div class="w-8 h-8 rounded-2xl bg-slate-800 border border-slate-700 flex shrink-0 items-center justify-center mt-1 text-xs font-bold text-slate-300">CS</div>`
@@ -586,7 +691,6 @@
                 scrollToBottom();
             }
 
-            // 8. Premium Thinking Indicator
             function appendThinkingIndicator() {
                 const id = 'thinking-' + Date.now();
                 const msgDiv = document.createElement('div');
@@ -612,8 +716,8 @@
                 return id;
             }
 
-            // Streaming Simulator Implementation
-            function appendStreamingMessage(fullText) {
+            function appendStreamingBubble() {
+                const id = 'stream-node-' + Date.now();
                 const msgDiv = document.createElement('div');
                 msgDiv.className = `flex gap-3 max-w-[92%] animate-fade-in`;
                 
@@ -623,32 +727,30 @@
                     ${avatarHTML}
                     <div class="flex flex-col gap-1.5 flex-1">
                         <div class="glass-bubble-ai text-slate-200 rounded-3xl rounded-tl-sm px-4 py-3 shadow-lg markdown-content">
-                            <p class="stream-cursor" id="streaming-text-node"></p>
+                            <p class="stream-cursor" id="${id}"></p>
                         </div>
                     </div>
                 `;
                 
                 chatArea.appendChild(msgDiv);
                 scrollToBottom();
+                return id;
+            }
 
-                const textNode = document.getElementById('streaming-text-node');
-                let i = 0;
-                
-                function typeWriter() {
-                    if (i < fullText.length) {
-                        textNode.innerHTML = fullText.substring(0, i + 1)
-                            .replace(/### (.*?)\n/g, '<h3 class="font-bold text-white text-base mt-2 mb-1">$1</h3>')
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            .replace(/- \*\*(.*?)\*\*/g, '• <strong>$1</strong>')
-                            .replace(/\n/g, '<br>');
-                        i++;
-                        scrollToBottom();
-                        setTimeout(typeWriter, 10);
-                    } else {
-                        textNode.classList.remove('stream-cursor');
-                    }
-                }
-                typeWriter();
+            function appendRetryMessage() {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `flex gap-3 max-w-[92%] animate-fade-in`;
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-2xl bg-rose-600 flex shrink-0 items-center justify-center mt-1 shadow-md shadow-rose-600/30">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <div class="glass-bubble-ai border border-rose-500/30 text-slate-200 rounded-3xl rounded-tl-sm px-4 py-3 shadow-lg flex flex-col gap-2">
+                        <p class="text-xs text-rose-300 font-semibold">Connection interrupted. Please verify your connection or try again.</p>
+                        <button onclick="this.closest('.flex').previousElementSibling?.querySelector('textarea')?.focus()" class="self-start px-3 py-1 bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/40 rounded-xl text-xs font-medium transition-colors">Retry</button>
+                    </div>
+                `;
+                chatArea.appendChild(msgDiv);
+                scrollToBottom();
             }
 
             function removeMessage(id) {
@@ -656,7 +758,6 @@
                 if (el) el.remove();
             }
 
-            // 11. Scroll Management & Button
             function scrollToBottom() {
                 chatArea.scrollTo({
                     top: chatArea.scrollHeight,
