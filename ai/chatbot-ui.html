@@ -574,70 +574,12 @@
                 scrollToBottom();
 
                 try {
-                    const response = await fetch('https://careersteps-ai.sajanpandit585.workers.dev/api/chat', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ messages: messages }),
-                        signal: currentAbortController.signal
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-
                     removeMessage(thinkingId);
-                    
-                    const assistantMsgId = appendStreamingBubble();
-                    const textNode = document.getElementById(assistantMsgId);
-                    
-                    const reader = response.body.getReader();
-                    const decoder = new TextDecoder();
-                    let accumulatedContent = '';
+const response = await sendToChatbot(messageText, messages.slice(0, -1));
+appendMessageToDOM(response, 'assistant', true);
 
-                    while (true) {
-                        const { value, done } = await reader.read();
-                        if (done) break;
-
-                        const chunk = decoder.decode(value, { stream: true });
-                        const lines = chunk.split('\n');
-                        
-                        for (const line of lines) {
-                            if (line.startsWith('data:')) {
-                                const dataStr = line.replace('data:', '').trim();
-                                if (dataStr === '[DONE]') break;
-                                try {
-                                    const parsed = JSON.parse(dataStr);
-                                    const token = parsed.text || parsed.content || parsed.delta || '';
-                                    accumulatedContent += token;
-                                    if (textNode) {
-                                        textNode.innerHTML = formatMarkdown(accumulatedContent);
-                                        scrollToBottom();
-                                    }
-                                } catch (e) {
-                                    accumulatedContent += dataStr;
-                                    if (textNode) {
-                                        textNode.innerHTML = formatMarkdown(accumulatedContent);
-                                        scrollToBottom();
-                                    }
-                                }
-                            } else if (line.trim().length > 0) {
-                                accumulatedContent += line;
-                                if (textNode) {
-                                    textNode.innerHTML = formatMarkdown(accumulatedContent);
-                                    scrollToBottom();
-                                }
-                            }
-                        }
-                    }
-
-                    if (textNode) {
-                        textNode.classList.remove('stream-cursor');
-                    }
-
-                    messages.push({ role: 'assistant', content: accumulatedContent });
-                    saveChatHistory();
+messages.push({ role: 'assistant', content: response });
+saveChatHistory();
 
                 } catch (error) {
                     if (error.name === 'AbortError') return;
