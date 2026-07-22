@@ -284,7 +284,7 @@
 
   const iframe = document.createElement('iframe');
   iframe.id = 'cs-ai-iframe';
-  iframe.src = 'chatbot-ui.html';
+  iframe.src = '/ai/chatbot-ui.html';
   iframe.title = 'CareerSteps AI Chat Interface';
 
   body.appendChild(iframe);
