@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerSteps AI Chatbot UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        career: {
+                            light: '#3b82f6', // blue-500
+                            DEFAULT: '#2563eb', // blue-600
+                            dark: '#1e3a8a', // blue-900
+                            panel: 'rgba(15, 23, 42, 0.85)', // slate-900 with opacity
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 1.5s infinite',
+                        'slide-up': 'slideUp 0.3s ease-out forwards',
+                        'fade-in': 'fadeIn 0.2s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px) scale(0.95)' },
+                            '100%': { opacity: 1, transform: 'translateY(0) scale(1)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for Chat Area */
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: #475569;
+            border-radius: 10px;
+        }
+        
+        /* Auto-resize textarea hide scrollbar */
+        textarea::-webkit-scrollbar {
+            display: none;
+        }
+        textarea {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Typing Indicator Dots */
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out;
+            fill: #94a3b8;
+        }
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* Markdown Basic Styling Simulation */
+        .markdown-content p { margin-bottom: 0.5rem; }
+        .markdown-content strong { color: #f8fafc; font-weight: 600; }
+        .markdown-content ul { list-style-type: disc; margin-left: 1.25rem; margin-bottom: 0.5rem; }
+        .markdown-content code { background-color: #1e293b; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.875em; color: #38bdf8; }
+    </style>
+</head>
+<body class="bg-slate-800 h-screen w-screen overflow-hidden flex items-center justify-center font-sans">
+
+    <!-- Background placeholder to simulate website -->
+    <div class="text-slate-400 text-center p-10">
+        <h1 class="text-4xl font-bold text-white mb-4">CareerSteps Website</h1>
+        <p>Click the floating button in the bottom right to open the AI Chatbot.</p>
+    </div>
+
+    <!-- 1. Floating Action Button -->
+    <button id="chatbot-toggle-btn" class="fixed bottom-6 right-6 z-50 bg-career text-white p-4 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 flex items-center justify-center group">
+        <!-- Sparkle/AI Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+    </button>
+
+    <!-- 2. Chatbot Window Container -->
+    <div id="chatbot-window" class="hidden fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full md:w-[420px] h-full md:h-[650px] md:max-h-[85vh] flex flex-col bg-career-panel backdrop-blur-xl md:rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden origin-bottom-right transition-all">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 py-4 bg-slate-900/80 border-b border-slate-700/50 shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-inner">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                        <path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path>
+                        <path d="M12 14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold tracking-wide">CareerSteps AI</h3>
+                    <p class="text-xs text-blue-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <!-- Clear Chat Button -->
+                <button id="clear-chat-btn" class="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors" title="Clear Chat">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </button>
+                <!-- Close Button -->
+                <button id="close-chat-btn" class="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors" title="Close">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Area (Scrollable) -->
+        <div id="chat-area" class="flex-1 p-5 overflow-y-auto chat-scroll flex flex-col gap-5 text-sm">
+            <!-- Initial Greeting from AI -->
+            <div class="flex gap-3 max-w-[90%] animate-fade-in">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex shrink-0 items-center justify-center mt-1">
+                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                        <path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path>
+                    </svg>
+                </div>
+                <div class="bg-slate-800 text-slate-200 border border-slate-700 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm markdown-content">
+                    <p>Hello! I am the <strong>CareerSteps AI Guide</strong>. 👋</p>
+                    <p>I can help you with:</p>
+                    <ul>
+                        <li>Career Roadmaps</li>
+                        <li>Course Selections</li>
+                        <li>Resume Review</li>
+                        <li>Interview Prep</li>
+                    </ul>
+                    <p>How can I assist you today?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-4 bg-slate-900 border-t border-slate-700/50 shrink-0">
+            <div class="relative flex items-end bg-slate-800 border border-slate-700 focus-within:border-blue-500 rounded-xl px-2 py-2 shadow-inner transition-colors">
+                <textarea 
+                    id="chat-input" 
+                    rows="1" 
+                    placeholder="Ask about careers, courses, resumes..." 
+                    class="w-full bg-transparent text-slate-100 placeholder-slate-400 text-sm px-3 py-2 outline-none resize-none max-h-32"
+                ></textarea>
+                <button id="send-btn" class="p-2 mb-0.5 mr-0.5 bg-blue-600 text-white rounded-lg hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex shrink-0 items-center justify-center" disabled>
+                    <svg class="w-5 h-5 translate-x-[-1px] translate-y-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="text-center mt-2">
+                <p class="text-[10px] text-slate-500">AI can make mistakes. Consider verifying important info.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const toggleBtn = document.getElementById('chatbot-toggle-btn');
+            const chatWindow = document.getElementById('chatbot-window');
+            const closeBtn = document.getElementById('close-chat-btn');
+            const clearBtn = document.getElementById('clear-chat-btn');
+            const chatArea = document.getElementById('chat-area');
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+
+            let isChatOpen = false;
+            let isWaitingForResponse = false;
+
+            // 1. Toggle Window Logic
+            const toggleChat = () => {
+                isChatOpen = !isChatOpen;
+                if (isChatOpen) {
+                    chatWindow.classList.remove('hidden');
+                    chatWindow.classList.add('animate-slide-up');
+                    toggleBtn.classList.add('scale-0', 'opacity-0'); // Hide floating button
+                    setTimeout(() => chatInput.focus(), 300);
+                } else {
+                    chatWindow.classList.add('hidden');
+                    chatWindow.classList.remove('animate-slide-up');
+                    toggleBtn.classList.remove('scale-0', 'opacity-0'); // Show floating button
+                }
+            };
+
+            toggleBtn.addEventListener('click', toggleChat);
+            closeBtn.addEventListener('click', toggleChat);
+
+            // 2. Auto-resize Textarea & Enable/Disable Send Button
+            chatInput.addEventListener('input', function() {
+                // Auto resize
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+                
+                // Toggle send button state
+                sendBtn.disabled = this.value.trim() === '' || isWaitingForResponse;
+            });
+
+            // 3. Handle Enter and Shift+Enter
+            chatInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault(); // Prevent new line
+                    handleSend();
+                }
+            });
+
+            sendBtn.addEventListener('click', handleSend);
+
+            // 4. Send Message Logic
+            function handleSend() {
+                const message = chatInput.value.trim();
+                if (!message || isWaitingForResponse) return;
+
+                // Reset input
+                chatInput.value = '';
+                chatInput.style.height = 'auto';
+                sendBtn.disabled = true;
+
+                // Append User Message
+                appendMessage(message, 'user');
+
+                // Show Loading
+                isWaitingForResponse = true;
+                const typingId = appendTypingIndicator();
+                scrollToBottom();
+
+                // Mock API Delay (Replace this with real Gemini API call later)
+                setTimeout(() => {
+                    removeMessage(typingId);
+                    isWaitingForResponse = false;
+                    appendMessage("This is a mock response from the **CareerSteps AI**. Once connected to the backend, I will provide real insights regarding: \n\n- `Careers`\n- `Resumes`\n- `Colleges`", 'ai');
+                }, 1500);
+            }
+
+            // 5. Clear Chat Logic
+            clearBtn.addEventListener('click', () => {
+                // Keep only the first greeting message
+                const firstMessage = chatArea.firstElementChild;
+                chatArea.innerHTML = '';
+                if (firstMessage) chatArea.appendChild(firstMessage);
+            });
+
+            // 6. UI Helper Functions
+            function appendMessage(content, sender) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `flex gap-3 max-w-[90%] animate-fade-in ${sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`;
+                
+                const isUser = sender === 'user';
+                
+                // Parse simple markdown (Bold, Code) for mock purposes
+                const parsedContent = content
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/`(.*?)`/g, '<code>$1</code>')
+                    .replace(/\n/g, '<br>');
+
+                const avatarHTML = isUser 
+                    ? `<div class="w-8 h-8 rounded-full bg-slate-700 flex shrink-0 items-center justify-center mt-1">
+                        <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                       </div>`
+                    : `<div class="w-8 h-8 rounded-full bg-blue-600 flex shrink-0 items-center justify-center mt-1">
+                        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>
+                       </div>`;
+
+                const bubbleStyle = isUser 
+                    ? `bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm` 
+                    : `bg-slate-800 text-slate-200 border border-slate-700 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm markdown-content`;
+
+                msgDiv.innerHTML = `
+                    ${avatarHTML}
+                    <div class="${bubbleStyle}">
+                        <p>${parsedContent}</p>
+                    </div>
+                `;
+                
+                chatArea.appendChild(msgDiv);
+                scrollToBottom();
+            }
+
+            function appendTypingIndicator() {
+                const id = 'typing-' + Date.now();
+                const msgDiv = document.createElement('div');
+                msgDiv.id = id;
+                msgDiv.className = `flex gap-3 max-w-[90%] animate-fade-in`;
+                
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex shrink-0 items-center justify-center mt-1">
+                        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>
+                    </div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl rounded-tl-sm px-4 py-4 flex items-center gap-1 shadow-sm">
+                        <svg width="24" height="6" viewBox="0 0 24 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="typing-dot" cx="4" cy="3" r="2.5" />
+                            <circle class="typing-dot" cx="12" cy="3" r="2.5" />
+                            <circle class="typing-dot" cx="20" cy="3" r="2.5" />
+                        </svg>
+                    </div>
+                `;
+                
+                chatArea.appendChild(msgDiv);
+                scrollToBottom();
+                return id;
+            }
+
+            function removeMessage(id) {
+                const el = document.getElementById(id);
+                if (el) el.remove();
+            }
+
+            function scrollToBottom() {
+                chatArea.scrollTo({
+                    top: chatArea.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
