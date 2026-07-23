@@ -1279,11 +1279,20 @@ if (newsletterForm) {
     if (!email) return;
 
     try {
+     // Firestore me save
       await addDoc(collection(db, "newsletter"), {
         email: email,
         createdAt: serverTimestamp()
       });
-
+ // Welcome Email
+  await emailjs.send(
+    "service_vl0mhsj",
+    "template_1e97eiq",
+    {
+      to_name: "CareerSteps User",
+      to_email: email
+    }
+  );
       trackCTA("Newsletter_Signup", "conversion");
       alert("Thanks for subscribing!");
       newsletterForm.reset();
