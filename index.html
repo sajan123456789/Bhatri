@@ -1264,6 +1264,39 @@ onAuthStateChanged(csAuth, (user) => {
     if (authMobile) authMobile.innerHTML = signInBtnMobile;
   }
 });
+
+ import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+const newsletterForm = document.getElementById("newsletterForm");
+
+if (newsletterForm) {
+  newsletterForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("newsletterEmail").value.trim();
+
+    if (!email) return;
+
+    try {
+      await addDoc(collection(db, "newsletter"), {
+        email: email,
+        createdAt: serverTimestamp()
+      });
+
+      trackCTA("Newsletter_Signup", "conversion");
+      alert("Thanks for subscribing!");
+      newsletterForm.reset();
+
+    } catch (err) {
+      console.error(err);
+      alert("Subscription failed");
+    }
+  });
+}
 </script>
 
  
