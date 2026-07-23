@@ -1291,6 +1291,16 @@ if (newsletterForm) {
         email: email,
         createdAt: serverTimestamp()
       });
+
+     await emailjs.send(
+  "service_vl0mhsj",
+  "template_1e97eiq",
+  {
+    to_name: "CareerSteps User",
+    to_email: email,
+  }
+);
+     
  // Welcome Email
   await emailjs.send(
     "service_vl0mhsj",
