@@ -1126,7 +1126,14 @@ if (!sessionStorage.getItem("exitPopupShown")) {
 }
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<script>
+emailjs.init({
+  publicKey: "yECLQm66QjYB5t6b81",
+});
+</script>
+ 
  <!-- login -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
@@ -1305,13 +1312,5 @@ if (newsletterForm) {
 }
 </script>
 
- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-emailjs.init({
-    publicKey: "yECLQm66QjYB5t6b81",
-});
-</script>
- 
 </body>
 </html>
