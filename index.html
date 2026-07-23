@@ -758,8 +758,8 @@ CareerSteps provides AI-powered career assessments, career roadmaps, entrance ex
     <h2 class="text-3xl font-black mb-4">Get Free Career Guidance Tips</h2>
     <p class="text-slate-300 mb-8">Join 10K+ students getting weekly career insights and guidance</p>
     
-    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); trackCTA('Newsletter_Signup', 'conversion'); alert('Thanks for subscribing! Check your email.'); this.reset();">
-      <input type="email" 
+   <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+    <input id="newsletterEmail" type="email"
              placeholder="Enter your email" 
              class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
              required>
