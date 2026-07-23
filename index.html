@@ -1028,14 +1028,19 @@ document.getElementById("liveUsers").innerHTML =
     };
   }
 
-  // Exit-Intent Popup Logic
-  document.addEventListener('mouseleave', function(e) {
-    if(e.clientY <= 0 && !document.getElementById('exitPopup').classList.contains('hidden') === false) {
-      setTimeout(() => {
-        document.getElementById('exitPopup').classList.remove('hidden');
-      }, 1000);
-    }
-  });
+ // Show Exit Popup only once after 5 seconds
+if (!sessionStorage.getItem("exitPopupShown")) {
+
+    setTimeout(() => {
+
+        document.getElementById("exitPopup").classList.remove("hidden");
+
+        sessionStorage.setItem("exitPopupShown", "true");
+
+    }, 5000);
+
+}
+ 
 </script>
 
 <script type="application/ld+json">
