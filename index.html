@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="CareerSteps offers free AI career tests, career guidance after 10th and 12th, career exploration, entrance exam information, study abroad guidance, and future-ready career planning.">
 
- <meta name="keywords"content="careersteps,career guidence India,AI career assessment, free career test, stream selector, best career options India, career guidance after 10th, career guidance after 12th, free AI career test, career options after 10th, career options after 12th, career planning, career counselling, study abroad, government jobs, AI careers, data science careers">
+ <meta name="keywords" content="careersteps,career guidence India,AI career assessment, free career test, stream selector, best career options India, career guidance after 10th, career guidance after 12th, free AI career test, career options after 10th, career options after 12th, career planning, career counselling, study abroad, government jobs, AI careers, data science careers">
 
  <meta name="author" content="CareerSteps Editorial Team">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -1126,12 +1126,13 @@ if (!sessionStorage.getItem("exitPopupShown")) {
 }
 </script>
 
+<!-- EmailJS Initialization (Moved before Firebase script and assigned to window) -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <script>
-emailjs.init({
-  publicKey: "yECLQm66QjYB5t6b81",
-});
+  emailjs.init({
+    publicKey: "yECLQm66QjYB5t6b81",
+  });
+  window.emailjs = emailjs;
 </script>
  
  <!-- login -->
@@ -1154,9 +1155,9 @@ import {
   getFirestore,
   doc,
   setDoc,
- collection,
- addDoc,
- serverTimestamp
+  collection,
+  addDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
  
 const firebaseConfig = {
@@ -1286,49 +1287,36 @@ if (newsletterForm) {
     if (!email) return;
 
     try {
-     // Firestore me save
+      // 1. Firestore me save
       await addDoc(collection(db, "newsletter"), {
         email: email,
         createdAt: serverTimestamp()
       });
 
-     await emailjs.send(
-  "service_vl0mhsj",
-  "template_1e97eiq",
-  {
-    to_name: "CareerSteps User",
-    to_email: email,
-  }
-);
+      // 2. Send Welcome Email via EmailJS safely (without blocking the success flow)
+      try {
+        await window.emailjs.send(
+          "service_vl0mhsj",
+          "template_1e97eiq",
+          {
+            to_name: "CareerSteps User",
+            to_email: email,
+          }
+        );
+      } catch (emailErr) {
+        console.error("EmailJS Error: Failed to send welcome email.", emailErr);
+      }
      
- // Welcome Email
-  await emailjs.send(
-    "service_vl0mhsj",
-    "template_1e97eiq",
-    {
-      to_name: "CareerSteps User",
-      to_email: email
-    }
-  );
       trackCTA("Newsletter_Signup", "conversion");
       alert("Thanks for subscribing!");
       newsletterForm.reset();
 
     } catch (err) {
-  console.error("ERROR:", err);
-  alert(err.text || err.message || JSON.stringify(err));
-}
+      console.error("Firestore Error: Failed to save email.", err);
+      alert("Something went wrong. Please try again later.");
+    }
   });
 }
 </script>
-
- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-emailjs.init({
-  publicKey: "yECLQm66QjYB5t6b81",
-});
-</script>
- 
 </body>
 </html>
