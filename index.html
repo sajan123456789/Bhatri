@@ -1315,9 +1315,9 @@ if (newsletterForm) {
       newsletterForm.reset();
 
     } catch (err) {
-      console.error(err);
-      alert("Subscription failed");
-    }
+  console.error("ERROR:", err);
+  alert(err.text || err.message || JSON.stringify(err));
+}
   });
 }
 </script>
