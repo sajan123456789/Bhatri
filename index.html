@@ -1146,7 +1146,10 @@ import {
 import {
   getFirestore,
   doc,
-  setDoc
+  setDoc,
+ collection,
+ addDoc,
+ serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
  
 const firebaseConfig = {
@@ -1264,14 +1267,6 @@ onAuthStateChanged(csAuth, (user) => {
     if (authMobile) authMobile.innerHTML = signInBtnMobile;
   }
 });
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
  
 const newsletterForm = document.getElementById("newsletterForm");
 
