@@ -9,11 +9,17 @@ Crawl-delay: 1
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: OAI-SearchBot
 Allow: /
 
 # Anthropic
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 # Perplexity
@@ -26,6 +32,25 @@ Allow: /
 
 # Common search engines
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Smartphone
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# Google Ads
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
 Allow: /
 
 User-agent: Bingbot
