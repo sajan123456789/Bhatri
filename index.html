@@ -90,6 +90,18 @@ body{
   position:relative;
 }
 
+ #progressBar{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+width:0%;
+background:#3b82f6;
+z-index:9999;
+transition:width .15s linear;
+box-shadow:0 0 12px #3b82f6;
+}
+ 
 /* Apple-style Aurora Background */
 body::before{
   content:"";
@@ -137,6 +149,17 @@ body::after{
   transition:.35s ease;
 }
 
+ .reveal{
+opacity:0;
+transform:translateY(70px);
+transition:1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+ 
 .card-box:hover{
   transform:translateY(-8px);
   border-color:#3b82f6;
@@ -336,7 +359,8 @@ transform:translateX(100%) rotate(25deg);
 </head>
  
 <body>
-
+<div id="progressBar"></div>
+ 
  <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WT8P3XRR"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
