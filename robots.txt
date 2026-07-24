@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 # OpenAI
 User-agent: GPTBot
