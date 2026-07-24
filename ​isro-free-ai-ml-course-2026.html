@@ -349,15 +349,25 @@
       signOut(csAuth).then(() => { window.location.reload(); }); 
     };
 
-    onAuthStateChanged(csAuth, (user) => {
+        onAuthStateChanged(csAuth, (user) => {
       const authDesktop = document.getElementById("auth-area-desktop");
       const authMobile = document.getElementById("auth-area-mobile");
+      
       if (user) {
-        if (authDesktop) authDesktop.innerHTML = `<div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl"><img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover"><button onclick="googleLogout()" class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">Logout</button></div>`;
+        // Desktop Logged-in UI
+        if (authDesktop) authDesktop.innerHTML = `<div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl"><img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover"><span class="hidden lg:block text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span><button onclick="googleLogout()" class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">Logout</button></div>`;
+        
+        // Mobile Logged-in UI
+        if (authMobile) authMobile.innerHTML = `<div class="flex flex-col items-center gap-3 w-full max-w-[200px]"><div class="flex items-center gap-2"><img src="${user.photoURL}" class="w-8 h-8 rounded-full border border-blue-500 object-cover"><span class="text-white text-sm font-semibold truncate max-w-[120px]">${user.displayName}</span></div><button onclick="googleLogout()" class="w-full bg-red-600 hover:bg-red-500 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-white transition">Logout</button></div>`;
       } else {
+        // Desktop Logged-out UI
         if (authDesktop) authDesktop.innerHTML = `<button onclick="googleLogin()" class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap">Sign In</button>`;
+        
+        // Mobile Logged-out UI
+        if (authMobile) authMobile.innerHTML = `<button onclick="googleLogin()" class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap w-full">Sign In</button>`;
       }
     });
+
 
     // Mobile Menu Toggle
     document.getElementById('menuBtn').addEventListener('click', function() {
