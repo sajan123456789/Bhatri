@@ -1,4 +1,3 @@
-  <script>
 const myBlogs = [
   { id: "01", title: "Psychology Career Guide 2026", image: "images/psychology-career-guide.webp", desc: "Global psychology roadmap with salary 💰, licensing & job opportunities.", link: "psychology-career-guide.html", category: "Career Guide", readTime: "5 min read", date: "June 2026" },
   { id: "02", title: "Data Science Career Guide 2026", image: "images/data-science-career-guide.webp", desc: "Global salary, skills & career path in Data Science.", link: "data-science-career-guide.html", category: "Technology", readTime: "5 min read", date: "June 2026" },
