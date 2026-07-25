@@ -16,11 +16,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <meta charset="UTF-8">
 
+<!-- Responsive & Accessibility Fix Start: Added viewport-fit=cover for iPhone safe areas & strict scale handling -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<!-- Responsive & Accessibility Fix End -->
+
  <link rel="icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Performance Fix Start: Preconnect to Tailwind to prevent FOUC -->
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
+<!-- Performance Fix End -->
 
  <script>(function(s){s.dataset.zone='11063112',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
  
@@ -30,7 +38,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <title>CareerSteps — AI Career Discovery | Free AI Career Test | 900+ Career Options</title>
  
   <link rel="canonical" href="https://careersteps.in/">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Join 50,000+ students discovering their perfect career with CareerSteps. Take a free AI Career Test, explore 900+ career options, colleges, salaries, career roadmaps and future-ready opportunities.">
  <meta name="keywords" content="careersteps,career guidence India,AI career assessment, free career test, stream selector, best career options India, career guidance after 10th, career guidance after 12th, free AI career test, career options after 10th, career options after 12th, career planning, career counselling, study abroad, government jobs, AI careers, data science careers">
 
@@ -43,24 +50,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:url" content="https://careersteps.in/">
 <meta property="og:type" content="website">
 
-
  <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Career Guidance After 10th & 12th | CareerSteps">
 <meta name="twitter:description" content="Take a free AI career test and explore future-ready careers.">
 <meta name="twitter:image" content="https://careersteps.in/android-chrome-512x512.png">
 
 <link rel="alternate" hreflang="en" href="https://careersteps.in/">
-
 <link rel="alternate" hreflang="x-default" href="https://careersteps.in/">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link rel="preconnect" href="https://www.googletagmanager.com">
-
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-
 <link rel="dns-prefetch" href="//www.googletagmanager.com">
-
 <link rel="dns-prefetch" href="//pagead2.googlesyndication.com"> 
  
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -81,6 +81,40 @@ href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;70
 </noscript>
  
 <style>
+/* Responsive & Performance Fix Start: Global viewport stabilization */
+html, body {
+  max-width: 100vw;
+  overflow-x: clip !important; /* Prevents mobile browser "desktop mode" zoom-out issues & strict horizontal scroll fix without breaking sticky header */
+  overscroll-behavior-y: none; /* Prevents pull-to-refresh graphical glitches on touch devices */
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  overflow-wrap: break-word; /* Prevents text overflow */
+  word-wrap: break-word;
+}
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+/* Responsive Dynamic Viewport Height (dvh) fix for Android/iOS URL bars */
+.dvh-fix {
+  min-height: 80vh;
+  min-height: 80dvh;
+}
+/* Ensure WebKit browsers respect sticky positioning */
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+/* Safe Area support for iPhone notches */
+@supports (padding-top: env(safe-area-inset-top)) {
+  header { padding-top: env(safe-area-inset-top); }
+  .footer-premium { padding-bottom: max(2.5rem, env(safe-area-inset-bottom)); }
+}
+/* Responsive & Performance Fix End */
+
 html{
   background-color:#030712;
 }
@@ -88,10 +122,9 @@ body{
   font-family:'Plus Jakarta Sans',sans-serif;
   color:#fff;
   background-color:#030712;
-  overflow-x:hidden;
   position:relative;
   -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeSpeed;
+  text-rendering:optimizeLegibility; /* Changed from optimizeSpeed to optimizeLegibility for better font rendering, standard on modern devices */
 }
 
  #progressBar{
@@ -104,6 +137,9 @@ background:#3b82f6;
 z-index:9999;
 transition:width .15s linear;
 box-shadow:0 0 12px #3b82f6;
+/* Performance Fix: GPU accelerate the scroll progress bar to prevent repaint thrashing */
+will-change: width;
+transform: translateZ(0);
 }
  
 /* Apple-style Aurora Background */
@@ -141,6 +177,7 @@ body::after{
   transform:rotate(-8deg);
   filter:blur(40px);
 }
+
 .card-box{
   background:rgba(15,23,42,.55);
   -webkit-backdrop-filter:blur(20px);
@@ -200,15 +237,6 @@ transform:translate3d(0,0,0);
 }
 
  #testimonial-card{
-position:relative;
-overflow:hidden;
-}
-
- #testimonial-card{
-  transition: opacity 0.4s ease;
- }
-
- #testimonial-card{
   position:relative;
   overflow:hidden;
   touch-action:pan-y;
@@ -245,31 +273,6 @@ transform:translate3d(-100%,0,0) rotate(25deg);
 100%{
 transform:translate3d(100%,0,0) rotate(25deg);
 }
-}
- 
-.footer-premium{
-  background:linear-gradient(
-    to bottom,
-    rgba(2,6,23,.95),
-    #000208
-  );
-  border-top:1px solid rgba(59,130,246,.25);
-  position:relative;
-}
-
-.footer-premium::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:1px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #3b82f6,
-    transparent
-  );
 }
 
  .footer-premium{
@@ -342,11 +345,6 @@ html{
   scroll-behavior:smooth;
 }
 
-/* Prevent horizontal jump / layout shift from animated transforms */
-body{
-  overflow-x:hidden;
-}
-
 /* Animated numeric counters: fixed-width digits avoid layout shift while counting */
 [data-counter]{
   font-variant-numeric:tabular-nums;
@@ -380,8 +378,7 @@ body{
 
 /* CTA soft glowing pulse — driven by a composited opacity layer instead of
    animating box-shadow directly (box-shadow repaints every frame and is the
-   single biggest cause of Android jank; opacity is GPU-compositable). The
-   visual result (glow intensity range) is identical to before. */
+   single biggest cause of Android jank; opacity is GPU-compositable). */
 .cta-pulse{
   position:relative;
   isolation:isolate;
@@ -666,12 +663,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
    
     <!-- Logo area -->
-    <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0">
-      <img src="careersteps-logo.png" alt="CareerSteps Logo" class="h-8 sm:h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
+    <!-- Lighthouse/Performance Fix Start: Added explicit width, height and aria-label to prevent CLS and improve accessibility -->
+    <a href="index.html" aria-label="CareerSteps Home" class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <img src="careersteps-logo.png" alt="CareerSteps Logo" width="160" height="40" class="h-8 sm:h-10 w-auto rounded-lg shadow-lg shadow-blue-500/30">
       <span class="text-xl sm:text-2xl font-black italic uppercase tracking-tighter text-white">
         CAREER<span class="text-blue-600">STEPS</span>
       </span>
     </a>
+    <!-- Lighthouse/Performance Fix End -->
 
     <!-- Navigation links (Desktop) -->
     <nav class="hidden md:flex gap-6 lg:gap-10 items-center">
@@ -694,11 +693,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <!-- Hamburger button for mobile menu -->
-      <button id="menuBtn" class="md:hidden text-white p-1.5 hover:bg-white/5 rounded-xl transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <!-- Accessibility Fix Start: Added aria-label to the hamburger menu button -->
+      <button id="menuBtn" aria-label="Toggle navigation menu" class="md:hidden text-white p-1.5 hover:bg-white/5 rounded-xl transition">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
+      <!-- Accessibility Fix End -->
     </div>
   </div>
 
@@ -730,7 +731,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="blob blob-2"></div>
 </div>
 <div class="max-w-7xl mx-auto px-6">
-<div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[80vh]">
+<!-- Responsive Fix Start: Added dvh-fix for layout shift prevention on mobile 100vh calculation errors -->
+<div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center dvh-fix">
+<!-- Responsive Fix End -->
 
   <!-- LEFT: Headline / copy / CTAs -->
   <div class="relative z-10">
@@ -762,7 +765,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- NEW: Urgency Message -->
     <div class="mt-8 flex items-center gap-2 text-amber-400 hero-anim hero-delay-3">
-      <span class="text-lg">⏰</span>
+      <span class="text-lg" aria-hidden="true">⏰</span>
       <p id="liveUsers" class="text-sm font-bold"></p>
     </div>
 
@@ -893,22 +896,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="max-w-7xl mx-auto px-6 py-12 reveal">
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
     <div class="card-box p-6 rounded-2xl text-center">
-    <div class="text-2xl mb-2">🎓</div> 
+    <div class="text-2xl mb-2" aria-hidden="true">🎓</div> 
       <div class="text-blue-500 text-3xl font-black mb-1" data-counter data-target="900" data-suffix="+">0+</div>
       <div class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Career Options</div>
     </div>
     <div class="card-box p-6 rounded-2xl text-center">
-     <div class="text-2xl mb-2">🎯</div>
+     <div class="text-2xl mb-2" aria-hidden="true">🎯</div>
       <div class="text-purple-500 text-3xl font-black mb-1" data-counter data-target="95" data-suffix="%">0%</div>
       <div class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Accuracy Rate</div>
     </div>
     <div class="card-box p-6 rounded-2xl text-center">
-     <div class="text-2xl mb-2">👥</div>
+     <div class="text-2xl mb-2" aria-hidden="true">👥</div>
       <div class="text-green-500 text-3xl font-black mb-1" data-counter data-target="50" data-suffix="K+">0K+</div>
       <div class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Users Helped</div>
     </div>
     <div class="card-box p-6 rounded-2xl text-center">
-     <div class="text-2xl mb-2">⭐</div>
+     <div class="text-2xl mb-2" aria-hidden="true">⭐</div>
       <div class="text-yellow-500 text-3xl font-black mb-1">FREE</div>
       <div class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Always</div>
     </div>
@@ -918,7 +921,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 reveal">
   <a href="after10.html" onclick="trackCTA('After10Stream', 'secondary')" class="card-box p-10 rounded-[32px] group">
     <div class="flex justify-between items-start mb-6">
-      <div class="text-4xl">🎓</div>
+      <div class="text-4xl" aria-hidden="true">🎓</div>
       <span class="bg-blue-500/10 text-blue-400 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest">K-10 / High School</span>
     </div>
     <h3 class="text-3xl font-black italic uppercase mb-4 group-hover:text-blue-500 transition-colors">Post-10th Streams</h3>
@@ -928,7 +931,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <a href="after12.html" onclick="trackCTA('After12Paths', 'secondary')" class="card-box p-10 rounded-[32px] group">
     <div class="flex justify-between items-start mb-6">
-      <div class="text-4xl">🏢</div>
+      <div class="text-4xl" aria-hidden="true">🏢</div>
       <span class="bg-purple-500/10 text-purple-400 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest">K-12 / Pre-College</span>
     </div>
     <h3 class="text-3xl font-black italic uppercase mb-4 group-hover:text-purple-500 transition-colors">Global Career Paths</h3>
@@ -1027,7 +1030,7 @@ Student Success Stories
 <div id="testimonial-card"
 class="card-box rounded-[32px] p-10 text-center transition-all duration-700">
 
-<div class="text-yellow-400 text-2xl mb-4">
+<div class="text-yellow-400 text-2xl mb-4" aria-hidden="true">
 ★★★★★
 </div>
 
@@ -1037,9 +1040,15 @@ CareerSteps helped me discover the right career path based on my strengths and i
 </p>
 
 <div class="mt-8">
+<!-- Performance Fix Start: Added loading="lazy", explicitly defined sizes, and established alt tag for accessibility -->
 <img id="testimonial-img"
 src="https://i.pravatar.cc/100?img=12"
-class="w-16 h-16 rounded-full mx-auto mb-3 border border-blue-500">
+alt="Student Testimonial"
+width="64"
+height="64"
+loading="lazy"
+class="w-16 h-16 rounded-full mx-auto mb-3 border border-blue-500 object-cover">
+<!-- Performance Fix End -->
 
 <h4 id="testimonial-name"
 class="font-bold text-lg">
@@ -1056,9 +1065,11 @@ Engineering Student
 
 <div class="flex justify-center gap-3 mt-6">
 
-<button class="dot w-3 h-3 rounded-full bg-blue-500"></button>
-<button class="dot w-3 h-3 rounded-full bg-white/20"></button>
-<button class="dot w-3 h-3 rounded-full bg-white/20"></button>
+<!-- Accessibility Fix Start: Added aria-labels to the slider buttons -->
+<button class="dot w-3 h-3 rounded-full bg-blue-500" aria-label="View testimonial 1"></button>
+<button class="dot w-3 h-3 rounded-full bg-white/20" aria-label="View testimonial 2"></button>
+<button class="dot w-3 h-3 rounded-full bg-white/20" aria-label="View testimonial 3"></button>
+<!-- Accessibility Fix End -->
 
 </div>
 
@@ -1095,7 +1106,7 @@ CareerSteps provides AI-powered career assessments, career roadmaps, entrance ex
        onclick="trackCTA('PopularGuide_After10', 'secondary')"
        class="group rounded-3xl p-8 bg-gradient-to-br from-blue-900/60 to-blue-600/20 border border-blue-500/20 hover:border-blue-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
 
-      <div class="text-5xl mb-5">🎓</div>
+      <div class="text-5xl mb-5" aria-hidden="true">🎓</div>
 
       <h3 class="text-xl font-bold text-white mb-3">
         Career Options After 10th
@@ -1115,7 +1126,7 @@ CareerSteps provides AI-powered career assessments, career roadmaps, entrance ex
        onclick="trackCTA('PopularGuide_After12', 'secondary')"
        class="group rounded-3xl p-8 bg-gradient-to-br from-purple-900/60 to-purple-600/20 border border-purple-500/20 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20">
 
-      <div class="text-5xl mb-5">🚀</div>
+      <div class="text-5xl mb-5" aria-hidden="true">🚀</div>
 
       <h3 class="text-xl font-bold text-white mb-3">
         Career Options After 12th
@@ -1135,7 +1146,7 @@ CareerSteps provides AI-powered career assessments, career roadmaps, entrance ex
        onclick="trackCTA('PopularGuide_Blogs', 'secondary')"
        class="group rounded-3xl p-8 bg-gradient-to-br from-emerald-900/60 to-emerald-600/20 border border-emerald-500/20 hover:border-emerald-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20">
 
-      <div class="text-5xl mb-5">📚</div>
+      <div class="text-5xl mb-5" aria-hidden="true">📚</div>
 
       <h3 class="text-xl font-bold text-white mb-3">
         Career Blogs
@@ -1160,14 +1171,18 @@ CareerSteps provides AI-powered career assessments, career roadmaps, entrance ex
     <p class="text-slate-300 mb-8">Join 10K+ students getting weekly career insights and guidance</p>
     
    <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+    <!-- Accessibility Fix Start: added aria-label and autocomplete -->
     <input id="newsletterEmail" type="email"
              placeholder="Enter your email" 
+             aria-label="Email address for newsletter"
+             autocomplete="email"
              class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
              required>
-      <button type="submit" 
+      <button type="submit" aria-label="Subscribe to newsletter"
               class="btn-premium px-6 py-3 rounded-lg font-bold text-white transition whitespace-nowrap">
         Subscribe →
       </button>
+    <!-- Accessibility Fix End -->
     </form>
   </div>
 </section>
@@ -1183,7 +1198,8 @@ document.getElementById("testimonial-card");
 
 card.addEventListener("touchstart",(e)=>{
 touchStartX = e.changedTouches[0].screenX;
-});
+// Performance Fix: mark passive event true to prevent scroll jank
+}, { passive: true });
 
 card.addEventListener("touchend",(e)=>{
 touchEndX = e.changedTouches[0].screenX;
@@ -1195,7 +1211,8 @@ nextTestimonial();
 if(touchEndX > touchStartX + 50){
 prevTestimonial();
 }
-});
+// Performance Fix: mark passive event true
+}, { passive: true });
  
 const testimonials = [
 
@@ -1239,8 +1256,10 @@ testimonials[current].role;
 document.getElementById("testimonial-text").innerText =
 testimonials[current].text;
 
-document.getElementById("testimonial-img").src =
-testimonials[current].img;
+const imgElem = document.getElementById("testimonial-img");
+imgElem.src = testimonials[current].img;
+// Accessibility Fix: dynamically update alt tag
+imgElem.alt = testimonials[current].name + " Testimonial";
 
 dots.forEach(dot=>{
 dot.classList.remove("bg-blue-500");
@@ -1337,8 +1356,10 @@ let autoSlide = setInterval(() => {
 <!-- NEW: Exit-Intent Popup -->
 <div id="exitPopup" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
   <div class="bg-[#020617] border border-blue-500/30 rounded-2xl p-8 max-w-md w-full">
-    <button onclick="document.getElementById('exitPopup').classList.add('hidden')" 
+    <!-- Accessibility Fix Start: added aria-label -->
+    <button aria-label="Close popup" onclick="document.getElementById('exitPopup').classList.add('hidden')" 
             class="float-right text-white text-2xl font-bold hover:text-blue-500 transition">×</button>
+    <!-- Accessibility Fix End -->
     
     <h3 class="text-2xl font-black mb-3">Wait! Don't Miss Out 👋</h3>
     <p class="text-slate-300 mb-6">Get your FREE AI Career Report before you go. Join 50K+ students!</p>
@@ -1382,8 +1403,11 @@ document.getElementById("liveUsers").innerHTML =
     menuBtn.onclick = function() {
       if (mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.remove('hidden');
+        // Accessibility Fix: Add aria-expanded
+        menuBtn.setAttribute('aria-expanded', 'true');
       } else {
         mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
       }
     };
   }
@@ -1487,13 +1511,14 @@ if (!sessionStorage.getItem("exitPopupShown")) {
 </script>
 
 <!-- EmailJS Initialization (Moved before Firebase script and assigned to window) -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
+<!-- Performance Fix Start: defer external scripts that are not critical for first paint -->
+<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="
   emailjs.init({
-    publicKey: "yECLQm66QjYB5t6b81",
+    publicKey: 'yECLQm66QjYB5t6b81',
   });
   window.emailjs = emailjs;
-</script>
+"></script>
+<!-- Performance Fix End -->
  
  <!-- login -->
 <script type="module">
@@ -1587,13 +1612,13 @@ onAuthStateChanged(csAuth, (user) => {
       }
     });
 
-    // 1. Desktop HTML Render
+    // 1. Desktop HTML Render - Added width/height and alt labels to avoid CLS & a11y flags
     if (authDesktop) {
       authDesktop.innerHTML = `
         <div class="flex items-center gap-2 md:gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
-          <img src="${user.photoURL}" class="w-7 h-7 rounded-full border border-blue-500 object-cover">
+          <img src="${user.photoURL}" alt="User Profile Image" width="28" height="28" class="w-7 h-7 rounded-full border border-blue-500 object-cover">
           <span class="hidden lg:block text-white text-xs font-semibold max-w-[100px] truncate">${user.displayName}</span>
-          <button onclick="googleLogout()"
+          <button aria-label="Logout" onclick="googleLogout()"
             class="bg-red-600/90 hover:bg-red-500 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider text-white transition">
             Logout
           </button>
@@ -1606,10 +1631,10 @@ onAuthStateChanged(csAuth, (user) => {
       authMobile.innerHTML = `
         <div class="flex flex-col items-center gap-3 w-full max-w-[200px]">
           <div class="flex items-center gap-2">
-            <img src="${user.photoURL}" class="w-8 h-8 rounded-full border border-blue-500 object-cover">
+            <img src="${user.photoURL}" alt="User Profile Image" width="32" height="32" class="w-8 h-8 rounded-full border border-blue-500 object-cover">
             <span class="text-white text-sm font-semibold truncate max-w-[120px]">${user.displayName}</span>
           </div>
-          <button onclick="googleLogout()"
+          <button aria-label="Logout" onclick="googleLogout()"
             class="w-full bg-red-600 hover:bg-red-500 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-white transition">
             Logout
           </button>
@@ -1619,13 +1644,13 @@ onAuthStateChanged(csAuth, (user) => {
   } else {
     // Agar login nahi hai toh dono jagah Sign In ka proper button dikhao
     const signInBtnDesktop = `
-      <button onclick="googleLogin()"
+      <button aria-label="Sign In via Google" onclick="googleLogin()"
         class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap">
         Sign In
       </button>
     `;
     const signInBtnMobile = `
-      <button onclick="googleLogin()"
+      <button aria-label="Sign In via Google" onclick="googleLogin()"
         class="bg-white text-black px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-gray-200 transition shadow-md whitespace-nowrap w-full">
         Sign In
       </button>
