@@ -149,9 +149,10 @@ body::after{
   border:1px solid rgba(255,255,255,.08);
 
   box-shadow:
-  0 0 30px rgba(59,130,246,.08);
+  0 0 30px rgba(59,130,246,.08),
+  inset 0 1px 0 rgba(255,255,255,.05);
 
-  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  transition:transform .4s cubic-bezier(.22,.61,.36,1), border-color .4s ease, box-shadow .4s ease;
   transform:translate3d(0,0,0);
   backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
@@ -188,12 +189,14 @@ transform:translate3d(0,0,0);
 .reveal.active .card-box:nth-child(4){ transition-delay:300ms; }
  
 .card-box:hover{
-  transform:translate3d(0,-8px,0);
+  transform:translate3d(0,-8px,0) scale(1.015);
   border-color:#3b82f6;
   will-change:transform, box-shadow;
 
   box-shadow:
-  0 0 50px rgba(59,130,246,.25);
+  0 20px 50px rgba(0,0,0,.35),
+  0 0 50px rgba(59,130,246,.25),
+  inset 0 1px 0 rgba(255,255,255,.08);
 }
 
  #testimonial-card{
@@ -458,6 +461,123 @@ body{
   50%{ transform:translate3d(-30px,-30px,0) scale(1.05); }
 }
 
+/* ===== Premium Buttons ===== */
+.btn-premium{
+  background:linear-gradient(135deg,#3b82f6 0%,#6366f1 100%);
+  transition:transform .3s ease, box-shadow .3s ease, filter .3s ease;
+  transform:translate3d(0,0,0);
+}
+.btn-premium:hover{
+  filter:brightness(1.08);
+  transform:translate3d(0,-3px,0);
+}
+.btn-glass{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  transition:transform .3s ease, background .3s ease, border-color .3s ease;
+  transform:translate3d(0,0,0);
+}
+.btn-glass:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(59,130,246,.5);
+  transform:translate3d(0,-3px,0);
+}
+
+/* ===== Hero AI Dashboard Illustration (pure CSS/HTML) ===== */
+.glass-panel{
+  background:rgba(15,23,42,.55);
+  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.45),
+    0 0 60px rgba(59,130,246,.15),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.glass-chip{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  padding:.85rem 1.1rem;
+  border-radius:1rem;
+  background:rgba(15,23,42,.68);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 12px 32px rgba(0,0,0,.35), 0 0 24px rgba(59,130,246,.14);
+}
+
+.donut-chart{
+  position:relative;
+  width:88px;
+  height:88px;
+  min-width:88px;
+  border-radius:50%;
+  background:conic-gradient(#3b82f6 0% 95%, rgba(255,255,255,.08) 95% 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.donut-inner{
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  background:#0b1120;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.chart-bar{
+  flex:1;
+  border-radius:6px 6px 0 0;
+  background:linear-gradient(to top, rgba(59,130,246,.25), rgba(59,130,246,.55));
+}
+.chart-bar-active{
+  background:linear-gradient(to top, #3b82f6, #8b5cf6);
+  box-shadow:0 0 16px rgba(59,130,246,.5);
+}
+
+@keyframes floatSlow{
+  0%,100%{ transform:translate3d(0,0,0); }
+  50%{ transform:translate3d(0,-14px,0); }
+}
+.float-slow{
+  animation:floatSlow 6s ease-in-out infinite;
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+
+@keyframes floatCard1{
+  0%,100%{ transform:translate3d(0,0,0) rotate(-2deg); }
+  50%{ transform:translate3d(0,-16px,0) rotate(-2deg); }
+}
+@keyframes floatCard2{
+  0%,100%{ transform:translate3d(0,0,0) rotate(2deg); }
+  50%{ transform:translate3d(0,14px,0) rotate(2deg); }
+}
+@keyframes floatCard3{
+  0%,100%{ transform:translate3d(0,0,0); }
+  50%{ transform:translate3d(0,-10px,0); }
+}
+.float-card-1{ animation:floatCard1 5s ease-in-out infinite; will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.float-card-2{ animation:floatCard2 6.5s ease-in-out infinite; will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.float-card-3{ animation:floatCard3 5.5s ease-in-out infinite; will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+
+@keyframes pulseDotAnim{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.4; transform:scale(.8); }
+}
+.pulse-dot{
+  animation:pulseDotAnim 2s ease-in-out infinite;
+  will-change:opacity, transform;
+}
+
 /* Mobile-specific performance tuning — visually identical, cheaper to render */
 @media (max-width: 767px){
   .blob{
@@ -469,7 +589,8 @@ body{
 }
 
 @media (prefers-reduced-motion: reduce){
-  .hero-anim, .cta-pulse::after, .blob-1, .blob-2, #testimonial-card::before{
+  .hero-anim, .cta-pulse::after, .blob-1, .blob-2, #testimonial-card::before,
+  .float-slow, .float-card-1, .float-card-2, .float-card-3, .pulse-dot{
     animation:none !important;
   }
   html{
@@ -568,7 +689,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Get Started Button: Desktop par dikhega, mobile par bahar se hidden rahega -->
       <a href="assessment.html"
          onclick="trackCTA('Header_Desktop_GetStarted', 'primary')"
-         class="hidden md:block bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20 whitespace-nowrap">
+         class="hidden md:block btn-premium px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition text-white shadow-xl shadow-blue-600/20 whitespace-nowrap">
          Get Started →
       </a>
 
@@ -592,7 +713,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Get Started Button: Mobile menu ke andar proper blue button style me -->
       <a href="assessment.html"
          onclick="trackCTA('Header_Mobile_StartAITest', 'primary')"
-         class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition text-white text-center shadow-xl shadow-blue-600/20 mt-2">
+         class="w-full btn-premium py-3 rounded-xl text-xs font-black uppercase tracking-widest transition text-white text-center shadow-xl shadow-blue-600/20 mt-2">
          Start AI Test →
       </a>
       
@@ -606,48 +727,124 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
  
-<section class="py-24 hero-wrap" id="heroSection">
+<section class="py-20 md:py-28 hero-wrap" id="heroSection">
 <div class="hero-parallax" id="heroParallax">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 </div>
 <div class="max-w-7xl mx-auto px-6">
-<div class="grid lg:grid-cols-2 gap-24 items-center min-h-[85vh]">
- 
-<h1 class="text-4xl md:text-7xl font-black italic tracking-tight leading-none max-w-[650px] hero-anim">
-Discover Your Perfect Career with CareerSteps <br>
-<span class="text-blue-500 underline decoration-blue-500/30">
-Free AI Career Test • 900+ Career Options
-</span>
-</h1>
- 
-<p class="text-slate-300 text-xl leading-9 mt-8 mb-12 max-w-[520px] hero-anim hero-delay-1">
+<div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[80vh]">
 
-Join 50,000+ students discovering their dream career with CareerSteps AI. Take a FREE AI Career Test, explore 900+ career options, compare colleges, salaries and career roadmaps in just a few minutes.
+  <!-- LEFT: Headline / copy / CTAs -->
+  <div class="relative z-10">
 
-</p>
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] font-black italic tracking-tight leading-[1.08] max-w-[650px] hero-anim">
+    Discover Your Perfect Career with CareerSteps <br>
+    <span class="text-blue-500 underline decoration-blue-500/30">
+    Free AI Career Test • 900+ Career Options
+    </span>
+    </h1>
 
+    <p class="text-slate-300 text-lg md:text-xl leading-8 md:leading-9 mt-8 mb-10 max-w-[520px] hero-anim hero-delay-1">
+    Join 50,000+ students discovering their dream career with CareerSteps AI. Take a FREE AI Career Test, explore 900+ career options, compare colleges, salaries and career roadmaps in just a few minutes.
+    </p>
 
-    <div class="max-w-sm mt-6 flex flex-col gap-5 hero-anim hero-delay-2">
+    <div class="max-w-sm flex flex-col gap-4 hero-anim hero-delay-2">
       <a href="assessment.html"
          onclick="trackCTA('Hero_StartAITest', 'primary')"
-         class="cta-pulse bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-xl font-bold text-sm uppercase transition w-full text-white flex items-center justify-center"
+         class="cta-pulse btn-premium px-10 py-5 rounded-xl font-bold text-sm uppercase transition w-full text-white flex items-center justify-center"
          style="box-shadow:0 0 25px rgba(59,130,246,.45),0 0 60px rgba(59,130,246,.20);">
         Start AI Career Test →
       </a>
       <a href="careers.html"
          onclick="trackCTA('Hero_ExploreCareers', 'secondary')"
-         class="bg-slate-800 hover:bg-slate-700 px-8 py-5 rounded-xl font-bold text-sm uppercase border border-white/10 w-full text-white flex items-center justify-center">
+         class="btn-glass px-8 py-5 rounded-xl font-bold text-sm uppercase w-full text-white flex items-center justify-center">
         Explore All Careers
       </a>
     </div>
 
     <!-- NEW: Urgency Message -->
-    <div class="mt-10 flex items-center gap-2 flex items-center justify-center gap-2 text-amber-400 hero-anim hero-delay-3">
+    <div class="mt-8 flex items-center gap-2 text-amber-400 hero-anim hero-delay-3">
       <span class="text-lg">⏰</span>
       <p id="liveUsers" class="text-sm font-bold"></p>
     </div>
 
+  </div>
+
+  <!-- RIGHT: Pure CSS/HTML AI Career Dashboard illustration -->
+  <div class="relative hidden lg:flex items-center justify-center hero-anim hero-delay-2" style="min-height:520px;" aria-hidden="true">
+
+    <div class="absolute w-[420px] h-[420px] rounded-full bg-blue-500/15 blur-3xl"></div>
+
+    <!-- Main glass dashboard panel -->
+    <div class="relative w-[380px] rounded-3xl glass-panel p-6 float-slow">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-dot"></span>
+          <span class="text-xs font-bold uppercase tracking-widest text-slate-300">AI Analysis Live</span>
+        </div>
+        <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Beta</span>
+      </div>
+
+      <!-- Donut chart (pure CSS conic-gradient) -->
+      <div class="flex items-center gap-5 mb-6">
+        <div class="donut-chart">
+          <div class="donut-inner">
+            <span class="text-2xl font-black text-white">95%</span>
+            <span class="text-[9px] text-slate-400 uppercase tracking-widest">Match</span>
+          </div>
+        </div>
+        <div class="flex-1">
+          <p class="text-white font-bold text-sm mb-1">Top Career Match</p>
+          <p class="text-blue-400 font-black text-lg mb-1">Data Scientist</p>
+          <p class="text-slate-400 text-xs">Based on 50+ traits analyzed</p>
+        </div>
+      </div>
+
+      <!-- Bar chart mockup -->
+      <div class="flex items-end gap-2 h-20 mb-2">
+        <div class="chart-bar" style="height:40%"></div>
+        <div class="chart-bar" style="height:65%"></div>
+        <div class="chart-bar" style="height:50%"></div>
+        <div class="chart-bar chart-bar-active" style="height:90%"></div>
+        <div class="chart-bar" style="height:70%"></div>
+        <div class="chart-bar" style="height:55%"></div>
+        <div class="chart-bar" style="height:80%"></div>
+      </div>
+      <p class="text-[10px] text-slate-500 uppercase tracking-widest text-center">Career Growth Trajectory</p>
+    </div>
+
+    <!-- Floating glass chip 1 -->
+    <div class="absolute -top-6 -left-10 glass-chip float-card-1">
+      <span class="text-xl">🧠</span>
+      <div>
+        <p class="text-xs font-bold text-white">AI Engine</p>
+        <p class="text-[10px] text-slate-400">Analyzing traits...</p>
+      </div>
+    </div>
+
+    <!-- Floating glass chip 2 -->
+    <div class="absolute -bottom-8 -right-8 glass-chip float-card-2">
+      <span class="text-xl">📈</span>
+      <div>
+        <p class="text-xs font-bold text-white">Growth Rate</p>
+        <p class="text-[10px] text-emerald-400 font-bold">+32% YoY</p>
+      </div>
+    </div>
+
+    <!-- Floating glass chip 3 -->
+    <div class="absolute top-1/2 -right-14 glass-chip float-card-3">
+      <span class="text-xl">🎯</span>
+      <div>
+        <p class="text-xs font-bold text-white">900+ Careers</p>
+        <p class="text-[10px] text-slate-400">Mapped & Ranked</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
 </section>
 
 
@@ -971,7 +1168,7 @@ CareerSteps provides AI-powered career assessments, career roadmaps, entrance ex
              class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
              required>
       <button type="submit" 
-              class="bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-lg font-bold text-white transition whitespace-nowrap">
+              class="btn-premium px-6 py-3 rounded-lg font-bold text-white transition whitespace-nowrap">
         Subscribe →
       </button>
     </form>
@@ -1151,7 +1348,7 @@ let autoSlide = setInterval(() => {
     
     <a href="assessment.html" 
        onclick="trackCTA('ExitPopup_CTA', 'conversion')"
-       class="block w-full bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-xl font-bold text-white text-center transition mb-3">
+       class="block w-full btn-premium px-6 py-3 rounded-xl font-bold text-white text-center transition mb-3">
       Get Report Now 🚀
     </a>
     
