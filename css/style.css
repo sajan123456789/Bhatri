@@ -16,9 +16,8 @@ img, video {
   height: auto;
 }
 /* Responsive Dynamic Viewport Height (dvh) fix for Android/iOS URL bars */
-.dvh-fix {
-  min-height: 80vh;
-  min-height: 80dvh;
+.dvh-fix{
+min-height:65vh;
 }
 /* Ensure WebKit browsers respect sticky positioning */
 header {
