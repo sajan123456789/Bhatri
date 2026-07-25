@@ -271,6 +271,7 @@ html{
 
 /* Hero entrance animation — GPU composited (opacity+transform only) */
 .hero-anim{
+  margin-bottom:0;
   opacity:0;
   transform:translate3d(0,40px,0);
   animation:heroFadeUp .9s ease forwards;
