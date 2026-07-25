@@ -1,5 +1,3 @@
-<script>
-
 const listDiv = document.getElementById("blog-list");
 const loadBtn = document.getElementById("loadMoreBtn");
 const searchInput = document.getElementById("searchInput");
@@ -92,6 +90,3 @@ loadBtn.addEventListener("click", () => {
 // Initialize Page
 renderFeatured();
 renderBlogs();
-
-    
-  </script>
