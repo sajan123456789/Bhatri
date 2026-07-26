@@ -293,16 +293,6 @@ html{
     transform:translate3d(0,0,0);
   }
 }
-/* Mobile: Hero blue heading right shift */
-@media (max-width:768px){
-
-  .hero-highlight{
-    display:block;
-    margin-left:18px;   /* Right shift */
-  }
-
-}
-
 /* CTA soft glowing pulse — driven by a composited opacity layer instead of
    animating box-shadow directly (box-shadow repaints every frame and is the
    single biggest cause of Android jank; opacity is GPU-compositable). */
@@ -524,4 +514,13 @@ margin-left:0;
   }
 }
 
+/* Mobile: Hero blue heading right shift */
+@media (max-width:768px){
+
+  .hero-highlight{
+    display:block;
+    margin-left:18px;   /* Right shift */
+  }
+
+}
 </style>
