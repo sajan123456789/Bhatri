@@ -518,26 +518,6 @@ margin-left:0;
   }
 }
 
-/* Mobile: Hero blue heading right shift */
-
-@media (max-width:768px){
-
-  h1{
-    line-height:1.08;
-  }
-
-  h1 .block{
-    display:block;
-  }
-
-  h1 span span{
-    text-align:right;
-    display:block;
-    padding-right:12px;
-  }
-
-}
-
 /* ===== Uddisha Style Hero For CareerSteps ===== */
 
 /* ===== Hero ===== */
