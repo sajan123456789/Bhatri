@@ -536,85 +536,16 @@ margin-left:0;
 
 /* ===== Uddisha Style Hero For CareerSteps ===== */
 
-.hero-title{
-
-font-size:72px;
-
-font-weight:900;
-
-line-height:1.02;
-
-letter-spacing:-2px;
-
-font-style:italic;
-
-max-width:700px;
-
-}
-
-.hero-highlight{
-
-display:block;
-
-margin-top:20px;
-
-color:#3b82f6;
-
-}
-
-.hero-options{
-
-display:inline;
-
-}
-
-.hero-desc{
-
-margin-top:34px;
-
-max-width:560px;
-
-font-size:22px;
-
-line-height:1.8;
-
-color:#cbd5e1;
-
-}
-
-.hero-buttons{
-
-display:flex;
-
-gap:18px;
-
-margin-top:45px;
-
-max-width:520px;
-
-}
-
-@media(max-width:1024px){
+/* ===== Hero ===== */
 
 .hero-title{
-
-font-size:56px;
-
-}
-
-}
-
-@media(max-width:768px){
-
-.hero-title{
-    max-width:680px;
-    font-size:clamp(3rem,6vw,5.4rem);
-    line-height:.95;
+    max-width:700px;
+    font-size:72px;
+    line-height:1.02;
     font-weight:900;
     font-style:italic;
     letter-spacing:-2px;
     color:#fff;
-    margin-bottom:18px;
 }
 
 .hero-highlight{
@@ -633,17 +564,32 @@ font-size:56px;
 
 .hero-desc{
     max-width:560px;
-    color:#cbd5e1;
-    font-size:20px;
+    margin-top:34px;
+    font-size:22px;
     line-height:1.8;
-    margin-top:28px;
+    color:#cbd5e1;
 }
 
-@media(max-width:768px){
+.hero-buttons{
+    display:flex;
+    gap:18px;
+    margin-top:42px;
+    max-width:520px;
+}
+
+@media (max-width:1024px){
 
 .hero-title{
-font-size:3rem;
-line-height:1.05;
+font-size:56px;
+}
+
+}
+
+@media (max-width:768px){
+
+.hero-title{
+font-size:48px;
+line-height:1.08;
 letter-spacing:-1px;
 }
 
@@ -652,6 +598,9 @@ font-size:18px;
 line-height:1.7;
 }
 
+.hero-buttons{
+flex-direction:column;
+max-width:100%;
 }
 
 }
