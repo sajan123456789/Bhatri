@@ -515,14 +515,6 @@ margin-left:0;
 }
 
 /* Mobile: Hero blue heading right shift */
-@media (max-width:768px){
-
-  .hero-highlight{
-    display:block;
-    margin-left:18px;   /* Right shift */
-  }
-
-}
 
 @media (max-width:768px){
 
