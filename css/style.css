@@ -607,60 +607,50 @@ font-size:56px;
 @media(max-width:768px){
 
 .hero-title{
-
-font-size:42px;
-
-line-height:1.05;
-
-letter-spacing:-1px;
-
+    max-width:680px;
+    font-size:clamp(3rem,6vw,5.4rem);
+    line-height:.95;
+    font-weight:900;
+    font-style:italic;
+    letter-spacing:-2px;
+    color:#fff;
+    margin-bottom:18px;
 }
 
 .hero-highlight{
-
-margin-top:14px;
-
+    display:block;
+    margin-top:18px;
+    color:#3b82f6;
+    text-decoration:underline;
+    text-decoration-color:rgba(59,130,246,.35);
+    text-decoration-thickness:4px;
 }
 
 .hero-options{
-
-display:block;
-
-text-align:right;
-
-margin-top:5px;
-
+    display:block;
+    margin-top:6px;
 }
 
 .hero-desc{
+    max-width:560px;
+    color:#cbd5e1;
+    font-size:20px;
+    line-height:1.8;
+    margin-top:28px;
+}
 
+@media(max-width:768px){
+
+.hero-title{
+font-size:3rem;
+line-height:1.05;
+letter-spacing:-1px;
+}
+
+.hero-desc{
 font-size:18px;
-
 line-height:1.7;
-
-margin-top:24px;
-
 }
-
-.hero-buttons{
-
-display:flex;
-
-flex-direction:column;
-
-gap:14px;
-
-margin-top:28px;
-
-}
-
-.glass-panel{
-
-width:100%;
-
-max-width:340px;
-
-margin:auto;
 
 }
 
