@@ -465,3 +465,73 @@ top:185px;
 }
 
 }
+
+/* ===========================
+   Floating Particles
+=========================== */
+
+.particles{
+position:absolute;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+}
+
+.particles span{
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+background:rgba(255,255,255,.8);
+box-shadow:0 0 10px rgba(59,130,246,.8);
+animation:particleFloat linear infinite;
+}
+
+.particles span:nth-child(1){left:12%;animation-duration:9s;animation-delay:0s;}
+.particles span:nth-child(2){left:24%;animation-duration:7s;animation-delay:1s;}
+.particles span:nth-child(3){left:36%;animation-duration:10s;animation-delay:2s;}
+.particles span:nth-child(4){left:48%;animation-duration:8s;animation-delay:1.5s;}
+.particles span:nth-child(5){left:60%;animation-duration:11s;animation-delay:0.5s;}
+.particles span:nth-child(6){left:72%;animation-duration:9s;animation-delay:3s;}
+.particles span:nth-child(7){left:84%;animation-duration:8s;animation-delay:2.5s;}
+.particles span:nth-child(8){left:94%;animation-duration:10s;animation-delay:1s;}
+
+@keyframes particleFloat{
+
+0%{
+transform:translateY(420px) scale(.2);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+80%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-180px) scale(1);
+opacity:0;
+}
+
+}
+
+/* Loader Fade */
+
+.loader-show{
+animation:fadeLoader .35s ease;
+}
+
+@keyframes fadeLoader{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
