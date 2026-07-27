@@ -106,3 +106,57 @@ rope.style.transition="";
 });
 
 }
+
+// =========================
+// Reveal Contact Form
+// =========================
+
+const formCard =
+document.getElementById("contactFormCard");
+
+const beam =
+document.querySelector(".light-beam");
+
+function revealForm(){
+
+formCard.classList.add("show-form");
+
+beam.classList.add("light-on");
+
+}
+
+function hideForm(){
+
+formCard.classList.remove("show-form");
+
+beam.classList.remove("light-on");
+
+}
+
+lamp.addEventListener("mouseup",()=>{
+
+if(Math.abs(currentX)>70){
+
+revealForm();
+
+}else{
+
+hideForm();
+
+}
+
+});
+
+lamp.addEventListener("touchend",()=>{
+
+if(Math.abs(currentX)>70){
+
+revealForm();
+
+}else{
+
+hideForm();
+
+}
+
+});
