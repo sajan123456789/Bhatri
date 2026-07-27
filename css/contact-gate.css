@@ -464,8 +464,33 @@ top:185px;
 
 }
 
+.light-cone{
+
+mix-blend-mode:screen;
+
+animation:beamGlow 3s ease-in-out infinite;
+
+}
+}
+@keyframes beamGlow{
+
+0%,100%{
+
+opacity:.22;
+
+filter:blur(28px);
+
 }
 
+50%{
+
+opacity:.42;
+
+filter:blur(38px);
+
+}
+
+}
 /* ===========================
    Floating Particles
 =========================== */
@@ -532,6 +557,98 @@ opacity:0;
 
 to{
 opacity:1;
+}
+
+}
+
+/* ===========================================
+   PREMIUM METAL LAMP
+=========================================== */
+
+.lamp-container{
+    transition:transform .12s linear;
+    filter:drop-shadow(0 0 25px rgba(255,255,255,.45));
+}
+
+.lamp-body{
+
+    background:
+    radial-gradient(circle at 30% 30%,#ffffff,#ececec 40%,#bcbcbc 80%,#8a8a8a);
+
+    border:2px solid rgba(255,255,255,.85);
+
+    overflow:hidden;
+
+}
+
+/* Glass reflection */
+
+.lamp-highlight{
+
+position:absolute;
+
+left:16px;
+
+top:12px;
+
+width:18px;
+
+height:42px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.75);
+
+filter:blur(2px);
+
+transform:rotate(-20deg);
+
+}
+
+/* Bulb */
+
+.lamp-core{
+
+position:absolute;
+
+left:50%;
+
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:28px;
+
+height:28px;
+
+border-radius:50%;
+
+background:#fff;
+
+box-shadow:
+
+0 0 25px #fff,
+
+0 0 70px rgba(59,130,246,.7),
+
+0 0 140px rgba(59,130,246,.45);
+
+animation:bulbPulse 2.8s ease-in-out infinite;
+
+}
+
+@keyframes bulbPulse{
+
+0%,100%{
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+50%{
+
+transform:translate(-50%,-50%) scale(1.08);
+
 }
 
 }
