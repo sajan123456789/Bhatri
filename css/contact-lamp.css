@@ -166,3 +166,16 @@ top:140px;
 }
 
 }
+
+.hidden-form{
+opacity:0;
+transform:translateY(60px);
+pointer-events:none;
+transition:.6s;
+}
+
+.show-form{
+opacity:1;
+transform:translateY(0);
+pointer-events:auto;
+}
