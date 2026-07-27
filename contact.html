@@ -24,11 +24,102 @@
       border: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(14px);
     }
+
+    /* ===== Premium Aurora Lamps ===== */
+
+body{
+    position:relative;
+    overflow-x:hidden;
+    background:#020617;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(59,130,246,.28),transparent 30%),
+        radial-gradient(circle at 85% 15%,rgba(139,92,246,.22),transparent 35%),
+        radial-gradient(circle at 50% 100%,rgba(37,99,235,.15),transparent 45%),
+        #020617;
+}
+
+.lamp{
+    position:fixed;
+    border-radius:9999px;
+    filter:blur(90px);
+    z-index:-2;
+    pointer-events:none;
+    animation:lampFloat 8s ease-in-out infinite;
+}
+
+.lamp-left{
+    width:320px;
+    height:320px;
+    top:-120px;
+    left:-120px;
+    background:#2563eb;
+}
+
+.lamp-right{
+    width:360px;
+    height:360px;
+    top:-80px;
+    right:-120px;
+    background:#7c3aed;
+    animation-delay:2s;
+}
+
+@keyframes lampFloat{
+    0%,100%{
+        transform:translateY(0px) scale(1);
+    }
+    50%{
+        transform:translateY(25px) scale(1.08);
+    }
+}
+
+.glass{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        0 0 35px rgba(59,130,246,.08);
+    transition:.35s;
+}
+
+.glass:hover{
+    transform:translateY(-6px);
+    border-color:#3b82f6;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.4),
+        0 0 50px rgba(59,130,246,.25);
+}
+
+@media(max-width:768px){
+
+.lamp-left{
+width:220px;
+height:220px;
+}
+
+.lamp-right{
+width:240px;
+height:240px;
+}
+
+}
+    
   </style>
 </head>
 
 <body class="min-h-screen px-4">
 
+  <div class="lamp lamp-left"></div>
+<div class="lamp lamp-right"></div>
+  
 <div id="human-check"
      class="fixed inset-0 flex items-center justify-center bg-black/60 z-[99999]">
 
