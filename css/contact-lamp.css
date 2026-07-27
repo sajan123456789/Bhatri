@@ -1,205 +1,77 @@
-/* ===========================
-   Premium Hanging Lamp
-=========================== */
+/* ============================
+CareerSteps Premium Hanging Lamp
+============================ */
 
-.lamp-wrapper{
-    width:100%;
-    height:220px;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    overflow:hidden;
+.lamp-area{
+width:100%;
+height:240px;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+position:relative;
+overflow:hidden;
+margin-bottom:40px;
 }
 
-.lamp-rope{
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:3px;
-    height:120px;
-    background:linear-gradient(#777,#ddd);
-    z-index:5;
-}
-
-.lamp-container{
-    position:absolute;
-    top:110px;
-    left:50%;
-    transform:translateX(-50%);
-    cursor:grab;
-    z-index:10;
-    transition:transform .15s linear;
-}
-
-.lamp-container:active{
-    cursor:grabbing;
-}
-
-.lamp{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:linear-gradient(145deg,#f8fafc,#d1d5db);
-    border:4px solid #ffffff;
-    box-shadow:
-        0 0 25px rgba(255,255,255,.8),
-        0 0 70px rgba(59,130,246,.6);
-}
-
-.lamp-glow{
-    position:absolute;
-    left:50%;
-    top:35px;
-    transform:translateX(-50%);
-    width:260px;
-    height:260px;
-    border-radius:50%;
-    background:radial-gradient(circle,
-        rgba(59,130,246,.45) 0%,
-        rgba(59,130,246,.18) 40%,
-        transparent 75%);
-    filter:blur(35px);
-    pointer-events:none;
-    animation:lampPulse 3s infinite;
-}
-
-@keyframes lampPulse{
-
-0%,100%{
-transform:translateX(-50%) scale(1);
-opacity:.9;
-}
-
-50%{
-transform:translateX(-50%) scale(1.08);
-opacity:1;
-}
-
-}
-
-@media(max-width:768px){
-
-.lamp-wrapper{
-height:180px;
-}
-
-.lamp{
-width:58px;
-height:58px;
-}
-
-.lamp-glow{
-width:180px;
-height:180px;
-}
-
-.lamp-rope{
-height:90px;
-}
-
-.lamp-container{
-top:82px;
-}
-
-}
-
-/* ===============================
-Form Reveal
-=============================== */
-
-.hidden-form{
-
-opacity:0;
-
-transform:
-translateY(120px)
-scale(.94);
-
-filter:blur(10px);
-
-pointer-events:none;
-
-transition:
-
-opacity .7s ease,
-
-transform .7s ease,
-
-filter .7s ease;
-
-}
-
-.show-form{
-
-opacity:1;
-
-transform:
-translateY(0)
-scale(1);
-
-filter:blur(0);
-
-pointer-events:auto;
-
-}
-
-/* Light Beam */
-
-.light-beam{
+.lamp-cable{
 
 position:absolute;
 
-top:150px;
+top:0;
 
-left:50%;
+width:4px;
 
-transform:translateX(-50%);
+height:120px;
 
-width:12px;
+background:#d6d6d6;
 
-height:0;
+border-radius:10px;
 
-background:
-
-linear-gradient(
-
-to bottom,
-
-rgba(255,255,255,.95),
-
-rgba(59,130,246,.4),
-
-transparent
-
-);
-
-filter:blur(6px);
-
-transition:
-
-height .5s ease;
-
-z-index:2;
+transform-origin:top center;
 
 }
 
-.light-on{
-
-height:330px;
-
-}
-
-/* ===================================
-Premium Light Cone
-=================================== */
-
-.light-cone{
+.hanging-lamp{
 
 position:absolute;
 
-top:65px;
+top:115px;
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:linear-gradient(180deg,#ffffff,#d9d9d9);
+
+border:4px solid #fff;
+
+cursor:grab;
+
+box-shadow:
+
+0 0 25px rgba(255,255,255,.8),
+
+0 0 60px rgba(59,130,246,.5);
+
+z-index:10;
+
+transform-origin:top center;
+
+}
+
+.hanging-lamp:active{
+
+cursor:grabbing;
+
+}
+
+.lamp-light{
+
+position:absolute;
+
+top:170px;
 
 left:50%;
 
@@ -213,43 +85,83 @@ clip-path:polygon(48% 0%,52% 0%,100% 100%,0% 100%);
 
 background:
 
-linear-gradient(
+linear-gradient(to bottom,
 
-to bottom,
+rgba(255,255,255,.8),
 
-rgba(255,255,255,.75),
+rgba(59,130,246,.25),
 
-rgba(59,130,246,.30),
+transparent);
 
-transparent
+filter:blur(25px);
 
-);
-
-opacity:0;
+opacity:.15;
 
 pointer-events:none;
 
-filter:blur(22px);
-
-transition:.35s;
-
-z-index:1;
+transition:.3s;
 
 }
 
-.light-cone.active{
+.lamp-glow{
 
-opacity:1;
+position:absolute;
+
+top:140px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:220px;
+
+height:220px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+
+rgba(59,130,246,.45),
+
+transparent 70%);
+
+filter:blur(45px);
+
+pointer-events:none;
 
 }
 
 @media(max-width:768px){
 
-.light-cone{
+.lamp-area{
 
-width:260px;
+height:190px;
 
-height:280px;
+}
+
+.hanging-lamp{
+
+width:58px;
+
+height:58px;
+
+top:95px;
+
+}
+
+.lamp-cable{
+
+height:100px;
+
+}
+
+.lamp-light{
+
+width:240px;
+
+height:260px;
+
+top:140px;
 
 }
 
