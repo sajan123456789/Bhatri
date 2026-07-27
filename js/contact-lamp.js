@@ -2,8 +2,13 @@
 // Premium Lamp Interaction
 // ===============================
 
-const lamp = document.querySelector(".lamp-container");
-const rope = document.querySelector(".lamp-rope");
+const lamp = document.querySelector(".hanging-lamp");
+const rope = document.querySelector(".lamp-cable");
+
+const beam = document.querySelector(".lamp-light");
+const glow = document.querySelector(".lamp-glow");
+
+const formCard = document.getElementById("contactFormCard");
 
 if (lamp && rope) {
 
