@@ -203,7 +203,7 @@ background:#dcdcdc;
 border-radius:20px;
 
 transform-origin:top center;
-
+box-shadow:0 0 8px rgba(255,255,255,.45);
 }
 
 /* Lamp */
@@ -401,69 +401,6 @@ pointer-events:auto;
 }
 
 /* Mobile */
-
-@media(max-width:768px){
-
-.logo{
-
-width:70px;
-
-}
-
-h1{
-
-font-size:34px;
-
-}
-
-p{
-
-font-size:15px;
-
-padding:0 15px;
-
-}
-
-.lamp-wrapper{
-
-height:350px;
-
-}
-
-.lamp-rope{
-
-height:130px;
-
-}
-
-.lamp-container{
-
-top:126px;
-
-width:72px;
-
-height:72px;
-
-}
-
-.lamp-body{
-
-width:72px;
-
-height:72px;
-
-}
-
-.light-cone{
-
-width:260px;
-
-height:270px;
-
-top:185px;
-
-}
-
 .light-cone{
 
 mix-blend-mode:screen;
@@ -471,7 +408,7 @@ mix-blend-mode:screen;
 animation:beamGlow 3s ease-in-out infinite;
 
 }
-}
+
 @keyframes beamGlow{
 
 0%,100%{
