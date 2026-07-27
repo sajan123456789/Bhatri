@@ -179,3 +179,8 @@ opacity:1;
 transform:translateY(0);
 pointer-events:auto;
 }
+
+.light-on{
+opacity:1 !important;
+filter:blur(18px);
+}
