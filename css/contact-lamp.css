@@ -104,3 +104,89 @@ top:82px;
 }
 
 }
+
+/* ===============================
+Form Reveal
+=============================== */
+
+.hidden-form{
+
+opacity:0;
+
+transform:
+translateY(120px)
+scale(.94);
+
+filter:blur(10px);
+
+pointer-events:none;
+
+transition:
+
+opacity .7s ease,
+
+transform .7s ease,
+
+filter .7s ease;
+
+}
+
+.show-form{
+
+opacity:1;
+
+transform:
+translateY(0)
+scale(1);
+
+filter:blur(0);
+
+pointer-events:auto;
+
+}
+
+/* Light Beam */
+
+.light-beam{
+
+position:absolute;
+
+top:150px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:12px;
+
+height:0;
+
+background:
+
+linear-gradient(
+
+to bottom,
+
+rgba(255,255,255,.95),
+
+rgba(59,130,246,.4),
+
+transparent
+
+);
+
+filter:blur(6px);
+
+transition:
+
+height .5s ease;
+
+z-index:2;
+
+}
+
+.light-on{
+
+height:330px;
+
+}
