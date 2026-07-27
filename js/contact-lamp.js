@@ -160,3 +160,29 @@ hideForm();
 }
 
 });
+
+// ===========================
+// Premium Swing Physics
+// ===========================
+
+const cone=document.querySelector(".light-cone");
+
+let angle=0;
+
+function animateSwing(){
+
+angle+=(currentX-angle)*0.08;
+
+lamp.style.transform=
+`translateX(calc(-50% + ${currentX}px))
+rotate(${angle/8}deg)`;
+
+rope.style.transform=
+`translateX(-50%)
+rotate(${angle/14}deg)`;
+
+requestAnimationFrame(animateSwing);
+
+}
+
+animateSwing();
