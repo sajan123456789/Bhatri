@@ -104,6 +104,8 @@ function finishDrag(){
 
 if(Math.abs(current)>80){
 
+    successEffect();
+    
 loader.classList.add("loader-show");
 
 setTimeout(()=>{
