@@ -589,3 +589,64 @@ transform:translate(-50%,-50%) scale(1.08);
 }
 
 }
+
+.stars{
+position:fixed;
+inset:0;
+pointer-events:none;
+background-image:radial-gradient(#fff 1px,transparent 1px);
+background-size:80px 80px;
+opacity:.25;
+animation:starMove 18s linear infinite;
+}
+
+@keyframes starMove{
+from{transform:translateY(0);}
+to{transform:translateY(80px);}
+}
+
+@media(max-width:768px){
+
+.logo{
+width:70px;
+}
+
+h1{
+font-size:34px;
+}
+
+p{
+font-size:15px;
+padding:0 15px;
+}
+
+.lamp-wrapper{
+height:350px;
+}
+
+.lamp-rope{
+height:130px;
+}
+
+.lamp-container{
+top:126px;
+width:72px;
+height:72px;
+}
+
+.lamp-body{
+width:72px;
+height:72px;
+}
+
+.lamp-glass{
+inset:10px;
+}
+
+.light-cone{
+width:260px;
+height:270px;
+top:185px;
+}
+
+}
