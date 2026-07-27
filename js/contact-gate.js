@@ -199,7 +199,6 @@ function successEffect(){
     },250);
 
     // Access Granted popup
-    access.classList.add("show");
 
     // Lamp glow
     lamp.style.filter=
