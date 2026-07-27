@@ -610,7 +610,89 @@ to{transform:translateY(80px);}
 .logo{
 width:70px;
 }
+/* ===========================
+   AMBIENT GLOW
+=========================== */
 
+.ambient-glow{
+position:fixed;
+left:50%;
+top:45%;
+transform:translate(-50%,-50%);
+width:700px;
+height:700px;
+border-radius:50%;
+background:
+radial-gradient(circle,
+rgba(59,130,246,.18),
+transparent 70%);
+filter:blur(100px);
+pointer-events:none;
+animation:ambient 6s ease-in-out infinite;
+z-index:-3;
+}
+
+@keyframes ambient{
+0%,100%{
+opacity:.6;
+}
+50%{
+opacity:1;
+}
+}
+   /* ===========================
+   UNLOCK ANIMATION
+=========================== */
+
+#unlockFlash{
+position:fixed;
+inset:0;
+background:#fff;
+opacity:0;
+pointer-events:none;
+transition:.4s;
+z-index:999;
+}
+
+.flash{
+opacity:.85 !important;
+}
+
+#accessGranted{
+position:fixed;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%) scale(.6);
+opacity:0;
+transition:.45s;
+z-index:1000;
+text-align:center;
+pointer-events:none;
+}
+
+#accessGranted.show{
+opacity:1;
+transform:translate(-50%,-50%) scale(1);
+}
+
+#accessGranted .tick{
+font-size:80px;
+color:#4ade80;
+text-shadow:0 0 30px #4ade80;
+margin-bottom:18px;
+}
+
+#accessGranted h2{
+font-size:38px;
+font-weight:900;
+margin-bottom:10px;
+}
+
+#accessGranted p{
+color:#cbd5e1;
+font-size:16px;
+}
+   
 h1{
 font-size:34px;
 }
