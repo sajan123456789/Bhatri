@@ -131,3 +131,53 @@ cone.style.transition="";
 },600);
 
 }
+
+// ======================================
+// Premium Swing + Dynamic Light Effects
+// ======================================
+
+let velocity = 0;
+let target = 0;
+
+function physicsLoop(){
+
+    velocity += (current - target) * 0.08;
+    velocity *= 0.88;
+
+    target += velocity;
+
+    rope.style.transform =
+        `rotate(${target/16}deg)`;
+
+    lamp.style.transform =
+        `translateX(${target}px) rotate(${target/8}deg)`;
+
+    cone.style.transform =
+        `translateX(calc(-50% + ${target}px))
+         rotate(${target/14}deg)`;
+
+    // Light intensity increases while dragging
+    const intensity = Math.min(Math.abs(target)/120,1);
+
+    cone.style.opacity = 0.18 + intensity * 0.55;
+
+    lamp.style.filter =
+        `drop-shadow(0 0 ${25+intensity*35}px rgba(59,130,246,.9))`;
+
+    requestAnimationFrame(physicsLoop);
+}
+
+physicsLoop();
+
+
+// Mobile vibration when unlocked
+
+function successEffect(){
+
+    if(navigator.vibrate){
+
+        navigator.vibrate([80,50,80]);
+
+    }
+
+}
