@@ -106,14 +106,17 @@ if(Math.abs(current)>80){
 
     successEffect();
     
+setTimeout(()=>{
+
 loader.classList.add("loader-show");
+
+},450);
 
 setTimeout(()=>{
 
 window.location.href="contact.html";
 
-},900);
-
+},1800);
 return;
 
 }
@@ -174,12 +177,32 @@ physicsLoop();
 
 // Mobile vibration when unlocked
 
+// ===============================
+// Premium Success Effect
+// ===============================
+
 function successEffect(){
 
+    const flash = document.getElementById("unlockFlash");
+    const access = document.getElementById("accessGranted");
+
+    // Vibration
     if(navigator.vibrate){
-
-        navigator.vibrate([80,50,80]);
-
+        navigator.vibrate([80,40,80]);
     }
+
+    // White flash
+    flash.classList.add("flash");
+
+    setTimeout(()=>{
+        flash.classList.remove("flash");
+    },250);
+
+    // Access Granted popup
+    access.classList.add("show");
+
+    // Lamp glow
+    lamp.style.filter=
+    "drop-shadow(0 0 90px rgba(59,130,246,.95))";
 
 }
