@@ -1,734 +1,467 @@
 /* ===================================================
    CareerSteps Premium Contact Gate
+   Refactored & Optimized CSS
 =================================================== */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html,body{
-width:100%;
-height:100%;
-overflow:hidden;
-font-family:Inter,Arial,sans-serif;
-background:#020617;
-color:#fff;
-}
-
-body{
-position:relative;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-/* Background */
-
-body::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-radial-gradient(circle at 15% 15%,rgba(59,130,246,.25),transparent 35%),
-
-radial-gradient(circle at 85% 10%,rgba(139,92,246,.28),transparent 35%),
-
-#020617;
-
-z-index:-5;
-
-}
-
-/* Aurora */
-
-.aurora{
-
-position:absolute;
-
-border-radius:50%;
-
-filter:blur(120px);
-
-animation:floatLamp 10s ease-in-out infinite;
-
-pointer-events:none;
-
-}
-
-.aurora-left{
-
-width:420px;
-
-height:420px;
-
-background:#2563eb;
-
-top:-180px;
-
-left:-180px;
-
-}
-
-.aurora-right{
-
-width:420px;
-
-height:420px;
-
-background:#7c3aed;
-
-top:-150px;
-
-right:-180px;
-
-animation-delay:2s;
-
-}
-
-@keyframes floatLamp{
-
-0%,100%{
-
-transform:translateY(0);
-
-}
-
-50%{
-
-transform:translateY(35px);
-
-}
-
-}
-
-/* Main */
-
-.gate{
-
-width:100%;
-
-max-width:900px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-padding:40px;
-
-text-align:center;
-
-}
-
-/* Logo */
-
-.logo{
-
-width:82px;
-
-margin-bottom:30px;
-
-filter:drop-shadow(0 0 18px rgba(59,130,246,.55));
-
-}
-
-/* Heading */
-
-h1{
-
-font-size:52px;
-
-font-weight:900;
-
-margin-bottom:12px;
-
-}
-
-p{
-
-font-size:18px;
-
-max-width:650px;
-
-color:#b6bfd0;
-
-line-height:1.7;
-
-}
-
-/* Lamp Wrapper */
-
-.lamp-wrapper{
-
-width:100%;
-
-height:430px;
-
-position:relative;
-
-display:flex;
-
-justify-content:center;
-
-align-items:flex-start;
-
-margin-top:35px;
-
-}
-
-/* Rope */
-
-.lamp-rope{
-
-position:absolute;
-
-top:0;
-
-width:5px;
-
-height:170px;
-
-background:#dcdcdc;
-
-border-radius:20px;
-
-transform-origin:top center;
-box-shadow:0 0 8px rgba(255,255,255,.45);
-}
-
-/* Lamp */
-
-.lamp-container{
-
-position:absolute;
-
-top:165px;
-
-width:90px;
-
-height:90px;
-
-cursor:grab;
-
-transform-origin:top center;
-
-}
-
-/* Head */
-
-.lamp-head{
-
-position:absolute;
-
-width:34px;
-
-height:16px;
-
-background:#ececec;
-
-left:50%;
-
-transform:translateX(-50%);
-
-border-radius:12px;
-
-top:-12px;
-
-}
-
-/* Body */
-
-.lamp-body{
-
-position:absolute;
-
-width:90px;
-
-height:90px;
-
-border-radius:50%;
-
-background:linear-gradient(180deg,#ffffff,#d9d9d9);
-
-box-shadow:
-
-0 0 35px rgba(255,255,255,.95),
-
-0 0 80px rgba(59,130,246,.55);
-
-}
-
-/* Glass */
-
-.lamp-glass{
-
-position:absolute;
-
-inset:12px;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.35);
-
-backdrop-filter:blur(8px);
-
-}
-
-/* Light */
-
-.light-cone{
-
-position:absolute;
-
-top:250px;
-
-left:50%;
-
-transform:translateX(-50%);
-
-width:420px;
-
-height:420px;
-
-clip-path:polygon(48% 0%,52% 0%,100% 100%,0% 100%);
-
-background:
-
-linear-gradient(to bottom,
-
-rgba(255,255,255,.72),
-
-rgba(59,130,246,.18),
-
-transparent);
-
-opacity:.2;
-
-filter:blur(28px);
-
-transition:.35s;
-
-}
-
-/* Hint */
-
-.hint{
-
-margin-top:20px;
-
-font-size:18px;
-
-font-weight:700;
-
-color:#60a5fa;
-
-letter-spacing:.5px;
-
-}
-
-/* Loader */
-
-.loader-screen{
-
-position:fixed;
-
-inset:0;
-
-background:#020617;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-gap:25px;
-
-opacity:0;
-
-pointer-events:none;
-
-transition:.45s;
-
-z-index:999;
-
-}
-
-.loader-circle{
-
-width:80px;
-
-height:80px;
-
-border-radius:50%;
-
-border:6px solid rgba(255,255,255,.18);
-
-border-top-color:#3b82f6;
-
-animation:spin .8s linear infinite;
-
-}
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-.loader-show{
-
-opacity:1;
-
-pointer-events:auto;
-
-}
-
-/* Mobile */
-.light-cone{
-
-mix-blend-mode:screen;
-
-animation:beamGlow 3s ease-in-out infinite;
-
-}
-
-@keyframes beamGlow{
-
-0%,100%{
-
-opacity:.22;
-
-filter:blur(28px);
-
-}
-
-50%{
-
-opacity:.42;
-
-filter:blur(38px);
-
-}
-
-}
 /* ===========================
-   Floating Particles
+   RESET & BASE STYLES
 =========================== */
-
-.particles{
-position:absolute;
-inset:0;
-pointer-events:none;
-overflow:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.particles span{
-position:absolute;
-width:6px;
-height:6px;
-border-radius:50%;
-background:rgba(255,255,255,.8);
-box-shadow:0 0 10px rgba(59,130,246,.8);
-animation:particleFloat linear infinite;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Inter, Arial, sans-serif;
+    background: #020617;
+    color: #fff;
 }
 
-.particles span:nth-child(1){left:12%;animation-duration:9s;animation-delay:0s;}
-.particles span:nth-child(2){left:24%;animation-duration:7s;animation-delay:1s;}
-.particles span:nth-child(3){left:36%;animation-duration:10s;animation-delay:2s;}
-.particles span:nth-child(4){left:48%;animation-duration:8s;animation-delay:1.5s;}
-.particles span:nth-child(5){left:60%;animation-duration:11s;animation-delay:0.5s;}
-.particles span:nth-child(6){left:72%;animation-duration:9s;animation-delay:3s;}
-.particles span:nth-child(7){left:84%;animation-duration:8s;animation-delay:2.5s;}
-.particles span:nth-child(8){left:94%;animation-duration:10s;animation-delay:1s;}
-
-@keyframes particleFloat{
-
-0%{
-transform:translateY(420px) scale(.2);
-opacity:0;
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-20%{
-opacity:1;
+/* ===========================
+   BACKGROUNDS & AMBIANCE
+=========================== */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.25), transparent 35%),
+        radial-gradient(circle at 85% 10%, rgba(139, 92, 246, 0.28), transparent 35%),
+        #020617;
+    z-index: -5;
 }
 
-80%{
-opacity:1;
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(#fff 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.25;
+    animation: starMove 18s linear infinite;
+    z-index: -4;
 }
 
-100%{
-transform:translateY(-180px) scale(1);
-opacity:0;
+.ambient-glow {
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+    animation: ambient 6s ease-in-out infinite;
+    z-index: -3;
+    will-change: opacity;
 }
 
+.aurora {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    animation: floatLamp 10s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -2;
+    will-change: transform;
 }
 
-/* Loader Fade */
-
-.loader-show{
-animation:fadeLoader .35s ease;
+.aurora-left {
+    width: 420px;
+    height: 420px;
+    background: #2563eb;
+    top: -180px;
+    left: -180px;
 }
 
-@keyframes fadeLoader{
-
-from{
-opacity:0;
+.aurora-right {
+    width: 420px;
+    height: 420px;
+    background: #7c3aed;
+    top: -150px;
+    right: -180px;
+    animation-delay: 2s;
 }
 
-to{
-opacity:1;
+/* ===========================
+   FLOATING PARTICLES
+=========================== */
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
 }
 
+.particles span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+    animation: particleFloat linear infinite;
+    will-change: transform, opacity;
 }
 
-/* ===========================================
+.particles span:nth-child(1) { left: 12%; animation-duration: 9s; animation-delay: 0s; }
+.particles span:nth-child(2) { left: 24%; animation-duration: 7s; animation-delay: 1s; }
+.particles span:nth-child(3) { left: 36%; animation-duration: 10s; animation-delay: 2s; }
+.particles span:nth-child(4) { left: 48%; animation-duration: 8s; animation-delay: 1.5s; }
+.particles span:nth-child(5) { left: 60%; animation-duration: 11s; animation-delay: 0.5s; }
+.particles span:nth-child(6) { left: 72%; animation-duration: 9s; animation-delay: 3s; }
+.particles span:nth-child(7) { left: 84%; animation-duration: 8s; animation-delay: 2.5s; }
+.particles span:nth-child(8) { left: 94%; animation-duration: 10s; animation-delay: 1s; }
+
+/* ===========================
+   MAIN LAYOUT & TYPOGRAPHY
+=========================== */
+.gate {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    z-index: 10;
+}
+
+.logo {
+    width: 82px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.55));
+}
+
+h1 {
+    font-size: 52px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+p {
+    font-size: 18px;
+    max-width: 650px;
+    color: #b6bfd0;
+    line-height: 1.7;
+}
+
+.hint {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #60a5fa;
+    letter-spacing: 0.5px;
+}
+
+/* ===========================
    PREMIUM METAL LAMP
-=========================================== */
-
-.lamp-container{
-    transition:transform .12s linear;
-    filter:drop-shadow(0 0 25px rgba(255,255,255,.45));
+=========================== */
+.lamp-wrapper {
+    width: 100%;
+    height: 430px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 35px;
 }
 
-.lamp-body{
-
-    background:
-    radial-gradient(circle at 30% 30%,#ffffff,#ececec 40%,#bcbcbc 80%,#8a8a8a);
-
-    border:2px solid rgba(255,255,255,.85);
-
-    overflow:hidden;
-
+.lamp-rope {
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 170px;
+    background: linear-gradient(to right, #4b5563, #d1d5db, #4b5563);
+    border-radius: 20px;
+    transform-origin: top center;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Glass reflection */
-
-.lamp-highlight{
-
-position:absolute;
-
-left:16px;
-
-top:12px;
-
-width:18px;
-
-height:42px;
-
-border-radius:20px;
-
-background:rgba(255,255,255,.75);
-
-filter:blur(2px);
-
-transform:rotate(-20deg);
-
+.lamp-container {
+    position: absolute;
+    top: 165px;
+    width: 90px;
+    height: 90px;
+    cursor: grab;
+    transform-origin: top center;
+    transition: transform 0.12s linear;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.45));
+    will-change: transform;
 }
 
-/* Bulb */
-
-.lamp-core{
-
-position:absolute;
-
-left:50%;
-
-top:50%;
-
-transform:translate(-50%,-50%);
-
-width:28px;
-
-height:28px;
-
-border-radius:50%;
-
-background:#fff;
-
-box-shadow:
-
-0 0 25px #fff,
-
-0 0 70px rgba(59,130,246,.7),
-
-0 0 140px rgba(59,130,246,.45);
-
-animation:bulbPulse 2.8s ease-in-out infinite;
-
+.lamp-container:active {
+    cursor: grabbing;
 }
 
-@keyframes bulbPulse{
-
-0%,100%{
-
-transform:translate(-50%,-50%) scale(1);
-
+.lamp-head {
+    position: absolute;
+    width: 34px;
+    height: 16px;
+    background: linear-gradient(to right, #6b7280, #f3f4f6, #6b7280);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 12px;
+    top: -12px;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);
 }
 
-50%{
-
-transform:translate(-50%,-50%) scale(1.08);
-
+.lamp-body {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #d1d5db 40%, #9ca3af 70%, #4b5563 100%);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 -5px 15px rgba(0,0,0,0.4), inset 0 2px 10px rgba(255,255,255,0.8);
+    overflow: hidden;
 }
 
+.lamp-glass {
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-.stars{
-position:fixed;
-inset:0;
-pointer-events:none;
-background-image:radial-gradient(#fff 1px,transparent 1px);
-background-size:80px 80px;
-opacity:.25;
-animation:starMove 18s linear infinite;
+.lamp-highlight {
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    width: 20px;
+    height: 40px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
+    filter: blur(1.5px);
+    transform: rotate(-25deg);
 }
 
-@keyframes starMove{
-from{transform:translateY(0);}
-to{transform:translateY(80px);}
+.lamp-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 
+        0 0 25px #ffffff,
+        0 0 60px rgba(59, 130, 246, 0.8),
+        0 0 120px rgba(59, 130, 246, 0.5);
+    animation: bulbPulse 2.8s ease-in-out infinite;
+    will-change: transform, box-shadow;
 }
 
-@media(max-width:768px){
-
-.logo{
-width:70px;
-}
 /* ===========================
-   AMBIENT GLOW
+   LIGHT BEAM
 =========================== */
-
-.ambient-glow{
-position:fixed;
-left:50%;
-top:45%;
-transform:translate(-50%,-50%);
-width:700px;
-height:700px;
-border-radius:50%;
-background:
-radial-gradient(circle,
-rgba(59,130,246,.18),
-transparent 70%);
-filter:blur(100px);
-pointer-events:none;
-animation:ambient 6s ease-in-out infinite;
-z-index:-3;
+.light-cone {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 420px;
+    clip-path: polygon(48% 0%, 52% 0%, 100% 100%, 0% 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(59, 130, 246, 0.25), transparent);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: beamGlow 3s ease-in-out infinite;
+    will-change: opacity, filter;
 }
 
-@keyframes ambient{
-0%,100%{
-opacity:.6;
-}
-50%{
-opacity:1;
-}
-}
-   /* ===========================
-   UNLOCK ANIMATION
+/* ===========================
+   LOADER & OVERLAYS
 =========================== */
-
-#unlockFlash{
-position:fixed;
-inset:0;
-background:#fff;
-opacity:0;
-pointer-events:none;
-transition:.4s;
-z-index:999;
+.loader-screen {
+    position: fixed;
+    inset: 0;
+    background: #020617;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+    z-index: 999;
 }
 
-.flash{
-opacity:.85 !important;
+.loader-screen.loader-show {
+    opacity: 1;
+    pointer-events: auto;
+    animation: fadeLoader 0.35s ease;
 }
 
-#accessGranted{
-position:fixed;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%) scale(.6);
-opacity:0;
-transition:.45s;
-z-index:1000;
-text-align:center;
-pointer-events:none;
+.loader-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.18);
+    border-top-color: #3b82f6;
+    animation: spin 0.8s linear infinite;
 }
 
-#accessGranted.show{
-opacity:1;
-transform:translate(-50%,-50%) scale(1);
+/* ===========================
+   UNLOCK & ACCESS GRANTED
+=========================== */
+#unlockFlash {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 999;
 }
 
-#accessGranted .tick{
-font-size:80px;
-color:#4ade80;
-text-shadow:0 0 30px #4ade80;
-margin-bottom:18px;
+#unlockFlash.flash {
+    opacity: 0.85 !important;
 }
 
-#accessGranted h2{
-font-size:38px;
-font-weight:900;
-margin-bottom:10px;
+#accessGranted {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+    transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none;
 }
 
-#accessGranted p{
-color:#cbd5e1;
-font-size:16px;
-}
-   
-h1{
-font-size:34px;
+#accessGranted.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
-p{
-font-size:15px;
-padding:0 15px;
+#accessGranted .tick {
+    font-size: 80px;
+    color: #4ade80;
+    text-shadow: 0 0 30px rgba(74, 222, 128, 0.6);
+    margin-bottom: 18px;
 }
 
-.lamp-wrapper{
-height:350px;
+#accessGranted h2 {
+    font-size: 38px;
+    font-weight: 900;
+    margin-bottom: 10px;
 }
 
-.lamp-rope{
-height:130px;
+#accessGranted p {
+    color: #cbd5e1;
+    font-size: 16px;
 }
 
-.lamp-container{
-top:126px;
-width:72px;
-height:72px;
+/* ===========================
+   ANIMATION KEYFRAMES
+=========================== */
+@keyframes floatLamp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(35px); }
 }
 
-.lamp-body{
-width:72px;
-height:72px;
+@keyframes particleFloat {
+    0% { transform: translateY(420px) scale(0.2); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(-180px) scale(1); opacity: 0; }
 }
 
-.lamp-glass{
-inset:10px;
+@keyframes bulbPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.08); }
 }
 
-.light-cone{
-width:260px;
-height:270px;
-top:185px;
+@keyframes beamGlow {
+    0%, 100% { opacity: 0.3; filter: blur(28px); }
+    50% { opacity: 0.55; filter: blur(38px); }
 }
 
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeLoader {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes starMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(80px); }
+}
+
+@keyframes ambient {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* ===========================
+   RESPONSIVE (MOBILE/TABLET)
+=========================== */
+@media (max-width: 768px) {
+    .logo {
+        width: 70px;
+    }
+    
+    h1 {
+        font-size: 34px;
+    }
+    
+    p {
+        font-size: 15px;
+        padding: 0 15px;
+    }
+    
+    .lamp-wrapper {
+        height: 350px;
+    }
+    
+    .lamp-rope {
+        height: 130px;
+    }
+    
+    .lamp-container {
+        top: 126px;
+        width: 72px;
+        height: 72px;
+    }
+    
+    .lamp-body {
+        width: 72px;
+        height: 72px;
+    }
+    
+    .lamp-glass {
+        inset: 10px;
+    }
+    
+    .light-cone {
+        width: 260px;
+        height: 270px;
+        top: 185px;
+    }
 }
