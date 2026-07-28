@@ -1045,6 +1045,85 @@ if (newsletterForm) {
   });
 }
  </script>
+
+ <!-- CareerSteps Feedback Floating Button -->
+<a href="https://forms.gle/daYEXAdJ8WiJFyzQ7"
+   target="_blank"
+   rel="noopener noreferrer"
+   title="Give Feedback"
+   class="feedback-float">
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="24"
+         height="24"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 10h8M8 14h5m7-2c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.8L3 20l.9-3.2A7.84 7.84 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+
+    <span>Feedback</span>
+</a>
+
+<style>
+.feedback-float{
+    position:fixed;
+    bottom:90px;          /* chatbot ke upar */
+    right:20px;
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:14px 18px;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    text-decoration:none;
+
+    border-radius:999px;
+
+    font-weight:700;
+    font-size:15px;
+
+    box-shadow:0 10px 30px rgba(37,99,235,.35);
+
+    transition:.3s ease;
+}
+
+.feedback-float:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 18px 40px rgba(37,99,235,.45);
+}
+
+.feedback-float svg{
+    width:22px;
+    height:22px;
+}
+
+@media(max-width:768px){
+
+.feedback-float{
+    bottom:85px;
+    right:15px;
+    padding:12px 15px;
+    font-size:14px;
+}
+
+.feedback-float span{
+    display:none;
+}
+
+.feedback-float svg{
+    width:24px;
+    height:24px;
+}
+}
+</style>
  
 </body>
 </html>
