@@ -115,12 +115,8 @@ rope.style.transition="";
 // =========================
 // Reveal Contact Form
 // =========================
-
-const formCard =
-document.getElementById("contactFormCard");
-
 const beam =
-document.querySelector(".light-beam");
+document.querySelector(".lamp-light");
 
 function revealForm(){
 
