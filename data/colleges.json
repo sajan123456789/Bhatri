@@ -1042,6 +1042,25 @@
     "PhD"
   ]
 },
+   {
+    "name": "International Institute of Information Technology Bangalore",
+    "shortName": "IIIT Bangalore",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "type": "Private",
+    "description": "IIIT Bangalore is one of India's leading institutes for Computer Science, Artificial Intelligence, Data Science and Electronics. The institute is renowned for strong research, global collaborations and outstanding placement records.",
+    "established": 1999,
+    "fees": 485000,
+    "avgPackage": 34.5,
+    "highestPackage": 65,
+    "placement": 99,
+    "nirfRank": 74,
+    "naac": "A+",
+    "website": "https://www.iiitb.ac.in",
+    "image": "images/colleges/iiit-bangalore.webp",
+    "logo": "logos/iiit-bangalore.png",
+    "courses": ["B.Tech","Integrated M.Tech","M.Tech","MSc","PhD"]
+  },
 {
   "name": "International Institute of Information Technology Hyderabad",
   "shortName": "IIIT Hyderabad",
