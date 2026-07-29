@@ -1066,31 +1066,5 @@
     "M.Sc",
     "PhD"
   ]
-},
-{
-  "name": "International Institute of Information Technology Hyderabad",
-  "shortName": "IIIT Hyderabad",
-  "city": "Hyderabad",
-  "state": "Telangana",
-  "type": "Private",
-  "description": "India's leading institute for Computer Science, Artificial Intelligence and Information Technology.",
-  "established": 1998,
-  "fees": 450000,
-  "avgPackage": 32.0,
-  "highestPackage": 105,
-  "placement": 98,
-  "nirfRank": 47,
-  "naac": "A++",
-  "website": "https://www.iiit.ac.in",
-  "image": "images/colleges/iiit-hyderabad.webp",
-  "logo": "logos/iiit-hyderabad.png",
-  "courses": [
-    "B.Tech",
-    "B.Tech + MS",
-    "MS",
-    "M.Tech",
-    "MSc",
-    "PhD"
-  ]
 }
 ]
