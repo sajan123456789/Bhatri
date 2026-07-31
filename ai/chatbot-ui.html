@@ -516,7 +516,9 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ messages })
+body: JSON.stringify({
+    messages: messages.slice(-10)
+})
     });
 
     const data = await response.json();
