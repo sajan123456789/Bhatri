@@ -511,8 +511,8 @@
   try {
     const messages = [...chatHistory, { role: 'user', content: userMessage }];
 
-    const response = await fetch('https://careersteps.in/api/chat', {
-      method: 'POST',
+    const response = await fetch('https://careersteps.in/api', {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       },
